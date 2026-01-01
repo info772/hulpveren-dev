@@ -394,10 +394,14 @@
       <span class="nlplate__eu" aria-hidden="true">
         <span class="nlplate__nl">NL</span>
       </span>
-      <form class="nlplate__form" data-plate-form>
+      <form class="nlplate__form" data-plate-form role="search" aria-label="Kenteken zoeken">
         <input class="nlplate__input" name="plate" inputmode="text" autocomplete="off"
                placeholder="5VLL95" aria-label="Kenteken" data-plate-input />
-        <button class="nlplate__btn" type="submit">Zoek</button>
+        <button class="nlplate__btn" type="submit" aria-label="Zoeken">
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M13.6 12.2a6 6 0 1 0-1.4 1.4l3.6 3.6a1 1 0 0 0 1.4-1.4l-3.6-3.6ZM4 8a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z"/>
+          </svg>
+        </button>
       </form>
     </div>
   `;
