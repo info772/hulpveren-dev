@@ -1,0 +1,69 @@
+{
+  "make": {
+    "slug": "chevrolet",
+    "label": "Chevrolet"
+  },
+  "model": {
+    "slug": "nubira",
+    "label": "Nubira"
+  },
+  "kits": [
+    {
+      "sku": "HV-223057",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947014268.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 182.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "J100",
+            "J150"
+          ],
+          "remark": "Incl. Wagon",
+          "year_from": "04-1997",
+          "year_to": "07-2003",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-223108",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014350.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 190.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KLAN"
+          ],
+          "remark": "incl. Wagon",
+          "year_from": "01-2005",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

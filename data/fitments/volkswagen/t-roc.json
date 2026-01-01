@@ -1,0 +1,70 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "t-roc",
+    "label": "T-Roc"
+  },
+  "kits": [
+    {
+      "sku": "HV-193345",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074620.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 183.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "A11",
+            "D11"
+          ],
+          "remark": "Only Compound axle",
+          "year_from": "07-2017",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199525",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067356.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "A11",
+            "D11"
+          ],
+          "remark": "Only multilink axle, Incl. 4-motion",
+          "year_from": "07-2017",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

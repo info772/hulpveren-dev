@@ -1,0 +1,124 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "kona",
+    "label": "Kona"
+  },
+  "kits": [
+    {
+      "sku": "HV-491115",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TÜV",
+      "ean": "8717947114746.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 157.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "SX2"
+          ],
+          "remark": "Only Multilink axle",
+          "year_from": "04-2023",
+          "year_to": "",
+          "notes": "Engine: Hybrid, Electric, Excl. Mild-Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075276.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 241.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "OS"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "06-2017",
+          "year_to": "03-2023",
+          "notes": "Engine: Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493185",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075405.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 168.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "OS"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "06-2017",
+          "year_to": "04-2023",
+          "notes": "Engine: Excl. Hybrid, Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493198",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947079106.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 304.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "OS"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "06-2017",
+          "year_to": "04-2023",
+          "notes": "Engine: Electric"
+        }
+      ]
+    }
+  ]
+}

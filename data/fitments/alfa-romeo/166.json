@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "alfa-romeo",
+    "label": "Alfa Romeo"
+  },
+  "model": {
+    "slug": "166",
+    "label": "166"
+  },
+  "kits": [
+    {
+      "sku": "HV-001667",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947010963.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 190.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 262.5,
+        "labor_ex_vat_max_eur": 262.5,
+        "total_inc_vat_from_eur": 549
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "936"
+          ],
+          "remark": "Incl. LPG",
+          "year_from": "09-1998",
+          "year_to": "06-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

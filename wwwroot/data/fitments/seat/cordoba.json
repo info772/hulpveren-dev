@@ -1,0 +1,69 @@
+{
+  "make": {
+    "slug": "seat",
+    "label": "SEAT"
+  },
+  "model": {
+    "slug": "cordoba",
+    "label": "Cordoba"
+  },
+  "kits": [
+    {
+      "sku": "HV-182008",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013582.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 225.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 369
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "6K1",
+            "6K2"
+          ],
+          "remark": "",
+          "year_from": "02-1993",
+          "year_to": "10-1999",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-182028",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013599.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 244.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "6L2"
+          ],
+          "remark": "",
+          "year_from": "09-2002",
+          "year_to": "11-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

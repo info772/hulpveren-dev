@@ -1,0 +1,13 @@
+{
+  "make": {
+    "slug": "jeep",
+    "label": "JEEP"
+  },
+  "models": [
+    {
+      "slug": "cherokee",
+      "label": "Cherokee",
+      "kits_count": 1
+    }
+  ]
+}

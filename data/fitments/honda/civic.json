@@ -1,0 +1,128 @@
+{
+  "make": {
+    "slug": "honda",
+    "label": "HONDA"
+  },
+  "model": {
+    "slug": "civic",
+    "label": "Civic"
+  },
+  "kits": [
+    {
+      "sku": "HV-401688",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015791.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 249.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI (EJ",
+            "EK)"
+          ],
+          "remark": "3/5 doors",
+          "year_from": "06-1995",
+          "year_to": "02-2001",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-401698",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947054332.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 274.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VIII (FD",
+            "FA)"
+          ],
+          "remark": "",
+          "year_from": "09-2005",
+          "year_to": "",
+          "notes": "Engine: Only Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-401948",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073074.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 233.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 359
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VIII",
+            "IX (FN",
+            "FK)"
+          ],
+          "remark": "Excl. Type S/ Type R, Excl. Tourer",
+          "year_from": "12-2005",
+          "year_to": "02-2012",
+          "notes": "Engine: Excl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-401958",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073012.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IX (FK)"
+          ],
+          "remark": "Only Tourer",
+          "year_from": "04-2014",
+          "year_to": "12-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

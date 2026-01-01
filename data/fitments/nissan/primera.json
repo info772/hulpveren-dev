@@ -1,0 +1,97 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "primera",
+    "label": "Primera"
+  },
+  "kits": [
+    {
+      "sku": "HV-313167",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947014527.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 166.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "P10"
+          ],
+          "remark": "",
+          "year_from": "06-1990",
+          "year_to": "06-1996",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-313207",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947014541.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 150.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "P11"
+          ],
+          "remark": "",
+          "year_from": "06-1996",
+          "year_to": "07-2002",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-313227",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014565.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 179.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "P12",
+            "WP12"
+          ],
+          "remark": "Incl. Estate",
+          "year_from": "01-2002",
+          "year_to": "10-2008",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

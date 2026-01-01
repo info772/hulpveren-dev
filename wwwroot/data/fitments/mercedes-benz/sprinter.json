@@ -1,0 +1,511 @@
+{
+  "make": {
+    "slug": "mercedes-benz",
+    "label": "Mercedes Benz"
+  },
+  "model": {
+    "slug": "sprinter",
+    "label": "Sprinter"
+  },
+  "kits": [
+    {
+      "sku": "HV-098123",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074453.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 421.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "907",
+            "3",
+            "0-5",
+            "0t"
+          ],
+          "remark": "Auxiliary Front Springs, Only RWD, Only CW2 OE Not lowered, TUV only applies when vehicle is equipped with wheel spacer, Incl. Chassis Cabine",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "906 (OK",
+            "KA",
+            "AC)"
+          ],
+          "remark": "Auxiliary Front Springs, TUV only applies when vehicle is equipped with wheel spacer, Incl. Chassis Cabine",
+          "year_from": "06-2006",
+          "year_to": "02-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098133",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947074460.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 421.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "906 (OK",
+            "KA",
+            "AC)"
+          ],
+          "remark": "Auxiliary Front Springs, Wheelspacers possibly required check installation manual, Incl. Chassis Cabine",
+          "year_from": "06-2006",
+          "year_to": "02-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098140",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947078444.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 459.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 629
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "910"
+          ],
+          "remark": "Only FWD, Incl. LED Headlights, Excl. wide axle (code AH1), Incl. Chassis Cabine",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Sprinter"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947084131.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 297.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 549
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "910"
+          ],
+          "remark": "Reinforced Front Springs, FWD, Incl. Chassis Cabine",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Sprinter"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098180",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084780.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 474.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "907 (511",
+            "519)"
+          ],
+          "remark": "Double rear wheels, Excl. 4WD, Incl. LED Headlights, Incl. Chassis Cabine",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "906",
+            "4",
+            "6-5",
+            "0t"
+          ],
+          "remark": "Double rear wheels, Excl. 4WD, Excl. Xenon headlights, Incl. Chassis Cabine",
+          "year_from": "06-2006",
+          "year_to": "02-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098190",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947084797.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 494.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 689
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "907 (511",
+            "519)"
+          ],
+          "remark": "Maximum support, Double rear wheels, Excl. 4WD, Incl. LED Headlights, Incl. Chassis Cabine",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "906",
+            "4",
+            "6-5",
+            "0t"
+          ],
+          "remark": "Maximum support, Double rear wheels, Excl. 4WD, Excl. Xenon headlights, Incl. Chassis Cabine",
+          "year_from": "06-2006",
+          "year_to": "02-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098200",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947116283.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 474.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "910"
+          ],
+          "remark": "Maximum support, Only FWD, Incl. LED Headlights, Excl. wide axle (code AH1), Min. load 850 kg,",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Sprinter"
+        },
+        {
+          "platform_codes": [
+            "910"
+          ],
+          "remark": "Only Chassis Cabine, Only wide axle (code AH1), Only FWD, incl LED Headlights, Min load 425kg",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098213",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947118447.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 445.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 679
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "907"
+          ],
+          "remark": "Auxiliary Front Springs, Only 4WD Extreme raised suspension >60mm, Incl. Chassis Cabine, TUV only applies when vehicle is equipped with wheel spacer",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098220",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947119086.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 495.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "907",
+            "3",
+            "5-4",
+            "5t"
+          ],
+          "remark": "RWD, Excl. Chassis-cabine",
+          "year_from": "11-2023",
+          "year_to": "",
+          "notes": "Engine: Only eSprinter"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098230",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947119093.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 530.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 709
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "907",
+            "3",
+            "5-4",
+            "5t"
+          ],
+          "remark": "Maximum support, RWD, Excl. Chassis-cabine",
+          "year_from": "11-2023",
+          "year_to": "",
+          "notes": "Engine: Only eSprinter"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947119369.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 375.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 639
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "910"
+          ],
+          "remark": "Reinforced Front Springs, Incl. Chassis Cabine, FWD, Only for max. front axle load 2100kg (code A50)",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098250",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947119543.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 495.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "907",
+            "3",
+            "5-4",
+            "5t"
+          ],
+          "remark": "RWD, Only Chassis-cabine",
+          "year_from": "08-2024",
+          "year_to": "",
+          "notes": "Engine: Only eSprinter"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098260",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947119550.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 530.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 709
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "907",
+            "3",
+            "5-4",
+            "5t"
+          ],
+          "remark": "Maximum support, RWD, Only Chassis-cabine",
+          "year_from": "08-2024",
+          "year_to": "",
+          "notes": "Engine: Only eSprinter"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198050",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947014008.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 509.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "901",
+            "902",
+            "903"
+          ],
+          "remark": "Incl. Stabiliser bar, Incl. Chassis Cabine",
+          "year_from": "01-1995",
+          "year_to": "05-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198190",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067035.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 460.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 629
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "907",
+            "3",
+            "0-3",
+            "5t"
+          ],
+          "remark": "RWD, Excl. Twin rear wheels, Excl. 4WD, Excl. CE8 raised vehicles, Incl. Chassis Cabine",
+          "year_from": "02-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "906 (OK",
+            "KA",
+            "AC) 30-35"
+          ],
+          "remark": "Excl. Twin rear wheels, Excl. 4WD, Incl. Chassis Cabine",
+          "year_from": "06-2006",
+          "year_to": "02-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

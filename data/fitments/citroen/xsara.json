@@ -1,0 +1,97 @@
+{
+  "make": {
+    "slug": "citroen",
+    "label": "Citroën"
+  },
+  "model": {
+    "slug": "xsara",
+    "label": "Xsara"
+  },
+  "kits": [
+    {
+      "sku": "HV-133110",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012691.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 228.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "N2"
+          ],
+          "remark": "Only Break",
+          "year_from": "04-1997",
+          "year_to": "12-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133120",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947012707.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 223.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "N0",
+            "N1"
+          ],
+          "remark": "Excl. Break",
+          "year_from": "04-1997",
+          "year_to": "12-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133140",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012721.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 245.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "N2"
+          ],
+          "remark": "Only Break, LPG-kit",
+          "year_from": "04-1997",
+          "year_to": "12-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

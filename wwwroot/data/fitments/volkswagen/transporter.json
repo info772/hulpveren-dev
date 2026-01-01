@@ -1,0 +1,893 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "transporter",
+    "label": "Transporter"
+  },
+  "kits": [
+    {
+      "sku": "HV-068385",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947118386.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 163.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (NSN) (TV",
+            "TW)"
+          ],
+          "remark": "Standard support, Excl. 4-motion, L1 & L2",
+          "year_from": "09-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068395",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116214.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 178.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (NSN) (TV",
+            "TW)"
+          ],
+          "remark": "Medium support, Min Load 180kg, L1 & L2, Incl. 4-motion",
+          "year_from": "09-2024",
+          "year_to": "",
+          "notes": "Engine: All, Excl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068418",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116481.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 362.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 719
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (NSN) (TV",
+            "TW)"
+          ],
+          "remark": "Reinforced Front Springs, L1 & L2, Incl. 4-motion",
+          "year_from": "09-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068428",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116498.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 382.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 539
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (NSN) (TV",
+            "TW)"
+          ],
+          "remark": "Medium support, L1 & L2, Incl. 4-motion, Min load 300kg",
+          "year_from": "09-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068438",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116504.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 402.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 559
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (NSN) (TV",
+            "TW)"
+          ],
+          "remark": "Maximum support, L1 & L2, Incl. 4-motion, Min load 600kg",
+          "year_from": "09-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068441",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116511.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 708.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 281.25,
+        "labor_ex_vat_max_eur": 281.25,
+        "total_inc_vat_from_eur": 1199
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (NSN) (TV",
+            "TW)"
+          ],
+          "remark": "Medium support, L1 & L2, Incl. 4-motion, Min load rear 300kg",
+          "year_from": "09-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068451",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116528.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 729.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 281.25,
+        "labor_ex_vat_max_eur": 281.25,
+        "total_inc_vat_from_eur": 1229
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (NSN) (TV",
+            "TW)"
+          ],
+          "remark": "Maximum support, L1 & L2, Incl. 4-motion, Min load rear 600kg",
+          "year_from": "09-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198045",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013988.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 139.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 219
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T4"
+          ],
+          "remark": "Incl. Syncro, Incl. Caravelle",
+          "year_from": "07-1990",
+          "year_to": "04-2003",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T3"
+          ],
+          "remark": "Excl. Syncro",
+          "year_from": "05-1979",
+          "year_to": "12-1992",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198061",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947014015.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 299.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T4"
+          ],
+          "remark": "Incl. Syncro",
+          "year_from": "09-1990",
+          "year_to": "04-2003",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198075",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014022.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 186.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6",
+            "T6.1"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "09-2024",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5",
+            "T5GP"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "05-2003",
+          "year_to": "08-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198081",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014046.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 547.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 939
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "10-2019",
+          "notes": "Engine: 1.9 TDI , 2.0"
+        },
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "10-2019",
+          "notes": "Engine: 2.5 TDI , 3.2V6"
+        },
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "10-2019",
+          "notes": "Engine: 2.0TDI 62+75KW"
+        },
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "10-2019",
+          "notes": "Engine: 2.0TDI 103KW"
+        },
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "10-2019",
+          "notes": "Engine: 2.0TDI 132KW"
+        },
+        {
+          "platform_codes": [
+            "T5GP 2.0TDI 62+75KW"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "11-2009",
+          "year_to": "08-2015",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5GP 2.0TDI 132KW"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "11-2009",
+          "year_to": "08-2015",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5GP 2.0TDI 103KW"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "11-2009",
+          "year_to": "08-2015",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5 1.9 TDI",
+            "2.0"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "05-2003",
+          "year_to": "11-2009",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5 2.5 TDI",
+            "3.2V6"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "04-2003",
+          "year_to": "11-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198135",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947055452.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 335.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 479
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6",
+            "T6.1"
+          ],
+          "remark": "CNG",
+          "year_from": "04-2015",
+          "year_to": "09-2024",
+          "notes": "Engine: CNG"
+        },
+        {
+          "platform_codes": [
+            "T5",
+            "T5GP"
+          ],
+          "remark": "CNG",
+          "year_from": "05-2003",
+          "year_to": "08-2015",
+          "notes": "Engine: CNG"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198158P",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947056497.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 446.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 609
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6",
+            "T6.1"
+          ],
+          "remark": "Maximum support, Min. Load 600kg, Min. Rear axle load 1300kg, Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "09-2024",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5",
+            "T5GP"
+          ],
+          "remark": "Maximum support, Min. Load 600kg, Min. Rear axle load 1300kg, Incl. 4motion",
+          "year_from": "05-2003",
+          "year_to": "08-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198171P",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947061699.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 835.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 1289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Maximum support Rear Springs, Cross Country raises f/r 2.0TDI 132KW 25/30mm, 2.0TDI 103KW 30/30mm, 2.0TDI 62+75KW 45/30mm, Min. Load 600kg, Min. Rear axle load 1300KG, Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "10-2019",
+          "notes": "Engine: see remarks"
+        },
+        {
+          "platform_codes": [
+            "T5GP"
+          ],
+          "remark": "Maximum support Rear Springs, Cross Country raises f/r 2.0TDI 132KW 25/30mm, 2.0TDI 103KW 30/30mm, 2.0TDI 62+75KW 45/30mm, Min. Load 600kg, Min. Rear axle load 1300KG, Incl. 4motion",
+          "year_from": "11-2009",
+          "year_to": "08-2015",
+          "notes": "Engine: see remarks"
+        },
+        {
+          "platform_codes": [
+            "T5"
+          ],
+          "remark": "Maximum support Rear Springs, Cross Country raises f/r 2.0TDI 132KW 25/30mm, 2.0TDI 103KW 30/30mm, 2.0TDI 62+75KW 45/30mm, Min. Load 600kg, Min. Rear axle load 1300KG, Incl. 4motion",
+          "year_from": "05-2003",
+          "year_to": "11-2009",
+          "notes": "Engine: see remarks"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198201P",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067233.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 633.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 187.5,
+        "labor_ex_vat_max_eur": 187.5,
+        "total_inc_vat_from_eur": 999
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Cross Country raises f/r 2.0TDI 132KW 25/30mm, 2.0TDI 103KW 30/30mm, 2.0TDI 62+75KW 45/30mm, Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "10-2019",
+          "notes": "Engine: see remarks"
+        },
+        {
+          "platform_codes": [
+            "T5",
+            "T5GP"
+          ],
+          "remark": "Cross Country raises f/r 2.0TDI 132KW 25/30mm, 2.0TDI 103KW 30/30mm, 2.0TDI 62+75KW 45/30mm, Incl. 4motion",
+          "year_from": "05-2003",
+          "year_to": "11-2009",
+          "notes": "Engine: see remarks"
+        },
+        {
+          "platform_codes": [
+            "T5"
+          ],
+          "remark": "Cross Country raises f/r 2.0TDI 132KW 25/30mm, 2.0TDI 103KW 30/30mm, 2.0TDI 62+75KW 45/30mm, Incl. 4motion",
+          "year_from": "05-2003",
+          "year_to": "11-2009",
+          "notes": "Engine: see remarks"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198218",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067448.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 289.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6",
+            "T6.1"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "09-2024",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5",
+            "T5GP"
+          ],
+          "remark": "Incl. 4motion",
+          "year_from": "04-2003",
+          "year_to": "08-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198228P",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947074316.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 403.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 187.5,
+        "labor_ex_vat_max_eur": 187.5,
+        "total_inc_vat_from_eur": 719
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Front springs. Only in combination with reinforced rear springs or Airsuspension at the rear",
+          "year_from": "04-2015",
+          "year_to": "10-2019",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198238",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073630.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 446.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 609
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6",
+            "T6.1"
+          ],
+          "remark": "Medium support, Min. Load 300kg, Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "09-2024",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5",
+            "T5GP"
+          ],
+          "remark": "Medium support, Min. Load 300kg, Incl. 4motion",
+          "year_from": "05-2003",
+          "year_to": "08-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198271",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947077379.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 835.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 1289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Maximum support Rear Springs, Cross Country raises f/r 2.0TDI 132KW 25/30mm, 2.0TDI 103KW 30/30mm, 2.0TDI 62+75KW 45/30mm, Min. Load 300kg, Min. Rear axle load 1000KG, Incl. 4motion",
+          "year_from": "04-2015",
+          "year_to": "10-2019",
+          "notes": "Engine: see remarks"
+        },
+        {
+          "platform_codes": [
+            "T5GP"
+          ],
+          "remark": "Maximum support Rear Springs, Cross Country raises f/r 2.0TDI 132KW 25/30mm, 2.0TDI 103KW 30/30mm, 2.0TDI 62+75KW 45/30mm, Min. Load 300kg, Min. Rear axle load 1000KG, Incl. 4motion",
+          "year_from": "11-2009",
+          "year_to": "08-2015",
+          "notes": "Engine: see remarks"
+        },
+        {
+          "platform_codes": [
+            "T5"
+          ],
+          "remark": "Maximum support Rear Springs, Cross Country raises f/r 2.0TDI 132KW 25/30mm, 2.0TDI 103KW 30/30mm, 2.0TDI 62+75KW 45/30mm, Min. Load 300kg, Min. Rear axle load 1000KG, Incl. 4motion",
+          "year_from": "05-2003",
+          "year_to": "11-2009",
+          "notes": "Engine: see remarks"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198291",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080096.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 570.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 969
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6.1"
+          ],
+          "remark": "Cross Country raises f/r 2.0TDI 66+81KW 30/30mm, 2.0TDI 110KW 25/30mm, 2.0TDI 146KW 20/30mm, Incl. 4motion",
+          "year_from": "10-2019",
+          "year_to": "09-2024",
+          "notes": "Engine: See remarks"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198301",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080102.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 835.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 1289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6.1"
+          ],
+          "remark": "Maximum support Rear Springs, Cross Country raises f/r 2.0TDI 66+81KW 30/30mm, 2.0TDI 110KW 25/30mm, 2.0TDI 146KW 20/30mm, Min. Load 600kg, Min. Rear axle load 1300KG,  Incl. 4motion",
+          "year_from": "10-2019",
+          "year_to": "09-2024",
+          "notes": "Engine: See remarks"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198311",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080119.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 627.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 1039
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6.1"
+          ],
+          "remark": "Cross Country raises f/r 2.0TDI 66+81KW 30/30mm, 2.0TDI 110KW 25/30mm, 2.0TDI 146KW 20/30mm, Incl. 4motion",
+          "year_from": "10-2019",
+          "year_to": "09-2024",
+          "notes": "Engine: See remarks"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198321",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080126.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 835.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 1289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6.1"
+          ],
+          "remark": "Maximum support Rear Springs, Cross Country raises f/r 2.0TDI 66+81KW 30/30mm, 2.0TDI 110KW 25/30mm, 2.0TDI 146KW 20/30mm, Min. Load 300kg, Min. Rear axle load 1000KG,  Incl. 4motion",
+          "year_from": "10-2019",
+          "year_to": "09-2024",
+          "notes": "Engine: See remarks"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198348",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947080157.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 368.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 187.5,
+        "labor_ex_vat_max_eur": 187.5,
+        "total_inc_vat_from_eur": 679
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6.1"
+          ],
+          "remark": "Reinforced Front Springs, Only in combination with reinforced rear springs or Airsuspension at the rear",
+          "year_from": "10-2019",
+          "year_to": "09-2024",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

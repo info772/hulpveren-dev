@@ -1,0 +1,97 @@
+{
+  "make": {
+    "slug": "mazda",
+    "label": "MAZDA"
+  },
+  "model": {
+    "slug": "2",
+    "label": "2"
+  },
+  "kits": [
+    {
+      "sku": "HV-062148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011496.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 249.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "DY"
+          ],
+          "remark": "",
+          "year_from": "04-2003",
+          "year_to": "06-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360435",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083547.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 158.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 239
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KB"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "03-2022",
+          "year_to": "",
+          "notes": "Engine: Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-383515",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073258.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 166.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "DL",
+            "DJ"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "08-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

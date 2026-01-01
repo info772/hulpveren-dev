@@ -1,0 +1,52 @@
+<%- include("partials/header") %>
+
+<div class="panel">
+  <h2>MAD Upload</h2>
+  <form method="post" action="/admin/mad/upload" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <input type="file" name="madFile" accept=".json,.zip" required />
+    <button type="submit">Upload</button>
+  </form>
+</div>
+
+<div class="panel">
+  <h3>Imports</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Bestand</th>
+        <th>Records</th>
+        <th>Datum</th>
+        <th>Current</th>
+        <th>Actie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (!imports.length) { %>
+        <tr>
+          <td colspan="5" class="muted">Nog geen imports.</td>
+        </tr>
+      <% } %>
+      <% imports.forEach((item) => { %>
+        <tr>
+          <td><%= item.filename %></td>
+          <td><%= item.recordCount %></td>
+          <td><%= item.createdAt %></td>
+          <td><%= item.isCurrent ? "Ja" : "Nee" %></td>
+          <td>
+            <% if (!item.isCurrent) { %>
+              <form class="inline" method="post" action="/admin/mad/<%= item.id %>/set-current">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <button type="submit">Set current</button>
+              </form>
+            <% } else { %>
+              <span class="muted">Actief</span>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("partials/footer") %>

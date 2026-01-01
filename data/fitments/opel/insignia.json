@@ -1,0 +1,99 @@
+{
+  "make": {
+    "slug": "opel",
+    "label": "OPEL"
+  },
+  "model": {
+    "slug": "insignia",
+    "label": "Insignia"
+  },
+  "kits": [
+    {
+      "sku": "HV-123048",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075351.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 190.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B",
+            "Z18"
+          ],
+          "remark": "Grand Sport, Incl. OPC-Line. Excl. OPC, Excl. Country Tourer, Excl. Adaptive 4WD",
+          "year_from": "03-2017",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-123058",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075344.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 278.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 429
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B",
+            "Z18"
+          ],
+          "remark": "Sports Tourer, Incl. OPC-Line, Excl. OPC, Excl. Country Tourer, Excl. Adaptive 4WD",
+          "year_from": "03-2017",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124225",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947051713.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "A",
+            "G09"
+          ],
+          "remark": "Incl. Sports Tourer",
+          "year_from": "07-2008",
+          "year_to": "03-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

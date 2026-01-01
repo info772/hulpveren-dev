@@ -1,0 +1,99 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "model": {
+    "slug": "proace-max",
+    "label": "Proace max"
+  },
+  "kits": [
+    {
+      "sku": "HV-138158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013025.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 443.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 719
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "MFY",
+            "MFQ"
+          ],
+          "remark": "Reinforced Front Springs, +35 mm, Incl. Chassis-cabine",
+          "year_from": "07-2024",
+          "year_to": "",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-138190",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084384.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 367.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 519
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "MFY",
+            "MFQ"
+          ],
+          "remark": "Medium support, Min. Load 350 Kg",
+          "year_from": "07-2024",
+          "year_to": "",
+          "notes": "Engine: Incl. electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-138200",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084391.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 421.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 579
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "MFY",
+            "MFQ"
+          ],
+          "remark": "Maximum support, Min. load 750kg",
+          "year_from": "07-2024",
+          "year_to": "",
+          "notes": "Engine: Incl. electric"
+        }
+      ]
+    }
+  ]
+}

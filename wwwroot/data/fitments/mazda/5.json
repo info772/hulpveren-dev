@@ -1,0 +1,49 @@
+{
+  "make": {
+    "slug": "mazda",
+    "label": "MAZDA"
+  },
+  "model": {
+    "slug": "5",
+    "label": "5"
+  },
+  "kits": [
+    {
+      "sku": "HV-062195",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011533.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 171.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "CW"
+          ],
+          "remark": "Excl. AWD",
+          "year_from": "06-2010",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "CR19"
+          ],
+          "remark": "Excl. AWD",
+          "year_from": "02-2005",
+          "year_to": "12-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

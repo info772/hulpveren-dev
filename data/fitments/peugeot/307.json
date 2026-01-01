@@ -1,0 +1,70 @@
+{
+  "make": {
+    "slug": "peugeot",
+    "label": "Peugeot"
+  },
+  "model": {
+    "slug": "307",
+    "label": "307"
+  },
+  "kits": [
+    {
+      "sku": "HV-133188",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012752.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 242.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "3A",
+            "C"
+          ],
+          "remark": "Excl. Break, Excl. SW",
+          "year_from": "08-2000",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133198",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012769.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 292.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "3E",
+            "3H"
+          ],
+          "remark": "SW, Break",
+          "year_from": "03-2002",
+          "year_to": "12-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

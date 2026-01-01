@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacyverklaring – Hulpveren.shop</title>
+  <meta name="description" content="Lees hoe Hulpveren.shop omgaat met persoonsgegevens, cookies, bewaartermijnen en jouw privacyrechten." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.hulpveren.shop/privacy/" />
+
+  <link rel="icon" href="/img/branding/APR-Favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
+
+  <link rel="stylesheet" href="/assets/css/site.css" />
+
+  <!-- Page-only styling: scoped zodat je header/nav CSS niet kapot gaat -->
+  <style>
+.voorwaarden-page{
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(250,184,25,.18), transparent 60%),
+    radial-gradient(1000px 600px at 80% 10%, rgba(250,184,25,.10), transparent 55%),
+    #0b0f14;
+  min-height: 100vh;
+}
+
+
+    .privacy-wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    .privacy-head{
+      padding: 18px 0 10px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      margin-bottom: 22px;
+    }
+
+    .privacy-kicker{
+      opacity: .85;
+      font-size: .95rem;
+      margin: 0 0 8px;
+    }
+
+    .privacy-head h1{
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+      letter-spacing: -0.02em;
+    }
+
+    .privacy-lead{
+      margin: 0 0 10px;
+      opacity: .85;
+      max-width: 70ch;
+      line-height: 1.65;
+    }
+
+    .privacy-meta{
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      opacity: .85;
+      font-size: .95rem;
+    }
+
+    .privacy-badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .privacy-main{
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .privacy-card{
+      background: rgba(18,24,35,.75);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 18px 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .privacy-card h2{
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .privacy-card p{ margin: 0 0 12px; line-height: 1.65; }
+    .privacy-card ul{ margin: 0 0 12px; padding-left: 18px; }
+    .privacy-card li{ margin: 6px 0; }
+
+    .privacy-muted{ opacity: .85; }
+    .privacy-small{ font-size: .95rem; }
+
+    .privacy-grid2{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .privacy-contactbox{
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .privacy-foot{
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      opacity: .85;
+      font-size: .95rem;
+    }
+
+    @media (min-width: 860px){
+      .privacy-grid2{
+        grid-template-columns: 1.1fr .9fr;
+        align-items: start;
+      }
+    }
+  </style>
+</head>
+
+<body class="privacy-page">
+
+  <!-- HEADER: moet op ALLE pagina's gelijk zijn -->
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Hulpveren.shop">
+        <img class="brand-logo" src="/img/branding/Logo-wit.png" alt="Hulpveren.shop" loading="lazy" decoding="async" />
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open navigatie">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" aria-label="Hoofdmenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+
+          <li class="nav-item nav-item-mega" data-family="hv">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD hulpveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-hv" class="mega-list" aria-label="Merken hulpveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="nr">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Luchtvering</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-nr" class="mega-list" aria-label="Merken luchtvering"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="ls">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Verlagingsveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-ls" class="mega-list" aria-label="Merken verlagingsveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="/montage">Montage</a></li>
+          <li class="nav-item"><a class="nav-link" href="/onze-ervaring">Onze ervaring</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PRIVACY CONTENT -->
+  <div class="privacy-wrap">
+    <header class="privacy-head">
+      <p class="privacy-kicker">Jouw privacy bij Hulpveren.shop</p>
+      <h1>Privacyverklaring</h1>
+      <p class="privacy-lead">
+        In deze privacyverklaring leggen we uit welke persoonsgegevens we verwerken, waarom we dat doen,
+        hoe lang we gegevens bewaren en welke rechten je hebt.
+      </p>
+      <div class="privacy-meta">
+        <span class="privacy-badge">Website: <strong>Hulpveren.shop</strong></span>
+        <span class="privacy-badge">Laatste update: <strong>20 december 2025</strong></span>
+      </div>
+    </header>
+
+    <main class="privacy-main">
+      <section class="privacy-card">
+        <h2>1. Wie zijn wij</h2>
+        <div class="privacy-grid2">
+          <div>
+            <p>
+              Hulpveren.shop is een handelsnaam van <strong>Auto Parts Roosendaal</strong>.
+              Wij zijn verantwoordelijk voor de verwerking van persoonsgegevens zoals beschreven in deze privacyverklaring.
+            </p>
+            <p class="privacy-muted privacy-small" style="margin:0;">
+              Heb je vragen over deze privacyverklaring of wil je gebruikmaken van je privacyrechten?
+              Neem dan contact met ons op via onderstaande gegevens.
+            </p>
+          </div>
+
+          <div class="privacy-contactbox">
+            <p style="margin:0 0 8px;"><strong>Bedrijfsgegevens</strong></p>
+            <p class="privacy-muted privacy-small" style="margin:0;">
+              <strong>Auto Parts Roosendaal</strong><br />
+              Westelijke Havendijk 17c<br />
+              4703 RA Roosendaal<br />
+              Nederland<br /><br />
+              E-mail: <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a><br />
+              Telefoon: <a href="tel:+31165856568">0165-856568</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="privacy-card">
+        <h2>2. Welke persoonsgegevens verwerken wij</h2>
+        <p>Wij verwerken uitsluitend persoonsgegevens die nodig zijn voor onze dienstverlening. Dit kan gaan om:</p>
+        <ul>
+          <li>Voor- en achternaam</li>
+          <li>E-mailadres</li>
+          <li>Telefoonnummer</li>
+          <li>Kenteken en voertuiggegevens (merk, model, bouwjaar)</li>
+          <li>IP-adres</li>
+          <li>Gegevens die je zelf invult in contact- of offerteformulieren</li>
+          <li>Correspondentie via e-mail of WhatsApp</li>
+        </ul>
+        <p class="privacy-muted" style="margin:0;">Wij verwerken geen bijzondere of gevoelige persoonsgegevens.</p>
+      </section>
+
+      <section class="privacy-card">
+        <h2>3. Waarvoor gebruiken wij deze gegevens</h2>
+        <p>Wij gebruiken jouw gegevens uitsluitend voor de volgende doeleinden:</p>
+        <ul>
+          <li>Het beantwoorden van vragen of offerte-aanvragen</li>
+          <li>Het adviseren over passende hulpveren of veringsoplossingen</li>
+          <li>Het afhandelen van bestellingen en betalingen</li>
+          <li>Het verbeteren van onze website en dienstverlening</li>
+          <li>Wettelijke verplichtingen (zoals administratie en facturatie)</li>
+        </ul>
+        <p class="privacy-muted" style="margin:0;">Gegevens worden nooit gebruikt voor andere doeleinden zonder jouw toestemming.</p>
+      </section>
+
+      <section class="privacy-card">
+        <h2>4. Grondslag van de verwerking</h2>
+        <p>Wij verwerken persoonsgegevens op basis van:</p>
+        <ul>
+          <li>Jouw toestemming (bijvoorbeeld via een contactformulier)</li>
+          <li>De uitvoering van een overeenkomst</li>
+          <li>Wettelijke verplichtingen</li>
+          <li>Gerechtvaardigd belang (zoals website-analyse en beveiliging)</li>
+        </ul>
+      </section>
+
+      <section class="privacy-card">
+        <h2>5. Delen van persoonsgegevens met derden</h2>
+        <p>Wij delen jouw gegevens alleen met derden als dat noodzakelijk is voor onze dienstverlening, zoals:</p>
+        <ul>
+          <li>Betaaldiensten</li>
+          <li>Hosting- en e-mailproviders</li>
+          <li>Website-analyse tools (zoals statistieken)</li>
+        </ul>
+        <p style="margin:0;">
+          Met deze partijen sluiten wij verwerkersovereenkomsten af.
+          Wij verkopen jouw gegevens <strong>nooit</strong> aan derden.
+        </p>
+      </section>
+
+      <section class="privacy-card">
+        <h2>6. Cookies en websiteanalyse</h2>
+        <p>
+          Hulpveren.shop gebruikt functionele en analytische cookies om de website goed te laten werken
+          en inzicht te krijgen in het gebruik ervan.
+        </p>
+        <ul>
+          <li>Functionele cookies: noodzakelijk voor de werking van de website</li>
+          <li>Analytische cookies: om het gebruik van de website te analyseren</li>
+        </ul>
+        <p class="privacy-muted" style="margin:0;">Wij gebruiken geen tracking cookies zonder toestemming.</p>
+      </section>
+
+      <section class="privacy-card">
+        <h2>7. Bewaartermijnen</h2>
+        <p>Wij bewaren persoonsgegevens niet langer dan nodig is:</p>
+        <ul>
+          <li>Contact- en offertegegevens: maximaal 2 jaar</li>
+          <li>Administratieve gegevens: volgens wettelijke verplichtingen (7 jaar)</li>
+          <li>Correspondentie: zolang nodig voor service en opvolging</li>
+        </ul>
+      </section>
+
+      <section class="privacy-card">
+        <h2>8. Beveiliging van gegevens</h2>
+        <p>
+          Wij nemen passende technische en organisatorische maatregelen om persoonsgegevens te beveiligen tegen verlies,
+          misbruik of onbevoegde toegang.
+        </p>
+        <p class="privacy-muted" style="margin:0;">Onze website maakt gebruik van een beveiligde SSL-verbinding.</p>
+      </section>
+
+      <section class="privacy-card">
+        <h2>9. Jouw rechten</h2>
+        <p>Je hebt het recht om:</p>
+        <ul>
+          <li>Je persoonsgegevens in te zien</li>
+          <li>Je gegevens te laten corrigeren of verwijderen</li>
+          <li>Je toestemming in te trekken</li>
+          <li>Bezwaar te maken tegen verwerking</li>
+          <li>Gegevens over te laten dragen (dataportabiliteit)</li>
+        </ul>
+        <p style="margin:0;">
+          Een verzoek kun je sturen naar:
+          <a href="mailto:info@auto-parts-roosendaal.nl"><strong>info@auto-parts-roosendaal.nl</strong></a>
+        </p>
+      </section>
+
+      <section class="privacy-card">
+        <h2>10. Klachten</h2>
+        <p style="margin:0;">
+          Heb je een klacht over hoe wij omgaan met persoonsgegevens? Neem dan contact met ons op.
+          Je hebt ook het recht een klacht in te dienen bij de <strong>Autoriteit Persoonsgegevens</strong>.
+        </p>
+      </section>
+
+      <section class="privacy-card">
+        <h2>11. Wijzigingen</h2>
+        <p style="margin:0;">
+          Deze privacyverklaring kan worden aangepast bij wijzigingen in wetgeving of onze dienstverlening.
+          De meest actuele versie is altijd beschikbaar op Hulpveren.shop.
+        </p>
+      </section>
+
+      <footer class="privacy-foot">
+        <p style="margin:0;">
+          <strong>Hulpveren.shop</strong> | Privacyverklaring<br />
+          Heb je vragen? Mail naar <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a>.
+        </p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Site scripts (nodig voor header + mega menus) -->
+  <script defer src="/assets/js/header.js?v=20251215_1"></script>
+  <script defer src="/assets/js/app.js?v=20251212c"></script>
+</body>
+</html>
+

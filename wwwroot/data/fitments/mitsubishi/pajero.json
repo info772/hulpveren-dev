@@ -1,0 +1,146 @@
+{
+  "make": {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi"
+  },
+  "model": {
+    "slug": "pajero",
+    "label": "Pajero"
+  },
+  "kits": [
+    {
+      "sku": "HV-104185",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947012226.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 175.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (V2",
+            "V3",
+            "V4)"
+          ],
+          "remark": "Rear kit, Coilspring, Only SWB 2door",
+          "year_from": "12-1990",
+          "year_to": "04-2000",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104205",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947012233.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 182.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (V2",
+            "V3",
+            "V4)"
+          ],
+          "remark": "Rear kit, Coilspring, Only LWB 4door",
+          "year_from": "12-1990",
+          "year_to": "04-2000",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104215",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012240.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 189.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (V80)"
+          ],
+          "remark": "SWB, LWB",
+          "year_from": "10-2006",
+          "year_to": "04-2021",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "III (V60)"
+          ],
+          "remark": "SWB, LWB,  Excl. Sport",
+          "year_from": "04-2000",
+          "year_to": "01-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104221",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012257.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 494.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 789
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (V80)"
+          ],
+          "remark": "SWB, LWB, Excl. Sport, Disc Front / Auxiliary spring rear",
+          "year_from": "10-2006",
+          "year_to": "04-2021",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "III (V60)"
+          ],
+          "remark": "SWB, LWB, Excl. Sport, Disc Front / Auxiliary spring rear",
+          "year_from": "04-2000",
+          "year_to": "01-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

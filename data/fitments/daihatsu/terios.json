@@ -1,0 +1,96 @@
+{
+  "make": {
+    "slug": "daihatsu",
+    "label": "Daihatsu"
+  },
+  "model": {
+    "slug": "terios",
+    "label": "Terios"
+  },
+  "kits": [
+    {
+      "sku": "HV-033138",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011144.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 282.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "J1"
+          ],
+          "remark": "",
+          "year_from": "03-1997",
+          "year_to": "10-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-033145",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947054943.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 198.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "J2"
+          ],
+          "remark": "",
+          "year_from": "11-2005",
+          "year_to": "12-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-033151",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947055629.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 518.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 769
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "J2"
+          ],
+          "remark": "",
+          "year_from": "11-2005",
+          "year_to": "12-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

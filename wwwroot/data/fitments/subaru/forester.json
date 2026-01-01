@@ -1,0 +1,70 @@
+{
+  "make": {
+    "slug": "subaru",
+    "label": "Subaru"
+  },
+  "model": {
+    "slug": "forester",
+    "label": "Forester"
+  },
+  "kits": [
+    {
+      "sku": "HV-113138",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947066533.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 324.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 93.75,
+        "labor_ex_vat_max_eur": 93.75,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "SG",
+            "SGS"
+          ],
+          "remark": "In combination with KYB shocks nr:334345/334344",
+          "year_from": "07-2002",
+          "year_to": "10-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-113208",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012349.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 327.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 539
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "SF",
+            "SFS"
+          ],
+          "remark": "",
+          "year_from": "07-1997",
+          "year_to": "09-2002",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

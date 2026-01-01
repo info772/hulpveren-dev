@@ -1,0 +1,70 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "micra",
+    "label": "Micra"
+  },
+  "kits": [
+    {
+      "sku": "HV-310225",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947014466.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 167.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "K11"
+          ],
+          "remark": "",
+          "year_from": "01-1992",
+          "year_to": "02-2003",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-313235",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947072206.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 173.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "K14"
+          ],
+          "remark": "",
+          "year_from": "12-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

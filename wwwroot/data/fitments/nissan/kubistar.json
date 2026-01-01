@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "kubistar",
+    "label": "Kubistar"
+  },
+  "kits": [
+    {
+      "sku": "HV-146100",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013353.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 382.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "X76"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "08-2003",
+          "year_to": "10-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146110",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013360.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 382.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "X76"
+          ],
+          "remark": "Maximum support, Excl. 4WD",
+          "year_from": "08-2003",
+          "year_to": "10-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

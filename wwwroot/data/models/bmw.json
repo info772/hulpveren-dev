@@ -1,0 +1,18 @@
+{
+  "make": {
+    "slug": "bmw",
+    "label": "BMW"
+  },
+  "models": [
+    {
+      "slug": "2-serie",
+      "label": "2-serie",
+      "kits_count": 1
+    },
+    {
+      "slug": "3-serie",
+      "label": "3-serie",
+      "kits_count": 4
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "make": {
+    "slug": "opel",
+    "label": "OPEL"
+  },
+  "model": {
+    "slug": "zafira",
+    "label": "Zafira"
+  },
+  "kits": [
+    {
+      "sku": "HV-124125",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012462.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 186.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B (A05)"
+          ],
+          "remark": "",
+          "year_from": "07-2005",
+          "year_to": "09-2011",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "A (T98)"
+          ],
+          "remark": "",
+          "year_from": "04-1999",
+          "year_to": "06-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124215",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012554.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 204.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B (A05)"
+          ],
+          "remark": "Maximum support",
+          "year_from": "07-2005",
+          "year_to": "09-2011",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "A (T98)"
+          ],
+          "remark": "Maximum support",
+          "year_from": "04-1999",
+          "year_to": "06-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124285",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947066311.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (P12)"
+          ],
+          "remark": "Tourer",
+          "year_from": "10-2011",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

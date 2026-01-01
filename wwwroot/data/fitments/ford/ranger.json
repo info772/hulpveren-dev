@@ -1,0 +1,320 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "model": {
+    "slug": "ranger",
+    "label": "Ranger"
+  },
+  "kits": [
+    {
+      "sku": "HV-064228",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TÜV",
+      "ean": "8717947116108.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 418.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 689
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB"
+          ],
+          "remark": "Reinforced Front Springs, 4WD, Excl. Raptor, Excl. Wildtrak X, Excl. Tremor",
+          "year_from": "11-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064230",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947067493.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 399.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 529
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB (TKE)"
+          ],
+          "remark": "Excl.Raptor",
+          "year_from": "04-2011",
+          "year_to": "11-2022",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067455.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 333.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB (TKE)"
+          ],
+          "remark": "Reinforced Front Springs, Excl. 2WD, Excl. Single Cab, Excl. Raptor",
+          "year_from": "04-2011",
+          "year_to": "02-2019",
+          "notes": "Engine: Only TDCI"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064251",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081109.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 679.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 959
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB (TKE)"
+          ],
+          "remark": "Cross Country set, Excl. 2WD, Excl. Single Cab, Excl. Raptor",
+          "year_from": "04-2011",
+          "year_to": "02-2019",
+          "notes": "Engine: Only TDCI"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064268",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081536.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 333.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB (TKE)"
+          ],
+          "remark": "Reinforced Front Springs, Excl. 2WD, Excl. Raptor",
+          "year_from": "03-2019",
+          "year_to": "11-2022",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064271",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081543.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 679.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 959
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB (TKE)"
+          ],
+          "remark": "Cross Country set, Excl. 2WD, Excl. Raptor",
+          "year_from": "03-2019",
+          "year_to": "11-2022",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064288",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947084582.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 454.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB (TKE)"
+          ],
+          "remark": "Raptor only",
+          "year_from": "01-2019",
+          "year_to": "11-2022",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064290",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TÜV",
+      "ean": "8717947085091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 433.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 599
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB"
+          ],
+          "remark": "Excl. Raptor, Excl. Wildtrak X, Excl. Tremor, Excl. LED matrix headlamps",
+          "year_from": "11-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064301",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116146.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 851.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 206.25,
+        "labor_ex_vat_max_eur": 206.25,
+        "total_inc_vat_from_eur": 1289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB"
+          ],
+          "remark": "Cross Country set, 4WD, Excl. Raptor, Excl. Wildtrak X, Excl. Tremor, Excl. LED matrix headlamps",
+          "year_from": "11-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064310",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116221.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 459.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 629
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB"
+          ],
+          "remark": "Excl. Raptor, Excl. Wildtrak X, Excl. Tremor, Incl. LED matrix headlamps",
+          "year_from": "11-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064321",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116269.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 851.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 206.25,
+        "labor_ex_vat_max_eur": 206.25,
+        "total_inc_vat_from_eur": 1289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2AB"
+          ],
+          "remark": "Cross Country set, 4WD, Excl. Raptor, Excl. Wildtrak X, Excl. Tremor, Incl. LED matrix headlamps",
+          "year_from": "11-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

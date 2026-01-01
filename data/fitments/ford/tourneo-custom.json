@@ -1,0 +1,264 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "model": {
+    "slug": "tourneo-custom",
+    "label": "Tourneo Custom"
+  },
+  "kits": [
+    {
+      "sku": "HV-068328",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075207.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 531.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 919
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "(V362)"
+          ],
+          "remark": "Reinforced Front Springs (+25%), Excl. 330/340, Only for under-outer springdiameter 139mm",
+          "year_from": "04-2012",
+          "year_to": "12-2023",
+          "notes": "Engine: Incl. MHEV Excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068340",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083943.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 297.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "(V362)"
+          ],
+          "remark": "L1 & L2, Excl. rear airco",
+          "year_from": "04-2012",
+          "year_to": "12-2023",
+          "notes": "Engine: Incl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068385",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947118386.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 163.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V710 (NXN)"
+          ],
+          "remark": "Standard support, L1 & L2, Excl. 4WD",
+          "year_from": "12-2023",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068395",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116214.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 178.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V710 (NXN)"
+          ],
+          "remark": "Maximum support, Min Load 180kg, L1 & L2, Incl. 4WD",
+          "year_from": "12-2023",
+          "year_to": "",
+          "notes": "Engine: All, Excl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068418",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116481.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 362.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 719
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V710 (NXN)"
+          ],
+          "remark": "Reinforced Front Springs, L1 & L2, Incl. 4WD",
+          "year_from": "12-2023",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068428",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116498.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 382.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 539
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V710 (NXN)"
+          ],
+          "remark": "Medium support, L1 & L2, Incl. 4WD, Min load 300kg",
+          "year_from": "12-2023",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068438",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116504.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 402.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 559
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V710 (NXN)"
+          ],
+          "remark": "Maximum support, L1 & L2, Incl. 4WD, Min load 600kg",
+          "year_from": "12-2023",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068441",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116511.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 708.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 281.25,
+        "labor_ex_vat_max_eur": 281.25,
+        "total_inc_vat_from_eur": 1199
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V710 (NXN)"
+          ],
+          "remark": "Medium support, L1 & L2, Incl. 4WD, Min load rear 300kg",
+          "year_from": "12-2023",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068451",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116528.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 729.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 281.25,
+        "labor_ex_vat_max_eur": 281.25,
+        "total_inc_vat_from_eur": 1229
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V710 (NXN)"
+          ],
+          "remark": "Maximum support, L1 & L2, Incl. 4WD, Min load rear 600kg",
+          "year_from": "12-2023",
+          "year_to": "",
+          "notes": "Engine: All, Incl. EV"
+        }
+      ]
+    }
+  ]
+}

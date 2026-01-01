@@ -1,0 +1,208 @@
+{
+  "make": {
+    "slug": "mercedes-benz",
+    "label": "Mercedes Benz"
+  },
+  "model": {
+    "slug": "v-class",
+    "label": "V-Class"
+  },
+  "kits": [
+    {
+      "sku": "HV-098030",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947011953.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 204.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "638"
+          ],
+          "remark": "Only cars without air suspension",
+          "year_from": "02-1996",
+          "year_to": "07-2003",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098078",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071926.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 337.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Only ABS, Excl. Raised 4-Matic, Excl. Sport Suspension (CF8)",
+          "year_from": "03-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098088",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071933.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 349.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 469
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Maximum support, Min. Load 150kg, Excl. Raised 4-Matic, Excl. Sport Suspension (CF8)",
+          "year_from": "03-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098098",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072053.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 431.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 619
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Reinforced Front Springs (25%), +15MM, Excl. Sport Suspension (CF8)",
+          "year_from": "03-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098108",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072060.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 472.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Reinforced front Springs, +30mm, Only in combination with HV-098088 or NR-097814-R, Excl. Raised 4-Matic, Excl. Sport Suspension (CF8)",
+          "year_from": "03-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098111",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072077.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 662.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 939
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "If C14 option 20-20mm, Excl. Sport Suspension (CF8)",
+          "year_from": "03-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098151",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081093.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 662.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 939
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Maximum support rear springs, Min. Load 150kg, Excl. Raised 4-Matic, Excl. Sport Suspension (CF8)",
+          "year_from": "03-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

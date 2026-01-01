@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "kia",
+    "label": "KIA"
+  },
+  "model": {
+    "slug": "stonic",
+    "label": "Stonic"
+  },
+  "kits": [
+    {
+      "sku": "HV-373255",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075443.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 165.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "YB"
+          ],
+          "remark": "",
+          "year_from": "07-2017",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

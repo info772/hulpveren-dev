@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "100nx",
+    "label": "100NX"
+  },
+  "kits": [
+    {
+      "sku": "HV-310267",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947014480.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 206.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B13"
+          ],
+          "remark": "",
+          "year_from": "03-1990",
+          "year_to": "10-1994",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

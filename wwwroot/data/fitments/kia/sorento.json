@@ -1,0 +1,182 @@
+{
+  "make": {
+    "slug": "kia",
+    "label": "KIA"
+  },
+  "model": {
+    "slug": "sorento",
+    "label": "Sorento"
+  },
+  "kits": [
+    {
+      "sku": "HV-374015",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015388.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 181.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (JC)"
+          ],
+          "remark": "",
+          "year_from": "08-2002",
+          "year_to": "09-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-374065",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947067486.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 198.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (JC)"
+          ],
+          "remark": "Maximum support",
+          "year_from": "08-2002",
+          "year_to": "09-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-374075",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074606.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 198.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (UM)"
+          ],
+          "remark": "2WD and 4WD",
+          "year_from": "01-2015",
+          "year_to": "02-2023",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-374125",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083530.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 158.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (MQ4",
+            "MQ4A)"
+          ],
+          "remark": "Only with rear self leveling suspension",
+          "year_from": "03-2020",
+          "year_to": "",
+          "notes": "Engine: Incl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-374135",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084124.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 158.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (MQ4",
+            "MQ4A)"
+          ],
+          "remark": "Excl. Rear self leveling suspension",
+          "year_from": "03-2020",
+          "year_to": "",
+          "notes": "Engine: Incl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-494055",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947067363.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 198.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (XM)"
+          ],
+          "remark": "2WD and 4WD",
+          "year_from": "11-2009",
+          "year_to": "12-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

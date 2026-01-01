@@ -1,0 +1,13 @@
+{
+  "make": {
+    "slug": "land-rover",
+    "label": "Land Rover"
+  },
+  "models": [
+    {
+      "slug": "freelander",
+      "label": "Freelander",
+      "kits_count": 1
+    }
+  ]
+}

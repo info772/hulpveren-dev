@@ -1,0 +1,276 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "model": {
+    "slug": "rav4",
+    "label": "RAV4"
+  },
+  "kits": [
+    {
+      "sku": "HV-360355",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947079861.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 171.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V (A5",
+            "H5)"
+          ],
+          "remark": "2WD & 4WD",
+          "year_from": "12-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-364498",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015074.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 331.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (A2)"
+          ],
+          "remark": "Only 4WD, SWB and LWB",
+          "year_from": "05-2000",
+          "year_to": "11-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-364521",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947015104.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 644.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 131.25,
+        "labor_ex_vat_max_eur": 131.25,
+        "total_inc_vat_from_eur": 939
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (A3)"
+          ],
+          "remark": "",
+          "year_from": "06-2005",
+          "year_to": "08-2014",
+          "notes": "Engine: Excl. Diesel"
+        }
+      ]
+    },
+    {
+      "sku": "HV-364538",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947015111.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 363.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (A3)"
+          ],
+          "remark": "",
+          "year_from": "06-2005",
+          "year_to": "08-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-364568",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947067424.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 363.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (A4)"
+          ],
+          "remark": "Only 4WD",
+          "year_from": "12-2012",
+          "year_to": "11-2018",
+          "notes": "Engine: All, Excl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-364605",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947074583.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 195.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (A4)"
+          ],
+          "remark": "Incl. 4WD",
+          "year_from": "12-2012",
+          "year_to": "11-2018",
+          "notes": "Engine: All, Incl. Hybrid"
+        },
+        {
+          "platform_codes": [
+            "III (A3)"
+          ],
+          "remark": "Incl. 4WD",
+          "year_from": "06-2005",
+          "year_to": "08-2014",
+          "notes": "Engine: All, Incl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-364618",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081482.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 322.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V (A5",
+            "H5)"
+          ],
+          "remark": "Maximum support, Hybrid: Min. Load 200kg, Only 4WD",
+          "year_from": "12-2018",
+          "year_to": "",
+          "notes": "Engine: Hybrid, Plug-in Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-364621",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081499.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 570.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 131.25,
+        "labor_ex_vat_max_eur": 131.25,
+        "total_inc_vat_from_eur": 849
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V (A5",
+            "H5)"
+          ],
+          "remark": "Cross Country set",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: Plug-in Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-366151",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015159.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 552.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 131.25,
+        "labor_ex_vat_max_eur": 131.25,
+        "total_inc_vat_from_eur": 829
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (A2)"
+          ],
+          "remark": "Only Diesel",
+          "year_from": "05-2000",
+          "year_to": "11-2005",
+          "notes": "Engine: D4D"
+        }
+      ]
+    }
+  ]
+}

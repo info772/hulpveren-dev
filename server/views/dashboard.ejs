@@ -1,0 +1,95 @@
+<%- include("partials/header") %>
+
+<div class="panel">
+  <h2>Dashboard</h2>
+  <p class="muted">Snelle status van content en data.</p>
+  <div class="grid">
+    <div class="tile">
+      <h3>Blogs</h3>
+      <div><strong><%= stats.blogCount %></strong> totaal</div>
+      <div class="muted"><%= stats.publishedCount %> published</div>
+    </div>
+    <div class="tile">
+      <h3>MAD</h3>
+      <% if (stats.madCurrent) { %>
+        <div><strong><%= stats.madCurrent.recordCount %></strong> records</div>
+        <div class="muted">Laatste: <%= stats.madCurrent.createdAt %></div>
+      <% } else { %>
+        <div class="muted">Nog geen upload.</div>
+      <% } %>
+    </div>
+    <div class="tile">
+      <h3>Redirects</h3>
+      <div><strong><%= stats.redirectsCount %></strong> regels</div>
+    </div>
+    <div class="tile">
+      <h3>Settings</h3>
+      <div class="muted">Footer, SEO & features</div>
+      <a class="button secondary" href="/admin/settings">Open</a>
+    </div>
+    <div class="tile">
+      <h3>Rebuild JSONs</h3>
+      <div class="muted">Blog, MAD, redirects</div>
+      <form method="post" action="/admin/rebuild">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <button type="submit">Rebuild</button>
+      </form>
+    </div>
+    <div class="tile">
+      <h3>Deploy</h3>
+      <div class="muted">Sync dev naar live + nginx reload</div>
+      <button type="button" id="deploy-button">Deploy</button>
+      <pre class="deploy-output" id="deploy-output" aria-live="polite"></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const button = document.getElementById("deploy-button");
+    const output = document.getElementById("deploy-output");
+    if (!button || !output) return;
+
+    const csrfToken = "<%= csrfToken %>";
+
+    const setOutput = (text, status) => {
+      output.textContent = text;
+      output.classList.remove("success", "error", "running");
+      if (status) {
+        output.classList.add(status);
+      }
+    };
+
+    button.addEventListener("click", async () => {
+      button.disabled = true;
+      button.textContent = "Deploying...";
+      setOutput("Deploy gestart...", "running");
+
+      try {
+        const res = await fetch("/deploy", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrfToken,
+          },
+          body: "{}",
+        });
+
+        const text = await res.text();
+        if (!res.ok) {
+          setOutput(text || "Deploy mislukt.", "error");
+          return;
+        }
+        setOutput(text || "Deploy klaar.", "success");
+      } catch (err) {
+        const message = err && err.message ? err.message : "Deploy mislukt.";
+        setOutput(message, "error");
+      } finally {
+        button.disabled = false;
+        button.textContent = "Deploy";
+      }
+    });
+  })();
+</script>
+
+<%- include("partials/footer") %>

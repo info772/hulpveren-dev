@@ -1,0 +1,38 @@
+{
+  "proxyBase": "http://proxyv7.easycarparts.nl",
+  "groups": {
+    "helperSprings": {
+      "enabled": true,
+      "label": "Hulpveren (MAD)",
+      "maxItems": 20,
+      "filters": {
+        "productGroupCodes": [1031],
+        "brandCodes": [204],
+        "fallbackTextInclude": ["hulpveer", "veer", "MAD"],
+        "fallbackTextExclude": []
+      }
+    },
+    "shocks": {
+      "enabled": false,
+      "label": "Schokdempers",
+      "maxItems": 20,
+      "filters": {
+        "productGroupCodes": [],
+        "brandCodes": [],
+        "fallbackTextInclude": ["schokdemper", "damper"],
+        "fallbackTextExclude": []
+      }
+    },
+    "addons": {
+      "enabled": false,
+      "label": "Mee te bestellen",
+      "maxItems": 20,
+      "filters": {
+        "productGroupCodes": [],
+        "brandCodes": [],
+        "fallbackTextInclude": [],
+        "fallbackTextExclude": []
+      }
+    }
+  }
+}

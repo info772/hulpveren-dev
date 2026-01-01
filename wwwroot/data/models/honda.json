@@ -1,0 +1,28 @@
+{
+  "make": {
+    "slug": "honda",
+    "label": "HONDA"
+  },
+  "models": [
+    {
+      "slug": "civic",
+      "label": "Civic",
+      "kits_count": 4
+    },
+    {
+      "slug": "cr-v",
+      "label": "CR-V",
+      "kits_count": 3
+    },
+    {
+      "slug": "hr-v",
+      "label": "HR-V",
+      "kits_count": 2
+    },
+    {
+      "slug": "jazz",
+      "label": "Jazz",
+      "kits_count": 1
+    }
+  ]
+}

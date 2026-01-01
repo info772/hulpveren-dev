@@ -1,0 +1,141 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "model": {
+    "slug": "scenic",
+    "label": "Scenic"
+  },
+  "kits": [
+    {
+      "sku": "HV-140488",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013285.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 300.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 439
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "JZ0",
+            "1"
+          ],
+          "remark": "Grand Scenic, LPG kit",
+          "year_from": "12-2008",
+          "year_to": "",
+          "notes": "Engine: LPG"
+        },
+        {
+          "platform_codes": [
+            "II",
+            "JM0",
+            "1"
+          ],
+          "remark": "Incl. Grand Scenic",
+          "year_from": "06-2003",
+          "year_to": "07-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140548",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947055032.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 278.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "JZ0",
+            "1"
+          ],
+          "remark": "Incl. Grand Scenic",
+          "year_from": "12-2008",
+          "year_to": "09-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140638",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074682.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 284.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 419
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "J9",
+            "R9"
+          ],
+          "remark": "Incl. Grand Scenic, Excl. 110dCi Hybrid Assist",
+          "year_from": "09-2016",
+          "year_to": "07-2022",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140768",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947117860.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 357.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 569
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E-Tech"
+          ],
+          "remark": "E-Tech only",
+          "year_from": "11-2023",
+          "year_to": "",
+          "notes": "Engine: EV60, EV87"
+        }
+      ]
+    }
+  ]
+}

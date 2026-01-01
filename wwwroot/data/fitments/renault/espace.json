@@ -1,0 +1,187 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "model": {
+    "slug": "espace",
+    "label": "Espace"
+  },
+  "kits": [
+    {
+      "sku": "HV-140405",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947013209.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 170.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "J11"
+          ],
+          "remark": "",
+          "year_from": "07-1984",
+          "year_to": "12-1992",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140415",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013216.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 167.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "J",
+            "S63"
+          ],
+          "remark": "",
+          "year_from": "01-1991",
+          "year_to": "10-1997",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140425",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013223.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 172.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "JE0"
+          ],
+          "remark": "",
+          "year_from": "11-1996",
+          "year_to": "10-2002",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140445",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013247.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 162.75,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "JK0",
+            "1"
+          ],
+          "remark": "",
+          "year_from": "11-2002",
+          "year_to": "01-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140638",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074682.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 284.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 419
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "JR"
+          ],
+          "remark": "",
+          "year_from": "02-2015",
+          "year_to": "03-2023",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140758",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947116276.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 249.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 489
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI"
+          ],
+          "remark": "Only for 4-control",
+          "year_from": "05-2023",
+          "year_to": "",
+          "notes": "Engine: E-Tech hybrid"
+        }
+      ]
+    }
+  ]
+}

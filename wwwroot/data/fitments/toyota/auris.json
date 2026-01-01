@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "model": {
+    "slug": "auris",
+    "label": "Auris"
+  },
+  "kits": [
+    {
+      "sku": "HV-360335",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947015036.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 198.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E15"
+          ],
+          "remark": "Excl. Hybrid",
+          "year_from": "10-2006",
+          "year_to": "09-2012",
+          "notes": "Engine: Excl 2.2D-Cat"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360345",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947052031.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 181.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E18"
+          ],
+          "remark": "Incl. Touring Sports, Incl. Hybrid",
+          "year_from": "10-2012",
+          "year_to": "12-2018",
+          "notes": "Engine: Excl. Diesel"
+        }
+      ]
+    }
+  ]
+}

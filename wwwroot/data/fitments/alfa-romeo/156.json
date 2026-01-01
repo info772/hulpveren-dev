@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "alfa-romeo",
+    "label": "Alfa Romeo"
+  },
+  "model": {
+    "slug": "156",
+    "label": "156"
+  },
+  "kits": [
+    {
+      "sku": "HV-001568",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947010932.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 295.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "932"
+          ],
+          "remark": "Excl. Sportwagon",
+          "year_from": "09-1997",
+          "year_to": "09-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-001578",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947010949.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 228.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 419
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "932"
+          ],
+          "remark": "Sportswagon",
+          "year_from": "02-1997",
+          "year_to": "05-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

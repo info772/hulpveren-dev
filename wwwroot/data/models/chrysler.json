@@ -1,0 +1,13 @@
+{
+  "make": {
+    "slug": "chrysler",
+    "label": "Chrysler"
+  },
+  "models": [
+    {
+      "slug": "voyager",
+      "label": "Voyager",
+      "kits_count": 2
+    }
+  ]
+}

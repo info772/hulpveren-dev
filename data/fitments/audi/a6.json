@@ -1,0 +1,152 @@
+{
+  "make": {
+    "slug": "audi",
+    "label": "AUDI"
+  },
+  "model": {
+    "slug": "a6",
+    "label": "A6"
+  },
+  "kits": [
+    {
+      "sku": "HV-042027",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011175.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 145.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C4"
+          ],
+          "remark": "Excl. Quattro, Excl. Avant, Excl. S4, Excl. S6",
+          "year_from": "06-1994",
+          "year_to": "10-1997",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-042075",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011212.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 201.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C6"
+          ],
+          "remark": "Incl. Avant, Excl. Air Suspension, Excl. Quattro, Excl. S6",
+          "year_from": "04-2004",
+          "year_to": "08-2011",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-042085",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011229.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 188.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "4G"
+          ],
+          "remark": "Incl. Avant, Incl. Quattro",
+          "year_from": "11-2010",
+          "year_to": "09-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-042095",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074477.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C8 (4A_)"
+          ],
+          "remark": "Incl. Avant, Incl. Quattro, Incl. All road",
+          "year_from": "05-2018",
+          "year_to": "04-2025",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-190855",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013674.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 179.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "4B"
+          ],
+          "remark": "Incl. Avant, Excl. Quattro, Excl. S6",
+          "year_from": "01-1997",
+          "year_to": "01-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

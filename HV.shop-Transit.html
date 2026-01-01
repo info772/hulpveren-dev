@@ -1,0 +1,2302 @@
+<!-- ===== BODY (plaats in <body>) ===== -->
+ <style>
+  :root{--bg:#0b0c10;--panel:#111216;--line:rgba(255,255,255,.09);--ink:#00c16a;--fg:#e6e8f0;--muted:#aab1c3;--accent:#FAB819;--radius:14px;--maxw:1100px}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Cantarell,Arial}
+  a{color:inherit;text-decoration:none}
+  header{position:sticky;top:0;z-index:10;background:#0b0c10cc;border-bottom:1px solid var(--line);backdrop-filter:saturate(1.2) blur(8px)}
+  .container{max-width:var(--maxw);margin:auto;padding:clamp(16px,3vw,28px)}
+  .brand{display:flex;gap:.6rem;align-items:center;font-weight:700}
+  .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,209,26,.25)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+  .grid{display:grid;gap:16px}
+  .cols-2{grid-template-columns:1.2fr 1fr}
+  @media (max-width:900px){.cols-2{grid-template-columns:1fr}}
+  .h1{font-size:clamp(26px,4vw,40px);margin:.2rem 0 .3rem}
+  .muted{color:var(--muted)}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin:.4rem 0 0;align-items:center}
+  .chip{border:1px solid var(--line);border-radius:999px;padding:.25rem .6rem;font-size:13px;background:rgba(255,255,255,.03)}
+  /* Accent-chip (geel) voor Free Shipping */
+.chip.accent{
+  background: var(--accent);
+  color: var(--ink);
+  border: none;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.chip sup{
+  font-size: .75em;
+  line-height: 0;
+  vertical-align: top;
+  margin-left: .1em;
+}
+/* FREE SHIPPING chip: gele pill met neutrale (donkere) tekst */
+.chip--free{
+  background: var(--accent);
+  color: #0b0c10;          /* neutraal/zwart i.p.v. groen */
+  font-weight: 800;
+  border: none;
+}
+/* Primaire CTA: gele knop met zwarte tekst */
+.btn.primary{
+  background: var(--accent);
+  color: #0b0c10;          /* zwarte tekst i.p.v. var(--ink) */
+  border: none;
+}
+.btn.primary:hover{ filter: brightness(0.95); }
+  .hero{display:grid;gap:18px}
+  .imgwrap{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#0e0f14}
+  .imgwrap img{display:block;width:100%;height:auto}
+  .thumb-zoombtn{position:absolute;inset:auto 10px 10px auto;background:#0009;color:#fff;border-radius:10px;padding:.25rem .5rem;font-size:12px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+  .btn.primary{background:var(--accent);color:var(--ink);border:none;font-weight:700}
+  .btn.neutral{background:#0b0c10;border-color:rgba(255,255,255,.15)}
+  .btn.neutral:hover{background:#151a23;border-color:rgba(255,255,255,.25)}
+  /* Make 'Choose & Add To Cart' match the price chip: yellow bg + black text */
+.lls-cart-btn,
+.lls-cart-btn:link,
+.lls-cart-btn:visited {
+  background: var(--accent) !important;
+  color: var(--ink) !important;          /* zwart */
+  border-color: transparent !important;
+}
+.lls-cart-btn:hover,
+.lls-cart-btn:focus {
+  color: var(--ink) !important;          /* voorkom wit bij hover/focus override */
+  filter: brightness(0.96);
+}
+  .list{list-style:none;padding:0;margin:.5rem 0 0;display:grid;gap:8px}
+  .footer-note{color:#cfd3df;font-size:13px;margin-top:10px}
+  .lightbox{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;padding:24px}
+  .lightbox.on{display:flex}
+  .lightbox img{max-width:90vw;max-height:90vh;border-radius:12px}
+  .specs{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  @media (max-width:720px){.specs{grid-template-columns:1fr}}
+  .spec{background:#0f1117;border:1px solid var(--line);border-radius:10px;padding:10px}
+  [data-price]{white-space:nowrap}
+  .tuv-badge{height:20px;display:inline-block;vertical-align:middle;border-radius:4px}
+  .tuv-badge-wrap{display:inline-flex;align-items:center;gap:6px}
+  .remark-bullet{ display:inline-block; width:1em; }
+  /* pick your feel color (NOT #00c16a) */
+  :root{ --feel:#34d399; } /* mint */
+  /* scope to the "What you'll feel" block */
+  .what-you-feel .feel-mark { color: var(--feel); }
+  .what-you-feel li { color: var(--feel); }         /* tekst blijft normaal */
+  .what-you-feel h1,
+  .what-you-feel h2,
+  .what-you-feel h3 { color: inherit; }
+  /* ---- FREE SHIPPING chip ---- */
+.chip.accent,
+.chip--free{
+  background: var(--accent);
+  color: #0b0c10;            /* zwart op geel */
+  border: none;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.chip sup{ font-size:.75em; line-height:0; vertical-align:top; margin-left:.1em; }
+/* ---- Primaire CTA (gele knop met zwarte tekst) ---- */
+.btn.primary{
+  background: var(--accent);
+  color: #0b0c10;            /* zwart, geen var(--ink) */
+  border: none;
+  font-weight: 700;
+}
+.btn.primary:hover{ filter: brightness(.95); }
+/* ---- Cart-proxy knop (zelfde stijl) ---- */
+.lls-cart-btn,
+.lls-cart-btn:link,
+.lls-cart-btn:visited{
+  background: var(--accent) !important;
+  color: #0b0c10 !important; /* zwart, niet var(--ink) */
+  border-color: transparent !important;
+}
+.lls-cart-btn:hover,
+.lls-cart-btn:focus{
+  color: #0b0c10 !important;
+  filter: brightness(.96);
+}
+/* Force black text on yellow primary buttons (all states) */
+:root { --accent-ink: #0b0c10; }              /* centralize black */
+a.btn.primary,
+button.btn.primary,
+input[type="button"].btn.primary,
+input[type="submit"].btn.primary {
+  color: var(--accent-ink) !important;
+  text-shadow: none !important;
+}
+/* keep it black on every state */
+a.btn.primary:link,
+a.btn.primary:visited,
+a.btn.primary:hover,
+a.btn.primary:focus {
+  color: var(--accent-ink) !important;
+}
+/*もし er een icoon in de knop zit */
+.btn.primary svg { color: var(--accent-ink); fill: currentColor; }
+ </style>
+ <header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+   <a class="brand" href="/">
+    <span class="dot">
+    </span>
+    <span>
+     LowLand Suspension
+    </span>
+   </a>
+   <nav class="muted" aria-label="breadcrumb">
+    <a href="/Vans-RVs-helper-springs">
+     Helper Springs
+    </a>
+    ›
+    <a id="bc-make" href="/helper-springs/">
+     Make
+    </a>
+    ›
+    <a id="bc-family" href="/helper-springs/">
+     Family
+    </a>
+    ›
+    <span id="bc-sku">
+     SKU
+    </span>
+   </nav>
+  </div>
+ </header>
+ <main class="container">
+  <!-- HERO -->
+  <section class="panel" style="padding:16px">
+   <div class="grid cols-2">
+    <div class="hero">
+     <h1 class="h1" id="page-h1">
+      MAD <span id="kit-label">Hulpveren</span> —
+      <span id="veh-title">
+       Voertuig
+      </span>
+      —
+      <span id="sku-title">
+       SKU
+      </span>
+     </h1>
+     <div class="muted" id="subtitle">
+      Afgestemde ondersteuning voor echte belading.
+     </div>
+     <div class="badges" id="badges">
+     </div>
+     <div class="imgwrap">
+      <img id="hero-img" alt="" title="">
+      <button class="thumb-zoombtn" id="zoom-btn" type="button">
+       View
+      </button>
+     </div>
+     <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn primary" id="quote-btn" href="#">
+       Offerte aanvragen
+      </a>
+      <a class="btn" id="back-kits" href="#">
+       Alle sets
+      </a>
+     </div>
+     <div class="footer-note">
+      * US mainland all-in pricing: tax, import fees &amp; shipping included. Installation cost: ask your local shop. TÜV approval unless noted.
+     </div>
+    </div>
+    <aside>
+     <h3 style="margin:.2rem 0 .6rem">
+      Specificaties
+     </h3>
+     <div class="specs" id="specs-grid">
+     </div>
+     <ul class="list" style="margin-top:8px">
+      <li class="muted">
+       Keeps your comfort; support ramps up under load.
+      </li>
+      <li class="muted">
+       Does not increase GVWR. Stay within the manufacturer’s published limits.
+      </li>
+     </ul>
+    </aside>
+   </div>
+  </section>
+  <!-- Fitment -->
+  <section class="panel" id="fitment" style="padding:16px;margin-top:16px">
+   <h2 style="margin:.2rem 0 .6rem">
+    Toepassing
+   </h2>
+   <ul class="list" id="fitment-list">
+   </ul>
+  </section>
+  <!-- Benefits -->
+  <section class="panel" id="1379692158" style="padding:16px;margin-top:16px">
+   <div class="card what-you-feel">
+    <h2>
+     Wat je merkt
+    </h2>
+    <ul class="list" id="benefits-list">
+    </ul>
+   </div>
+  </section>
+  <!-- Install overview -->
+  <section class="panel" id="install" style="padding:16px;margin-top:16px">
+   <h2 style="margin:.2rem 0 .6rem">
+    Montage-overzicht
+   </h2>
+   <ol id="install-steps" style="padding-left:18px;margin:0 0 8px 18px">
+   </ol>
+   <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+    <a class="btn" href="/installers/directory/">
+     Zoek een monteur
+    </a>
+    <a class="btn primary" id="quote-btn-bottom" href="#">
+     Offerte aanvragen
+    </a>
+   </div>
+  </section>
+  <!-- Resources (optioneel; verborgen als leeg) -->
+  <section class="panel" id="resources" style="padding:16px;margin-top:16px;display:none">
+   <h2 style="margin:.2rem 0 .6rem">
+    Handleidingen en downloads
+   </h2>
+   <ul id="downloads" class="list">
+   </ul>
+  </section>
+ </main>
+ <!-- Lightbox -->
+ <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <img id="lightbox-img" alt="">
+ </div>
+ <!-- ===== DATA SCRIPTS (voorbeeld; vervang/aanvullen per pagina) ===== -->
+ <script>
+  window.LLS_FOOTER_DATA = [
+    { make:"RAM", model:"ProMaster City", platform:"Fiat Doblò 263/636", year_start:"2015-01", year_end:"2022-12", kit:"HV-051755", height_in:null, time_min:45, approval:"TUV", remarks:"Rear axle. Coil-in-coil helper springs.", kind:"Auxiliary coil spring", Manual:"https://www.easycarparts.nl/Controls/Custom/ECP/ProductPdf.ashx?type=a&path=https://pic2.aldoc.eu/PDF/00204/VH0520174.pdf" }
+  ];
+  window.MAD_PRICES = { "HV-051755": { currency:"USD", value:519 } };
+ </script>
+ <!-- ===== LOGICA (universeel voor alle merken/types) ===== -->
+ <script>
+  ;(function () {
+  'use strict';
+  /* ============ HELPERS ============ */
+  const $ = (id) => document.getElementById(id);
+  const safe = (v, fb) => (v !== undefined && v !== null && v !== '') ? v : (fb || '—');
+  const onlyYear = (s) => (s || '').slice(0, 4);
+  const slugify = (s) => String(s || '')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/["'’`]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  const hasTuv = (a) => {
+    const s = String(a || '').toUpperCase();
+    return s.includes('TÜV') || s.includes('TUV') || s.includes('RDW-TÜV') || s.includes('RDW-TUV');
+  };
+  const badge = (t) => `<span class="chip">${t}</span>`;
+  const kgToLbs = (kg, { decimals = 0 } = {}) => {
+    const n = Number(String(kg).replace(',', '.').replace(/[^0-9.\-]/g, ''));
+    if (!isFinite(n)) return null;
+    let lbs = n * 2.20462262185;
+    if (decimals === 0) lbs = Math.round(lbs);
+    else { const p = Math.pow(10, decimals); lbs = Math.round(lbs * p) / p; }
+    return lbs;
+  };
+  const fmtLb = (n) => (n == null || !isFinite(n)) ? '' : Math.round(n).toLocaleString('en-US') + ' lb';
+  const mmToIn = (mm) => { const n = parseFloat(String(mm).replace(',', '.')); return isFinite(n) ? (n / 25.4) : null; };
+  const cmToIn = (cm) => { const n = parseFloat(String(cm).replace(',', '.')); return isFinite(n) ? (n / 2.54) : null; };
+  const mToIn  = (m)  => { const n = parseFloat(String(m ).replace(',', '.')); return isFinite(n) ? (n * 39.37007874) : null; };
+  const fmtIn = (n) => (n == null || !isFinite(n)) ? '' : (Math.round(n * 10) / 10).toFixed(1) + ' in';
+  const dollars = (v) => {
+    if (v == null || v === '') return 'Ask';
+    const n = (typeof v === 'number') ? v : parseFloat(String(v).replace(/[^0-9.]/g, ''));
+    return (!isFinite(n) || n <= 0) ? 'Ask' : '$ ' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+  };
+  const vehicleTitle = (make, model) => {
+    const m = String(make || '').trim();
+    const d = String(model || '').trim();
+    return (m ? m + ' ' : '') + d;
+  };
+  const heroImageCandidates = (sku) => {
+    const cdn = 'https://irp.cdn-website.com/3a91075a/dms3rep/multi/';
+    const mad = 'https://mad-suspensionsystems.com/media/original_images/';
+    const S = sku, s = sku.toLowerCase();
+    return [cdn + S + '.jpg', cdn + s + '.jpg', cdn + S + '.webp', cdn + s + '.webp', mad + 'MAD-Coil-Suspension-Systems-' + S + '.jpg'];
+  };
+  const loadFirstWorking = (urls, cb) => {
+    let i = 0;
+    (function next() {
+      if (i >= urls.length) return cb(null);
+      const im = new Image();
+      const u = urls[i] + (urls[i].includes('?') ? '&' : '?') + 'cv=' + Date.now();
+      im.onload = function () { cb(u); };
+      im.onerror = function () { i++; next(); };
+      im.src = u;
+    })();
+  };
+  const specRow = (label, val) => `<div class="spec"><div class="muted" style="font-size:12px">${label}</div><div>${val || '—'}</div></div>`;
+  function convertMetricToImperial(text) {
+    if (!text) return text;
+    let s = String(text);
+    s = s.replace(
+      /([Ss]hock\s+length\s+max)\s*(\d+(?:[.,]\d+)?)\s*mm\s*\/\s*([Mm]in)\s*(\d+(?:[.,]\d+)?)\s*mm/g,
+      (_, p1, a, p3, b) => p1 + ' ' + fmtIn(mmToIn(a)) + ' / ' + p3 + ' ' + fmtIn(mmToIn(b))
+    );
+    s = s.replace(/(\d+(?:[.,]\d+)?)\s*[–-]\s*(\d+(?:[.,]\d+)?)\s*(mm|cm|m)\b/gi, (_, a, b, unit) => {
+      const toIn = (x) => unit.toLowerCase() === 'mm' ? mmToIn(x) : unit.toLowerCase() === 'cm' ? cmToIn(x) : mToIn(x);
+      const aa = fmtIn(toIn(a)).replace(/\s*in$/, '');
+      const bb = fmtIn(toIn(b)).replace(/\s*in$/, '');
+      return aa + '–' + bb + ' in';
+    });
+    s = s.replace(/([+~]?\s*)(\d+(?:[.,]\d+)?)\s*mm\b/gi, (_, pre, x) => pre + fmtIn(mmToIn(x)));
+    s = s.replace(/([+~]?\s*)(\d+(?:[.,]\d+)?)\s*cm\b/gi, (_, pre, x) => pre + fmtIn(cmToIn(x)));
+    s = s.replace(/([+~]?\s*)(\d+(?:[.,]\d+)?)\s*m\b/gi,  (_, pre, x) => pre + fmtIn(mToIn(x)));
+    s = s.replace(/(\d[\d.,]*)\s*kg\b/gi, (_, x) => fmtLb(kgToLbs(x)));
+    return s;
+  }
+  function remarksToHtml(raw, bullet = '•') {
+    if (!raw) return '';
+    let s = String(raw).replace(/\s+/g, ' ').trim();
+    s = s.replace(/(\d+),(\d+)/g, '$1¤$2');
+    const parts = [];
+    let buf = '';
+    for (let i = 0; i < s.length; i++) {
+      const ch = s[i];
+      if (ch === ';' || ch === '|' || ch === '/') { if (buf.trim()) parts.push(buf.trim()); buf = ''; continue; }
+      if (ch === ',') {
+        let j = i + 1; while (j < s.length && s[j] === ' ') j++;
+        let p = i - 1; while (p >= 0 && s[p] === ' ') p--;
+        const nextIsNum = /\d/.test(s[j] || '') || (s[j] === '¤');
+        const prevIsNum = /\d/.test(s[p] || '') || (s[p] === '¤');
+        if (!(nextIsNum && prevIsNum)) { if (buf.trim()) parts.push(buf.trim()); buf = ''; continue; }
+      }
+      buf += ch;
+    }
+    if (buf.trim()) parts.push(buf.trim());
+    const cleaned = parts.map(p => p.replace(/¤/g, ','));
+    const labeled = cleaned.map(p => /^\d{1,3}(?:\s*,\s*\d{1,3})+$/.test(p) ? ('Types: ' + p) : p);
+    const esc = t => String(t || '').replace(/[&<>]/g, m => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;'
+}[m]));
+    return labeled.map(line => `<span class="remark-bullet" aria-hidden="true">${esc(bullet)}</span>&nbsp;${esc(line)}`).join('<br>');
+  }
+  function normSupportText(v) {
+    const s = String(v || '').trim().toLowerCase();
+    if (!s) return '';
+    if (s.includes('empty') && s.includes('loaded')) return 'Empty & Loaded';
+    if (s.includes('only') && s.includes('load')) return 'Only Loaded';
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  function detectKitType(row, sku) {
+    const code = String((row && (row.family_code || row.family || row.familyCode)) || '').toUpperCase();
+    const kind = String((row && row.kind) || '').toLowerCase();
+    const skuUp = String(sku || (row && row.kit) || '').toUpperCase();
+    if (code.includes('NR') || skuUp.startsWith('NR') || kind.includes('air') || kind.includes('lucht')) return 'air';
+    if (code.includes('LS') || skuUp.startsWith('LS') || kind.includes('lower') || kind.includes('verlag')) return 'lowering';
+    return 'helper';
+  }
+  function kitLabelNl(kitType) {
+    if (kitType == 'air') return 'Luchtvering';
+    if (kitType == 'lowering') return 'Verlagingsveren';
+    return 'Hulpveren';
+  }
+  function kitLabelLongNl(kitType) {
+    return 'MAD ' + kitLabelNl(kitType);
+  }
+  function kitBasePath(kitType) {
+    if (kitType == 'air') return '/luchtvering';
+    if (kitType == 'lowering') return '/verlagingsveren';
+    return '/hulpveren';
+  }
+  function subtitleNl(kitType, axle) {
+    if (kitType == 'air') return 'Regelbare ondersteuning voor wisselende belading.';
+    if (kitType == 'lowering') return 'Lagere rijhoogte en strakker weggedrag.';
+    return 'Afgestemde ondersteuning voor belading.';
+  }
+  function kitTitleNl(kitType, vehicleName, sku) {
+    return kitLabelLongNl(kitType) + ' - ' + vehicleName + ' - ' + sku + ' | Hulpveren.shop';
+  }
+  function supportLabelNl(value) {
+    const s = normSupportText(value);
+    if (!s) return '';
+    if (s == 'Empty & Loaded') return 'Leeg en beladen';
+    if (s == 'Only Loaded') return 'Alleen beladen';
+    if (s == 'Lift') return 'Verhoging';
+    return s;
+  }
+  function axleLabelNl(axle) {
+    if (axle == 'Front') return 'Vooras';
+    if (axle == 'Rear') return 'Achteras';
+    if (axle == 'Front & Rear' || axle == 'Both') return 'Voor- en achteras';
+    return 'As';
+  }
+  function buildNlPack(row, axle, kitType) {
+    const supportMode = normSupportText(row && row.support);
+    const constant = /Only Loaded/i.test(supportMode || '');
+    let axleNote = 'Montage op de ' + axleLabelNl(axle).toLowerCase();
+    if (axle == 'Front & Rear' || axle == 'Both') axleNote = 'Montage op de voor- en achteras';
+    let useLine = '';
+    const benefits = [];
+    if (kitType == 'air') {
+      useLine = constant
+        ? 'Gebruik: regelbare luchtvering voor permanente belading; rijhoogte blijft vlak.'
+        : 'Gebruik: regelbare luchtvering voor wisselende belading; stel druk en hoogte naar wens.';
+      benefits.push('Regelbare rijhoogte bij wisselende belading.');
+      benefits.push('Houdt de auto vlak met caravan of zware lading.');
+      benefits.push('Meer comfort door afstelbare druk.');
+      benefits.push('Stabieler bij hoge snelheid en zijwind.');
+      benefits.push('Bediening vanuit cabine met ventielen of compressor.');
+      benefits.push('Luchtleidingen en koppelingen vragen periodieke controle.');
+    } else if (kitType == 'lowering') {
+      useLine = 'Gebruik: lagere rijhoogte en strakker weggedrag; uitlijnen na montage aanbevolen.';
+      benefits.push('Lagere rijhoogte en strakkere uitstraling.');
+      benefits.push('Minder overhellen in bochten.');
+      benefits.push('Directer stuurgevoel en meer feedback.');
+      benefits.push('Uitlijnen na montage voor optimale bandenslijtage.');
+      benefits.push('Geschikt voor dagelijks gebruik.');
+    } else {
+      useLine = constant
+        ? 'Gebruik: voor permanente belading; hogere basissteun; leeg rijden voelt steviger.'
+        : 'Gebruik: extra ondersteuning bij wisselende belading; comfort blijft bijna origineel wanneer leeg.';
+      benefits.push('Minder doorzakken bij belading of trekhaak.');
+      benefits.push('Stabieler met caravan, aanhanger of zware lading.');
+      benefits.push('Houdt rijhoogte en koplampstand beter op niveau.');
+      benefits.push('Rustiger weggedrag en minder overhellen.');
+      benefits.push('Meer controle bij remmen en bochten.');
+      benefits.push('Geen compressor of luchtleidingen; onderhoudsarm.');
+      benefits.push('Eenvoudige montage en geen afstelling nodig.');
+    }
+    return { axleNote: axleNote, useLine: useLine, benefits: benefits };
+  }
+  function installStepsNl(axle, kitType) {
+    if (kitType == 'air') {
+      return [
+        'Zet het voertuig veilig op bokken en borg de wielen.',
+        'Monteer luchtbalgen en steunen volgens handleiding.',
+        'Leg luchtleidingen netjes weg en bescherm tegen hitte en wrijving.',
+        'Monteer ventielen of compressor, controleer op lekkage en stel druk af.'
+      ];
+    }
+    if (kitType == 'lowering') {
+      return [
+        'Zet het voertuig veilig op bokken en demonteer de veerpoten.',
+        'Gebruik een veercompressor en monteer de verlagingsveren.',
+        'Controleer bumpstops en montagepunten.',
+        'Monteer alles op rijhoogte en laat uitlijnen.'
+      ];
+    }
+    return (axle == 'Front')
+      ? [
+          'Zet het voertuig veilig op bokken en borg de wielen.',
+          'Demonteer de veerpoten volgens werkplaatshandboek (veerpanner nodig).',
+          'Monteer de hulpveren volgens handleiding.',
+          'Draai alles vast op rijhoogte en laat uitlijnen indien nodig.'
+        ]
+      : [
+          'Zet het voertuig veilig op bokken en borg de wielen.',
+          'Maak de onderste schokdemperbouten los om de as te laten zakken.',
+          'Plaats de hulpveren volgens handleiding.',
+          'Monteer alles op rijhoogte, proefrit en nacontrole.'
+        ];
+  }
+
+  function readPriceUSD(sku, row) {
+    // row-level
+    const rowNum = (() => {
+      if (!row || typeof row !== 'object') return null;
+      const cand = row.price_usd ?? row.usd ?? row.price ?? row.value ?? row.amount ?? row.Price ?? row.Value ?? row.Amount;
+      if (cand == null) return null;
+      const n = (typeof cand === 'number') ? cand : parseFloat(String(cand).replace(/[^0-9.]/g, ''));
+      return isFinite(n) ? n : null;
+    })();
+    if (rowNum != null) return rowNum;
+    const P = (window.MAD_PRICES || null);
+    if (!P) return null;
+    const SKU = String(sku || '').toUpperCase();
+    const variants = [SKU, SKU.toLowerCase(), SKU.replace(/-/g, ''), SKU.toLowerCase().replace(/-/g, '')];
+    function toNumber(x) {
+      if (x == null) return null;
+      if (typeof x === 'object' && !Array.isArray(x)) {
+        let v = x.price ?? x.value ?? x.amount ?? x.USD ?? x.usd ?? x.Price ?? x.Value ?? x.Amount;
+        v = (typeof v === 'number') ? v : parseFloat(String(v).replace(/[^0-9.]/g, ''));
+        return isFinite(v) ? v : null;
+      }
+      const n = (typeof x === 'number') ? x : parseFloat(String(x).replace(/[^0-9.]/g, ''));
+      return isFinite(n) ? n : null;
+    }
+    if (!Array.isArray(P)) {
+      for (let i = 0; i < variants.length; i++) {
+        const hit = P[variants[i]];
+        const n = toNumber(hit);
+        if (n != null) return n;
+      }
+      if (P.prices) {
+        for (let j = 0; j < variants.length; j++) {
+          const hit2 = P.prices[variants[j]];
+          const n2 = toNumber(hit2);
+          if (n2 != null) return n2;
+        }
+      }
+      return null;
+    }
+    for (let k = 0; k < P.length; k++) {
+      const it = P[k];
+      if (Array.isArray(it) && it.length >= 2) {
+        const key = String(it[0] || '');
+        if (variants.includes(key) || variants.includes(key.toUpperCase()) || variants.includes(key.toLowerCase())) {
+          const n3 = toNumber(it[1]);
+          if (n3 != null) return n3;
+        }
+        continue;
+      }
+      const key2 = it && (it.sku || it.SKU || it.kit || it.Kit || it.id || it.ID);
+      if (key2) {
+        const kstr = String(key2);
+        if (variants.includes(kstr) || variants.includes(kstr.toUpperCase()) || variants.includes(kstr.toLowerCase())) {
+          const n4 = toNumber(it);
+          if (n4 != null) return n4;
+        }
+      }
+    }
+    return null;
+  }
+  const readFooterPriceUSD = readPriceUSD;
+  function setupPriceRefresh(SKU, row) {
+    function refresh() {
+      const el = document.querySelector('[data-price]');
+      if (!el) return;
+      el.textContent = dollars(readFooterPriceUSD(SKU, row));
+    }
+    let tries = 0;
+    refresh();
+    window.addEventListener('load', refresh);
+    const retryId = setInterval(function () {
+      const v = readFooterPriceUSD(SKU, row);
+      if (v != null || tries++ >= 15) { clearInterval(retryId); refresh(); }
+    }, 100);
+  }
+  function detectAxle(rec) {
+    const kind = String(rec?.kind || '').trim().toLowerCase();
+    if (kind === 'lift springs kit') return 'Front & Rear';
+    if (rec?.front === true && rec?.rear === true) return 'Front & Rear';
+    if (rec?.front === true) return 'Front';
+    if (rec?.rear === true) return 'Rear';
+    const rtxt = String(rec?.remarks || '').toLowerCase();
+    const hasFront = /\b(front|voor)(?:\s|-|_)?(axle|as|set)?\b/.test(rtxt);
+    const hasRear  = /\b(rear|achter)(?:\s|-|_)?(axle|as|set)?\b/.test(rtxt);
+    if (hasFront && hasRear) return 'Front & Rear';
+    if (hasFront) return 'Front';
+    if (hasRear) return 'Rear';
+    const sku = String(rec?.kit || rec?.sku || '').toUpperCase();
+    if (/-\d{6}$/.test(sku)) {
+      const last = sku.slice(-1);
+      if (last === '1') return 'Front & Rear';
+      if (last === '3' || last === '5' || last === '7') return 'Rear';
+      if (last === '0') return hasFront ? 'Front' : 'Rear';
+      if (last === '8') return hasFront ? 'Front' : (hasRear ? 'Rear' : 'Rear');
+    }
+    return 'Rear';
+  }
+  function getPathVehicle() {
+    try {
+      const parts = location.pathname.split('/').filter(Boolean);
+      const i = parts.indexOf('helper-springs');
+      if (i >= 0) {
+        const make = parts[i + 1] || null;
+        const model = parts[i + 2] || null;
+        return { makeSlug: make ? make.toLowerCase() : null, modelSlug: model ? model.toLowerCase() : null };
+      }
+    } catch (e) {}
+    return { makeSlug: null, modelSlug: null };
+  }
+  function getSkuFromPath() {
+    try {
+      const parts = location.pathname.split('/').filter(Boolean);
+      for (let i = parts.length - 1; i >= 0; i--) {
+        if (/^(hv|sd)-\d{6}$/i.test(parts[i])) return parts[i].toUpperCase();
+      }
+    } catch (e) {}
+    return null;
+  }
+  function getSkuFromQuery() {
+    try {
+      const s = new URLSearchParams(location.search).get('sku');
+      return s ? s.toUpperCase() : null;
+    } catch (e) { return null; }
+  }
+  function detectLoadMode(row) {
+    if (typeof window !== 'undefined' && window.LLS_USE_MODE) {
+      return (String(window.LLS_USE_MODE).toLowerCase().startsWith('const')) ? 'constant' : 'variable';
+    }
+    const text = [row?.remarks, row?.note, row?.notes, row?.usage, row?.line, row?.kind].filter(Boolean).join(' ').toLowerCase();
+    const constantHints = [
+      'constant load', 'contin', 'permanent', 'always loaded', '24/7', 'tooling',
+      'camper', 'motorhome', 'rv', 'conversion', 'wheelchair', 'taxi', 'cng', 'lpg',
+      'service van', 'ambulance', 'police', 'fire', 'upfit', 'fixed payload'
+    ];
+    for (const key of constantHints) if (text.includes(key)) return 'constant';
+    return 'variable';
+  }
+  function buildBenefitPack(row) {
+    const sku = (row?.kit || row?.sku || row?.SKU || '').toString();
+    const lastDigit = (sku.match(/(\d)\s*$/) || [,''])[1];
+    const rawType = (() => {
+      if (lastDigit === '0') return 'parallelCup';
+      if (lastDigit === '1') return 'setFR';
+      if (lastDigit === '3' || lastDigit === '5' || lastDigit === '7') return 'rearHelper';
+      if (lastDigit === '8') return 'reinforceMain';
+      return 'generic';
+    })();
+    const axle    = detectAxle(row) || 'Both';
+    const load    = detectLoadMode(row);
+    const isFront = axle === 'Front';
+    const isRear  = axle === 'Rear';
+    const both    = !isFront && !isRear;
+    let skuType = rawType;
+    if (isFront && skuType === 'rearHelper') skuType = 'frontHelper';
+    let axleNote =
+      isFront ? ' Reinforced front springs'
+        : isRear ? ' Helper springs nest within the factory coils'
+          : ' Front & Rear set';
+    if (skuType === 'reinforceMain') {
+      axleNote = isFront ? ' Reinforced main coils (front axle)'
+        : isRear ? ' Reinforced main coils (rear axle)'
+          : ' Reinforced main coils (axle-specific)';
+    }
+    if (skuType === 'setFR') axleNote = ' Matched front & rear spring set';
+    if (skuType === 'parallelCup') {
+      axleNote = isFront ? ' Parallel helper spring beside OE coil (front), mounted in supplied cups'
+        : isRear ? ' Parallel helper spring beside OE coil (rear), mounted in supplied cups'
+          : ' Parallel helper spring beside OE coil, mounted in supplied cups';
+    }
+    let useLine = '';
+    if (skuType === 'setFR') {
+      useLine = (load === 'constant')
+        ? 'Use:  Level stance 24/7 with permanent upfits;  reduces pitch/roll;  expect a firmer baseline when empty'
+        : 'Use:  Balanced support front & rear for variable loads;  mild lift under payload;  comfort close to stock when empty';
+    } else if (skuType === 'rearHelper') {
+      useLine = (load === 'constant')
+        ? 'Use:  Works for constant rear loads, but consider reinforced mains (*8) if payload is permanent'
+        : 'Use:  Reduce rear sag and improve stability when loaded;  preserves near-stock comfort when empty';
+    } else if (skuType === 'frontHelper') {
+      useLine = (load === 'constant')
+        ? 'Use:  Consistent front support for permanent accessories;  reduces dive;  predictable steering'
+        : 'Use:  Add front support for variable loads/accessories;  reduces dive;  sharper steering feel';
+    } else if (skuType === 'reinforceMain') {
+      useLine = (load === 'constant')
+        ? `Use:  Raise baseline rate on the ${isFront ? 'front' : 'rear'} axle for permanent equipment;  minimizes static sag;  predictable handling`
+        : `Use:  Extra support on the ${isFront ? 'front' : 'rear'} axle;  will ride firmer when empty vs. helper coils`;
+    } else if (skuType === 'parallelCup') {
+      useLine = (load === 'constant')
+        ? 'Use:  External helper beside OE spring handles ongoing load; for truly permanent payload consider reinforced mains (*8)'
+        : 'Use:  Auxiliary spring mounted alongside OE in supplied cups; adds support under payload with minimal effect when empty';
+    } else {
+      useLine = isFront
+        ? 'Use:  Add front-end support (e.g., accessories or nose-heavy loads);  reduce brake dive and improve steering feel'
+        : isRear
+          ? 'Use:  Reduce rear sag under payload;  improve stability and braking when loaded'
+          : 'Use:  Balanced support front & rear for mild lift / load distribution';
+    }
+    let bullets = [];
+    const add = (s) => { if (s) bullets.push(s); };
+    if (skuType === 'setFR') {
+      if (load === 'constant') {
+        add('Levels the vehicle at all times (front & rear)');
+        add('Higher baseline support; reduced pitch/roll and crosswind sway');
+        add('Best for vans/campers with permanent interior or equipment');
+        add('Note: firmer when empty vs. helper-only solutions');
+      } else {
+        add('Balanced support under luggage, passengers, or hitch loads');
+        add('Reduces squat (rear) and brake dive (front)');
+        add('Keeps comfort close to stock when empty');
+        add('Improves towing stability and steering precision');
+      }
+    } else if (skuType === 'rearHelper') {
+      if (load === 'constant') {
+        add('Reduces static sag at the rear under ongoing payload');
+        add('Improves braking stability and headlight aim');
+        add('For truly permanent loads, reinforced mains (*8) may be preferable');
+      } else {
+        add('Cuts rear sag when loaded; near-stock comfort when empty');
+        add('Improves stability in corners and crosswinds');
+        add('Great for towing, luggage, bikes, or occasional heavy cargo');
+      }
+    } else if (skuType === 'frontHelper') {
+      if (load === 'constant') {
+        add('Consistent front support for permanent accessories weight');
+        add('Reduces brake dive; steadier tracking in crosswinds');
+      } else {
+        add('Reduces brake dive when loaded');
+        add('Improves steering feel and control');
+        add('Supports extra front-end accessories weight');
+      }
+    } else if (skuType === 'reinforceMain') {
+      if (load === 'constant') {
+        add(`Raises base spring rate on the ${isFront ? 'front' : 'rear'} axle`);
+        add('Minimizes static sag; consistent stance with permanent equipment');
+        add('Predictable handling under continuous duty');
+        add('Trade-off: firmer when empty');
+      } else {
+        add(`Extra support on the ${isFront ? 'front' : 'rear'} axle`);
+        add('Sharper response and reduced sag under load');
+      }
+    } else if (skuType === 'parallelCup') {
+      if (load === 'constant') {
+        add('Parallel helper beside OE spring supports continuous payload');
+        add('Reduces static sag and improves stability');
+        add('Consider reinforced mains (*8) for permanent heavy duty');
+      } else {
+        add('Adds support under load with minimal change in empty ride');
+        add('No air lines or compressors; simple cup-mounted install');
+        add('Improves towing stability and cornering under payload');
+      }
+    } else {
+      if (both) {
+        add('Balanced support under variable payloads');
+        add('Reduces pitch/roll and improves stability');
+      } else if (isRear) {
+        add('Reduces rear sag and improves braking stability');
+        add('Keeps comfort close to stock when empty');
+      } else {
+        add('Reduces brake dive and sharpens steering feel');
+        add('Supports extra front-end accessories weight');
+      }
+    }
+    const supportMode = normSupportText(row && row.support);
+    const onlyLoaded = /Only Loaded/i.test(supportMode || '');
+    if (onlyLoaded) {
+      const repl = [
+        [/Adds support under load with minimal change in empty ride/i, 'Adds support under payload; designed to engage when loaded'],
+        [/Cuts rear sag when loaded; near-stock comfort when empty/i, 'Cuts rear sag when loaded; designed to engage under payload'],
+        [/Keeps comfort close to stock when empty/i, 'Designed to engage under payload'],
+        [/Note: firmer when empty[^;.]*[;.]?/i, 'Higher baseline support for loaded use'],
+      ];
+      bullets = bullets.map(t => {
+        let s = String(t || '');
+        for (const [re, to] of repl) { if (re.test(s)) s = s.replace(re, to); }
+        return s;
+      });
+      bullets = bullets.filter(t => !/\bempty\b/i.test(String(t || '')));
+      if (typeof useLine === 'string' && useLine) {
+        useLine = useLine
+          .replace(/comfort close to stock when empty/gi, 'designed to engage under payload')
+          .replace(/firmer when empty[^;,.]*/gi, 'higher baseline support for loaded use')
+          .replace(/will ride firmer when empty[^;,.]*/gi, 'is tuned for loaded use');
+      }
+    }
+    const loadBadge = (load === 'constant') ? '● Constant load' : '● Empty & loaded';
+    return { axleNote, useLine, benefits: bullets, loadBadge };
+  }
+  function isTransitRow(row) {
+    const make = String(row?.make || '').toLowerCase();
+    const model = String(row?.model || '').toLowerCase();
+    if (!/ford/.test(make)) return false;
+    if (!/transit/.test(model)) return false;
+    if (/\bconnect\b/.test(model)) return false; // exclude Transit Connect
+    return true;
+  }
+  function transitVariant(row) {
+    const txt = [row?.remarks, row?.kind, row?.platform, row?.type, row?.support, row?.model].filter(Boolean).join(' ').toLowerCase();
+    const dually   = /\b(dually|drw|350hd|t[-\s]?350hd|t[-\s]?450|450|cutaway|chassis\s*cab)\b/.test(txt);
+    const awd      = /\b(awd|4x4)\b/.test(txt);
+    const highRoof = /\b(h3|high[-\s]?roof|hr)\b/.test(txt);
+    const longWB   = /\b(lwb|long\s*wheelbase|extra[-\s]?long|l3|l4|extended|extended[-\s]?length)\b/.test(txt);
+    const camperRV = /\b(rv|camper|motorhome|conversion|vanlife|upfit|ambulance|service)\b/.test(txt);
+    const passenger= /\b(passenger|crew)\b/.test(txt);
+    const cargo    = /\b(cargo|panel|box|chassis\s*cab|cutaway|delivery)\b/.test(txt);
+    return { dually, awd, highRoof, longWB, camperRV, passenger, cargo };
+  }
+  const dedup = (list) => {
+    const seen = new Set();
+    return (list || [])
+      .map(t => String(t || '').trim())
+      .filter(t => t && !seen.has(t.toLowerCase()) && (seen.add(t.toLowerCase()), true));
+  };
+  function transitPatch(pack, row) {
+    if (!isTransitRow(row)) return pack;
+    const axle = detectAxle(row);
+    const isFront = axle === 'Front';
+    const isRear  = axle === 'Rear';
+    const both    = (!isFront && !isRear);
+    const load    = detectLoadMode(row);
+    const tag = transitVariant(row);
+    const coreVan = [
+      'Calmer tracking on rutted highways and expansion joints',
+      'Reduced body roll and sway in crosswinds',
+      'Less ESP/traction intervention in loaded maneuvers',
+    ];
+    const axleAdds = isRear ? [
+      'Cuts rear squat; keeps headlight aim correct when loaded',
+      'More stable lane changes with tall cargo or high-roof builds',
+    ] : isFront ? [
+      'Reduces brake dive; sharper steering and on-center feel',
+      'Better tracking on crowned roads and in side winds',
+    ] : [
+      'Balanced stance front & rear; less pitch/roll on long wheelbase',
+    ];
+    const hrAdds      = tag.highRoof ? ['Tames high-roof sway; steadier in crosswinds'] : [];
+    const longWBAdds  = tag.longWB   ? ['Reduces fore–aft “porpoising” on undulating pavement'] : [];
+    const awdAdds     = tag.awd ? (isFront ? [
+      'Supports front accessories (bumper, winch) on AWD builds'
+    ] : [
+      'Improves stability with the AWD center of gravity'
+    ]) : [];
+    const cargoAdds   = tag.cargo ? [
+      'Predictable handling with shelving/racking and ladder racks',
+      'Improves braking stability when grossing near payload limits',
+    ] : [];
+    const passengerAdds = tag.passenger ? [
+      'More composed ride with passengers and luggage'
+    ] : [];
+    const duallyAdds  = tag.dually ? [
+      'Controls roll on box/dually/cutaway builds with higher center of gravity'
+    ] : [];
+    const camperAdds  = (load === 'constant' || tag.camperRV) ? [
+      'Optimized for permanent interior weight (cabinetry, tanks, batteries)',
+      'Reduces porpoising on undulating pavement',
+      'Note: firmer baseline when empty vs. helper-only solutions',
+    ] : [
+      'Great for weekenders with bikes, hitch racks or roof gear',
+    ];
+    let useLine = pack.useLine || '';
+    useLine = (function (prev) {
+      const base = both
+        ? (load === 'constant'
+          ? 'Use: ● Transit-tuned support for permanent upfits; ● reduces pitch/roll; ● firmer baseline when empty'
+          : 'Use: ● Balanced Transit support for variable payload; ● mild lift under load; ● comfort close to stock when empty')
+        : (isRear
+          ? (load === 'constant'
+            ? 'Use: ● Rear support for constant cargo/upfits; ● reduces static sag; ● steadier crosswind behavior'
+            : 'Use: ● Reduce rear squat for towing and cargo; ● keeps empty-ride close to stock')
+          : (load === 'constant'
+            ? 'Use: ● Reinforced front support for permanent accessories; ● reduces dive; ● predictable steering'
+            : 'Use: ● Add front support for accessories; ● reduces dive; ● sharper steering feel'));
+      return (prev && prev.length > 40) ? prev : base;
+    })(useLine);
+    const merged = dedup([
+      ...coreVan, ...axleAdds, ...hrAdds, ...longWBAdds, ...awdAdds,
+      ...cargoAdds, ...passengerAdds, ...duallyAdds, ...camperAdds,
+      ...(pack.benefits || [])
+    ]);
+    return Object.assign({}, pack, { benefits: merged, useLine });
+  }
+/* ===== VEHICLE CLASSIFICATION + CATEGORY PATCHES ===== */
+// 0) Kleine helpers
+function _txtOf(row){
+  return [
+    row?.make, row?.model, row?.type, row?.platform, row?.remarks, row?.kind, row?.vehicle
+  ].filter(Boolean).join(' ').toLowerCase();
+}
+function _has(txt, arr){
+  return (arr||[]).some(w => new RegExp('\\b'+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(txt));
+}
+function _uniq(arr){
+  const s = new Set(); return (arr||[]).map(t=>String(t||'').trim()).filter(t=>t && !s.has(t.toLowerCase()) && (s.add(t.toLowerCase()),1));
+}
+// 1) Body style detectie (leunt op model/vehicle/remarks)
+function getBodyStyle(row){
+  const v = String(row?.vehicle||'').toLowerCase();
+  const m = String(row?.model||'').toLowerCase();
+  const t = _txtOf(row);
+  // expliciete hints uit 'vehicle'
+  if (/\b(van|cargo|panel|box)\b/.test(v)) return 'van';
+  if (/\b(suv|crossover)\b/.test(v)) return 'suv';
+  if (/\b(pick[- ]?up|truck)\b/.test(v)) return 'pickup';
+  if (/\b(wagon|estate|avant|touring|variant|kombi|mini-van)\b/.test(v)) return 'wagon';
+  if (/\b(hatch|fastback)\b/.test(v)) return 'hatch';
+  if (/\b(sedan|saloon)\b/.test(v)) return 'sedan';
+  if (/\b(coupe|coupé)\b/.test(v)) return 'coupe';
+  // model/tekst-hints
+  const txt = m + ' ' + t;
+  if (_has(txt, ['transit','sprinter','promaster','nv200','nv2500','vito','viano','traff(i)c','vivaro','doblò','doblo','proace','ducato','boxer','jumper','crafter','t5','t6','t7'])) return 'van';
+  if (_has(txt, ['tucson','tiguan','t-roc','t-cross','kodiaq','karoq','qashqai','x-trail','rav4','santa fe','sorento','sportage','cx-5','outlander','forester','cr-v','escape','edge','highlander','atlas','taos','cx-30','kona'])) return 'suv';
+  if (_has(txt, ['f-150','f150','silverado','sierra','ram 1500','ram1500','ranger','tundra','tacoma','frontier','maverick','colorado','dakota','hilux','amarok','navara'])) return 'pickup';
+  if (_has(txt, ['wagon','estate','avant','touring','variant','kombi'])) return 'wagon';
+  if (_has(txt, ['hatch','golf','focus','astra','a3','leon','megane'])) return 'hatch';
+  if (_has(txt, ['sedan','passat','jetta','a4','octavia','camry','accord','fusion','mondeo','elantra'])) return 'sedan';
+  // default: personenauto (hatch i.p.v. 'unknown' voor betere bullets)
+  return 'car';
+}
+// 2) Generieke drivetrain/gebruik hints
+function genericUseHints(row){
+  const txt = _txtOf(row);
+  const awd = /\b(awd|4wd|4x4|quattro|4motion|xdrive|4matic)\b/i.test(txt);
+  const tow = /\b(tow|trailer|hitch|towbar|caravan)\b/i.test(txt);
+  const roof= /\b(roof\s*(box|rack)|roofbox|bike\s*rack|ladder\s*rack)\b/i.test(txt);
+  const perf= /\b(gti|gtd|gts|rs(\b|[0-9])|st(\b|[0-9])|type[- ]r|r[- ]line|m sport|amg|s[- ]line)\b/i.test(txt);
+  return { awd, tow, roof, perf };
+}
+// 3) SUV / crossover patch
+function suvPatch(pack, row){
+  const axle = detectAxle(row);
+  const { awd, tow, roof } = genericUseHints(row);
+  const adds = [];
+  // core SUV traits
+  adds.push('Controls roll on taller center of gravity');
+  if (awd) adds.push('More composed tracking on rough roads with AWD under load');
+  if (roof) adds.push('Handles added roof box/rack weight more predictably');
+  if (tow)  adds.push('Improves towing stability and braking when loaded');
+  // axle-gerichte aanvullingen
+  if (axle === 'Rear') {
+    adds.push('Cuts rear squat with luggage, bikes, or hitch loads');
+    adds.push('Keeps headlight aim correct under cargo weight');
+  } else if (axle === 'Front') {
+    adds.push('Reduces brake dive; steadier steering on crowned roads');
+  } else {
+    adds.push('Balanced stance front & rear on long family trips');
+  }
+  // useLine (alleen overschrijven als hij nog leeg/kort is)
+  let useLine = pack.useLine || '';
+  if (!useLine || useLine.length < 40){
+    const load = detectLoadMode(row);
+    useLine = (load==='constant')
+      ? 'Use: SUV-tuned support for permanent gear; reduces pitch/roll; firmer baseline when empty'
+      : 'Use: Added support for trips and gear; mild lift under payload; comfort close to stock when empty';
+  }
+  return Object.assign({}, pack, {
+    benefits: _uniq([...(pack.benefits||[]), ...adds]),
+    useLine
+  });
+}
+// 4) Pick-up patch
+function pickupPatch(pack, row){
+  const { tow } = genericUseHints(row);
+  const adds = [
+    'Reduces rear squat under bed cargo or tongue weight',
+    'More stable lane changes with higher loads'
+  ];
+  if (tow) adds.push('Improved trailer control and braking feel under load');
+  let useLine = pack.useLine || '';
+  if (!useLine || useLine.length < 40){
+    const load = detectLoadMode(row);
+    useLine = (load==='constant')
+      ? 'Use: Consistent support for tools/bed systems; reduces static sag; firmer baseline when empty'
+      : 'Use: Occasional load/towing; engages under payload with near-stock empty ride';
+  }
+  return Object.assign({}, pack, {
+    benefits: _uniq([...(pack.benefits||[]), ...adds]),
+    useLine
+  });
+}
+// 5) Personenauto patch (sedan/hatch/wagon)
+function passengerCarPatch(pack, row){
+  const style = getBodyStyle(row); // 'sedan','hatch','wagon','car'
+  const axle  = detectAxle(row);
+  const { tow, roof, perf } = genericUseHints(row);
+  const adds = [];
+  // body-style nuances
+  if (style === 'wagon') {
+    adds.push('Maintains level stance with loaded cargo area');
+    adds.push('Cuts rear squat with luggage, tools, or prams');
+  } else if (style === 'sedan') {
+    adds.push('More stable braking with passengers and luggage');
+  } else { // hatch / car
+    adds.push('Reduces rear squat with passengers and luggage');
+  }
+  // common car use cases
+  if (roof) adds.push('Better composure with roof boxes or bike racks');
+  if (tow)  adds.push('Improves small-trailer/hitch stability when loaded');
+  // axle-specifiek
+  if (axle === 'Front') {
+    adds.push('Reduces brake dive; sharper steering feel under load');
+  } else if (axle === 'Rear') {
+    adds.push('Keeps headlight aim correct when the boot is full');
+    adds.push('Less bottoming on speed bumps and driveways when loaded');
+  } else {
+    adds.push('Balanced stance front & rear for trips and family use');
+  }
+  // sportieve varianten: voorzichtig geformuleerd
+  if (perf && axle !== 'Rear') {
+    adds.push('Crisper turn-in under load; more predictable response');
+  }
+  let useLine = pack.useLine || '';
+  if (!useLine || useLine.length < 40){
+    const load = detectLoadMode(row);
+    useLine = (load==='constant')
+      ? 'Use: Higher baseline rate for permanent equipment; firmer when empty vs. helper-only'
+      : 'Use: Support ramps up under payload; comfort remains close to stock when unladen';
+  }
+  return Object.assign({}, pack, {
+    benefits: _uniq([...(pack.benefits||[]), ...adds]),
+    useLine
+  });
+}
+// 6) Van patch = bestaande transitPatch hergebruiken (alias), zodat je bestaande gedrag blijft werken
+function vanPatch(pack, row){
+  // Als het echt een Ford Transit is, gebruik de transit-tuning
+  if (isTransitRow(row)) return transitPatch(pack, row);
+  const axle = detectAxle(row);
+  const { awd, tow, roof } = genericUseHints(row);
+  const txt = _txtOf(row);
+  // Algemene van-hints (merk-onafhankelijk)
+  const highRoof = /\b(high[-\s]?roof|hr|h\d)\b/i.test(txt);
+  const longWB   = /\b(lwb|long\s*wheelbase|extended|extra[-\s]?long|l3|l4)\b/i.test(txt);
+  const cargo    = /\b(cargo|panel|box|delivery|chassis\s*cab|cutaway)\b/i.test(txt);
+  const passenger= /\b(passenger|crew)\b/i.test(txt);
+  const adds = [
+    'Calmer tracking on rutted highways and expansion joints',
+    'Reduced body roll with taller builds or roof gear'
+  ];
+  if (axle === 'Rear'){
+    adds.push('Cuts rear squat; keeps headlight aim correct when loaded');
+    adds.push('More stable lane changes with tall cargo');
+  } else if (axle === 'Front'){
+    adds.push('Reduces brake dive; sharper on-center steering feel');
+  } else {
+    adds.push('Balanced stance front & rear for long wheelbase vans');
+  }
+  if (highRoof) adds.push('Tames high-roof sway; steadier in crosswinds');
+  if (longWB)   adds.push('Reduces fore–aft “porpoising” on undulating pavement');
+  if (awd)      adds.push('More composed tracking with AWD driveline mass');
+  if (tow)      adds.push('Improves towing stability and braking when loaded');
+  if (cargo)    adds.push('Predictable handling with shelving/racking and ladder racks');
+  if (passenger)adds.push('More composed ride with passengers and luggage');
+  if (roof)     adds.push('Handles added roof box/rack weight more predictably');
+  // Alleen een useLine zetten als hij nog leeg/kort is
+  let useLine = pack.useLine || '';
+  if (!useLine || useLine.length < 40){
+    const load = detectLoadMode(row);
+    useLine = (load === 'constant')
+      ? 'Use: Van-tuned support for permanent upfits; reduces pitch/roll; firmer baseline when empty'
+      : 'Use: Added van support for variable payload; mild lift under load; comfort close to stock when empty';
+  }
+  return Object.assign({}, pack, {
+    benefits: _uniq([...(pack.benefits || []), ...adds]),
+    useLine
+  });
+}
+// 7) Toepassen per categorie
+function applyCategoryPatches(pack, row){
+  const style = getBodyStyle(row);
+  if (style === 'van')    return vanPatch(pack, row);
+  if (style === 'suv')    return suvPatch(pack, row);
+  if (style === 'pickup') return pickupPatch(pack, row);
+  // default: personenauto
+  return passengerCarPatch(pack, row);
+}
+ /* ============ MAIN RENDER ============ */
+  function initPage() {
+    const DEFAULT_SKU = (window.LLS_FOOTER_DATA && window.LLS_FOOTER_DATA[0] && window.LLS_FOOTER_DATA[0].kit) || 'HV-000000';
+    const SKU = (getSkuFromPath() || getSkuFromQuery() || DEFAULT_SKU).toUpperCase();
+    const TUV_BADGE_URL = 'https://irp.cdn-website.com/3a91075a/dms3rep/multi/kit.approval.tuv.png';
+    const RAW = (typeof window.LLS_FOOTER_DATA === 'object' && window.LLS_FOOTER_DATA) ? window.LLS_FOOTER_DATA : [];
+    const FOOT_ARR = Array.isArray(RAW) ? RAW : [RAW];
+    const kitRows = FOOT_ARR.filter(r => String((r && r.kit) || '').toUpperCase() === SKU);
+    const urlVeh = getPathVehicle();
+    let picked = null;
+    if (kitRows.length) {
+      if (urlVeh.makeSlug || urlVeh.modelSlug) {
+        picked = kitRows.find(r =>
+          slugify(r.make) === (urlVeh.makeSlug || slugify(r.make)) &&
+          slugify(r.model) === (urlVeh.modelSlug || slugify(r.model))
+        ) || null;
+        if (!picked && urlVeh.modelSlug) {
+          picked = kitRows.find(r => slugify(r.model) === urlVeh.modelSlug) || null;
+        }
+        if (!picked && urlVeh.makeSlug) {
+          picked = kitRows.find(r => slugify(r.make) === urlVeh.makeSlug) || null;
+        }
+      }
+      if (!picked) picked = kitRows[0];
+    }
+    const DEFAULT_ROW = {
+      kit: SKU, make: '', model: '', platform: null, year_start: null, year_end: null,
+      kind: 'Auxiliary coil spring', approval: 'TÜV', height_in: null, time_min: 45,
+      remarks: '', support: 'Empty & Loaded', min_load: null, images: [], manual: null
+    };
+    const row = Object.assign({}, DEFAULT_ROW, picked || {});
+    row.kit = SKU;
+    row.support = supportLabelNl(row.support) || 'Empty & Loaded';
+    // min/constant load detect
+    const kgSrc = row.min_load_kg ?? row.constant_load_kg ?? row.constant_load ?? row.load_kg;
+    if (row.min_load == null && kgSrc != null) {
+      const lbs = kgToLbs(kgSrc);
+      if (lbs != null) {
+        row.min_load = Math.round(lbs);
+        row._load_kind = (row.constant_load_kg != null || row.constant_load != null) ? 'constant' : 'minimum';
+      }
+    }
+    if (row.min_load == null && row.min_load_lbs != null) {
+      const lbs2 = parseFloat(String(row.min_load_lbs).replace(',', '.'));
+      if (isFinite(lbs2)) { row.min_load = Math.round(lbs2); row._load_kind = row._load_kind || 'minimum'; }
+    }
+    if (row.min_load == null && row.remarks) {
+      const m = String(row.remarks).match(/min(?:imum)?\.?\s*(?:pre\s*)?load[:=]?\s*(\d[\d.,]*)\s*kg/i);
+      if (m) { row.min_load = Math.round(kgToLbs(m[1])); row._load_kind = 'minimum'; }
+      const m2 = String(row.remarks).match(/recommended\s*constant\s*(?:rear|nose)?\s*load[:=]?\s*(\d[\d.,]*)\s*kg/i);
+      if (m2) { row.min_load = Math.round(kgToLbs(m2[1])); row._load_kind = 'constant'; }
+    }
+    if (row.remarks) row.remarks = convertMetricToImperial(row.remarks);
+    const makeStr = safe(row.make, '').trim();
+    const modelStr = safe(row.model, '').trim();
+    const vehicleName = vehicleTitle(makeStr, modelStr).trim() || 'Vehicle';
+// Benefit pack (+ category patch)
+let pack = buildBenefitPack(row);
+pack = applyCategoryPatches(pack, row);
+    const axle = detectAxle(row) || 'Both';
+    const kitType = detectKitType(row, SKU);
+    const basePath = kitBasePath(kitType);
+    const nlPack = buildNlPack(row, axle, kitType);
+    const kitLabelEl = $('kit-label');
+    if (kitLabelEl) kitLabelEl.textContent = kitLabelNl(kitType);
+    // Zorg dat alle andere blokken (FAQ, etc.) exact dezelfde row gebruiken
+window.__LLS_ACTIVE_ROW  = JSON.parse(JSON.stringify(row)); // snapshot
+window.__LLS_ACTIVE_AXLE = axle;
+window.__LLS_ACTIVE_SKU  = SKU;
+window.__LLS_KIT_TYPE = kitType;
+    const axleNote = nlPack.axleNote;
+    const useLine = nlPack.useLine;
+    /* ===== META / TITLES ===== */
+    const vehTitle = $('veh-title');
+    if (vehTitle) vehTitle.textContent = vehicleName;
+    const h1 = $('page-h1');
+    if (h1) {
+      const skuSpan = $('sku-title');
+      if (skuSpan) skuSpan.textContent = SKU;
+    }
+    const subEl = $('subtitle');
+    if (subEl) subEl.textContent = subtitleNl(kitType, axle);
+    try {
+      const pageUrl = (location.origin || '') + location.pathname;
+      document.title = kitTitleNl(kitType, vehicleName, SKU);
+      const ogTitle = $('og-title'), ogUrl = $('og-url'), canonical = $('link-canonical');
+      if (ogTitle) ogTitle.setAttribute('content', document.title);
+      if (ogUrl) ogUrl.setAttribute('content', pageUrl);
+      if (canonical) canonical.setAttribute('href', pageUrl);
+    } catch (e) {}
+    // Breadcrumbs/CTA
+    const makeSlug = slugify(makeStr || 'make');
+    const modelSlug = slugify(modelStr || 'model');
+    const bcMake = $('bc-make'), bcFam = $('bc-family'), backKits = $('back-kits'), bcSku = $('bc-sku');
+    if (bcMake) { bcMake.textContent = makeStr || 'Merk'; bcMake.href = basePath + '/' + makeSlug; }
+    if (bcFam)  { bcFam.textContent  = (vehicleName || 'Model'); bcFam.href  = basePath + '/' + makeSlug + '/' + modelSlug; }
+    if (backKits){ backKits.textContent = 'Alle sets voor ' + (vehicleName || 'voertuig'); backKits.href = basePath + '/' + makeSlug + '/' + modelSlug; }
+    if (bcSku) bcSku.textContent = SKU;
+    /* ===== BADGES ===== */
+    const badges = $('badges');
+    if (badges) {
+      const bits = [];
+      bits.push(badge(safe(row.kind, kitLabelLongNl(kitType))));
+      // ✅ Free Shipping chip
+      bits.push(`<span class="chip accent" title="US mainland shipping included">FREE SHIPPING <sup>*</sup></span>`);
+    bits.push(badge(axle + ' axle'));
+    if (row.platform) bits.push(badge(row.platform));
+    const supportDisplay = supportLabelNl(row.support) || 'Empty & Loaded';
+    if (supportDisplay) bits.push(badge(supportDisplay));
+      if (hasTuv(row.approval)) {
+        bits.push(`
+ <span class="tuv-badge-wrap" title="TÜV approved">
+  <img class="tuv-badge" src="${TUV_BADGE_URL}" alt="TÜV approved" loading="lazy" onerror="this.style.display='none'">
+ </span>
+ `);
+      }
+      badges.innerHTML = bits.join('');
+    }
+/* ==== DYNAMIC EXPLAINER (US English): Empty & Loaded / Constant (Only Loaded) / Lift ==== */
+(function(){
+  function slugify(s){ return String(s||'').toLowerCase().normalize('NFKD')
+    .replace(/["'’`]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+  function normSupportText(v){
+    const s=String(v||'').toLowerCase();
+    if (s.includes('empty') && s.includes('loaded')) return 'Empty & Loaded';
+    if ((s.includes('only') && s.includes('load')) || s.includes('constant')) return 'Only Loaded';
+    if (s.includes('lift')) return 'Lift';
+    return (String(v||'').trim()||'');
+  }
+  // Be conservative but prefer explicit front/rear hints if present
+  function detectAxlePrecise(rec){
+    if (!rec) return 'Rear';
+    if (rec.front === true && rec.rear === true) return 'Front & Rear';
+    if (rec.front === true && rec.rear !== true) return 'Front';
+    if (rec.rear === true  && rec.front !== true) return 'Rear';
+    const kind = String(rec.kind||'').toLowerCase();
+    const rtxt = String(rec.remarks||'').toLowerCase();
+    // strong phrases in remarks
+    if (/\bfront(?!\s*&\s*rear)\b/.test(rtxt) || /\bfront\s+only\b/.test(rtxt)) return 'Front';
+    if (/\brear\s+only\b/.test(rtxt)) return 'Rear';
+    // kind heuristics
+    if (kind === 'front lift kit' || /\bfront\s+lift\b/.test(kind)) return 'Front';
+    if (kind === 'rear lift kit'  || /\brear\s+lift\b/.test(kind))  return 'Rear';
+    if (kind === 'lift springs kit') return 'Front & Rear'; // true "set" wording
+    // fallback: look for both words in remarks
+    const hasF = /\bfront\b/.test(rtxt), hasR = /\brear\b/.test(rtxt);
+    if (hasF && hasR) return 'Front & Rear';
+    if (hasF) return 'Front';
+    if (hasR) return 'Rear';
+    return 'Rear';
+  }
+  function insertExplainer(row){
+    const support = supportLabelNl(row.support);
+    const looksLift = /lift/i.test(row.kind||'') || /lift/i.test(row.support||'') || (row.height_in!=null && row.height_in!=='');
+    const axle = (typeof window.detectAxle === 'function' ? window.detectAxle(row) : detectAxlePrecise(row));
+    const make = String(row.make||'').trim(), model = String(row.model||'').trim();
+    const familyUrl = `/helper-springs/${slugify(make||'make')}/${slugify(model||'model')}`;
+    let title='', intro='', bullets=[], ctaTxt='', ctaHref=familyUrl, cta2Txt='', cta2Href='';
+    if (looksLift){
+      if (axle === 'Front'){
+        title = 'Front lift kit — when to choose it';
+        intro = 'Adds lift at the front axle to improve approach angle and ground clearance, or to counter added nose weight (bumper, winch, camper build). Rear remains stock height.';
+        bullets = [
+          'Raises front ride height under load; reduces front bottoming',
+          'Helps level factory nose-down stance on conversions',
+          'Does not increase GVWR — always stay within published limits'
+        ];
+        ctaTxt  = 'Need lift front & rear? See full lift sets';
+        ctaHref = familyUrl;                      // listing for this vehicle
+        cta2Txt = 'Prefer rear support without lift? See helper springs';
+        cta2Href= familyUrl + '?support=Empty%20%26%20Loaded';
+      } else if (axle === 'Front & Rear'){
+        title = 'Front & rear lift kit — when to choose it';
+        intro = 'Adds lift on both axles for more ground clearance and a higher stance under payload. Best for campers and rough access roads where approach and departure angles matter.';
+        bullets = [
+          'Increases effective ride height under payload (both axles)',
+          'More clearance for driveways, ramps, and rough roads',
+          'Does not increase GVWR — always stay within published limits'
+        ];
+        ctaTxt  = 'Only need a front lift? See front-only kits';
+        ctaHref = familyUrl;                      // same listing; user can pick front-only
+      } else { // Rare: rear-only lift
+        title = 'Rear lift kit — when to choose it';
+        intro = 'Adds lift at the rear axle to improve departure angle and reduce hitch-scrape with tongue weight.';
+        bullets = [
+          'Raises rear ride height under load; reduces scrape',
+          'Helps maintain headlight aim and stability when loaded',
+          'Does not increase GVWR — always stay within published limits'
+        ];
+        ctaTxt  = 'Prefer front lift or full set? See all lift options';
+        ctaHref = familyUrl;
+      }
+    } else if (support === 'Only Loaded'){
+      title = 'Constant / Only Loaded — meaning & real-world use';
+      intro = 'Tuned for vehicles that carry permanent equipment most of the time. Baseline spring rate is higher, so unloaded ride will feel firmer.';
+      bullets = [
+        (row.min_load ? `Engages around ≥ ${row.min_load} lb on the ${String(axle).toLowerCase()} axle` : 'Optimized for driving with payload'),
+        'Less squat and more control at highway speeds',
+        'Often drive unladen? Choose Empty & Loaded instead'
+      ];
+      ctaTxt  = 'See Empty & Loaded kits';
+      ctaHref = familyUrl + '?support=Empty%20%26%20Loaded';
+    } else {
+      title = 'Empty & Loaded — meaning & real-world use';
+      intro = 'For mixed use: near-stock comfort when empty, with progressive support that ramps up as you add payload or tongue weight.';
+      bullets = [
+        'Near-stock comfort when unladen',
+        'Reduces squat and improves stability with cargo or towing',
+        (row.min_load ? `Noticeable effect from about ≥ ${row.min_load} lb (${String(axle).toLowerCase()})` : 'Progressive support under payload')
+      ];
+      ctaTxt  = 'Carry a constant load 24/7? See Constant / Only Loaded';
+      ctaHref = familyUrl + '?support=Only%20Loaded';
+    }
+    const box = document.createElement('div');
+    box.className = 'card';
+    box.style.cssText = 'margin-top:12px;border:1px solid var(--line);border-radius:10px;padding:12px;background:#0f1117';
+    box.innerHTML = `
+      <h3 style="margin:.2rem 0 .4rem">${title}</h3>
+      <p class="muted" style="margin:.2rem 0 .4rem">${intro}</p>
+      <ul class="list" style="margin:.2rem 0 .6rem">
+        ${bullets.map(t=>`<li>${t}</li>`).join('')}
+      </ul>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="${ctaHref}">${ctaTxt}</a>
+        ${cta2Txt ? `<a class="btn" href="${cta2Href}">${cta2Txt}</a>` : ''}
+      </div>
+    `;
+    // Place right under the small bullet list in the right-hand aside
+    const aside = document.querySelector('section.panel .grid.cols-2 aside');
+    const anchor = aside && aside.querySelector('.list');
+    (anchor || aside || document.querySelector('main.container'))
+      ?.insertAdjacentElement('afterend', box);
+  }
+  function bootExplainer(){
+    const row = window.__LLS_ACTIVE_ROW || null;
+    if (!row) return;
+    insertExplainer(row);
+  }
+  (document.readyState==='loading')
+    ? document.addEventListener('DOMContentLoaded', bootExplainer)
+    : bootExplainer();
+})();
+// ===== HERO IMAGE (vaste CDN + optionele 2e afbeelding, thumbs & nav) =====
+{
+  const $ = (id) => document.getElementById(id);
+  const heroImg = $('hero-img');
+  const zoomBtn = $('zoom-btn');
+  const lb      = $('lightbox');
+  const lbImg   = $('lightbox-img');
+  const CDN = 'https://irp.cdn-website.com/3a91075a/dms3rep/multi/';
+  const SKU = String(
+    (window.__LLS_ACTIVE_SKU) ||
+    (typeof getSkuFromPath==='function' && getSkuFromPath()) ||
+    (typeof getSkuFromQuery==='function' && getSkuFromQuery()) ||
+    'HV-000000'
+  ).toUpperCase();
+  const primary = CDN + SKU + '.jpg';
+  const second  = CDN + SKU + '-2.jpg';
+  const gallery = [];
+  let hasSecond = false;
+  let activeIndex = 0;
+  const metaKitLabel = (typeof kitLabelLongNl === 'function' && window.__LLS_KIT_TYPE) ? kitLabelLongNl(window.__LLS_KIT_TYPE) : 'MAD Hulpveren';
+  const metaTitle = metaKitLabel + ' - ' + (document.getElementById('veh-title')?.textContent || 'Voertuig') + ' - ' + SKU;
+  function svgFallback() {
+    if (!heroImg) return;
+    const label = encodeURIComponent((SKU || 'HV-XXXXX') + ' • image unavailable');
+    heroImg.src =
+      "data:image/svg+xml;utf8," +
+      `<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'>` +
+      `<rect width='100%' height='100%' fill='%230f1117'></rect>` +
+      `<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,Segoe UI,Inter,Roboto' font-size='28' fill='%23aab1c3'>${label}</text>` +
+      `</svg>`;
+    heroImg.alt = 'Image unavailable';
+    heroImg.title = 'Image unavailable';
+    if (zoomBtn) zoomBtn.style.display = 'none';
+  }
+  // -- primair beeld
+  if (heroImg) {
+    heroImg.decoding = 'async';
+    heroImg.loading  = 'eager';
+    heroImg.fetchPriority = 'high';
+    heroImg.alt = metaTitle;
+    heroImg.title = metaTitle;
+    heroImg.src = primary;
+    heroImg.addEventListener('load', () => {
+      gallery[0] = primary;
+      const ogImage = document.getElementById('og-image');
+      if (ogImage) ogImage.setAttribute('content', primary);
+    }, { once:true });
+    heroImg.addEventListener('error', svgFallback, { once:true });
+    // klik op grote beeld = wisselen als er 2e is
+    heroImg.addEventListener('click', () => {
+      if (!hasSecond) return;
+      activeIndex = 1 - activeIndex;
+      heroImg.src = gallery[activeIndex];
+      renderThumbs();
+    });
+  }
+  // -- 2e beeld (cache-bust) detecteren
+  (function probeSecond(){
+    const im = new Image();
+    im.onload  = () => { hasSecond = true; gallery[1] = second; renderThumbs(); };
+    im.onerror = () => { hasSecond = false; /* geen 2e, prima */ };
+    im.src = second + '?cv=' + Date.now();
+  })();
+  // -- thumbs onder hero (alleen tonen als 2e bestaat)
+  function renderThumbs(){
+    const wrap = document.querySelector('.imgwrap');
+    if (!wrap) return;
+    let thumbs = wrap.querySelector('.thumbs');
+    if (!thumbs) {
+      thumbs = document.createElement('div');
+      thumbs.className = 'thumbs';
+      thumbs.style.cssText = 'display:flex;gap:10px;margin-top:10px';
+      wrap.appendChild(thumbs);
+    }
+    thumbs.innerHTML = '';
+    // helper voor thumbknop
+    const makeThumb = (src, idx) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'thumb' + (idx===activeIndex ? ' on' : '');
+      b.style.cssText = 'border:1px solid var(--line);background:#0f1117;border-radius:8px;padding:0;overflow:hidden;cursor:pointer;opacity:'+(idx===activeIndex?'1':'0.85');
+      const im = document.createElement('img');
+      im.src = src;
+      im.alt = 'Photo ' + (idx+1);
+      im.style.cssText = 'display:block;width:80px;height:auto';
+      b.appendChild(im);
+      b.addEventListener('click', () => {
+        activeIndex = idx;
+        if (heroImg) heroImg.src = gallery[activeIndex];
+        renderThumbs();
+      });
+      return b;
+    };
+    // altijd de eerste thumb
+    if (gallery[0]) thumbs.appendChild(makeThumb(gallery[0], 0));
+    // tweede alleen als ie echt bestaat
+    if (hasSecond && gallery[1]) thumbs.appendChild(makeThumb(gallery[1], 1));
+    // verberg hele rij als er maar 1 is
+    thumbs.style.display = (hasSecond ? 'flex' : 'none');
+  }
+  // -- Lightbox + pijltjes + knoppen
+  if (zoomBtn && lb && lbImg) {
+    function openLb(){
+      if (!gallery.length) return;
+      lbImg.src = gallery[activeIndex] || gallery[0];
+      lbImg.alt = heroImg?.alt || '';
+      lb.classList.add('on');
+      lb.setAttribute('aria-hidden', 'false');
+      zoomBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeLb(){
+      lb.classList.remove('on');
+      lb.setAttribute('aria-hidden', 'true');
+      zoomBtn.setAttribute('aria-expanded', 'false');
+      lbImg.removeAttribute('src');
+    }
+    function nextImg(){
+      if (gallery.length < 2) return;
+      activeIndex = (activeIndex + 1) % gallery.length;
+      lbImg.src = gallery[activeIndex];
+    }
+    function prevImg(){
+      if (gallery.length < 2) return;
+      activeIndex = (activeIndex - 1 + gallery.length) % gallery.length;
+      lbImg.src = gallery[activeIndex];
+    }
+    // overlay nav-buttons alleen als er een 2e is
+    function ensureLbNav(){
+      if (!hasSecond) return;
+      if (!lb.querySelector('.lb-nav-prev')) {
+        const prev = document.createElement('button');
+        prev.className = 'lb-nav-prev';
+        prev.type = 'button';
+        prev.textContent = '‹';
+        prev.style.cssText = 'position:absolute;left:12px;top:50%;transform:translateY(-50%);background:#0009;border:1px solid var(--line);color:#fff;font-size:28px;border-radius:8px;padding:6px 10px;cursor:pointer';
+        prev.addEventListener('click', prevImg);
+        lb.appendChild(prev);
+      }
+      if (!lb.querySelector('.lb-nav-next')) {
+        const next = document.createElement('button');
+        next.className = 'lb-nav-next';
+        next.type = 'button';
+        next.textContent = '›';
+        next.style.cssText = 'position:absolute;right:12px;top:50%;transform:translateY(-50%);background:#0009;border:1px solid var(--line);color:#fff;font-size:28px;border-radius:8px;padding:6px 10px;cursor:pointer';
+        next.addEventListener('click', nextImg);
+        lb.appendChild(next);
+      }
+    }
+    zoomBtn.addEventListener('click', () => { ensureLbNav(); openLb(); });
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+    window.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('on')) return;
+      if (e.key === 'Escape') return closeLb();
+      if (e.key === 'ArrowRight') return nextImg();
+      if (e.key === 'ArrowLeft')  return prevImg();
+    });
+  }
+}
+    /* ===== SPECS ===== */
+    const years = (row.year_start || row.year_end)
+      ? ((row.year_start ? onlyYear(row.year_start) : '') + ' - ' + (row.year_end ? onlyYear(row.year_end) : 'heden'))
+      : '';
+    const specs = $('specs-grid');
+    const priceUSD = readFooterPriceUSD(SKU, row);
+    const priceText = dollars(priceUSD);
+    if (specs) {
+      const rows = [
+        specRow('SKU', `
+ <code>
+  ${SKU}
+ </code>
+ `),
+        specRow('Type', safe(row.kind, kitLabelLongNl(kitType))),
+        specRow('Platform', safe(row.platform)),
+        specRow('As', axle),
+        specRow('Ondersteuning / verhoging', (row.height_in != null && row.height_in !== '') ? ('~' + row.height_in + ' in (beladen)') : (supportLabelNl(row.support) || '—')),
+        specRow('Montagetijd', row.time_min ? ('~ ' + row.time_min + ' minuten') : '~ 45 minuten'),
+        specRow('Bouwjaren', years),
+        specRow('Goedkeuring', hasTuv(row.approval) ? 'TUV' : safe(row.approval)),
+        specRow('Prijs (USD)', `
+ <span data-price="">
+  ${priceText}
+ </span>
+ `)
+      ];
+      const loadLabel = (row._load_kind === 'constant') ? 'Constante belading' : 'Minimum belading';
+      if (row.min_load && row.min_load > 0) rows.splice(5, 0, specRow(loadLabel, row.min_load + ' lbs'));
+      if (row.remarks) rows.push(specRow('Opmerkingen', remarksToHtml(row.remarks)));
+      specs.innerHTML = rows.join('');
+    }
+    setupPriceRefresh(SKU, row);
+    /* ===== FITMENT ===== */
+    const fitUL = $('fitment-list');
+    if (fitUL) {
+      const fit = [
+        `Voertuig:
+ <strong>
+  ${vehicleName}
+ </strong>
+ ${years ? (', ' + years) : ''}`,
+        `As:
+ <strong>
+  ${axleLabelNl(axle)}
+ </strong>
+ - ${axleNote}`,
+        useLine
+      ];
+      if (hasTuv(row.approval)) fit.push('Goedkeuring: TUV, montagehandleiding inbegrepen');
+      if (row.min_load && row.min_load > 0) {
+        const loadLine = (axle === 'Front')
+          ? ((row._load_kind === 'constant')
+            ? (`Aanbevolen constante neusbelasting:
+ <strong>
+  ${row.min_load} lbs
+ </strong>
+ `)
+            : (`Minimale neusbelasting:
+ <strong>
+  ${row.min_load} lbs
+ </strong>
+ `))
+          : ((row._load_kind === 'constant')
+            ? (`Aanbevolen constante achterbelasting:
+ <strong>
+  ${row.min_load} lbs
+ </strong>
+ `)
+            : (`Minimale achterbelasting:
+ <strong>
+  ${row.min_load} lbs
+ </strong>
+ `));
+        fit.push(loadLine);
+      }
+      const supportDisplay2 = supportLabelNl(row.support);
+      if (supportDisplay2) fit.push(`Ondersteuning:
+ <strong>
+  ${supportDisplay2}
+ </strong>
+ `);
+      fitUL.innerHTML = fit.map(t => `
+ <li class="muted">
+  ${t}
+ </li>
+ `).join('');
+    }
+    /* ===== BENEFITS ===== */
+    const benUL = $('benefits-list');
+    if (benUL) {
+      let ben = Array.isArray(nlPack.benefits) ? nlPack.benefits.slice() : [];
+      if (kitType === 'helper' && row && row.min_load && row.min_load > 0) {
+        const where = (axle === 'Front') ? 'vooras' : (axle === 'Rear') ? 'achteras' : 'assen';
+        ben.push(`Afgestemd op ${where} belading vanaf ongeveer ${row.min_load} lbs`);
+      }
+      const supB = normSupportText(row && row.support);
+      if (kitType === 'helper') {
+        if (/Only Loaded/i.test(supB)) ben.push('Afgestemd voor rijden met permanente belading');
+        if (/Empty\s*&\s*Loaded/i.test(supB)) ben.push('Comfort blijft bruikbaar bij leeg en beladen rijden');
+      }
+      const seen = new Set();
+      ben = ben
+        .map(t => String(t || '').trim().replace(/^[-*]\s*/, ''))
+        .filter(t => t && !seen.has(t.toLowerCase()) && (seen.add(t.toLowerCase()), true));
+      const isOwnership = (s) => {
+        const x = s.toLowerCase();
+        return /(install|montage|luchtleiding|luchtleidingen|compressor|onderhoud|service|handleiding|uitlijnen|afstelling|set[- ]and[- ]forget|leak|leaks|warranty)/.test(x);
+      };
+      const isLoaded = (s) => {
+        const x = s.toLowerCase();
+        return /(load|payload|towing|tow|hitch|trailer|sag|squat|cargo|rear load|nose weight|gross|haul|rack|roof|minimum|constant|belading|lading|trekhaak|aanhanger|caravan|doorzakken|neerzakken|aslast)/.test(x);
+      };
+      const isRide = (s) => {
+        const x = s.toLowerCase();
+        return /(brake dive|steering|roll|yaw|pitch|crosswind|cornering|esp|traction|porpoising|tracking|expansion joints|freeway|stability|comfort|ride|lane changes|weggedrag|stuur|bocht|zijwind|rem|stabiliteit|rijhoogte|deinen|overhellen)/.test(x);
+      };
+      const ownershipItems = [];
+      const loadedItems = [];
+      const rideItems = [];
+      ben.forEach(t => {
+        if (isOwnership(t)) { ownershipItems.push(t); return; }
+        const L = isLoaded(t), R = isRide(t);
+        if (L && !R) { loadedItems.push(t); return; }
+        if (!L && R) { rideItems.push(t); return; }
+        if (L && R)  { rideItems.push(t); return; }
+        rideItems.push(t);
+      });
+      const li = (t) => `
+ <li>
+  <span class="feel-mark">-</span>
+  ${t}
+ </li>
+ `;
+      let html = '';
+      if (loadedItems.length) {
+        html += `
+ <li style="list-style:none;margin-top:8px">
+  <div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:.04em">
+   Bij belading
+  </div>
+  <ul class="list">
+   ${loadedItems.map(li).join('')}
+  </ul>
+ </li>
+ `;
+      }
+      if (rideItems.length) {
+        html += `
+ <li style="list-style:none;margin-top:8px">
+  <div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:.04em">
+   Tijdens rijden
+  </div>
+  <ul class="list">
+   ${rideItems.map(li).join('')}
+  </ul>
+ </li>
+ `;
+      }
+      if (ownershipItems.length) {
+        html += `
+ <li style="list-style:none;margin-top:8px">
+  <div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:.04em">
+   Montage en gebruik
+  </div>
+  <ul class="list">
+   ${ownershipItems.map(li).join('')}
+  </ul>
+ </li>
+ `;
+      }
+      if (!html) html = ben.map(li).join('');
+      benUL.innerHTML = html;
+    }
+    /* ===== INSTALL ===== */
+    const stepsOL = $('install-steps');
+    if (stepsOL) {
+      const steps = installStepsNl(axle, kitType);
+      stepsOL.innerHTML = steps.map(s => `
+ <li>
+  ${s}
+ </li>
+ `).join('');
+    }
+    /* ===== RESOURCES / MANUAL ===== */
+    function getManualUrl(rec) {
+      const cand = rec && (rec.manual || rec.Manual || rec.url_manual || rec.URL_Manual || rec.pdf || rec.PDF);
+      if (!cand) return null;
+      try { const u = String(cand).trim(); if (/^https?:\/\//i.test(u)) return u; } catch (e) {}
+      return null;
+    }
+    const manualUrl = getManualUrl(row);
+    (function () {
+      const resSec = $('resources');
+      const downloads = $('downloads');
+      if (manualUrl && resSec && downloads) {
+        resSec.style.display = '';
+        if (!downloads.querySelector('a[href="' + manualUrl + '"]')) {
+          const li = document.createElement('li');
+          li.innerHTML = `
+ <a class="btn neutral" href="${manualUrl}" target="_blank" rel="noopener">
+  Montagehandleiding (PDF)
+ </a>
+ `;
+          downloads.appendChild(li);
+        }
+        const installSection = $('install');
+        const btnBar = installSection && installSection.querySelector(':scope > div:last-of-type');
+        if (btnBar) {
+          const btnManual = document.createElement('a');
+          btnManual.className = 'btn neutral';
+          btnManual.href = manualUrl; btnManual.target = '_blank'; btnManual.rel = 'noopener';
+          btnManual.textContent = 'Handleiding downloaden';
+          btnBar.insertBefore(btnManual, btnBar.firstChild);
+        }
+      }
+    })();
+    /* ===== CTAs ===== */
+    const q = '/contact/?subject=Quote%20' + encodeURIComponent(SKU);
+    const q1 = $('quote-btn'), q2 = $('quote-btn-bottom');
+    if (q1) q1.href = q;
+    if (q2) q2.href = q;
+    /* ===== JSON-LD (Product) ===== */
+    (function () {
+      try {
+        const priceUSD2 = readFooterPriceUSD(SKU, row);
+        const ldPrice = (priceUSD2 != null && isFinite(Number(priceUSD2))) ? Number(priceUSD2) : 0;
+        const desc = (kitType === 'air')
+          ? ('MAD luchtvering set voor ' + vehicleName + '. Regelbare ondersteuning en rijhoogte bij belading.')
+          : (kitType === 'lowering')
+            ? ('MAD verlagingsveren set voor ' + vehicleName + '. Lagere rijhoogte en strakker weggedrag.')
+            : (axle === 'Front')
+              ? ('MAD hulpveren voor de vooras van ' + vehicleName + '. Minder duiken bij remmen en meer stuurgevoel.')
+              : ('MAD hulpveren voor de achteras van ' + vehicleName + '. Minder doorzakken en stabieler bij belading.');
+        const ogImgMeta = $('og-image');
+        const ld = {
+          "@context": "https://schema.org",
+          "@type": "Product",
+                    "name": kitLabelLongNl(kitType) + " - " + vehicleName + " - " + SKU,
+          "sku": SKU,
+          "mpn": SKU,
+          "brand": { "@type": "Brand", "name": "MAD" },
+          "category": "AutomotiveSuspensionPart",
+          "description": desc,
+          "image": (ogImgMeta ? ogImgMeta.getAttribute('content') : ''),
+          "url": location.href,
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "price": ldPrice.toFixed(2),
+            "availability": "https://schema.org/InStock",
+            "url": location.href
+          }
+        };
+        const s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.textContent = JSON.stringify(ld);
+        document.head.appendChild(s);
+      } catch (e) { console.warn('LD error', e); }
+    })();
+    console.log('LLS kit page — OK (' + SKU + ')');
+  }
+  /* ============ SEO / ABOUT SECTION (optional) ============ */
+  /* ============ SEO / ABOUT SECTION (met fit-list per SKU) ============ */
+  function injectSEO() {
+    try {
+      /* helpers (lokaal zodat de functie standalone blijft) */
+      const esc = (s) => String(s || '').replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+      const onlyYear = (s) => (s || '').slice(0, 4);
+      const hasTuv = (a) => {
+        const t = String(a || '').toUpperCase();
+        return t.includes('TÜV') || t.includes('TUV') || t.includes('RDW-TÜV') || t.includes('RDW-TUV');
+      };
+      const normSupportText = (v) => {
+        const s = String(v || '').trim().toLowerCase();
+        if (!s) return '';
+        if (s.includes('empty') && s.includes('loaded')) return 'Empty & Loaded';
+        if (s.includes('only') && s.includes('load')) return 'Only Loaded';
+        return s.charAt(0).toUpperCase() + s.slice(1);
+      };
+      const slugify = (s) => String(s || '')
+        .toLowerCase()
+        .normalize('NFKD')
+        .replace(/["'’`]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      const DEFAULT_SKU = (window.LLS_FOOTER_DATA && window.LLS_FOOTER_DATA[0] && window.LLS_FOOTER_DATA[0].kit) || 'HV-000000';
+      const SKU = (typeof getSkuFromPath === 'function' && getSkuFromPath() ||
+                   typeof getSkuFromQuery === 'function' && getSkuFromQuery() ||
+                   DEFAULT_SKU).toUpperCase();
+      const RAW = (typeof window.LLS_FOOTER_DATA === 'object' && window.LLS_FOOTER_DATA) ? window.LLS_FOOTER_DATA : [];
+      const ARR = Array.isArray(RAW) ? RAW : [RAW];
+      // Alle rows voor dit SKU
+      const rowsForSku = ARR.filter(r => String((r && r.kit) || '').toUpperCase() === SKU);
+      // 'picked' voor overige meta (titel, jaren, approval, etc.)
+      const picked = rowsForSku[0] || (ARR[0] || {});
+      const row = Object.assign({
+        kit: SKU, make: '', model: '', platform: null, year_start: null, year_end: null,
+        kind: 'Auxiliary coil spring', approval: 'TÜV', height_in: null, time_min: 45,
+        remarks: '', support: 'Empty & Loaded', min_load: null, images: [], manual: null
+      }, picked || {});
+      row.support = supportLabelNl(row.support) || 'Empty & Loaded';
+      const makeStr = String(row.make || '').trim();
+      const modelStr = String(row.model || '').trim();
+      const makeSlug = slugify(makeStr);
+      const modelSlug = slugify(modelStr);
+      const vehicleName = (makeStr + ' ' + modelStr).trim() || 'Voertuig';
+      const years = (row.year_start || row.year_end)
+        ? ((row.year_start ? onlyYear(row.year_start) : '') + (row.year_end ? ('–' + onlyYear(row.year_end)) : '–present'))
+        : '';
+      const platform = String(row.platform || '').trim();
+      const approval = hasTuv(row.approval) ? 'TÜV' : (String(row.approval || '').trim() || '');
+      const axle = (typeof detectAxle === 'function') ? detectAxle(row) : 'Rear';
+      const axShort = axle === 'Front' ? 'front' : axle === 'Rear' ? 'rear' : 'front & rear';
+      // Benefits pack hergebruiken uit hoofdscript (als beschikbaar)
+      let pack = (typeof buildBenefitPack === 'function') ? buildBenefitPack(row) : { benefits: [], useLine: '' };
+      if (typeof applyCategoryPatches === 'function') pack = applyCategoryPatches(pack, row);
+      // ====== NIEUW: lijst van alle merken/modellen voor dit SKU met links ======
+      // Map: MAKE (UPPERCASE) -> { make, models:[{model, href}], set: for dedup }
+      const byMake = new Map();
+      rowsForSku.forEach(r => {
+        const mk = String(r?.make || '').trim();
+        const md = String(r?.model || '').trim();
+        if (!mk || !md) return;
+        const makeKey = mk.toUpperCase();
+        const mkSlug = slugify(mk);
+        const mdSlug = slugify(md);
+        const href = `/helper-springs/${mkSlug}/${mdSlug}/${SKU}`;
+        if (!byMake.has(makeKey)) byMake.set(makeKey, { make: mk, set: new Set(), models: [] });
+        const bucket = byMake.get(makeKey);
+        const modelKey = md.toLowerCase();
+        if (!bucket.set.has(modelKey)) {
+          bucket.set.add(modelKey);
+          bucket.models.push({ model: md, href });
+        }
+      });
+      // Als footer maar 1 rij had (of niets), fallback naar huidige make/model
+      if (!byMake.size && (makeStr || modelStr)) {
+        const makeKey = (makeStr || '—').toUpperCase();
+        const href = `${kitBasePath(kitType)}/${makeSlug}/${modelSlug}/${SKU}`;
+        byMake.set(makeKey, { make: makeStr, set: new Set([modelStr.toLowerCase()]), models: [{ model: modelStr || '—', href }] });
+      }
+      // Formatteer per merk: "AUDI A3" of "VOLKSWAGEN Golf, Jetta & Tiguan"
+      const chunks = Array.from(byMake.entries())
+        .sort((a, b) => a[0].localeCompare(b[0])) // sorteer op merk
+        .map(([MAKE_UP, data]) => {
+          const links = data.models
+            .sort((a, b) => a.model.localeCompare(b.model))
+            .map(m => `<a href="${m.href}">${esc(m.model)}</a>`);
+          const formatted = (links.length <= 2)
+            ? links.join(' & ')
+            : links.slice(0, -1).join(', ') + ' & ' + links.slice(-1)[0];
+          return `${esc(MAKE_UP)} ${formatted}`;
+        });
+      // Voorbeeldvorm: "HV-199515. AUDI A3, VOLKSWAGEN Golf, Jetta & Tiguan."
+      const fitsLineHTML = `
+        <p class="muted" id="about-fits-by-sku" style="margin:.35rem 0 .85rem">
+          ${esc(SKU)}. ${chunks.join(', ')}.
+        </p>
+      `;
+      // Meta description (alleen zetten als hij nog niet bestaat)
+      const supportMode = supportLabelNl(row.support);
+      const onlyLoaded = /Only Loaded/i.test(supportMode || '');
+      const ridePhrase = (axle === 'Front') ? 'reduces brake dive and sharpens steering'
+        : (axle === 'Rear') ? 'cuts rear sag and improves loaded stability'
+          : 'reduces pitch/roll and improves stability';
+      const bits = [
+        ridePhrase,
+        (onlyLoaded ? 'tuned to engage under payload' : 'comfort close to stock when empty'),
+        (approval ? 'TÜV approved' : null)
+      ].filter(Boolean);
+      let metaDesc = `${vehicleName} ${SKU} ${axShort} support ${bits.join('; ')}.`;
+      if (!document.querySelector('meta[name="description"]')) {
+        const md = document.createElement('meta');
+        md.setAttribute('name', 'description');
+        md.setAttribute('content', metaDesc.slice(0, 160));
+        document.head.appendChild(md);
+      }
+      // ====== Render "Over deze set" sectie ======
+      const kitType = (typeof detectKitType === 'function') ? detectKitType(row, SKU) : 'helper';
+      const kitLabel = kitType === 'air' ? 'luchtvering' : kitType === 'lowering' ? 'verlagingsveren' : 'hulpveren';
+      const axLabel = axle === 'Front' ? 'vooras' : axle === 'Rear' ? 'achteras' : 'voor- en achteras';
+      const supportMode = normSupportText(row.support);
+      const onlyLoaded = /Only Loaded/i.test(supportMode || '');
+      const ridePhrase = (kitType === 'air')
+        ? 'regelbare ondersteuning en rijhoogte'
+        : (kitType === 'lowering')
+          ? 'lagere rijhoogte en strakker weggedrag'
+          : (axle === 'Front') ? 'minder duiken bij remmen en beter stuurgevoel'
+            : (axle === 'Rear') ? 'minder doorzakken en stabieler bij belading'
+              : 'minder overhellen en stabieler bij belading';
+      const comfortPhrase = (kitType === 'lowering')
+        ? 'uitlijnen na montage aanbevolen'
+        : (onlyLoaded ? 'afgestemd op belading' : 'comfort blijft bruikbaar wanneer leeg');
+      const bits = [ridePhrase, comfortPhrase, (approval ? 'TUV goedkeuring' : null)].filter(Boolean);
+      let metaDesc = `${vehicleName} ${SKU} ${kitLabel} voor ${axLabel}. ${bits.join('; ')}.`;
+      if (!document.querySelector('meta[name="description"]')) {
+        const md = document.createElement('meta');
+        md.setAttribute('name', 'description');
+        md.setAttribute('content', metaDesc.slice(0, 160));
+        document.head.appendChild(md);
+      }
+      const uniq = (arr) => {
+        const s = new Set();
+        return (arr || []).map(x => String(x || '').trim()).filter(x => x && !s.has(x.toLowerCase()) && (s.add(x.toLowerCase()), 1));
+      };
+      const classify = (t) => {
+        const x = String(t || '').toLowerCase();
+        const own = /(install|montage|luchtleiding|luchtleidingen|compressor|onderhoud|service|handleiding|uitlijnen|afstelling|set[- ]and[- ]forget|leak|service)/.test(x);
+        const loaded = /(load|payload|towing|tow|hitch|trailer|sag|squat|cargo|rear load|nose weight|minimum|constant|gross|haul|rack|roof|belading|lading|trekhaak|aanhanger|caravan|doorzakken|neerzakken|aslast)/.test(x);
+        const ride = /(brake dive|steering|roll|yaw|pitch|crosswind|cornering|esp|traction|porpoising|tracking|expansion joints|freeway|stability|comfort|ride|lane changes?|weggedrag|stuur|bocht|zijwind|rem|stabiliteit|rijhoogte|deinen|overhellen)/.test(x);
+        return own ? 'own' : (loaded && !ride ? 'loaded' : (ride ? 'ride' : (loaded ? 'loaded' : 'ride')));
+      };
+      let pack = (typeof buildNlPack === 'function') ? buildNlPack(row, axle, kitType) : { benefits: [], useLine: '' };
+      let benefits = Array.isArray(pack.benefits) ? pack.benefits.slice() : [];
+      benefits = uniq(benefits).map(t => t.replace(/^[-*]\s*/, ''));
+      const buckets = { loaded: [], ride: [], own: [] };
+      benefits.forEach(t => { buckets[classify(t)].push(t); });
+      const li = (t) => `
+        <li><span class="feel-mark">-</span> ${esc(t)}</li>
+      `;
+      const whenLoaded = buckets.loaded.length ? `
+        <h3>Bij belading</h3>
+        <ul class="list">
+          ${buckets.loaded.slice(0, 4).map(li).join('')}
+        </ul>
+      ` : '';
+      const duringRide = buckets.ride.length ? `
+        <h3>Tijdens rijden</h3>
+        <ul class="list">
+          ${buckets.ride.slice(0, 4).map(li).join('')}
+        </ul>
+      ` : '';
+      const toOwn = buckets.own.length ? `
+        <h3>Montage en gebruik</h3>
+        <ul class="list">
+          ${buckets.own.slice(0, 3).map(li).join('')}
+        </ul>
+      ` : '';
+      const joinHuman = (arr) => {
+        if (!arr || !arr.length) return '';
+        return (arr.length === 1) ? arr[0] : (arr.length === 2) ? arr.join(' en ') : arr.slice(0, -1).join(', ') + ' en ' + arr[arr.length - 1];
+      };
+      const readUSD = (sku, row) => {
+        if (typeof readFooterPriceUSD === 'function') return readFooterPriceUSD(sku, row);
+        if (typeof readPriceUSD === 'function')      return readPriceUSD(sku, row);
+        const P = (window.MAD_PRICES || {}), key = String(sku||'').toUpperCase();
+        const v = P[key] || P[key.toLowerCase()] || (P.prices && (P.prices[key] || P.prices[key.toLowerCase()]));
+        const n = (typeof v === 'number') ? v : (v && (v.price || v.value || v.amount));
+        const num = parseFloat(String(n).replace(/[^0-9.]/g,''));
+        return isFinite(num) ? num : null;
+      };
+      const byMakeList = Array.from((() => {
+        const map = new Map();
+        rowsForSku.forEach(r => {
+          const mk = String(r?.make || '').trim();
+          const md = String(r?.model || '').trim();
+          if (!mk || !md) return;
+          const mkSlug = slugify(mk), mdSlug = slugify(md);
+          const href   = `${kitBasePath(kitType)}/${mkSlug}/${mdSlug}/${SKU}`;
+          if (!map.has(mk)) map.set(mk, new Map());
+          map.get(mk).set(md, href);
+        });
+        if (!map.size && (makeStr || modelStr)) {
+          const href = `${kitBasePath(kitType)}/${makeSlug}/${modelSlug}/${SKU}`;
+          const mk = makeStr || '-', md = modelStr || '-';
+          map.set(mk, new Map([[md, href]]));
+        }
+        return map;
+      })().entries());
+      const makeModelChunks = byMakeList
+        .sort((a,b) => a[0].localeCompare(b[0]))
+        .map(([make, modelsMap]) => {
+          const modelLinks = Array.from(modelsMap.entries())
+            .sort((a,b) => a[0].localeCompare(b[0]))
+            .map(([model, href]) => `<a href="${href}">${esc(model)}</a>`);
+          return `${esc(make)} ${joinHuman(modelLinks)}`;
+        });
+      const usd = readUSD(SKU, row);
+      const priceTxt = (usd != null && isFinite(usd)) ? `$${Number(usd).toLocaleString('en-US',{maximumFractionDigits:0})}` : null;
+      const introHTML =
+        `<p class="muted" id="about-line-1" style="margin:.35rem 0 .85rem">
+           MAD ${kitLabel} set voor ${makeModelChunks.join(', ')}. (${SKU}) ` +
+        (kitType === 'lowering'
+          ? `verlaagt de rijhoogte op de ${axLabel}. `
+          : kitType === 'air'
+            ? `geeft regelbare ondersteuning op de ${axLabel}. `
+            : `geeft extra ondersteuning op de ${axLabel}. `) +
+        `${platform ? `Platform: ${esc(platform)}. ` : ''}${years ? `Bouwjaren: ${esc(years)}. ` : ''}${approval ? `Goedkeuring: ${esc(approval)}. ` : ''}${priceTxt ? `Indicatieprijs: ${priceTxt}.` : ''}
+         </p>`;
+      let sec = document.getElementById('seo-us-copy');
+      if (!sec) {
+        sec = document.createElement('section');
+        sec.className = 'panel';
+        sec.id = 'seo-us-copy';
+        sec.style.cssText = 'padding:16px;margin-top:16px';
+        (document.querySelector('main.container') || document.body).appendChild(sec);
+      }
+      sec.innerHTML = `
+        <h2 style="margin:.2rem 0 .6rem">Over deze set</h2>
+        ${introHTML}
+        ${whenLoaded || ''}${duringRide || ''}${toOwn || ''}
+      `;
+      // ====== FAQ structured data (zoals je had) ======
+      if (!document.getElementById('seo-faq-ld')) {
+        const faqs = [];
+        faqs.push({ q: `Will this increase the ${vehicleName} GVWR?`, a: `No. It does not increase GVWR; always stay within the manufacturer’s published limits.` });
+        const faqLd = {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(f => ({
+            "@type": "Question",
+            "name": f.q,
+            "acceptedAnswer": { "@type": "Answer", "text": f.a }
+          }))
+        };
+        const s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.id = 'seo-faq-ld';
+        s.textContent = JSON.stringify(faqLd);
+        document.head.appendChild(s);
+      }
+    } catch (e) {
+      // no-op: stil falen
+    }
+  }
+  /* BOOT */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => { initPage(); injectSEO(); });
+  } else {
+    initPage(); injectSEO();
+  }
+})();
+  ;(function(){
+  'use strict';
+  /* --- helpers --- */
+  function esc(s){
+  return String(s || '').replace(/[&<>"']/g, m => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[m]));
+}
+  function onlyYear(s){ return (s||'').slice(0,4); }
+  function hasTuv(a){ var t=String(a||'').toUpperCase(); return t.includes('TÜV')||t.includes('TUV')||t.includes('RDW-TÜV')||t.includes('RDW-TUV'); }
+  function normSupportText(v){ var s=String(v||'').trim().toLowerCase(); if(!s) return ''; if(s.includes('empty')&&s.includes('loaded')) return 'Empty & Loaded'; if(s.includes('only')&&s.includes('load')) return 'Only Loaded'; return s.charAt(0).toUpperCase()+s.slice(1); }
+  function detectAxleLite(rec){
+    if(rec && rec.front===true && rec.rear===true) return 'Front & Rear';
+    if(rec && rec.front===true) return 'Front';
+    if(rec && rec.rear===true)  return 'Rear';
+    var kind=String(rec && rec.kind || '').toLowerCase();
+    if(kind==='lift springs kit') return 'Front & Rear';
+    var rtxt=String(rec && rec.remarks || '').toLowerCase();
+    var hasFront=/\b(front|voor)(?:\s|-|_)?(axle|as|set)?\b/.test(rtxt);
+    var hasRear =/\b(rear|achter)(?:\s|-|_)?(axle|as|set)?\b/.test(rtxt);
+    if(hasFront && hasRear) return 'Front & Rear';
+    if(hasFront) return 'Front';
+    if(hasRear)  return 'Rear';
+    return 'Rear';
+  }
+function getRow(){
+  // 1) Gebruik exact dezelfde row als het hoofdscript
+  if (window.__LLS_ACTIVE_ROW) return window.__LLS_ACTIVE_ROW;
+  // 2) Val terug op reconstructie (SKU + make/model uit de URL) als snapshot nog niet bestaat
+  function slugify(s){
+    return String(s||'')
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/["'’`]/g,'')
+      .replace(/[^a-z0-9]+/g,'-')
+      .replace(/^-+|-+$/g,'');
+  }
+  function getVehSlugs(){
+    try{
+      const parts = location.pathname.split('/').filter(Boolean);
+      const i = parts.indexOf('helper-springs');
+      return {
+        makeSlug:  i>=0 ? (parts[i+1]||'') : '',
+        modelSlug: i>=0 ? (parts[i+2]||'') : ''
+      };
+    }catch(e){ return {makeSlug:'', modelSlug:''}; }
+  }
+  function getSkuFromPath(){
+    try{
+      const p = location.pathname.split('/').filter(Boolean);
+      for(let i=p.length-1;i>=0;i--){
+        if(/^(hv|sd)-\d{6}$/i.test(p[i])) return p[i].toUpperCase();
+      }
+    }catch(e){}
+    return null;
+  }
+  function getSkuFromQuery(){
+    try{
+      const s = new URLSearchParams(location.search).get('sku');
+      return s ? s.toUpperCase() : null;
+    }catch(e){ return null; }
+  }
+  const DEFAULT_SKU = (window.LLS_FOOTER_DATA && window.LLS_FOOTER_DATA[0] && window.LLS_FOOTER_DATA[0].kit) || 'HV-000000';
+  const SKU = (getSkuFromPath() || getSkuFromQuery() || DEFAULT_SKU).toUpperCase();
+  const RAW = (typeof window.LLS_FOOTER_DATA==='object' && window.LLS_FOOTER_DATA) ? window.LLS_FOOTER_DATA : [];
+  const ARR = Array.isArray(RAW) ? RAW : [RAW];
+  const { makeSlug, modelSlug } = getVehSlugs();
+  const bySku = ARR.filter(r => String((r && r.kit)||'').toUpperCase() === SKU);
+  let picked = null;
+  if (bySku.length){
+    // probeer matchen op zowel SKU als make/model
+    picked = bySku.find(r => slugify(r.make)===makeSlug && slugify(r.model)===modelSlug) || bySku[0];
+  } else {
+    // als er (tijdelijk) geen SKU-row is, probeer voertuig-match
+    const byVeh = ARR.filter(r => slugify(r.make)===makeSlug && slugify(r.model)===modelSlug);
+    picked = byVeh[0] || (ARR.find(r => String((r && r.kit)||'').toUpperCase()===SKU) || ARR[0] || {});
+  }
+  const row = Object.assign({
+    kit: SKU, make:'', model:'', platform:null, year_start:null, year_end:null,
+    kind:'Auxiliary coil spring', approval:'TÜV', height_in:null, time_min:45,
+    remarks:'', support:'Empty & Loaded', min_load:null, images:[], manual:null
+  }, picked || {});
+  // manual aliasen (Manual/PDF/URL_Manual → manual)
+  row.manual = row.manual || row.Manual || row.URL_Manual || row.url_manual || row.PDF || row.pdf || null;
+  // vul make/model uit URL als ze leeg zijn
+  if (!row.make && makeSlug)   row.make  = makeSlug.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase());
+  if (!row.model && modelSlug) row.model = modelSlug.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase());
+  // support normaliseren (zelfde logica als hoofdscript)
+  (function normSupport(){
+    const s = String(row.support||'').trim().toLowerCase();
+    if (!s) { row.support='Empty & Loaded'; return; }
+    if (s.includes('empty') && s.includes('loaded')) { row.support='Empty & Loaded'; return; }
+    if (s.includes('only')  && s.includes('load'))   { row.support='Only Loaded';   return; }
+    row.support = s.charAt(0).toUpperCase()+s.slice(1);
+  })();
+  return row;
+}
+  function buildFAQs(row){
+    const make  = String(row.make||'').trim();
+    const model = String(row.model||'').trim();
+    const vehicleName = (make+' '+model).trim() || 'vehicle';
+    const axle = (typeof window.detectAxle==='function') ? window.detectAxle(row) : detectAxleLite(row);
+    const axWord = axle==='Front' ? 'front' : axle==='Rear' ? 'rear' : 'front & rear';
+    const approval = hasTuv(row.approval) ? 'TÜV' : (String(row.approval||'').trim()||'');
+    const faqs = [];
+    faqs.push({
+      q: `Will this increase the ${vehicleName} GVWR?`,
+      a: `No. Helper springs do not increase the vehicle’s GVWR. Always stay within the manufacturer’s published limits.`
+    });
+    if (row.min_load && row._load_kind==='minimum'){
+      faqs.push({
+        q: `Is there a minimum ${axle==='Front'?'nose':'rear'} load?`,
+        a: `Yes. The system is optimized for at least about ${row.min_load} lbs on the ${axle==='Front'?'front':'rear'} axle.`
+      });
+    }
+    if (row._load_kind==='constant'){
+      faqs.push({
+        q: `Is it suitable for constant payloads?`,
+        a: `Yes. It provides a higher baseline rate for permanent equipment on the ${axWord} axle. Expect a firmer baseline compared to helper-only solutions.`
+      });
+    } else {
+      const support = supportLabelNl(row.support);
+      const onlyLoaded = /Only Loaded/i.test(support||'');
+      faqs.push({
+        q: `How does it ride without payload?`,
+        a: onlyLoaded
+          ? `These kits are tuned to engage under payload; unloaded use is not the intent.`
+          : `Support ramps up under load; when unladen, ride remains close to factory.`
+      });
+    }
+    if (approval){
+      faqs.push({
+        q: `Is it approved?`,
+        a: `${approval} approval. An installation manual is included.`
+      });
+    }
+    if (row.manual){
+      faqs.push({
+        q: `Where can I find the installation manual?`,
+        a: `You can download the installation manual here: <a class="btn neutral" href="${esc(row.manual)}" target="_blank" rel="noopener">Montagehandleiding (PDF)</a>.`
+      });
+    }
+    return faqs;
+  }
+  function renderFAQ(faqs){
+    // create/update the visible FAQ section
+    let sec = document.getElementById('kit-faq-section');
+    if (!sec){
+      sec = document.createElement('section');
+      sec.className = 'panel';
+      sec.id = 'kit-faq-section';
+      sec.style.cssText = 'padding:16px;margin-top:16px';
+      const main = document.querySelector('main.container') || document.body;
+      // place after "About this kit" if it exists
+      const about = document.getElementById('seo-us-copy');
+      if (about && about.parentNode){ about.parentNode.insertBefore(sec, about.nextSibling); }
+      else main.appendChild(sec);
+    }
+    const details = faqs.map(f => `
+      <details style="border:1px solid var(--line);border-radius:10px;padding:10px;background:#0f1117">
+        <summary style="cursor:pointer;font-weight:600">${esc(f.q)}</summary>
+        <div class="muted" style="margin-top:8px">${f.a}</div>
+      </details>
+    `).join('\n');
+    sec.innerHTML = `
+      <h2 style="margin:.2rem 0 .6rem">FAQ</h2>
+      <div class="grid" style="gap:10px">${details}</div>
+    `;
+  }
+  function injectFAQJsonLd(faqs){
+    // remove old one if present to avoid duplicates
+    const old = document.getElementById('seo-faq-ld');
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    const ld = {
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type":"Question",
+        "name": f.q,
+        "acceptedAnswer": {"@type":"Answer","text": f.a.replace(/<[^>]+>/g,'')}
+      }))
+    };
+    const s=document.createElement('script');
+    s.type='application/ld+json';
+    s.id='seo-faq-ld';
+    s.textContent=JSON.stringify(ld);
+    document.head.appendChild(s);
+  }
+  function init(){
+    const row = getRow();
+    const faqs = buildFAQs(row);
+    if (!faqs.length) return;
+    renderFAQ(faqs);
+    injectFAQJsonLd(faqs);
+  }
+  if (document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', init); } else { init(); }
+})();
+ </script>
+ <script id="lls-cart-cta">
+  (function(){
+  'use strict';
+  /* ===== Optionele mapping voor fallback naar productpagina =====
+     Als je (nog) geen proxy-knop voor een SKU hebt, kun je hier
+     een URL zetten zodat de knop naar de productpagina gaat. */
+  const PRODUCT_URLS = (window.PRODUCT_URLS || {
+    // 'HV-051755': '/product/hv-051755'
+  });
+  /* ===== Hulpjes ===== */
+  function activeSKU(){
+    if (window.__LLS_ACTIVE_SKU) return String(window.__LLS_ACTIVE_SKU).toUpperCase();
+    try{
+      const parts = location.pathname.split('/').filter(Boolean);
+      for (let i = parts.length - 1; i >= 0; i--){
+        if (/^(hv|sd)-\d{6}$/i.test(parts[i])) return parts[i].toUpperCase();
+      }
+    }catch(e){}
+    const t = (document.getElementById('sku-title')||{}).textContent || '';
+    if (/^(hv|sd)-\d{6}$/i.test(t)) return t.toUpperCase();
+    if (Array.isArray(window.LLS_FOOTER_DATA) && window.LLS_FOOTER_DATA.length){
+      const k = window.LLS_FOOTER_DATA[0] && window.LLS_FOOTER_DATA[0].kit;
+      if (k) return String(k).toUpperCase();
+    }
+    return 'HV-000000';
+  }
+  function findProxy(sku){ return document.getElementById('cart-' + String(sku).toUpperCase()); }
+  function fallbackUrl(sku){ return PRODUCT_URLS[sku] || ('/product/' + String(sku).toLowerCase()); }
+  function setBusy(btn, busy){
+    if (!btn) return;
+    if (busy){
+      btn.setAttribute('aria-busy','true');
+      btn.dataset._txt = btn.dataset._txt || btn.textContent;
+      btn.textContent = 'Adding…';
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.8';
+    } else {
+      btn.removeAttribute('aria-busy');
+      btn.textContent = btn.dataset._txt || 'Add to cart';
+      btn.style.pointerEvents = '';
+      btn.style.opacity = '';
+    }
+  }
+  function pulseCart(){
+    try{
+      const cart = document.querySelector('[data-widget*="cart"], [class*="cart"], [aria-label*="cart" i]');
+      if (!cart) return;
+      cart.animate([{transform:'scale(1)'},{transform:'scale(1.08)'},{transform:'scale(1)'}],
+                   {duration:450,easing:'ease-out'});
+    }catch(e){}
+  }
+  function addToCartBySku(sku, btn){
+    const proxy = findProxy(sku);
+    if (proxy){
+      setBusy(btn, true);
+      setTimeout(function(){
+        proxy.click();                 // triggert de officiële “Add product to cart”
+        setBusy(btn, false);
+        btn.textContent = 'Added ✓';
+        setTimeout(()=>{ btn.textContent = 'Choose & Add To Cart'; }, 1200);
+        pulseCart();
+      }, 60);
+      return;
+    }
+    // Fallback: geen proxy (of varianten) → naar productpagina
+    location.href = fallbackUrl(sku);
+  }
+  function wireCartBtn(el, sku){
+    if (!el) return;
+    el.classList.add('primary');
+    el.href = '#';
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', 'Add ' + sku + ' to cart');
+    el.textContent = 'Choose & Add To Cart';
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      addToCartBySku(sku, el);
+    }, {passive:false});
+  }
+  /* ===== Init ===== */
+  function init(){
+    const SKU = activeSKU();
+    // vervang beide quote-knoppen op de pagina
+    wireCartBtn(document.getElementById('quote-btn'), SKU);
+    wireCartBtn(document.getElementById('quote-btn-bottom'), SKU);
+  }
+  (document.readyState === 'loading') ? 
+    document.addEventListener('DOMContentLoaded', init) : init();
+})();
+ </script>

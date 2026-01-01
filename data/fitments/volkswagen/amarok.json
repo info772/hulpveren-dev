@@ -1,0 +1,293 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "amarok",
+    "label": "Amarok"
+  },
+  "kits": [
+    {
+      "sku": "HV-064228",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TÜV",
+      "ean": "8717947116108.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 418.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 689
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T1A",
+            "T1B"
+          ],
+          "remark": "Reinforced Front Springs, 4WD",
+          "year_from": "09-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064290",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TÜV",
+      "ean": "8717947085091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 433.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 599
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T1A",
+            "T1B"
+          ],
+          "remark": "Excl. LED matrix headlamps",
+          "year_from": "09-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064301",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116146.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 851.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 206.25,
+        "labor_ex_vat_max_eur": 206.25,
+        "total_inc_vat_from_eur": 1289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T1A",
+            "T1B"
+          ],
+          "remark": "Cross Country Set, 4WD, Excl. LED matrix headlamps",
+          "year_from": "09-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064310",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116221.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 459.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 629
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T1A",
+            "T1B"
+          ],
+          "remark": "Incl. LED matrix headlamps",
+          "year_from": "09-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064321",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116269.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 851.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 206.25,
+        "labor_ex_vat_max_eur": 206.25,
+        "total_inc_vat_from_eur": 1289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T1A",
+            "T1B"
+          ],
+          "remark": "Cross Country Set, 4WD, Incl. LED matrix headlamps",
+          "year_from": "09-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-194010",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947061934.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 445.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 629
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2H"
+          ],
+          "remark": "2WD, 4WD",
+          "year_from": "09-2010",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-194028",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947061972.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 365.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 579
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2H"
+          ],
+          "remark": "Reinforced Front Springs, Only in combination with HV-194010 or NR-197154",
+          "year_from": "09-2010",
+          "year_to": "10-2016",
+          "notes": "Engine: Excl.V6"
+        }
+      ]
+    },
+    {
+      "sku": "HV-194031",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947062368.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 777.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 187.5,
+        "labor_ex_vat_max_eur": 187.5,
+        "total_inc_vat_from_eur": 1169
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2H"
+          ],
+          "remark": "",
+          "year_from": "09-2010",
+          "year_to": "10-2016",
+          "notes": "Engine: Excl.V6"
+        }
+      ]
+    },
+    {
+      "sku": "HV-194048",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075221.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 420.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 699
+      },
+      "fitments": [
+        {
+          "platform_codes": [],
+          "remark": "Reinforced front Springs, +30mm",
+          "year_from": "06-2016",
+          "year_to": "",
+          "notes": "Engine: Only V6"
+        }
+      ]
+    },
+    {
+      "sku": "HV-194051",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075238.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 777.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 1219
+      },
+      "fitments": [
+        {
+          "platform_codes": [],
+          "remark": "Excl. 3+2 leafsprings",
+          "year_from": "06-2016",
+          "year_to": "",
+          "notes": "Engine: Only V6"
+        }
+      ]
+    }
+  ]
+}

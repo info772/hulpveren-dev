@@ -1,0 +1,255 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "crafter",
+    "label": "Crafter"
+  },
+  "kits": [
+    {
+      "sku": "HV-098123",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074453.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 421.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2E",
+            "2F"
+          ],
+          "remark": "Auxiliary Front Springs, TUV only applies when vehicle is equipped with spacer of min. 15 mm, Incl. Chassis Cabine",
+          "year_from": "04-2006",
+          "year_to": "12-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098133",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947074460.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 421.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2E",
+            "2F"
+          ],
+          "remark": "Auxiliary Front Springs, Wheelspacers possibly required check installation manual, Incl. Chassis Cabine",
+          "year_from": "04-2006",
+          "year_to": "12-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098180",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084780.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 474.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2E",
+            "2F 4",
+            "6-5",
+            "0t"
+          ],
+          "remark": "Double rear wheels, Excl. 4motion, Excl. Xenon headlights, Incl. Chassis Cabine",
+          "year_from": "04-2006",
+          "year_to": "12-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098190",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947084797.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 494.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 689
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2E",
+            "2F",
+            "4",
+            "6-5",
+            "0t"
+          ],
+          "remark": "Maximum support, Double rear wheels, Excl. 4motion, Excl. Xenon headlights, Incl. Chassis Cabine",
+          "year_from": "04-2006",
+          "year_to": "12-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198190",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067035.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 460.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 629
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "2E",
+            "2F",
+            "3",
+            "0-3",
+            "5t"
+          ],
+          "remark": "Excl. Twin rear wheels, Excl. 4motion, Incl. Chassis cabine",
+          "year_from": "04-2006",
+          "year_to": "12-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198250",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075153.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 531.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 719
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "SY",
+            "SX",
+            "(SZ)"
+          ],
+          "remark": "FWD, RWD, 4motion, Excl. Twin rear wheels, Incl. Chassis Cabine (excl. Flat frame)",
+          "year_from": "09-2016",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Crafter"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198268",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075283.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 543.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 799
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "SY",
+            "SX",
+            "SZ"
+          ],
+          "remark": "Reinforced front Springs, incl. 4WD, Incl. Chassis Cabine",
+          "year_from": "09-2016",
+          "year_to": "",
+          "notes": "Engine: All, Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198280",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947077386.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 657.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 869
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "SY",
+            "SX",
+            "SZ"
+          ],
+          "remark": "Twin rear wheels, Excl. 4motion, Incl. Chassis Cabine",
+          "year_from": "09-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

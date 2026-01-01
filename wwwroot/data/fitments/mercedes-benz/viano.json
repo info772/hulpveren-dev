@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "mercedes-benz",
+    "label": "Mercedes Benz"
+  },
+  "model": {
+    "slug": "viano",
+    "label": "Viano"
+  },
+  "kits": [
+    {
+      "sku": "HV-098055",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011977.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 203.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W639"
+          ],
+          "remark": "",
+          "year_from": "09-2003",
+          "year_to": "11-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

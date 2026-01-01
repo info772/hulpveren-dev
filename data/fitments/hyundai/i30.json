@@ -1,0 +1,161 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "i30",
+    "label": "i30"
+  },
+  "kits": [
+    {
+      "sku": "HV-373128",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015357.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 264.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 419
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "FD"
+          ],
+          "remark": "Excl. CW",
+          "year_from": "10-2007",
+          "year_to": "11-2011",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-373148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015371.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 278.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 429
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "GD"
+          ],
+          "remark": "Only Wagon",
+          "year_from": "06-2012",
+          "year_to": "02-2017",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "FD"
+          ],
+          "remark": "Only CW",
+          "year_from": "10-2007",
+          "year_to": "06-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-492098",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947066359.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 269.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 419
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "GD"
+          ],
+          "remark": "Excl. Wagon",
+          "year_from": "06-2011",
+          "year_to": "12-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493168",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075030.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 241.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "PD"
+          ],
+          "remark": "Excl. Wagon",
+          "year_from": "11-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075276.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 241.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "PD"
+          ],
+          "remark": "Only Wagon",
+          "year_from": "03-2017",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

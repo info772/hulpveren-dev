@@ -1,0 +1,96 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "nv-250",
+    "label": "NV 250"
+  },
+  "kits": [
+    {
+      "sku": "HV-146125",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013377.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 228.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W"
+          ],
+          "remark": "Max axle load >1070kg (black rubber bump stop)",
+          "year_from": "07-2019",
+          "year_to": "12-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146135",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013384.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 243.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 369
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W"
+          ],
+          "remark": "Maximum support, Min. load 100 Kg, Max axle load >1070kg (black rubber bump stop)",
+          "year_from": "07-2019",
+          "year_to": "12-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067769.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 290.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "X61"
+          ],
+          "remark": "Max axle load 1070kg (orange PUR bump stop), Excl. 4WD",
+          "year_from": "07-2019",
+          "year_to": "12-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

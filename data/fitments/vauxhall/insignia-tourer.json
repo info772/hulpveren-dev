@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "vauxhall",
+    "label": "Vauxhall"
+  },
+  "model": {
+    "slug": "insignia-tourer",
+    "label": "Insignia Tourer"
+  },
+  "kits": [
+    {
+      "sku": "HV-124225",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947051713.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "Mk1 (G09)"
+          ],
+          "remark": "",
+          "year_from": "07-2008",
+          "year_to": "05-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

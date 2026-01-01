@@ -1,0 +1,99 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "fullback",
+    "label": "Fullback"
+  },
+  "kits": [
+    {
+      "sku": "HV-104380",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073104.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 479.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "502",
+            "503"
+          ],
+          "remark": "",
+          "year_from": "01-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104398",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073265.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 331.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 589
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "502",
+            "503"
+          ],
+          "remark": "Reinforced front springs, +30mm",
+          "year_from": "01-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104401",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073272.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 685.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 206.25,
+        "labor_ex_vat_max_eur": 206.25,
+        "total_inc_vat_from_eur": 1079
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "502",
+            "503"
+          ],
+          "remark": "",
+          "year_from": "01-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

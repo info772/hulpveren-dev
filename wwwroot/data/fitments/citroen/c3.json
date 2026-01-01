@@ -1,0 +1,98 @@
+{
+  "make": {
+    "slug": "citroen",
+    "label": "Citroën"
+  },
+  "model": {
+    "slug": "c3",
+    "label": "C3"
+  },
+  "kits": [
+    {
+      "sku": "HV-132085",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947066373.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 203.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (SX)"
+          ],
+          "remark": "",
+          "year_from": "07-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133208",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012776.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 249.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (FC",
+            "FN",
+            "HB)"
+          ],
+          "remark": "Incl Pluriel",
+          "year_from": "02-2002",
+          "year_to": "11-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133218",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012783.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 280.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (SC)"
+          ],
+          "remark": "",
+          "year_from": "11-2009",
+          "year_to": "09-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

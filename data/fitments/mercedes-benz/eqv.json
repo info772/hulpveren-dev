@@ -1,0 +1,208 @@
+{
+  "make": {
+    "slug": "mercedes-benz",
+    "label": "Mercedes Benz"
+  },
+  "model": {
+    "slug": "eqv",
+    "label": "EQV"
+  },
+  "kits": [
+    {
+      "sku": "HV-098078",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071926.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 337.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Standard Set",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: 250, 300"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098088",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071933.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 349.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 469
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Medium Support, Min. axle load 950kg",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: 250, 300"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098098",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072053.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 431.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 619
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Reinforced Front Springs (25%)",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: 250, 300"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098108",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072060.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 472.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Reinforced Front Springs, Only in combination with HV-098088 or NR-097814",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: 250, 300"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098111",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072077.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 662.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 939
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Min. axle load 950kg",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: 250, 300"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098151",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081093.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 662.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 939
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Maximum Support Rear Springs, Min Rear axle Load 950kg",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: 250, 300"
+        }
+      ]
+    },
+    {
+      "sku": "HV-098168",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083905.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 391.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 519
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W447"
+          ],
+          "remark": "Maximum Support, Min. axle load 1100kg",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: 250, 300"
+        }
+      ]
+    }
+  ]
+}

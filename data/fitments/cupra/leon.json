@@ -1,0 +1,70 @@
+{
+  "make": {
+    "slug": "cupra",
+    "label": "CUPRA"
+  },
+  "model": {
+    "slug": "leon",
+    "label": "Leon"
+  },
+  "kits": [
+    {
+      "sku": "HV-199525",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067356.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KL1",
+            "KL8"
+          ],
+          "remark": "",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199545",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072022.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 189.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KL1",
+            "KL8"
+          ],
+          "remark": "",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "id-buzz",
+    "label": "ID. Buzz"
+  },
+  "kits": [
+    {
+      "sku": "HV-198418",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084865.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 469.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 659
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "EBA",
+            "EBB",
+            "EBJ"
+          ],
+          "remark": "Maximum support, Min. Load 150kg (200kg for 4Motion) / Min. Axle load 1300kg",
+          "year_from": "04-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198428",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947085039.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 402.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 579
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "EBA",
+            "EBB"
+          ],
+          "remark": "Excl. LWB 4Motion",
+          "year_from": "04-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198438",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947085046.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 300.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 549
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "EBA",
+            "EBB"
+          ],
+          "remark": "Reinforced Front Springs, Excl. LWB 4Motion",
+          "year_from": "04-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198441",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947085053.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 708.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 1139
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "EBA",
+            "EBB"
+          ],
+          "remark": "Cross Country set, Excl. LWB 4Motion, Min. Load rear 150kg (200kg for 4Motion) / Min axle rear load 1300kg, Max roof load 50kg",
+          "year_from": "04-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

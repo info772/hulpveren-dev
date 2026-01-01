@@ -1,0 +1,357 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "model": {
+    "slug": "proace-city",
+    "label": "Proace city"
+  },
+  "kits": [
+    {
+      "sku": "HV-133238",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012806.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 285.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZ"
+          ],
+          "remark": "Maximum support, Only Van Standard, White PUR bump stop, min. load 150kg, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "10-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012813.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 273.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 379
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZ"
+          ],
+          "remark": "Only Van Standard, White PUR bump stop, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "10-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133298",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947052260.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 285.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZ"
+          ],
+          "remark": "LWB Only Verso Long, White PUR bump stop, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "10-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        },
+        {
+          "platform_codes": [
+            "BPZ"
+          ],
+          "remark": "Maximum support, SWB, Only Verso Standard, White PUR bump stop, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "10-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133458",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080003.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 282.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZ"
+          ],
+          "remark": "Only Verso Standard, White PUR bump stop, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "10-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947079809.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 339.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZ"
+          ],
+          "remark": "Standard and Long, Black rubber bump stop, min. load 50kg, Excl. 4WD, Excl. standard raised suspension",
+          "year_from": "10-2019",
+          "year_to": "",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947079830.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 339.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZ"
+          ],
+          "remark": "Maximum support, Only Long, Black rubber bump stop, min. load 120kg, Excl. 4WD, Excl. standard raised suspension",
+          "year_from": "10-2019",
+          "year_to": "",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136168",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW/TUV",
+      "ean": "8717947084629.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 270.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 469
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZ"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "10-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116443.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 280.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 479
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZS"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "07-2021",
+          "year_to": "",
+          "notes": "Engine: Only Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136188",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116429.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 249.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZS"
+          ],
+          "remark": "Standard & Long, Only for original color code (2x Green 1x Grey), Min. load 50kg, Black rubber bump stop",
+          "year_from": "07-2021",
+          "year_to": "",
+          "notes": "Engine: Only Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136198",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116436.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 280.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZS"
+          ],
+          "remark": "Maximum support, Standard and Long, Only for original color code (2x Green 1x Grey), Min. load 200kg, Black rubber bump stop,",
+          "year_from": "07-2021",
+          "year_to": "",
+          "notes": "Engine: Only Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136201",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116450.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 479.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 769
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZS"
+          ],
+          "remark": "Cross Country, Standard & Long, Only for original rear color code (2x Green 1x Grey), Min. load rear 50kg, Black rubber bump stop",
+          "year_from": "07-2021",
+          "year_to": "",
+          "notes": "Engine: Only Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136211",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116467.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 509.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 799
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "BPZS"
+          ],
+          "remark": "Maximum support, Cross Country, Standard & Long, Only for original rear color code (2x Green 1x Grey), Min. load rear 200kg, Black rubber bump stop",
+          "year_from": "07-2021",
+          "year_to": "",
+          "notes": "Engine: Only Electric"
+        }
+      ]
+    }
+  ]
+}

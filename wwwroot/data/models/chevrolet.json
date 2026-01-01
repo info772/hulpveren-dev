@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "chevrolet",
+    "label": "Chevrolet"
+  },
+  "models": [
+    {
+      "slug": "aveo",
+      "label": "Aveo",
+      "kits_count": 1
+    },
+    {
+      "slug": "captiva",
+      "label": "Captiva",
+      "kits_count": 1
+    },
+    {
+      "slug": "espero",
+      "label": "Espero",
+      "kits_count": 1
+    },
+    {
+      "slug": "kalos",
+      "label": "Kalos",
+      "kits_count": 1
+    },
+    {
+      "slug": "lacetti",
+      "label": "Lacetti",
+      "kits_count": 1
+    },
+    {
+      "slug": "lanos",
+      "label": "Lanos",
+      "kits_count": 1
+    },
+    {
+      "slug": "matiz",
+      "label": "Matiz",
+      "kits_count": 1
+    },
+    {
+      "slug": "nexia",
+      "label": "Nexia",
+      "kits_count": 1
+    },
+    {
+      "slug": "nubira",
+      "label": "Nubira",
+      "kits_count": 2
+    },
+    {
+      "slug": "orlando",
+      "label": "Orlando",
+      "kits_count": 1
+    },
+    {
+      "slug": "spark",
+      "label": "Spark",
+      "kits_count": 1
+    },
+    {
+      "slug": "trax",
+      "label": "Trax",
+      "kits_count": 1
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "make": {
+    "slug": "skoda",
+    "label": "SKODA"
+  },
+  "models": [
+    {
+      "slug": "citigo",
+      "label": "Citigo",
+      "kits_count": 1
+    },
+    {
+      "slug": "elroq",
+      "label": "Elroq",
+      "kits_count": 1
+    },
+    {
+      "slug": "enyaq-iv",
+      "label": "Enyaq iV",
+      "kits_count": 1
+    },
+    {
+      "slug": "fabia",
+      "label": "Fabia",
+      "kits_count": 4
+    },
+    {
+      "slug": "favorit",
+      "label": "Favorit",
+      "kits_count": 1
+    },
+    {
+      "slug": "felicia",
+      "label": "Felicia",
+      "kits_count": 1
+    },
+    {
+      "slug": "kamiq",
+      "label": "Kamiq",
+      "kits_count": 1
+    },
+    {
+      "slug": "karoq",
+      "label": "Karoq",
+      "kits_count": 2
+    },
+    {
+      "slug": "kodiaq",
+      "label": "Kodiaq",
+      "kits_count": 1
+    },
+    {
+      "slug": "octavia",
+      "label": "Octavia",
+      "kits_count": 10
+    },
+    {
+      "slug": "rapid",
+      "label": "Rapid",
+      "kits_count": 1
+    },
+    {
+      "slug": "roomster",
+      "label": "Roomster",
+      "kits_count": 1
+    },
+    {
+      "slug": "roomster-praktik",
+      "label": "Roomster Praktik",
+      "kits_count": 1
+    },
+    {
+      "slug": "scala",
+      "label": "Scala",
+      "kits_count": 1
+    },
+    {
+      "slug": "superb",
+      "label": "Superb",
+      "kits_count": 9
+    },
+    {
+      "slug": "yeti",
+      "label": "Yeti",
+      "kits_count": 1
+    }
+  ]
+}

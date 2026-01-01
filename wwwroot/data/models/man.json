@@ -1,0 +1,13 @@
+{
+  "make": {
+    "slug": "man",
+    "label": "MAN"
+  },
+  "models": [
+    {
+      "slug": "tge",
+      "label": "TGE",
+      "kits_count": 3
+    }
+  ]
+}

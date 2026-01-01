@@ -1,0 +1,126 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "model": {
+    "slug": "mondeo",
+    "label": "Mondeo"
+  },
+  "kits": [
+    {
+      "sku": "HV-062248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011588.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 365.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 539
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (BA7)"
+          ],
+          "remark": "Incl. Wagon, Excl. Facelift Hatchback",
+          "year_from": "03-2007",
+          "year_to": "01-2011",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-062278",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947061750.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 333.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (BA7)"
+          ],
+          "remark": "Incl. Wagon",
+          "year_from": "01-2011",
+          "year_to": "01-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-063868",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011663.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 305.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 469
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (BWY)"
+          ],
+          "remark": "Only Wagon, Excl. ST",
+          "year_from": "10-2000",
+          "year_to": "03-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-063885",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072015.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 171.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V (CD",
+            "CE",
+            "CF)"
+          ],
+          "remark": "Incl. Wagon",
+          "year_from": "09-2014",
+          "year_to": "03-2022",
+          "notes": "Engine: Excl. Hybrid"
+        }
+      ]
+    }
+  ]
+}

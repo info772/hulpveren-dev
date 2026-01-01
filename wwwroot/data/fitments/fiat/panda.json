@@ -1,0 +1,97 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "panda",
+    "label": "Panda"
+  },
+  "kits": [
+    {
+      "sku": "HV-051718",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011373.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 280.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "169"
+          ],
+          "remark": "Excl. 4x4",
+          "year_from": "09-2003",
+          "year_to": "08-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051761",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947056435.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 454.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 739
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "169"
+          ],
+          "remark": "Only 4x4",
+          "year_from": "09-2003",
+          "year_to": "08-2013",
+          "notes": "Engine: 1.3 Multi-jet"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051801",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067431.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 420.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 699
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "312",
+            "319"
+          ],
+          "remark": "Only 4x4",
+          "year_from": "02-2012",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

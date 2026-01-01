@@ -1,0 +1,96 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "lantra",
+    "label": "Lantra"
+  },
+  "kits": [
+    {
+      "sku": "HV-493017",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015944.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 160.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (J-1)"
+          ],
+          "remark": "",
+          "year_from": "10-1990",
+          "year_to": "11-1995",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493037",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015968.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 186.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 369
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (J-2)"
+          ],
+          "remark": "",
+          "year_from": "06-1995",
+          "year_to": "12-2000",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493057",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015975.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 203.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (J-2)"
+          ],
+          "remark": "Ø 45 shockabsorber",
+          "year_from": "06-1995",
+          "year_to": "12-2000",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

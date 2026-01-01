@@ -1,0 +1,50 @@
+{
+  "make": {
+    "slug": "volvo",
+    "label": "VOLVO"
+  },
+  "model": {
+    "slug": "740-760",
+    "label": "740, 760"
+  },
+  "kits": [
+    {
+      "sku": "HV-207405",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014145.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 233.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "744"
+          ],
+          "remark": "740",
+          "year_from": "04-1983",
+          "year_to": "12-1992",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "704",
+            "764"
+          ],
+          "remark": "760, Excl. Multi link axle",
+          "year_from": "08-1981",
+          "year_to": "07-1992",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

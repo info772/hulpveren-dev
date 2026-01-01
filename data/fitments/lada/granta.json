@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "lada",
+    "label": "LADA"
+  },
+  "model": {
+    "slug": "granta",
+    "label": "Granta"
+  },
+  "kits": [
+    {
+      "sku": "HV-052307",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011380.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 175.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "219"
+          ],
+          "remark": "",
+          "year_from": "10-2011",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

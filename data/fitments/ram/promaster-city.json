@@ -1,0 +1,124 @@
+{
+  "make": {
+    "slug": "ram",
+    "label": "RAM"
+  },
+  "model": {
+    "slug": "promaster-city",
+    "label": "Promaster city"
+  },
+  "kits": [
+    {
+      "sku": "HV-051745",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947055445.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 172.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VM"
+          ],
+          "remark": "Only Wagon",
+          "year_from": "09-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051755",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947055742.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 219.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VM"
+          ],
+          "remark": "Standard duty set, Only Cargo",
+          "year_from": "09-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051828",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947068223.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 319.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VM"
+          ],
+          "remark": "Maximum support, Only cargo, Min. Load 500kg",
+          "year_from": "09-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051848",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071049.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 257.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VM"
+          ],
+          "remark": "Reinforced Front Springs (+25%), raises 15-20mm",
+          "year_from": "09-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

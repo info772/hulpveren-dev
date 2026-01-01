@@ -1,0 +1,180 @@
+{
+  "make": {
+    "slug": "peugeot",
+    "label": "Peugeot"
+  },
+  "model": {
+    "slug": "boxer-al-ko",
+    "label": "Boxer + AL-KO"
+  },
+  "kits": [
+    {
+      "sku": "HV-058170",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080195.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 719.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 187.5,
+        "labor_ex_vat_max_eur": 187.5,
+        "total_inc_vat_from_eur": 1099
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AMC-F1"
+          ],
+          "remark": "Single axle, Axle through chassis, Small chassis, Excl. ALC level control, Excl. SLC",
+          "year_from": "01-2007",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-058180",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080201.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 719.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 187.5,
+        "labor_ex_vat_max_eur": 187.5,
+        "total_inc_vat_from_eur": 1099
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AMC-F1"
+          ],
+          "remark": "Single axle, Axle underneath chassis, Excl. ALC level control, Excl. SLC",
+          "year_from": "01-2007",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-058190",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080218.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 719.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 187.5,
+        "labor_ex_vat_max_eur": 187.5,
+        "total_inc_vat_from_eur": 1099
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AMC-F1"
+          ],
+          "remark": "Single axle, Axle through chassis, Wide chassis, Excl. ALC level control, Excl. SLC",
+          "year_from": "01-2007",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-058200",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080331.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 1439.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 375.0,
+        "labor_ex_vat_max_eur": 375.0,
+        "total_inc_vat_from_eur": 2199
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AMC-F2"
+          ],
+          "remark": "Twin axle, Axle through chassis, Small chassis, Excl. ALC level control, Excl. SLC",
+          "year_from": "01-2007",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-058210",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080348.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 1439.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 375.0,
+        "labor_ex_vat_max_eur": 375.0,
+        "total_inc_vat_from_eur": 2199
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AMC-F2"
+          ],
+          "remark": "Twin axle, Axle underneath chassis, Excl. ALC level control, Excl. SLC",
+          "year_from": "01-2007",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-058220",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080355.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 1439.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 375.0,
+        "labor_ex_vat_max_eur": 375.0,
+        "total_inc_vat_from_eur": 2199
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AMC-F2"
+          ],
+          "remark": "Twin axle, Axle through chassis, Wide chassis, Excl. ALC level control, Excl. SLC",
+          "year_from": "01-2007",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

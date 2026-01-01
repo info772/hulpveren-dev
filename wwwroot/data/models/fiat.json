@@ -1,0 +1,118 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "models": [
+    {
+      "slug": "500l",
+      "label": "500L",
+      "kits_count": 1
+    },
+    {
+      "slug": "brava",
+      "label": "Brava",
+      "kits_count": 1
+    },
+    {
+      "slug": "bravo",
+      "label": "Bravo",
+      "kits_count": 2
+    },
+    {
+      "slug": "croma",
+      "label": "Croma",
+      "kits_count": 1
+    },
+    {
+      "slug": "doblo",
+      "label": "Doblo",
+      "kits_count": 21
+    },
+    {
+      "slug": "ducato",
+      "label": "Ducato",
+      "kits_count": 8
+    },
+    {
+      "slug": "ducato-al-ko-chassis",
+      "label": "Ducato + AL-KO chassis",
+      "kits_count": 6
+    },
+    {
+      "slug": "fiorino",
+      "label": "Fiorino",
+      "kits_count": 3
+    },
+    {
+      "slug": "fullback",
+      "label": "Fullback",
+      "kits_count": 3
+    },
+    {
+      "slug": "idea",
+      "label": "Idea",
+      "kits_count": 1
+    },
+    {
+      "slug": "marea",
+      "label": "Marea",
+      "kits_count": 1
+    },
+    {
+      "slug": "multipla",
+      "label": "Multipla",
+      "kits_count": 1
+    },
+    {
+      "slug": "panda",
+      "label": "Panda",
+      "kits_count": 3
+    },
+    {
+      "slug": "punto",
+      "label": "Punto",
+      "kits_count": 2
+    },
+    {
+      "slug": "qubo",
+      "label": "Qubo",
+      "kits_count": 2
+    },
+    {
+      "slug": "scudo",
+      "label": "Scudo",
+      "kits_count": 13
+    },
+    {
+      "slug": "sedici",
+      "label": "Sedici",
+      "kits_count": 3
+    },
+    {
+      "slug": "stilo",
+      "label": "Stilo",
+      "kits_count": 2
+    },
+    {
+      "slug": "talento",
+      "label": "Talento",
+      "kits_count": 6
+    },
+    {
+      "slug": "tempra",
+      "label": "Tempra",
+      "kits_count": 1
+    },
+    {
+      "slug": "tipo",
+      "label": "Tipo",
+      "kits_count": 2
+    },
+    {
+      "slug": "ulysse",
+      "label": "Ulysse",
+      "kits_count": 7
+    }
+  ]
+}

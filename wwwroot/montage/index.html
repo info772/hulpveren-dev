@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Montage – Hulpveren.shop</title>
+  <meta name="description" content="Montage van MAD hulpveren, luchtvering en verlagingsveren bij Auto Parts Roosendaal. Afspraak maken, werkwijze, wat je kunt verwachten en veelgestelde vragen." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.hulpveren.shop/montage/" />
+
+  <link rel="icon" href="/img/branding/APR-Favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
+
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="stylesheet" href="/assets/css/plate.css" />
+
+  <!-- Page-only styling (scoped) -->
+  <style>
+    .montage-page{
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(250,184,25,.18), transparent 60%),
+        radial-gradient(1000px 600px at 80% 10%, rgba(250,184,25,.10), transparent 55%),
+        #0b0f14;
+      min-height: 100vh;
+    }
+
+    .montage-wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    .montage-head{
+      padding: 18px 0 10px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      margin-bottom: 22px;
+    }
+
+    .montage-kicker{
+      opacity: .85;
+      font-size: .95rem;
+      margin: 0 0 8px;
+    }
+
+    .montage-head h1{
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      letter-spacing: -0.02em;
+    }
+
+    .montage-lead{
+      margin: 0;
+      opacity: .85;
+      max-width: 78ch;
+      line-height: 1.7;
+    }
+
+    .montage-badges{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .montage-badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      opacity: .9;
+      font-size: .95rem;
+    }
+
+    .montage-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .montage-card{
+      background: rgba(18,24,35,.75);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .montage-card h2{
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .montage-card h3{
+      margin: 14px 0 8px;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      opacity: .95;
+    }
+
+    .montage-card p{ margin: 0 0 12px; line-height: 1.65; }
+    .montage-card ul{ margin: 0 0 12px; padding-left: 18px; }
+    .montage-card li{ margin: 6px 0; }
+
+    .montage-split{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .montage-contactbox{
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .montage-steps{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .montage-step{
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      padding: 12px 12px;
+    }
+
+    .montage-step strong{ display:block; margin-bottom: 4px; }
+
+    .montage-cta{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .montage-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(250,184,25,.14);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .montage-btn:hover{ filter: brightness(1.08); }
+
+    .montage-btn--ghost{
+      background: rgba(255,255,255,.04);
+    }
+
+    .montage-faq details{
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      padding: 12px 12px;
+      margin: 10px 0;
+    }
+
+    .montage-faq summary{
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+
+    .montage-faq summary::-webkit-details-marker{ display:none; }
+
+    .montage-foot{
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      opacity: .85;
+      font-size: .95rem;
+    }
+
+    @media (min-width: 900px){
+      .montage-grid{ grid-template-columns: 1.2fr .8fr; }
+      .montage-split{ grid-template-columns: 1.2fr .8fr; }
+      .montage-steps{ grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+
+<body class="montage-page">
+
+  <!-- HEADER: moet op ALLE pagina's gelijk zijn -->
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Hulpveren.shop">
+        <img class="brand-logo" src="/img/branding/Logo-wit.png" alt="Hulpveren.shop" loading="lazy" decoding="async" />
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open navigatie">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" aria-label="Hoofdmenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+
+          <li class="nav-item nav-item-mega" data-family="hv">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD hulpveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-hv" class="mega-list" aria-label="Merken hulpveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="nr">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Luchtvering</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-nr" class="mega-list" aria-label="Merken luchtvering"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="ls">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Verlagingsveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-ls" class="mega-list" aria-label="Merken verlagingsveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="/montage">Montage</a></li>
+          <li class="nav-item"><a class="nav-link" href="/onze-ervaring">Onze ervaring</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="montage-wrap">
+    <header class="montage-head">
+      <p class="eyebrow">Montage in Roosendaal</p>
+      <h1>Montage van hulpveren, luchtvering & verlagingsveren</h1>
+      <p class="montage-lead">
+        We monteren <strong>MAD hulpveren</strong>, <strong>MAD luchtvering</strong> en <strong>MAD verlagingsveren</strong> in onze werkplaats
+        bij Auto Parts Roosendaal. Je krijgt vooraf helder advies en achteraf een setup die klopt: veilig, netjes en passend bij jouw gebruik.
+      </p>
+
+      <div class="montage-badges">
+        <span class="montage-badge">Afspraak op locatie</span>
+        <span class="montage-badge">Duidelijke prijsafspraak</span>
+        <span class="montage-badge">Meestal klaar terwijl u wacht</span>
+      </div>
+    </header>
+
+    <div class="montage-grid">
+      <!-- Main column -->
+      <main class="montage-card">
+        <section class="kenteken-zoeker" data-kenteken-block>
+          <h2>Zoek op kenteken</h2>
+          <div id="kenteken"></div>
+        </section>
+
+        <h2>Zo werkt het</h2>
+        <p>
+          We houden het praktisch: we bepalen eerst de juiste oplossing, daarna plannen we de montage. Tijdens de afspraak monteren we de set
+          en controleren we of alles netjes zit. Je gaat weg met een merkbaar beter rijgedrag.
+        </p>
+
+        <ul class="montage-steps">
+          <li class="montage-step">
+            <strong>1) Check & advies</strong>
+            Kenteken + gebruik (leeg/beladen) → advies welke set het beste past.
+          </li>
+          <li class="montage-step">
+            <strong>2) Afspraak plannen</strong>
+            We plannen een montagemoment dat past (en bestellen indien nodig de juiste set).
+          </li>
+          <li class="montage-step">
+            <strong>3) Montage</strong>
+            Vakkundige montage in onze werkplaats, met nette afwerking.
+          </li>
+          <li class="montage-step">
+            <strong>4) Controle & uitleg</strong>
+            We lopen het resultaat met je na en geven praktische tips voor gebruik/belading.
+          </li>
+        </ul>
+
+        <h3>Wat we van je nodig hebben</h3>
+        <ul>
+          <li>Kenteken (of chassisnummer)</li>
+          <li>Merk, model, bouwjaar en uitvoering</li>
+          <li>Hoe je de auto gebruikt (dagelijks, belading, aanhanger/caravan, camperinbouw)</li>
+        </ul>
+
+        <h3>Montagetijd</h3>
+        <p style="opacity:.85; margin:0;">
+          Montagetijd verschilt per voertuig en type set. We geven vooraf een indicatie en houden rekening met eventuele extra werkzaamheden
+          (bijvoorbeeld vastzittende bouten of eerder gemodificeerde ophanging).
+        </p>
+      </main>
+
+      <!-- Side column -->
+      <aside class="montage-card">
+        <h2>Afspraak maken</h2>
+
+        <div class="montage-contactbox">
+          <p style="margin:0 0 8px;"><strong>Auto Parts Roosendaal</strong></p>
+          <p style="margin:0; opacity:.85;">
+            Westelijke Havendijk 17c<br />
+            4703 RA Roosendaal<br /><br />
+            <strong>Telefoon:</strong> <a href="tel:+31165856568">0165-856568</a><br />
+            <strong>E-mail:</strong> <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a>
+          </p>
+        </div>
+
+        <div class="montage-cta">
+          <a class="montage-btn" href="/contact">Afspraak aanvragen</a>
+          <a class="montage-btn montage-btn--ghost" href="tel:+31165856568">Bel direct</a>
+        </div>
+
+        <h3>Tip</h3>
+        <p style="opacity:.85; margin:0;">
+          Stuur in je bericht je kenteken + wat je wilt verbeteren (doorzakken, belading, stabiliteit of verlagen).
+          Dan kunnen we direct de juiste set adviseren.
+        </p>
+      </aside>
+    </div>
+
+    <section class="montage-card montage-faq" style="margin-top:16px;">
+      <h2>Veelgestelde vragen</h2>
+
+      <details>
+        <summary>Monteren jullie ook sets die ik zelf al heb gekocht?</summary>
+        <p style="margin:10px 0 0; opacity:.85;">
+          Dat kan in sommige gevallen. We willen vooraf wel even checken of de set echt passend is en compleet is.
+          Neem contact op met kenteken + type set, dan laten we weten wat mogelijk is.
+        </p>
+      </details>
+
+      <details>
+        <summary>Is uitlijnen nodig na montage?</summary>
+        <p style="margin:10px 0 0; opacity:.85;">
+          Bij hulpveren meestal niet. Bij verlagingsveren kan uitlijnen wél aan te raden zijn (afhankelijk van voertuig en uitvoering).
+          We adviseren dit per auto.
+        </p>
+      </details>
+
+      <details>
+        <summary>Doen jullie ook verzending?</summary>
+        <p style="margin:10px 0 0; opacity:.85;">
+          In principe leveren we in combinatie met montage. Verzending doen we alleen als dit vooraf uitdrukkelijk is afgesproken.
+        </p>
+      </details>
+
+      <details>
+        <summary>Kan ik direct langskomen zonder afspraak?</summary>
+        <p style="margin:10px 0 0; opacity:.85;">
+          Voor advies kan dat soms, maar voor montage werken we bij voorkeur op afspraak zodat we tijd en onderdelen kunnen reserveren.
+        </p>
+      </details>
+    </section>
+
+
+  </div>
+
+  <!-- Site scripts (nodig voor header + mega menus) -->
+  <script defer src="/assets/js/header.js?v=20251215_1"></script>
+  <script defer src="/assets/js/app.js?v=20251212c"></script>
+  
+  <!-- FOOTER placeholder -->
+  <div id="site-footer"></div>
+
+  <!-- 1) Eerst footer laden -->
+  <script>
+    (async () => {
+      try {
+        const res = await fetch("/partials/footer-hulpveren.html", { cache: "no-store" });
+        if (res.ok) {
+          const html = await res.text();
+          document.getElementById("site-footer").innerHTML = html;
+        }
+      } catch (e) {
+        console.warn("Footer load failed:", e);
+      }
+
+      // 2) Daarna pas je site scripts laden (zodat footer elements bestaan)
+      const s1 = document.createElement("script");
+      s1.src = "/assets/js/header.js?v=20251215_1";
+      s1.defer = true;
+
+      const s2 = document.createElement("script");
+      s2.src = "/assets/js/app.js?v=20251212c";
+      s2.defer = true;
+
+      const s3 = document.createElement("script");
+      s3.src = "/assets/js/blog-related.js?v=20251222_1";
+      s3.defer = true;
+
+      document.body.appendChild(s1);
+      document.body.appendChild(s2);
+      document.body.appendChild(s3);
+    })();
+  </script>
+
+  <script src="/assets/js/plate.js"></script>
+  <script>
+    (function () {
+      if (!window.HVPlate || typeof window.HVPlate.mount !== "function") return;
+      window.HVPlate.mount("#kenteken", { autoSelectIfSingle: true });
+    })();
+  </script>
+  
+</body>
+</html>

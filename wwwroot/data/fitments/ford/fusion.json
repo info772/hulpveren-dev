@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "model": {
+    "slug": "fusion",
+    "label": "Fusion"
+  },
+  "kits": [
+    {
+      "sku": "HV-063878",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011670.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 166.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "JU"
+          ],
+          "remark": "",
+          "year_from": "08-2002",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

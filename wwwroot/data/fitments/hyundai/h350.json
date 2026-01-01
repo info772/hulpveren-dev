@@ -1,0 +1,64 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "h350",
+    "label": "H350"
+  },
+  "kits": [
+    {
+      "sku": "HV-498070",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074750.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 612.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 809
+      },
+      "fitments": [
+        {
+          "platform_codes": [],
+          "remark": "Only RWD",
+          "year_from": "04-2015",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-498080",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074767.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 645.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 849
+      },
+      "fitments": [
+        {
+          "platform_codes": [],
+          "remark": "Maximum support, Only RWD",
+          "year_from": "04-2015",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "ioniq",
+    "label": "Ioniq"
+  },
+  "kits": [
+    {
+      "sku": "HV-493145",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075122.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 163.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AE"
+          ],
+          "remark": "Only Electric, Excl. Hybrid",
+          "year_from": "03-2016",
+          "year_to": "03-2023",
+          "notes": "Engine: Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075115.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 253.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AE"
+          ],
+          "remark": "Only Hybrid, Excl. Electric",
+          "year_from": "03-2016",
+          "year_to": "03-2023",
+          "notes": "Engine: Hybrid"
+        }
+      ]
+    }
+  ]
+}

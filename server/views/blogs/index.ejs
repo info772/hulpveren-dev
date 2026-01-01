@@ -1,0 +1,73 @@
+<%- include("../partials/header") %>
+
+<div class="panel">
+  <h2>Blogs</h2>
+  <form method="get" action="/admin/blogs" class="form-row">
+    <div>
+      <label for="q">Zoeken</label>
+      <input id="q" name="q" value="<%= search %>" placeholder="Titel of slug" />
+    </div>
+    <div>
+      <label for="status">Status</label>
+      <select id="status" name="status">
+        <option value="">Alle</option>
+        <option value="draft" <%= status === "draft" ? "selected" : "" %>>Draft</option>
+        <option value="published" <%= status === "published" ? "selected" : "" %>>Published</option>
+        <option value="archived" <%= status === "archived" ? "selected" : "" %>>Archived</option>
+      </select>
+    </div>
+    <div style="align-self:flex-end;">
+      <button type="submit">Filter</button>
+      <a class="button secondary" href="/admin/blogs/new">Nieuwe blog</a>
+    </div>
+  </form>
+</div>
+
+<div class="panel">
+  <table>
+    <thead>
+      <tr>
+        <th>Titel</th>
+        <th>Slug</th>
+        <th>Status</th>
+        <th>Datum</th>
+        <th>Acties</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (!items.length) { %>
+        <tr>
+          <td colspan="5" class="muted">Geen blogs gevonden.</td>
+        </tr>
+      <% } %>
+      <% items.forEach((blog) => { %>
+        <tr>
+          <td><strong><%= blog.title %></strong></td>
+          <td><%= blog.slug %></td>
+          <td><span class="badge <%= blog.status %>"><%= blog.status %></span></td>
+          <td><%= blog.date || "-" %></td>
+          <td>
+            <a class="button secondary" href="/admin/blogs/<%= blog.id %>/edit">Bewerk</a>
+            <% if (blog.status === "published") { %>
+              <form class="inline" method="post" action="/admin/blogs/<%= blog.id %>/unpublish">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <button type="submit">Unpublish</button>
+              </form>
+            <% } else { %>
+              <form class="inline" method="post" action="/admin/blogs/<%= blog.id %>/publish">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <button type="submit">Publish</button>
+              </form>
+            <% } %>
+            <form class="inline" method="post" action="/admin/blogs/<%= blog.id %>/delete">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <button type="submit" class="secondary" onclick="return confirm('Verwijderen?');">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("../partials/footer") %>

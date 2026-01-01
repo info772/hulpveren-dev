@@ -1,0 +1,69 @@
+{
+  "make": {
+    "slug": "chrysler",
+    "label": "Chrysler"
+  },
+  "model": {
+    "slug": "voyager",
+    "label": "Voyager"
+  },
+  "kits": [
+    {
+      "sku": "HV-503120",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947016170.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 167.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "GS"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "01-1995",
+          "year_to": "03-2001",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-503130",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947016187.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 278.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "RG",
+            "RS"
+          ],
+          "remark": "Incl. Grand Voyager, Excl. 4WD,",
+          "year_from": "09-1999",
+          "year_to": "12-2008",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

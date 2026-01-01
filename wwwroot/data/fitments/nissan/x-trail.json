@@ -1,0 +1,106 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "x-trail",
+    "label": "X-trail"
+  },
+  "kits": [
+    {
+      "sku": "HV-314248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014671.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 359.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 529
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T30"
+          ],
+          "remark": "",
+          "year_from": "06-2001",
+          "year_to": "06-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314285",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014718.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 214.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 359
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T32"
+          ],
+          "remark": "",
+          "year_from": "04-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T31"
+          ],
+          "remark": "",
+          "year_from": "03-2007",
+          "year_to": "11-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314435",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947084322.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 172.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "T33"
+          ],
+          "remark": "Only multilink axle",
+          "year_from": "09-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

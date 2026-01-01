@@ -1,0 +1,157 @@
+{
+  "make": {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi"
+  },
+  "model": {
+    "slug": "lancer",
+    "label": "Lancer"
+  },
+  "kits": [
+    {
+      "sku": "HV-101098",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012011.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 291.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VII",
+            "CS",
+            "CT"
+          ],
+          "remark": "",
+          "year_from": "09-2003",
+          "year_to": "12-2008",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "VII",
+            "CS_A",
+            "W",
+            "CT_A",
+            "W"
+          ],
+          "remark": "Incl. Wagon",
+          "year_from": "01-2000",
+          "year_to": "10-2008",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-101207",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012028.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 152.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI",
+            "CJ",
+            "CP"
+          ],
+          "remark": "",
+          "year_from": "09-1995",
+          "year_to": "12-2003",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "V",
+            "CB",
+            "CD",
+            "CE"
+          ],
+          "remark": "",
+          "year_from": "06-1992",
+          "year_to": "12-1996",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-101218",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947050617.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 257.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VIII",
+            "CY_A",
+            "CZ_A",
+            "CX_A"
+          ],
+          "remark": "Incl. Sportback",
+          "year_from": "03-2007",
+          "year_to": "08-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-101717",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012035.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 160.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (C6",
+            "C7)"
+          ],
+          "remark": "",
+          "year_from": "04-1988",
+          "year_to": "05-1992",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

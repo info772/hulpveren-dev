@@ -1,0 +1,789 @@
+<!--
+  /hulpveren/<merk> — NL SEO-merkpagina (LLS-stijl) — v2.1 met GROEPEN
+  - Nieuwe groepsfilter: Personenauto’s vs Bedrijfswagens (incl. “Alle”)
+  - Helder op desktop én mobiel: chip-toggles + secties met tellers
+  - Model-keuze past zich aan aan de gekozen groep
+  - Leest data uit LLS_FOOTER_DATA.kits[].fitments[] (LES loader)
+-->
+ <meta>
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+ <title id="meta-title">
+  Hulpveren voor Merk | MAD sets met montage
+ </title>
+ <meta id="meta-desc" name="description" content="MAD hulpveren voor Merk. Minder doorzakken en meer stabiliteit bij passagiers of belading. Prijzen incl. montage &amp; BTW.">
+ 
+ <link id="link-canonical" rel="canonical" href="">
+ <meta id="og-title" property="og:title" content="Hulpveren voor Merk | MAD sets met montage">
+ 
+ <meta id="og:url" property="og:url" content="">
+ 
+ <meta property="og:type" content="website">
+ 
+ <style>
+  :root{
+    --bg:#0b0c10; --panel:#111216; --ink:#0b0c10;
+    --fg:#e6e8f0; --muted:#aab1c3; --line:rgba(255,255,255,.10);
+    --accent:#FAB819; --radius:14px; --maxw:1200px; --chip-h:36px;
+  }
+  /* Basis */
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  /* Header */
+  header{position:sticky;top:0;z-index:10;background:#0b0c10cc;border-bottom:1px solid var(--line);backdrop-filter:saturate(1.05) blur(10px)}
+  .container{max-width:var(--maxw);margin-inline:auto;padding:clamp(16px,3vw,28px)}
+  .brand{display:flex;gap:.6rem;align-items:center;font-weight:700}
+  .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,209,26,.25)}
+  .muted{color:var(--muted)}
+  .lead{font-size:clamp(18px,2.1vw,20px);color:#d7dbe6}
+  .section{padding:28px 0}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+  /* Grid */
+  .grid{display:grid;gap:16px}
+  .cols-2{grid-template-columns:1.15fr 1fr}
+  @media (max-width:980px){.cols-2{grid-template-columns:1fr}}
+  /* Type */
+  h1{font-size:clamp(28px,4vw,44px);margin:.2rem 0 .5rem}
+  h2{font-size:clamp(22px,3vw,28px);margin:.2rem 0 .6rem}
+  h3{font-size:clamp(18px,2.2vw,22px);margin:8px 0 10px}
+  .mini{font-size:13px;color:#cfd3df}
+  /* Knoppen / chips */
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);cursor:pointer}
+  .btn-primary{background:var(--accent);color:var(--ink);border:none;font-weight:800}
+  .btn-neutral{background:#0f1117;border-color:rgba(255,255,255,.15)}
+  .badges{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{display:inline-flex;align-items:center;gap:6px;height:var(--chip-h);padding:0 .7rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.06);font:600 12px/1 system-ui,Inter;white-space:nowrap}
+  .chip img{height:16px;border-radius:3px}
+  .chip--price{background:var(--accent);color:var(--ink);border:none;font-weight:800}
+  .chip-toggle{cursor:pointer;user-select:none}
+  .chip-toggle.active{background:var(--accent);color:var(--ink);border:none}
+  .price{font-weight:800;white-space:nowrap}
+  /* Cards */
+  .grid-kits{display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:1200px){.grid-kits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:820px){.grid-kits{grid-template-columns:1fr}}
+  .pick{display:flex;flex-direction:column;gap:14px;background:#0e1117;border:1px dashed #2d3746;border-radius:12px;padding:12px;min-height:100%}
+  .pick .pic{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid #202635;background:#0a0b10}
+  .pick .meta{display:grid;gap:8px;grid-template-rows:auto auto auto auto 1fr auto;min-height:260px}
+  .eyebrow{font-size:12px;color:#aab1c3;letter-spacing:.2px}
+  .code{font-weight:800;letter-spacing:.2px}
+  .subline{font-weight:700;line-height:1.35}
+  .badges-row{display:flex;flex-wrap:wrap;gap:8px}
+  .price-row{display:flex;gap:8px;align-items:center;min-height:var(--chip-h);margin-top:4px}
+  /* Filters */
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
+  .controls select,.controls button{height:40px;border-radius:10px;border:1px solid #2a3340;background:#1b1f24;color:#eaf0ff;padding:0 10px}
+  .controls select option{background:#1b1f24;color:#e6e8f0}
+  .controls select:focus{outline:none;border-color:#ffd11a;box-shadow:0 0 0 3px rgba(255,209,26,.25)}
+  .controls .count{flex:1 1 100%;margin-top:6px;color:#aab1c3;font-size:13px}
+  /* Groepsbar */
+  .groupbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .groupbar .label{font-size:13px;color:#aab1c3;margin-right:2px}
+  .group-section{margin-top:12px}
+  .group-head{display:flex;align-items:center;gap:10px;margin:6px 0 8px}
+  .group-head .count{font-size:12px;color:#aab1c3}
+  hr.sep{border:0;border-top:1px solid var(--line);margin:14px 0}
+  /* Jaar-slider */
+  :root{ --accent:#FAB819; }
+  .yr-wrap{display:none;gap:12px;align-items:center;flex:1 1 100%}
+  .yr-wrap.active{display:flex}
+  .yr-wrap > .yr-slider{flex:1 1 auto; min-width:min(900px, 100%);} 
+  .yr-badge, #yrReset{flex:0 0 auto}
+  .yr-slider{position:relative;height:42px}
+  .yr-slider input[type=range]{top:8px}
+  .yr-track{position:absolute;left:0;right:0;top:14px;height:6px;background:#2a3340;border-radius:4px}
+  .yr-fill{position:absolute;top:14px;height:6px;background:var(--accent);border-radius:4px}
+  .yr-badge{font:600 12px/1 system-ui;padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:#0f1218}
+  #quickYrs{display:none;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;margin:-6px 0 10px 0}
+  #quickYrs .chip{flex:0 0 auto}
+  @media (max-width:760px){
+    .yr-wrap{flex-wrap:wrap}
+    .yr-wrap > span.muted{min-width:auto}
+    .yr-wrap > .yr-slider{flex:1 0 100%; min-width:100%}
+  }
+  .badges .chip img,
+.badges-row .chip img{ display:inline-block; width:16px; height:16px; object-fit:contain; vertical-align:middle; }
+ </style>
+ <header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+   <a class="brand" href="/">
+    <span class="dot">
+    </span>
+    <span>
+     hulpveren.shop
+    </span>
+   </a>
+   <nav class="muted" aria-label="kruimelpad">
+    <a href="/hulpveren">
+     Hulpveren
+    </a>
+    ›
+    <span id="bc-make">
+     Merk
+    </span>
+   </nav>
+  </div>
+ </header>
+ <main>
+  <!-- HERO -->
+  <section class="container section">
+   <div class="grid cols-2">
+    <div class="hero">
+     <div class="mini" id="mini-line">
+      Merk
+     </div>
+     <h1 id="h1-title">
+      Hulpveren —
+      <span id="makeLabel">
+       Merk
+      </span>
+     </h1>
+     <p class="lead">
+      Kies hieronder je model. TÜV-gekeurde MAD hulpveren houden je
+      <span id="lls-make">
+       auto
+      </span>
+      vlak en stabiel bij passagiers of belading — onbeladen blijft het rijcomfort vrijwel origineel.
+     </p>
+     <div class="badges" style="margin-top:10px">
+      <span class="chip">
+       <img src="https://irp.cdn-website.com/3a91075a/dms3rep/multi/kit.approval.tuv.png" alt="TÜV">
+       TÜV-goedgekeurd
+      </span>
+      <span class="chip">
+       Snelle montage
+      </span>
+      <span class="chip">
+       Geen onderhoud
+      </span>
+     </div>
+     <h2 style="margin-top:26px">
+      Kies je model
+     </h2>
+     <nav id="modelButtons" class="badges" aria-label="Modellen">
+     </nav>
+    </div>
+    <div class="hero-media">
+     <img id="heroImg" src="https://irp.cdn-website.com/8ad19938/dms3rep/multi/HV-5.jpg" alt="MAD hulpveren — hero" loading="eager" decoding="async">
+    </div>
+   </div>
+  </section>
+  <!-- CONTROLS + GRID -->
+  <section class="container section">
+   <div class="panel" style="padding:16px">
+    <h2>
+     Beschikbare sets
+    </h2>
+    <div class="controls">
+     <!-- Groep-chips -->
+     <!-- Groep-chips verwijderd: boven in de hero tonen we twee vaste groepen (Personenauto’s & Bedrijfswagens) -->
+     <!-- Modelselect -->
+     <label class="muted" for="f-model">
+      Model
+     </label>
+     <select id="f-model">
+      <option value="">
+       Alle modellen
+      </option>
+     </select>
+     <!-- Jaarfilter (automatisch aan bij veel data) -->
+     <div id="yrWrap" class="yr-wrap" aria-label="Filter op bouwjaren">
+      <span class="muted" style="min-width:54px">
+       Jaren
+      </span>
+      <div class="yr-slider">
+       <div class="yr-track">
+       </div>
+       <div id="yrFill" class="yr-fill" style="left:0;width:100%">
+       </div>
+       <input id="yrMin" type="range" min="1980" max="2028" value="1980" step="1" aria-label="Jaar vanaf">
+       <input id="yrMax" type="range" min="1980" max="2028" value="2028" step="1" aria-label="Jaar t/m">
+      </div>
+      <span id="yrBadge" class="yr-badge">
+       Alle jaren
+      </span>
+      <button id="yrReset" class="btn btn-neutral" type="button">
+       Reset
+      </button>
+     </div>
+     <span class="count" id="resultCount">
+     </span>
+    </div>
+    <div id="quickYrs">
+    </div>
+    <!-- Eén grid als 1 groep is gekozen, of twee secties bij “Alle” -->
+    <div id="kitHost">
+    </div>
+    <div class="mini" style="margin-top:8px">
+     Prijzen in EUR incl. montage &amp; BTW; montagetijd verschilt per model. TÜV-goedgekeurd, tenzij anders vermeld.
+    </div>
+   </div>
+  </section>
+ </main>
+ <!-- Hover preview -->
+ <div id="imgPreview" style="position:fixed;display:none;pointer-events:none;z-index:9999;background:#000b;border:1px solid var(--line);border-radius:12px;padding:8px">
+  <img style="max-width:min(60vw,600px);max-height:min(70vh,700px)" alt="">
+ </div>
+ <script>
+  /* ================= LES-loader + boot-wacht ================= */
+function hv_waitForData(maxMs=5000){
+  return new Promise(resolve=>{
+    const t0 = performance.now();
+    (function poll(){
+      const ok = !!window.LLS_FOOTER_DATA || !!document.querySelector('#lls-footer-data');
+      if (ok || performance.now()-t0 > maxMs) return resolve(ok);
+      setTimeout(poll, 100);
+    })();
+  });
+}
+function __hv_readRaw(){
+  if (window.LLS_FOOTER_DATA) return window.LLS_FOOTER_DATA;
+  const el = document.querySelector('#lls-footer-data');
+  if (!el) return null;
+  try { return JSON.parse(el.textContent.trim()); } catch(_) { return null; }
+}
+function __hv_pickArray(v){ return Array.isArray(v) ? v : (v ? [v] : []); }
+function hv_rowsFromLES(){
+  const raw = __hv_readRaw();
+  if (!raw) return [];
+  const root = raw?.hvsd || raw?.HVSD || raw;
+  let kits = [];
+  if (Array.isArray(root)) kits = root; else kits = __hv_pickArray(root.kits || root.data || root.items);
+  const out = [];
+  for (const k of kits){
+    const sku = k?.sku || k?.kit || '';
+    if (!sku) continue;
+    const approval = k.approval || '';
+    const priceInc = k.pricing_nl?.total_inc_vat_from_eur ?? null;
+    const fits = Array.isArray(k.fitments) ? k.fitments : [];
+    for (const f of fits){
+      out.push({
+        sku,
+        approval,
+        position: k.position || '',
+        make:   f.make  || f.brand || '',
+        model:  f.model || '',
+        year_start: f.year_from || f.year_start || '',
+        year_end:   f.year_to   || f.year_end   || '',
+        remarks: f.remark || f.notes || f.note || '',
+        price_inc_eur: priceInc
+      });
+    }
+  }
+  return out;
+}
+ </script>
+ <script>
+  /* ================= Paginalogica (NL) — met GROEPEN ================= */
+(function(){
+  'use strict';
+  const PATH_PREFIX  = '/hulpveren';
+  const PLACEHOLDER  = '~page-item~';
+  const CDN_PRIMARY  = 'https://irp.cdn-website.com/8ad19938/dms3rep/multi/';
+  const CDN_LEGACY   = 'https://irp.cdn-website.com/3a91075a/dms3rep/multi/';
+  const HERO_FALLBACK= CDN_PRIMARY + 'HV-5.jpg';
+  function iconImg(file, alt){
+  const primary = CDN_PRIMARY + file;
+  const legacy  = CDN_LEGACY  + file;
+  return `<img src="${primary}" width="16" height="16" alt="${alt||''}"
+           loading="lazy" decoding="async"
+           onerror="this.onerror=null;this.src='${legacy}'">`;
+}
+  /* ---------- Helpers ---------- */
+  function slugify(s){
+    return String(s||'')
+      .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+      .toLowerCase()
+      .replace(/["'’`]/g,'')
+      .replace(/[^a-z0-9]+/g,'-')
+      .replace(/^-+|-+$/g,'');
+  }
+  function normModelSlug(s){
+    const raw = slugify(s);
+    const ALIAS = { 'terraar':'terramar', 'terramr':'terramar', 'citroen':'citroen' };
+    return ALIAS[raw] || raw;
+  }
+  // === onder slugify() en normModelSlug() ===
+function normSlug(s){
+  return String(s||'')
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase().replace(/["'’]/g,'')
+    .replace(/[^a-z0-9]+/g,'-')
+    .replace(/^-+|-+$/g,'');
+}
+function modelLabelFromSlug(modelSlug, rows){
+  const hit = rows.find(r => normSlug(r.model) === modelSlug);
+  if (hit && hit.model) return hit.model; // bv. "ID.3"
+  // Fallback als het model niet in data zit:
+  if (/^id-([0-9])$/i.test(modelSlug)) return modelSlug.replace(/^id-([0-9])$/i,'ID.$1');
+  return modelSlug.replace(/-/g,' ').replace(/\b[a-z]/g, c => c.toUpperCase());
+}
+  function prettyMake(slug){
+    const map = {'mercedes-benz':'Mercedes-Benz','volkswagen':'Volkswagen','citroen':'Citroën','skoda':'Škoda','bmw':'BMW','mini':'MINI','gmc':'GMC','ram':'RAM','al-ko':'AL-KO'};
+    return map[slug] || slug.split('-').map(w=>w? w[0].toUpperCase()+w.slice(1) : w).join(' ');
+  }
+  function brandHref(makeLabel){ const m = slugify(makeLabel); return `${PATH_PREFIX}/${m}`; }
+  function modelHref(makeLabel, model){ const m = slugify(makeLabel), mo = slugify(model); return `${PATH_PREFIX}/${m}/${mo}`; }
+  function euro(n){ return (n==null||isNaN(n))?'':n.toLocaleString('nl-NL',{style:'currency',currency:'EUR',maximumFractionDigits:0}); }
+  /* Jaar helpers */
+  const NOW = (new Date()).getFullYear();
+  function yrV(s){
+    const str = String(s||'');
+    let m = str.match(/(19|20)\d{2}/); if (m) return +m[0];
+    m = str.match(/\b(\d{2})\b/); if (m){ const yy=+m[1]; return (yy>=80)?1900+yy:2000+yy; }
+    return null;
+  }
+  function formatYearRange(aLike,bLike){
+    const a=yrV(aLike), b=yrV(bLike);
+    if (a && b) return (a<=b)?`${a}–${b}`:`${b}–${a}`;
+    if (a && !b) return `${a}–heden`;
+    if (!a && b) return `tot ${b}`;
+    return '—';
+  }
+  function uniq(a){ return Array.from(new Set(a)); }
+  /* Pad/URL → merk & model */
+  function getMakeSlug(){
+    const segs = location.pathname.split('/').filter(Boolean);
+    const i = segs.indexOf('hulpveren');
+    let cand = (i>=0 && segs[i+1]) ? decodeURIComponent(segs[i+1]) : '';
+    if (cand && cand.toLowerCase() === PLACEHOLDER.toLowerCase()) cand = '';
+    if (!cand){ const qs=new URLSearchParams(location.search); cand = qs.get('merk') || ''; }
+    if (!cand && location.hash){ const hs=new URLSearchParams(location.hash.slice(1)); cand = hs.get('merk') || ''; }
+    if (!cand){ cand = document.querySelector('meta[name="lls:make"]')?.content || window.LLS_MAKE || document.body?.dataset?.merk || document.querySelector('main')?.dataset?.merk || ''; }
+    return slugify(cand);
+  }
+  function getModelSlugFromUrl(){
+    const segs = location.pathname.split('/').filter(Boolean);
+    const i = segs.indexOf('hulpveren');
+    let model = (i>=0 && segs[i+2]) ? decodeURIComponent(segs[i+2]) : '';
+    if (!model){
+      const qs = new URLSearchParams(location.search);
+      model = qs.get('model') || qs.get('m') || '';
+    }
+    return normModelSlug(model);
+  }
+  /* ========== IMAGE HELPERS ========== */
+  function lastDigitFromSku(sku){
+    const S = String(sku || '');
+    const m6 = S.match(/-(\d{6})$/); if (m6) return m6[1].slice(-1);
+    const m  = S.match(/(\d)(?!.*\d)/); return m ? m[1] : '5';
+  }
+  function skuImgCandidates(sku){
+    const S = String(sku||'').toUpperCase();
+    const d = lastDigitFromSku(sku);
+    return [
+      `${CDN_PRIMARY}${encodeURIComponent(S)}.jpg`,
+      `${CDN_LEGACY}${encodeURIComponent(S)}.jpg`,
+      `${CDN_PRIMARY}HV-${d}.jpg`
+    ];
+  }
+  function hvImgFallback(img){
+    try{
+      const list = JSON.parse(img.dataset.srcs || '[]');
+      let i = +(img.dataset.idx || 0);
+      if (i < list.length - 1){
+        img.dataset.idx = i + 1;
+        img.src = list[i + 1];
+      } else {
+        if (img.id === 'heroImg' && img.src !== HERO_FALLBACK){
+          img.onerror = null;
+          img.src = HERO_FALLBACK;
+        } else {
+          img.onerror = null;
+        }
+      }
+    }catch(_){
+      if (img.id === 'heroImg'){
+        img.onerror = null;
+        img.src = HERO_FALLBACK;
+      } else {
+        img.onerror = null;
+      }
+    }
+  }
+  window.hvImgFallback = hvImgFallback;
+  function applyImgWithFallback(img, sku){
+    const list = skuImgCandidates(sku);
+    img.dataset.srcs = JSON.stringify(list);
+    img.dataset.idx  = 0;
+    img.src = list[0];
+    img.onerror = function(){ hvImgFallback(img); };
+  }
+  /* ======= Groepsdetectie ======= */
+  const VAN_MODEL_TOKENS = [
+    'AMAROK','DUCATO','BOXER','J5','BIPPER','ID. BUZZ','JUMPER','TRANSPORTER','T5','T6','T7','CRAFTER','SPRINTER','VITO','V-CLASS','V CLASS','VANEO','CADDY','MULTIVAN','CARAVELLE','CALIFORNIA',
+    'TRANSIT','TRANSIT CUSTOM','E-TRANSIT','CONNECT','COURIER','MASTER','MOVANO','VIVARO','TRAFIC','HI-ACE','HI-LUX',
+    'EXPERT','JUMPY','SCUDO','PROACE','PROACE CITY','PROACE MAX','BERLINGO','PARTNER','KANGOO','DOBLO','COMBO','HIACE','DAILY','NV200','NV250','NV300','NV350','NV400'
+  ];
+  function isVanModel(model){
+    const s = String(model||'').toUpperCase();
+    return VAN_MODEL_TOKENS.some(tok => s.includes(tok));
+  }
+  function groupKeyForRow(r){ return isVanModel(r.model) ? 'vans' : 'cars'; }
+  const GROUP_LABEL = { cars: "Personenauto’s", vans: "Bedrijfswagens" };
+  /* Chips */
+  function benefitChips(item){
+    const chips=[], rem=String(item.remarks||'').toLowerCase();
+    if (rem.includes('lpg')) chips.push('Geschikt met LPG');
+    if (String(item.position||'').toLowerCase()==='rear'){ chips.push('Minder doorzakken','Caravan/trekhaak'); }
+    else { chips.push('Stabieler vooras'); }
+    chips.push('Comfort onbeladen');
+    if (/(avant|wagon|estate|sportwagon|sportswagon)/.test(rem)) chips.push('Vakantie/bagage');
+    const seen=new Set(), out=[]; for(const x of chips){ const k=x.toLowerCase(); if(!seen.has(k)){ seen.add(k); out.push(x); } if(out.length>=3) break; }
+    return out.map(t=>`<span class='chip'>${t}</span>`).join('');
+  }
+  function labelChips(item){
+    const rem=String(item.remarks||'').toLowerCase(), arr=[];
+    if (rem.includes('excl. quattro')) arr.push('Niet voor Quattro'); else if (rem.includes('quattro')) arr.push('Quattro');
+    if (/(excl\.\s*4wd|excl\.\s*awd)/.test(rem)) arr.push('Niet voor AWD/4WD'); else if (/(awd|4wd)/.test(rem)) arr.push('AWD/4WD');
+    if (rem.includes('excl. fwd')) arr.push('Niet voor FWD'); else if (rem.includes('fwd')) arr.push('FWD');
+    if (rem.includes('rwd')) arr.push('RWD');
+    if (/(hybrid|e-tron|etron)/.test(rem)) arr.push('e-tron/Hybrid');
+    if (/(ev|electric)/.test(rem)) arr.push('EV');
+    if (rem.includes('sportback')) arr.push('Sportback');
+    if (/(allroad|all road)/.test(rem)) arr.push('Allroad');
+    if (/(cabrio|convertible)/.test(rem)) arr.push('Cabrio');
+    if (/(avant|wagon|estate|sportswagon|sportwagon)/.test(rem)) arr.push('Avant/Wagon');
+    const seen=new Set(); return arr.filter(x=>{const k=x.toLowerCase(); if(seen.has(k)) return false; seen.add(k); return true;})
+      .map(l=>`<span class='chip'>${l}</span>`).join('');
+  }
+  // ------- TÜV utils: detectie + icon resolver (shared voor hero & kaarten) -------
+let TUV_ICON_HTML = '';   // wordt gezet door loadTuvIcon()
+function hasTuv(approval){
+  // vangt: 'TÜV', 'TUV', 't&uuml;v', 'TÜV/ABE', 'ABE / TUV', etc.
+  const raw = String(approval || '');
+  const norm = raw
+    .replace(/&uuml;|&Uuml;/gi, 'u')
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, ''); // umlaut → ascii
+  const s = norm.toLowerCase().replace(/\s+/g,'');
+  return /(^|[^a-z])tuv([^a-z]|$)/.test(s); // 'tuv' los of in combinaties
+}
+function inlineTuvSvg(){
+  return `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"></circle>
+    <path d="M7 12l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>`;
+}
+async function loadTuvIcon(){
+  // Probeer PNG in primary → legacy; anders inline SVG
+  const candidates = [
+    CDN_PRIMARY + 'kit.approval.tuv.png',
+    CDN_LEGACY  + 'kit.approval.tuv.png'
+  ];
+  function tryUrl(url){
+    return new Promise((resolve, reject)=>{
+      const img = new Image();
+      img.onload  = () => resolve(url);
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+  for (const url of candidates){
+    try {
+      const ok = await tryUrl(url);
+      TUV_ICON_HTML = `<img src="${ok}" width="16" height="16" alt="TÜV" loading="lazy" decoding="async">`;
+      return;
+    } catch(_) { /* door naar volgende */ }
+  }
+  // beide faalden → inline
+  TUV_ICON_HTML = inlineTuvSvg();
+}
+  /* Kaart */
+  function cardHtml(item){
+  const list = skuImgCandidates(item.sku);
+  const hrefModel = modelHref(item.make || 'merk', item.model || 'model');
+  const hrefKit   = `${hrefModel}/${encodeURIComponent(String(item.sku || ''))}`;
+  // TÜV badge met CDN fallback (geen hard-coded legacy pad meer)
+  const tuvIcon = `<img src="${CDN_PRIMARY}kit.approval.tuv.png"
+                        width="16" height="16" alt="TÜV"
+                        loading="lazy" decoding="async"
+                        onerror="this.onerror=null;this.src='${CDN_LEGACY}kit.approval.tuv.png'">`;
+  // in cardHtml(item):
+const tuvChip = hasTuv(item.approval)
+  ? `<span class="chip">${TUV_ICON_HTML}TÜV</span>`
+  : '';
+  const priceRow = (item.price_inc_eur != null)
+    ? `<div class="price-row">
+         <span class="chip chip--price">
+           Prijs: <span class="price">${euro(item.price_inc_eur)}</span> Incl. Montage &amp; BTW
+         </span>
+       </div>`
+    : '';
+  return `
+    <div class="pick" data-sku="${String(item.sku || '').toUpperCase()}">
+      <a href="${hrefKit}" aria-label="Open set ${String(item.sku || '').toUpperCase()}">
+        <img class="pic"
+             src="${list[0]}"
+             data-srcs='${JSON.stringify(list)}'
+             data-idx="0"
+             onerror="hvImgFallback(this)"
+             loading="lazy" decoding="async"
+             alt="MAD hulpveren voor ${(item.make||'').trim()} ${(item.model||'').trim()} — ${String(item.sku||'').toUpperCase()}">
+      </a>
+      <div class="meta">
+        <div class="eyebrow">${item.model || ''}</div>
+        <div class="code"><code>${String(item.sku || '').toUpperCase()}</code></div>
+        <div class="subline"><b>${item.make || ''} ${item.model || ''}</b></div>
+        <div class="badges-row">
+          ${benefitChips(item)}${labelChips(item)}${tuvChip}
+        </div>
+        <div class="mini">Bouwjaren: ${formatYearRange(item.year_start, item.year_end)}</div>
+        ${priceRow}
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <a class="btn btn-primary" href="${hrefModel}">Alle ${item.make || ''} ${item.model || ''} sets</a>
+        </div>
+      </div>
+    </div>
+  `;
+}
+  /* Breadcrumb LD+JSON */
+  function setBreadcrumbLd(makeSlug, makeLabel){
+    try{
+      const data = {
+        "@context":"https://schema.org",
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Hulpveren","item":location.origin + "/hulpveren"},
+          {"@type":"ListItem","position":2,"name":"Hulpveren voor " + makeLabel,"item":location.origin + brandHref(makeSlug)}
+        ]
+      };
+      const s = document.createElement('script');
+      s.type = 'application/ld+json';
+      s.textContent = JSON.stringify(data);
+      document.head.appendChild(s);
+    }catch(_){}
+  }
+  /* Jaar UI/filters */
+  function computeYearStats(rows){
+    let minY = 9999, maxY = -1;
+    for (const r of rows){ const a=yrV(r.year_start)??1980, b=yrV(r.year_end)??NOW; if (a<minY) minY=a; if (b>maxY) maxY=b; }
+    if (!isFinite(minY)) minY=1980; if (!isFinite(maxY)) maxY=NOW; return {minY,maxY,span:maxY-minY};
+  }
+  function kitOverlaps(r, y1, y2){ const a=yrV(r.year_start)??1960, b=yrV(r.year_end)??NOW; return Math.max(a,y1) <= Math.min(b,y2); }
+  function updateYrUI(minY, maxY){
+    const min=document.getElementById('yrMin'), max=document.getElementById('yrMax'), badge=document.getElementById('yrBadge'), fill=document.getElementById('yrFill');
+    if(!min||!max||!badge||!fill) return;
+    const lo=Math.min(+min.value,+max.value), hi=Math.max(+min.value,+max.value);
+    const pct=v=>((v-minY)/(maxY-minY))*100; fill.style.left=Math.max(0,Math.min(100,pct(lo)))+'%'; fill.style.width=Math.max(0,Math.min(100,pct(hi)-pct(lo)))+'%';
+    badge.textContent=(lo<=minY && hi>=maxY)?'Alle jaren':`${lo}–${hi}`;
+  }
+  function setYrRange(minY, maxY, a, b){ const min=document.getElementById('yrMin'),max=document.getElementById('yrMax'); if(!min||!max) return; min.min=minY;min.max=maxY;max.min=minY;max.max=maxY; min.value=(a??minY); max.value=(b??maxY); updateYrUI(minY,maxY); }
+  /* Dedupe/groepering voor kaarten */
+  function groupForDisplay(rows){
+    const map = new Map();
+    for (const r of rows){
+      const sku   = String(r.sku || '').toUpperCase();
+      const mslug = normModelSlug(r.model || '');
+      const key   = `${sku}|${mslug}`;
+      if (!map.has(key)) map.set(key, r);
+    }
+    return Array.from(map.values()).sort((a,b)=>
+      (a.model||'').localeCompare(b.model||'','nl',{numeric:true,sensitivity:'base'}) ||
+      String(a.sku).localeCompare(String(b.sku))
+    );
+  }
+  /* ---------- INIT ---------- */
+  async function init(){
+    await hv_waitForData(5000);
+    const heroEl = document.getElementById('heroImg');
+    if (heroEl && !heroEl.getAttribute('src')) heroEl.src = HERO_FALLBACK;
+    const makeSlug = getMakeSlug();
+    const MAKE = prettyMake(makeSlug);
+    // SEO/meta
+    const base = (location.origin||'') + brandHref(makeSlug);
+    (document.getElementById('meta-title')||{}).textContent = `Hulpveren voor ${MAKE} | MAD sets met montage`;
+    (document.getElementById('meta-desc')||{}).setAttribute?.('content', `MAD hulpveren voor ${MAKE}. Minder doorzakken en meer stabiliteit. Prijzen incl. montage & BTW.`);
+    (document.getElementById('link-canonical')||{}).href = base;
+    (document.getElementById('og-title')||{}).setAttribute?.('content', `Hulpveren voor ${MAKE} | MAD sets met montage`);
+    (document.getElementById('og:url')||{}).setAttribute?.('content', base);
+    // Labels
+    (document.getElementById('bc-make')||{}).textContent = MAKE || 'Merk';
+    (document.getElementById('mini-line')||{}).textContent = MAKE || 'Merk';
+    (document.getElementById('makeLabel')||{}).textContent = MAKE || 'Merk';
+    (document.getElementById('lls-make')||{}).textContent = MAKE ? MAKE.toLowerCase() : 'auto';
+    // 1) Laad het TÜV-icoon één keer (PNG of inline SVG)
+await loadTuvIcon();
+// 2) HERO-badge upgraden met dezelfde icon-HTML
+(function upgradeHeroTuv(){
+  const chip =
+    document.getElementById('heroTuv') ||
+    document.querySelector('.hero .badges .chip img[alt="TÜV"], .hero .badges .chip img[alt="TUV"]')?.closest('.chip') ||
+    Array.from(document.querySelectorAll('.hero .badges .chip'))
+      .find(el => /t[üu]v/i.test((el.textContent||'').normalize('NFKD')));
+  if (chip) chip.innerHTML = `${TUV_ICON_HTML}TÜV-goedgekeurd`;
+})();
+    // Data
+    const ALL = hv_rowsFromLES().filter(r => slugify(r.make) === makeSlug && r.sku);
+    const host = document.getElementById('kitHost');
+    if (!ALL.length){ host.innerHTML = `<div class="mini" style="padding:12px">Geen sets gevonden voor ${MAKE}. Staat de HV/SD-data (LLS_FOOTER_DATA) site-wide geladen?</div>`; return; }
+    // Jaarfilter tonen bij grotere merken of brede jaarrange
+    const {minY, maxY, span} = computeYearStats(ALL);
+    const many = uniq(ALL.map(r=>r.model).filter(Boolean)).length >= 6 || span >= 8;
+    const yrWrap = document.getElementById('yrWrap');
+    if (yrWrap && many){
+      yrWrap.classList.add('active');
+      setYrRange(minY, maxY, null, null);
+      (function buildQuickDecades(){
+        const host = document.getElementById('quickYrs'); if(!host) return;
+        const chips=[];
+        const startDec = Math.floor(minY/10)*10, endDec = Math.floor(maxY/10)*10;
+        chips.push(`<span class="chip" data-from="${minY}" data-to="${maxY}">Alle</span>`);
+        for (let d=startDec; d<=endDec; d+=10){ chips.push(`<span class="chip" data-from="${d}" data-to="${Math.min(d+9,maxY)}">${d}s</span>`); }
+        host.innerHTML = chips.join(''); host.style.display='flex';
+        host.addEventListener('click', e=>{
+          const chip=e.target.closest('.chip'); if(!chip) return;
+          setYrRange(minY,maxY,+chip.dataset.from,+chip.dataset.to);
+          render();
+        }, {passive:true});
+      })();
+      const min=document.getElementById('yrMin'), max=document.getElementById('yrMax'), reset=document.getElementById('yrReset');
+      const onYr=()=>{ updateYrUI(minY,maxY); render(); };
+      min?.addEventListener('input', onYr, {passive:true});
+      max?.addEventListener('input', onYr, {passive:true});
+      reset?.addEventListener('click', ()=>{ setYrRange(minY,maxY,null,null); render(); }, {passive:true});
+      updateYrUI(minY,maxY);
+    }
+    /* ====== STATE ====== */
+    let groupSel = 'all'; // 'all' | 'cars' | 'vans'
+function rowsForGroup(g){
+  return (g==='all') ? ALL : ALL.filter(r=>groupKeyForRow(r)===g);
+}
+    /* ====== UI: MODEL FILTER (afhankelijk van groep) ====== */
+    function populateModelFilter(rows){
+      const sel = document.getElementById('f-model'); if(!sel) return;
+      const models = uniq(rows.map(r=>r.model).filter(Boolean))
+        .sort((a,b)=>a.localeCompare(b,'nl',{numeric:true,sensitivity:'base'}));
+      const prev = sel.value;
+      sel.innerHTML = '<option value="">Alle modellen</option>' + models.map(m=>{
+        const v = normModelSlug(m);
+        return `<option value="${v}">${m}</option>`;
+      }).join('');
+      // behoud selectie als nog geldig, anders reset
+      if (prev && models.some(m=>normModelSlug(m)===prev)) sel.value = prev; else sel.value = '';
+    }
+    // Init model-select op basis van ALL (wordt herbouwd bij group-switch)
+    populateModelFilter(ALL);
+    /* ====== UI: MODEL-KNOPPEN ====== */
+function renderModelButtons(rows){
+  // Doorsturen naar nieuwe groepsweergave in de hero
+  renderHeroModelGroups(rows);
+}
+function renderHeroModelGroups(rows){
+  const host = document.getElementById('modelButtons'); if(!host) return;
+  const seenCars = new Map();
+  const seenVans = new Map();
+  rows.forEach(r=>{
+    const key = normModelSlug(r.model||'');
+    if (!key) return;
+    const entry = {label:r.model, make:r.make};
+    if (groupKeyForRow(r)==='vans'){
+      if (!seenVans.has(key)) seenVans.set(key, entry);
+    } else {
+      if (!seenCars.has(key)) seenCars.set(key, entry);
+    }
+  });
+  function chips(map){
+    return Array.from(map.values())
+      .sort((a,b)=>a.label.localeCompare(b.label,'nl',{numeric:true,sensitivity:'base'}))
+      .map(m=>`<a class=\"chip\" href=\"${modelHref(m.make||'Merk', m.label)}\">${m.label}</a>`)
+      .join('');
+  }
+  const carsHTML = chips(seenCars);
+  const vansHTML = chips(seenVans);
+  host.innerHTML = `
+    <div class=\"group-section\" data-group=\"cars\">
+      <div class=\"group-head\"><h3>Personenauto’s</h3></div>
+      <div class=\"badges\">${carsHTML || '<span class=\"mini\">Geen personenauto-modellen.</span>'}</div>
+    </div>
+    <div class=\"group-section\" data-group=\"vans\" style=\"margin-top:12px\">
+      <div class=\"group-head\"><h3>Bedrijfswagens</h3></div>
+      <div class=\"badges\">${vansHTML || '<span class=\"mini\">Geen bedrijfswagen-modellen.</span>'}</div>
+    </div>`;
+}
+renderModelButtons(rowsForGroup(groupSel));
+    // Breadcrumb structured data
+    setBreadcrumbLd(makeSlug, MAKE);
+    function currentYr(){
+      if (!many) return null;
+      const a=+document.getElementById('yrMin').value, b=+document.getElementById('yrMax').value;
+      return (a<=minY && b>=maxY) ? null : {from:Math.min(a,b), to:Math.max(a,b)};
+    }
+    function applyFilter(rows){
+      const sel = document.getElementById('f-model');
+      const wantModel = sel?.value || getModelSlugFromUrl();
+      const yr = currentYr();
+      return rows.filter(r=>{
+        const okModel = !wantModel || normModelSlug(r.model||'') === wantModel;
+        if (!okModel) return false;
+        return !yr || kitOverlaps(r, yr.from, yr.to);
+      });
+    }
+    function render(){
+      const filtered = applyFilter(ALL);
+      const groupsAll  = groupForDisplay(ALL);
+      const groupsThis = groupForDisplay(filtered);
+      // hero beeld
+      if (heroEl){
+        if (groupsThis.length){ applyImgWithFallback(heroEl, groupsThis[0].sku); heroEl.alt = `MAD hulpveren — ${MAKE}`; }
+        else { heroEl.onerror = null; heroEl.src = HERO_FALLBACK; }
+      }
+      // tellingen
+      const carsAll = groupForDisplay(ALL.filter(r=>groupKeyForRow(r)==='cars')).length;
+      const vansAll = groupForDisplay(ALL.filter(r=>groupKeyForRow(r)==='vans')).length;
+      const carsNow = groupForDisplay(filtered.filter(r=>groupKeyForRow(r)==='cars')).length;
+      const vansNow = groupForDisplay(filtered.filter(r=>groupKeyForRow(r)==='vans')).length;
+      const cnt = document.getElementById('resultCount');
+      if (cnt){
+        if (groupSel==='all') cnt.textContent = `Toont ${groupsThis.length} van ${groupsAll.length} sets • Personenauto’s: ${carsNow}/${carsAll} • Bedrijfswagens: ${vansNow}/${vansAll}`;
+        else if (groupSel==='cars') cnt.textContent = `Personenauto’s: ${carsNow} van ${carsAll} sets`;
+        else cnt.textContent = `Bedrijfswagens: ${vansNow} van ${vansAll} sets`;
+      }
+      // host render
+      if (!host) return;
+      if (!groupsThis.length){ host.innerHTML = `<div class="mini" style="padding:12px">Geen sets gevonden. Pas je filters aan.</div>`; return; }
+      if (groupSel==='all'){
+        const cars = groupForDisplay(filtered.filter(r=>groupKeyForRow(r)==='cars'));
+        const vans = groupForDisplay(filtered.filter(r=>groupKeyForRow(r)==='vans'));
+        let html = '';
+        if (cars.length){
+          html += `<div class="group-section" data-group="cars">
+            <div class="group-head"><h3>${GROUP_LABEL.cars}</h3><span class="count">${cars.length} sets</span></div>
+            <div class="grid-kits">${cars.map(cardHtml).join('')}</div>
+          </div>`;
+        }
+        if (cars.length && vans.length) html += '<hr class="sep">';
+        if (vans.length){
+          html += `<div class="group-section" data-group="vans">
+            <div class="group-head"><h3>${GROUP_LABEL.vans}</h3><span class="count">${vans.length} sets</span></div>
+            <div class="grid-kits">${vans.map(cardHtml).join('')}</div>
+          </div>`;
+        }
+        host.innerHTML = html || `<div class="mini" style="padding:12px">Geen sets in deze selectie.</div>`;
+      } else {
+        // enkele groep → enkel grid (rustiger layout)
+        host.innerHTML = `<div class="grid-kits">${groupsThis.map(cardHtml).join('')}</div>`;
+      }
+    }
+    // (Groep-toggle verwijderd — hero toont beide groepen permanent)
+    // Select & her-render
+    document.getElementById('f-model')?.addEventListener('change', render, {passive:true});
+    // Eerste render
+    render();
+    // Hover preview (optioneel)
+    (function setupHover(){
+      const pv=document.getElementById('imgPreview'); if(!pv) return; const im=pv.querySelector('img');
+      document.addEventListener('mouseover', e=>{ const t=e.target.closest?.('.pick .pic'); if(!t) return; im.src=t.getAttribute('src'); pv.style.display='block'; pv.style.left=(e.clientX+16)+'px'; pv.style.top=(e.clientY+16)+'px'; }, {passive:true});
+      document.addEventListener('mousemove', e=>{ if(pv.style.display!=='block') return; pv.style.left=(e.clientX+16)+'px'; pv.style.top=(e.clientY+16)+'px'; }, {passive:true});
+      document.addEventListener('mouseout', e=>{ if(e.target.closest?.('.pick .pic')) pv.style.display='none'; }, {passive:true});
+    })();
+  }
+  if (document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', init, {once:true});
+  } else {
+    init();
+  }
+})();
+ </script>

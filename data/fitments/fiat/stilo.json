@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "stilo",
+    "label": "Stilo"
+  },
+  "kits": [
+    {
+      "sku": "HV-051685",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011342.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 190.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "192"
+          ],
+          "remark": "Excl. Multiwagon",
+          "year_from": "10-2001",
+          "year_to": "11-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051698",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011359.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 280.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "192"
+          ],
+          "remark": "Only Multiwagon",
+          "year_from": "01-2003",
+          "year_to": "08-2008",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "make": {
+    "slug": "dodge",
+    "label": "DODGE"
+  },
+  "models": [
+    {
+      "slug": "mini-ram",
+      "label": "Mini Ram",
+      "kits_count": 2
+    }
+  ]
+}

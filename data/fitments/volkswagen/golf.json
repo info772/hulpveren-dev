@@ -1,0 +1,524 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "golf",
+    "label": "Golf"
+  },
+  "kits": [
+    {
+      "sku": "HV-173145",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013551.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 161.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "1J1",
+            "1J5"
+          ],
+          "remark": "Only 4Motion, Incl. Variant",
+          "year_from": "08-1997",
+          "year_to": "06-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-173158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013568.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 298.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI",
+            "AJ5"
+          ],
+          "remark": "Variant, Excl. Bluemotion",
+          "year_from": "07-2009",
+          "year_to": "07-2014",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "V",
+            "1K5"
+          ],
+          "remark": "Variant, Excl. Bluemotion",
+          "year_from": "01-2007",
+          "year_to": "07-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-192117",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013766.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 186.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "1H1"
+          ],
+          "remark": "Excl. Variant, Excl. 16V, Excl. GT(I), Excl. VR6",
+          "year_from": "10-1989",
+          "year_to": "07-1998",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "II",
+            "19E",
+            "1G1"
+          ],
+          "remark": "Excl. 16V, Excl. GT(I), Excl. VR6",
+          "year_from": "08-1983",
+          "year_to": "12-1992",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-192147",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947013780.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 172.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "1H5"
+          ],
+          "remark": "Variant",
+          "year_from": "07-1993",
+          "year_to": "12-1999",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-192171",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013797.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 380.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 599
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "1J1"
+          ],
+          "remark": "Excl. 4Motion, Excl. Variant",
+          "year_from": "08-1997",
+          "year_to": "06-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-192191",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013810.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 339.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 549
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "1J1",
+            "1J5"
+          ],
+          "remark": "Only 4Motion, Incl. Variant",
+          "year_from": "08-1997",
+          "year_to": "06-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-193118",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013827.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 239.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "1J1"
+          ],
+          "remark": "Excl. Variant, Excl. 4Motion",
+          "year_from": "08-1997",
+          "year_to": "06-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-193125",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013834.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 193.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "1J1"
+          ],
+          "remark": "Excl. Variant, Excl. 4Motion",
+          "year_from": "08-1997",
+          "year_to": "06-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-193138",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013841.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "1J5"
+          ],
+          "remark": "Variant",
+          "year_from": "05-1999",
+          "year_to": "06-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-193148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013858.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "1K1"
+          ],
+          "remark": "Excl. Variant, Excl. Bluemotion",
+          "year_from": "10-2003",
+          "year_to": "07-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-193181",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013896.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 518.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 809
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI",
+            "AJ5"
+          ],
+          "remark": "Variant, Excl. 4WD",
+          "year_from": "07-2009",
+          "year_to": "07-2013",
+          "notes": "Engine: 1.4 TSI 122pk A/T , 1.4 TSI 160pk, 1.6 TDI"
+        },
+        {
+          "platform_codes": [
+            "V",
+            "1K5"
+          ],
+          "remark": "Variant, Excl. 4WD",
+          "year_from": "01-2007",
+          "year_to": "07-2009",
+          "notes": "Engine: 1.9TDI, 2.0TD"
+        }
+      ]
+    },
+    {
+      "sku": "HV-193221",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947051348.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 518.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 809
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI",
+            "5K1"
+          ],
+          "remark": "Excl. 2.0 TDI 140pk auto",
+          "year_from": "10-2008",
+          "year_to": "12-2014",
+          "notes": "Engine: 1.4TSI 122pk, 1.4TSI 160pk, 2.0TDI 110pk, 2.0TDI 140pk, 1.6 TDI"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199515",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI",
+            "5K1",
+            "AJ5"
+          ],
+          "remark": "Incl. Variant, Incl. Bluemotion",
+          "year_from": "10-2008",
+          "year_to": "12-2014",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "V",
+            "1K1",
+            "1K5"
+          ],
+          "remark": "Incl. Variant, Incl. Bluemotion",
+          "year_from": "10-2003",
+          "year_to": "07-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199525",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067356.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VIII",
+            "CD1",
+            "CG5"
+          ],
+          "remark": "Incl. Variant",
+          "year_from": "07-2019",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "VII",
+            "5G1",
+            "BQ1",
+            "BE1",
+            "BE2",
+            "BA5",
+            "BV5"
+          ],
+          "remark": "Incl. Variant, Incl. e-Golf",
+          "year_from": "08-2012",
+          "year_to": "03-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199545",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072022.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 189.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VIII",
+            "CD1",
+            "CG5"
+          ],
+          "remark": "Maximum support, Incl. Variant, Excl. lowered suspension",
+          "year_from": "07-2019",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "VII",
+            "5G1",
+            "BQ1",
+            "BE1",
+            "BE2",
+            "BA5",
+            "BV5"
+          ],
+          "remark": "Maximum support, Incl. Variant, Incl. e-Golf, Excl. lowered suspension",
+          "year_from": "08-2012",
+          "year_to": "03-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

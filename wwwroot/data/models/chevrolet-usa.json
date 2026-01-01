@@ -1,0 +1,13 @@
+{
+  "make": {
+    "slug": "chevrolet-usa",
+    "label": "Chevrolet Usa"
+  },
+  "models": [
+    {
+      "slug": "lumina-mpv",
+      "label": "Lumina MPV",
+      "kits_count": 1
+    }
+  ]
+}

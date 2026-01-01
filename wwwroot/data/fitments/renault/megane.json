@@ -1,0 +1,204 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "model": {
+    "slug": "megane",
+    "label": "Megane"
+  },
+  "kits": [
+    {
+      "sku": "HV-140383",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947013186.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 248.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "JA0",
+            "1",
+            "KA0",
+            "1"
+          ],
+          "remark": "Scenic, Grandtour, Excl. 4WD",
+          "year_from": "10-1996",
+          "year_to": "08-2003",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140398",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013193.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 262.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "B9A",
+            "M",
+            "N"
+          ],
+          "remark": "Excl. Grandtour, Incl. GT Line Excl. GT",
+          "year_from": "11-2015",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "III",
+            "BZ0",
+            "1",
+            "B3",
+            "KZ0",
+            "1"
+          ],
+          "remark": "Incl. Grandtour GT and GT-line",
+          "year_from": "11-2008",
+          "year_to": "01-2016",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "II",
+            "BM0",
+            "1",
+            "CM0",
+            "1"
+          ],
+          "remark": "",
+          "year_from": "07-2001",
+          "year_to": "10-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140468",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013261.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 296.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 429
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "KZ0",
+            "1"
+          ],
+          "remark": "Basic support for Grandtour, Maximum support for sedan GT, GT-line",
+          "year_from": "11-2008",
+          "year_to": "04-2016",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140478",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013278.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 290.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 419
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "K9A",
+            "M",
+            "N"
+          ],
+          "remark": "Grandtour, Incl. GT Line, Excl. GT",
+          "year_from": "04-2016",
+          "year_to": "",
+          "notes": "Engine: Excl. E-Tech"
+        },
+        {
+          "platform_codes": [
+            "II",
+            "LM0",
+            "1",
+            "KM0",
+            "1"
+          ],
+          "remark": "Sedan, Grandtour",
+          "year_from": "08-2003",
+          "year_to": "08-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140738",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084933.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 241.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 429
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E-Tech (BNJ)"
+          ],
+          "remark": "E-Tech only",
+          "year_from": "11-2021",
+          "year_to": "",
+          "notes": "Engine: EV60, EV40"
+        }
+      ]
+    }
+  ]
+}

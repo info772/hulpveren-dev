@@ -1,0 +1,460 @@
+{
+  "make": {
+    "slug": "opel",
+    "label": "OPEL"
+  },
+  "model": {
+    "slug": "vivaro",
+    "label": "Vivaro"
+  },
+  "kits": [
+    {
+      "sku": "HV-148035",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013407.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 188.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B (X82)"
+          ],
+          "remark": "",
+          "year_from": "06-2014",
+          "year_to": "03-2019",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "A (X83)"
+          ],
+          "remark": "",
+          "year_from": "08-2001",
+          "year_to": "08-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148128",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013445.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 374.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B (X82)"
+          ],
+          "remark": "Maximum support, Min. load 650kg",
+          "year_from": "06-2014",
+          "year_to": "03-2019",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "A (X83)"
+          ],
+          "remark": "Maximum support, Min. load 650kg",
+          "year_from": "08-2001",
+          "year_to": "08-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067158.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 374.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B (X82)"
+          ],
+          "remark": "Medium support",
+          "year_from": "06-2014",
+          "year_to": "03-2019",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "A (X83)"
+          ],
+          "remark": "Medium support",
+          "year_from": "08-2001",
+          "year_to": "08-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072107.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 309.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 93.75,
+        "labor_ex_vat_max_eur": 93.75,
+        "total_inc_vat_from_eur": 489
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B (X82)"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "06-2014",
+          "year_to": "03-2019",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148161",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 604.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 131.25,
+        "labor_ex_vat_max_eur": 131.25,
+        "total_inc_vat_from_eur": 899
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B (X82)"
+          ],
+          "remark": "Reinforced Front/Rear springs",
+          "year_from": "06-2014",
+          "year_to": "03-2019",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368095",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074323.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (K0)"
+          ],
+          "remark": "Standard duty set, Incl. Life, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368105",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074330.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 194.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (K0)"
+          ],
+          "remark": "Medium support, Incl. Live, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368128",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081086.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 459.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 609
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (K0)"
+          ],
+          "remark": "Extreme duty set, Only max axle load 1800kg, Min. Load 500kg, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368138",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084773.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 367.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 589
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (K0)"
+          ],
+          "remark": "Reinforced Front Springs, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084490.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 502.75,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 659
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (K0)"
+          ],
+          "remark": "Maximum support, Only max axle load 1800kg, Min. Load 300kg, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084605.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 378.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 599
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (K0)"
+          ],
+          "remark": "Reinforced Front Springs, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368161",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084803.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 504.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 819
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (K0)"
+          ],
+          "remark": "Cross County set, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368171",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084810.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 567.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 899
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (K0)"
+          ],
+          "remark": "Cross County set, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368188",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947114500.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 550.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 739
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C",
+            "(K0)"
+          ],
+          "remark": "Maximum support, Min. load 500kg",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368198",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947114708.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 362.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 489
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (K0)"
+          ],
+          "remark": "Maximum support, Only max axle load 1500kg, Min Load 250kg, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    }
+  ]
+}

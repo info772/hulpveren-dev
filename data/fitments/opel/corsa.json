@@ -1,0 +1,189 @@
+{
+  "make": {
+    "slug": "opel",
+    "label": "OPEL"
+  },
+  "model": {
+    "slug": "corsa",
+    "label": "Corsa"
+  },
+  "kits": [
+    {
+      "sku": "HV-051705",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011366.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 181.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D (S07)"
+          ],
+          "remark": "",
+          "year_from": "07-2006",
+          "year_to": "12-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-123035",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947072138.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 181.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E (X15)"
+          ],
+          "remark": "",
+          "year_from": "09-2014",
+          "year_to": "07-2019",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124045",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012394.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 160.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 239
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B (S93)"
+          ],
+          "remark": "",
+          "year_from": "03-1993",
+          "year_to": "09-2000",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "A (S83)"
+          ],
+          "remark": "",
+          "year_from": "09-1982",
+          "year_to": "03-1993",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124135",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012479.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 184.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "C (X01)"
+          ],
+          "remark": "Excl. Sport suspension, Excl. Rough road package",
+          "year_from": "09-2000",
+          "year_to": "08-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133465",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080072.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 203.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "F (U)"
+          ],
+          "remark": "",
+          "year_from": "07-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric, Incl. mild hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133475",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080706.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 225.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "F (U)"
+          ],
+          "remark": "",
+          "year_from": "07-2019",
+          "year_to": "",
+          "notes": "Engine: Electric"
+        }
+      ]
+    }
+  ]
+}

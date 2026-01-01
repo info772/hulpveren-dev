@@ -1,0 +1,53 @@
+{
+  "make": {
+    "slug": "audi",
+    "label": "AUDI"
+  },
+  "models": [
+    {
+      "slug": "100",
+      "label": "100",
+      "kits_count": 2
+    },
+    {
+      "slug": "a3",
+      "label": "A3",
+      "kits_count": 5
+    },
+    {
+      "slug": "a4",
+      "label": "A4",
+      "kits_count": 5
+    },
+    {
+      "slug": "a5",
+      "label": "A5",
+      "kits_count": 2
+    },
+    {
+      "slug": "a6",
+      "label": "A6",
+      "kits_count": 5
+    },
+    {
+      "slug": "q2",
+      "label": "Q2",
+      "kits_count": 1
+    },
+    {
+      "slug": "q3",
+      "label": "Q3",
+      "kits_count": 2
+    },
+    {
+      "slug": "q4",
+      "label": "Q4",
+      "kits_count": 1
+    },
+    {
+      "slug": "q5",
+      "label": "Q5",
+      "kits_count": 1
+    }
+  ]
+}

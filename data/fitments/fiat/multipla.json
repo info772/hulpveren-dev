@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "multipla",
+    "label": "Multipla"
+  },
+  "kits": [
+    {
+      "sku": "HV-051625",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011311.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 181.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "186"
+          ],
+          "remark": "",
+          "year_from": "04-1999",
+          "year_to": "06-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

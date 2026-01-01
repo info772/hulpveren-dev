@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "chevrolet",
+    "label": "Chevrolet"
+  },
+  "model": {
+    "slug": "nexia",
+    "label": "Nexia"
+  },
+  "kits": [
+    {
+      "sku": "HV-223025",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947014237.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 160.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 239
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KLETN"
+          ],
+          "remark": "",
+          "year_from": "02-1995",
+          "year_to": "08-1997",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

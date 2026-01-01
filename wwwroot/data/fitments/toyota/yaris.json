@@ -1,0 +1,164 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "model": {
+    "slug": "yaris",
+    "label": "Yaris"
+  },
+  "kits": [
+    {
+      "sku": "HV-360265",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947014954.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 198.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "P2"
+          ],
+          "remark": "Verso",
+          "year_from": "11-1999",
+          "year_to": "09-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360325",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015029.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 201.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "P13",
+            "P15"
+          ],
+          "remark": "Incl. Hybrid",
+          "year_from": "12-2010",
+          "year_to": "07-2020",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "P9"
+          ],
+          "remark": "",
+          "year_from": "08-2005",
+          "year_to": "12-2011",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360401",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072008.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 339.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 549
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "P13"
+          ],
+          "remark": "Min. load 75kg",
+          "year_from": "10-2013",
+          "year_to": "07-2020",
+          "notes": "Engine: Excl.1.0"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360435",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083547.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 158.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 239
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "P21",
+            "PA1",
+            "PH1"
+          ],
+          "remark": "Excl. GR, Excl. Cross",
+          "year_from": "02-2020",
+          "year_to": "",
+          "notes": "Engine: Incl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360455",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084445.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 163.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "MXP"
+          ],
+          "remark": "Cross, Excl. 4WD",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "i10",
+    "label": "i10"
+  },
+  "kits": [
+    {
+      "sku": "HV-373205",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067417.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 173.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (BA",
+            "IA)"
+          ],
+          "remark": "",
+          "year_from": "08-2013",
+          "year_to": "01-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493205",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080089.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 152.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AC3"
+          ],
+          "remark": "",
+          "year_from": "09-2019",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

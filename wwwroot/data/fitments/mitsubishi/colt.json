@@ -1,0 +1,126 @@
+{
+  "make": {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi"
+  },
+  "model": {
+    "slug": "colt",
+    "label": "Colt"
+  },
+  "kits": [
+    {
+      "sku": "HV-101207",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012028.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 152.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V (CJ_",
+            "CP_)"
+          ],
+          "remark": "",
+          "year_from": "09-1995",
+          "year_to": "09-2003",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-101717",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012035.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 160.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (C5_A)"
+          ],
+          "remark": "",
+          "year_from": "10-1986",
+          "year_to": "05-1992",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-101975",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012158.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 188.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI (Z2_A",
+            "Z3_A)"
+          ],
+          "remark": "Excl. CZT en Ralliart",
+          "year_from": "10-2002",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140695",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947080164.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 161.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VB"
+          ],
+          "remark": "",
+          "year_from": "09-2023",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

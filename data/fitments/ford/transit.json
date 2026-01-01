@@ -1,0 +1,400 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "model": {
+    "slug": "transit",
+    "label": "Transit"
+  },
+  "kits": [
+    {
+      "sku": "HV-068100",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011748.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 592.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 789
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "260",
+            "280",
+            "300 (FA)"
+          ],
+          "remark": "Maximum support, FWD and RWD, Min. Load  250Kg, Incl. Chassis Cabine (Model '00-'13)",
+          "year_from": "01-2000",
+          "year_to": "12-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068140",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011762.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 557.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 749
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "260",
+            "280",
+            "300",
+            "330",
+            "350 (FA)"
+          ],
+          "remark": "FWD and RWD Excl. Chassis Cab",
+          "year_from": "01-2000",
+          "year_to": "12-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068210",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071025.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 454.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 619
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "310",
+            "330",
+            "350 (V363)"
+          ],
+          "remark": "RWD, 4WD, Excl. Twin Rear Wheel, Incl. Chassis Cabine",
+          "year_from": "08-2013",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068250",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071018.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 454.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 599
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "310",
+            "330",
+            "350 (V363)"
+          ],
+          "remark": "FWD, Van 330 / 350, Chassis Cabine 310 / 330 / 350, Excl. Raised axle",
+          "year_from": "08-2013",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068260",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073036.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 355.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 479
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "290",
+            "310 (V363)"
+          ],
+          "remark": "FWD, Excl. Chassis cab",
+          "year_from": "08-2013",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068280",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074842.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 649.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 879
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "350",
+            "470",
+            "500 (V363)"
+          ],
+          "remark": "RWD, Only Twin Rear Wheel, Incl. Chassis Cabine, Excl. Raised axle",
+          "year_from": "08-2013",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068290",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074378.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 504.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 679
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "310",
+            "330",
+            "350 (V363)"
+          ],
+          "remark": "Maximum support, RWD, 4WD, Min. load 400kg, Excl. Twin Rear Wheel, Incl. Chassis Cabine",
+          "year_from": "08-2013",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068300",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074385.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 541.75,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 709
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "310",
+            "330",
+            "350 (V363)"
+          ],
+          "remark": "Maximum support, FWD, min. load 400kg, Incl. Chassis Cabine",
+          "year_from": "08-2013",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068310",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074392.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 391.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 519
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "290",
+            "310 (V363)"
+          ],
+          "remark": "Maximum support, FWD, min. load 400kg, Excl. Chassis cab, Excl. Raised axle",
+          "year_from": "08-2013",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068328",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075207.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 531.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 919
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "310",
+            "330",
+            "350 (V363)"
+          ],
+          "remark": "Reinforced Front Springs, FWD, Excl. 430 / 470, Incl. Chassis Cabine",
+          "year_from": "08-2013",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068355",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947114593.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 357.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 529
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V363",
+            "FCD",
+            "FDD"
+          ],
+          "remark": "Maximum support, Excl. L2, Incl. Chassis Cabine",
+          "year_from": "03-2022",
+          "year_to": "",
+          "notes": "Engine: Only e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068368",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084872.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 469.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 300.0,
+        "labor_ex_vat_max_eur": 300.0,
+        "total_inc_vat_from_eur": 939
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V363"
+          ],
+          "remark": "Reinforced Front Springs, RWD, 4WD, Incl. Twin Rear Wheel, Incl. Chassis Cabine",
+          "year_from": "08-2013",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Transit"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068375",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084902.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 341.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 489
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V363",
+            "FCD",
+            "FDD"
+          ],
+          "remark": "Incl. Chassis Cabine",
+          "year_from": "03-2022",
+          "year_to": "",
+          "notes": "Engine: Only e-Transit"
+        }
+      ]
+    }
+  ]
+}

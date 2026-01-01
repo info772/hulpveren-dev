@@ -1,0 +1,70 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "model": {
+    "slug": "camry",
+    "label": "Camry"
+  },
+  "kits": [
+    {
+      "sku": "HV-360187",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947014879.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 201.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V1"
+          ],
+          "remark": "",
+          "year_from": "07-1990",
+          "year_to": "06-1998",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360445",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083615.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 164.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V7",
+            "VA7",
+            "VH7"
+          ],
+          "remark": "",
+          "year_from": "06-2017",
+          "year_to": "",
+          "notes": "Engine: Incl. Hybrid"
+        }
+      ]
+    }
+  ]
+}

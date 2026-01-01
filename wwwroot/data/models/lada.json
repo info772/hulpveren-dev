@@ -1,0 +1,33 @@
+{
+  "make": {
+    "slug": "lada",
+    "label": "LADA"
+  },
+  "models": [
+    {
+      "slug": "110-111-112",
+      "label": "110, 111, 112",
+      "kits_count": 1
+    },
+    {
+      "slug": "diva",
+      "label": "Diva",
+      "kits_count": 1
+    },
+    {
+      "slug": "granta",
+      "label": "Granta",
+      "kits_count": 1
+    },
+    {
+      "slug": "priora",
+      "label": "Priora",
+      "kits_count": 1
+    },
+    {
+      "slug": "samara",
+      "label": "Samara",
+      "kits_count": 1
+    }
+  ]
+}

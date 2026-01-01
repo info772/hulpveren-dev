@@ -1,0 +1,99 @@
+{
+  "make": {
+    "slug": "man",
+    "label": "MAN"
+  },
+  "model": {
+    "slug": "tge",
+    "label": "TGE"
+  },
+  "kits": [
+    {
+      "sku": "HV-198250",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075153.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 531.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 719
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "UY",
+            "UZ"
+          ],
+          "remark": "FWD, RWD, 4WD, Incl. eTGE, Excl. Twin rear wheels, Incl. Chassis Cabine (excl. eTGE & Flat frame)",
+          "year_from": "11-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198268",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075283.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 543.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 799
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "UY",
+            "UZ"
+          ],
+          "remark": "Reinforced front Springs, incl. 4WD, Incl. Chassis Cabine",
+          "year_from": "11-2016",
+          "year_to": "",
+          "notes": "Engine: All Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198280",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947077386.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 657.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 869
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "UY",
+            "UZ"
+          ],
+          "remark": "RWD, Twin rear wheels, Incl. Chassis Cabine",
+          "year_from": "11-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

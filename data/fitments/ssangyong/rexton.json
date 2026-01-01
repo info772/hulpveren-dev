@@ -1,0 +1,98 @@
+{
+  "make": {
+    "slug": "ssangyong",
+    "label": "Ssangyong"
+  },
+  "model": {
+    "slug": "rexton",
+    "label": "Rexton"
+  },
+  "kits": [
+    {
+      "sku": "HV-234155",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014398.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 193.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "GAB",
+            "W"
+          ],
+          "remark": "Excl. XVT, Min. load 150 Kg",
+          "year_from": "04-2002",
+          "year_to": "07-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-234168",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014404.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 423.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "GAB",
+            "W"
+          ],
+          "remark": "XVT, Only Multilink axle",
+          "year_from": "03-2007",
+          "year_to": "07-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-234178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947077416.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 347.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 519
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "Y400"
+          ],
+          "remark": "Only Multilink axle",
+          "year_from": "07-2017",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "model": {
+    "slug": "corolla",
+    "label": "Corolla"
+  },
+  "kits": [
+    {
+      "sku": "HV-360197",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947014886.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 172.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E11"
+          ],
+          "remark": "",
+          "year_from": "06-1995",
+          "year_to": "06-2002",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "E10"
+          ],
+          "remark": "Incl. Wagon",
+          "year_from": "09-1991",
+          "year_to": "11-1999",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360227",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947014916.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 158.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E9"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "05-1987",
+          "year_to": "09-1995",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360258",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947014947.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 306.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 469
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E11"
+          ],
+          "remark": "Wagon, Excl. 4WD",
+          "year_from": "04-1997",
+          "year_to": "10-2001",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360288",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014985.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 277.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E12"
+          ],
+          "remark": "Incl. Wagon",
+          "year_from": "01-2001",
+          "year_to": "12-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360425",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947079847.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 181.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E21"
+          ],
+          "remark": "Incl. Touring Sports, Sedan, Hatchback, Excl. 4WD",
+          "year_from": "10-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360475",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084896.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "ZVG1",
+            "ZSG1",
+            "MXGH1",
+            "MXGA1"
+          ],
+          "remark": "Cross, Only Multilink, incl. 4WD",
+          "year_from": "07-2020",
+          "year_to": "",
+          "notes": "Engine: 2.0, Incl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-360485",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TÜV",
+      "ean": "8717947116122.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "ZVG1",
+            "ZSG1",
+            "MXGH1",
+            "MXGA1"
+          ],
+          "remark": "Cross, Only Compound axle",
+          "year_from": "07-2020",
+          "year_to": "",
+          "notes": "Engine: 1.8, Incl. Hybrid"
+        }
+      ]
+    }
+  ]
+}

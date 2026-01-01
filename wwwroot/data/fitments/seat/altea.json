@@ -1,0 +1,70 @@
+{
+  "make": {
+    "slug": "seat",
+    "label": "SEAT"
+  },
+  "model": {
+    "slug": "altea",
+    "label": "Altea"
+  },
+  "kits": [
+    {
+      "sku": "HV-193148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013858.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "5P5",
+            "5P8"
+          ],
+          "remark": "Incl. XL, Excl. Freetrack, Excl. Ecomotive",
+          "year_from": "03-2004",
+          "year_to": "09-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199515",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "5P5",
+            "5P8"
+          ],
+          "remark": "Incl. XL, Incl. Ecomotive",
+          "year_from": "03-2004",
+          "year_to": "09-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

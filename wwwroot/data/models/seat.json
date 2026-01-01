@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "seat",
+    "label": "SEAT"
+  },
+  "models": [
+    {
+      "slug": "alhambra",
+      "label": "Alhambra",
+      "kits_count": 1
+    },
+    {
+      "slug": "altea",
+      "label": "Altea",
+      "kits_count": 2
+    },
+    {
+      "slug": "arona",
+      "label": "Arona",
+      "kits_count": 1
+    },
+    {
+      "slug": "arosa",
+      "label": "Arosa",
+      "kits_count": 1
+    },
+    {
+      "slug": "ateca",
+      "label": "Ateca",
+      "kits_count": 2
+    },
+    {
+      "slug": "cordoba",
+      "label": "Cordoba",
+      "kits_count": 2
+    },
+    {
+      "slug": "exeo",
+      "label": "Exeo",
+      "kits_count": 1
+    },
+    {
+      "slug": "ibiza",
+      "label": "Ibiza",
+      "kits_count": 5
+    },
+    {
+      "slug": "leon",
+      "label": "Leon",
+      "kits_count": 4
+    },
+    {
+      "slug": "mii",
+      "label": "Mii",
+      "kits_count": 1
+    },
+    {
+      "slug": "tarraco",
+      "label": "Tarraco",
+      "kits_count": 2
+    },
+    {
+      "slug": "toledo",
+      "label": "Toledo",
+      "kits_count": 4
+    }
+  ]
+}

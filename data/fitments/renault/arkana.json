@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "model": {
+    "slug": "arkana",
+    "label": "Arkana"
+  },
+  "kits": [
+    {
+      "sku": "HV-140715",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947083851.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 214.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "LCM"
+          ],
+          "remark": "",
+          "year_from": "08-2019",
+          "year_to": "",
+          "notes": "Engine: E-Tech hybrid, EDC Hybrid"
+        }
+      ]
+    }
+  ]
+}

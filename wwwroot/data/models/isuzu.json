@@ -1,0 +1,13 @@
+{
+  "make": {
+    "slug": "isuzu",
+    "label": "ISUZU"
+  },
+  "models": [
+    {
+      "slug": "d-max",
+      "label": "D-max",
+      "kits_count": 6
+    }
+  ]
+}

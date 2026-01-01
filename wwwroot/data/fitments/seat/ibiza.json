@@ -1,0 +1,163 @@
+{
+  "make": {
+    "slug": "seat",
+    "label": "SEAT"
+  },
+  "model": {
+    "slug": "ibiza",
+    "label": "Ibiza"
+  },
+  "kits": [
+    {
+      "sku": "HV-182008",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013582.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 225.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 369
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "6K1"
+          ],
+          "remark": "",
+          "year_from": "03-1993",
+          "year_to": "05-2002",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-182028",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013599.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 244.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "6L1"
+          ],
+          "remark": "Excl. Ecomotive",
+          "year_from": "02-2002",
+          "year_to": "11-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-182038",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013605.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 178.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "6J5",
+            "6J8",
+            "6P1",
+            "6P8"
+          ],
+          "remark": "Incl. ST, Only Ecomotive",
+          "year_from": "03-2008",
+          "year_to": "06-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-182045",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075269.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 189.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "KJ1"
+          ],
+          "remark": "Incl. FR",
+          "year_from": "01-2017",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-191015",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947051942.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "6J5",
+            "6J8",
+            "6P1",
+            "6P8"
+          ],
+          "remark": "Incl. ST, Incl. Ecomotive",
+          "year_from": "03-2008",
+          "year_to": "06-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

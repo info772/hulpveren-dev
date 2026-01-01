@@ -1,0 +1,69 @@
+{
+  "make": {
+    "slug": "suzuki",
+    "label": "Suzuki"
+  },
+  "model": {
+    "slug": "baleno",
+    "label": "Baleno"
+  },
+  "kits": [
+    {
+      "sku": "HV-391105",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074910.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 148.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 229
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "FW",
+            "EW"
+          ],
+          "remark": "",
+          "year_from": "02-2016",
+          "year_to": "",
+          "notes": "Engine: Incl Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-392077",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947015630.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 196.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "EG"
+          ],
+          "remark": "Wagon, Only 1.8",
+          "year_from": "04-1995",
+          "year_to": "05-2002",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

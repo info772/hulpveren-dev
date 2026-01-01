@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "mazda",
+    "label": "MAZDA"
+  },
+  "model": {
+    "slug": "mx-30",
+    "label": "MX-30"
+  },
+  "kits": [
+    {
+      "sku": "HV-381005",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081024.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 253.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 379
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "DR"
+          ],
+          "remark": "",
+          "year_from": "05-2020",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

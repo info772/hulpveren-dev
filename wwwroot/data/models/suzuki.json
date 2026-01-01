@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "suzuki",
+    "label": "Suzuki"
+  },
+  "models": [
+    {
+      "slug": "across",
+      "label": "Across",
+      "kits_count": 2
+    },
+    {
+      "slug": "baleno",
+      "label": "Baleno",
+      "kits_count": 2
+    },
+    {
+      "slug": "grand-vitara",
+      "label": "Grand Vitara",
+      "kits_count": 4
+    },
+    {
+      "slug": "ignis",
+      "label": "Ignis",
+      "kits_count": 4
+    },
+    {
+      "slug": "jimny",
+      "label": "Jimny",
+      "kits_count": 5
+    },
+    {
+      "slug": "splash",
+      "label": "Splash",
+      "kits_count": 1
+    },
+    {
+      "slug": "swace",
+      "label": "Swace",
+      "kits_count": 1
+    },
+    {
+      "slug": "swift",
+      "label": "Swift",
+      "kits_count": 5
+    },
+    {
+      "slug": "sx4",
+      "label": "SX4",
+      "kits_count": 3
+    },
+    {
+      "slug": "sx4-s-cross",
+      "label": "SX4 S-Cross",
+      "kits_count": 3
+    },
+    {
+      "slug": "vitara",
+      "label": "Vitara",
+      "kits_count": 5
+    },
+    {
+      "slug": "wagon-r",
+      "label": "Wagon R+",
+      "kits_count": 1
+    }
+  ]
+}

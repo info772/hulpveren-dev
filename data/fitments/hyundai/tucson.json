@@ -1,0 +1,97 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "tucson",
+    "label": "Tucson"
+  },
+  "kits": [
+    {
+      "sku": "HV-491108",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083523.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 259.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "NX4E"
+          ],
+          "remark": "2WD, 4WD",
+          "year_from": "11-2020",
+          "year_to": "",
+          "notes": "Engine: Incl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493135",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072411.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "TL",
+            "TLE"
+          ],
+          "remark": "2WD, 4WD",
+          "year_from": "05-2015",
+          "year_to": "11-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-494028",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947016057.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 349.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 519
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "JM"
+          ],
+          "remark": "2WD, 4WD",
+          "year_from": "08-2004",
+          "year_to": "11-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

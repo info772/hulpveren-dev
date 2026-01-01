@@ -1,0 +1,41 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "500l",
+    "label": "500L"
+  },
+  "kits": [
+    {
+      "sku": "HV-051875",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072183.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 170.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "351",
+            "352"
+          ],
+          "remark": "Incl. Trekking, Incl. Living (does raise 20-25mm)",
+          "year_from": "09-2012",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

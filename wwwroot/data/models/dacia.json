@@ -1,0 +1,43 @@
+{
+  "make": {
+    "slug": "dacia",
+    "label": "DACIA"
+  },
+  "models": [
+    {
+      "slug": "bigster",
+      "label": "Bigster",
+      "kits_count": 1
+    },
+    {
+      "slug": "dokker",
+      "label": "Dokker",
+      "kits_count": 2
+    },
+    {
+      "slug": "duster",
+      "label": "Duster",
+      "kits_count": 8
+    },
+    {
+      "slug": "jogger",
+      "label": "Jogger",
+      "kits_count": 1
+    },
+    {
+      "slug": "lodgy",
+      "label": "Lodgy",
+      "kits_count": 1
+    },
+    {
+      "slug": "logan",
+      "label": "Logan",
+      "kits_count": 3
+    },
+    {
+      "slug": "sandero",
+      "label": "Sandero",
+      "kits_count": 2
+    }
+  ]
+}

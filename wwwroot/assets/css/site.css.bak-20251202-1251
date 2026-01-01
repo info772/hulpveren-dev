@@ -1,0 +1,570 @@
+/* /assets/css/site.css  — gebaseerd op oude hulpveren/LLS styles (dark) */
+
+:root{
+  /* OLD: Lowland Suspension / hulpveren dark tokens */
+  --bg:#0b0c10;
+  --surface:#121217;
+  --panel:#111216;
+  --elev:#16181f;
+
+  --border:#2a2a33;
+  --line:rgba(255,255,255,.10);
+
+  --text:#e6e8f0;
+  --muted:#aab1c3;
+
+  /* Accent (oude site) */
+  --accent:#FAB819;
+
+  /* MAD link / focus kleuren (oude tool snippet) */
+  --mad:#0068B5;
+  --mad-hover:#1da0ff;
+  --mad-rgb:0,104,181;
+  --mad-active:#79c4ff;
+
+  --radius:14px;
+  --radius-sm:10px;
+  --maxw:1200px;
+}
+
+*{ box-sizing:border-box }
+html,body{ height:100% }
+html,body{
+  height:100%;
+}
+
+/* Alleen hier de paarse gloed, vast in de rechterbovenhoek */
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Cantarell,Arial;
+  -webkit-tap-highlight-color:transparent;
+
+  /* basis donker */
+  background-color:#050509;
+
+  /* paarse glow rechtsboven + wat blauw eronder */
+  background-image:
+    radial-gradient(circle at 100% 0%, #ff30ff 0, rgba(255,48,255,0) 45%), /* paars */
+    radial-gradient(circle at 85% 0%, #1a2bff 0, rgba(26,43,255,0) 50%);  /* blauw */
+  background-repeat:no-repeat;
+  /* background-attachment:fixed;    mag je weghalen als je geen parallax wilt */
+}
+
+
+/* Static pages erven gewoon dezelfde achtergrond, geen extra image */
+body[data-page]{
+  background:inherit;
+}
+
+
+.logo-img{
+  display:block;
+  height:42px;
+  width:auto;
+}
+
+h1,h2,h3{ color:var(--text); margin:0.6em 0 }
+p,li,small{ color:var(--text) }
+a{ color:inherit; text-decoration:none }
+
+/* ===== Links (oude override) ===== */
+:where(body) a,
+:where(body) a:visited{
+  color:var(--mad) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(255,255,255,.25);
+}
+:where(body) a:hover,
+:where(body) a:focus,
+:where(body) a:focus-visible{
+  color: var(--mad-hover) !important;
+  text-decoration-color: currentColor;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(var(--mad-rgb), .35);
+  border-radius: 4px;
+}
+:where(body) a:active{ color: var(--mad-active) !important; }
+:where(body) a[aria-disabled="true"], :where(body) a.disabled{
+  color: var(--muted) !important;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+/* ===== Header (past op je HTML: .topbar .logo .nav) ===== */
+<header class="topbar">
+  <a href="/" class="logo">
+    <img src="/img/branding/Logo-wit.png"
+         alt="Hulpveren.shop"
+         class="logo-img">
+  </a>
+
+  <nav class="nav">
+    <a href="/hulpveren">Alle merken</a>
+    <a href="/data">Data</a>
+  </nav>
+</header>
+
+
+./* ===== Header / topbar ===== */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(5,6,10,0.75);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  backdrop-filter:saturate(1.2) blur(10px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:clamp(14px,2vw,24px) clamp(16px,4vw,32px);
+}
+
+.topbar .logo{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none !important;
+  color:var(--text) !important;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+.topbar .logo-img{
+  display:block;
+  height:42px;
+  width:auto;
+}
+
+.topbar .nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.topbar .nav a{
+  color:var(--text) !important;
+  text-decoration:none !important;
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid transparent;
+}
+
+.topbar .nav a:hover{
+  border-color:var(--line);
+  text-decoration:underline !important;
+}
+
+.logo-mark{
+  display:inline-block;
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  background-image:url("/img/branding/bg-hulpveren-gradient.png");
+  background-size:180%;
+  background-position:center;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 40px rgba(0,0,0,.55);
+}
+.topbar .logo-text{
+  font-size:1.05rem;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+.topbar .nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.topbar .nav a{
+  color:var(--text) !important;
+  text-decoration:none !important;
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid transparent;
+}
+.topbar .nav a:hover{
+  border-color:var(--line);
+  text-decoration:underline !important;
+}
+
+/* ===== Main wrapper (past op #app + .wrap) ===== */
+.app{
+  max-width:var(--maxw);
+  margin:auto;
+  padding: clamp(14px,2vw,20px);
+}
+
+/* ==== Glas/transparant effect ==== */
+.wrap{
+  background:rgba(17,18,22,0.80);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+}
+
+/* crumbs zoals oude pages */
+.crumbs{
+  color:var(--muted);
+  font-size:13px;
+  margin: 0 0 10px;
+}
+.crumbs a{
+  color:var(--mad) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ===== Grid / Cards (oude look) ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:14px;
+  margin:14px 0;
+}
+
+.card{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(10,11,15,0.85);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+a.card{
+  cursor:pointer;
+  text-decoration:none !important;
+}
+a.card:hover{
+  border-color: rgba(250,184,25,.45);
+  background: linear-gradient(180deg, rgba(250,184,25,.08), rgba(0,0,0,0));
+}
+
+.card .t{
+  padding:12px 12px 0;
+  font-weight:800;
+  letter-spacing:-.1px;
+}
+.card .s{
+  padding:8px 12px 12px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* prijs-pill (oude badge/pill vibe) */
+.card .p{
+  margin: 0 12px 12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid var(--line);
+  padding: 6px 10px;
+  border-radius:999px;
+  color: var(--accent);
+  background: rgba(250,184,25,.12);
+  font-weight:800;
+}
+
+/* ===== Buttons (oude anchor-buttons) ===== */
+a.btn, a.btn:visited{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:var(--accent);
+  color:#1a1a1a !important;
+  padding:10px 12px;
+  border-radius:12px;
+  font-weight:800;
+  text-decoration:none !important;
+  border:0;
+}
+a.btn:hover, a.btn:focus-visible{
+  filter:brightness(1.05);
+  box-shadow:0 0 0 .2rem rgba(250,184,25,.25);
+}
+a.btn-alt, a.btn-alt:visited{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:transparent;
+  color:var(--text) !important;
+  border:1px solid var(--line);
+  padding:10px 12px;
+  border-radius:12px;
+  font-weight:700;
+  text-decoration:none !important;
+}
+a.btn-alt:hover, a.btn-alt:focus-visible{
+  border-color:var(--mad);
+  background:rgba(var(--mad-rgb), .12);
+}
+
+/* ===== Tables / forms (oude) ===== */
+table{
+  width:100%;
+  border-collapse:collapse;
+  border:1px solid var(--border);
+}
+th,td{
+  padding:12px 14px;
+  border-bottom:1px solid var(--border);
+  color:var(--text);
+}
+tbody tr:nth-child(odd){ background:rgba(255,255,255,.02); }
+
+.form input,.form select,.form textarea{
+  background:#0d0f12;
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:10px;
+}
+.form input:focus,.form select:focus,.form textarea:focus{
+  outline:none;
+  border-color:var(--mad);
+  box-shadow:0 0 0 3px rgba(var(--mad-rgb), .35);
+}
+
+/* ===== Loading (simpel, zonder shimmer) ===== */
+.loading{
+  border:1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  color: var(--muted);
+  background: rgba(255,255,255,.02);
+}
+
+/* ===== Footer ===== */
+.footer{
+  max-width:var(--maxw);
+  margin: 0 auto;
+  padding: 14px 20px 24px;
+  color: var(--muted);
+}
+
+
+/* ===== Legacy static pages (data-page attr) ===== */
+body[data-page]{
+  background:var(--bg);
+  background-image:url("/img/branding/bg-hulpveren-gradient.png");
+  background-repeat:no-repeat;
+  background-position:top center;
+  background-size:1600px auto;
+  background-attachment:fixed;
+}
+body[data-page] .wrap{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:clamp(16px,3vw,28px);
+  background:transparent;
+  border:0;
+  border-radius:0;
+}
+body[data-page] header.top{
+  border-bottom:1px solid var(--line);
+  margin:0;
+  padding:0;
+  background:var(--surface);
+}
+body[data-page] header.top > .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+body[data-page] header.top .brand{
+  font-weight:900;
+  letter-spacing:.2px;
+  color:var(--text);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+body[data-page] header.top .brand img{ height:42px; }
+body[data-page] header.top .nav{
+  display:flex;
+  gap:14px;
+  color:var(--muted);
+}
+body[data-page] header.top .nav a{
+  color:var(--muted) !important;
+  text-decoration:none;
+}
+body[data-page] main.wrap{
+  min-height:auto;
+}
+body[data-page] footer.foot{
+  border-top:1px solid var(--line);
+  margin-top:clamp(24px,4vw,40px);
+}
+body[data-page] footer.foot .wrap{
+  padding-top:clamp(12px,2vw,18px);
+}
+body[data-page] .wrap.small{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 720px){
+  header.topbar{ padding:12px }
+  .wrap{ padding:16px }
+  .grid{ grid-template-columns:minmax(280px,1fr); gap:10px }
+  h1{ font-size:clamp(16px,5vw,22px) }
+  .topbar .nav{ gap:8px }
+}
+
+/* ===== FIX: tekst afbreken op mobiel (uit je oude snippet) ===== */
+.wrap p,
+.wrap li,
+.card p,
+.card li{
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+/* ===== Product cards (zoals voorbeeld) ===== */
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px;margin:14px 0}
+@media (max-width:720px){ .grid{grid-template-columns:minmax(280px,1fr);gap:10px} }
+
+.card.product{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(10,11,15,0.85);
+  border-radius:18px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height: 560px;
+}
+
+.card.product .img{
+  position:relative;
+  aspect-ratio: 4/3;
+  background:#0d0f14;
+}
+.card.product .img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.card.product .img.error{
+  background:repeating-linear-gradient(45deg,#0d0f14,#0d0f14 12px,#101521 12px,#101521 24px);
+}
+.card.product .img.error::after{
+  content:'Afbeelding ontbreekt of geblokkeerd';
+  position:absolute; inset:auto 10px 10px 10px;
+  background:#0d0f14cc; border:1px dashed var(--line);
+  color:#ffe; padding:8px 10px; border-radius:12px; font-size:12px;
+}
+
+.card.product .badge{
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  background:var(--accent);
+  color:#1a1a1a;
+  font-weight:900;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:15px;
+}
+
+.card.product .body{ padding:14px 14px 12px; display:flex; flex-direction:column; gap:10px; }
+.card.product .sku{
+  font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-weight:800;
+  letter-spacing:.2px;
+  color: #4cc3ff; /* lijkt op je oude blauwaccent */
+}
+
+/* Rows zoals links/rechts */
+.card.product .meta{
+  display:grid;
+  grid-template-columns: 140px 1fr;
+  gap:6px 12px;
+  align-items:start;
+}
+.card.product .meta .k{ color:var(--muted); }
+.card.product .meta .v{ color:var(--text); }
+
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.chip{
+  display:inline-flex;gap:8px;align-items:center;
+  border:1px solid var(--line);
+  background:#0d0f14;
+  color:var(--text);
+  padding:6px 10px;
+  border-radius:999px;
+  user-select:none;
+  white-space:nowrap;
+}
+.chip.support{
+  border-color: rgba(250,184,25,.7);
+  background: rgba(250,184,25,.12);
+  color: var(--accent);
+  font-weight:800;
+}
+.chip.ok{
+  border-color:#3ad29f;
+  background:rgba(58,210,159,.14);
+  color:#baf5e2;
+}
+.chip.danger{
+  border-color:#ff6b6b;
+  background:rgba(255,107,107,.14);
+  color:#ffd6d6;
+}
+
+/* Motoren-box */
+.enginebox{
+  align-self:flex-start;
+  border:1px solid #3ad29f;
+  background:rgba(58,210,159,.14);
+  color:#baf5e2;
+  border-radius:14px;
+  padding:10px 12px;
+}
+.enginebox b{display:block;font-size:13px;color:#9ff1d6;margin-bottom:6px}
+.enginebox .lst{display:flex;flex-direction:column;gap:2px}
+
+/* Bottom pills */
+.pillrow{display:flex;gap:8px;flex-wrap:wrap;opacity:.95}
+.pill{
+  display:inline-flex; align-items:center; gap:6px;
+  border:1px solid var(--line);
+  padding:3px 10px;
+  border-radius:999px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* CTA row */
+.cta-row{margin-top:auto;display:flex;gap:10px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:14px;
+  padding:12px 14px;
+  font-weight:900;
+  border:1px solid transparent;
+  text-decoration:none !important;
+}
+.btn.primary{ background:var(--accent); color:#1a1a1a !important; }
+.btn.ghost{ background:transparent; border-color:var(--line); color:var(--text) !important; }
+.btn:hover{ filter:brightness(1.03); }

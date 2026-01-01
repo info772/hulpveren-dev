@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "mazda",
+    "label": "MAZDA"
+  },
+  "models": [
+    {
+      "slug": "121",
+      "label": "121",
+      "kits_count": 1
+    },
+    {
+      "slug": "2",
+      "label": "2",
+      "kits_count": 3
+    },
+    {
+      "slug": "3",
+      "label": "3",
+      "kits_count": 2
+    },
+    {
+      "slug": "5",
+      "label": "5",
+      "kits_count": 1
+    },
+    {
+      "slug": "6",
+      "label": "6",
+      "kits_count": 2
+    },
+    {
+      "slug": "626",
+      "label": "626",
+      "kits_count": 1
+    },
+    {
+      "slug": "bt-50",
+      "label": "BT-50",
+      "kits_count": 5
+    },
+    {
+      "slug": "cx-30",
+      "label": "CX-30",
+      "kits_count": 1
+    },
+    {
+      "slug": "cx-5",
+      "label": "CX-5",
+      "kits_count": 1
+    },
+    {
+      "slug": "cx-60",
+      "label": "CX-60",
+      "kits_count": 1
+    },
+    {
+      "slug": "cx3",
+      "label": "CX3",
+      "kits_count": 1
+    },
+    {
+      "slug": "mx-30",
+      "label": "MX-30",
+      "kits_count": 1
+    }
+  ]
+}

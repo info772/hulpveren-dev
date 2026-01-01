@@ -1,0 +1,156 @@
+{
+  "make": {
+    "slug": "suzuki",
+    "label": "Suzuki"
+  },
+  "model": {
+    "slug": "vitara",
+    "label": "Vitara"
+  },
+  "kits": [
+    {
+      "sku": "HV-391075",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947068421.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 173.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "LY"
+          ],
+          "remark": "2WD & 4WD",
+          "year_from": "02-2015",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-391081",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947068704.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 437.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 719
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "LY"
+          ],
+          "remark": "2WD & 4WD",
+          "year_from": "02-2015",
+          "year_to": "",
+          "notes": "Engine: Petrol, Mild Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-391091",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947068711.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 479.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 769
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "LY"
+          ],
+          "remark": "2WD & 4WD",
+          "year_from": "02-2015",
+          "year_to": "",
+          "notes": "Engine: Diesel, Petrol Full Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-393000",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015678.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 219.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "ET",
+            "TA",
+            "TD"
+          ],
+          "remark": "",
+          "year_from": "07-1988",
+          "year_to": "12-1998",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-393051",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015722.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 489.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 869
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "ET",
+            "TA",
+            "TD"
+          ],
+          "remark": "",
+          "year_from": "07-1988",
+          "year_to": "12-1998",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

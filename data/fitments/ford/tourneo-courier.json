@@ -1,0 +1,180 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "model": {
+    "slug": "tourneo-courier",
+    "label": "Tourneo Courier"
+  },
+  "kits": [
+    {
+      "sku": "HV-066008",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947119437.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 220.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V769 (N1P)"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "07-2023",
+          "year_to": "",
+          "notes": "Engine: All, Excl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-066018",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947119444.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 235.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V769 (N1P)"
+          ],
+          "remark": "Standard support",
+          "year_from": "07-2023",
+          "year_to": "",
+          "notes": "Engine: All, Excl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-066028",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947119451.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 240.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V769 (N1P)"
+          ],
+          "remark": "Maximum support, Min. preload 100kg",
+          "year_from": "07-2023",
+          "year_to": "",
+          "notes": "Engine: All, Excl. EV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068228",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947070936.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 258.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B460"
+          ],
+          "remark": "",
+          "year_from": "02-2014",
+          "year_to": "12-2023",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068238",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947070943.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 233.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 379
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B460"
+          ],
+          "remark": "Reinforced Front Springs (+25%)",
+          "year_from": "02-2014",
+          "year_to": "12-2023",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068241",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947070950.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 431.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 659
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B460"
+          ],
+          "remark": "",
+          "year_from": "02-2014",
+          "year_to": "12-2023",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

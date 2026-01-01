@@ -1,0 +1,180 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "talento",
+    "label": "Talento"
+  },
+  "kits": [
+    {
+      "sku": "HV-138000",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012974.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 272.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 379
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "290"
+          ],
+          "remark": "",
+          "year_from": "03-1989",
+          "year_to": "03-1994",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148035",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013407.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 188.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "296"
+          ],
+          "remark": "",
+          "year_from": "06-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148128",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013445.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 374.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "296"
+          ],
+          "remark": "Maximum support, Min. load 650kg",
+          "year_from": "06-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067158.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 374.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "296"
+          ],
+          "remark": "Medium support",
+          "year_from": "06-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072107.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 309.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 93.75,
+        "labor_ex_vat_max_eur": 93.75,
+        "total_inc_vat_from_eur": 489
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "296"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "06-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148161",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 604.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 131.25,
+        "labor_ex_vat_max_eur": 131.25,
+        "total_inc_vat_from_eur": 899
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "296"
+          ],
+          "remark": "Reinforced Front/Rear springs",
+          "year_from": "06-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

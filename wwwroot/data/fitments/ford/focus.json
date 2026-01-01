@@ -1,0 +1,212 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "model": {
+    "slug": "focus",
+    "label": "Focus"
+  },
+  "kits": [
+    {
+      "sku": "HV-062135",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011489.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 179.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I"
+          ],
+          "remark": "Excl. Wagon",
+          "year_from": "09-1998",
+          "year_to": "03-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-062195",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011533.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 171.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "DA",
+            "DB"
+          ],
+          "remark": "Excl. Wagon",
+          "year_from": "07-2004",
+          "year_to": "09-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-062208",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011540.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 293.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "DA",
+            "DB"
+          ],
+          "remark": "Wagon, Excl. Sportsuspension",
+          "year_from": "07-2004",
+          "year_to": "09-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-062265",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947061651.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 172.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III"
+          ],
+          "remark": "Excl. Wagon, Sedan",
+          "year_from": "07-2010",
+          "year_to": "08-2018",
+          "notes": "Engine: Incl electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-062288",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947061866.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 384.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 559
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III"
+          ],
+          "remark": "Wagon",
+          "year_from": "07-2010",
+          "year_to": "08-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-063918",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947079090.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 256.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 379
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (HP)"
+          ],
+          "remark": "Wagon, Incl. ST-line, Excl. ST, Excl. Active",
+          "year_from": "09-2018",
+          "year_to": "11-2025",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-063925",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947078505.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 165.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (HN)"
+          ],
+          "remark": "Excl. Wagon, Only compound axle",
+          "year_from": "01-2018",
+          "year_to": "11-2025",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

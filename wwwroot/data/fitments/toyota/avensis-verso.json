@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "model": {
+    "slug": "avensis-verso",
+    "label": "Avensis Verso"
+  },
+  "kits": [
+    {
+      "sku": "HV-360305",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015005.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 175.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "M2"
+          ],
+          "remark": "",
+          "year_from": "08-2001",
+          "year_to": "11-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

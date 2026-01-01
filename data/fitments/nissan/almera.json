@@ -1,0 +1,90 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "almera",
+    "label": "Almera"
+  },
+  "kits": [
+    {
+      "sku": "HV-310307",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947014503.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 163.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "N16"
+          ],
+          "remark": "",
+          "year_from": "01-2000",
+          "year_to": "11-2006",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "I",
+            "N15"
+          ],
+          "remark": "",
+          "year_from": "07-1995",
+          "year_to": "07-2000",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-310317",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014510.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 165.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "N16"
+          ],
+          "remark": "Sedan only",
+          "year_from": "07-2000",
+          "year_to": "11-2006",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "I",
+            "N15"
+          ],
+          "remark": "Sedan only",
+          "year_from": "07-1995",
+          "year_to": "07-2000",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

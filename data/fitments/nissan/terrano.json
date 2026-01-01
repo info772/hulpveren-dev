@@ -1,0 +1,41 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "terrano",
+    "label": "Terrano"
+  },
+  "kits": [
+    {
+      "sku": "HV-314235",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947014657.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 205.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "R20"
+          ],
+          "remark": "Incl. Van, SWB and LWB",
+          "year_from": "02-1993",
+          "year_to": "09-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

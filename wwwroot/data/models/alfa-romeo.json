@@ -1,0 +1,23 @@
+{
+  "make": {
+    "slug": "alfa-romeo",
+    "label": "Alfa Romeo"
+  },
+  "models": [
+    {
+      "slug": "156",
+      "label": "156",
+      "kits_count": 2
+    },
+    {
+      "slug": "166",
+      "label": "166",
+      "kits_count": 1
+    },
+    {
+      "slug": "junior",
+      "label": "Junior",
+      "kits_count": 1
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<%- include("../partials/header") %>
+
+<div class="panel">
+  <h2><%= isEdit ? "Redirect bewerken" : "Redirect toevoegen" %></h2>
+  <form method="post" action="<%= isEdit ? `/admin/redirects/${redirect.id}` : "/admin/redirects" %>">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <div class="form-row">
+      <div>
+        <label for="fromPath">Van</label>
+        <input id="fromPath" name="fromPath" value="<%= redirect.fromPath || "" %>" required />
+      </div>
+      <div>
+        <label for="toPath">Naar</label>
+        <input id="toPath" name="toPath" value="<%= redirect.toPath || "" %>" required />
+      </div>
+      <div>
+        <label for="code">Code</label>
+        <select id="code" name="code">
+          <option value="301" <%= Number(redirect.code || 301) === 301 ? "selected" : "" %>>301</option>
+          <option value="302" <%= Number(redirect.code || 301) === 302 ? "selected" : "" %>>302</option>
+        </select>
+      </div>
+      <div>
+        <label for="enabled">Enabled</label>
+        <select id="enabled" name="enabled">
+          <option value="1" <%= redirect.enabled ? "selected" : "" %>>Ja</option>
+          <option value="0" <%= redirect.enabled ? "" : "selected" %>>Nee</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit"><%= isEdit ? "Opslaan" : "Aanmaken" %></button>
+    <a href="/admin/redirects" class="button secondary">Terug</a>
+  </form>
+</div>
+
+<%- include("../partials/footer") %>

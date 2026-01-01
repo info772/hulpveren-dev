@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kentekenkeuze | Hulpveren.shop</title>
+  <meta
+    name="description"
+    content="Kies op basis van je kenteken of je hulpveren, luchtvering of verlagingsveren wilt bekijken."
+  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.hulpveren.shop/kenteken/" />
+
+  <link rel="icon" href="/img/branding/APR-Favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
+
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="stylesheet" href="/assets/css/plate.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Hulpveren.shop">
+        <img class="brand-logo" src="/img/branding/Logo-wit.png" alt="Hulpveren.shop" loading="lazy" decoding="async" />
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open navigatie">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" aria-label="Hoofdmenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item nav-item-mega" data-family="hv">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD hulpveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-hv" class="mega-list" aria-label="Merken hulpveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item nav-item-mega" data-family="nr">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Luchtvering</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-nr" class="mega-list" aria-label="Merken luchtvering"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item nav-item-mega" data-family="ls">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Verlagingsveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-ls" class="mega-list" aria-label="Merken verlagingsveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="/montage">Montage</a></li>
+          <li class="nav-item"><a class="nav-link" href="/onze-ervaring">Onze ervaring</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="section-header">
+        <p class="eyebrow">Kentekencheck</p>
+        <h1>Kies je productgroep</h1>
+        <p id="kenteken-vehicle" class="lead"></p>
+        <p id="kenteken-status" class="muted"></p>
+      </div>
+
+      <div id="kenteken-tiles" class="grid cards-3" style="display: none;">
+        <article class="card product">
+          <div class="body">
+            <span class="eyebrow">MAD hulpveren</span>
+            <h2>Hulpveren</h2>
+            <p>Bekijk de beschikbare hulpveren die passen bij jouw voertuig.</p>
+            <div class="cta-row">
+              <a id="kenteken-link-hv" class="btn" href="#">Bekijk hulpveren</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product">
+          <div class="body">
+            <span class="eyebrow">MAD luchtvering</span>
+            <h2>Luchtvering</h2>
+            <p>Bekijk de beschikbare luchtvering en hulpluchtvering sets.</p>
+            <div class="cta-row">
+              <a id="kenteken-link-nr" class="btn" href="#">Bekijk luchtvering</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product">
+          <div class="body">
+            <span class="eyebrow">MAD verlagingsveren</span>
+            <h2>Verlagingsveren</h2>
+            <p>Bekijk de verlagingsveren die passen bij jouw uitvoering.</p>
+            <div class="cta-row">
+              <a id="kenteken-link-ls" class="btn" href="#">Bekijk verlagingsveren</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="section-header">
+        <p class="eyebrow">Opnieuw zoeken</p>
+        <h2>Voer je kenteken opnieuw in</h2>
+        <p class="muted">Hoofdletters en leestekens maken niet uit.</p>
+      </div>
+      <div id="kenteken"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <section class="footer-block">
+        <p class="eyebrow">Hulpveren.shop</p>
+        <h2>Veilig rijden met de juiste set</h2>
+        <p>Wij bouwen dagelijks MAD hulpveren, luchtvering en verlagingsveren in. Altijd inclusief montage, uitlijning en eerlijk advies.</p>
+        <div class="footer-cta">
+          <a class="btn" href="/hulpveren">Bekijk hulpveren</a>
+          <a class="btn btn-ghost" href="/montage">Plan montage</a>
+        </div>
+        <ul class="footer-list">
+          <li>Gecertificeerde monteurs</li>
+          <li>Persoonlijk advies per kenteken</li>
+          <li>Snelle beschikbaarheid uit voorraad</li>
+        </ul>
+      </section>
+
+      <section class="footer-block">
+        <p class="eyebrow">Kies je merk</p>
+        <div id="hv-footer-brands" class="taglist" aria-live="polite"></div>
+        <a class="footer-link" href="/hulpveren">Alle merken</a>
+      </section>
+
+      <section class="footer-block">
+        <p class="eyebrow">Populaire modellen</p>
+        <p id="hv-footer-models-label" class="footer-muted">We tonen modellen die passen bij de huidige pagina.</p>
+        <div id="hv-footer-models" class="taglist" aria-labelledby="hv-footer-models-label"></div>
+      </section>
+
+      <section class="footer-block">
+        <p class="eyebrow">Contact</p>
+        <ul class="footer-list">
+          <li><strong>Auto Parts Roosendaal</strong></li>
+          <li>Westelijke Havendijk 17c</li>
+          <li>4703 RA Roosendaal</li>
+          <li>Bel: <a href="tel:+31165856568">0165 856568</a></li>
+          <li>WhatsApp: <a href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">Direct advies</a></li>
+          <li>Mail: <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a></li>
+          <li>Ma-Vr 10:00-18:00</li>
+          <li>Za 10:00-12:00</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="footer-bottom">
+      <p> <span id="hv-footer-year"></span> Hulpveren.shop MAD specialist sinds 2008</p>
+      <div class="footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/algemene-voorwaarden">Algemene voorwaarden</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/assets/js/header.js?v=20251215_1"></script>
+  <script defer src="/assets/js/app.js?v=20251212c"></script>
+  <script src="/assets/js/plate.js"></script>
+  <script>
+    (function () {
+      const statusEl = document.getElementById("kenteken-status");
+      const vehicleEl = document.getElementById("kenteken-vehicle");
+      const tilesEl = document.getElementById("kenteken-tiles");
+      const linkHv = document.getElementById("kenteken-link-hv");
+      const linkNr = document.getElementById("kenteken-link-nr");
+      const linkLs = document.getElementById("kenteken-link-ls");
+
+      const slugify = (value) =>
+        String(value || "")
+          .trim()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .replace(/&/g, " and ")
+          .replace(/#/g, "")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+
+      const normalizePlate = (value) =>
+        String(value || "")
+          .trim()
+          .toUpperCase()
+          .replace(/[^A-Z0-9]/g, "");
+
+      const readSelection = () => {
+        let vehicle = null;
+        try {
+          const raw = localStorage.getItem("hv_vehicle_selected");
+          vehicle = raw ? JSON.parse(raw) : null;
+        } catch (err) {
+          vehicle = null;
+        }
+        const plate = localStorage.getItem("hv_plate") || "";
+        return { vehicle, plate };
+      };
+
+      const readRouteSlugs = () => {
+        let makeSlug = "";
+        let modelSlug = "";
+        try {
+          makeSlug = localStorage.getItem("hv_plate_make_slug") || "";
+        } catch (err) {
+          makeSlug = "";
+        }
+        try {
+          modelSlug = localStorage.getItem("hv_plate_model_slug") || "";
+        } catch (err) {
+          modelSlug = "";
+        }
+        return { makeSlug, modelSlug };
+      };
+
+      const updateTiles = (selection) => {
+        const vehicle = selection && selection.vehicle ? selection.vehicle : null;
+        const plateRaw = selection && selection.plate ? selection.plate : "";
+        const make = vehicle ? vehicle.make || vehicle.makename : "";
+        const model = vehicle ? vehicle.model || vehicle.modelname : "";
+        const fallbackMakeSlug = slugify(make);
+        const fallbackModelSlug = slugify(model);
+        const storedSlugs = readRouteSlugs();
+        const makeSlug = storedSlugs.makeSlug || fallbackMakeSlug;
+        const modelSlug = storedSlugs.modelSlug || fallbackModelSlug;
+        const plate = normalizePlate(plateRaw);
+        const plateSlug = plate.toLowerCase();
+
+        if (!makeSlug || !modelSlug || !plateSlug) {
+          if (tilesEl) tilesEl.style.display = "none";
+          if (vehicleEl) vehicleEl.textContent = "";
+          if (statusEl) {
+            statusEl.textContent = "Geen kenteken gevonden. Voer hierboven opnieuw in.";
+          }
+          return;
+        }
+
+        const label = [make, model].filter(Boolean).join(" ");
+        if (vehicleEl) {
+          vehicleEl.textContent = `Gevonden voertuig: ${label} (${plate})`;
+        }
+        if (statusEl) statusEl.textContent = "Kies hieronder wat je wilt bekijken.";
+        if (tilesEl) tilesEl.style.display = "";
+
+        const hvUrl = `/hulpveren/${makeSlug}/${modelSlug}/kt_${plateSlug}`;
+        const nrUrl = `/luchtvering/${makeSlug}/${modelSlug}/kt_${plateSlug}`;
+        const lsUrl = `/verlagingsveren/${makeSlug}/${modelSlug}/kt_${plateSlug}`;
+        if (linkHv) linkHv.href = hvUrl;
+        if (linkNr) linkNr.href = nrUrl;
+        if (linkLs) linkLs.href = lsUrl;
+      };
+
+      updateTiles(readSelection());
+
+      window.addEventListener("hv:vehicleSelected", (event) => {
+        const detail = event && event.detail ? event.detail : {};
+        updateTiles({ vehicle: detail.vehicle, plate: detail.plate });
+      });
+
+      window.addEventListener("hv:plateRouteResolved", (event) => {
+        const detail = event && event.detail ? event.detail : {};
+        updateTiles({ vehicle: detail.vehicle, plate: detail.plate });
+      });
+    })();
+  </script>
+</body>
+</html>

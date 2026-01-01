@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "punto",
+    "label": "Punto"
+  },
+  "kits": [
+    {
+      "sku": "HV-051518",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947011281.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 253.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 359
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "188"
+          ],
+          "remark": "",
+          "year_from": "09-1999",
+          "year_to": "03-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051705",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011366.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 181.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "199"
+          ],
+          "remark": "",
+          "year_from": "06-2005",
+          "year_to": "07-2019",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

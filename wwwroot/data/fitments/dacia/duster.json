@@ -1,0 +1,246 @@
+{
+  "make": {
+    "slug": "dacia",
+    "label": "DACIA"
+  },
+  "model": {
+    "slug": "duster",
+    "label": "Duster"
+  },
+  "kits": [
+    {
+      "sku": "HV-140558",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947058576.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 290.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "HS"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "01-2010",
+          "year_to": "10-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140568",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947061736.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 290.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "HM"
+          ],
+          "remark": "Only 4WD",
+          "year_from": "10-2017",
+          "year_to": "11-2023",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "HS"
+          ],
+          "remark": "Only 4WD",
+          "year_from": "04-2010",
+          "year_to": "10-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140571",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947061897.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 420.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "HS"
+          ],
+          "remark": "Cross Country, Only 4WD",
+          "year_from": "04-2010",
+          "year_to": "10-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140621",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071919.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 431.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 659
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "HS"
+          ],
+          "remark": "Maximum support Cross Country, Only 4WD, Min. Load 150KG",
+          "year_from": "04-2010",
+          "year_to": "01-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140648",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947077454.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 319.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 439
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "HM"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "10-2017",
+          "year_to": "11-2023",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140651",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947077461.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 518.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 769
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "HM"
+          ],
+          "remark": "Cross Country, Excl. 4WD",
+          "year_from": "10-2017",
+          "year_to": "11-2023",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140661",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947077362.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 431.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 709
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "HM"
+          ],
+          "remark": "Cross Country, Only 4WD",
+          "year_from": "10-2017",
+          "year_to": "11-2023",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140695",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947080164.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 161.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "PYM",
+            "PYN"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "11-2023",
+          "year_to": "",
+          "notes": "Engine: Incl. Hybrid"
+        }
+      ]
+    }
+  ]
+}

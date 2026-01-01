@@ -1,0 +1,113 @@
+{
+  "make": {
+    "slug": "opel",
+    "label": "OPEL"
+  },
+  "models": [
+    {
+      "slug": "agila",
+      "label": "Agila",
+      "kits_count": 2
+    },
+    {
+      "slug": "antara",
+      "label": "Antara",
+      "kits_count": 1
+    },
+    {
+      "slug": "astra",
+      "label": "Astra",
+      "kits_count": 10
+    },
+    {
+      "slug": "combo",
+      "label": "Combo",
+      "kits_count": 20
+    },
+    {
+      "slug": "corsa",
+      "label": "Corsa",
+      "kits_count": 6
+    },
+    {
+      "slug": "crossland-x",
+      "label": "Crossland X",
+      "kits_count": 1
+    },
+    {
+      "slug": "frontera",
+      "label": "Frontera",
+      "kits_count": 1
+    },
+    {
+      "slug": "grandland-x",
+      "label": "Grandland X",
+      "kits_count": 1
+    },
+    {
+      "slug": "insignia",
+      "label": "Insignia",
+      "kits_count": 3
+    },
+    {
+      "slug": "kadett",
+      "label": "Kadett",
+      "kits_count": 1
+    },
+    {
+      "slug": "meriva",
+      "label": "Meriva",
+      "kits_count": 1
+    },
+    {
+      "slug": "mokka-mokka-x",
+      "label": "Mokka / Mokka X",
+      "kits_count": 2
+    },
+    {
+      "slug": "movano",
+      "label": "Movano",
+      "kits_count": 10
+    },
+    {
+      "slug": "movano-al-ko",
+      "label": "Movano + AL-KO",
+      "kits_count": 6
+    },
+    {
+      "slug": "omega",
+      "label": "Omega",
+      "kits_count": 2
+    },
+    {
+      "slug": "senator",
+      "label": "Senator",
+      "kits_count": 1
+    },
+    {
+      "slug": "signum",
+      "label": "Signum",
+      "kits_count": 1
+    },
+    {
+      "slug": "vectra",
+      "label": "Vectra",
+      "kits_count": 4
+    },
+    {
+      "slug": "vivaro",
+      "label": "Vivaro",
+      "kits_count": 15
+    },
+    {
+      "slug": "zafira",
+      "label": "Zafira",
+      "kits_count": 3
+    },
+    {
+      "slug": "zafira-life",
+      "label": "Zafira Life",
+      "kits_count": 6
+    }
+  ]
+}

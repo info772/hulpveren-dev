@@ -1,0 +1,161 @@
+{
+  "make": {
+    "slug": "mazda",
+    "label": "MAZDA"
+  },
+  "model": {
+    "slug": "bt-50",
+    "label": "BT-50"
+  },
+  "kits": [
+    {
+      "sku": "HV-064230",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947067493.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 399.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 529
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B22",
+            "B32",
+            "UP",
+            "UR"
+          ],
+          "remark": "",
+          "year_from": "11-2011",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067455.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 333.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B22",
+            "B32",
+            "UP",
+            "UR"
+          ],
+          "remark": "Reinforced Front Springs, Excl. 2WD, Excl. Single Cab",
+          "year_from": "11-2011",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-064251",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081109.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 679.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 959
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B22",
+            "B32",
+            "UP",
+            "UR"
+          ],
+          "remark": "Only Diesel, Excl. 2WD, Excl. Single Cab",
+          "year_from": "11-2011",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-070078",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947068063.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 397.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 619
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (TF)"
+          ],
+          "remark": "Reinforced Front Springs, RWD, 4WD",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-070091",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081475.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 759.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 1109
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (TF)"
+          ],
+          "remark": "RWD, 4WD",
+          "year_from": "06-2020",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

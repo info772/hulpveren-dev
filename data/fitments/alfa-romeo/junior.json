@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "alfa-romeo",
+    "label": "Alfa Romeo"
+  },
+  "model": {
+    "slug": "junior",
+    "label": "Junior"
+  },
+  "kits": [
+    {
+      "sku": "HV-133488",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081406.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 209.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "626 (FH1)"
+          ],
+          "remark": "Only for FWD with a torsionbeam rear axle, Excl. 4WD (Q4), Excl. Electric",
+          "year_from": "04-2024",
+          "year_to": "",
+          "notes": "Engine: MHEV 1.2 Turbo (136pk) Ibrida"
+        }
+      ]
+    }
+  ]
+}

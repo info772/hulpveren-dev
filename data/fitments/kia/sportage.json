@@ -1,0 +1,182 @@
+{
+  "make": {
+    "slug": "kia",
+    "label": "KIA"
+  },
+  "model": {
+    "slug": "sportage",
+    "label": "Sportage"
+  },
+  "kits": [
+    {
+      "sku": "HV-373148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015371.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 278.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 429
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (SL)"
+          ],
+          "remark": "Excl. AWD",
+          "year_from": "09-2009",
+          "year_to": "12-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-373178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947061439.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 278.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 429
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (SL)"
+          ],
+          "remark": "AWD",
+          "year_from": "09-2009",
+          "year_to": "12-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-374105",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015401.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 158.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "K00"
+          ],
+          "remark": "",
+          "year_from": "04-1994",
+          "year_to": "04-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-491108",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083523.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 259.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V (NQ5)"
+          ],
+          "remark": "2WD, 4WD",
+          "year_from": "09-2021",
+          "year_to": "",
+          "notes": "Engine: Incl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493135",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072411.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (QL",
+            "QLE)"
+          ],
+          "remark": "2WD, 4WD",
+          "year_from": "09-2015",
+          "year_to": "09-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-494028",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947016057.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 349.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 519
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (JE",
+            "KM)"
+          ],
+          "remark": "2WD, 4WD",
+          "year_from": "09-2004",
+          "year_to": "12-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

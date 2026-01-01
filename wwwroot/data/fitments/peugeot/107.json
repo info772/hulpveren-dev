@@ -1,0 +1,41 @@
+{
+  "make": {
+    "slug": "peugeot",
+    "label": "Peugeot"
+  },
+  "model": {
+    "slug": "107",
+    "label": "107"
+  },
+  "kits": [
+    {
+      "sku": "HV-360115",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947014800.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 188.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "PM",
+            "PN"
+          ],
+          "remark": "",
+          "year_from": "06-2005",
+          "year_to": "05-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "make": {
+    "slug": "mercedes-benz",
+    "label": "Mercedes Benz"
+  },
+  "models": [
+    {
+      "slug": "b-class",
+      "label": "B-Class",
+      "kits_count": 1
+    },
+    {
+      "slug": "c-class",
+      "label": "C-Class",
+      "kits_count": 1
+    },
+    {
+      "slug": "citan",
+      "label": "Citan",
+      "kits_count": 13
+    },
+    {
+      "slug": "e-class",
+      "label": "E-Class",
+      "kits_count": 1
+    },
+    {
+      "slug": "eqv",
+      "label": "EQV",
+      "kits_count": 7
+    },
+    {
+      "slug": "sprinter",
+      "label": "Sprinter",
+      "kits_count": 15
+    },
+    {
+      "slug": "v-class",
+      "label": "V-Class",
+      "kits_count": 7
+    },
+    {
+      "slug": "viano",
+      "label": "Viano",
+      "kits_count": 1
+    },
+    {
+      "slug": "vito",
+      "label": "Vito",
+      "kits_count": 10
+    },
+    {
+      "slug": "vito-tourer",
+      "label": "Vito Tourer",
+      "kits_count": 6
+    },
+    {
+      "slug": "x-class",
+      "label": "X-Class",
+      "kits_count": 6
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "make": {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi"
+  },
+  "model": {
+    "slug": "pajero-pinin",
+    "label": "Pajero Pinin"
+  },
+  "kits": [
+    {
+      "sku": "HV-104248P",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012271.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 240.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "H6",
+            "H7"
+          ],
+          "remark": "",
+          "year_from": "03-2000",
+          "year_to": "03-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

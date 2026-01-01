@@ -1,0 +1,303 @@
+{
+  "make": {
+    "slug": "skoda",
+    "label": "SKODA"
+  },
+  "model": {
+    "slug": "superb",
+    "label": "Superb"
+  },
+  "kits": [
+    {
+      "sku": "HV-173158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013568.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 298.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "3T4",
+            "3T5"
+          ],
+          "remark": "Incl. Combi, Excl. Greenline, Excl. 4WD",
+          "year_from": "03-2008",
+          "year_to": "05-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-173208",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081291.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 224.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "3V3",
+            "3V5"
+          ],
+          "remark": "Reinforced Front Springs, Incl. Combi, Excl. Scout, Excl. lowered suspension",
+          "year_from": "03-2015",
+          "year_to": "06-2024",
+          "notes": "Engine: 1.4 TSI, 1.5TSI"
+        }
+      ]
+    },
+    {
+      "sku": "HV-173218",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081307.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 224.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "3V3",
+            "3V5"
+          ],
+          "remark": "Reinforced Front Springs, Incl. Combi, Excl. Scout, Excl. lowered suspension",
+          "year_from": "03-2015",
+          "year_to": "06-2024",
+          "notes": "Engine: 2.0TSI, 2.0TDI"
+        }
+      ]
+    },
+    {
+      "sku": "HV-173221",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081314.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 368.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 659
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "3V3",
+            "3V5"
+          ],
+          "remark": "Incl. Combi, Cross Country, Excl. Scout, Excl. lowered suspension",
+          "year_from": "03-2015",
+          "year_to": "06-2024",
+          "notes": "Engine: 1.4 TSI, 1.5TSI"
+        }
+      ]
+    },
+    {
+      "sku": "HV-173231",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081321.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 368.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 659
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "3V3",
+            "3V5"
+          ],
+          "remark": "Incl. Combi, Cross Country, Excl. Scout, Excl. lowered suspension",
+          "year_from": "03-2015",
+          "year_to": "06-2024",
+          "notes": "Engine: 2.0 TSI, 2.0TDI"
+        }
+      ]
+    },
+    {
+      "sku": "HV-190855",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013674.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 179.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "3U4"
+          ],
+          "remark": "",
+          "year_from": "12-2001",
+          "year_to": "03-2008",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199515",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "3T4",
+            "3T5"
+          ],
+          "remark": "Incl. Combi, Incl. Greenline",
+          "year_from": "03-2008",
+          "year_to": "05-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199525",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067356.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "NZ3",
+            "NZ5"
+          ],
+          "remark": "Incl. Combi",
+          "year_from": "11-2023",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "III",
+            "3V3",
+            "3V5"
+          ],
+          "remark": "Incl. Combi, Incl. Scout",
+          "year_from": "03-2015",
+          "year_to": "06-2024",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199545",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072022.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 189.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "NZ3",
+            "NZ5"
+          ],
+          "remark": "Maximum support, Incl. Combi, Excl. lowered suspension",
+          "year_from": "11-2023",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "III",
+            "3V3",
+            "3V5"
+          ],
+          "remark": "Maximum support, Incl. Combi, Incl. Scout, Excl. lowered suspension",
+          "year_from": "03-2015",
+          "year_to": "06-2024",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

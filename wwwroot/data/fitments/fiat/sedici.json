@@ -1,0 +1,96 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "sedici",
+    "label": "Sedici"
+  },
+  "kits": [
+    {
+      "sku": "HV-391045",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015593.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 196.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "189"
+          ],
+          "remark": "Incl. 4WD",
+          "year_from": "06-2006",
+          "year_to": "10-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-391051",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947058385.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 403.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "189"
+          ],
+          "remark": "Only 4wd , Excl. Diesel",
+          "year_from": "06-2006",
+          "year_to": "10-2014",
+          "notes": "Engine: Petrol"
+        }
+      ]
+    },
+    {
+      "sku": "HV-391061",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947061965.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 454.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 739
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "189"
+          ],
+          "remark": "Only 4wd",
+          "year_from": "06-2006",
+          "year_to": "10-2014",
+          "notes": "Engine: Diesel"
+        }
+      ]
+    }
+  ]
+}

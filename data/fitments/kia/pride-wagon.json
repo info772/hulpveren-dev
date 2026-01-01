@@ -1,0 +1,38 @@
+{
+  "make": {
+    "slug": "kia",
+    "label": "KIA"
+  },
+  "model": {
+    "slug": "pride-wagon",
+    "label": "Pride Wagon"
+  },
+  "kits": [
+    {
+      "sku": "HV-371008",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015203.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 249.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [],
+          "remark": "Only Wagon",
+          "year_from": "08-1998",
+          "year_to": "05-2001",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "make": {
+    "slug": "opel",
+    "label": "OPEL"
+  },
+  "model": {
+    "slug": "astra",
+    "label": "Astra"
+  },
+  "kits": [
+    {
+      "sku": "HV-124055",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012400.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 160.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 239
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "F",
+            "T92"
+          ],
+          "remark": "",
+          "year_from": "09-1991",
+          "year_to": "09-1998",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124095",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012431.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 169.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "G",
+            "T98"
+          ],
+          "remark": "Excl. OPC",
+          "year_from": "03-1998",
+          "year_to": "12-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124105",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012448.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 160.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 239
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "F",
+            "T92"
+          ],
+          "remark": "Caravan",
+          "year_from": "10-1991",
+          "year_to": "02-1998",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124115",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012455.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 169.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "G",
+            "T98"
+          ],
+          "remark": "Caravan",
+          "year_from": "02-1998",
+          "year_to": "12-2009",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124185",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012523.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 169.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "H",
+            "A04"
+          ],
+          "remark": "Incl. Caravan, Cars with Niveau Leveller, Excl. IDS-Plus",
+          "year_from": "01-2004",
+          "year_to": "05-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124205",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012547.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 169.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "H",
+            "A04"
+          ],
+          "remark": "Incl. Caravan, Excl. Niveau Leveller, Excl. IDS-Plus",
+          "year_from": "01-2004",
+          "year_to": "05-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124265",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947055346.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 175.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "J",
+            "P10"
+          ],
+          "remark": "Incl. Sports tourer, Excl. Flexride,  Excl. Sports",
+          "year_from": "09-2009",
+          "year_to": "10-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-124305",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074521.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 170.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "K",
+            "B16"
+          ],
+          "remark": "Incl. Sports tourer, Excl. GTC",
+          "year_from": "06-2015",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-132095",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947119482.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 149.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "L",
+            "OV5"
+          ],
+          "remark": "Incl. Sports tourer, Incl. GS",
+          "year_from": "03-2023",
+          "year_to": "",
+          "notes": "Engine: Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133505",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084339.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "L",
+            "O5"
+          ],
+          "remark": "Incl. Sports tourer",
+          "year_from": "10-2021",
+          "year_to": "",
+          "notes": "Engine: Incl. Hybrid Excl. Electric"
+        }
+      ]
+    }
+  ]
+}

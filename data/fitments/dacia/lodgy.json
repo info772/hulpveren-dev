@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "dacia",
+    "label": "DACIA"
+  },
+  "model": {
+    "slug": "lodgy",
+    "label": "Lodgy"
+  },
+  "kits": [
+    {
+      "sku": "HV-140585",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947066670.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "JS"
+          ],
+          "remark": "",
+          "year_from": "03-2012",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

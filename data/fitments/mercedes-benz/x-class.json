@@ -1,0 +1,180 @@
+{
+  "make": {
+    "slug": "mercedes-benz",
+    "label": "Mercedes Benz"
+  },
+  "model": {
+    "slug": "x-class",
+    "label": "X-Class"
+  },
+  "kits": [
+    {
+      "sku": "HV-314325",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074354.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 233.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "470"
+          ],
+          "remark": "Excl. vehicles with raised chassis",
+          "year_from": "09-2017",
+          "year_to": "05-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314338",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074651.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 464.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 629
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "470"
+          ],
+          "remark": "Medium support, Excl. vehicles with raised chassis",
+          "year_from": "09-2017",
+          "year_to": "05-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314348",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074446.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 372.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 589
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "470"
+          ],
+          "remark": "Reinforced front springs, Excl. vehicles with raised chassis, Excl. X350d",
+          "year_from": "09-2017",
+          "year_to": "05-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314351",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074439.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 570.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 829
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "470"
+          ],
+          "remark": "Excl. vehicles with raised chassis, Auxiliary spring rear",
+          "year_from": "09-2017",
+          "year_to": "05-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314361",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074644.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 719.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 1009
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "470"
+          ],
+          "remark": "Excl. vehicles with raised chassis",
+          "year_from": "09-2017",
+          "year_to": "05-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314378",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074668.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 574.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 789
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "470"
+          ],
+          "remark": "Maximum support, min. load 250kg Excl. vehicles with raised chassis",
+          "year_from": "09-2017",
+          "year_to": "05-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

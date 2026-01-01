@@ -1,0 +1,124 @@
+{
+  "make": {
+    "slug": "citroen",
+    "label": "Citroën"
+  },
+  "model": {
+    "slug": "c-crosser",
+    "label": "C-Crosser"
+  },
+  "kits": [
+    {
+      "sku": "HV-104265",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012295.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 193.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "EP"
+          ],
+          "remark": "Excl. Coil over rear strut",
+          "year_from": "02-2007",
+          "year_to": "03-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104278",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947051300.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 450.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 639
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "EP"
+          ],
+          "remark": "LPG kit, Excl. Coil over rear strut",
+          "year_from": "02-2007",
+          "year_to": "03-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104281",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947054349.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 692.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 1019
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "EP"
+          ],
+          "remark": "Excl. Coil over rear strut",
+          "year_from": "02-2007",
+          "year_to": "03-2013",
+          "notes": "Engine: 2.2 DID, 2.2 HDiF"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104291",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947054936.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 692.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 1019
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "EP"
+          ],
+          "remark": "Excl. Coil over rear strut",
+          "year_from": "02-2007",
+          "year_to": "03-2013",
+          "notes": "Engine: 2.0, 2.4 Petrol"
+        }
+      ]
+    }
+  ]
+}

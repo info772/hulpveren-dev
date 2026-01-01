@@ -1,0 +1,102 @@
+{
+  "make": {
+    "slug": "peugeot",
+    "label": "Peugeot"
+  },
+  "model": {
+    "slug": "306",
+    "label": "306"
+  },
+  "kits": [
+    {
+      "sku": "HV-133060",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012646.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 200.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 25.0,
+        "labor_ex_vat_max_eur": 25.0,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "7B",
+            "N3",
+            "N5"
+          ],
+          "remark": "Excl. XT with ABS",
+          "year_from": "04-1993",
+          "year_to": "05-2001",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133100",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012684.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 235.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "7E",
+            "N3",
+            "N5"
+          ],
+          "remark": "Break",
+          "year_from": "06-1994",
+          "year_to": "04-2002",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133130",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012714.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 230.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "7E",
+            "N3",
+            "N5"
+          ],
+          "remark": "Break, LPG-kit",
+          "year_from": "06-1994",
+          "year_to": "04-2002",
+          "notes": "Engine: LPG"
+        }
+      ]
+    }
+  ]
+}

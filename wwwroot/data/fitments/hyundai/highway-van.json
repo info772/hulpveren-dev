@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "highway-van",
+    "label": "Highway Van"
+  },
+  "kits": [
+    {
+      "sku": "HV-493095",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947016019.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 196.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "FO"
+          ],
+          "remark": "",
+          "year_from": "03-2000",
+          "year_to": "03-2004",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

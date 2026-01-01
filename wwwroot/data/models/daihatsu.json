@@ -1,0 +1,33 @@
+{
+  "make": {
+    "slug": "daihatsu",
+    "label": "Daihatsu"
+  },
+  "models": [
+    {
+      "slug": "applause",
+      "label": "Applause",
+      "kits_count": 1
+    },
+    {
+      "slug": "gran-move",
+      "label": "Gran Move",
+      "kits_count": 1
+    },
+    {
+      "slug": "sirion",
+      "label": "Sirion",
+      "kits_count": 1
+    },
+    {
+      "slug": "terios",
+      "label": "Terios",
+      "kits_count": 3
+    },
+    {
+      "slug": "yrv",
+      "label": "YRV",
+      "kits_count": 1
+    }
+  ]
+}

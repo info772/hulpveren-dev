@@ -1,0 +1,8 @@
+﻿node_modules/
+.git/
+.vscode/
+*.zip
+*.log
+.env
+.env.*
+db.sqlite

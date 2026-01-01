@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "model": {
+    "slug": "austral",
+    "label": "Austral"
+  },
+  "kits": [
+    {
+      "sku": "HV-140748",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TÜV",
+      "ean": "8717947114586.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 270.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "RHN"
+          ],
+          "remark": "Only 4Control",
+          "year_from": "07-2022",
+          "year_to": "",
+          "notes": "Engine: E-Tech hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-313248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947084117.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 211.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "RHN"
+          ],
+          "remark": "Excl. 4-Control",
+          "year_from": "07-2022",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

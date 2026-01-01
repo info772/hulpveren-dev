@@ -1,0 +1,245 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "model": {
+    "slug": "tourneo-connect",
+    "label": "Tourneo Connect"
+  },
+  "kits": [
+    {
+      "sku": "HV-068120",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011755.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 351.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 479
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "P65",
+            "P70",
+            "P80"
+          ],
+          "remark": "SWB, LWB",
+          "year_from": "06-2002",
+          "year_to": "12-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-068278",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073289.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 283.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V408"
+          ],
+          "remark": "Maximum support for L1 (Compact), Standard version for L2 (Grand)",
+          "year_from": "09-2013",
+          "year_to": "05-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196318",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081222.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 241.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V761",
+            "SK"
+          ],
+          "remark": "Standard kit, Incl. 4WD",
+          "year_from": "02-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196328",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081239.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 209.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V761",
+            "SK"
+          ],
+          "remark": "Reinforced Front Springs, 2WD",
+          "year_from": "02-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. PHEV"
+        },
+        {
+          "platform_codes": [
+            "V761",
+            "SK"
+          ],
+          "remark": "Reinforced Front Springs, 4WD",
+          "year_from": "02-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196338",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081246.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 253.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 359
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V761",
+            "SK"
+          ],
+          "remark": "Maximum support, Min. load 150kg, Incl. 4WD",
+          "year_from": "02-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196341",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081253.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 397.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V761",
+            "SK"
+          ],
+          "remark": "4WD, Standard kit",
+          "year_from": "02-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. PHEV"
+        },
+        {
+          "platform_codes": [
+            "V761",
+            "SK"
+          ],
+          "remark": "2WD, Standard kit",
+          "year_from": "02-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196351",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081260.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 408.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 679
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V761",
+            "SK"
+          ],
+          "remark": "Maximum support, 4WD, Min. load 150kg",
+          "year_from": "02-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. PHEV"
+        },
+        {
+          "platform_codes": [
+            "V761",
+            "SK"
+          ],
+          "remark": "Maximum support, 2WD, Min. load 150kg",
+          "year_from": "02-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. PHEV"
+        }
+      ]
+    }
+  ]
+}

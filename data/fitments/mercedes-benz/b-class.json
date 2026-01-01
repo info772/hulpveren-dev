@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "mercedes-benz",
+    "label": "Mercedes Benz"
+  },
+  "model": {
+    "slug": "b-class",
+    "label": "B-Class"
+  },
+  "kits": [
+    {
+      "sku": "HV-092275",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947067394.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "W246"
+          ],
+          "remark": "",
+          "year_from": "11-2011",
+          "year_to": "12-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

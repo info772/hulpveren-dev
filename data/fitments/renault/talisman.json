@@ -1,0 +1,77 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "model": {
+    "slug": "talisman",
+    "label": "Talisman"
+  },
+  "kits": [
+    {
+      "sku": "HV-140468",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013261.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 296.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 429
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KP"
+          ],
+          "remark": "Estate",
+          "year_from": "03-2016",
+          "year_to": "03-2022",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "LP"
+          ],
+          "remark": "Basic support for Estate, Maximum support for sedan",
+          "year_from": "06-2015",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-310328",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947070721.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "LP"
+          ],
+          "remark": "Sedan",
+          "year_from": "06-2015",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

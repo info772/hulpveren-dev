@@ -1,0 +1,90 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "model": {
+    "slug": "land-cruiser",
+    "label": "Land Cruiser"
+  },
+  "kits": [
+    {
+      "sku": "HV-364508",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015081.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 418.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 579
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "150",
+            "J15"
+          ],
+          "remark": "Excl. 3 drs",
+          "year_from": "08-2009",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "120",
+            "J12"
+          ],
+          "remark": "Excl. Executive, Excl. 3 Drs",
+          "year_from": "09-2002",
+          "year_to": "12-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-364511",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015098.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 719.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 187.5,
+        "labor_ex_vat_max_eur": 187.5,
+        "total_inc_vat_from_eur": 1099
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "150",
+            "J15"
+          ],
+          "remark": "Excl. Executive, Excl.3 Drs",
+          "year_from": "08-2009",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "120",
+            "J12"
+          ],
+          "remark": "Excl. Executive, Excl. 3 Drs",
+          "year_from": "09-2002",
+          "year_to": "12-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

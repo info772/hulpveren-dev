@@ -1,0 +1,52 @@
+<%- include("partials/header") %>
+
+<div class="panel">
+  <h2>Settings</h2>
+  <form method="post" action="/admin/settings">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <h3>Footer defaults</h3>
+    <div class="form-row">
+      <div>
+        <label for="footer_phone">Telefoon</label>
+        <input id="footer_phone" name="footer_phone" value="<%= settings.footer.phone %>" />
+      </div>
+      <div>
+        <label for="footer_whatsapp">WhatsApp</label>
+        <input id="footer_whatsapp" name="footer_whatsapp" value="<%= settings.footer.whatsapp %>" />
+      </div>
+      <div>
+        <label for="footer_address">Adres</label>
+        <input id="footer_address" name="footer_address" value="<%= settings.footer.address %>" />
+      </div>
+      <div>
+        <label for="footer_openingHours">Openingstijden</label>
+        <input id="footer_openingHours" name="footer_openingHours" value="<%= settings.footer.openingHours %>" />
+      </div>
+    </div>
+    <h3>SEO defaults</h3>
+    <div class="form-row">
+      <div>
+        <label for="seo_titleSuffix">Title suffix</label>
+        <input id="seo_titleSuffix" name="seo_titleSuffix" value="<%= settings.seo.titleSuffix %>" />
+      </div>
+      <div>
+        <label for="seo_defaultOgImage">Default OG image</label>
+        <input id="seo_defaultOgImage" name="seo_defaultOgImage" value="<%= settings.seo.defaultOgImage %>" />
+      </div>
+    </div>
+    <h3>Feature flags</h3>
+    <div class="form-row">
+      <label>
+        <input type="checkbox" name="feature_blogEnabled" <%= settings.features.blogEnabled ? "checked" : "" %> />
+        Blog enabled
+      </label>
+      <label>
+        <input type="checkbox" name="feature_madEnabled" <%= settings.features.madEnabled ? "checked" : "" %> />
+        MAD enabled
+      </label>
+    </div>
+    <button type="submit">Opslaan</button>
+  </form>
+</div>
+
+<%- include("partials/footer") %>

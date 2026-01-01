@@ -1,0 +1,49 @@
+{
+  "make": {
+    "slug": "opel",
+    "label": "OPEL"
+  },
+  "model": {
+    "slug": "meriva",
+    "label": "Meriva"
+  },
+  "kits": [
+    {
+      "sku": "HV-124245",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947054363.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "B (S10)"
+          ],
+          "remark": "",
+          "year_from": "06-2010",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "A (X03)"
+          ],
+          "remark": "",
+          "year_from": "05-2003",
+          "year_to": "05-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

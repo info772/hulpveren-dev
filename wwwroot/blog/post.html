@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Blog - Hulpveren.shop</title>
+  <meta name="description" content="Blog artikel van Hulpveren.shop." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.hulpveren.shop/blog/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Hulpveren.shop" />
+
+  <link rel="icon" href="/img/branding/APR-Favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
+
+  <link rel="stylesheet" href="/assets/css/site.css?v=20251210" />
+  <link rel="stylesheet" href="/assets/css/blog.css?v=20251220_1" />
+
+  <style>
+    body.page-blog-post{
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(250,184,25,.18), transparent 60%),
+        radial-gradient(1000px 600px at 80% 10%, rgba(250,184,25,.10), transparent 55%),
+        #0b0f14;
+      min-height: 100vh;
+    }
+
+    .blogpost-wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+
+    .blogpost-head{
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+
+    .blogpost-head h1{
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      letter-spacing: -0.02em;
+    }
+
+    .blogpost-meta{
+      margin: 0;
+      opacity: .8;
+    }
+
+    .blogpost-hero img{
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .blogpost-content{
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+
+    .blogpost-content h2{
+      margin: 26px 0 10px;
+    }
+
+    .blogpost-content h3{
+      margin: 22px 0 8px;
+    }
+
+    .blogpost-content img{
+      max-width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .blogpost-actions{
+      margin-top: 22px;
+    }
+
+    .note{
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px dashed rgba(255,255,255,.18);
+    }
+    .blogpost-skeleton{
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .blogpost-skeleton .skeleton-line{
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .blogpost-skeleton .skeleton-line.wide{
+      height: 20px;
+      width: 70%;
+    }
+
+    .blogpost-skeleton .skeleton-block{
+      height: 180px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+  </style>
+</head>
+
+<body class="page-blog-post" data-blog-pretty="0">
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Hulpveren.shop">
+        <img class="brand-logo" src="/img/branding/Logo-wit.png" alt="Hulpveren.shop" loading="lazy" decoding="async" />
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open navigatie">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" aria-label="Hoofdmenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+
+          <li class="nav-item nav-item-mega" data-family="hv">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD hulpveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-hv" class="mega-list" aria-label="Merken hulpveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="nr">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Luchtvering</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-nr" class="mega-list" aria-label="Merken luchtvering"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="ls">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Verlagingsveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-ls" class="mega-list" aria-label="Merken verlagingsveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="/montage">Montage</a></li>
+          <li class="nav-item"><a class="nav-link" href="/onze-ervaring">Onze ervaring</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog" aria-current="page">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="blogpost-wrap" role="main">
+    <article id="blogPost" class="blogpost-article" aria-live="polite"></article>
+    <div class="blogpost-actions">
+      <a class="btn btn-ghost" href="/blog/">Terug naar blog</a>
+    </div>
+  </main>
+
+  <!-- FOOTER placeholder -->
+  <div id="site-footer"></div>
+  <!-- Site scripts -->
+  <script defer src="/assets/js/siteSettings.js"></script>
+  <script defer src="/assets/js/blog.js"></script>
+  <script defer src="/assets/js/footerLoader.js"></script>
+  <script defer src="/assets/js/header.js?v=20251215_1"></script>
+  <script defer src="/assets/js/app.js?v=20251213a"></script>
+</body>
+</html>

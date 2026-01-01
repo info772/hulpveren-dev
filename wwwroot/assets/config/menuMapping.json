@@ -1,0 +1,11 @@
+{
+  "defaultRootId": 0,
+  "defaultByGroup": {
+    "helperSprings": { "nodeIds": [] }
+  },
+  "byMake": {
+    "Volkswagen": {
+      "helperSprings": { "nodeIds": [46918] }
+    }
+  }
+}

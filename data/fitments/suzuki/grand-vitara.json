@@ -1,0 +1,141 @@
+{
+  "make": {
+    "slug": "suzuki",
+    "label": "Suzuki"
+  },
+  "model": {
+    "slug": "grand-vitara",
+    "label": "Grand Vitara"
+  },
+  "kits": [
+    {
+      "sku": "HV-393018",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947015685.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 292.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "FT",
+            "HT"
+          ],
+          "remark": "Excl. XL7",
+          "year_from": "03-1998",
+          "year_to": "08-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-393041",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015715.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 489.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 779
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "FT",
+            "HT"
+          ],
+          "remark": "Excl.XL7, Excl. Diesel, Excl. SWB",
+          "year_from": "03-1998",
+          "year_to": "08-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-393068",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947015739.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 412.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 639
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "JT",
+            "TE",
+            "TD"
+          ],
+          "remark": "Excl. 3 drs",
+          "year_from": "04-2005",
+          "year_to": "02-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-393071",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947015746.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 610.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 225.0,
+        "labor_ex_vat_max_eur": 225.0,
+        "total_inc_vat_from_eur": 1019
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "JT",
+            "TE",
+            "TD"
+          ],
+          "remark": "Excl. 3 drs",
+          "year_from": "04-2005",
+          "year_to": "02-2015",
+          "notes": "Engine: All Diesel"
+        },
+        {
+          "platform_codes": [
+            "JT",
+            "TE",
+            "TD"
+          ],
+          "remark": "Excl. 3 drs",
+          "year_from": "04-2005",
+          "year_to": "02-2015",
+          "notes": "Engine: All petrol"
+        }
+      ]
+    }
+  ]
+}

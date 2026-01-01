@@ -1,0 +1,180 @@
+{
+  "make": {
+    "slug": "citroen",
+    "label": "Citroën"
+  },
+  "model": {
+    "slug": "c4-picasso",
+    "label": "C4 Picasso"
+  },
+  "kits": [
+    {
+      "sku": "HV-133228",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012790.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 224.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (UA)"
+          ],
+          "remark": "Maximum support / LPG-kit, Only C4 Grand Picasso, Excl. Air Suspension",
+          "year_from": "10-2006",
+          "year_to": "10-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133238",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012806.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 285.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (UA)"
+          ],
+          "remark": "Only C4 Grand Picasso, Excl. Air Suspension",
+          "year_from": "10-2006",
+          "year_to": "10-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012813.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 273.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 379
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (UD)"
+          ],
+          "remark": "Excl. C4 Grand Picasso, Excl. Air Suspension",
+          "year_from": "10-2006",
+          "year_to": "12-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133375",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947068346.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II"
+          ],
+          "remark": "incl. C4 Grand Picasso",
+          "year_from": "06-2013",
+          "year_to": "04-2018",
+          "notes": "Engine: Excl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133418",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947075467.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 591.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 809
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (UA)"
+          ],
+          "remark": "Maximum support, Only C4 Grand Picasso, Replacement for OE airsuspension, kit includes original Citroën spring seats",
+          "year_from": "10-2006",
+          "year_to": "10-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133428",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947075474.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 542.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 749
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (UA)"
+          ],
+          "remark": "Only C4 Grand Picasso, Replacement kit for OE airsuspension, kit includes original Citroën spring seats",
+          "year_from": "10-2006",
+          "year_to": "10-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

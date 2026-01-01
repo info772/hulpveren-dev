@@ -1,0 +1,2509 @@
+﻿[
+    {
+        "MAKE":  "Alfa-romeo",
+        "MAKE_RAW":  "ALFA-ROMEO",
+        "MAKE_SLUG":  "alfa-romeo",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "145",
+                           "MODEL_SLUG":  "145"
+                       },
+                       {
+                           "MODEL_NAME":  "146",
+                           "MODEL_SLUG":  "146"
+                       },
+                       {
+                           "MODEL_NAME":  "147",
+                           "MODEL_SLUG":  "147"
+                       },
+                       {
+                           "MODEL_NAME":  "155",
+                           "MODEL_SLUG":  "155"
+                       },
+                       {
+                           "MODEL_NAME":  "156",
+                           "MODEL_SLUG":  "156"
+                       },
+                       {
+                           "MODEL_NAME":  "159",
+                           "MODEL_SLUG":  "159"
+                       },
+                       {
+                           "MODEL_NAME":  "164",
+                           "MODEL_SLUG":  "164"
+                       },
+                       {
+                           "MODEL_NAME":  "166",
+                           "MODEL_SLUG":  "166"
+                       },
+                       {
+                           "MODEL_NAME":  "33",
+                           "MODEL_SLUG":  "33"
+                       },
+                       {
+                           "MODEL_NAME":  "90",
+                           "MODEL_SLUG":  "90"
+                       },
+                       {
+                           "MODEL_NAME":  "Alfetta",
+                           "MODEL_SLUG":  "alfetta"
+                       },
+                       {
+                           "MODEL_NAME":  "Brera",
+                           "MODEL_SLUG":  "brera"
+                       },
+                       {
+                           "MODEL_NAME":  "Giulia",
+                           "MODEL_SLUG":  "giulia"
+                       },
+                       {
+                           "MODEL_NAME":  "Giulietta",
+                           "MODEL_SLUG":  "giulietta"
+                       },
+                       {
+                           "MODEL_NAME":  "GT",
+                           "MODEL_SLUG":  "gt"
+                       },
+                       {
+                           "MODEL_NAME":  "GTA",
+                           "MODEL_SLUG":  "gta"
+                       },
+                       {
+                           "MODEL_NAME":  "GTV",
+                           "MODEL_SLUG":  "gtv"
+                       },
+                       {
+                           "MODEL_NAME":  "Junior",
+                           "MODEL_SLUG":  "junior"
+                       },
+                       {
+                           "MODEL_NAME":  "MiTo",
+                           "MODEL_SLUG":  "mito"
+                       },
+                       {
+                           "MODEL_NAME":  "Spider",
+                           "MODEL_SLUG":  "spider"
+                       },
+                       {
+                           "MODEL_NAME":  "Stelvio",
+                           "MODEL_SLUG":  "stelvio"
+                       },
+                       {
+                           "MODEL_NAME":  "Sud",
+                           "MODEL_SLUG":  "sud"
+                       },
+                       {
+                           "MODEL_NAME":  "Tonale",
+                           "MODEL_SLUG":  "tonale"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Audi",
+        "MAKE_RAW":  "AUDI",
+        "MAKE_SLUG":  "audi",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "100",
+                           "MODEL_SLUG":  "100"
+                       },
+                       {
+                           "MODEL_NAME":  "200",
+                           "MODEL_SLUG":  "200"
+                       },
+                       {
+                           "MODEL_NAME":  "50",
+                           "MODEL_SLUG":  "50"
+                       },
+                       {
+                           "MODEL_NAME":  "80",
+                           "MODEL_SLUG":  "80"
+                       },
+                       {
+                           "MODEL_NAME":  "90",
+                           "MODEL_SLUG":  "90"
+                       },
+                       {
+                           "MODEL_NAME":  "A1",
+                           "MODEL_SLUG":  "a1"
+                       },
+                       {
+                           "MODEL_NAME":  "A2",
+                           "MODEL_SLUG":  "a2"
+                       },
+                       {
+                           "MODEL_NAME":  "A3",
+                           "MODEL_SLUG":  "a3"
+                       },
+                       {
+                           "MODEL_NAME":  "A4",
+                           "MODEL_SLUG":  "a4"
+                       },
+                       {
+                           "MODEL_NAME":  "A5",
+                           "MODEL_SLUG":  "a5"
+                       },
+                       {
+                           "MODEL_NAME":  "A6",
+                           "MODEL_SLUG":  "a6"
+                       },
+                       {
+                           "MODEL_NAME":  "A7",
+                           "MODEL_SLUG":  "a7"
+                       },
+                       {
+                           "MODEL_NAME":  "A8",
+                           "MODEL_SLUG":  "a8"
+                       },
+                       {
+                           "MODEL_NAME":  "Q2",
+                           "MODEL_SLUG":  "q2"
+                       },
+                       {
+                           "MODEL_NAME":  "Q3",
+                           "MODEL_SLUG":  "q3"
+                       },
+                       {
+                           "MODEL_NAME":  "Q4",
+                           "MODEL_SLUG":  "q4"
+                       },
+                       {
+                           "MODEL_NAME":  "Q5",
+                           "MODEL_SLUG":  "q5"
+                       },
+                       {
+                           "MODEL_NAME":  "TT",
+                           "MODEL_SLUG":  "tt"
+                       },
+                       {
+                           "MODEL_NAME":  "V8",
+                           "MODEL_SLUG":  "v8"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Bmw",
+        "MAKE_RAW":  "BMW",
+        "MAKE_SLUG":  "bmw",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "1-serie",
+                           "MODEL_SLUG":  "1-serie"
+                       },
+                       {
+                           "MODEL_NAME":  "2-serie",
+                           "MODEL_SLUG":  "2-serie"
+                       },
+                       {
+                           "MODEL_NAME":  "3-serie",
+                           "MODEL_SLUG":  "3-serie"
+                       },
+                       {
+                           "MODEL_NAME":  "4-serie",
+                           "MODEL_SLUG":  "4-serie"
+                       },
+                       {
+                           "MODEL_NAME":  "5-serie",
+                           "MODEL_SLUG":  "5-serie"
+                       },
+                       {
+                           "MODEL_NAME":  "6-serie",
+                           "MODEL_SLUG":  "6-serie"
+                       },
+                       {
+                           "MODEL_NAME":  "7-serie",
+                           "MODEL_SLUG":  "7-serie"
+                       },
+                       {
+                           "MODEL_NAME":  "8-serie",
+                           "MODEL_SLUG":  "8-serie"
+                       },
+                       {
+                           "MODEL_NAME":  "i3",
+                           "MODEL_SLUG":  "i3"
+                       },
+                       {
+                           "MODEL_NAME":  "i4",
+                           "MODEL_SLUG":  "i4"
+                       },
+                       {
+                           "MODEL_NAME":  "i5",
+                           "MODEL_SLUG":  "i5"
+                       },
+                       {
+                           "MODEL_NAME":  "i8",
+                           "MODEL_SLUG":  "i8"
+                       },
+                       {
+                           "MODEL_NAME":  "iX3",
+                           "MODEL_SLUG":  "ix3"
+                       },
+                       {
+                           "MODEL_NAME":  "X1",
+                           "MODEL_SLUG":  "x1"
+                       },
+                       {
+                           "MODEL_NAME":  "X2",
+                           "MODEL_SLUG":  "x2"
+                       },
+                       {
+                           "MODEL_NAME":  "X3",
+                           "MODEL_SLUG":  "x3"
+                       },
+                       {
+                           "MODEL_NAME":  "X4",
+                           "MODEL_SLUG":  "x4"
+                       },
+                       {
+                           "MODEL_NAME":  "X5",
+                           "MODEL_SLUG":  "x5"
+                       },
+                       {
+                           "MODEL_NAME":  "X6",
+                           "MODEL_SLUG":  "x6"
+                       },
+                       {
+                           "MODEL_NAME":  "Z3 CoupÃ© / Roadster",
+                           "MODEL_SLUG":  "z3-coup--roadster"
+                       },
+                       {
+                           "MODEL_NAME":  "Z4 Roadster",
+                           "MODEL_SLUG":  "z4-roadster"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Byd",
+        "MAKE_RAW":  "BYD",
+        "MAKE_SLUG":  "byd",
+        "MODELS":  {
+                       "MODEL_NAME":  "Seal",
+                       "MODEL_SLUG":  "seal"
+                   }
+    },
+    {
+        "MAKE":  "Chevrolet",
+        "MAKE_RAW":  "CHEVROLET",
+        "MAKE_SLUG":  "chevrolet",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Aveo",
+                           "MODEL_SLUG":  "aveo"
+                       },
+                       {
+                           "MODEL_NAME":  "Cruze",
+                           "MODEL_SLUG":  "cruze"
+                       },
+                       {
+                           "MODEL_NAME":  "Epica",
+                           "MODEL_SLUG":  "epica"
+                       },
+                       {
+                           "MODEL_NAME":  "Espero",
+                           "MODEL_SLUG":  "espero"
+                       },
+                       {
+                           "MODEL_NAME":  "Kalos",
+                           "MODEL_SLUG":  "kalos"
+                       },
+                       {
+                           "MODEL_NAME":  "Lacetti",
+                           "MODEL_SLUG":  "lacetti"
+                       },
+                       {
+                           "MODEL_NAME":  "Lanos",
+                           "MODEL_SLUG":  "lanos"
+                       },
+                       {
+                           "MODEL_NAME":  "Leganza",
+                           "MODEL_SLUG":  "leganza"
+                       },
+                       {
+                           "MODEL_NAME":  "Matiz",
+                           "MODEL_SLUG":  "matiz"
+                       },
+                       {
+                           "MODEL_NAME":  "Nexia",
+                           "MODEL_SLUG":  "nexia"
+                       },
+                       {
+                           "MODEL_NAME":  "Nubira",
+                           "MODEL_SLUG":  "nubira"
+                       },
+                       {
+                           "MODEL_NAME":  "Spark",
+                           "MODEL_SLUG":  "spark"
+                       },
+                       {
+                           "MODEL_NAME":  "Tacuma",
+                           "MODEL_SLUG":  "tacuma"
+                       },
+                       {
+                           "MODEL_NAME":  "Trax",
+                           "MODEL_SLUG":  "trax"
+                       },
+                       {
+                           "MODEL_NAME":  "Volt",
+                           "MODEL_SLUG":  "volt"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Chrysler",
+        "MAKE_RAW":  "CHRYSLER",
+        "MAKE_SLUG":  "chrysler",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "300C",
+                           "MODEL_SLUG":  "300c"
+                       },
+                       {
+                           "MODEL_NAME":  "Neon",
+                           "MODEL_SLUG":  "neon"
+                       },
+                       {
+                           "MODEL_NAME":  "PT Cruiser",
+                           "MODEL_SLUG":  "pt-cruiser"
+                       },
+                       {
+                           "MODEL_NAME":  "Sebring",
+                           "MODEL_SLUG":  "sebring"
+                       },
+                       {
+                           "MODEL_NAME":  "Stratus",
+                           "MODEL_SLUG":  "stratus"
+                       },
+                       {
+                           "MODEL_NAME":  "Voyager",
+                           "MODEL_SLUG":  "voyager"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Citroen",
+        "MAKE_RAW":  "CITROEN",
+        "MAKE_SLUG":  "citroen",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "AMI",
+                           "MODEL_SLUG":  "ami"
+                       },
+                       {
+                           "MODEL_NAME":  "AX",
+                           "MODEL_SLUG":  "ax"
+                       },
+                       {
+                           "MODEL_NAME":  "Berlingo",
+                           "MODEL_SLUG":  "berlingo"
+                       },
+                       {
+                           "MODEL_NAME":  "C1",
+                           "MODEL_SLUG":  "c1"
+                       },
+                       {
+                           "MODEL_NAME":  "C2",
+                           "MODEL_SLUG":  "c2"
+                       },
+                       {
+                           "MODEL_NAME":  "C3",
+                           "MODEL_SLUG":  "c3"
+                       },
+                       {
+                           "MODEL_NAME":  "C3 Picasso",
+                           "MODEL_SLUG":  "c3-picasso"
+                       },
+                       {
+                           "MODEL_NAME":  "C4",
+                           "MODEL_SLUG":  "c4"
+                       },
+                       {
+                           "MODEL_NAME":  "C4 Cactus",
+                           "MODEL_SLUG":  "c4-cactus"
+                       },
+                       {
+                           "MODEL_NAME":  "C5",
+                           "MODEL_SLUG":  "c5"
+                       },
+                       {
+                           "MODEL_NAME":  "C8",
+                           "MODEL_SLUG":  "c8"
+                       },
+                       {
+                           "MODEL_NAME":  "DS3",
+                           "MODEL_SLUG":  "ds3"
+                       },
+                       {
+                           "MODEL_NAME":  "DS4",
+                           "MODEL_SLUG":  "ds4"
+                       },
+                       {
+                           "MODEL_NAME":  "DS5",
+                           "MODEL_SLUG":  "ds5"
+                       },
+                       {
+                           "MODEL_NAME":  "Evasion / Synergie",
+                           "MODEL_SLUG":  "evasion--synergie"
+                       },
+                       {
+                           "MODEL_NAME":  "Jumpy",
+                           "MODEL_SLUG":  "jumpy"
+                       },
+                       {
+                           "MODEL_NAME":  "Nemo",
+                           "MODEL_SLUG":  "nemo"
+                       },
+                       {
+                           "MODEL_NAME":  "Saxo",
+                           "MODEL_SLUG":  "saxo"
+                       },
+                       {
+                           "MODEL_NAME":  "Xsara",
+                           "MODEL_SLUG":  "xsara"
+                       },
+                       {
+                           "MODEL_NAME":  "Xsara Picasso",
+                           "MODEL_SLUG":  "xsara-picasso"
+                       },
+                       {
+                           "MODEL_NAME":  "ZX",
+                           "MODEL_SLUG":  "zx"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Cupra",
+        "MAKE_RAW":  "CUPRA",
+        "MAKE_SLUG":  "cupra",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Ateca",
+                           "MODEL_SLUG":  "ateca"
+                       },
+                       {
+                           "MODEL_NAME":  "Born",
+                           "MODEL_SLUG":  "born"
+                       },
+                       {
+                           "MODEL_NAME":  "Formentor",
+                           "MODEL_SLUG":  "formentor"
+                       },
+                       {
+                           "MODEL_NAME":  "Leon",
+                           "MODEL_SLUG":  "leon"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Dacia",
+        "MAKE_RAW":  "DACIA",
+        "MAKE_SLUG":  "dacia",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Dokker",
+                           "MODEL_SLUG":  "dokker"
+                       },
+                       {
+                           "MODEL_NAME":  "Duster",
+                           "MODEL_SLUG":  "duster"
+                       },
+                       {
+                           "MODEL_NAME":  "Logan",
+                           "MODEL_SLUG":  "logan"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Daihatsu",
+        "MAKE_RAW":  "DAIHATSU",
+        "MAKE_SLUG":  "daihatsu",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Applause",
+                           "MODEL_SLUG":  "applause"
+                       },
+                       {
+                           "MODEL_NAME":  "Charade",
+                           "MODEL_SLUG":  "charade"
+                       },
+                       {
+                           "MODEL_NAME":  "Cuore",
+                           "MODEL_SLUG":  "cuore"
+                       },
+                       {
+                           "MODEL_NAME":  "Materia",
+                           "MODEL_SLUG":  "materia"
+                       },
+                       {
+                           "MODEL_NAME":  "Sirion",
+                           "MODEL_SLUG":  "sirion"
+                       },
+                       {
+                           "MODEL_NAME":  "Terios",
+                           "MODEL_SLUG":  "terios"
+                       },
+                       {
+                           "MODEL_NAME":  "YRV",
+                           "MODEL_SLUG":  "yrv"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Dodge",
+        "MAKE_RAW":  "DODGE",
+        "MAKE_SLUG":  "dodge",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Caliber",
+                           "MODEL_SLUG":  "caliber"
+                       },
+                       {
+                           "MODEL_NAME":  "Stealth",
+                           "MODEL_SLUG":  "stealth"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Ds",
+        "MAKE_RAW":  "DS",
+        "MAKE_SLUG":  "ds",
+        "MODELS":  {
+                       "MODEL_NAME":  "DS3",
+                       "MODEL_SLUG":  "ds3"
+                   }
+    },
+    {
+        "MAKE":  "Fiat",
+        "MAKE_RAW":  "FIAT",
+        "MAKE_SLUG":  "fiat",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "124 Spider",
+                           "MODEL_SLUG":  "124-spider"
+                       },
+                       {
+                           "MODEL_NAME":  "500",
+                           "MODEL_SLUG":  "500"
+                       },
+                       {
+                           "MODEL_NAME":  "500L",
+                           "MODEL_SLUG":  "500l"
+                       },
+                       {
+                           "MODEL_NAME":  "500X",
+                           "MODEL_SLUG":  "500x"
+                       },
+                       {
+                           "MODEL_NAME":  "600",
+                           "MODEL_SLUG":  "600"
+                       },
+                       {
+                           "MODEL_NAME":  "Barchetta",
+                           "MODEL_SLUG":  "barchetta"
+                       },
+                       {
+                           "MODEL_NAME":  "Brava",
+                           "MODEL_SLUG":  "brava"
+                       },
+                       {
+                           "MODEL_NAME":  "Bravo",
+                           "MODEL_SLUG":  "bravo"
+                       },
+                       {
+                           "MODEL_NAME":  "Cinquecento",
+                           "MODEL_SLUG":  "cinquecento"
+                       },
+                       {
+                           "MODEL_NAME":  "CoupÃ©",
+                           "MODEL_SLUG":  "coup"
+                       },
+                       {
+                           "MODEL_NAME":  "Croma",
+                           "MODEL_SLUG":  "croma"
+                       },
+                       {
+                           "MODEL_NAME":  "Doblo",
+                           "MODEL_SLUG":  "doblo"
+                       },
+                       {
+                           "MODEL_NAME":  "Fiorino",
+                           "MODEL_SLUG":  "fiorino"
+                       },
+                       {
+                           "MODEL_NAME":  "Marea",
+                           "MODEL_SLUG":  "marea"
+                       },
+                       {
+                           "MODEL_NAME":  "Multipla",
+                           "MODEL_SLUG":  "multipla"
+                       },
+                       {
+                           "MODEL_NAME":  "Palio",
+                           "MODEL_SLUG":  "palio"
+                       },
+                       {
+                           "MODEL_NAME":  "Panda",
+                           "MODEL_SLUG":  "panda"
+                       },
+                       {
+                           "MODEL_NAME":  "Punto",
+                           "MODEL_SLUG":  "punto"
+                       },
+                       {
+                           "MODEL_NAME":  "Scudo",
+                           "MODEL_SLUG":  "scudo"
+                       },
+                       {
+                           "MODEL_NAME":  "Sedici",
+                           "MODEL_SLUG":  "sedici"
+                       },
+                       {
+                           "MODEL_NAME":  "Seicento",
+                           "MODEL_SLUG":  "seicento"
+                       },
+                       {
+                           "MODEL_NAME":  "Stilo",
+                           "MODEL_SLUG":  "stilo"
+                       },
+                       {
+                           "MODEL_NAME":  "Talento",
+                           "MODEL_SLUG":  "talento"
+                       },
+                       {
+                           "MODEL_NAME":  "Tempra",
+                           "MODEL_SLUG":  "tempra"
+                       },
+                       {
+                           "MODEL_NAME":  "Tipo",
+                           "MODEL_SLUG":  "tipo"
+                       },
+                       {
+                           "MODEL_NAME":  "Topolino",
+                           "MODEL_SLUG":  "topolino"
+                       },
+                       {
+                           "MODEL_NAME":  "Ulysse",
+                           "MODEL_SLUG":  "ulysse"
+                       },
+                       {
+                           "MODEL_NAME":  "Uno",
+                           "MODEL_SLUG":  "uno"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Ford",
+        "MAKE_RAW":  "FORD",
+        "MAKE_SLUG":  "ford",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Capri",
+                           "MODEL_SLUG":  "capri"
+                       },
+                       {
+                           "MODEL_NAME":  "C-Max / Grand C-Max",
+                           "MODEL_SLUG":  "c-max--grand-c-max"
+                       },
+                       {
+                           "MODEL_NAME":  "Cougar",
+                           "MODEL_SLUG":  "cougar"
+                       },
+                       {
+                           "MODEL_NAME":  "EcoSport",
+                           "MODEL_SLUG":  "ecosport"
+                       },
+                       {
+                           "MODEL_NAME":  "Escort",
+                           "MODEL_SLUG":  "escort"
+                       },
+                       {
+                           "MODEL_NAME":  "Fiesta",
+                           "MODEL_SLUG":  "fiesta"
+                       },
+                       {
+                           "MODEL_NAME":  "Figo",
+                           "MODEL_SLUG":  "figo"
+                       },
+                       {
+                           "MODEL_NAME":  "Focus",
+                           "MODEL_SLUG":  "focus"
+                       },
+                       {
+                           "MODEL_NAME":  "Fusion",
+                           "MODEL_SLUG":  "fusion"
+                       },
+                       {
+                           "MODEL_NAME":  "Galaxy",
+                           "MODEL_SLUG":  "galaxy"
+                       },
+                       {
+                           "MODEL_NAME":  "Granada",
+                           "MODEL_SLUG":  "granada"
+                       },
+                       {
+                           "MODEL_NAME":  "Ka / Ka+",
+                           "MODEL_SLUG":  "ka--ka"
+                       },
+                       {
+                           "MODEL_NAME":  "Kuga",
+                           "MODEL_SLUG":  "kuga"
+                       },
+                       {
+                           "MODEL_NAME":  "Mondeo",
+                           "MODEL_SLUG":  "mondeo"
+                       },
+                       {
+                           "MODEL_NAME":  "Mustang",
+                           "MODEL_SLUG":  "mustang"
+                       },
+                       {
+                           "MODEL_NAME":  "Orion",
+                           "MODEL_SLUG":  "orion"
+                       },
+                       {
+                           "MODEL_NAME":  "Probe",
+                           "MODEL_SLUG":  "probe"
+                       },
+                       {
+                           "MODEL_NAME":  "Puma",
+                           "MODEL_SLUG":  "puma"
+                       },
+                       {
+                           "MODEL_NAME":  "Scorpio",
+                           "MODEL_SLUG":  "scorpio"
+                       },
+                       {
+                           "MODEL_NAME":  "Sierra",
+                           "MODEL_SLUG":  "sierra"
+                       },
+                       {
+                           "MODEL_NAME":  "Taunus",
+                           "MODEL_SLUG":  "taunus"
+                       },
+                       {
+                           "MODEL_NAME":  "Tourneo Custom",
+                           "MODEL_SLUG":  "tourneo-custom"
+                       },
+                       {
+                           "MODEL_NAME":  "Transit Connect",
+                           "MODEL_SLUG":  "transit-connect"
+                       },
+                       {
+                           "MODEL_NAME":  "Transit Courier",
+                           "MODEL_SLUG":  "transit-courier"
+                       },
+                       {
+                           "MODEL_NAME":  "Transit Custom",
+                           "MODEL_SLUG":  "transit-custom"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Honda",
+        "MAKE_RAW":  "HONDA",
+        "MAKE_SLUG":  "honda",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Accord",
+                           "MODEL_SLUG":  "accord"
+                       },
+                       {
+                           "MODEL_NAME":  "Civic",
+                           "MODEL_SLUG":  "civic"
+                       },
+                       {
+                           "MODEL_NAME":  "Concerto",
+                           "MODEL_SLUG":  "concerto"
+                       },
+                       {
+                           "MODEL_NAME":  "CR-V",
+                           "MODEL_SLUG":  "cr-v"
+                       },
+                       {
+                           "MODEL_NAME":  "CRX",
+                           "MODEL_SLUG":  "crx"
+                       },
+                       {
+                           "MODEL_NAME":  "CR-Z",
+                           "MODEL_SLUG":  "cr-z"
+                       },
+                       {
+                           "MODEL_NAME":  "e",
+                           "MODEL_SLUG":  "e"
+                       },
+                       {
+                           "MODEL_NAME":  "FR-V",
+                           "MODEL_SLUG":  "fr-v"
+                       },
+                       {
+                           "MODEL_NAME":  "HR-V",
+                           "MODEL_SLUG":  "hr-v"
+                       },
+                       {
+                           "MODEL_NAME":  "Insight",
+                           "MODEL_SLUG":  "insight"
+                       },
+                       {
+                           "MODEL_NAME":  "Integra-R",
+                           "MODEL_SLUG":  "integra-r"
+                       },
+                       {
+                           "MODEL_NAME":  "Jazz",
+                           "MODEL_SLUG":  "jazz"
+                       },
+                       {
+                           "MODEL_NAME":  "Legend",
+                           "MODEL_SLUG":  "legend"
+                       },
+                       {
+                           "MODEL_NAME":  "Logo",
+                           "MODEL_SLUG":  "logo"
+                       },
+                       {
+                           "MODEL_NAME":  "Prelude",
+                           "MODEL_SLUG":  "prelude"
+                       },
+                       {
+                           "MODEL_NAME":  "S2000",
+                           "MODEL_SLUG":  "s2000"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Hyundai",
+        "MAKE_RAW":  "HYUNDAI",
+        "MAKE_SLUG":  "hyundai",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Accent",
+                           "MODEL_SLUG":  "accent"
+                       },
+                       {
+                           "MODEL_NAME":  "Atos",
+                           "MODEL_SLUG":  "atos"
+                       },
+                       {
+                           "MODEL_NAME":  "Elantra",
+                           "MODEL_SLUG":  "elantra"
+                       },
+                       {
+                           "MODEL_NAME":  "Getz",
+                           "MODEL_SLUG":  "getz"
+                       },
+                       {
+                           "MODEL_NAME":  "i10",
+                           "MODEL_SLUG":  "i10"
+                       },
+                       {
+                           "MODEL_NAME":  "i20",
+                           "MODEL_SLUG":  "i20"
+                       },
+                       {
+                           "MODEL_NAME":  "i30",
+                           "MODEL_SLUG":  "i30"
+                       },
+                       {
+                           "MODEL_NAME":  "i40",
+                           "MODEL_SLUG":  "i40"
+                       },
+                       {
+                           "MODEL_NAME":  "Ioniq 5",
+                           "MODEL_SLUG":  "ioniq-5"
+                       },
+                       {
+                           "MODEL_NAME":  "ix35",
+                           "MODEL_SLUG":  "ix35"
+                       },
+                       {
+                           "MODEL_NAME":  "Kona",
+                           "MODEL_SLUG":  "kona"
+                       },
+                       {
+                           "MODEL_NAME":  "Lantra",
+                           "MODEL_SLUG":  "lantra"
+                       },
+                       {
+                           "MODEL_NAME":  "Pony",
+                           "MODEL_SLUG":  "pony"
+                       },
+                       {
+                           "MODEL_NAME":  "Santa Fe",
+                           "MODEL_SLUG":  "santa-fe"
+                       },
+                       {
+                           "MODEL_NAME":  "ScoupÃ© / CoupÃ©",
+                           "MODEL_SLUG":  "scoup--coup"
+                       },
+                       {
+                           "MODEL_NAME":  "Sonata",
+                           "MODEL_SLUG":  "sonata"
+                       },
+                       {
+                           "MODEL_NAME":  "Veloster",
+                           "MODEL_SLUG":  "veloster"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Jaguar",
+        "MAKE_RAW":  "JAGUAR",
+        "MAKE_SLUG":  "jaguar",
+        "MODELS":  {
+                       "MODEL_NAME":  "XJ",
+                       "MODEL_SLUG":  "xj"
+                   }
+    },
+    {
+        "MAKE":  "Jeep",
+        "MAKE_RAW":  "JEEP",
+        "MAKE_SLUG":  "jeep",
+        "MODELS":  {
+                       "MODEL_NAME":  "Grand Cherokee",
+                       "MODEL_SLUG":  "grand-cherokee"
+                   }
+    },
+    {
+        "MAKE":  "Kia",
+        "MAKE_RAW":  "KIA",
+        "MAKE_SLUG":  "kia",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Carnival",
+                           "MODEL_SLUG":  "carnival"
+                       },
+                       {
+                           "MODEL_NAME":  "Ceed",
+                           "MODEL_SLUG":  "ceed"
+                       },
+                       {
+                           "MODEL_NAME":  "EV6",
+                           "MODEL_SLUG":  "ev6"
+                       },
+                       {
+                           "MODEL_NAME":  "Niro",
+                           "MODEL_SLUG":  "niro"
+                       },
+                       {
+                           "MODEL_NAME":  "Optima",
+                           "MODEL_SLUG":  "optima"
+                       },
+                       {
+                           "MODEL_NAME":  "Picanto",
+                           "MODEL_SLUG":  "picanto"
+                       },
+                       {
+                           "MODEL_NAME":  "Pride Wagon",
+                           "MODEL_SLUG":  "pride-wagon"
+                       },
+                       {
+                           "MODEL_NAME":  "Pro-ceed",
+                           "MODEL_SLUG":  "pro-ceed"
+                       },
+                       {
+                           "MODEL_NAME":  "Rio",
+                           "MODEL_SLUG":  "rio"
+                       },
+                       {
+                           "MODEL_NAME":  "Shuma",
+                           "MODEL_SLUG":  "shuma"
+                       },
+                       {
+                           "MODEL_NAME":  "Sorento",
+                           "MODEL_SLUG":  "sorento"
+                       },
+                       {
+                           "MODEL_NAME":  "Soul",
+                           "MODEL_SLUG":  "soul"
+                       },
+                       {
+                           "MODEL_NAME":  "Sportage",
+                           "MODEL_SLUG":  "sportage"
+                       },
+                       {
+                           "MODEL_NAME":  "Stinger",
+                           "MODEL_SLUG":  "stinger"
+                       },
+                       {
+                           "MODEL_NAME":  "Stonic",
+                           "MODEL_SLUG":  "stonic"
+                       },
+                       {
+                           "MODEL_NAME":  "Venga",
+                           "MODEL_SLUG":  "venga"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Lancia",
+        "MAKE_RAW":  "LANCIA",
+        "MAKE_SLUG":  "lancia",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Delta / Prisma",
+                           "MODEL_SLUG":  "delta--prisma"
+                       },
+                       {
+                           "MODEL_NAME":  "Kappa",
+                           "MODEL_SLUG":  "kappa"
+                       },
+                       {
+                           "MODEL_NAME":  "Phedra",
+                           "MODEL_SLUG":  "phedra"
+                       },
+                       {
+                           "MODEL_NAME":  "Thema",
+                           "MODEL_SLUG":  "thema"
+                       },
+                       {
+                           "MODEL_NAME":  "Ypsilon",
+                           "MODEL_SLUG":  "ypsilon"
+                       },
+                       {
+                           "MODEL_NAME":  "Zeta",
+                           "MODEL_SLUG":  "zeta"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Land-rover",
+        "MAKE_RAW":  "LAND-ROVER",
+        "MAKE_SLUG":  "land-rover",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Range Rover",
+                           "MODEL_SLUG":  "range-rover"
+                       },
+                       {
+                           "MODEL_NAME":  "Velar",
+                           "MODEL_SLUG":  "velar"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Lexus",
+        "MAKE_RAW":  "LEXUS",
+        "MAKE_SLUG":  "lexus",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "CT",
+                           "MODEL_SLUG":  "ct"
+                       },
+                       {
+                           "MODEL_NAME":  "ES",
+                           "MODEL_SLUG":  "es"
+                       },
+                       {
+                           "MODEL_NAME":  "IS",
+                           "MODEL_SLUG":  "is"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Lynk-\u0026-co",
+        "MAKE_RAW":  "LYNK-\u0026-CO",
+        "MAKE_SLUG":  "lynk--co",
+        "MODELS":  {
+                       "MODEL_NAME":  "Lynk \u0026 Co 01",
+                       "MODEL_SLUG":  "lynk--co-01"
+                   }
+    },
+    {
+        "MAKE":  "Maserati",
+        "MAKE_RAW":  "MASERATI",
+        "MAKE_SLUG":  "maserati",
+        "MODELS":  {
+                       "MODEL_NAME":  "Ghibli",
+                       "MODEL_SLUG":  "ghibli"
+                   }
+    },
+    {
+        "MAKE":  "Mazda",
+        "MAKE_RAW":  "MAZDA",
+        "MAKE_SLUG":  "mazda",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "121",
+                           "MODEL_SLUG":  "121"
+                       },
+                       {
+                           "MODEL_NAME":  "2",
+                           "MODEL_SLUG":  "2"
+                       },
+                       {
+                           "MODEL_NAME":  "3",
+                           "MODEL_SLUG":  "3"
+                       },
+                       {
+                           "MODEL_NAME":  "323",
+                           "MODEL_SLUG":  "323"
+                       },
+                       {
+                           "MODEL_NAME":  "5",
+                           "MODEL_SLUG":  "5"
+                       },
+                       {
+                           "MODEL_NAME":  "6",
+                           "MODEL_SLUG":  "6"
+                       },
+                       {
+                           "MODEL_NAME":  "626",
+                           "MODEL_SLUG":  "626"
+                       },
+                       {
+                           "MODEL_NAME":  "929",
+                           "MODEL_SLUG":  "929"
+                       },
+                       {
+                           "MODEL_NAME":  "Demio",
+                           "MODEL_SLUG":  "demio"
+                       },
+                       {
+                           "MODEL_NAME":  "MX-3",
+                           "MODEL_SLUG":  "mx-3"
+                       },
+                       {
+                           "MODEL_NAME":  "MX-5",
+                           "MODEL_SLUG":  "mx-5"
+                       },
+                       {
+                           "MODEL_NAME":  "MX-6",
+                           "MODEL_SLUG":  "mx-6"
+                       },
+                       {
+                           "MODEL_NAME":  "Premacy",
+                           "MODEL_SLUG":  "premacy"
+                       },
+                       {
+                           "MODEL_NAME":  "RX-7",
+                           "MODEL_SLUG":  "rx-7"
+                       },
+                       {
+                           "MODEL_NAME":  "RX-8",
+                           "MODEL_SLUG":  "rx-8"
+                       },
+                       {
+                           "MODEL_NAME":  "Xedos 6",
+                           "MODEL_SLUG":  "xedos-6"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Mercedes-benz",
+        "MAKE_RAW":  "MERCEDES-BENZ",
+        "MAKE_SLUG":  "mercedes-benz",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "190",
+                           "MODEL_SLUG":  "190"
+                       },
+                       {
+                           "MODEL_NAME":  "200",
+                           "MODEL_SLUG":  "200"
+                       },
+                       {
+                           "MODEL_NAME":  "A-Class",
+                           "MODEL_SLUG":  "a-class"
+                       },
+                       {
+                           "MODEL_NAME":  "AMG GT",
+                           "MODEL_SLUG":  "amg-gt"
+                       },
+                       {
+                           "MODEL_NAME":  "B-Class",
+                           "MODEL_SLUG":  "b-class"
+                       },
+                       {
+                           "MODEL_NAME":  "C-Class",
+                           "MODEL_SLUG":  "c-class"
+                       },
+                       {
+                           "MODEL_NAME":  "Citan",
+                           "MODEL_SLUG":  "citan"
+                       },
+                       {
+                           "MODEL_NAME":  "CLA",
+                           "MODEL_SLUG":  "cla"
+                       },
+                       {
+                           "MODEL_NAME":  "CLK",
+                           "MODEL_SLUG":  "clk"
+                       },
+                       {
+                           "MODEL_NAME":  "CLS",
+                           "MODEL_SLUG":  "cls"
+                       },
+                       {
+                           "MODEL_NAME":  "E-Class",
+                           "MODEL_SLUG":  "e-class"
+                       },
+                       {
+                           "MODEL_NAME":  "EQC",
+                           "MODEL_SLUG":  "eqc"
+                       },
+                       {
+                           "MODEL_NAME":  "G-Class",
+                           "MODEL_SLUG":  "g-class"
+                       },
+                       {
+                           "MODEL_NAME":  "GLA",
+                           "MODEL_SLUG":  "gla"
+                       },
+                       {
+                           "MODEL_NAME":  "GLB",
+                           "MODEL_SLUG":  "glb"
+                       },
+                       {
+                           "MODEL_NAME":  "GLC",
+                           "MODEL_SLUG":  "glc"
+                       },
+                       {
+                           "MODEL_NAME":  "M-Class",
+                           "MODEL_SLUG":  "m-class"
+                       },
+                       {
+                           "MODEL_NAME":  "S-Class",
+                           "MODEL_SLUG":  "s-class"
+                       },
+                       {
+                           "MODEL_NAME":  "SL",
+                           "MODEL_SLUG":  "sl"
+                       },
+                       {
+                           "MODEL_NAME":  "SLK",
+                           "MODEL_SLUG":  "slk"
+                       },
+                       {
+                           "MODEL_NAME":  "V-Class",
+                           "MODEL_SLUG":  "v-class"
+                       },
+                       {
+                           "MODEL_NAME":  "Viano",
+                           "MODEL_SLUG":  "viano"
+                       },
+                       {
+                           "MODEL_NAME":  "Vito",
+                           "MODEL_SLUG":  "vito"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Mg",
+        "MAKE_RAW":  "MG",
+        "MAKE_SLUG":  "mg",
+        "MODELS":  {
+                       "MODEL_NAME":  "ZR",
+                       "MODEL_SLUG":  "zr"
+                   }
+    },
+    {
+        "MAKE":  "Mini",
+        "MAKE_RAW":  "MINI",
+        "MAKE_SLUG":  "mini",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Mini",
+                           "MODEL_SLUG":  "mini"
+                       },
+                       {
+                           "MODEL_NAME":  "Mini Cabriolet",
+                           "MODEL_SLUG":  "mini-cabriolet"
+                       },
+                       {
+                           "MODEL_NAME":  "Mini Clubman",
+                           "MODEL_SLUG":  "mini-clubman"
+                       },
+                       {
+                           "MODEL_NAME":  "Mini Countryman",
+                           "MODEL_SLUG":  "mini-countryman"
+                       },
+                       {
+                           "MODEL_NAME":  "Mini CoupÃ©",
+                           "MODEL_SLUG":  "mini-coup"
+                       },
+                       {
+                           "MODEL_NAME":  "Mini Paceman",
+                           "MODEL_SLUG":  "mini-paceman"
+                       },
+                       {
+                           "MODEL_NAME":  "Mini Roadster",
+                           "MODEL_SLUG":  "mini-roadster"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Mitsubishi",
+        "MAKE_RAW":  "MITSUBISHI",
+        "MAKE_SLUG":  "mitsubishi",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "ASX",
+                           "MODEL_SLUG":  "asx"
+                       },
+                       {
+                           "MODEL_NAME":  "Carisma",
+                           "MODEL_SLUG":  "carisma"
+                       },
+                       {
+                           "MODEL_NAME":  "Colt",
+                           "MODEL_SLUG":  "colt"
+                       },
+                       {
+                           "MODEL_NAME":  "Eclipse",
+                           "MODEL_SLUG":  "eclipse"
+                       },
+                       {
+                           "MODEL_NAME":  "Galant",
+                           "MODEL_SLUG":  "galant"
+                       },
+                       {
+                           "MODEL_NAME":  "Lancer",
+                           "MODEL_SLUG":  "lancer"
+                       },
+                       {
+                           "MODEL_NAME":  "Space Runner",
+                           "MODEL_SLUG":  "space-runner"
+                       },
+                       {
+                           "MODEL_NAME":  "Space Star",
+                           "MODEL_SLUG":  "space-star"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Nissan",
+        "MAKE_RAW":  "NISSAN",
+        "MAKE_SLUG":  "nissan",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "100NX",
+                           "MODEL_SLUG":  "100nx"
+                       },
+                       {
+                           "MODEL_NAME":  "200SX",
+                           "MODEL_SLUG":  "200sx"
+                       },
+                       {
+                           "MODEL_NAME":  "300ZX",
+                           "MODEL_SLUG":  "300zx"
+                       },
+                       {
+                           "MODEL_NAME":  "350Z",
+                           "MODEL_SLUG":  "350z"
+                       },
+                       {
+                           "MODEL_NAME":  "370Z",
+                           "MODEL_SLUG":  "370z"
+                       },
+                       {
+                           "MODEL_NAME":  "Almera",
+                           "MODEL_SLUG":  "almera"
+                       },
+                       {
+                           "MODEL_NAME":  "Almera Tino",
+                           "MODEL_SLUG":  "almera-tino"
+                       },
+                       {
+                           "MODEL_NAME":  "Ariya",
+                           "MODEL_SLUG":  "ariya"
+                       },
+                       {
+                           "MODEL_NAME":  "Bluebird",
+                           "MODEL_SLUG":  "bluebird"
+                       },
+                       {
+                           "MODEL_NAME":  "Cherry",
+                           "MODEL_SLUG":  "cherry"
+                       },
+                       {
+                           "MODEL_NAME":  "Cube",
+                           "MODEL_SLUG":  "cube"
+                       },
+                       {
+                           "MODEL_NAME":  "Juke",
+                           "MODEL_SLUG":  "juke"
+                       },
+                       {
+                           "MODEL_NAME":  "LEAF",
+                           "MODEL_SLUG":  "leaf"
+                       },
+                       {
+                           "MODEL_NAME":  "Maxima",
+                           "MODEL_SLUG":  "maxima"
+                       },
+                       {
+                           "MODEL_NAME":  "Micra",
+                           "MODEL_SLUG":  "micra"
+                       },
+                       {
+                           "MODEL_NAME":  "Note",
+                           "MODEL_SLUG":  "note"
+                       },
+                       {
+                           "MODEL_NAME":  "NV 300",
+                           "MODEL_SLUG":  "nv-300"
+                       },
+                       {
+                           "MODEL_NAME":  "Pixo",
+                           "MODEL_SLUG":  "pixo"
+                       },
+                       {
+                           "MODEL_NAME":  "Primastar",
+                           "MODEL_SLUG":  "primastar"
+                       },
+                       {
+                           "MODEL_NAME":  "Primera",
+                           "MODEL_SLUG":  "primera"
+                       },
+                       {
+                           "MODEL_NAME":  "Pulsar",
+                           "MODEL_SLUG":  "pulsar"
+                       },
+                       {
+                           "MODEL_NAME":  "Qashqai",
+                           "MODEL_SLUG":  "qashqai"
+                       },
+                       {
+                           "MODEL_NAME":  "Sunny",
+                           "MODEL_SLUG":  "sunny"
+                       },
+                       {
+                           "MODEL_NAME":  "Terrano",
+                           "MODEL_SLUG":  "terrano"
+                       },
+                       {
+                           "MODEL_NAME":  "Townstar",
+                           "MODEL_SLUG":  "townstar"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Opel",
+        "MAKE_RAW":  "OPEL",
+        "MAKE_SLUG":  "opel",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Adam",
+                           "MODEL_SLUG":  "adam"
+                       },
+                       {
+                           "MODEL_NAME":  "Agila",
+                           "MODEL_SLUG":  "agila"
+                       },
+                       {
+                           "MODEL_NAME":  "Ampera",
+                           "MODEL_SLUG":  "ampera"
+                       },
+                       {
+                           "MODEL_NAME":  "Ascona",
+                           "MODEL_SLUG":  "ascona"
+                       },
+                       {
+                           "MODEL_NAME":  "Astra",
+                           "MODEL_SLUG":  "astra"
+                       },
+                       {
+                           "MODEL_NAME":  "Calibra",
+                           "MODEL_SLUG":  "calibra"
+                       },
+                       {
+                           "MODEL_NAME":  "Cascada",
+                           "MODEL_SLUG":  "cascada"
+                       },
+                       {
+                           "MODEL_NAME":  "Combo",
+                           "MODEL_SLUG":  "combo"
+                       },
+                       {
+                           "MODEL_NAME":  "Corsa",
+                           "MODEL_SLUG":  "corsa"
+                       },
+                       {
+                           "MODEL_NAME":  "GT",
+                           "MODEL_SLUG":  "gt"
+                       },
+                       {
+                           "MODEL_NAME":  "Insignia",
+                           "MODEL_SLUG":  "insignia"
+                       },
+                       {
+                           "MODEL_NAME":  "Kadett",
+                           "MODEL_SLUG":  "kadett"
+                       },
+                       {
+                           "MODEL_NAME":  "Karl",
+                           "MODEL_SLUG":  "karl"
+                       },
+                       {
+                           "MODEL_NAME":  "Manta",
+                           "MODEL_SLUG":  "manta"
+                       },
+                       {
+                           "MODEL_NAME":  "Meriva",
+                           "MODEL_SLUG":  "meriva"
+                       },
+                       {
+                           "MODEL_NAME":  "Mokka / Mokka X",
+                           "MODEL_SLUG":  "mokka--mokka-x"
+                       },
+                       {
+                           "MODEL_NAME":  "Omega",
+                           "MODEL_SLUG":  "omega"
+                       },
+                       {
+                           "MODEL_NAME":  "Rekord",
+                           "MODEL_SLUG":  "rekord"
+                       },
+                       {
+                           "MODEL_NAME":  "Rocks",
+                           "MODEL_SLUG":  "rocks"
+                       },
+                       {
+                           "MODEL_NAME":  "Senator",
+                           "MODEL_SLUG":  "senator"
+                       },
+                       {
+                           "MODEL_NAME":  "Signum",
+                           "MODEL_SLUG":  "signum"
+                       },
+                       {
+                           "MODEL_NAME":  "Sintra",
+                           "MODEL_SLUG":  "sintra"
+                       },
+                       {
+                           "MODEL_NAME":  "Tigra",
+                           "MODEL_SLUG":  "tigra"
+                       },
+                       {
+                           "MODEL_NAME":  "Vectra",
+                           "MODEL_SLUG":  "vectra"
+                       },
+                       {
+                           "MODEL_NAME":  "Vivaro",
+                           "MODEL_SLUG":  "vivaro"
+                       },
+                       {
+                           "MODEL_NAME":  "Zafira",
+                           "MODEL_SLUG":  "zafira"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Peugeot",
+        "MAKE_RAW":  "PEUGEOT",
+        "MAKE_SLUG":  "peugeot",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "1007",
+                           "MODEL_SLUG":  "1007"
+                       },
+                       {
+                           "MODEL_NAME":  "106",
+                           "MODEL_SLUG":  "106"
+                       },
+                       {
+                           "MODEL_NAME":  "107",
+                           "MODEL_SLUG":  "107"
+                       },
+                       {
+                           "MODEL_NAME":  "108",
+                           "MODEL_SLUG":  "108"
+                       },
+                       {
+                           "MODEL_NAME":  "2008",
+                           "MODEL_SLUG":  "2008"
+                       },
+                       {
+                           "MODEL_NAME":  "205",
+                           "MODEL_SLUG":  "205"
+                       },
+                       {
+                           "MODEL_NAME":  "206",
+                           "MODEL_SLUG":  "206"
+                       },
+                       {
+                           "MODEL_NAME":  "207",
+                           "MODEL_SLUG":  "207"
+                       },
+                       {
+                           "MODEL_NAME":  "208",
+                           "MODEL_SLUG":  "208"
+                       },
+                       {
+                           "MODEL_NAME":  "3008",
+                           "MODEL_SLUG":  "3008"
+                       },
+                       {
+                           "MODEL_NAME":  "306",
+                           "MODEL_SLUG":  "306"
+                       },
+                       {
+                           "MODEL_NAME":  "307",
+                           "MODEL_SLUG":  "307"
+                       },
+                       {
+                           "MODEL_NAME":  "308",
+                           "MODEL_SLUG":  "308"
+                       },
+                       {
+                           "MODEL_NAME":  "309",
+                           "MODEL_SLUG":  "309"
+                       },
+                       {
+                           "MODEL_NAME":  "405",
+                           "MODEL_SLUG":  "405"
+                       },
+                       {
+                           "MODEL_NAME":  "406",
+                           "MODEL_SLUG":  "406"
+                       },
+                       {
+                           "MODEL_NAME":  "407",
+                           "MODEL_SLUG":  "407"
+                       },
+                       {
+                           "MODEL_NAME":  "408",
+                           "MODEL_SLUG":  "408"
+                       },
+                       {
+                           "MODEL_NAME":  "5008",
+                           "MODEL_SLUG":  "5008"
+                       },
+                       {
+                           "MODEL_NAME":  "508",
+                           "MODEL_SLUG":  "508"
+                       },
+                       {
+                           "MODEL_NAME":  "605",
+                           "MODEL_SLUG":  "605"
+                       },
+                       {
+                           "MODEL_NAME":  "607",
+                           "MODEL_SLUG":  "607"
+                       },
+                       {
+                           "MODEL_NAME":  "806",
+                           "MODEL_SLUG":  "806"
+                       },
+                       {
+                           "MODEL_NAME":  "807",
+                           "MODEL_SLUG":  "807"
+                       },
+                       {
+                           "MODEL_NAME":  "Bipper",
+                           "MODEL_SLUG":  "bipper"
+                       },
+                       {
+                           "MODEL_NAME":  "Expert",
+                           "MODEL_SLUG":  "expert"
+                       },
+                       {
+                           "MODEL_NAME":  "Partner",
+                           "MODEL_SLUG":  "partner"
+                       },
+                       {
+                           "MODEL_NAME":  "RCZ",
+                           "MODEL_SLUG":  "rcz"
+                       },
+                       {
+                           "MODEL_NAME":  "Rifter",
+                           "MODEL_SLUG":  "rifter"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Polestar",
+        "MAKE_RAW":  "POLESTAR",
+        "MAKE_SLUG":  "polestar",
+        "MODELS":  {
+                       "MODEL_NAME":  "Polestar 2",
+                       "MODEL_SLUG":  "polestar-2"
+                   }
+    },
+    {
+        "MAKE":  "Porsche",
+        "MAKE_RAW":  "PORSCHE",
+        "MAKE_SLUG":  "porsche",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "911",
+                           "MODEL_SLUG":  "911"
+                       },
+                       {
+                           "MODEL_NAME":  "924",
+                           "MODEL_SLUG":  "924"
+                       },
+                       {
+                           "MODEL_NAME":  "944",
+                           "MODEL_SLUG":  "944"
+                       },
+                       {
+                           "MODEL_NAME":  "968",
+                           "MODEL_SLUG":  "968"
+                       },
+                       {
+                           "MODEL_NAME":  "Boxter",
+                           "MODEL_SLUG":  "boxter"
+                       },
+                       {
+                           "MODEL_NAME":  "Cayman",
+                           "MODEL_SLUG":  "cayman"
+                       },
+                       {
+                           "MODEL_NAME":  "Macan",
+                           "MODEL_SLUG":  "macan"
+                       },
+                       {
+                           "MODEL_NAME":  "Taycan",
+                           "MODEL_SLUG":  "taycan"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Renault",
+        "MAKE_RAW":  "RENAULT",
+        "MAKE_SLUG":  "renault",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "11",
+                           "MODEL_SLUG":  "11"
+                       },
+                       {
+                           "MODEL_NAME":  "19",
+                           "MODEL_SLUG":  "19"
+                       },
+                       {
+                           "MODEL_NAME":  "21",
+                           "MODEL_SLUG":  "21"
+                       },
+                       {
+                           "MODEL_NAME":  "25",
+                           "MODEL_SLUG":  "25"
+                       },
+                       {
+                           "MODEL_NAME":  "Arkana",
+                           "MODEL_SLUG":  "arkana"
+                       },
+                       {
+                           "MODEL_NAME":  "Captur",
+                           "MODEL_SLUG":  "captur"
+                       },
+                       {
+                           "MODEL_NAME":  "Clio",
+                           "MODEL_SLUG":  "clio"
+                       },
+                       {
+                           "MODEL_NAME":  "Espace",
+                           "MODEL_SLUG":  "espace"
+                       },
+                       {
+                           "MODEL_NAME":  "Express",
+                           "MODEL_SLUG":  "express"
+                       },
+                       {
+                           "MODEL_NAME":  "Fluence",
+                           "MODEL_SLUG":  "fluence"
+                       },
+                       {
+                           "MODEL_NAME":  "Kangoo",
+                           "MODEL_SLUG":  "kangoo"
+                       },
+                       {
+                           "MODEL_NAME":  "Laguna",
+                           "MODEL_SLUG":  "laguna"
+                       },
+                       {
+                           "MODEL_NAME":  "Megane",
+                           "MODEL_SLUG":  "megane"
+                       },
+                       {
+                           "MODEL_NAME":  "Modus",
+                           "MODEL_SLUG":  "modus"
+                       },
+                       {
+                           "MODEL_NAME":  "R5",
+                           "MODEL_SLUG":  "r5"
+                       },
+                       {
+                           "MODEL_NAME":  "Scenic",
+                           "MODEL_SLUG":  "scenic"
+                       },
+                       {
+                           "MODEL_NAME":  "Talisman",
+                           "MODEL_SLUG":  "talisman"
+                       },
+                       {
+                           "MODEL_NAME":  "Trafic",
+                           "MODEL_SLUG":  "trafic"
+                       },
+                       {
+                           "MODEL_NAME":  "Twingo",
+                           "MODEL_SLUG":  "twingo"
+                       },
+                       {
+                           "MODEL_NAME":  "Vel Satis",
+                           "MODEL_SLUG":  "vel-satis"
+                       },
+                       {
+                           "MODEL_NAME":  "Wind",
+                           "MODEL_SLUG":  "wind"
+                       },
+                       {
+                           "MODEL_NAME":  "Zoe",
+                           "MODEL_SLUG":  "zoe"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Rover",
+        "MAKE_RAW":  "ROVER",
+        "MAKE_SLUG":  "rover",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "200",
+                           "MODEL_SLUG":  "200"
+                       },
+                       {
+                           "MODEL_NAME":  "25",
+                           "MODEL_SLUG":  "25"
+                       },
+                       {
+                           "MODEL_NAME":  "400",
+                           "MODEL_SLUG":  "400"
+                       },
+                       {
+                           "MODEL_NAME":  "600",
+                           "MODEL_SLUG":  "600"
+                       },
+                       {
+                           "MODEL_NAME":  "75",
+                           "MODEL_SLUG":  "75"
+                       },
+                       {
+                           "MODEL_NAME":  "800",
+                           "MODEL_SLUG":  "800"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Saab",
+        "MAKE_RAW":  "SAAB",
+        "MAKE_SLUG":  "saab",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "900",
+                           "MODEL_SLUG":  "900"
+                       },
+                       {
+                           "MODEL_NAME":  "9000",
+                           "MODEL_SLUG":  "9000"
+                       },
+                       {
+                           "MODEL_NAME":  "9-3",
+                           "MODEL_SLUG":  "9-3"
+                       },
+                       {
+                           "MODEL_NAME":  "9-5",
+                           "MODEL_SLUG":  "9-5"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Seat",
+        "MAKE_RAW":  "SEAT",
+        "MAKE_SLUG":  "seat",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Alhambra",
+                           "MODEL_SLUG":  "alhambra"
+                       },
+                       {
+                           "MODEL_NAME":  "Altea",
+                           "MODEL_SLUG":  "altea"
+                       },
+                       {
+                           "MODEL_NAME":  "Arona",
+                           "MODEL_SLUG":  "arona"
+                       },
+                       {
+                           "MODEL_NAME":  "Arosa",
+                           "MODEL_SLUG":  "arosa"
+                       },
+                       {
+                           "MODEL_NAME":  "Ateca",
+                           "MODEL_SLUG":  "ateca"
+                       },
+                       {
+                           "MODEL_NAME":  "Cordoba",
+                           "MODEL_SLUG":  "cordoba"
+                       },
+                       {
+                           "MODEL_NAME":  "Exeo",
+                           "MODEL_SLUG":  "exeo"
+                       },
+                       {
+                           "MODEL_NAME":  "Ibiza",
+                           "MODEL_SLUG":  "ibiza"
+                       },
+                       {
+                           "MODEL_NAME":  "Inca",
+                           "MODEL_SLUG":  "inca"
+                       },
+                       {
+                           "MODEL_NAME":  "Leon",
+                           "MODEL_SLUG":  "leon"
+                       },
+                       {
+                           "MODEL_NAME":  "Malaga",
+                           "MODEL_SLUG":  "malaga"
+                       },
+                       {
+                           "MODEL_NAME":  "Mii",
+                           "MODEL_SLUG":  "mii"
+                       },
+                       {
+                           "MODEL_NAME":  "Toledo",
+                           "MODEL_SLUG":  "toledo"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Skoda",
+        "MAKE_RAW":  "SKODA",
+        "MAKE_SLUG":  "skoda",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "130",
+                           "MODEL_SLUG":  "130"
+                       },
+                       {
+                           "MODEL_NAME":  "Citigo",
+                           "MODEL_SLUG":  "citigo"
+                       },
+                       {
+                           "MODEL_NAME":  "Enyaq iV",
+                           "MODEL_SLUG":  "enyaq-iv"
+                       },
+                       {
+                           "MODEL_NAME":  "Fabia",
+                           "MODEL_SLUG":  "fabia"
+                       },
+                       {
+                           "MODEL_NAME":  "Favorit",
+                           "MODEL_SLUG":  "favorit"
+                       },
+                       {
+                           "MODEL_NAME":  "Felicia",
+                           "MODEL_SLUG":  "felicia"
+                       },
+                       {
+                           "MODEL_NAME":  "Kamiq",
+                           "MODEL_SLUG":  "kamiq"
+                       },
+                       {
+                           "MODEL_NAME":  "Karoq",
+                           "MODEL_SLUG":  "karoq"
+                       },
+                       {
+                           "MODEL_NAME":  "Kodiaq",
+                           "MODEL_SLUG":  "kodiaq"
+                       },
+                       {
+                           "MODEL_NAME":  "Octavia",
+                           "MODEL_SLUG":  "octavia"
+                       },
+                       {
+                           "MODEL_NAME":  "Rapid",
+                           "MODEL_SLUG":  "rapid"
+                       },
+                       {
+                           "MODEL_NAME":  "Scala",
+                           "MODEL_SLUG":  "scala"
+                       },
+                       {
+                           "MODEL_NAME":  "Superb",
+                           "MODEL_SLUG":  "superb"
+                       },
+                       {
+                           "MODEL_NAME":  "Yeti",
+                           "MODEL_SLUG":  "yeti"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Smart",
+        "MAKE_RAW":  "SMART",
+        "MAKE_SLUG":  "smart",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "ForFour",
+                           "MODEL_SLUG":  "forfour"
+                       },
+                       {
+                           "MODEL_NAME":  "Fortwo",
+                           "MODEL_SLUG":  "fortwo"
+                       },
+                       {
+                           "MODEL_NAME":  "Roadster",
+                           "MODEL_SLUG":  "roadster"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Subaru",
+        "MAKE_RAW":  "SUBARU",
+        "MAKE_SLUG":  "subaru",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "BRZ",
+                           "MODEL_SLUG":  "brz"
+                       },
+                       {
+                           "MODEL_NAME":  "Impreza",
+                           "MODEL_SLUG":  "impreza"
+                       },
+                       {
+                           "MODEL_NAME":  "Justy",
+                           "MODEL_SLUG":  "justy"
+                       },
+                       {
+                           "MODEL_NAME":  "Legacy",
+                           "MODEL_SLUG":  "legacy"
+                       },
+                       {
+                           "MODEL_NAME":  "Trezia",
+                           "MODEL_SLUG":  "trezia"
+                       },
+                       {
+                           "MODEL_NAME":  "Vivio",
+                           "MODEL_SLUG":  "vivio"
+                       },
+                       {
+                           "MODEL_NAME":  "WRX",
+                           "MODEL_SLUG":  "wrx"
+                       },
+                       {
+                           "MODEL_NAME":  "XV",
+                           "MODEL_SLUG":  "xv"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Suzuki",
+        "MAKE_RAW":  "SUZUKI",
+        "MAKE_SLUG":  "suzuki",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Alto",
+                           "MODEL_SLUG":  "alto"
+                       },
+                       {
+                           "MODEL_NAME":  "Baleno",
+                           "MODEL_SLUG":  "baleno"
+                       },
+                       {
+                           "MODEL_NAME":  "Ignis",
+                           "MODEL_SLUG":  "ignis"
+                       },
+                       {
+                           "MODEL_NAME":  "Kizashi",
+                           "MODEL_SLUG":  "kizashi"
+                       },
+                       {
+                           "MODEL_NAME":  "Liana",
+                           "MODEL_SLUG":  "liana"
+                       },
+                       {
+                           "MODEL_NAME":  "Splash",
+                           "MODEL_SLUG":  "splash"
+                       },
+                       {
+                           "MODEL_NAME":  "Swace",
+                           "MODEL_SLUG":  "swace"
+                       },
+                       {
+                           "MODEL_NAME":  "Swift",
+                           "MODEL_SLUG":  "swift"
+                       },
+                       {
+                           "MODEL_NAME":  "SX4",
+                           "MODEL_SLUG":  "sx4"
+                       },
+                       {
+                           "MODEL_NAME":  "Vitara",
+                           "MODEL_SLUG":  "vitara"
+                       },
+                       {
+                           "MODEL_NAME":  "Wagon R+",
+                           "MODEL_SLUG":  "wagon-r"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Tesla",
+        "MAKE_RAW":  "TESLA",
+        "MAKE_SLUG":  "tesla",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Model 3",
+                           "MODEL_SLUG":  "model-3"
+                       },
+                       {
+                           "MODEL_NAME":  "Model Y",
+                           "MODEL_SLUG":  "model-y"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Toyota",
+        "MAKE_RAW":  "TOYOTA",
+        "MAKE_SLUG":  "toyota",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Auris",
+                           "MODEL_SLUG":  "auris"
+                       },
+                       {
+                           "MODEL_NAME":  "Avensis",
+                           "MODEL_SLUG":  "avensis"
+                       },
+                       {
+                           "MODEL_NAME":  "Aygo",
+                           "MODEL_SLUG":  "aygo"
+                       },
+                       {
+                           "MODEL_NAME":  "Camry",
+                           "MODEL_SLUG":  "camry"
+                       },
+                       {
+                           "MODEL_NAME":  "Carina",
+                           "MODEL_SLUG":  "carina"
+                       },
+                       {
+                           "MODEL_NAME":  "Celica",
+                           "MODEL_SLUG":  "celica"
+                       },
+                       {
+                           "MODEL_NAME":  "C-HR",
+                           "MODEL_SLUG":  "c-hr"
+                       },
+                       {
+                           "MODEL_NAME":  "Corolla",
+                           "MODEL_SLUG":  "corolla"
+                       },
+                       {
+                           "MODEL_NAME":  "Corolla Verso",
+                           "MODEL_SLUG":  "corolla-verso"
+                       },
+                       {
+                           "MODEL_NAME":  "GT86",
+                           "MODEL_SLUG":  "gt86"
+                       },
+                       {
+                           "MODEL_NAME":  "iQ",
+                           "MODEL_SLUG":  "iq"
+                       },
+                       {
+                           "MODEL_NAME":  "Land Cruiser",
+                           "MODEL_SLUG":  "land-cruiser"
+                       },
+                       {
+                           "MODEL_NAME":  "MR-2",
+                           "MODEL_SLUG":  "mr-2"
+                       },
+                       {
+                           "MODEL_NAME":  "Paseo",
+                           "MODEL_SLUG":  "paseo"
+                       },
+                       {
+                           "MODEL_NAME":  "Picnic",
+                           "MODEL_SLUG":  "picnic"
+                       },
+                       {
+                           "MODEL_NAME":  "Previa",
+                           "MODEL_SLUG":  "previa"
+                       },
+                       {
+                           "MODEL_NAME":  "Prius",
+                           "MODEL_SLUG":  "prius"
+                       },
+                       {
+                           "MODEL_NAME":  "Proace",
+                           "MODEL_SLUG":  "proace"
+                       },
+                       {
+                           "MODEL_NAME":  "Proace city",
+                           "MODEL_SLUG":  "proace-city"
+                       },
+                       {
+                           "MODEL_NAME":  "RAV4",
+                           "MODEL_SLUG":  "rav4"
+                       },
+                       {
+                           "MODEL_NAME":  "Starlet",
+                           "MODEL_SLUG":  "starlet"
+                       },
+                       {
+                           "MODEL_NAME":  "Supra",
+                           "MODEL_SLUG":  "supra"
+                       },
+                       {
+                           "MODEL_NAME":  "Urban Cruiser",
+                           "MODEL_SLUG":  "urban-cruiser"
+                       },
+                       {
+                           "MODEL_NAME":  "Verso S",
+                           "MODEL_SLUG":  "verso-s"
+                       },
+                       {
+                           "MODEL_NAME":  "Yaris",
+                           "MODEL_SLUG":  "yaris"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Volkswagen",
+        "MAKE_RAW":  "VOLKSWAGEN",
+        "MAKE_SLUG":  "volkswagen",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "Arteon",
+                           "MODEL_SLUG":  "arteon"
+                       },
+                       {
+                           "MODEL_NAME":  "Beetle",
+                           "MODEL_SLUG":  "beetle"
+                       },
+                       {
+                           "MODEL_NAME":  "Bora",
+                           "MODEL_SLUG":  "bora"
+                       },
+                       {
+                           "MODEL_NAME":  "Caddy",
+                           "MODEL_SLUG":  "caddy"
+                       },
+                       {
+                           "MODEL_NAME":  "Corrado",
+                           "MODEL_SLUG":  "corrado"
+                       },
+                       {
+                           "MODEL_NAME":  "Derby",
+                           "MODEL_SLUG":  "derby"
+                       },
+                       {
+                           "MODEL_NAME":  "Eos",
+                           "MODEL_SLUG":  "eos"
+                       },
+                       {
+                           "MODEL_NAME":  "Fox",
+                           "MODEL_SLUG":  "fox"
+                       },
+                       {
+                           "MODEL_NAME":  "Golf",
+                           "MODEL_SLUG":  "golf"
+                       },
+                       {
+                           "MODEL_NAME":  "Golf Plus / Sportsvan",
+                           "MODEL_SLUG":  "golf-plus--sportsvan"
+                       },
+                       {
+                           "MODEL_NAME":  "ID. Buzz",
+                           "MODEL_SLUG":  "id-buzz"
+                       },
+                       {
+                           "MODEL_NAME":  "ID.3",
+                           "MODEL_SLUG":  "id3"
+                       },
+                       {
+                           "MODEL_NAME":  "ID.4",
+                           "MODEL_SLUG":  "id4"
+                       },
+                       {
+                           "MODEL_NAME":  "ID.7",
+                           "MODEL_SLUG":  "id7"
+                       },
+                       {
+                           "MODEL_NAME":  "Jetta",
+                           "MODEL_SLUG":  "jetta"
+                       },
+                       {
+                           "MODEL_NAME":  "Kever",
+                           "MODEL_SLUG":  "kever"
+                       },
+                       {
+                           "MODEL_NAME":  "Lupo",
+                           "MODEL_SLUG":  "lupo"
+                       },
+                       {
+                           "MODEL_NAME":  "Multivan",
+                           "MODEL_SLUG":  "multivan"
+                       },
+                       {
+                           "MODEL_NAME":  "New Beetle",
+                           "MODEL_SLUG":  "new-beetle"
+                       },
+                       {
+                           "MODEL_NAME":  "Passat",
+                           "MODEL_SLUG":  "passat"
+                       },
+                       {
+                           "MODEL_NAME":  "Polo",
+                           "MODEL_SLUG":  "polo"
+                       },
+                       {
+                           "MODEL_NAME":  "Scirocco",
+                           "MODEL_SLUG":  "scirocco"
+                       },
+                       {
+                           "MODEL_NAME":  "Sharan",
+                           "MODEL_SLUG":  "sharan"
+                       },
+                       {
+                           "MODEL_NAME":  "Taigo",
+                           "MODEL_SLUG":  "taigo"
+                       },
+                       {
+                           "MODEL_NAME":  "T-Cross",
+                           "MODEL_SLUG":  "t-cross"
+                       },
+                       {
+                           "MODEL_NAME":  "Tiguan",
+                           "MODEL_SLUG":  "tiguan"
+                       },
+                       {
+                           "MODEL_NAME":  "Touareg",
+                           "MODEL_SLUG":  "touareg"
+                       },
+                       {
+                           "MODEL_NAME":  "Touran",
+                           "MODEL_SLUG":  "touran"
+                       },
+                       {
+                           "MODEL_NAME":  "Transporter",
+                           "MODEL_SLUG":  "transporter"
+                       },
+                       {
+                           "MODEL_NAME":  "T-Roc",
+                           "MODEL_SLUG":  "t-roc"
+                       },
+                       {
+                           "MODEL_NAME":  "UP!",
+                           "MODEL_SLUG":  "up"
+                       },
+                       {
+                           "MODEL_NAME":  "Vento",
+                           "MODEL_SLUG":  "vento"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Volvo",
+        "MAKE_RAW":  "VOLVO",
+        "MAKE_SLUG":  "volvo",
+        "MODELS":  [
+                       {
+                           "MODEL_NAME":  "142",
+                           "MODEL_SLUG":  "142"
+                       },
+                       {
+                           "MODEL_NAME":  "240, 260",
+                           "MODEL_SLUG":  "240-260"
+                       },
+                       {
+                           "MODEL_NAME":  "340, 360",
+                           "MODEL_SLUG":  "340-360"
+                       },
+                       {
+                           "MODEL_NAME":  "440, 460",
+                           "MODEL_SLUG":  "440-460"
+                       },
+                       {
+                           "MODEL_NAME":  "480",
+                           "MODEL_SLUG":  "480"
+                       },
+                       {
+                           "MODEL_NAME":  "740, 760",
+                           "MODEL_SLUG":  "740-760"
+                       },
+                       {
+                           "MODEL_NAME":  "850",
+                           "MODEL_SLUG":  "850"
+                       },
+                       {
+                           "MODEL_NAME":  "940",
+                           "MODEL_SLUG":  "940"
+                       },
+                       {
+                           "MODEL_NAME":  "Amazone",
+                           "MODEL_SLUG":  "amazone"
+                       },
+                       {
+                           "MODEL_NAME":  "C30",
+                           "MODEL_SLUG":  "c30"
+                       },
+                       {
+                           "MODEL_NAME":  "C40",
+                           "MODEL_SLUG":  "c40"
+                       },
+                       {
+                           "MODEL_NAME":  "C70",
+                           "MODEL_SLUG":  "c70"
+                       },
+                       {
+                           "MODEL_NAME":  "EX30",
+                           "MODEL_SLUG":  "ex30"
+                       },
+                       {
+                           "MODEL_NAME":  "S40",
+                           "MODEL_SLUG":  "s40"
+                       },
+                       {
+                           "MODEL_NAME":  "S60",
+                           "MODEL_SLUG":  "s60"
+                       },
+                       {
+                           "MODEL_NAME":  "S70",
+                           "MODEL_SLUG":  "s70"
+                       },
+                       {
+                           "MODEL_NAME":  "S80",
+                           "MODEL_SLUG":  "s80"
+                       },
+                       {
+                           "MODEL_NAME":  "S90",
+                           "MODEL_SLUG":  "s90"
+                       },
+                       {
+                           "MODEL_NAME":  "V40",
+                           "MODEL_SLUG":  "v40"
+                       },
+                       {
+                           "MODEL_NAME":  "V50",
+                           "MODEL_SLUG":  "v50"
+                       },
+                       {
+                           "MODEL_NAME":  "V60",
+                           "MODEL_SLUG":  "v60"
+                       },
+                       {
+                           "MODEL_NAME":  "V70",
+                           "MODEL_SLUG":  "v70"
+                       },
+                       {
+                           "MODEL_NAME":  "V90",
+                           "MODEL_SLUG":  "v90"
+                       },
+                       {
+                           "MODEL_NAME":  "XC40",
+                           "MODEL_SLUG":  "xc40"
+                       }
+                   ]
+    },
+    {
+        "MAKE":  "Xpeng",
+        "MAKE_RAW":  "XPENG",
+        "MAKE_SLUG":  "xpeng",
+        "MODELS":  {
+                       "MODEL_NAME":  "P7",
+                       "MODEL_SLUG":  "p7"
+                   }
+    }
+]

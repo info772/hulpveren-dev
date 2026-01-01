@@ -1,0 +1,69 @@
+{
+  "make": {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi"
+  },
+  "model": {
+    "slug": "asx",
+    "label": "ASX"
+  },
+  "kits": [
+    {
+      "sku": "HV-104318",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947058545.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 256.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "GA0"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "01-2010",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140705",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083608.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 177.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VSX",
+            "VSE"
+          ],
+          "remark": "excl. 4WD",
+          "year_from": "01-2023",
+          "year_to": "",
+          "notes": "Engine: Excl. Hybrid and Plug in Hybrid"
+        }
+      ]
+    }
+  ]
+}

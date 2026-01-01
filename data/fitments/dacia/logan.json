@@ -1,0 +1,97 @@
+{
+  "make": {
+    "slug": "dacia",
+    "label": "DACIA"
+  },
+  "model": {
+    "slug": "logan",
+    "label": "Logan"
+  },
+  "kits": [
+    {
+      "sku": "HV-140505",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013308.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 199.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (FS",
+            "KS)"
+          ],
+          "remark": "Only MCV / Express",
+          "year_from": "02-2007",
+          "year_to": "10-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140615",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947068438.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 214.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (K8)"
+          ],
+          "remark": "Only MCV, excl. Stepway",
+          "year_from": "11-2013",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140695",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947080164.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 161.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (DJF)"
+          ],
+          "remark": "Incl. MCV",
+          "year_from": "05-2021",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

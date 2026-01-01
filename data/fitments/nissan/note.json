@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "note",
+    "label": "Note"
+  },
+  "kits": [
+    {
+      "sku": "HV-140495",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013292.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 195.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E11"
+          ],
+          "remark": "",
+          "year_from": "01-2006",
+          "year_to": "08-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-313235",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947072206.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 173.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E12"
+          ],
+          "remark": "",
+          "year_from": "06-2013",
+          "year_to": "02-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "make": {
+    "slug": "subaru",
+    "label": "Subaru"
+  },
+  "model": {
+    "slug": "legacy",
+    "label": "Legacy"
+  },
+  "kits": [
+    {
+      "sku": "HV-113107",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012325.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 173.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "Phase I"
+          ],
+          "remark": "Excl. Air suspension",
+          "year_from": "01-1989",
+          "year_to": "08-1994",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-113117",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012332.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 200.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "Phase III BE",
+            "BH"
+          ],
+          "remark": "Incl. Stationwagon, Excl. Air Suspension",
+          "year_from": "10-1998",
+          "year_to": "08-2003",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-113208",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012349.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 327.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 539
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "Phase II BD",
+            "BG"
+          ],
+          "remark": "Excl. Air Suspension",
+          "year_from": "07-1994",
+          "year_to": "03-1999",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

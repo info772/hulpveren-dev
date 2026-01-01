@@ -1,0 +1,469 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "navara-np-300",
+    "label": "Navara / NP 300"
+  },
+  "kits": [
+    {
+      "sku": "HV-314198",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947055728.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 375.75,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 599
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Reinforced Front Springs, +30 mm,  Excl. 3.0 dCi, only leafsprings (King Cab)",
+          "year_from": "07-2014",
+          "year_to": "01-2019",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "D40"
+          ],
+          "remark": "Reinforced Front Springs, +30 mm, Excl. V6",
+          "year_from": "07-2005",
+          "year_to": "05-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314270",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947014701.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 431.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 589
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D40"
+          ],
+          "remark": "Only 4WD",
+          "year_from": "07-2005",
+          "year_to": "05-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314291",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947055735.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 696.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 1029
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D40"
+          ],
+          "remark": "Excl. 2WD, Excl. V6",
+          "year_from": "07-2005",
+          "year_to": "05-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314300",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074347.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 403.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 559
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Only leafsprings (King Cab)",
+          "year_from": "06-2015",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314311",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074361.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 696.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 1049
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Excl. 3.0 dCi, Only for rear leafsprings (King Cab)",
+          "year_from": "06-2015",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314325",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074354.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 233.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Only for coil springs (Double Cab)",
+          "year_from": "06-2015",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314338",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074651.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 464.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 629
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Medium support, only for coil springs (Double Cab)",
+          "year_from": "06-2015",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314348",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074446.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 372.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 589
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Reinforced front springs, (Double Cab), Excl. 3.0 dCi",
+          "year_from": "06-2015",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314351",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074439.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 570.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 829
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Only for coil springs (Double Cab), Excl. 3.0 dCi, Auxiliary spring rear",
+          "year_from": "06-2015",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314361",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074644.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 719.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 1009
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Only for coil springs (Double Cab), Excl. 3.0 dCi, Main spring rear",
+          "year_from": "06-2015",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314378",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074668.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 574.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 789
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Maximum support, Min. load 250kg",
+          "year_from": "06-2015",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314385",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081031.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 201.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Only King Cab, Only for rear coil springs",
+          "year_from": "01-2019",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314398",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081062.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 558.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 749
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Medium support, Min. load 180 Kg, Only King Cab, Only for rear coil springs",
+          "year_from": "01-2019",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314401",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081598.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 915.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 1319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Only King Cab, Only for rear coil springs, Main spring rear, Min. load rear 180 Kg",
+          "year_from": "01-2019",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314418",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081604.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 403.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 629
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Reinforced front springs, Only King Cab, Only for rear coil springs",
+          "year_from": "01-2019",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-314421",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081611.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 570.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 899
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "D23"
+          ],
+          "remark": "Only King Cab, Only for rear coil springs, Auxiliary spring rear",
+          "year_from": "01-2019",
+          "year_to": "01-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

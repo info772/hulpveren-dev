@@ -1,0 +1,13 @@
+{
+  "make": {
+    "slug": "lexus",
+    "label": "LEXUS"
+  },
+  "models": [
+    {
+      "slug": "nx",
+      "label": "NX",
+      "kits_count": 1
+    }
+  ]
+}

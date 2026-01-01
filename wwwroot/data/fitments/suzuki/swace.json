@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "suzuki",
+    "label": "Suzuki"
+  },
+  "model": {
+    "slug": "swace",
+    "label": "Swace"
+  },
+  "kits": [
+    {
+      "sku": "HV-360425",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947079847.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 181.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "AMZ"
+          ],
+          "remark": "",
+          "year_from": "10-2020",
+          "year_to": "",
+          "notes": "Engine: Hybrid"
+        }
+      ]
+    }
+  ]
+}

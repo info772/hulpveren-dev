@@ -1,0 +1,336 @@
+{
+  "make": {
+    "slug": "skoda",
+    "label": "SKODA"
+  },
+  "model": {
+    "slug": "octavia",
+    "label": "Octavia"
+  },
+  "kits": [
+    {
+      "sku": "HV-043005",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011236.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 162.75,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "1U2"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "09-1996",
+          "year_to": "12-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-172171",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013513.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 256.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "1U2"
+          ],
+          "remark": "Front springs only",
+          "year_from": "09-1996",
+          "year_to": "12-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-173138",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013544.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 369
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "1U5"
+          ],
+          "remark": "Combi, Excl. 4WD",
+          "year_from": "07-1998",
+          "year_to": "09-2004",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-173145",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013551.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 161.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "1U2",
+            "1U5"
+          ],
+          "remark": "Incl. Combi, 4WD",
+          "year_from": "09-1996",
+          "year_to": "12-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-173168",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947055438.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "1Z5"
+          ],
+          "remark": "Combi, Only Scout",
+          "year_from": "07-2009",
+          "year_to": "05-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-192191",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013810.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 339.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 549
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "1U2"
+          ],
+          "remark": "4WD",
+          "year_from": "09-1996",
+          "year_to": "12-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-193181",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013896.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 518.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 809
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "1Z5"
+          ],
+          "remark": "Combi, Excl. 4WD",
+          "year_from": "02-2004",
+          "year_to": "05-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199515",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "1Z3",
+            "1Z5"
+          ],
+          "remark": "Incl. Combi, Incl. Greenline, Incl. Scout",
+          "year_from": "02-2004",
+          "year_to": "06-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199525",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067356.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "NX3",
+            "NN3",
+            "NX5"
+          ],
+          "remark": "Incl. Combi, Incl. Scout",
+          "year_from": "11-2019",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "III",
+            "5E3",
+            "NL3",
+            "NR3",
+            "5E5",
+            "5E6"
+          ],
+          "remark": "Incl. Combi, Incl Scout",
+          "year_from": "11-2012",
+          "year_to": "11-2019",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199545",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072022.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 189.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "NX3",
+            "NN3",
+            "NX5"
+          ],
+          "remark": "Maximum support, Incl. Combi, Incl. Scout, Excl. lowered suspension",
+          "year_from": "11-2019",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "III",
+            "5E3",
+            "NL3",
+            "NR3",
+            "5E5",
+            "5E6"
+          ],
+          "remark": "Maximum support, Incl. Combi, Incl. Scout, Excl. lowered suspension",
+          "year_from": "11-2012",
+          "year_to": "03-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

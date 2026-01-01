@@ -1,0 +1,161 @@
+{
+  "make": {
+    "slug": "suzuki",
+    "label": "Suzuki"
+  },
+  "model": {
+    "slug": "jimny",
+    "label": "Jimny"
+  },
+  "kits": [
+    {
+      "sku": "HV-393021",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015692.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 345.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "SN"
+          ],
+          "remark": "",
+          "year_from": "10-1998",
+          "year_to": "07-2018",
+          "notes": "Engine: Excl. Diesel"
+        }
+      ]
+    },
+    {
+      "sku": "HV-393031",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015708.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 383.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 559
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "SN"
+          ],
+          "remark": "Special kit (60mm) Special shocks needed.",
+          "year_from": "10-1998",
+          "year_to": "07-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-393088",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015753.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 252.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 359
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "A6G"
+          ],
+          "remark": "Incl. Commercial",
+          "year_from": "07-2018",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "SN"
+          ],
+          "remark": "Only cars with ABS",
+          "year_from": "09-1998",
+          "year_to": "07-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-393091",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015760.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 351.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 519
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "SN"
+          ],
+          "remark": "",
+          "year_from": "09-1998",
+          "year_to": "07-2018",
+          "notes": "Engine: 1.5D"
+        }
+      ]
+    },
+    {
+      "sku": "HV-394011",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947078567.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 583.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 849
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "A6G"
+          ],
+          "remark": "Cross Country raises f/r 25mm, Incl. Commercial",
+          "year_from": "07-2018",
+          "year_to": "",
+          "notes": "Engine: 1.5L VVT"
+        }
+      ]
+    }
+  ]
+}

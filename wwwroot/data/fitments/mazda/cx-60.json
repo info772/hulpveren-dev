@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "mazda",
+    "label": "MAZDA"
+  },
+  "model": {
+    "slug": "cx-60",
+    "label": "CX-60"
+  },
+  "kits": [
+    {
+      "sku": "HV-383528",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947114517.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 280.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 529
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KH"
+          ],
+          "remark": "Only 4WD",
+          "year_from": "03-2022",
+          "year_to": "",
+          "notes": "Engine: Only PHEV"
+        }
+      ]
+    }
+  ]
+}

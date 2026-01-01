@@ -1,0 +1,120 @@
+/* ==========================
+   BLOG SCOPE (safe)
+   Plaats je blog content in: <main class="blog-scope">...</main>
+   ========================== */
+
+.blog-scope{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 18px 80px;
+}
+
+/* Reset alleen wat site.css globaal hard zet */
+.blog-scope section{ padding: 0; } /* voorkomt 64px padding per <section> */
+.blog-scope p{ color: var(--muted); } /* of kies #cdd8f5 als je helderder wil */
+.blog-scope h1,
+.blog-scope h2,
+.blog-scope h3,
+.blog-scope h4{ color: #f6f8ff; }
+
+/* HERO */
+.blog-scope .blog-hero{ margin-bottom: 24px; }
+.blog-scope .blog-hero img{
+  width:100%;
+  height:auto;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.12);
+  display:block;
+}
+
+/* HEAD */
+.blog-scope .blog-head{
+  margin-top: 18px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  padding-bottom:16px;
+}
+.blog-scope .blog-head h1{
+  margin:0 0 8px;
+  font-size:clamp(2rem,3vw,2.6rem);
+  letter-spacing:-.02em;
+}
+.blog-scope .blog-meta{
+  opacity:.85;
+  font-size:.95rem;
+}
+
+/* CONTENT */
+.blog-scope .blog-content{ margin-top:22px; line-height:1.75; }
+.blog-scope .blog-content h2{ margin:28px 0 10px; font-size:1.35rem; }
+.blog-scope .blog-content p{ margin:0 0 14px; }
+.blog-scope .blog-content ul{ padding-left:18px; margin:0 0 14px; }
+.blog-scope .blog-content li{ margin:6px 0; }
+
+/* INLINE IMAGE */
+.blog-scope .blog-image{ margin:24px 0; }
+.blog-scope .blog-image img{
+  width:100%;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  display:block;
+}
+.blog-scope .blog-image figcaption{
+  margin-top:6px;
+  font-size:.9rem;
+  opacity:.75;
+}
+
+/* GALLERY */
+.blog-scope .blog-gallery{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin:28px 0;
+}
+.blog-scope .blog-gallery img{
+  width:100%;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  display:block;
+  background: rgba(255,255,255,.06);
+}
+@media(min-width:700px){
+  .blog-scope .blog-gallery{ grid-template-columns:1fr 1fr; }
+}
+
+/* RELATED */
+.blog-scope .related-blogs{
+  margin-top:48px;
+  padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.blog-scope .related-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+  margin-top:18px;
+}
+@media(min-width:900px){
+  .blog-scope .related-grid{ grid-template-columns:repeat(3,1fr); }
+}
+.blog-scope .related-card{
+  background:rgba(18,24,35,.75);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  display:block;
+  transition: transform .12s ease, filter .12s ease;
+}
+.blog-scope .related-card:hover{ transform: translateY(-2px); filter: brightness(1.06); }
+.blog-scope .related-card img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+  background: rgba(255,255,255,.06);
+}
+.blog-scope .related-card div{ padding:12px; }
+.blog-scope .related-card h3{ margin:0 0 6px; font-size:1.05rem; }
+.blog-scope .related-card p{ margin:0; opacity:.85; line-height:1.45; }

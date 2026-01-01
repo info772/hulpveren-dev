@@ -1,0 +1,180 @@
+{
+  "make": {
+    "slug": "opel",
+    "label": "OPEL"
+  },
+  "model": {
+    "slug": "zafira-life",
+    "label": "Zafira Life"
+  },
+  "kits": [
+    {
+      "sku": "HV-368095",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074323.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 176.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "K0"
+          ],
+          "remark": "Standard duty set, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368105",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074330.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 194.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "K0"
+          ],
+          "remark": "Medium support, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368138",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084773.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 367.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 589
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "K0"
+          ],
+          "remark": "Reinforced Front Springs, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084605.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 378.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 599
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "K0"
+          ],
+          "remark": "Reinforced Front Springs, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368161",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084803.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 504.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 819
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "K0"
+          ],
+          "remark": "Cross County set, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-368171",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084810.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 567.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 899
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "K0"
+          ],
+          "remark": "Cross County set, Excl. 4WD",
+          "year_from": "03-2019",
+          "year_to": "",
+          "notes": "Engine: Electric"
+        }
+      ]
+    }
+  ]
+}

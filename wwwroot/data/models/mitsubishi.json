@@ -1,0 +1,98 @@
+{
+  "make": {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi"
+  },
+  "models": [
+    {
+      "slug": "asx",
+      "label": "ASX",
+      "kits_count": 2
+    },
+    {
+      "slug": "carisma",
+      "label": "Carisma",
+      "kits_count": 2
+    },
+    {
+      "slug": "colt",
+      "label": "Colt",
+      "kits_count": 4
+    },
+    {
+      "slug": "eclipse",
+      "label": "Eclipse",
+      "kits_count": 1
+    },
+    {
+      "slug": "galant",
+      "label": "Galant",
+      "kits_count": 2
+    },
+    {
+      "slug": "grandis",
+      "label": "Grandis",
+      "kits_count": 1
+    },
+    {
+      "slug": "l200",
+      "label": "L200",
+      "kits_count": 4
+    },
+    {
+      "slug": "lancer",
+      "label": "Lancer",
+      "kits_count": 4
+    },
+    {
+      "slug": "outlander",
+      "label": "Outlander",
+      "kits_count": 10
+    },
+    {
+      "slug": "pajero",
+      "label": "Pajero",
+      "kits_count": 4
+    },
+    {
+      "slug": "pajero-pinin",
+      "label": "Pajero Pinin",
+      "kits_count": 1
+    },
+    {
+      "slug": "pajero-sport",
+      "label": "Pajero Sport",
+      "kits_count": 1
+    },
+    {
+      "slug": "sapporo",
+      "label": "Sapporo",
+      "kits_count": 1
+    },
+    {
+      "slug": "shogun",
+      "label": "Shogun",
+      "kits_count": 4
+    },
+    {
+      "slug": "shogun-pinin",
+      "label": "Shogun Pinin",
+      "kits_count": 1
+    },
+    {
+      "slug": "shogun-sport",
+      "label": "Shogun Sport",
+      "kits_count": 1
+    },
+    {
+      "slug": "space-star",
+      "label": "Space Star",
+      "kits_count": 3
+    },
+    {
+      "slug": "space-wagon",
+      "label": "Space Wagon",
+      "kits_count": 1
+    }
+  ]
+}

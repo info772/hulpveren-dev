@@ -1,0 +1,132 @@
+﻿<header class="site-header hv-header">  <script>    (() => {      const redirectToSlashless = () => {        const cleanPath = location.pathname.replace(/\/+/g, "/");        if (cleanPath === "/") return;        const basePaths = ["/hulpveren", "/luchtvering", "/verlagingsveren"];        const matchesBase = basePaths.some((base) => {          const lower = cleanPath.toLowerCase();          return (            lower.startsWith(base.toLowerCase()) &&            cleanPath.length > base.length &&            cleanPath.endsWith("/")          );        });        if (!matchesBase) return;        const normalized = cleanPath.replace(/\/+$/, "");        const search = location.search || "";        const hash = location.hash || "";        location.replace(`${normalized}${search}${hash}`);      };      redirectToSlashless();    })();  </script>  <div class="nav-shell apr-header-inner">
+    <a class="apr-logo" href="/" aria-label="Hulpveren.shop">
+      <img src="/img/branding/Logo-wit.png"
+           alt="Hulpveren.shop"
+           loading="lazy"
+           decoding="async" />
+    </a>
+
+    <nav class="hv-nav" aria-label="Hoofdmenu">
+      <ul class="hv-nav-list">
+        <!-- Home -->
+        <li class="hv-nav-item">
+          <a href="/" class="hv-nav-link">Home</a>
+        </li>
+
+        <!-- MEGAMENU 1: Hulpveren (HV) -->
+        <li class="hv-nav-item hv-nav-item-mega" data-family="hv">
+          <button class="hv-nav-link hv-nav-toggle"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false">
+            MAD Hulpveren
+          </button>
+
+          <div class="hv-mega-panel" role="menu">
+            <div class="hv-mega-inner">
+              <!-- Kolom: merken -->
+              <div class="hv-mega-col hv-mega-col-brands">
+                <h3 class="hv-mega-title">Merken (hulpveren)</h3>
+                <ul id="hv-mega-brands-hv" class="hv-mega-brands" aria-label="Merken hulpveren">
+                  <!-- gevuld via JS -->
+                </ul>
+              </div>
+
+              <!-- Kolom: modellen van actief merk -->
+              <div class="hv-mega-col hv-mega-col-models">
+                <h3 id="hv-mega-model-title-hv" class="hv-mega-title">Modellen</h3>
+                <ul id="hv-mega-models-hv" class="hv-mega-models" aria-label="Modellen hulpveren">
+                  <!-- gevuld via JS -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- MEGAMENU 2: Luchtvering (NR) -->
+        <li class="hv-nav-item hv-nav-item-mega" data-family="nr">
+          <button class="hv-nav-link hv-nav-toggle"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false">
+            MAD Luchtvering
+          </button>
+
+          <div class="hv-mega-panel" role="menu">
+            <div class="hv-mega-inner">
+              <!-- Kolom: merken -->
+              <div class="hv-mega-col hv-mega-col-brands">
+                <h3 class="hv-mega-title">Merken (luchtvering)</h3>
+                <ul id="hv-mega-brands-nr" class="hv-mega-brands" aria-label="Merken luchtvering">
+                  <!-- gevuld via JS -->
+                </ul>
+              </div>
+
+              <!-- Kolom: modellen -->
+              <div class="hv-mega-col hv-mega-col-models">
+                <h3 id="hv-mega-model-title-nr" class="hv-mega-title">Modellen</h3>
+                <ul id="hv-mega-models-nr" class="hv-mega-models" aria-label="Modellen luchtvering">
+                  <!-- gevuld via JS -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- MEGAMENU 3: Verlagingsveren (LS) -->
+        <li class="hv-nav-item hv-nav-item-mega" data-family="ls">
+          <button class="hv-nav-link hv-nav-toggle"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false">
+            MAD Verlagingsveren
+          </button>
+
+          <div class="hv-mega-panel" role="menu">
+            <div class="hv-mega-inner">
+              <!-- Kolom: merken -->
+              <div class="hv-mega-col hv-mega-col-brands">
+                <h3 class="hv-mega-title">Merken (verlagingsveren)</h3>
+                <ul id="hv-mega-brands-ls" class="hv-mega-brands" aria-label="Merken verlagingsveren">
+                  <!-- gevuld via JS -->
+                </ul>
+              </div>
+
+              <!-- Kolom: modellen -->
+              <div class="hv-mega-col hv-mega-col-models">
+                <h3 id="hv-mega-model-title-ls" class="hv-mega-title">Modellen</h3>
+                <ul id="hv-mega-models-ls" class="hv-mega-models" aria-label="Modellen verlagingsveren">
+                  <!-- gevuld via JS -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- overige menu-items -->
+        <li class="hv-nav-item">
+          <a href="/montage" class="hv-nav-link">Montage</a>
+        </li>
+        <li class="hv-nav-item">
+          <a href="/over-ons" class="hv-nav-link">Over ons</a>
+        </li>
+        <li class="hv-nav-item">
+          <a href="/contact" class="hv-nav-link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="nav-cta platebar" data-platebar>
+      <div class="nlplate">
+        <span class="nlplate__eu" aria-hidden="true">
+          <span class="nlplate__nl">NL</span>
+        </span>
+        <form class="nlplate__form" data-plate-form>
+          <input class="nlplate__input" name="plate" inputmode="text" autocomplete="off"
+                 placeholder="5VLL95" aria-label="Kenteken" data-plate-input />
+          <button class="nlplate__btn" type="submit">Zoek</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>

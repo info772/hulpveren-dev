@@ -1,0 +1,298 @@
+{
+  "make": {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi"
+  },
+  "model": {
+    "slug": "outlander",
+    "label": "Outlander"
+  },
+  "kits": [
+    {
+      "sku": "HV-101098",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012011.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 291.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (CU)"
+          ],
+          "remark": "",
+          "year_from": "05-2003",
+          "year_to": "10-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104265",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012295.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 193.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (CW)"
+          ],
+          "remark": "Excl. Coil over rear strut",
+          "year_from": "11-2006",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104278",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947051300.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 450.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 639
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (CW)"
+          ],
+          "remark": "LPG kit, Excl. Coil over rear strut",
+          "year_from": "11-2006",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104281",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947054349.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 692.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 1019
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (CW)"
+          ],
+          "remark": "Excl. Coil over rear strut",
+          "year_from": "11-2006",
+          "year_to": "12-2012",
+          "notes": "Engine: 2.2 DID"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104291",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947054936.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 692.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 1019
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (CW)"
+          ],
+          "remark": "Excl. Coil over rear strut",
+          "year_from": "11-2006",
+          "year_to": "12-2012",
+          "notes": "Engine: 2.0, 2.4 Petrol"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104308",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947056022.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 296.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (CW)"
+          ],
+          "remark": "Only Coil over rear strut",
+          "year_from": "11-2006",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104338",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067257.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 271.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 93.75,
+        "labor_ex_vat_max_eur": 93.75,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (GF",
+            "ZJ",
+            "ZL)"
+          ],
+          "remark": "",
+          "year_from": "08-2012",
+          "year_to": "06-2021",
+          "notes": "Engine: excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104348",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947067264.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 290.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 93.75,
+        "labor_ex_vat_max_eur": 93.75,
+        "total_inc_vat_from_eur": 469
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (GF",
+            "ZJ",
+            "ZL)"
+          ],
+          "remark": "Maximum support",
+          "year_from": "08-2012",
+          "year_to": "06-2021",
+          "notes": "Engine: excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104351",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067271.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 535.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 859
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (GF",
+            "ZJ",
+            "ZL)"
+          ],
+          "remark": "Incl. 4WD",
+          "year_from": "08-2012",
+          "year_to": "06-2021",
+          "notes": "Engine: excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104378",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947070554.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 307.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 93.75,
+        "labor_ex_vat_max_eur": 93.75,
+        "total_inc_vat_from_eur": 489
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (GG)"
+          ],
+          "remark": "",
+          "year_from": "07-2013",
+          "year_to": "06-2021",
+          "notes": "Engine: PHEV"
+        }
+      ]
+    }
+  ]
+}

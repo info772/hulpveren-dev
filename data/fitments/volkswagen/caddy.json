@@ -1,0 +1,342 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "caddy",
+    "label": "Caddy"
+  },
+  "kits": [
+    {
+      "sku": "HV-196220",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013957.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 304.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 419
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "2KN"
+          ],
+          "remark": "Incl. 4Motion, Incl. Maxi, Excl. Life 4Motion, Also fits Double leafspring version",
+          "year_from": "07-2015",
+          "year_to": "09-2020",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "III",
+            "2K"
+          ],
+          "remark": "Incl. 4Motion, Excl. Life 4Motion, Incl. Maxi, Also fits Double leafspring version",
+          "year_from": "03-2004",
+          "year_to": "05-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196241",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947051430.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 535.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 789
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "2K"
+          ],
+          "remark": "Excl. 4-Motion, Incl. Maxi",
+          "year_from": "03-2004",
+          "year_to": "05-2015",
+          "notes": "Engine: 1,2, 1.4, 1.6"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196251",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947051447.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 535.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 789
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "2K"
+          ],
+          "remark": "Excl. 4-Motion, Incl. Maxi",
+          "year_from": "03-2004",
+          "year_to": "05-2015",
+          "notes": "Engine: 1.6 Tdi, 2.0 Sdi, 1.9TDi, 2.0TDi"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196298",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075184.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 309.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 469
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "2KN"
+          ],
+          "remark": "Reinforced Front Springs (+25%), Excl. 4Motion, Incl. Maxi",
+          "year_from": "07-2015",
+          "year_to": "09-2020",
+          "notes": "Engine: 2.0TDi"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196301",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075191.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 535.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 789
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "2KN"
+          ],
+          "remark": "Excl. 4Motion, Incl. Maxi",
+          "year_from": "07-2015",
+          "year_to": "09-2020",
+          "notes": "Engine: 2.0TDi"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196318",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081222.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 241.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "SK(N)"
+          ],
+          "remark": "Standard kit, Incl. Maxi,  Incl. 4WD",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: Excl. CNG, Excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196328",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081239.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 209.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "SK(N)"
+          ],
+          "remark": "Reinforced Front Springs, 4WD, Incl. Maxi",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: Excl. CNG, Excl. PHEV"
+        },
+        {
+          "platform_codes": [
+            "V",
+            "SK(N)"
+          ],
+          "remark": "Reinforced Front Springs, 2WD, Incl. Maxi",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: Excl. CNG, Excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196338",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081246.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 253.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 359
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "SK(N)"
+          ],
+          "remark": "Maximum support, Min. load 150kg, Incl. Maxi,  Incl. 4WD",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: Excl. CNG, Excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196341",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081253.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 397.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 669
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "SK(N)"
+          ],
+          "remark": "4WD, Incl. Maxi, Standard kit",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: Excl. CNG, Excl. PHEV"
+        },
+        {
+          "platform_codes": [
+            "V",
+            "SK(N)"
+          ],
+          "remark": "2WD, Incl. Maxi, Standard kit",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: Excl. CNG, Excl. PHEV"
+        }
+      ]
+    },
+    {
+      "sku": "HV-196351",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081260.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 408.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 679
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "SK(N)"
+          ],
+          "remark": "Maximum support, 4WD, Min. load 150kg, Incl. Maxi",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: Excl. CNG, Excl. PHEV"
+        },
+        {
+          "platform_codes": [
+            "V",
+            "SK(N)"
+          ],
+          "remark": "Maximum support, 2WD, Min. load 150kg, Incl. Maxi",
+          "year_from": "09-2020",
+          "year_to": "",
+          "notes": "Engine: Excl. CNG, Excl. PHEV"
+        }
+      ]
+    }
+  ]
+}

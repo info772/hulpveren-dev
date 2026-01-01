@@ -1,0 +1,44 @@
+<%- include("../partials/header") %>
+
+<div class="panel">
+  <h2>Redirects</h2>
+  <a class="button" href="/admin/redirects/new">Nieuwe redirect</a>
+</div>
+
+<div class="panel">
+  <table>
+    <thead>
+      <tr>
+        <th>Van</th>
+        <th>Naar</th>
+        <th>Code</th>
+        <th>Enabled</th>
+        <th>Acties</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (!redirects.length) { %>
+        <tr>
+          <td colspan="5" class="muted">Geen redirects.</td>
+        </tr>
+      <% } %>
+      <% redirects.forEach((item) => { %>
+        <tr>
+          <td><%= item.fromPath %></td>
+          <td><%= item.toPath %></td>
+          <td><%= item.code %></td>
+          <td><%= item.enabled ? "Ja" : "Nee" %></td>
+          <td>
+            <a class="button secondary" href="/admin/redirects/<%= item.id %>/edit">Bewerk</a>
+            <form class="inline" method="post" action="/admin/redirects/<%= item.id %>/delete">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <button type="submit" class="secondary" onclick="return confirm('Verwijderen?');">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("../partials/footer") %>

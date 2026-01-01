@@ -1,0 +1,226 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "model": {
+    "slug": "trafic",
+    "label": "Trafic"
+  },
+  "kits": [
+    {
+      "sku": "HV-148023",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947013391.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 229.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "T",
+            "P",
+            "V"
+          ],
+          "remark": "Only FWD",
+          "year_from": "01-1981",
+          "year_to": "08-1994",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148035",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013407.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 188.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "JG",
+            "FG"
+          ],
+          "remark": "",
+          "year_from": "05-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "II",
+            "JL",
+            "FL"
+          ],
+          "remark": "",
+          "year_from": "03-2001",
+          "year_to": "08-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148128",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013445.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 374.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "JG",
+            "FG"
+          ],
+          "remark": "Maximum support, Min. load 650kg",
+          "year_from": "05-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "II",
+            "JL",
+            "FL"
+          ],
+          "remark": "Maximum support, Min. load 650kg",
+          "year_from": "03-2001",
+          "year_to": "08-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067158.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 374.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "JG",
+            "FG"
+          ],
+          "remark": "Medium support",
+          "year_from": "05-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "II",
+            "JL",
+            "FL"
+          ],
+          "remark": "Medium support",
+          "year_from": "03-2001",
+          "year_to": "08-2014",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072107.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 309.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 93.75,
+        "labor_ex_vat_max_eur": 93.75,
+        "total_inc_vat_from_eur": 489
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "JG",
+            "FG"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "05-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148161",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947072091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 604.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 131.25,
+        "labor_ex_vat_max_eur": 131.25,
+        "total_inc_vat_from_eur": 899
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "JG",
+            "FG"
+          ],
+          "remark": "Reinforced Front/Rear springs",
+          "year_from": "05-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

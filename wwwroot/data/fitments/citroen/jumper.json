@@ -1,0 +1,202 @@
+{
+  "make": {
+    "slug": "citroen",
+    "label": "Citroën"
+  },
+  "model": {
+    "slug": "jumper",
+    "label": "Jumper"
+  },
+  "kits": [
+    {
+      "sku": "HV-058158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011434.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 577.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 187.5,
+        "labor_ex_vat_max_eur": 187.5,
+        "total_inc_vat_from_eur": 929
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "244",
+            "244L",
+            "244D"
+          ],
+          "remark": "Reinforced front springs,Types 29/33/35, Excl. 4WD",
+          "year_from": "04-2002",
+          "year_to": "06-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-138120",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012998.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 426.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 569
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "244",
+            "244L",
+            "244D"
+          ],
+          "remark": "Single leaf spring, 29 / 33 / 35,  Excl. 4WD",
+          "year_from": "04-2002",
+          "year_to": "06-2006",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "230",
+            "230L"
+          ],
+          "remark": "Single leaf spring, 27 / 31 / 35, Excl. 4WD",
+          "year_from": "02-1994",
+          "year_to": "04-2002",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-138140",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013018.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 334.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 479
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "Y",
+            "250",
+            "290"
+          ],
+          "remark": "30, 33, 35, Only single leaf spring",
+          "year_from": "04-2006",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Jumper"
+        }
+      ]
+    },
+    {
+      "sku": "HV-138158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013025.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 443.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 719
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "Y",
+            "250",
+            "290"
+          ],
+          "remark": "Reinforced Front Springs, +35 mm, Incl. Chassis-cabine",
+          "year_from": "04-2006",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Jumper"
+        }
+      ]
+    },
+    {
+      "sku": "HV-138190",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084384.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 367.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 519
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "Y",
+            "250",
+            "290"
+          ],
+          "remark": "Medium support, 30, 33, 35, 40, Min. load 350 Kg",
+          "year_from": "04-2006",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Jumper"
+        }
+      ]
+    },
+    {
+      "sku": "HV-138200",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084391.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 421.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 579
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "Y",
+            "250",
+            "290"
+          ],
+          "remark": "Maximum support, Types 30, 33, 35, 40, Min. load 750 Kg",
+          "year_from": "04-2006",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Jumper"
+        }
+      ]
+    }
+  ]
+}

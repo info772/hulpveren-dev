@@ -1,0 +1,41 @@
+{
+  "make": {
+    "slug": "skoda",
+    "label": "SKODA"
+  },
+  "model": {
+    "slug": "felicia",
+    "label": "Felicia"
+  },
+  "kits": [
+    {
+      "sku": "HV-172017",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013506.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 165.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "II (6U1)"
+          ],
+          "remark": "Excl. Pick-up",
+          "year_from": "10-1994",
+          "year_to": "06-2001",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

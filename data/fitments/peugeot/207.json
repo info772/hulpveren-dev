@@ -1,0 +1,69 @@
+{
+  "make": {
+    "slug": "peugeot",
+    "label": "Peugeot"
+  },
+  "model": {
+    "slug": "207",
+    "label": "207"
+  },
+  "kits": [
+    {
+      "sku": "HV-133178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947051577.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 257.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 359
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "WK"
+          ],
+          "remark": "SW",
+          "year_from": "02-2007",
+          "year_to": "12-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133218",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012783.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 280.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "WA",
+            "WC"
+          ],
+          "remark": "Excl. SW",
+          "year_from": "02-2006",
+          "year_to": "12-2013",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

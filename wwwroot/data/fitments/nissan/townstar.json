@@ -1,0 +1,320 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "townstar",
+    "label": "Townstar"
+  },
+  "kits": [
+    {
+      "sku": "HV-146178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084353.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 178.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "Standard set, Maximum rear axle load <1260kg",
+          "year_from": "12-2021",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146188",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084360.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "Maximum support, Min. load 100kg, Only L1, Maximum rear axle load <1260kg",
+          "year_from": "12-2021",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146198",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084377.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 248.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 439
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "12-2021",
+          "year_to": "",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146201",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084414.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 383.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "Cross Country, Only L1, Maximum rear axle load <1260kg",
+          "year_from": "12-2021",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146211",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084421.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 431.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 709
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "Maximum support Rear, Cross Country, Min. load 100kg, Only L1, Maximum rear axle load <1260kg",
+          "year_from": "12-2021",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146225",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084766.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 234.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "",
+          "year_from": "03-2022",
+          "year_to": "",
+          "notes": "Engine: Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146231",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947114494.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 453.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 739
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "Cross Country",
+          "year_from": "03-2023",
+          "year_to": "",
+          "notes": "Engine: Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116191.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 219.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "L1 & L2, Max rear axle load ≥ 1260kg (increased payload), Min. Load 50Kg",
+          "year_from": "12-2021",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146258",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947116184.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 239.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "Maximum support, L1 & L2, Max rear axle load ≥ 1260kg (increased payload), Min.Load 150 Kg",
+          "year_from": "12-2021",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146261",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116375.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 423.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 699
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "Cross Country, L1 & L2, Max rear axle load ≥ 1260kg (increased payload), Min. Load 50Kg",
+          "year_from": "12-2021",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-146271",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116382.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 438.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 719
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "XFK"
+          ],
+          "remark": "Maximum support, Cross Country, L1 & L2, Max rear axle load ≥ 1260kg (increased payload), Min.Load 150 Kg",
+          "year_from": "12-2021",
+          "year_to": "",
+          "notes": "Engine: Excl. Electric"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "bravo",
+    "label": "Bravo"
+  },
+  "kits": [
+    {
+      "sku": "HV-051605",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947011304.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 171.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "182"
+          ],
+          "remark": "",
+          "year_from": "10-1995",
+          "year_to": "10-2001",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051685",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011342.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 190.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "198"
+          ],
+          "remark": "",
+          "year_from": "11-2006",
+          "year_to": "01-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

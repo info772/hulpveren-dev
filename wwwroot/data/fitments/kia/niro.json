@@ -1,0 +1,96 @@
+{
+  "make": {
+    "slug": "kia",
+    "label": "KIA"
+  },
+  "model": {
+    "slug": "niro",
+    "label": "Niro"
+  },
+  "kits": [
+    {
+      "sku": "HV-373278",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081116.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 299.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (DE)"
+          ],
+          "remark": "",
+          "year_from": "08-2018",
+          "year_to": "08-2022",
+          "notes": "Engine: Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-491115",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TÜV",
+      "ean": "8717947114746.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 157.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (SG2)"
+          ],
+          "remark": "Only Multilink axle",
+          "year_from": "04-2022",
+          "year_to": "",
+          "notes": "Engine: Hybrid, Plug-in Hybrid, Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-493158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075115.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 253.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (DE)"
+          ],
+          "remark": "",
+          "year_from": "09-2016",
+          "year_to": "08-2022",
+          "notes": "Engine: Hybrid"
+        }
+      ]
+    }
+  ]
+}

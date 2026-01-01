@@ -1,0 +1,2002 @@
+<!-- /helper-springs/mercedes-benz/sprinter — Complete page with cards/table view, filters + armed year slider -->
+ <meta>
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+ <title>
+  Mercedes Sprinter Helper Springs | MAD Kits &amp; Special Duty | LowLand Suspension
+ </title>
+ <meta name="description" content="MAD helper springs and Special Duty Kits for Mercedes-Benz Sprinter (W907 RWD/AWD). SRW/DRW, van or chassis cab. TÜV-approved. Install time 30–75 min. Prices, specs, and fitment guidance.">
+ 
+ <link rel="canonical" href="https://www.lowlandsuspension.com/helper-springs/mercedes-benz/sprinter">
+ <style>
+  :root{
+    --bg:#0b0c10; --panel:#111216; --elev:#16181f; --text:#e6e8f0; --muted:#aab1c3;
+    --accent:#FAB819; --ink:#1a1a1a; --ok:#3ad29f; --line:rgba(255,255,255,.10);
+    --maxw:1200px; --radius-xl:18px; --radius:12px; --radius-sm:10px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    --header-h:66px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Cantarell,Arial}
+  a{color:inherit;text-decoration:none}
+  [id]{scroll-margin-top:calc(var(--header-h)+12px)}
+  .container{max-width:var(--maxw);margin-inline:auto;padding:clamp(16px,3vw,28px)}
+  header.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:#0b0c10cc;border-bottom:1px solid var(--line)}
+  nav a{padding:.6rem .9rem;border-radius:10px}
+  nav a:hover{background:rgba(255,255,255,.06)}
+  .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}
+  .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,209,26,.25)}
+  .section{margin-top:clamp(28px,5vw,54px)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-xl);box-shadow:var(--shadow)}
+  .elev{background:var(--elev);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius)}
+  .grid{display:grid;gap:16px}
+  .grid.cols-2{grid-template-columns:1.15fr 1fr}
+  .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:980px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
+  /* HERO */
+  .hero{border-radius:var(--radius-xl);background:linear-gradient(180deg,#13151c 0%,#0e0f14 100%);box-shadow:var(--shadow)}
+  .hero-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(18px,3vw,32px);align-items:center}
+  @media (max-width:980px){.hero-inner{grid-template-columns:1fr}}
+  .h1{font-size:clamp(28px,4vw,46px);line-height:1.05;margin:0 0 8px}
+  .lead{font-size:clamp(18px,2.1vw,20px);color:#d7dbe6;margin:.4rem 0 .6rem}
+  .small{font-size:13px;color:#cfd3df}
+  .muted{color:var(--muted)}
+  .btn{appearance:none;border:none;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .btn.primary{background:var(--accent);color:var(--ink)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15)}
+  .hero-media{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#0e0f14}
+  .hero-media img{display:block;width:100%;height:auto}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0}
+  .badge{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:.35rem .6rem;background:rgba(255,255,255,.04);display:inline-flex;align-items:center;gap:6px}
+  .badge img{height:16px;border-radius:3px}
+  /* Cards / Table shared */
+  .thumb{width:100%;height:auto;display:block;border-radius:10px;cursor:zoom-in}
+  .thumb-wrap{width:100%;overflow:hidden;border-radius:10px}
+  .kitcount{margin:8px 0;color:#cfd3df}
+  .hidden{display:none!important}
+  /* Filters grid */
+  .flt-grid{display:grid;gap:12px;grid-template-columns:repeat(4,minmax(0,1fr))}
+  @media (max-width:980px){.flt-grid{grid-template-columns:1fr}}
+  .flt-grid .field label{display:block}
+  /* Centered selects + buttons */
+  :root{--radius-sm:10px}
+  .flt-grid select,
+  .flt-grid input[type="range"]{
+    appearance:none;width:100%;max-width:240px;height:40px;padding:8px 12px;border-radius:var(--radius-sm);
+    background:#0f1218;border:1px solid #2a3340;color:#fff;font-size:14px;line-height:40px;text-align:center;text-align-last:center; -moz-text-align-last:center;
+  }
+  .flt-grid select option{background:#0f1218;color:#e6e8f0;text-align:left}
+  .flt-grid select:focus,.flt-grid input[type="range"]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,209,26,.25)}
+  #view-toggle .viewbtn,.btn.reset{
+    display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;font-weight:700;font-size:14px;
+    border-radius:var(--radius-sm);border:1px solid var(--line);background:#1b1c20;color:#fff;cursor:pointer;transition:background .2s,border-color .2s,color .2s;text-align:center
+  }
+  #view-toggle .viewbtn:hover,.btn.reset:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+  #view-toggle .viewbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+  input[type="checkbox"]{accent-color:var(--accent)}
+  /* Cards view */
+  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  @media (max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:640px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+  .card .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:12px;border:1px solid var(--line);padding:.25rem .45rem;border-radius:999px;background:rgba(255,255,255,.04)}
+  .card .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+  .price{font-weight:800;white-space:nowrap}
+  .good::before{content:"";display:inline-block;width:10px;height:10px;background:var(--ok);border-radius:50%;margin-right:8px}
+  /* Table view */
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:10px;text-align:left}
+  thead tr{border-bottom:1px solid var(--line)}
+  tbody tr{border-top:1px solid var(--line)}
+  tbody tr.row-link{cursor:pointer;transition:background .15s ease}
+  tbody tr.row-link:hover{background:rgba(255,255,255,.03)}
+  tbody tr.row-link:focus-within{outline:2px solid var(--accent);outline-offset:-2px}
+  td.photo{width:130px}
+  .thumb.table{border-radius:8px}
+  .img-preview{position:fixed;z-index:9999;display:none;background:var(--panel);border:1px solid var(--line);padding:8px;border-radius:12px;box-shadow:var(--shadow)}
+  .img-preview img{display:block;max-width:min(520px,60vw);max-height:min(420px,70vh);height:auto;border-radius:8px}
+  /* Active filter label */
+  .flt-grid .field label.active{color:var(--accent);font-weight:700}
+  /* Spinner on count */
+  #kitCount.loading{opacity:.6;pointer-events:none;transition:opacity .2s}
+  #kitCount.loading::before{content:"";display:inline-block;width:14px;height:14px;border:2px solid var(--accent);border-top-color:transparent;border-radius:50%;margin-right:8px;animation:spin 1s linear infinite;vertical-align:-3px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  /* === Verticale specs onder de kaart === */
+  .specs{display:grid;gap:6px;margin:.35rem 0}
+  .spec{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:.45rem .6rem;border:1px solid var(--line);border-radius:10px;
+    background:rgba(255,255,255,.04); font-size:13px;
+  }
+  .spec .k{color:#aab1c3}
+  .spec .v{font-weight:700}
+  /* === Spacing fix: meer ademruimte in panel/elev/links === */
+:root{ --inset: clamp(16px, 2.6vw, 24px); }
+/* Geeft alle panelen en 'cards' binnenruimte */
+.panel{ padding: var(--inset); }
+.elev{  padding: var(--inset); }
+/* Knoppenrij en body-links binnen panel ook inlaten */
+.panel .btn-row,
+.panel .body-links{ padding-inline: var(--inset); }
+/* Als een paneel expliciet padding:0 via inline style heeft, laat zo */
+.panel[style*="padding:0"]{ padding:0 !important; }
+/* Bullets wat mooier uitlijnen binnen cards */
+.elev ul{ padding-left: 1.1rem; margin: .6rem 0 0; }
+.elev h3{ margin: 0 0 .4rem; }
+/* === Free Shipping + button styling additions === */
+.badge.accent{ background: var(--accent); border-color: var(--accent); color: var(--ink); font-weight: 800 }
+.chip.accent{ background: var(--accent); border-color: var(--accent); color: var(--ink); font-weight: 800 }
+.price-wrap{
+  display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:2px
+}
+.price-wrap .ship{ font-size:12px; }
+/* Forceer zwarte tekst op de Add To Cart-knop */
+.btn.primary.add2cart,
+.btn.primary.add2cart:hover,
+.btn.primary.add2cart:focus,
+.btn.primary.add2cart[aria-busy="true"] {
+  color: #000 !important;
+}
+ </style>
+ <header class="top">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+   <a class="brand" href="/">
+    <span class="dot" aria-hidden="true">
+    </span>
+    <span>
+     LowLand Suspension
+    </span>
+   </a>
+   <nav aria-label="Primary">
+    <a href="#fitment">
+     Fitment
+    </a>
+    <a href="#kits">
+     Kits
+    </a>
+    <a href="#faq">
+     FAQ
+    </a>
+    <a href="#contact">
+     Contact
+    </a>
+   </nav>
+  </div>
+ </header>
+ <main class="container">
+  <!-- HERO -->
+  <section class="hero">
+   <div class="container hero-inner">
+    <div>
+     <div class="small muted">
+      Mercedes-Benz Sprinter · W907 (RWD/AWD) &amp; W910 · 2018–present
+     </div>
+     <h1 class="h1">
+      Mercedes Sprinter Helper Springs — Stands taller, drives steadier.
+     </h1>
+     <p class="lead">
+      MAD helper springs keep your Sprinter level and controlled under real payloads — service van, camper, or chassis cab.
+     </p>
+     <div class="badges">
+      <span class="badge">
+       <img src="https://irp.cdn-website.com/3a91075a/dms3rep/multi/kit.approval.tuv.png" alt="">
+       TÜV approved
+      </span>
+      <span class="badge">
+       Bolt-on install
+      </span>
+      <span class="badge">
+       No maintenance
+      </span>
+     </div>
+     <div class="btn-row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+      <a class="btn primary" href="#kits">
+       Find your kit
+      </a>
+      <a class="btn ghost" href="/installers/directory/">
+       Find an installer
+      </a>
+      <a class="btn ghost" href="/helper-springs/mercedes-benz/sprinter/kits">
+       Browse all kits
+      </a>
+     </div>
+     <p class="small" style="margin-top:6px">
+      Platforms:
+      <strong>
+       W907
+      </strong>
+      (RWD/AWD) &amp;
+      <strong>
+       W910
+      </strong>
+      Approval:
+      <strong>
+       TÜV
+      </strong>
+      . * US mainland all-in pricing: tax, import fees &amp; shipping included. Installation cost: ask your local shop. TÜV approval unless noted.
+     </p>
+    </div>
+    <div class="hero-media">
+     <img src="https://irp.cdn-website.com/3a91075a/dms3rep/multi/HV-098190.jpg?cv=HV-098190" alt="MAD helper springs on Mercedes Sprinter">
+    </div>
+   </div>
+  </section>
+  <!-- HOW / FEEL / WHY -->
+  <section class="section">
+   <div class="grid cols-3">
+    <div class="elev">
+     <h3>
+      How it works
+     </h3>
+     <p class="small muted">
+      An extra spring supports the main spring. Empty, the kit stays passive (OEM ride comfort). With load, it progressively takes over — restoring ride height and stability.
+     </p>
+     <ul class="small">
+      <li>
+       Rear: helper springs alongside the leaf spring
+      </li>
+      <li>
+       Front: reinforced coil springs (RWD/AWD +30 mm)
+      </li>
+      <li>
+       No compressors, valves, or air lines required
+      </li>
+     </ul>
+    </div>
+    <div class="elev">
+     <h3>
+      What you’ll feel
+     </h3>
+     <ul class="small">
+      <li>
+       Less rear sag under payload
+      </li>
+      <li>
+       Reduced body roll in corners &amp; crosswinds
+      </li>
+      <li>
+       Sharper steering response (front kits)
+      </li>
+      <li>
+       More control — zero maintenance
+      </li>
+     </ul>
+    </div>
+    <div class="elev">
+     <h3>
+      Why MAD vs air
+     </h3>
+     <ul class="small">
+      <li>
+       Predictable spring rate, no leak issues
+      </li>
+      <li>
+       Simple bolt-on hardware
+      </li>
+      <li>
+       TÜV approved with install guide
+      </li>
+      <li>
+       Can be combined with SD Kits (springs + shocks)
+      </li>
+     </ul>
+    </div>
+   </div>
+  </section>
+  <!-- Handy links -->
+  <section id="fitment" class="section panel">
+   <div style="padding:18px">
+    <h2>
+     Different Body-types
+    </h2>
+    <div class="grid cols-1">
+     <div class="elev">
+      <!-- Sprinter body cross-links (auto-exclude current) -->
+      <nav class="body-links" aria-label="Other Sprinter body pages">
+       <a data-slug="cargo-van">
+        Cargo Van
+       </a>
+       <a data-slug="crew-van">
+        Crew Van
+       </a>
+       <a data-slug="passenger-van">
+        Passenger Van
+       </a>
+       <a data-slug="passenger-van-select">
+        Passenger Van Select
+       </a>
+       <a data-slug="cab-chassis" data-label-en="Cab Chassis" data-label-default="Chassis Cab">
+        Cab Chassis
+       </a>
+      </nav>
+      <script>
+       (function(){
+  var host = location.hostname.toLowerCase();
+  var path = location.pathname.toLowerCase();
+  // EN site kan zowel /mercedes/ als /mercedes-benz/ hebben → detecteer segment
+  var brandSeg = /\/helper-springs\/mercedes-benz\//.test(path) ? 'mercedes-benz' : 'mercedes';
+  // Base per domein
+  var base = host.includes('easycarparts.nl')
+    ? 'https://www.easycarparts.nl/hulpveren/mercedes-benz/sprinter/'
+    : 'https://www.lowlandsuspension.com/helper-springs/' + brandSeg + '/sprinter/';
+  // Huidige slug (om huidige link te verbergen)
+  var m = path.match(/\/sprinter\/([^\/?#]+)/);
+  var current = m ? m[1] : '';
+  // US-Engels → "Cab Chassis", anders "Chassis Cab"
+  var lang = (document.documentElement.lang || '').toLowerCase();
+  var isUS = lang.startsWith('en-us') || host.endsWith('.com');
+  document.querySelectorAll('.body-links a[data-slug]').forEach(function(a){
+    var slug = a.getAttribute('data-slug');
+    a.href = base + slug + '/';
+    // Label fix voor cab-chassis
+    if (slug === 'cab-chassis') {
+      a.textContent = isUS
+        ? (a.getAttribute('data-label-en') || 'Cab Chassis')
+        : (a.getAttribute('data-label-default') || 'Chassis Cab');
+    }
+    // Verberg de link naar de huidige pagina
+    if (slug === current) {
+      a.setAttribute('aria-current','page');
+      a.style.display = 'none';
+    }
+  });
+})();
+      </script>
+      <style>
+       .body-links{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0}
+  .body-links a{
+    font-size:13px;border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .6rem;background:rgba(255,255,255,.04)
+  }
+  .body-links a[aria-current="page"]{pointer-events:none;opacity:.6}
+      </style>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- FITMENT SUMMARY -->
+  <section id="1717528532" class="section panel">
+   <div style="padding:18px">
+    <h2>
+     Fitment summary
+    </h2>
+    <div class="grid cols-3">
+     <div class="elev">
+      <strong>
+       Drive
+      </strong>
+      <br>
+      <span class="small muted">
+       RWD, AWD (W907) &amp; (W910)
+      </span>
+     </div>
+     <div class="elev">
+      <strong>
+       Rear wheels
+      </strong>
+      <br>
+      <span class="small muted">
+       Single (SRW) or Twin (DRW)
+      </span>
+     </div>
+     <div class="elev">
+      <strong>
+       Body
+      </strong>
+      <br>
+      <span class="small muted">
+       Van &amp; Chassis Cab
+      </span>
+     </div>
+     <div class="elev">
+      <strong>
+       Years
+      </strong>
+      <br>
+      <span class="small muted">
+       2018–present (W910 varies by market)
+      </span>
+     </div>
+     <div class="elev">
+      <strong>
+       Front options
+      </strong>
+      <br>
+      <span class="small muted">
+       Reinforced front springs (+1.2 in RWD/AWD)
+      </span>
+     </div>
+     <div class="elev">
+      <strong>
+       Engine
+      </strong>
+      <br>
+      <span class="small muted">
+       ICE or Electric (market-dependent)
+      </span>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- KITS + FILTERS -->
+  <section id="kits" class="section">
+   <h2>
+    Pick your use &amp; we’ll suggest a Sprinter kit
+   </h2>
+   <div class="panel" style="padding:12px">
+    <div class="flt-grid" style="align-items:end">
+     <!-- Drive -->
+     <div class="field">
+      <label class="small muted" for="flt-drive">
+       Drive
+      </label>
+      <select id="flt-drive">
+       <option value="">
+        Any
+       </option>
+       <option>
+        RWD
+       </option>
+       <option>
+        AWD
+       </option>
+      </select>
+     </div>
+     <!-- Engine -->
+     <div class="field">
+      <label class="small muted" for="flt-engine">
+       Engine
+      </label>
+      <select id="flt-engine">
+       <option value="">
+        Any
+       </option>
+       <option value="ICE">
+        ICE
+       </option>
+       <option value="Electric">
+        Electric
+       </option>
+      </select>
+     </div>
+     <!-- Rear wheels -->
+     <div class="field">
+      <label class="small muted" for="flt-rear">
+       Rear wheels
+      </label>
+      <select id="flt-rear">
+       <option value="">
+        Any
+       </option>
+       <option>
+        Single
+       </option>
+       <option>
+        Twin
+       </option>
+      </select>
+     </div>
+     <!-- Body -->
+     <div class="field">
+      <label class="small muted" for="flt-body">
+       Body
+      </label>
+      <select id="flt-body">
+       <option value="">
+        Any
+       </option>
+       <option value="VAN">
+        Van
+       </option>
+       <option value="Chassis Cab">
+        Chassis Cab
+       </option>
+      </select>
+     </div>
+     <!-- Side -->
+     <div class="field">
+      <label class="small muted" for="flt-side">
+       Side
+      </label>
+      <select id="flt-side">
+       <option value="">
+        Any
+       </option>
+       <option value="Rear">
+        Rear
+       </option>
+       <option value="Front">
+        Front
+       </option>
+      </select>
+     </div>
+     <!-- Support -->
+     <div class="field">
+      <label class="small muted" for="flt-support">
+       Support
+      </label>
+      <select id="flt-support">
+       <option value="">
+        Any
+       </option>
+       <option value="Empty and loaded">
+        Empty and loaded
+       </option>
+       <option value="Only Loaded">
+        Only Loaded
+       </option>
+       <option value="Front lift kit">
+        Front lift kit
+       </option>
+      </select>
+     </div>
+     <!-- Series (US) -->
+     <div class="field">
+      <label class="small muted" for="flt-type">
+       Series (US)
+      </label>
+      <select id="flt-type">
+       <option value="">
+        Any
+       </option>
+       <option>
+        1500
+       </option>
+       <option>
+        2500
+       </option>
+       <option>
+        3500
+       </option>
+       <option>
+        3500XD
+       </option>
+       <option>
+        4500
+       </option>
+      </select>
+     </div>
+     <!-- Build year -->
+     <div class="field">
+      <label class="small muted" for="flt-year">
+       Build year
+      </label>
+      <div style="display:flex;align-items:center;gap:10px">
+       <input id="flt-year" type="range" min="2018" max="2026" value="" step="1" style="width:220px">
+       <output id="yearOut" class="small muted">
+        Any
+       </output>
+      </div>
+      <div class="small muted">
+       Show kits that fit this model year.
+      </div>
+     </div>
+     <!-- Reset -->
+     <div class="field">
+      <button id="btn-reset" class="btn reset" type="button">
+       Reset Filters
+      </button>
+     </div>
+    </div>
+   </div>
+   <div class="kitcount" id="kitCount">
+   </div>
+   <!-- Cards view -->
+   <div id="cardsWrap" class="cards">
+   </div>
+   <!-- Table view -->
+   <div id="tableWrap" class="panel hidden" style="padding:0;overflow:auto;margin-top:12px">
+    <table aria-label="Sprinter kits table">
+     <thead>
+      <tr>
+       <th>
+        Photo
+       </th>
+       <th>
+        SKU
+       </th>
+       <th>
+        Line
+       </th>
+       <th>
+        Support
+       </th>
+       <th>
+        Drive
+       </th>
+       <th>
+        Rear wheels
+       </th>
+       <th>
+        Min load
+       </th>
+       <th>
+        Body
+       </th>
+       <th>
+        Shock L (mm)
+       </th>
+       <th>
+        EU Type
+       </th>
+       <th>
+        Series (US)
+       </th>
+       <th>
+        Build years
+       </th>
+       <th>
+        Assembly (min)
+       </th>
+       <th>
+        Engine
+       </th>
+       <th>
+        Price
+       </th>
+      </tr>
+     </thead>
+     <tbody id="data-body">
+     </tbody>
+    </table>
+   </div>
+   <p class="small" style="margin-top:8px">
+    * US mainland all-in pricing: tax, import fees &amp; shipping included. Installation cost: ask your local shop. TÜV approval unless noted.
+   </p>
+  </section>
+  <!-- FAQ -->
+  <section id="faq" class="section panel">
+   <div style="padding:18px">
+    <h2>
+     FAQ
+    </h2>
+    <details>
+     <summary>
+      <strong>
+       Do these raise ride height when empty?
+      </strong>
+     </summary>
+     <p class="small">
+      No. They are passive without load; they support height under load.
+     </p>
+    </details>
+    <details>
+     <summary>
+      <strong>
+       Do they change GVWR?
+      </strong>
+     </summary>
+     <p class="small">
+      No. Always operate within Mercedes-Benz’ published limits.
+     </p>
+    </details>
+    <details>
+     <summary>
+      <strong>
+       Are they compatible with AWD and RWD?
+      </strong>
+     </summary>
+     <p class="small">
+      Yes — select kits specify drive type (RWD/AWD) in their notes and filters.
+     </p>
+    </details>
+    <details>
+     <summary>
+      <strong>
+       DIY or professional install?
+      </strong>
+     </summary>
+     <p class="small">
+      Both are possible. If in doubt, book a pro installer.
+     </p>
+    </details>
+   </div>
+  </section>
+  <!-- CONTACT -->
+  <section id="contact" class="section panel">
+   <div style="padding:18px">
+    <h2>
+     Contact &amp; booking
+    </h2>
+    <p class="small">
+     Want help selecting a kit or booking installation? Get in touch — we’ll confirm fitment and lead time for your exact Sprinter.
+    </p>
+    <div class="grid cols-2">
+     <div class="elev">
+      <strong>
+       LowLand Suspension
+      </strong>
+      <br>
+      <span class="small muted">
+       Westelijke Havendijk 17c, 4703 RA Roosendaal, Netherlands
+      </span>
+      <br>
+      <a class="btn primary" href="mailto:info@auto-parts-roosendaal.nl">
+       Email us
+      </a>
+     </div>
+     <div class="elev">
+      <div class="small muted">
+       Phone
+      </div>
+      <a class="btn ghost" href="tel:+31165856568">
+       +31 165 856568
+      </a>
+     </div>
+    </div>
+   </div>
+  </section>
+ </main>
+ <!-- Image preview portal -->
+ <div id="imgPreview" class="img-preview" aria-hidden="true">
+  <img alt="">
+ </div>
+ <script>
+  /* ==================== GLOBALS / BOOTSTRAP ==================== */
+const IMG_CDN = 'https://irp.cdn-website.com/3a91075a/dms3rep/multi/';
+const PLACEHOLDER_IMG = IMG_CDN + 'placeholder.jpg';
+let viewMode = 'cards';
+let yearActive = false;
+let __renderTO = null;
+/* Optionele fallback-SKUs voor Sprinter (laat leeg als je volledig uit footer leest) */
+const KNOWN_SPRINTER_SKUS = [
+  // voorbeeld: 'HV-094000','HV-094010','HV-094020','SD-094000'
+];
+/* Eén definitie */
+function imgUrlFromSku(sku){
+  const S = String(sku || '').toUpperCase();
+  if (S.startsWith('SD-')) return `${IMG_CDN}${S}.jpg`;
+  if (S.startsWith('HV-')) return `${IMG_CDN}${S}.jpg`;
+  return `${IMG_CDN}${S.replace('SD-','HV-')}.jpg`;
+}
+function debounceRender(){ if (__renderTO) clearTimeout(__renderTO); __renderTO = setTimeout(render, 80); }
+/* ==================== FOOTER INGEST (LLS_FOOTER_DATA) ==================== */
+function isArr(x){ return Array.isArray(x); }
+/* SKU helper: accepteer sku/SKU/hv_sku/sd_sku/kit/Kit of haal uit title/remarks */
+function skuFromRecord(rec){
+  const up = v => v ? String(v).toUpperCase() : '';
+  let s = up(rec.sku) || up(rec.SKU) || up(rec.kit) || up(rec.Kit) || up(rec.hv_sku) || up(rec.sd_sku);
+  if (!s){
+    const m = String(rec.title || rec.note || rec.remarks || rec.Remarks || '')
+      .toUpperCase().match(/\b(?:HV|SD)-\d{6}\b/);
+    if (m) s = m[0];
+  }
+  return s;
+}
+/* Haal een vlakke array met unieke footer-records op (die een SKU/kit hebben) */
+function footerArray(){
+  const S = window.LLS_FOOTER_DATA;
+  if (!S) return [];
+  const out=[], seen = new Set();
+  function pushRec(r){
+    if (!r || typeof r!=='object') return;
+    const s = skuFromRecord(r);
+    if (!s || seen.has(s)) return;
+    out.push(r); seen.add(s);
+  }
+  if (isArr(S)){ S.forEach(pushRec); return out; }
+  if (isArr(S.kits)) { S.kits.forEach(pushRec); }
+  if (isArr(S.data)) { S.data.forEach(pushRec); }
+  (function walk(n, depth){
+    if (!n || depth>6) return;
+    if (Array.isArray(n)){ n.forEach(x=>walk(x, depth+1)); return; }
+    if (typeof n==='object'){
+      if ('sku' in n || 'SKU' in n || 'kit' in n || 'Kit' in n || 'hv_sku' in n || 'sd_sku' in n) pushRec(n);
+      for (const k in n) walk(n[k], depth+1);
+    }
+  })(S,0);
+  return out;
+}
+/* Observeer late set van globals */
+function watchGlobal(name, onSet){
+  try{
+    if (Object.prototype.hasOwnProperty.call(window,name) && window[name]!=null){ onSet(window[name]); return; }
+    Object.defineProperty(window, name, {
+      configurable: true,
+      get(){ return undefined; },
+      set(v){ delete window[name]; window[name]=v; try{ onSet(v); }catch(e){} }
+    });
+  }catch(e){ /* sommige sitebuilders blokkeren dit; dan leven we zonder */ }
+}
+/* ==================== PRIJZEN (MAD_PRICES) ==================== */
+const PRICE = (() => {
+  let map = null;
+  function buildMap(){
+    const out = {};
+    const M = (typeof window!=='undefined') ? window.MAD_PRICES : null;
+    if (M && typeof M==='object'){
+      for (const k of Object.keys(M)){
+        const v = M[k];
+        const K = k.toUpperCase();
+        if (typeof v === 'number') out[K] = v;
+        else if (v && typeof v === 'object'){
+          const cand = (typeof v.price==='number') ? v.price :
+                       (typeof v.usd==='number') ? v.usd   : null;
+          if (cand!=null) out[K]=cand;
+        } else if (typeof v === 'string'){
+          const n = +v.replace(/[^0-9.]/g,''); if (isFinite(n)) out[K]=n;
+        }
+      }
+    }
+    return out;
+  }
+  function ensure(){ if (!map) map = buildMap(); return map; }
+  function reload(){ map = buildMap(); updatePricesInDOM(); }
+  function raw(sku){ const m = ensure(); return m[String(sku||'').toUpperCase()] ?? null; }
+  function fmt(n){
+    if (n == null) return 'Ask';
+    try { return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n); }
+    catch { return '$ ' + Number(n).toLocaleString('en-US',{maximumFractionDigits:0}); }
+  }
+  function label(sku){ return fmt(raw(sku)); }
+  return { raw, fmt, label, reload };
+})();
+/* ==================== TEXT NORMALIZERS / PARSERS ==================== */
+/* Canonical label used everywhere (UI + filters) */
+function canonicalSupport(s){
+  const t = String(s||'').toLowerCase();
+  if (/front\s*lift/.test(t)) return 'Front lift kit';
+  if (/only\s*loaded|constant\s*load|min\.?\s*load|≥|maximum\s*support/.test(t)) return 'Only Loaded';
+  if (/empty\s*&\s*loaded|empty\s+and\s+loaded|\boem\b|basic/.test(t)) return 'Empty and loaded';
+  return String(s||'').trim();
+}
+function supportDisplay(raw){ return canonicalSupport(raw); }
+function supportFromRecord(rec){
+  if (rec.support) return supportDisplay(rec.support);
+  const mode = String(rec.support_mode||'').toLowerCase();
+  if (mode === 'both' || mode === 'oem' || mode === 'basic') return 'Empty and loaded';
+  if (mode === 'max'  || mode === 'maximum')                  return 'Only Loaded';
+  if (rec.title) return supportDisplay(rec.title);
+  if (rec.note)  return supportDisplay(rec.note);
+  return 'Empty and loaded';
+}
+function supportLabelFrom(k){ return canonicalSupport(k.support) || '—'; }
+function norm(s){ return String(s||'').trim(); }
+function splitMulti(s){ return norm(s).split(/[,/&]/).map(v=>v.trim()).filter(Boolean); }
+function deriveKindFromSku(sku, existing){
+  const m = String(sku||'').match(/-(\d{6})$/); const last = m ? m[1].slice(-1) : '';
+  const map = { "8":"Reinforced front springs", "5":"Auxiliary coil spring", "3":"Auxiliary spring in the strut", "1":"Lift springs kit", "0":"Auxiliary springs" };
+  return map[last] || existing || '';
+}
+function deriveAxleFromKind(kind, axleExisting, sku){
+  if (axleExisting) return axleExisting;
+  const s   = String(kind||'').toLowerCase();
+  const SKU = String(sku||'').toUpperCase();
+  // Expliciet front-signaal in omschrijving
+  if (/\b(strut|mcpherson|macpherson)\b/.test(s)) return 'Front';
+  if (/\bfront\b/.test(s) && !/\brear\b/.test(s))  return 'Front';
+  // Bestaande hints
+  if (/reinforced/.test(s) || /front\s*(lift|springs|kit)/.test(s)) return 'Front';
+  if (/special\s*duty/.test(s) && /(328|368)$/.test(SKU))           return 'Front';
+  // SKU-hint voor front
+  if (/(328|368)$/.test(SKU)) return 'Front';
+  // “Auxiliary spring in the strut” is altijd vóóras
+  if (/auxiliary/.test(s) && /\b(strut|mcpherson|macpherson)\b/.test(s)) return 'Front';
+  // Anders: hulpveren zijn vaak achter
+  if (/auxiliary/.test(s)) return 'Rear';
+  return 'Rear';
+}
+function parseTwinFlag(rec){
+  const txt = String(
+    rec.rear || rec.rear_wheels || rec.Rear || rec.Rear_wheels ||
+    rec.remarks || rec.Remarks || rec.remark ||
+    rec.notes || rec.note || rec.title || ''
+  ).toLowerCase();
+  if (/\bonly\s*twin\b/.test(txt) || /\bonly\s*[^.,;]*twin\s*rear\s*wheels?\b/.test(txt)) return 'Only';
+  if (/(incl\.?|including)[^.,;]*twin/.test(txt) || /\bsingle\s*&\s*twin\b|\btwin\s*&\s*single\b/.test(txt)) return 'Incl.';
+  if (/(excl\.?|excluding)[^.,;]*twin/.test(txt)) return 'Excl.';
+  if (/\btwin\s*rear\s*wheels?\b/.test(txt) && !/\bsingle\s*rear\s*wheels?\b/.test(txt)) return 'Only';
+  if (/\bsingle\s*rear\s*wheels?\b/.test(txt) && !/\btwin\s*rear\s*wheels?\b/.test(txt)) return 'Excl.';
+  if (/\bdrw\b|\bdually\b/.test(txt)) return 'Only';
+  if (/\bsrw\b/.test(txt))            return 'Excl.';
+  if (/\btwin\b/.test(txt) && /\bsingle\b/.test(txt)) return 'Incl.';
+  return '';
+}
+function parseEngine(rec){
+  const txt = (rec.engine || rec.title || rec.note || rec.remarks || '').toLowerCase();
+  if (/diesel/.test(txt)) return 'Diesel';
+  if (/\b(gas|gasoline|petrol|benzine)\b/.test(txt)) return 'Gas';
+  return '';
+}
+function parseBody(rec){
+  const raw = (rec.body || rec.title || rec.note || rec.remarks || '').toLowerCase();
+  const parts = [];
+  if (/van/.test(raw))                    parts.push('VAN');
+  if (/chassis|cabine/.test(raw))         parts.push('Chassis Cab');
+  return parts.length ? [...new Set(parts)].join(' / ') : 'VAN / Chassis Cab';
+}
+function parseDrive(rec){
+  const raw = [
+    rec.drive, rec.Drive,
+    rec.remarks, rec.Remarks, rec.remark,
+    rec.notes, rec.note,
+    rec.title
+  ].filter(Boolean).join(' ').toUpperCase();
+  const vs = new Set();
+  if (/\bFWD\b/.test(raw)) vs.add('FWD');
+  if (/\bRWD\b/.test(raw)) vs.add('RWD');
+  if (/\b(AWD|4WD)\b/.test(raw)) vs.add('AWD');
+  return vs.size ? [...vs].join(', ') : '';
+}
+function parseYears(rec){
+  // Geef alleen terug wat er echt in de data staat; geen default hier
+  return rec.years || rec.yearRange || rec.fitmentYears || '';
+}
+function parseAssembly(rec){
+  const n = rec.assembly || rec.assembly_min || rec.install || rec.install_min || rec.time || '';
+  if (n==null || n==='') return '';
+  const v = parseInt(String(n).replace(/[^0-9]/g,''),10);
+  return isFinite(v) && v>0 ? v : '';
+}
+function parseShock(rec){ return rec.shock || rec.shock_len || rec.damper || ''; }
+function parseEUType(rec){
+  const t = rec.type || rec.eu || rec.euType || rec.series || '';
+  if (/\bw910\b/i.test(String(t))) return 'W910';
+  if (/\bw907\b/i.test(String(t))) return 'W907';
+  // uit remarks vallen:
+  const hay = (rec.remarks || rec.title || '').toUpperCase();
+  if (/\bW910\b/.test(hay)) return 'W910';
+  if (/\bW907\b/.test(hay)) return 'W907';
+  return 'W907/W910';
+}
+function parseMinLoad(rec){
+  const raw = String(rec.min_load || rec.minLoad || rec.min_load_lb || rec.remarks || rec.notes || rec.note || '').toLowerCase();
+  const lbs = raw.match(/(\d{3,4})\s*(lb|lbs|pound)/);
+  const kg  = raw.match(/(\d{2,3})\s*kg/);
+  if (lbs) return +lbs[1];
+  if (kg)  return Math.round(+kg[1] * 2.20462);
+  return null;
+}
+/* ==== US SERIES PARSER (snapt "2500, 3500, 3500XD/HD") ==== */
+function canonUSSeriesToken(tok){
+  const s = String(tok||'').toUpperCase().replace(/\s+/g,'').trim();
+  if (!s) return '';
+  // Canonieke series
+  if (s==='1500' || s==='2500' || s==='3500' || s==='4500') return s;
+  // 3500XD varianten/aliassen (HD == XD)
+  if (s==='3500XD' || s==='3500HD') return '3500XD';
+  if (/^3500(?:X|H)D$/.test(s))     return '3500XD';
+  // Losse XD/HD alleen zinvol als 3500 impliciet aanwezig is; normaliseer toch naar 3500XD
+  if (s==='XD' || s==='HD')         return '3500XD';
+  return '';
+}
+function parseUSSeriesValue(val){
+  const set = new Set();
+  if (Array.isArray(val)){
+    val.forEach(v=>{ const c=canonUSSeriesToken(v); if(c) set.add(c); });
+  } else if (val!=null){
+    const txt = String(val).toUpperCase();
+    // plain hits
+    if (/\b1500\b/.test(txt)) set.add('1500');
+    if (/\b2500\b/.test(txt)) set.add('2500');
+    if (/\b3500\b/.test(txt)) set.add('3500');
+    if (/\b4500\b/.test(txt)) set.add('4500');
+    // 3500 XD/HD (en combinaties)
+    if (/\b3500\s*(XD|HD)\b/.test(txt) || /\bXD\/HD\b/.test(txt) || /\bHD\/XD\b/.test(txt) || /\b3500XD\/HD\b/.test(txt)){
+      set.add('3500XD');
+    }
+    // algemene fallback: splitsen op , / & en canoniseren
+    txt.split(/[,/&]+/).map(s=>s.trim()).forEach(tok=>{
+      const c = canonUSSeriesToken(tok);
+      if (c) set.add(c);
+    });
+  }
+  return [...set];
+}
+/* ==================== ROWS BOUWEN UIT FOOTER ==================== */
+function looksLikeSprinter(rec){
+  const sku = skuFromRecord(rec);
+  if (!sku) return false;
+  const path  = (rec.path||rec.href||'').toLowerCase();
+  const title = (rec.title||'').toLowerCase();
+  const model = (rec.model||rec.nameModel||'').toLowerCase();
+  const plat  = (rec.platform||rec.type||'').toLowerCase();
+  const isSprPath   = /\/mercedes\/sprinter\b/.test(path);
+  const mentionsSpr = (/\bmercedes\b/.test(title) && /\bsprinter\b/.test(title)) || /\bsprinter\b/.test(model);
+  const w907w910    = /\bw90[17]\b/.test(plat) || /\bw907\b/.test(plat) || /\bw910\b/.test(plat);
+  // uitsluiten van Vito/Viano/Crafter
+  const notOther = !/\bvito\b|\bviano\b|\bcrafter\b/.test([title,model,plat,path].join(' '));
+  return notOther && (isSprPath || mentionsSpr || w907w910);
+}
+function parseRearWheels(rec){
+  const v = rec.rear_wheels ?? rec.rear ?? null;
+  if (Array.isArray(v)) {
+    const set = new Set(
+      v.map(x => String(x).toLowerCase().trim())
+       .map(x => /^(twin|drw|dually)$/.test(x) ? 'twin'
+             : /^(single|srw)$/.test(x)        ? 'single'
+             : x)
+       .filter(x => x==='single' || x==='twin')
+    );
+    return [...set];
+  }
+  if (v != null) {
+    const parts = String(v).toLowerCase().split(/[,&/|]+/).map(s=>s.trim()).filter(Boolean);
+    const set = new Set();
+    for (const p of parts){
+      if (/^(twin|drw|dually)$/.test(p)) set.add('twin');
+      else if (/^(single|srw)$/.test(p)) set.add('single');
+      else {
+        if (/\btwin\b|\bdrw\b|\bdually\b/.test(p)) set.add('twin');
+        if (/\bsingle\b|\bsrw\b/.test(p))          set.add('single');
+      }
+    }
+    return [...set];
+  }
+  const txt = String(rec.remarks || rec.Remarks || rec.note || rec.title || '').toLowerCase();
+  const set = new Set();
+  if (/\btwin\b|\bdrw\b|\bdually\b/.test(txt)) set.add('twin');
+  if (/\bsingle\b|\bsrw\b/.test(txt))          set.add('single');
+  return [...set];
+}
+function normalizeFooterSprinter(rec){
+  const sku = skuFromRecord(rec); if (!sku) return null;
+  const kind     = rec.kind || rec.setup || '';
+  const line     = rec.line || (/^SD-/.test(sku) ? 'Special Duty Kit' : kind || '');
+  const axle     = axleFromFooter(rec, kind, sku);
+  const support  = supportCanon(rec.support || rec.support_mode || rec.note || rec.title || '');
+  const drive    = parseDrive(rec) || (rec.drive||'');
+  const twin     = parseTwinFlag(rec);
+  const body     = bodyFromVehicle(rec);
+  const engine   = engineFromFooter(rec);
+let years = yearsFromStartEnd(rec) || parseYears(rec) || '';
+// Fallback uit EU-type als jaren leeg zijn (906 = 2006–2018, 907/910 = 2018–heden)
+if (!years){
+  const t = String(euTypeFrom(rec) || parseEUType(rec)).toUpperCase();
+  if (/\bW906\b|\b[^A-Z]906\b/.test(t)) years = '06/2006–12/2018';
+  else if (/\bW907\b|\bW910\b|\b[^A-Z]907\b/.test(t)) years = '01/2018–present';
+}
+  const assembly = parseAssembly(rec) || (rec.time_min ? parseInt(rec.time_min,10) : '');
+  const {min, max} = shockMinMaxFromFooter(rec);
+  const remarks  = rec.remarks || rec.Remarks || rec.note || rec.notes || '';
+  const approval = rec.approval || rec.Approval || '';
+  const platform = rec.platform || '';
+  const type     = euTypeFrom(rec) || parseEUType(rec);
+  const rear_wheels_allowed = parseRearWheels(rec);
+  const min_load_lb = (rec.min_load!=null) ? rec.min_load
+                   : (supportCanon(support) === 'Only Loaded' ? 882 : null);
+  const row = {
+    sku, line, axle, support,
+    drive, twin,
+    rear_raw: rec.rear || rec.rear_wheels || remarks || '',
+    rear_wheels_allowed,
+    body,
+    shock: '',
+    shock_min_in: min || null,
+    shock_max_in: max || null,
+    type, years, assembly, engine,
+    priceUSD: null, min_load_lb,
+    remarks,
+    approval, platform
+  };
+    // Expliciete US-series uit JSON accepteren (veld-namen tolerant)
+  const usExplicit = parseUSSeriesValue(
+    rec.us_series ?? rec.usSeries ?? rec.series_us ?? rec.seriesUS ?? ''
+  );
+  if (usExplicit.length){
+    row.us_series_fixed = usExplicit;   // krijgt voorrang op heuristiek
+  }
+  // MAD heavy hint (907 511/519, 906 4.6–5.0t ⇒ 3500XD/3500 + Twin)
+  applyMADHeavyHint(row, rec);
+  return row;
+}
+/* Map footer → per SKU */
+function footerBySku(){
+  const map = Object.create(null);
+  for (const r of footerArray()){
+    const s = skuFromRecord(r);
+    if (!s) continue;
+    map[s] = r;
+  }
+  return map;
+}
+/* Fallback-row als een SKU nergens in de footer staat */
+function fallbackRow(sku){
+  const S = String(sku).toUpperCase();
+  const isSD = S.startsWith('SD-');
+  const kind = deriveKindFromSku(S, '');
+  const axle = deriveAxleFromKind(kind, '', S);
+  let support = 'Empty and loaded';
+  if (/(328|368)$/.test(S))              support = 'Front lift kit';
+  else if (/(290|300|310|355)$/.test(S)) support = 'Only Loaded';
+  return {
+    sku: S,
+    line: isSD ? 'Special Duty Kit' : (kind || (S.startsWith('HV-') ? 'Auxiliary springs' : '')),
+    axle,
+    support: canonicalSupport(support),
+    drive: '',
+    twin: '',
+    rear_raw: '',
+    body: 'VAN / Chassis Cab',
+    type: 'W907/W910',
+    platform: '',
+    approval: '',
+    shock: '',
+    shock_min_in: null,
+    shock_max_in: null,
+    years: '2018–present',
+    assembly: '',
+    engine: 'ICE',
+    priceUSD: null,
+    min_load_lb: (canonicalSupport(support) === 'Only Loaded') ? 882 : null,
+    remarks: ''
+  };
+}
+/* Bouw rows: 1) footer-sprinter, 2) vul bekende SKUs aan, 3) fallback */
+let ROWS = [];
+function buildRows(){
+  const bySku = footerBySku();
+  const rows  = [];
+  const seen  = new Set();
+  for (const key in bySku){
+    const rec = bySku[key];
+    if (!looksLikeSprinter(rec)) continue;
+    const row = normalizeFooterSprinter(rec);
+    if (!row) continue;
+    rows.push(row); seen.add(row.sku);
+  }
+  for (const skuRaw of KNOWN_SPRINTER_SKUS){
+    const sku = String(skuRaw).toUpperCase();
+    if (seen.has(sku)) continue;
+    if (bySku[sku]){
+      const row = normalizeFooterSprinter(bySku[sku]);
+      if (row){ rows.push(row); seen.add(sku); continue; }
+    }
+    rows.push(fallbackRow(sku));
+  }
+  ROWS = rows;
+}
+/* ==================== MATCHERS & UTILITIES (filters) ==================== */
+function split(v){ return String(v||'').split(',').map(s=>s.trim()).filter(Boolean); }
+function normalizeDrive(s){ return splitMulti(s).map(v=>v.toUpperCase().replace(/\s+/g,'')); }
+function matchDriveFlexible(kitDrive, selected){
+  if (!selected) return true;
+  return normalizeDrive(kitDrive).includes(String(selected).toUpperCase());
+}
+function normalizeRear(s){
+  const t = norm(s).toLowerCase();
+  if (!t) return [];
+  if (t.includes('twin') && t.includes('single')) return ['Twin','Single'];
+  if (t.includes('twin') || t.includes('drw') || t.includes('dually'))   return ['Twin'];
+  if (t.includes('single') || t.includes('srw')) return ['Single'];
+  return splitMulti(s).map(v=>v[0].toUpperCase()+v.slice(1).toLowerCase());
+}
+function normalizeBody(s){
+  const t = norm(s).replace(/chasis/ig,'Chassis');
+  const arr = splitMulti(t);
+  return arr.map(v => v.toLowerCase().includes('chassis') ? 'Chassis Cab' : 'VAN')
+            .filter((v,i,a)=>a.indexOf(v)===i);
+}
+function matchEngine(selected, engineText, remarks){
+  if (!selected) return true;
+  const t = (engineText || remarks || '').toLowerCase();
+  if (selected==='Diesel') return /\bdiesel\b/.test(t);
+  if (selected==='Gas')    return /\b(gas|gasoline|petrol|benzine)\b/.test(t);
+  return true;
+}
+function usSeriesListFromSprinter(k){
+  // 1) Vastgezet op de row (expliciet of uit eerdere parsing)
+  if (Array.isArray(k.us_series_fixed) && k.us_series_fixed.length){
+    return k.us_series_fixed;
+  }
+  // 2) Rechtstreeks uit data/row velden (string of array)
+  const direct = parseUSSeriesValue(k.us_series || k.usSeries || k.series_us || k.seriesUS || '');
+  if (direct.length) return direct;
+  // 3) Soms staat het in type/platform tekst (bv. "907 (2500, 3500, 3500XD)")
+  const fromType = parseUSSeriesValue(k.type || k.platform || '');
+  if (fromType.length) return fromType;
+  // 4) Oude heuristiek (remarks/titel + twin-hint)
+  const out = new Set();
+  const txt = String((k.remarks||'') + ' ' + (k.title||'')).toUpperCase();
+  if (/\b4500\b/.test(txt)) out.add('4500');
+  if (/\b3500XD\b/.test(txt) || /\b3500\s*(XD|HD)\b/.test(txt)) out.add('3500XD');
+  if (/\b3500\b/.test(txt)) out.add('3500');
+  if (/\b2500\b/.test(txt)) out.add('2500');
+  if (/\b1500\b/.test(txt)) out.add('1500');
+  const hasTwin = (k.twin==='Only' || k.twin==='Incl.') ||
+                  /\b(TWIN|DRW|DUALLY)\b/.test(String(k.rear_raw||'').toUpperCase());
+  if (hasTwin){ out.add('3500'); out.add('3500XD'); }
+  if (!out.size) out.add('2500');
+  return [...out];
+}
+/* Build year helpers */
+// Parseer "4,6–5,0t" / "4.6-5.0 t"
+function parseTonRange(text){
+  const t = String(text||'').toLowerCase().replace(/\s/g,'');
+  const m = t.match(/(\d+[.,]?\d*)\s*[-–]\s*(\d+[.,]?\d*)\s*t/);
+  if (!m) return null;
+  const toNum = v => parseFloat(String(v).replace(',','.'));
+  const min = toNum(m[1]), max = toNum(m[2]);
+  if (!isFinite(min) || !isFinite(max)) return null;
+  return {min, max};
+}
+// Haal W906/W907 + 511/519 + tonrange uit type/platform/remarks/title
+function scanMADTokens(rec){
+  const hay = [rec.type, rec.platform, rec.remarks, rec.title, rec.note]
+              .filter(Boolean).join(' ').toUpperCase();
+  const has906 = /\b906\b/.test(hay);
+  const has907 = /\b907\b/.test(hay);
+  const has511 = /\b511\b/.test(hay);
+  const has519 = /\b519\b/.test(hay);
+  const ton    = parseTonRange(hay);
+  return {has906, has907, has511, has519, ton, hay};
+}
+// Map tokens → US-serie + twin-indicatie
+function inferUSFromMAD(tokens){
+  const series = new Set();
+  // 907 + (511/519) of ≈5,0t ⇒ 3500XD
+  if (tokens.has907 && (tokens.has511 || tokens.has519 ||
+      (tokens.ton && tokens.ton.max && tokens.ton.max >= 5.0))) {
+    series.add('3500XD');
+  }
+  // 906 in 4,6–5,0t bereik ⇒ 3500 (DRW cab-chassis/HD)
+  if (tokens.has906 && tokens.ton && tokens.ton.min && tokens.ton.min >= 4.6) {
+    series.add('3500');
+  }
+  // Eventueel 5,5t/4500 (algemene uitbreiding)
+  if ((tokens.ton && tokens.ton.max && tokens.ton.max >= 5.5) || /\b4500\b/.test(tokens.hay)) {
+    series.add('4500');
+  }
+  // Twin indicatie: 3500XD/4500 zijn in de praktijk DRW; 3500 kan SRW/DRW → geen "Only" default
+  const twinOnly = series.has('3500XD') || series.has('4500');
+  return {series:[...series], twinOnly};
+}
+// Pas mapping toe op de genormaliseerde row
+function applyMADHeavyHint(row, rec){
+  const tokens = scanMADTokens(rec);
+  const inf = inferUSFromMAD(tokens);
+  if (inf.series.length){
+    row.us_series_fixed = inf.series;          // ← voorkeur boven heuristiek
+  }
+  if (inf.twinOnly){
+    row.rear_wheels_allowed = ['twin'];        // filter + label worden nu Twin
+    row.twin = 'Only';
+  }
+}
+function yearsFromStartEnd(rec){
+  const pad = n => String(n).padStart(2,'0');
+  function parse(y){
+    if (!y) return null;
+    const m = String(y).match(/^(\d{4})-(\d{2})$/) || String(y).match(/^(\d{4})$/);
+    if (!m) return null;
+    const Y = +m[1], M = m[2] ? +m[2] : 1;
+    return {Y, M};
+  }
+  const a = parse(rec.year_start), b = parse(rec.year_end);
+  if (!a && !b) return '';
+  const lhs = a ? `${pad(a.M)}/${a.Y}` : '';
+  const rhs = b ? `${pad(b.M)}/${b.Y}` : 'present';
+  return `${lhs}–${rhs}`;
+}
+function euTypeFrom(rec){
+  // Prefer ‘W907/W910’ uit type/platform; anders 906/907 tokens
+  const hay = [rec.type, rec.platform].filter(Boolean).join(' ').toUpperCase();
+  const codes = new Set();
+  if (/\bW910\b/.test(hay)) codes.add('W910');
+  if (/\bW907\b/.test(hay)) codes.add('W907');
+  // fallback: losse “906”, “907”
+  if (/\b906\b/.test(hay)) codes.add('W906');
+  if (/\b907\b/.test(hay)) codes.add('W907');
+  if (!codes.size) return ''; 
+  return [...codes].join('/');
+}
+function bodyFromVehicle(rec){
+  const src = (rec.vehicle || rec.remarks || '').toLowerCase();
+  const out = new Set();
+  if (/\bvan\b/.test(src)) out.add('VAN');
+  if (/\bchassis\b|\bcabine\b/.test(src)) out.add('Chassis Cab');
+  return out.size ? [...out].join(' / ') : 'VAN / Chassis Cab';
+}
+function axleFromFooter(rec, kind, sku){
+  // 1) Boer zoekt booleans
+  const hasFront = rec.front === true;
+  const hasRear  = rec.rear  === true;
+  if (hasFront && !hasRear) return 'Front';
+  if (hasRear  && !hasFront) return 'Rear';
+  // 2) Fallback naar omschrijving/SKU
+  return deriveAxleFromKind(kind, '', sku);
+}
+function supportCanon(s){
+  const t = String(s||'').toLowerCase();
+  if (/front\s*lift/.test(t)) return 'Front lift kit';
+  if (/only\s*loaded|constant\s*load|min\.?\s*load|≥/.test(t)) return 'Only Loaded';
+  if (/empty\s*&\s*loaded|empty\s+and\s+loaded|\boem\b|basic/.test(t)) return 'Empty and loaded';
+  return String(s||'').trim();
+}
+// Detecteer of tekst op EV duidt
+function isElectricText(txt){
+  return /\b(electric|ev|bev|battery|e[-\s]?sprinter)\b/i.test(String(txt||''));
+}
+// Vul de row.engine met 'Electric' of 'ICE' (default = ICE)
+function engineFromFooter(rec){
+  const hay = [rec.engine, rec.remarks, rec.title, rec.note]
+                .filter(Boolean).join(' ');
+  return isElectricText(hay) ? 'Electric' : 'ICE';
+}
+// Engine-filter: 'Electric' matcht EV-rows; 'ICE' is alles wat géén EV is
+function matchEngine(selected, engineText, remarks){
+  if (!selected) return true;
+  const hay = String(engineText||'') + ' ' + String(remarks||'');
+  const isEV = isElectricText(hay);
+  if (selected === 'Electric') return isEV;
+  if (selected === 'ICE')      return !isEV;
+  return true;
+}
+function shockMinMaxFromFooter(rec){
+  // laat lege waarden echt leeg zodat jouw specs-filter ze weglaat
+  const min = rec.shock_min_in ?? rec.shock_min ?? null;
+  const max = rec.shock_max_in ?? rec.shock_max ?? null;
+  return {min, max};
+}
+function usSeriesFromType(rec){
+  // Leest 1500/2500/3500/3500XD/4500 direct uit bv. "907 (2500, 3500, 3500XD)"
+  const out = new Set();
+  const txt = String(rec.type||'').toUpperCase();
+  ['1500','2500','3500XD','4500','3500'].forEach(tag=>{
+    if (txt.includes(tag)) out.add(tag);
+  });
+  return [...out];
+}
+function parseYearMonth(token){ const m = String(token||'').match(/(\d{2})\s*[-/]\s*(\d{4})/); return m ? {y:+m[2], m:+m[1]} : null; }
+function ymToIndex(ym){ return ym ? (ym.y*12+(ym.m||1)) : null; }
+function parseYearRange(yearsStr){
+  if (!yearsStr) return {start:null,end:null};
+  const [lhs,rhsRaw=''] = String(yearsStr).split('–');
+  const start = parseYearMonth(lhs?.trim());
+  const rhs = rhsRaw.trim().toLowerCase();
+  const end  = (rhs && rhs!=='present' && rhs!=='heden') ? parseYearMonth(rhsRaw.trim()) : null;
+  return {start,end};
+}
+function matchBuildYear(selectedYear, yearsStr){
+  if (!selectedYear) return true;
+  const {start,end} = parseYearRange(yearsStr);
+  const sel   = ymToIndex({y:+selectedYear, m:7});
+  const nowI  = new Date().getFullYear()*12 + (new Date().getMonth()+1);
+  const left  = start ? ymToIndex(start) : -Infinity;
+  const right = end ? ymToIndex(end) : nowI;
+  return sel>=left && sel<=right;
+}
+function matchRearFlexibleByKit(k, selected){
+  if (!selected) return true;
+  const sel = String(selected).toLowerCase();
+  if (Array.isArray(k.rear_wheels_allowed) && k.rear_wheels_allowed.length){
+    return k.rear_wheels_allowed.includes(sel);
+  }
+  if (k.twin === 'Incl.') return ['twin','single'].includes(sel);
+  if (k.twin === 'Excl.') return sel==='single';
+  if (k.twin === 'Only')  return sel==='twin';
+  return normalizeRear(k.rear_raw || '').map(x=>x.toLowerCase()).includes(sel);
+}
+/* ==================== IMAGE PREVIEW (optioneel) ==================== */
+let __imgPreviewEl=null;
+function ensurePreview(){ if(!__imgPreviewEl){ __imgPreviewEl=document.getElementById('imgPreview'); } return __imgPreviewEl; }
+function positionPreview(el,x,y){
+  const pad=12,vw=innerWidth,vh=innerHeight; el.style.display='block';
+  const w=el.offsetWidth||480,h=el.offsetHeight||360; let left=x+pad,top=y+pad;
+  if(left+w>vw-4) left=x-w-pad; if(top+h>vh-4) top=Math.max(4,vh-h-4); if(top<4) top=4;
+  el.style.left=left+'px'; el.style.top=top+'px';
+}
+function showPreviewFor(imgEl,x,y){ const pv=ensurePreview(); const im=pv.querySelector('img'); if(im.src!==imgEl.src) im.src=imgEl.src; im.alt=imgEl.alt||''; positionPreview(pv,x,y); }
+function hidePreview(){ const pv=ensurePreview(); pv.style.display='none'; }
+function attachThumbPreviewEvents(){
+  document.querySelectorAll('.thumb-wrap img.thumb').forEach(img=>{
+    img.addEventListener('mouseenter',e=>showPreviewFor(img,e.clientX,e.clientY));
+    img.addEventListener('mousemove',e=>positionPreview(ensurePreview(),e.clientX,e.clientY));
+    img.addEventListener('mouseleave',hidePreview);
+    img.addEventListener('focus',()=>{const r=img.getBoundingClientRect(); showPreviewFor(img,r.right,r.top);});
+    img.addEventListener('blur',hidePreview);
+  });
+  addEventListener('scroll',hidePreview,{passive:true});
+  addEventListener('resize',hidePreview);
+}
+/* Sprinter deeplink */
+function kitLink(sku){ return `/helper-springs/mercedes-benz/sprinter/${encodeURIComponent(String(sku).toUpperCase())}`; }
+/* ==================== RENDER HELPERS ==================== */
+const US_GVWR_LBS = { "1500": 8550, "2500": 9050, "3500": 9990, "3500XD": 11030, "4500": 12125 };
+function gvwrLabelUS(k){
+  const s = usSeriesListFromSprinter(k);
+  let best = 0;
+  for (const tag of s){
+    const w = US_GVWR_LBS[tag];
+    if (w && w > best) best = w;
+  }
+  return best ? `${best.toLocaleString('en-US')} lb` : '';
+}
+function esc(s){ return String(s||'').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+function bodyLabel(k){ return k.body || '—'; }
+function fmt(x){ return x || '—'; }
+function rearDisplay(k){
+  const arr = Array.isArray(k.rear_wheels_allowed) ? k.rear_wheels_allowed : [];
+  if (arr.length === 2) return 'Twin & Single';
+  if (arr[0] === 'twin')   return 'Twin';
+  if (arr[0] === 'single') return 'Single';
+  if (k.twin === 'Incl.') return 'Twin & Single';
+  if (k.twin === 'Excl.') return 'Single';
+  if (k.twin === 'Only')  return 'Twin';
+  const raw = String(k.rear_raw||'').toLowerCase();
+  if (/(incl\.?|including)[^.,;]*twin/.test(raw) || /\bsingle\s*&\s*twin\b|\btwin\s*&\s*single\b/.test(raw)) return 'Twin & Single';
+  if (/(excl\.?|excluding)[^.,;]*twin/.test(raw) || /\bsingle\s*rear\s*wheels?\b/.test(raw) || /\bsrw\b/.test(raw)) return 'Single';
+  if (/\bonly\s*twin\b/.test(raw) || /\btwin\s*rear\s*wheels?\b/.test(raw) || /\bdrw\b|\bdually\b/.test(raw)) return 'Twin';
+  return '—';
+}
+function seriesUSLabelSpr(k){
+  const arr = usSeriesListFromSprinter(k);
+  return arr.length ? arr.join(' / ') : '—';
+}
+function minLoadLabel(k){
+  if (k.min_load_lb != null) return `≥${k.min_load_lb} lb`;
+  if (supportLabelFrom(k) === 'Only Loaded') return '≥882 lb';
+  return '—';
+}
+function shockLabel(k){
+  const sMin = k.shock_min_in ?? k.shock_min ?? null;
+  const sMax = k.shock_max_in ?? k.shock_max ?? null;
+  if (k.shock){
+    const txt = String(k.shock).trim();
+    if (!txt) return '';
+    return /\bmm\b/i.test(txt) ? txt : `${txt} mm`;
+  }
+  if (sMin && sMax) return `${sMin}–${sMax} mm`;
+  if (sMin)         return `${sMin} mm`;
+  if (sMax)         return `${sMax} mm`;
+  return '';
+}
+function buildAlt(k){
+  const series = seriesUSLabelSpr(k);
+  const rear   = rearDisplay(k);
+  return ['MAD', k.line, 'for Mercedes Sprinter', series||null, k.drive||null, rear, `SKU ${k.sku}`].filter(Boolean).join(' - ');
+}
+/* ==================== CARD / TABLE ==================== */
+function cardHTML(k){
+  // === helpers (vallen terug op simpele varianten als jouw globale helpers ontbreken) ===
+  const esc = s => String(s||'').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+  const kitHref = (window.kitLink ? window.kitLink(k.sku) : ('/helper-springs/mercedes-benz/sprinter/'+encodeURIComponent(String(k.sku).toUpperCase())));
+  const imgSrc  = (window.imgUrlFromSku ? window.imgUrlFromSku(k.sku) : '');
+  const altTxt  = (window.buildAlt ? window.buildAlt(k) : ('MAD kit ' + k.sku));
+  const support    = (window.supportLabelFrom ? window.supportLabelFrom(k) : (k.support||'')).toString();
+  const rearWheels = (window.rearDisplay ? window.rearDisplay(k) : '');
+  const bodyTxt    = (window.bodyLabel ? window.bodyLabel(k) : (k.body||'—'));
+  const seriesUS   = (window.seriesUSLabelSpr ? window.seriesUSLabelSpr(k) : '');
+  const gvwrUS     = (window.gvwrLabelUS ? window.gvwrLabelUS(k) : '');
+  const shockTxt   = (window.shockLabel ? window.shockLabel(k) : (k.shock||''));
+  const priceTxt =
+  (typeof priceTextFor === 'function')
+    ? priceTextFor(k) // gebruikt MAD_PRICES of k.priceUSD als fallback
+    : (window.PRICE && window.PRICE.label)
+        ? window.PRICE.label(k.sku)
+        : (k.priceUSD != null
+            ? ('$ ' + Number(k.priceUSD).toLocaleString('en-US',{maximumFractionDigits:0}))
+            : 'Ask');
+  const remarkLine = k.remarks
+    ? `<div class="small muted">${esc(String(k.remarks).replace(/[,;|]\s*/g,' · '))}</div>`
+    : '';
+  // === specs (toon alleen ingevulde regels) ===
+  const specs = [];
+  const addSpec = (label, value) => {
+    const v = (value == null) ? '' : String(value).trim();
+    if (!v || v === '—' || v === '-' || /^n\/?a$/i.test(v)) return;
+    specs.push({ k: label, v });
+  };
+  addSpec('Spring type', k.line||'');                          // bv. Auxiliary coil spring / Special Duty Kit
+  addSpec('Axles',       k.axle ? (k.axle + ' Axle') : '');    // Front / Rear
+  addSpec('Install',     k.assembly ? (k.assembly + ' min') : '');
+  addSpec('Approval',    k.approval||'');
+  addSpec('Years',       k.years||'');
+  addSpec('Platform',    k.platform||'');
+  addSpec('Type',        k.type||'');                          // W907 / W910
+  addSpec('Body',        bodyTxt);
+  addSpec('Support',     support);
+  addSpec('US Series',   seriesUS);
+  addSpec('GVWR (US)',   gvwrUS);
+  addSpec('Drive',       (k.drive||'').replace(/\s*,\s*/g,' / '));
+  addSpec('Rear wheels', rearWheels);
+  addSpec('Shock length',shockTxt);
+  if (k.min_load_lb != null) addSpec('Min load', `≥${k.min_load_lb} lb`);
+  const specsHtml = `<div class="specs">${
+    specs.map(s => `<div class="spec"><span class="k">${esc(s.k)}</span><span class="v">${esc(s.v)}</span></div>`).join('')
+  }</div>`;
+  return `
+    <article class="card">
+      <div class="thumb-wrap">
+        <img class="thumb" loading="lazy"
+             src="${imgSrc}"
+             alt="${esc(altTxt)}"
+             onerror="this.closest('.thumb-wrap').textContent='—'"/>
+      </div>
+      <div class="meta">
+        <span class="chip">${k.axle || '—'}</span>
+        <span class="chip">${k.line || '—'}</span>
+        <span class="chip">${support || '—'}</span>
+      </div>
+      <h3 style="margin:.25rem 0 .2rem">
+        <a href="${kitHref}"><code>${k.sku}</code></a>
+      </h3>
+      ${remarkLine}
+      ${specsHtml}
+<div class="price-wrap">
+  <div class="price" data-sku="${k.sku}">${priceTxt}</div>
+  <span class="chip accent ship" title="US mainland shipping included">FREE SHIPPING <sup>*</sup></span>
+</div>
+      <div class="cta">
+        <a class="btn primary add2cart" data-sku="${k.sku}" href="#">Add To Cart</a>
+        <a class="btn ghost" href="${kitHref}">View</a>
+        <a class="btn ghost" href="/installers/directory/">Installers</a>
+      </div>
+    </article>
+  `;
+}
+function tableRowHTML(k){
+  const rearLabel   = rearDisplay(k);
+  const support     = supportLabelFrom(k);
+  const minLoad     = (k.min_load_lb!=null) ? `≥${k.min_load_lb} lb` :
+                      (support==='Only Loaded' ? '≥882 lb' : '—');
+  const usSeries = seriesUSLabelSpr(k) || '—';
+  return `
+    <tr class="row-link" data-href="${kitLink(k.sku)}" tabindex="0" aria-label="Open ${k.sku} details">
+      <td class="photo">
+        <div class="thumb-wrap">
+          <img class="thumb table" loading="lazy"
+               src="${imgUrlFromSku(k.sku)}"
+               alt="${buildAlt(k)}"
+               title="${buildAlt(k)}"
+               onerror="this.closest('td').textContent='—'"/>
+        </div>
+      </td>
+      <td><a href="${kitLink(k.sku)}"><code>${k.sku}</code></a></td>
+      <td>${k.line||'—'}</td>
+      <td>${support}</td>
+      <td>${k.drive||'—'}</td>
+      <td>${rearLabel}</td>
+      <td>${minLoad}</td>
+      <td>${bodyLabel(k)}</td>
+      <td>${fmt(k.shock)}</td>
+      <td>${k.type||'—'}</td>
+      <td>${usSeries}</td>
+      <td>${fmt(k.years)}</td>
+      <td>${fmt(k.assembly)}</td>
+      <td>${fmt(k.engine)}</td>
+      <td>${PRICE.label(k.sku)}</td>
+    </tr>`;
+}
+/* ==================== FILTER STATE & RENDER ==================== */
+function getBoundsFromYearsStr(str){
+  const {start,end} = parseYearRange(str);
+  const sY = start?.y || null;
+  const eY = end?.y || null;  // null = present
+  return {sY, eY};
+}
+function fallbackBoundsFromType(row){
+  const t = String(row.type||'').toUpperCase();
+  if (/\bW906\b|\b[^A-Z]906\b/.test(t)) return {sY:2006, eY:2018};
+  if (/\bW907\b|\bW910\b|\b[^A-Z]907\b/.test(t)) return {sY:2018, eY:null};
+  return {sY:null, eY:null};
+}
+function computeYearBounds(){
+  let minY = Infinity, maxY = -Infinity;
+  const nowY = (new Date()).getFullYear();
+  for (const r of ROWS){
+    let {sY, eY} = getBoundsFromYearsStr(String(r.years||''));
+    if (sY==null && eY==null){
+      const fb = fallbackBoundsFromType(r);
+      sY = fb.sY; eY = fb.eY;
+    }
+    if (sY!=null) minY = Math.min(minY, sY);
+    if (eY!=null) maxY = Math.max(maxY, eY);
+    else maxY = Math.max(maxY, nowY);
+  }
+  if (!isFinite(minY)) minY = 2006; // veilige ondergrens
+  if (!isFinite(maxY) || maxY<minY) maxY = nowY;
+  const el  = document.getElementById('flt-year');
+  const out = document.getElementById('yearOut');
+  if (el){
+    el.min = String(minY);
+    el.max = String(maxY);
+    el.step = '1';
+    if (el.value && (+el.value<minY || +el.value>maxY)) el.value = '';
+  }
+  if (out && (!el || !el.value)) out.textContent = 'Any';
+}
+function getFilterState(){
+  return {
+    drive:   document.getElementById('flt-drive')?.value || '',
+    engine:  document.getElementById('flt-engine')?.value || '',
+    rear:    document.getElementById('flt-rear')?.value || '',
+    body:    document.getElementById('flt-body')?.value || '',
+    side:    document.getElementById('flt-side')?.value || '',
+    support: document.getElementById('flt-support')?.value || '',
+    typeUS:  document.getElementById('flt-type')?.value || '',
+    year:    document.getElementById('flt-year')?.value || ''
+  };
+}
+function render(){
+  const { drive, engine, rear, body, side, support, typeUS, year } = getFilterState();
+  const rows = ROWS.filter(k => (
+    matchDriveFlexible(k.drive, drive) &&
+    matchEngine(engine, k.engine, k.remarks) &&
+    matchRearFlexibleByKit(k, rear) &&
+    ( !body || normalizeBody(k.body).includes(body) ) &&
+    ( !side || String(k.axle||k.side||'').toLowerCase() === side.toLowerCase() ) &&
+    ( !support || canonicalSupport(k.support) === canonicalSupport(support) ) &&
+    ( !typeUS || usSeriesListFromSprinter(k).includes(typeUS) ) &&
+    ( !yearActive || matchBuildYear(year, k.years) )
+  ));
+  const countEl = document.getElementById('kitCount');
+  if (countEl) countEl.textContent = `Showing ${rows.length} of ${ROWS.length} kits`;
+  const cardsWrap = document.getElementById('cardsWrap');
+  const tableBody = document.getElementById('data-body');
+  if (cardsWrap){
+    cardsWrap.innerHTML = rows.length
+      ? rows.map(cardHTML).join('')
+      : `<div class="small muted">No kits match your filters.</div>`;
+  }
+  if (tableBody){
+    tableBody.innerHTML = rows.map(tableRowHTML).join('');
+  }
+  attachThumbPreviewEvents?.();
+}
+function resetFilters(){
+  ['flt-drive','flt-engine','flt-rear','flt-body','flt-side','flt-support','flt-type'].forEach(id=>{
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const yr  = document.getElementById('flt-year');
+  const out = document.getElementById('yearOut');
+  yearActive = false;
+  if (yr) yr.value = '';
+  if (out) out.textContent = 'Any';
+  debounceRender();
+}
+function updatePricesInDOM(){
+  document.querySelectorAll('.price[data-sku]').forEach(el=>{
+    const sku = el.getAttribute('data-sku');
+    const val = PRICE.raw(sku);
+    el.textContent = PRICE.fmt(val);
+  });
+}
+/* ==================== INIT ==================== */
+function bootSprinter(){
+  buildRows();
+  computeYearBounds();
+  resetFilters();
+  // View toggle (optioneel – zet buttons in je HTML met ids btn-cards/btn-table)
+  const btnCards=document.getElementById('btn-cards');
+  const btnTable=document.getElementById('btn-table');
+  const cardsWrap=document.getElementById('cardsWrap');
+  const tableWrap=document.getElementById('tableWrap');
+  function setView(mode){
+    const cardsActive=(mode==='cards');
+    cardsWrap?.classList.toggle('hidden', !cardsActive);
+    tableWrap?.classList.toggle('hidden', cardsActive);
+    btnCards?.setAttribute('aria-pressed', String(cardsActive));
+    btnTable?.setAttribute('aria-pressed', String(!cardsActive));
+  }
+  btnCards?.addEventListener('click', ()=>setView('cards'));
+  btnTable?.addEventListener('click', ()=>setView('table'));
+  // Kliknavigatie + Reset
+  document.addEventListener('click', (e) => {
+    const resetBtn = e.target.closest?.('#btn-reset');
+    if (resetBtn) { e.preventDefault(); e.stopPropagation(); resetFilters(); return; }
+    const a = e.target.closest?.('a[href]'); if (a) return;
+    const tr = e.target.closest?.('tr.row-link');
+    if (!tr) return;
+    if (e.target.closest('button, input, select, label')) return;
+    location.href = tr.dataset.href;
+  });
+  document.addEventListener('keydown', e=>{
+    const tr=e.target.closest && e.target.closest('tr.row-link'); if(!tr) return;
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); location.href=tr.dataset.href; }
+  });
+  // Filters
+  ['flt-drive','flt-engine','flt-rear','flt-body','flt-side','flt-support','flt-type','flt-year']
+    .forEach(id=>{
+      const el=document.getElementById(id); if(!el) return;
+      el.addEventListener('change',debounceRender,{passive:true});
+      el.addEventListener('input',debounceRender,{passive:true});
+    });
+  // Year output
+  const yr  = document.getElementById('flt-year');
+  const out = document.getElementById('yearOut');
+  if (yr) {
+    yearActive = false;
+    if (out) out.textContent = 'Any';
+    yr.addEventListener('input', () => {
+      yearActive = true;
+      if (out) out.textContent = yr.value || 'Any';
+      debounceRender();
+    });
+  }
+  // ✅ URL <-> filters koppelen (na reset & listeners)
+initURLFilterBindingSprinter();
+}
+// ===== URL <-> Filter binding (Sprinter) =====
+function initURLFilterBindingSprinter(){
+  const map = {
+    drive:  { el:'flt-drive',  canon:v=>/^(rwd|awd)$/i.test(v)?v.toUpperCase():'' },
+    engine: { el:'flt-engine', canon:v=>{
+      const s=String(v||'').toLowerCase();
+      if (/(electric|ev|bev|e[-\s]?sprinter)/.test(s)) return 'Electric';
+      if (/(ice|diesel|gas|gasoline|petrol|benzine|combustion)/.test(s)) return 'ICE';
+      return '';
+    }},
+    rear:   { el:'flt-rear',   canon:v=>{
+      const s=String(v||'').toLowerCase();
+      if (s==='twin' || s==='drw' || s==='dually') return 'Twin';
+      if (s==='single' || s==='srw') return 'Single';
+      return '';
+    }},
+    body:   { el:'flt-body',   canon:v=>{
+      const s=String(v||'').toLowerCase().replace(/\s+/g,' ').trim();
+      if (s==='van') return 'VAN';
+      if (s==='chassis cab' || s==='cab chassis') return 'Chassis Cab';
+      return '';
+    }},
+    side:   { el:'flt-side',   canon:v=>{
+      const s=String(v||'').toLowerCase();
+      if (s==='front' || s==='rear') return s[0].toUpperCase()+s.slice(1);
+      return '';
+    }},
+    support:{ el:'flt-support',canon:v=>{
+      return (typeof canonicalSupport==='function')
+        ? canonicalSupport(v)               // → 'Empty and loaded' | 'Only Loaded' | 'Front lift kit'
+        : String(v||'').trim();
+    }},
+    series: { el:'flt-type',   canon:v=>{
+      return (typeof canonUSSeriesToken==='function')
+        ? canonUSSeriesToken(v)            // → 1500/2500/3500/3500XD/4500
+        : String(v||'').toUpperCase();
+    }},
+    year:   { el:'flt-year',   canon:v=>{
+      const n = parseInt(v,10);
+      return Number.isFinite(n) ? String(n) : '';
+    }},
+  };
+  // Treat ?type= as alias of ?series=
+  function getQS(){
+    const qs = new URLSearchParams(location.search);
+    if (!qs.has('series') && qs.has('type')) qs.set('series', qs.get('type'));
+    return qs;
+  }
+  function writeQS(qs){
+    const s = qs.toString();
+    history.replaceState(null, '', location.pathname + (s? '?'+s : '') + location.hash);
+  }
+  function optionExists(select, val){
+    for (const o of select.options) if (String(o.value)===String(val)) return true;
+    return false;
+  }
+  // 1) Apply from URL
+  (function applyFromURL(){
+    const qs = getQS();
+    let touched = false;
+    for (const key of Object.keys(map)){
+      const raw = qs.get(key);
+      if (!raw) continue;
+      const val = map[key].canon(raw);
+      if (!val) continue;
+      const id  = map[key].el;
+      if (key==='year'){
+        const yr  = document.getElementById(id);
+        const out = document.getElementById('yearOut');
+        if (yr){ yr.value = val; yearActive = true; if (out) out.textContent = val; touched = true; }
+      } else {
+        const sel = document.getElementById(id);
+        if (sel && optionExists(sel,val)){ sel.value = val; touched = true; }
+      }
+    }
+    if (touched && typeof debounceRender==='function') debounceRender();
+  })();
+  // 2) Keep URL in sync as user changes filters
+  function syncOn(key){
+    const {el, canon} = map[key];
+    const node = document.getElementById(el);
+    if (!node) return;
+    const handler = () => {
+      const qs = getQS();
+      let v = canon(node.value);
+      if (!v) qs.delete(key);
+      else    qs.set(key, v);
+      writeQS(qs);
+    };
+    node.addEventListener('change', handler, {passive:true});
+    if (key==='year') node.addEventListener('input', handler, {passive:true});
+  }
+  Object.keys(map).forEach(syncOn);
+  // 3) Clear params on Reset
+  const resetBtn = document.getElementById('btn-reset');
+  resetBtn?.addEventListener('click', () => {
+    const qs = getQS();
+    Object.keys(map).forEach(k => qs.delete(k));
+    writeQS(qs);
+  });
+}
+/* Starten zodra DOM staat; her-render bij late globals */
+function bootOrWait(tries){
+  tries = typeof tries==='number' ? tries : 30; // ~6s @200ms
+  if (document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', ()=>bootOrWait(tries), {once:true});
+    return;
+  }
+  if (footerArray().length || tries<=0){
+    bootSprinter(); return;
+  }
+  setTimeout(()=>bootOrWait(tries-1), 200);
+}
+bootOrWait(30);
+/* Her-bouwen zodra globals arriveren */
+watchGlobal('LLS_FOOTER_DATA', () => { buildRows(); computeYearBounds(); render(); });
+watchGlobal('MAD_PRICES',     () => { PRICE.reload(); updatePricesInDOM(); });
+ </script>
+ <script>
+  /* ===== Free Shipping + Add To Cart treatment for Sprinter listing ===== */
+(function(){
+  'use strict';
+  /* Injecteer FREE SHIPPING badge in de HERO (1x) */
+  function injectHeroFreeShipping(){
+    try{
+      const box = document.querySelector('.hero .badges');
+      if (!box || box.querySelector('.badge.accent')) return;
+      const node = document.createElement('span');
+      node.className = 'badge accent';
+      node.title = 'US mainland shipping included';
+      node.innerHTML = 'FREE SHIPPING <sup>*</sup>';
+      box.appendChild(node);
+    }catch(e){}
+  }
+  /* ——— Cart helpers ——— */
+  const PRODUCT_URLS = (window.PRODUCT_URLS || { /* optioneel: 'HV-098190': '/product/hv-098190' */ });
+  function findProxy(sku){ return document.getElementById('cart-' + String(sku).toUpperCase()); }
+  function fallbackUrl(sku){
+    const S = String(sku||'').toUpperCase();
+    return PRODUCT_URLS[S] || ('/product/' + S.toLowerCase());
+  }
+  function setBusy(btn, busy){
+    if (!btn) return;
+    if (busy){
+      btn.setAttribute('aria-busy','true');
+      btn.dataset._txt = btn.dataset._txt || btn.textContent;
+      btn.textContent = 'Adding…';
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.8';
+    } else {
+      btn.removeAttribute('aria-busy');
+      btn.textContent = btn.dataset._txt || 'Add To Cart';
+      btn.style.pointerEvents = '';
+      btn.style.opacity = '';
+    }
+  }
+  function pulseCart(){
+    try{
+      const cart = document.querySelector('[data-widget*="cart"], [class*="cart"], [aria-label*="cart" i]');
+      if (cart) cart.animate([{transform:'scale(1)'},{transform:'scale(1.08)'},{transform:'scale(1)'}], {duration:450,easing:'ease-out'});
+    }catch(e){}
+  }
+  function addToCartBySku(sku, btn){
+    const proxy = findProxy(sku);
+    if (proxy){
+      setBusy(btn, true);
+      setTimeout(function(){
+        proxy.click();
+        setBusy(btn, false);
+        btn.textContent = 'Added ✓';
+        setTimeout(()=>{ btn.textContent = 'Add To Cart'; }, 1200);
+        pulseCart();
+      }, 60);
+      return;
+    }
+    location.href = fallbackUrl(sku);
+  }
+  function wireCartBtns(root){
+    (root || document).querySelectorAll('.btn.add2cart[data-sku]').forEach(btn=>{
+      const sku = btn.getAttribute('data-sku');
+      if (!sku || btn.dataset._wired === '1') return;
+      btn.dataset._wired = '1';
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        addToCartBySku(sku, btn);
+      }, {passive:false});
+    });
+  }
+  /* ——— Card HTML override (voegt Free Shipping chip + Add To Cart toe) ——— */
+  const old_cardHTML = window.cardHTML;
+  if (typeof old_cardHTML === 'function'){
+    // We bouwen onze eigen cardHTML met dezelfde helpers die je al hebt staan.
+    window.cardHTML = function(k){
+      // helpers uit je bestaande script:
+      const esc = s => String(s||'').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+      const img = window.imgUrlFromSku ? window.imgUrlFromSku(k.sku) : '';
+      const alt = (window.buildAlt ? window.buildAlt(k) : ('MAD kit ' + k.sku));
+      const support = (window.supportLabelFrom ? window.supportLabelFrom(k) : (k.support||'')).toString();
+      const rearDisplay = window.rearDisplay ? window.rearDisplay(k) : '';
+      const bodyLabel   = window.bodyLabel   ? window.bodyLabel(k)   : (k.body||'—');
+      const seriesUS    = window.seriesUSLabelSpr ? window.seriesUSLabelSpr(k) : '';
+      const gvwrLabel   = window.gvwrLabelUS ? window.gvwrLabelUS(k) : '';
+      const shockLabel  = (function(){
+        if (window.shockLabel) return window.shockLabel(k);
+        return k.shock || '';
+      })();
+      const remarkLine = k.remarks
+        ? `<div class="small muted">${esc(String(k.remarks).replace(/[,;|]\s*/g,' · '))}</div>`
+        : '';
+      // specs (alleen tonen als gevuld)
+      const specs = [];
+      const addSpec = (label, value) => {
+        const v = (value == null) ? '' : String(value).trim();
+        if (!v || v === '—' || v === '-' || /^n\/?a$/i.test(v)) return;
+        specs.push({ k: label, v });
+      };
+      addSpec('Spring type', k.line||'');
+      addSpec('Axles', k.axle ? (k.axle + ' Axle') : '');
+      addSpec('Install', k.assembly ? (k.assembly + ' min') : '');
+      addSpec('Approval', k.approval||'');
+      addSpec('Years', k.years||'');
+      addSpec('Platform', k.platform||'');
+      addSpec('Type', k.type||'');
+      addSpec('Body', bodyLabel);
+      addSpec('Support', support);
+      addSpec('US Series', seriesUS);
+      addSpec('GVWR (US)', gvwrLabel);
+      addSpec('Drive', (k.drive||'').replace(/\s*,\s*/g,' / '));
+      addSpec('Rear wheels', rearDisplay);
+      addSpec('Shock length', shockLabel);
+      if (k.min_load_lb != null) addSpec('Min load', `≥${k.min_load_lb} lb`);
+      const specsHtml = `<div class="specs">${
+        specs.map(s => `<div class="spec"><span class="k">${esc(s.k)}</span><span class="v">${esc(s.v)}</span></div>`).join('')
+      }</div>`;
+      const price = (window.PRICE && window.PRICE.label) ? window.PRICE.label(k.sku) : 'Ask';
+      return `
+        <article class="card">
+          <div class="thumb-wrap">
+            <img class="thumb" loading="lazy"
+                src="${img}" alt="${esc(alt)}"
+                onerror="this.closest('.thumb-wrap').textContent='—'"/>
+          </div>
+          <div class="meta">
+            <span class="chip">${k.axle || '—'}</span>
+            <span class="chip">${k.line || '—'}</span>
+            <span class="chip">${support || '—'}</span>
+          </div>
+          <h3 style="margin:.25rem 0 .2rem">
+            <a href="${window.kitLink ? window.kitLink(k.sku) : ('/helper-springs/mercedes-benz/sprinter/'+encodeURIComponent(String(k.sku).toUpperCase()))}">
+              <code>${k.sku}</code>
+            </a>
+          </h3>
+          ${remarkLine}
+          ${specsHtml}
+          <div class="price-wrap">
+            <div class="price" data-sku="${k.sku}">${price}</div>
+            <span class="chip accent ship" title="US mainland shipping included">FREE SHIPPING <sup>*</sup></span>
+          </div>
+          <div class="cta">
+            <a class="btn primary add2cart" data-sku="${k.sku}" href="#">Add To Cart</a>
+            <a class="btn ghost" href="${window.kitLink ? window.kitLink(k.sku) : ('/helper-springs/mercedes-benz/sprinter/'+encodeURIComponent(String(k.sku).toUpperCase()))}">View Kit</a>
+            <a class="btn ghost" href="/installers/directory/">Installers</a>
+          </div>
+        </article>
+      `;
+    };
+  }
+  /* Hook in de render-loop zodat nieuwe knoppen telkens gewired worden */
+const old_render = window.render;
+if (typeof old_render === 'function'){
+  window.render = function(){
+    old_render.apply(this, arguments);
+    // >>> vul/refresh prijzen zodra de kaarten/tabel in de DOM staan
+    if (typeof updatePricesInDOM === 'function') updatePricesInDOM();
+    // buttons opnieuw “wires”
+    wireCartBtns(document);
+  };
+}
+  /* Start als de DOM klaar is (en ook als er al gerenderd is) */
+  function boot(){
+    injectHeroFreeShipping();
+    wireCartBtns(document);
+    // Als de lijst al stond, herteken zodat cardHTML-override actief is
+    if (typeof window.debounceRender === 'function') window.debounceRender();
+    else if (typeof window.render === 'function') window.render();
+  }
+  (document.readyState === 'loading')
+    ? document.addEventListener('DOMContentLoaded', boot, {once:true})
+    : boot();
+})();
+ </script>

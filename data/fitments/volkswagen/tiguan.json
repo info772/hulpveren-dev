@@ -1,0 +1,105 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "tiguan",
+    "label": "Tiguan"
+  },
+  "kits": [
+    {
+      "sku": "HV-193345",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074620.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 183.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "5N"
+          ],
+          "remark": "Only Compound axle, Excl. 4Motion",
+          "year_from": "01-2016",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199515",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "5N"
+          ],
+          "remark": "Incl. Bluemotion",
+          "year_from": "09-2007",
+          "year_to": "07-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199525",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067356.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "CT1"
+          ],
+          "remark": "Incl. 4Motion",
+          "year_from": "01-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. eHybrid"
+        },
+        {
+          "platform_codes": [
+            "5N"
+          ],
+          "remark": "Incl. Allspace, Incl. 4Motion",
+          "year_from": "01-2016",
+          "year_to": "",
+          "notes": "Engine: All, Incl. eHybrid"
+        }
+      ]
+    }
+  ]
+}

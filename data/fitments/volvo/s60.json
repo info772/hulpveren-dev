@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "volvo",
+    "label": "VOLVO"
+  },
+  "model": {
+    "slug": "s60",
+    "label": "S60"
+  },
+  "kits": [
+    {
+      "sku": "HV-062278",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947061750.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 333.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (134)"
+          ],
+          "remark": "R-design, Excl. Hybrid, Excl. AWD",
+          "year_from": "04-2010",
+          "year_to": "12-2019",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

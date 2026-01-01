@@ -1,0 +1,611 @@
+{
+  "make": {
+    "slug": "fiat",
+    "label": "FIAT"
+  },
+  "model": {
+    "slug": "doblo",
+    "label": "Doblo"
+  },
+  "kits": [
+    {
+      "sku": "HV-051660",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011328.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 358.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "223",
+            "223L"
+          ],
+          "remark": "",
+          "year_from": "11-2000",
+          "year_to": "02-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051670",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011335.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 392.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 549
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "223",
+            "223L"
+          ],
+          "remark": "Maximum support",
+          "year_from": "11-2000",
+          "year_to": "02-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051745",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947055445.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 172.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "263"
+          ],
+          "remark": "Excl. Cargo",
+          "year_from": "11-2009",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051755",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947055742.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 219.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "263"
+          ],
+          "remark": "Only Cargo",
+          "year_from": "02-2010",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051828",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947068223.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 319.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "263"
+          ],
+          "remark": "Maximum support, Only Cargo, Min. load is 500kg",
+          "year_from": "02-2010",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051838",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071032.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 257.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "263"
+          ],
+          "remark": "Reinforced Front Springs (+25%), raises 15-20MM",
+          "year_from": "02-2010",
+          "year_to": "",
+          "notes": "Engine: 1.4 (95hp) Excl. CNG, 1.3D Multijet"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051848",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071049.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 257.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 449
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "263"
+          ],
+          "remark": "Reinforced Front Springs (+25%), raises 15-20mm",
+          "year_from": "02-2010",
+          "year_to": "",
+          "notes": "Engine: 1.4 (120hp) Excl. CNG, 1.6D, 2.0D"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051851",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071056.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 372.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 659
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "263"
+          ],
+          "remark": "Only Cargo",
+          "year_from": "02-2010",
+          "year_to": "",
+          "notes": "Engine: 1.4 (95hp) Excl. CNG, 1.3D Multijet"
+        }
+      ]
+    },
+    {
+      "sku": "HV-051861",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947071063.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 372.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 168.75,
+        "labor_ex_vat_max_eur": 168.75,
+        "total_inc_vat_from_eur": 659
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "263"
+          ],
+          "remark": "Only Cargo",
+          "year_from": "02-2010",
+          "year_to": "",
+          "notes": "Engine: 1.4 (120hp), 1.6 D, 2.0 D"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133238",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012806.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 285.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Maximum support, Only Van L1, White PUR bump stop, min. load 150kg, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133248",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012813.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 273.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 379
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Only L1, White PUR bump stop, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133298",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947052260.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 285.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Maximum support, Only passenger L1, White PUR bump stop, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Doblo"
+        },
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Only passenger L2, White PUR bump stop, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133458",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947080003.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 282.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Only passenger L1, White PUR bump stop, Excl. 4x4, Excl. standard raised vehicles",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947079809.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 339.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "M and XL, Black rubber bump stop, min. load 50kg, Excl. 4WD, Excl. standard raised suspension",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136158",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947079830.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 339.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 459
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Maximum support, Only XL, Black rubber bump stop, min. load 120kg, Excl. 4WD, Excl. standard raised suspension",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Incl. e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136168",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW/TUV",
+      "ean": "8717947084629.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 270.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 469
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Excl. e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116443.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 280.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 479
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Only e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136188",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116429.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 249.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "M & XL, Only for original color code (2x Green 1x Grey), Min. load 50kg, Black rubber bump stop",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Only e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136198",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116436.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 280.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 389
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Maximum support, M & XL, Only for original color code (2x Green 1x Grey), Min. load 200kg, Black rubber bump stop,",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Only e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136201",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116450.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 479.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 769
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Cross Country, M & XL, Only for original rear color code (2x Green 1x Grey), Min. load rear 50kg, Black rubber bump stop",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Only e-Doblo"
+        }
+      ]
+    },
+    {
+      "sku": "HV-136211",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116467.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 509.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 799
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E"
+          ],
+          "remark": "Maximum support, Cross Country, M & XL, Only for original rear color code (2x Green 1x Grey), Min. load rear 200kg, Black rubber bump stop",
+          "year_from": "06-2022",
+          "year_to": "",
+          "notes": "Engine: Only e-Doblo"
+        }
+      ]
+    }
+  ]
+}

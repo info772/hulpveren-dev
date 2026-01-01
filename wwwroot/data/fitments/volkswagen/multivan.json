@@ -1,0 +1,204 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "multivan",
+    "label": "Multivan"
+  },
+  "kits": [
+    {
+      "sku": "HV-198075",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014022.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 186.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Incl. 4-motion",
+          "year_from": "04-2015",
+          "year_to": "08-2024",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5",
+            "7H"
+          ],
+          "remark": "Incl. 4-motion",
+          "year_from": "04-2003",
+          "year_to": "08-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198218",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947067448.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 289.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T6"
+          ],
+          "remark": "Incl. 4-motion",
+          "year_from": "04-2015",
+          "year_to": "08-2024",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "T5",
+            "7H"
+          ],
+          "remark": "Incl. 4-motion",
+          "year_from": "04-2003",
+          "year_to": "08-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198368",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947084681.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 382.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (STM",
+            "STN)"
+          ],
+          "remark": "Maximum support, L1 & L2, Excl. lowered suspension (2MH, Z7B, 1BQ)",
+          "year_from": "08-2021",
+          "year_to": "",
+          "notes": "Engine: Incl. eHybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198378",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084674.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 357.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 479
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (STM",
+            "STN)"
+          ],
+          "remark": "L1 & L2, Excl. lowered suspension (2MH, Z7B, 1BQ)",
+          "year_from": "08-2021",
+          "year_to": "",
+          "notes": "Engine: Incl. eHybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198388",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947084667.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 382.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 599
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (STM",
+            "STN)"
+          ],
+          "remark": "Reinforced Front Springs, L1 & L2, Excl. lowered suspension (2MH/Z7B/1BQ)",
+          "year_from": "08-2021",
+          "year_to": "",
+          "notes": "Engine: Incl. eHybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-198401",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084650.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 754.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 1099
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "T7 (STM",
+            "STN)"
+          ],
+          "remark": "Cross Country, L1 & L2, Excl. lowered suspension (2MH, Z7B, 1BQ)",
+          "year_from": "08-2021",
+          "year_to": "",
+          "notes": "Engine: Incl. eHybrid"
+        }
+      ]
+    }
+  ]
+}

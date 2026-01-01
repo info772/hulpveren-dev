@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "volvo",
+    "label": "VOLVO"
+  },
+  "model": {
+    "slug": "v50",
+    "label": "V50"
+  },
+  "kits": [
+    {
+      "sku": "HV-062195",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011533.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 171.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 279
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "545"
+          ],
+          "remark": "Excl. AWD",
+          "year_from": "12-2003",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

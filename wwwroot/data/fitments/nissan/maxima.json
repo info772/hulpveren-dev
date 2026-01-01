@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "model": {
+    "slug": "maxima",
+    "label": "Maxima"
+  },
+  "kits": [
+    {
+      "sku": "HV-319327",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947014787.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 199.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "A32"
+          ],
+          "remark": "QX",
+          "year_from": "03-1994",
+          "year_to": "08-2000",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-319337",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947014794.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 210.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "A33"
+          ],
+          "remark": "QX",
+          "year_from": "04-1999",
+          "year_to": "11-2003",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

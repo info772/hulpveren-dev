@@ -1,0 +1,11 @@
+model = "gpt-5.1-codex-max"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+model_reasoning_effort = "high"
+
+[notice]
+"hide_gpt-5.1-codex-max_migration_prompt" = true
+
+[features]
+enable_experimental_windows_sandbox = true
+

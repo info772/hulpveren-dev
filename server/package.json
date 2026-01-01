@@ -1,0 +1,25 @@
+{
+  "name": "hulpveren-plate-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test tests/smoke.test.js",
+    "build:blog-index": "node scripts/generate-blog-index.js"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.12",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^9.4.3",
+    "csurf": "^1.11.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "fast-xml-parser": "^4.3.6",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^2.6.12"
+  }
+}

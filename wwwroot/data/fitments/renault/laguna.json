@@ -1,0 +1,102 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "model": {
+    "slug": "laguna",
+    "label": "Laguna"
+  },
+  "kits": [
+    {
+      "sku": "HV-140283",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW",
+      "ean": "8717947013124.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 230.8,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I",
+            "B56",
+            "556"
+          ],
+          "remark": "Excl. Grandtour",
+          "year_from": "11-1993",
+          "year_to": "08-2002",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140338",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013162.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 291.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 399
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II",
+            "KG0",
+            "1"
+          ],
+          "remark": "Grandtour",
+          "year_from": "03-2001",
+          "year_to": "12-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-140528",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013322.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 296.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 409
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "KT0",
+            "1"
+          ],
+          "remark": "Grandtour",
+          "year_from": "10-2007",
+          "year_to": "12-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "model": {
+    "slug": "master",
+    "label": "Master"
+  },
+  "kits": [
+    {
+      "sku": "HV-148100",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013421.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 679.75,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 869
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (FD)"
+          ],
+          "remark": "Maximum support, T28, T33, T35, Incl. Chassis Cab., Min. load 400kg",
+          "year_from": "03-1998",
+          "year_to": "05-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148110",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013438.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 544.85,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 709
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (FD)"
+          ],
+          "remark": "T28 / T33 / T35,  Incl. Chassis Cab.",
+          "year_from": "03-1998",
+          "year_to": "05-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148130",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947055919.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 437.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 579
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (FV",
+            "EV",
+            "HV",
+            "UV)"
+          ],
+          "remark": "FWD, Rear Single Leaf Spring, Incl. Chassis-cabine",
+          "year_from": "02-2010",
+          "year_to": "06-2024",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148178",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073029.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 430.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 93.75,
+        "labor_ex_vat_max_eur": 93.75,
+        "total_inc_vat_from_eur": 639
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (FV)"
+          ],
+          "remark": "Reinforced Front Springs",
+          "year_from": "02-2010",
+          "year_to": "06-2024",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148180",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074422.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 437.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 579
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (FV",
+            "EV",
+            "HV",
+            "UV)"
+          ],
+          "remark": "Maximum support, Min. load 400kg, FWD, Only ABS, Rear Single Leaf Spring, Incl. Chassis-cabine",
+          "year_from": "02-2010",
+          "year_to": "06-2024",
+          "notes": "Engine: Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148190",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947074262.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 437.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 579
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (FV)"
+          ],
+          "remark": "RWD, single & double rear wheels, Incl. Chassis-cabine",
+          "year_from": "02-2010",
+          "year_to": "06-2024",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148200",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116559.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 382.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 509
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (XDD)"
+          ],
+          "remark": "FWD, Min. load 350kg, Single leaf spring, Incl. Chassis Cabine",
+          "year_from": "06-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148210",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116566.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 402.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 539
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (XDD)"
+          ],
+          "remark": "Maximum support, FWD, Min. load 700kg, Single leaf spring, Incl. Chassis Cabine",
+          "year_from": "06-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. Electric"
+        }
+      ]
+    },
+    {
+      "sku": "HV-148228",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947118324.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 418.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (XDD)"
+          ],
+          "remark": "Reinforced Front Springs, Incl. Chassis Cabine",
+          "year_from": "06-2024",
+          "year_to": "",
+          "notes": "Engine: All, Incl. Electric"
+        }
+      ]
+    }
+  ]
+}

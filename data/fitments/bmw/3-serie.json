@@ -1,0 +1,134 @@
+{
+  "make": {
+    "slug": "bmw",
+    "label": "BMW"
+  },
+  "model": {
+    "slug": "3-serie",
+    "label": "3-serie"
+  },
+  "kits": [
+    {
+      "sku": "HV-023025",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011052.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 157.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 239
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E30"
+          ],
+          "remark": "Incl. Touring,",
+          "year_from": "09-1982",
+          "year_to": "10-1994",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-023035",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011069.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 157.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 239
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E36"
+          ],
+          "remark": "Sedan, Touring, Coupe, Compact, Excl. M3",
+          "year_from": "09-1990",
+          "year_to": "12-1999",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-023045",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011076.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 166.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "E46"
+          ],
+          "remark": "Sedan, Compact, Touring, Coupe,  Excl. M3, Incl. 4WD",
+          "year_from": "12-1997",
+          "year_to": "07-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-023058",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947061637.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 373.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 549
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "F30",
+            "F31"
+          ],
+          "remark": "Incl. Touring, Excl. sport-suspension, Excl. xDrive",
+          "year_from": "11-2011",
+          "year_to": "06-2019",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "E91"
+          ],
+          "remark": "Touring, Only sport-suspension, Excl. xDrive",
+          "year_from": "12-2004",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

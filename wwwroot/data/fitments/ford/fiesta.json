@@ -1,0 +1,126 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "model": {
+    "slug": "fiesta",
+    "label": "Fiesta"
+  },
+  "kits": [
+    {
+      "sku": "HV-062148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011496.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 249.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V"
+          ],
+          "remark": "",
+          "year_from": "11-2001",
+          "year_to": "06-2008",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-062188",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947011526.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 219.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 359
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV"
+          ],
+          "remark": "",
+          "year_from": "08-1995",
+          "year_to": "01-2002",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-062258",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947054240.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 261.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 369
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI"
+          ],
+          "remark": "Excl. LPG",
+          "year_from": "06-2008",
+          "year_to": "04-2017",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-383515",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073258.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 166.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VII",
+            "HJ",
+            "HF"
+          ],
+          "remark": "",
+          "year_from": "05-2017",
+          "year_to": "07-2023",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

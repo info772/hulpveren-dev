@@ -1,0 +1,163 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "santa-fe",
+    "label": "Santa Fe"
+  },
+  "kits": [
+    {
+      "sku": "HV-374125",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083530.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 158.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV (TM",
+            "TMA)"
+          ],
+          "remark": "Only with rear self leveling suspension",
+          "year_from": "02-2018",
+          "year_to": "06-2024",
+          "notes": "Engine: Incl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-374135",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947084124.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 158.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V (MX5)"
+          ],
+          "remark": "2WD and 4WD, Only with rear self leveling suspension",
+          "year_from": "06-2024",
+          "year_to": "",
+          "notes": "Engine: Incl. HEV & PHEV"
+        },
+        {
+          "platform_codes": [
+            "IV (TM",
+            "TMA)"
+          ],
+          "remark": "Excl. Rear self leveling suspension",
+          "year_from": "02-2018",
+          "year_to": "06-2024",
+          "notes": "Engine: Incl. Hybrid"
+        }
+      ]
+    },
+    {
+      "sku": "HV-494005",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947016033.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 188.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (SM)"
+          ],
+          "remark": "2WD and 4WD",
+          "year_from": "11-2000",
+          "year_to": "03-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-494035",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947016064.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 210.65,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (CM)"
+          ],
+          "remark": "2WD and 4WD, Incl. LPG",
+          "year_from": "10-2005",
+          "year_to": "12-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-494055",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947067363.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 198.1,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (DM)"
+          ],
+          "remark": "2WD and 4WD",
+          "year_from": "09-2012",
+          "year_to": "02-2018",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "make": {
+    "slug": "citroen",
+    "label": "Citroën"
+  },
+  "model": {
+    "slug": "c4",
+    "label": "C4"
+  },
+  "kits": [
+    {
+      "sku": "HV-133188",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012752.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 242.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (B7)"
+          ],
+          "remark": "",
+          "year_from": "11-2009",
+          "year_to": "10-2020",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "I (LA",
+            "LC)"
+          ],
+          "remark": "",
+          "year_from": "11-2004",
+          "year_to": "07-2011",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-133498",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947083516.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 209.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (B)"
+          ],
+          "remark": "",
+          "year_from": "10-2020",
+          "year_to": "",
+          "notes": "Engine: Excl. e-C4"
+        }
+      ]
+    }
+  ]
+}

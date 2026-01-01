@@ -1,0 +1,183 @@
+{
+  "make": {
+    "slug": "isuzu",
+    "label": "ISUZU"
+  },
+  "model": {
+    "slug": "d-max",
+    "label": "D-max"
+  },
+  "kits": [
+    {
+      "sku": "HV-070020",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011793.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 374.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (TFR",
+            "TFS",
+            "TRF)"
+          ],
+          "remark": "4WD",
+          "year_from": "05-2002",
+          "year_to": "10-2012",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-070050",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947066588.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 373.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (TFR",
+            "TFS)"
+          ],
+          "remark": "4WD",
+          "year_from": "06-2012",
+          "year_to": "11-2019",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-070078",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947068063.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 397.3,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 619
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (BTF)"
+          ],
+          "remark": "Reinforced Front Springs, 4WD, RWD, TUV only with higher front-axle load or in combi with rear-axle",
+          "year_from": "11-2019",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-070080",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081338.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 374.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 499
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (BTF)"
+          ],
+          "remark": "4WD, 2WD",
+          "year_from": "11-2019",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-070091",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947081475.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 759.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 1109
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (BTF)"
+          ],
+          "remark": "4WD, 2WD",
+          "year_from": "11-2019",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-070110",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947116139.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 402.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 539
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III (BTF)"
+          ],
+          "remark": "Maximum support, 4WD, 2WD",
+          "year_from": "11-2019",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

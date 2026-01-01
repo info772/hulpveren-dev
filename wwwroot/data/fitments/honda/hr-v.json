@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "honda",
+    "label": "HONDA"
+  },
+  "model": {
+    "slug": "hr-v",
+    "label": "HR-V"
+  },
+  "kits": [
+    {
+      "sku": "HV-401965",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073241.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 195.55,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "RU"
+          ],
+          "remark": "Only 2WD",
+          "year_from": "11-2014",
+          "year_to": "09-2021",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-406015",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015845.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 215.75,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "GH"
+          ],
+          "remark": "",
+          "year_from": "03-1999",
+          "year_to": "03-2006",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

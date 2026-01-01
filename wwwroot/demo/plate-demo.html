@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kenteken demo</title>
+    <link rel="stylesheet" href="../assets/css/plate.css" />
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 2rem;
+        background: #f3f4f7;
+      }
+      .demo-wrap {
+        max-width: 860px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        display: grid;
+        gap: 1rem;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        background: #f7f7f7;
+        padding: 0.75rem;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-wrap">
+      <h1>Kentekenzoeker</h1>
+      <div id="kenteken"></div>
+      <section>
+        <h2>Event output</h2>
+        <pre id="hv-output">Nog geen selectie.</pre>
+      </section>
+    </div>
+    <script src="../assets/js/plate-widget.js"></script>
+    <script>
+      const outputEl = document.getElementById("hv-output");
+
+      // DEBUG (remove later)
+      window.addEventListener("hv:plateLookup", () => console.log("[HV] plateLookup"));
+      window.addEventListener("hv:plateResult", (e) => console.log("[HV] plateResult", e.detail));
+      window.addEventListener("hv:vehicleSelected", (e) => {
+        console.log("[HV] vehicleSelected", e.detail);
+        outputEl.textContent = JSON.stringify(e.detail, null, 2);
+      });
+
+      HVPlateWidget.mount("#kenteken", { autoSelectIfSingle: true });
+    </script>
+  </body>
+</html>

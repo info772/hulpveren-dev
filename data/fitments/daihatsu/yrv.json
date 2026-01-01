@@ -1,0 +1,40 @@
+{
+  "make": {
+    "slug": "daihatsu",
+    "label": "Daihatsu"
+  },
+  "model": {
+    "slug": "yrv",
+    "label": "YRV"
+  },
+  "kits": [
+    {
+      "sku": "HV-031005",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947011090.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 146.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 229
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "M2"
+          ],
+          "remark": "Excl. 4WD",
+          "year_from": "02-2001",
+          "year_to": "01-2007",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

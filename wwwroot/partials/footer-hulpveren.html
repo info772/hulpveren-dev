@@ -1,0 +1,115 @@
+<footer class="site-footer" data-footer>
+  <div class="footer-shell">
+    <!-- BLOCK 1: algemeen (altijd relevant) -->
+    <section class="footer-block">
+      <p class="eyebrow" data-setting="companyName">Hulpveren.shop</p>
+      <h2>Veilig rijden met de juiste set</h2>
+      <p>
+        Wij bouwen dagelijks MAD hulpveren, luchtvering en verlagingsveren in. Altijd inclusief montage,
+        uitlijning waar nodig en eerlijk advies.
+      </p>
+
+      <div class="footer-cta">
+        <a class="btn" href="/hulpveren">Bekijk hulpveren</a>
+        <a class="btn btn-ghost" href="/montage">Plan montage</a>
+      </div>
+
+      <ul class="footer-list">
+        <li>Gecertificeerde monteurs</li>
+        <li>Persoonlijk advies per kenteken</li>
+        <li>Snelle beschikbaarheid uit voorraad</li>
+      </ul>
+    </section>
+
+    <!-- BLOCK 2: merken (werkt sitewide; kan gevuld worden door app.js) -->
+    <section class="footer-block" data-footer-brands>
+      <p class="eyebrow">Kies je merk</p>
+      <div id="hv-footer-brands" class="taglist" aria-live="polite"></div>
+      <a class="footer-link" href="/hulpveren">Alle merken</a>
+      <p class="footer-muted" style="margin-top:10px;">
+        Tip: op merkpagina’s tonen we automatisch relevante modellen.
+      </p>
+    </section>
+
+    <!-- BLOCK 3: modellen (optioneel; verberg als leeg) -->
+    <section class="footer-block" data-footer-models>
+      <p class="eyebrow">Populaire modellen</p>
+      <p id="hv-footer-models-label" class="footer-muted">
+        Op merk- en modelpagina’s tonen we hier passende modellen.
+      </p>
+      <div id="hv-footer-models" class="taglist" aria-labelledby="hv-footer-models-label"></div>
+
+      
+    </section>
+
+    <!-- BLOCK 4: contact (altijd relevant) -->
+    <section class="footer-block">
+      <p class="eyebrow">Contact</p>
+      <ul class="footer-list">
+        <li><strong data-setting="companyName">Auto Parts Roosendaal</strong></li>
+        <li data-setting="address" data-setting-html="1">Westelijke Havendijk 17c<br>4703 RA Roosendaal</li>
+        <li>Bel: <a data-setting="phone" data-setting-link="phoneTel" href="tel:+31165856568">0165 856568</a></li>
+        <li>
+          WhatsApp:
+          <a data-setting-link="whatsappUrl" href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">Direct advies</a>
+        </li>
+        <li>Mail: <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a></li>
+        <li data-social-links>
+          Volg ons:
+          <a data-setting-link="socialFacebook" href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a data-setting-link="socialInstagram" href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a data-setting-link="socialYouTube" href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </li>
+        <li data-setting="openingHours" data-setting-html="1">Ma-Vr 10:00-18:00<br>Za 10:00-12:00</li>
+      </ul>
+
+      <div class="footer-links" style="margin-top:12px;">
+        <a href="/contact">Route & contact</a>
+        <a href="/montage">Montage</a>
+        <a href="/blog">Blog</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer-bottom">
+    <p><span id="hv-footer-year"></span> Hulpveren.shop · MAD specialist sinds 2008</p>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/algemene-voorwaarden">Algemene voorwaarden</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- Footer logic: verberg "modellen" blok als er niks gevuld wordt -->
+  <script>
+    (function () {
+      // jaar invullen (als je dit al in app.js doet, is dit alsnog safe)
+      var y = document.getElementById("hv-footer-year");
+      if (y && !y.textContent.trim()) y.textContent = String(new Date().getFullYear());
+
+      // hide models block if empty after load
+      function hideIfEmpty() {
+        var modelsWrap = document.querySelector('[data-footer-models]');
+        var models = document.getElementById("hv-footer-models");
+        if (!modelsWrap || !models) return;
+
+        var hasLinks = !!models.querySelector("a, button, span, div");
+        // als er geen child content is (of alleen whitespace)
+        var hasText = (models.textContent || "").trim().length > 0;
+
+        if (!hasLinks && !hasText) {
+          modelsWrap.style.display = "none";
+        }
+      }
+
+      // wacht even op app.js (async DOM vullen)
+      window.addEventListener("load", function () {
+        setTimeout(hideIfEmpty, 150);
+        setTimeout(hideIfEmpty, 600);
+      });
+    })();
+  </script>
+</footer>
+
+
+

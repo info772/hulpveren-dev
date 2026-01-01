@@ -1,0 +1,49 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "sonata",
+    "label": "Sonata"
+  },
+  "kits": [
+    {
+      "sku": "HV-491085",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947015906.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 188.0,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 299
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "VI (YF)"
+          ],
+          "remark": "",
+          "year_from": "06-2009",
+          "year_to": "12-2015",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "V (NF)"
+          ],
+          "remark": "",
+          "year_from": "01-2005",
+          "year_to": "12-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

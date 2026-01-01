@@ -1,0 +1,41 @@
+{
+  "make": {
+    "slug": "peugeot",
+    "label": "Peugeot"
+  },
+  "model": {
+    "slug": "205",
+    "label": "205"
+  },
+  "kits": [
+    {
+      "sku": "HV-133090",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947012677.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 171.45,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (20A",
+            "D)"
+          ],
+          "remark": "Incl. Multi, Excl. GTI, Excl. Rally",
+          "year_from": "01-1987",
+          "year_to": "09-1998",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

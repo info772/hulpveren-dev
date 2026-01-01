@@ -1,0 +1,131 @@
+{
+  "make": {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi"
+  },
+  "model": {
+    "slug": "l200",
+    "label": "L200"
+  },
+  "kits": [
+    {
+      "sku": "HV-104250",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012288.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 472.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KA",
+            "KB"
+          ],
+          "remark": "Only 4WD, Only ABS",
+          "year_from": "11-2005",
+          "year_to": "12-2015",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104380",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073104.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 479.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 649
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KJ",
+            "KK",
+            "KL"
+          ],
+          "remark": "",
+          "year_from": "11-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104398",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073265.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 331.5,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 150.0,
+        "labor_ex_vat_max_eur": 150.0,
+        "total_inc_vat_from_eur": 589
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KJ",
+            "KK",
+            "KL"
+          ],
+          "remark": "Reinforced front springs, +30mm",
+          "year_from": "11-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-104401",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947073272.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 685.15,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 206.25,
+        "labor_ex_vat_max_eur": 206.25,
+        "total_inc_vat_from_eur": 1079
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "KJ",
+            "KK",
+            "KL"
+          ],
+          "remark": "",
+          "year_from": "11-2014",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

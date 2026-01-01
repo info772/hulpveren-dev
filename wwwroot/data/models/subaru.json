@@ -1,0 +1,28 @@
+{
+  "make": {
+    "slug": "subaru",
+    "label": "Subaru"
+  },
+  "models": [
+    {
+      "slug": "forester",
+      "label": "Forester",
+      "kits_count": 2
+    },
+    {
+      "slug": "legacy",
+      "label": "Legacy",
+      "kits_count": 3
+    },
+    {
+      "slug": "legacy-outback",
+      "label": "Legacy Outback",
+      "kits_count": 1
+    },
+    {
+      "slug": "xv",
+      "label": "XV",
+      "kits_count": 1
+    }
+  ]
+}

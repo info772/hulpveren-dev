@@ -1,0 +1,2066 @@
+<!-- /hulpveren/<merk>/<model> — NL merk+model pagina (LLS-stijl, v2.17 23/11/25 — enkel bouwjaar + slimme keuzes) -->
+ <meta>
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+ <meta name="mobile-web-app-capable" content="yes">
+ 
+ <link id="link-canonical" rel="canonical" href="">
+ <meta property="og:type" content="website">
+ 
+ <meta id="og-title" property="og:title" content="Hulpveren — &lt;make&gt; &lt;model&gt;">
+ 
+ <meta id="og-description" property="og:description" content="MAD hulpveren voor &lt;make&gt; &lt;model&gt;. Vind de juiste set per bouwjaar &amp; carrosserie.">
+ 
+ <meta id="og-url" property="og:url" content="">
+ 
+ <meta id="og-image" property="og:image" content="">
+ 
+ <link rel="preconnect" href="https://irp.cdn-website.com" crossorigin="">
+ <link rel="dns-prefetch" href="//irp.cdn-website.com">
+ <style>
+  :root{ --bg:#0b0c10; --panel:#111216; --elev:#16181f; --text:#e6e8f0; --muted:#aab1c3; --line:rgba(255,255,255,.10); --accent:#FAB819; --ok:#3ad29f; --bad:#ff6b6b; --radius:14px; --radius-sm:10px; --maxw:1200px; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Cantarell,Arial}
+  a{color:inherit;text-decoration:none}
+  header{position:sticky;top:0;z-index:10;background:#0b0c10cc;border-bottom:1px solid var(--line);backdrop-filter:saturate(1.2) blur(8px)}
+  .container{max-width:var(--maxw);margin:auto;padding:clamp(14px,2vw,20px)}
+  h1{margin:0;font-size:clamp(18px,2.2vw,28px)}
+  .muted{color:var(--muted)}
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+  .grp{display:flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--panel);padding:8px 10px;border-radius:12px}
+  .grp input,.grp select{background:#0d0f14;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:10px}
+  .chip{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:#0d0f14;color:var(--text);padding:6px 10px;border-radius:999px;cursor:pointer;user-select:none;white-space:nowrap}
+  .chip[data-on="1"]{outline:2px solid var(--accent);background:#18140a}
+  .chip .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .range{display:flex;align-items:center;gap:10px}
+  .range input[type="range"]{width:220px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin:14px 0}
+  .card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+  .card .img{position:relative;aspect-ratio:4/3;background:#0d0f14}
+  .card .img img{width:100%;height:100%;object-fit:cover;display:block}
+  @keyframes pulseRing{ 0%{box-shadow:0 0 0 0 rgba(250,184,25,.55)} 70%{box-shadow:0 0 0 14px rgba(250,184,25,0)} 100%{box-shadow:0 0 0 0 rgba(250,184,25,0)} }
+  .badge{position:absolute;inset:auto 10px 10px auto;background:var(--accent);color:#1a1a1a;font-weight:800;padding:8px 12px;border-radius:16px;font-size:15px;animation:pulseRing 3s ease-out infinite}
+  .card .body{padding:12px}
+  .sku{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;letter-spacing:.2px}
+  .rows{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;margin-top:8px}
+  .rows .k{color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .chip.small{font-size:12px;padding:4px 8px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:#1a1a1a;font-weight:800;border:0;padding:10px 12px;border-radius:12px;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn-note{display:block;width:100%;text-align:left;background:transparent;color:var(--text);border:1px solid var(--line);padding:6px 10px;border-radius:10px}
+  .btn-note.ok{border-color:#3ad29f;background:rgba(58,210,159,.14);color:#baf5e2}
+  .btn-note.danger{border-color:#ff6b6b;background:rgba(255,107,107,.14);color:#ffd6d6}
+  .btn-note:not(.ok):not(.danger){ border-color: var(--accent); background: rgba(250,184,25,.12); color: #FAB819; }
+  .notes{display:flex;flex-direction:column;gap:6px;margin-top:2px}
+  .toolbar{display:flex;gap:10px;align-items:center}
+  .footer{display:flex;gap:12px;align-items:center;justify-content:space-between;color:var(--muted);margin:12px 0}
+  .note{font-size:13px;color:var(--muted)}
+  .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);padding:2px 8px;border-radius:999px;color:var(--muted)}
+  .hide{display:none!important}
+  .tests{font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;color:#cbd2e1;border-top:1px dashed var(--line);padding-top:8px;margin-top:16px}
+  .tests b{color:#fff}
+  body{-webkit-tap-highlight-color:transparent}
+  input[type="range"]{height:32px}
+  input[type="range"]::-webkit-slider-runnable-track{height:6px;background:var(--line);border-radius:6px}
+  input[type="range"]::-webkit-slider-thumb{width:22px;height:22px;margin-top:-8px;border-radius:50%;background:var(--accent);border:0}
+  input[type="range"]::-moz-range-track{height:6px;background:var(--line);border-radius:6px}
+  input[type="range"]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--accent);border:0}
+  @media (prefers-reduced-motion: reduce){ .badge{animation:none} }
+  @media (max-width: 720px){
+    header{padding-top:env(safe-area-inset-top)}
+    .container{padding:12px}
+    h1{font-size:clamp(16px,5vw,22px)}
+    .filters{gap:8px}
+    .grp{width:100%}
+    #q{width:100%}
+    .chips{overflow:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+    .chip.small{font-size:13px;padding:6px 12px;min-height:40px}
+    .btn,.btn-note{min-height:44px}
+    .badge{font-size:14px;padding:6px 10px}
+    .grid{grid-template-columns:minmax(280px,1fr);gap:10px}
+    .rows{grid-template-columns:minmax(84px,auto) 1fr}
+    .footer .toolbar{width:100%}
+    #see-all{width:100%}
+  }
+  .img.error{background:repeating-linear-gradient(45deg,#0d0f14,#0d0f14 12px,#101521 12px,#101521 24px)}
+  .img.error::after{content:'Afbeelding ontbreekt of geblokkeerd';position:absolute;inset:auto 8px 8px 8px;background:#0d0f14cc;border:1px dashed var(--line);color:#ffc;padding:8px 10px;border-radius:10px;font-size:12px}
+  .pillinput{ width:80px; text-align:center; background:#0d0f14; border:1px solid var(--line); color:var(--text); padding:6px 8px; border-radius:10px;}
+  @media (max-width:720px){ .pillinput{ width:68px } }
+  .chip.stack{ display:inline-flex; flex-direction:column; align-items:flex-start; gap:6px; padding:8px 10px; border-radius:999px; line-height:1.25;}
+  .chip.stack b{ font-size:12px; opacity:.85 }
+  .chip.stack .sub{ display:flex; flex-direction:column; gap:3px; padding-left:2px }
+  .chip.ok{ border-color:#3ad29f; background:rgba(58,210,159,.14); color:#baf5e2 }
+  .chip.danger{ border-color:#ff6b6b; background:rgba(255,107,107,.14); color:#ffd6d6 }
+  .rows .engine-wrap { display:flex; gap:10px; flex-wrap:wrap }
+  .chip.stack { display:flex; flex-direction:column; align-items:flex-start; gap:6px; padding:10px 12px; border-radius:14px }
+  .chip.stack .sub { display:flex; flex-direction:column; gap:2px }
+  .chip.stack.ok { border-color:#3ad29f; background:rgba(58,210,159,.14); color:#baf5e2 }
+  .chip.stack.danger { border-color:#ff6b6b; background:rgba(255,107,107,.14); color:#ffd6d6 }
+  /* ===== Lead Form (modal) ===== */
+  .cta-row{margin-top:12px;display:flex;gap:8px}
+  .modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);backdrop-filter:saturate(1.2) blur(6px)}
+  .modal.hide{display:none!important}
+  .modal .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;max-width:640px;width:calc(100% - 24px);padding:16px}
+  .modal .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .modal .head h3{margin:0;font-size:18px}
+  .modal .x{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:6px 10px;cursor:pointer}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .form-row{display:flex;flex-direction:column;gap:6px}
+  .form-row label{color:var(--muted);font-size:14px}
+  .form-row input,.form-row select,.form-row textarea{ background:#0d0f14;border:1px solid var(--line);color:var(--text);padding:9px 10px;border-radius:10px}
+  .form-row small{color:var(--muted)}
+  .helpbox{border:1px solid var(--line);border-radius:12px;padding:10px;background:#0d0f14}
+  .modal .foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px}
+  .modal .foot .btn{min-width:160px}
+  .pill.kv{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+  .pill.kv code{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700}
+  @media (max-width:720px){ .form-grid{grid-template-columns:1fr} }
+  .okmsg{border:1px solid #3ad29f;background:rgba(58,210,159,.14);color:#baf5e2;padding:8px 10px;border-radius:10px;margin-top:8px;display:none}
+  .errmsg{border:1px solid #ff6b6b;background:rgba(255,107,107,.14);color:#ffd6d6;padding:8px 10px;border-radius:10px;margin-top:8px;display:none}
+  /* Verberg (optioneel) de Mijndomein Contact Form widget */
+  #lead-native{ position:absolute !important; left:-9999px !important; top:auto !important; width:1px !important; height:1px !important; overflow:hidden !important; opacity:0 !important; pointer-events:none !important; }
+/* ==== FIX: afgebroken tekst op mobiel ==== */
+/* Zet elke (mogelijk door het site-theme) ingestelde line-clamp uit binnen je panel/cards */
+.panel p,
+.panel li,
+.pick p,
+.pick li,
+.lead {
+  display: block !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  overflow-wrap: break-word;   /* lange woorden netjes afbreken */
+  hyphens: auto;
+}
+/* Laat de meta-sectie in de card op mobiel meeschalen i.p.v. forceren */
+@media (max-width: 820px){
+  .pick .meta{
+    min-height: 0;
+    grid-template-rows: auto auto auto auto auto auto; /* vervang de 1fr-rij */
+  }
+}
+ </style>
+ <header>
+  <div class="container">
+   <h1 id="title">
+    Hulpveren —
+    <span id="mk">
+     Merk
+    </span>
+    <span id="md">
+     Model
+    </span>
+   </h1>
+   <!-- SEO lead (boven filters) -->
+   <section id="seo-lead" class="lead hide">
+    <p id="lead-p1">
+    </p>
+    <button id="lead-more" class="btn ghost" style="margin-top:6px">
+     Meer info
+    </button>
+    <div id="lead-more-txt" class="muted" style="margin-top:6px;display:none">
+    </div>
+   </section>
+   <style>
+    .lead{margin:10px 0 6px;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:10px 12px}
+    .lead p{margin:0}
+    #lead-more[aria-expanded="true"] { outline: 2px solid var(--line); }
+   @media (max-width:720px){
+  /* alleen clamped als sectie NIET open is */
+  #seo-lead:not(.open) p{
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  #seo-lead.open p{
+    display:block;
+    -webkit-line-clamp:unset;
+    -webkit-box-orient:initial;
+    overflow:visible;
+  }
+}
+   </style>
+   <div class="note">
+    TÜV-goedgekeurd •
+    <strong>
+     Prijs: incl. montage &amp; btw
+    </strong>
+   </div>
+  </div>
+ </header>
+ <main class="container">
+  <div class="filters">
+   <!-- 1) ENKEL BOUWJAAR (één slider) -->
+   <div id="grp-year" class="grp range" role="group" aria-label="Bouwjaar filter">
+    <span class="muted">
+     Kies je bouwjaar:
+    </span>
+    <input type="range" id="ySel" min="1990" max="2026" value="1990">
+    <!-- waarde maakt niet uit, JS zet 'inactive' -->
+    <input type="number" id="ySel-num" value="">
+    <span id="ySel-lb" class="pill">
+     Alle
+    </span>
+   </div>
+   <!-- 3) Optionele zoek (SKU/platform/tekst). Niet verplicht laten lijken -->
+   <div id="grp-q" class="grp">
+    <input id="q" type="text" placeholder="Zoeken (optioneel)… bijv. SKU, platform, opmerking">
+    <button class="btn ghost" id="clear">
+     Wissen
+    </button>
+   </div>
+   <div class="filters">
+    <!-- Assen -->
+    <div id="1985097713" class="grp toolbar hide">
+     <span class="muted">
+      As:
+     </span>
+     <div id="1261842228" class="chips">
+     </div>
+    </div>
+    <!-- Schokdempers -->
+    <div id="1040000739" class="grp toolbar hide">
+     <span class="muted">
+      Schokdempers:
+     </span>
+     <div id="1256143116" class="chips">
+     </div>
+    </div>
+    <!-- Brandstof -->
+    <div id="1810123708" class="grp toolbar hide">
+     <span class="muted">
+      Brandstof:
+     </span>
+     <div id="1648392737" class="chips">
+     </div>
+    </div>
+    <!-- 2) SLIMME KEUS: Leeg & beladen vs Continue beladen (alleen tonen als allebei bestaan) -->
+    <div id="grp-mode" class="grp toolbar hide">
+     <span class="muted">
+      Gebruik:
+     </span>
+     <div id="mode-chips" class="chips">
+     </div>
+    </div>
+    <!-- Assen -->
+    <div id="grp-axle" class="grp toolbar hide">
+     <span class="muted">
+      As:
+     </span>
+     <div id="axle-chips" class="chips">
+     </div>
+    </div>
+    <!-- Schokdempers -->
+    <div id="grp-damper" class="grp toolbar hide">
+     <span class="muted">
+      Schokdempers:
+     </span>
+     <div id="damper-chips" class="chips">
+     </div>
+    </div>
+    <!-- Brandstof -->
+    <div id="grp-fuel" class="grp toolbar hide">
+     <span class="muted">
+      Brandstof:
+     </span>
+     <div id="fuel-chips" class="chips">
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="footer">
+   <div>
+    <span id="count">
+     0
+    </span>
+    kits •
+    <span id="filtersum" class="muted">
+    </span>
+   </div>
+   <div class="toolbar">
+    <button class="btn ghost" id="see-all">
+     ← Zie alle
+     <span id="mk2">
+      Merk
+     </span>
+     -kits
+    </button>
+   </div>
+  </div>
+  <div id="grid" class="grid">
+  </div>
+  <!-- === Lead modal (per set aanvraag) === -->
+  <div id="lead-modal" class="modal hide" role="dialog" aria-modal="true" aria-labelledby="lf-title">
+   <div class="panel">
+    <div class="head">
+     <h3 id="lf-title">
+      Interesse in deze set
+     </h3>
+     <button type="button" class="x" id="lf-close">
+      Sluiten
+     </button>
+    </div>
+    <div class="helpbox" id="lf-summary">
+     <div class="rows" style="display:grid;grid-template-columns:auto 1fr;gap:6px 10px">
+      <div class="k muted">
+       Set
+      </div>
+      <div>
+       <span class="pill kv">
+        SKU:
+        <code id="lf-sku">
+        </code>
+       </span>
+      </div>
+      <div class="k muted">
+       Auto
+      </div>
+      <div id="lf-auto">
+      </div>
+      <div class="k muted">
+       Platform
+      </div>
+      <div id="lf-platform">
+      </div>
+      <div class="k muted">
+       Bouwjaren
+      </div>
+      <div id="lf-years">
+      </div>
+     </div>
+    </div>
+    <form id="lead-form" class="form" autocomplete="on">
+     <div class="form-grid" style="margin-top:10px">
+      <div class="form-row">
+       <label for="lf-intent">
+        Ik wil
+       </label>
+       <select id="lf-intent" name="intent" required="">
+        <option value="Meer informatie" selected="">
+         Meer informatie
+        </option>
+        <option value="Afspraak maken">
+         Afspraak maken
+        </option>
+       </select>
+      </div>
+      <div class="form-row">
+       <label for="lf-name">
+        Naam
+       </label>
+       <input id="lf-name" name="name" type="text" required="" placeholder="Voor- en achternaam">
+      </div>
+      <div class="form-row">
+       <label for="lf-email">
+        E-mail
+       </label>
+       <input id="lf-email" name="email" type="email" required="" placeholder="naam@voorbeeld.nl">
+      </div>
+      <div class="form-row">
+       <label for="lf-phone">
+        Telefoon
+       </label>
+       <input id="lf-phone" name="phone" type="tel" required="" placeholder="06-…">
+      </div>
+      <div class="form-row" style="grid-column:1/-1">
+       <label for="lf-plate">
+        Kenteken
+       </label>
+       <input id="lf-plate" name="plate" type="text" required="" placeholder="AB-12-CD">
+       <small>
+        We gebruiken dit alleen om te controleren of de set past.
+       </small>
+      </div>
+      <div class="form-row" style="grid-column:1/-1">
+       <label for="lf-note">
+        Opmerking (optioneel)
+       </label>
+       <textarea id="lf-note" name="note" rows="4" placeholder="Bijv. gewenste datum/tijd, vaste belading, trekhaak, vragen…">       </textarea>
+      </div>
+     </div>
+     <!-- Hidden context -->
+     <input type="hidden" id="lf-sku-h" name="sku">
+     <input type="hidden" id="lf-auto-h" name="auto">
+     <input type="hidden" id="lf-platform-h" name="platform">
+     <input type="hidden" id="lf-years-h" name="years">
+     <input type="hidden" id="lf-url-h" name="page_url">
+     <input type="hidden" id="lf-title-h" name="page_title">
+     <div class="okmsg" id="lf-ok">
+      Bedankt! We hebben je aanvraag ontvangen.
+     </div>
+     <div class="errmsg" id="lf-err">
+      Er ging iets mis. Probeer het opnieuw of mail ons direct.
+     </div>
+     <div class="foot">
+      <button type="button" class="btn ghost" id="lf-cancel">
+       Annuleren
+      </button>
+      <button type="submit" class="btn">
+       Versturen
+      </button>
+     </div>
+    </form>
+   </div>
+  </div>
+  <!-- Inline sample zodat preview altijd iets toont; live site zal overschrijven met echte footer-data -->
+  <script>
+   window.LLS_DATA_INLINE = {
+  site:'hulpveren.shop',
+  kits:[{
+    sku:'HV-199515', 
+    family_code:'HV', 
+    position:'rear', 
+    approval:'TUV',
+    pricing_nl:{ total_inc_vat_from_eur:619 },
+    fitments:[{
+      make:'AUDI', 
+      model:'A3', 
+      platform_codes:['8P'], 
+      remark:'Hatchback', 
+      year_from:'05-2003', 
+      year_to:'05-2013', 
+      notes:'Incl. Quattro' 
+    }]
+  }]
+ };
+  </script>
+  <script>
+   (function(){
+'use strict';
+// ---- globals (voorkomt ReferenceError in strict mode) ----
+window.LEAD_FORM_ENDPOINT = window.LEAD_FORM_ENDPOINT || '';
+window.LEAD_FORM_MAILTO   = window.LEAD_FORM_MAILTO   || '';
+// IMG/CDN fallbacks (als je ze nog niet hebt staan)
+// IMG/CDN fallbacks (als je ze nog niet hebt staan)
+if (typeof window.CDN_CANDIDATES === 'undefined') {
+  window.CDN_CANDIDATES = [
+    'https://irp.cdn-website.com/8ad19938/dms3rep/multi/',
+  ];
+}
+var IMG_CDN = 'https://irp.cdn-website.com/8ad19938/dms3rep/multi/';
+var CDN_CANDIDATES = [];
+// primair
+CDN_CANDIDATES.push(String(IMG_CDN).replace(/\/?$/, '/'));
+// optionele overrides
+if (window.LLS_IMG_CDN) {
+  CDN_CANDIDATES.unshift(String(window.LLS_IMG_CDN).replace(/\/?$/, '/'));
+}
+if (window.LLS_FOOTER_DATA && window.LLS_FOOTER_DATA.img_cdn) {
+  CDN_CANDIDATES.push(String(window.LLS_FOOTER_DATA.img_cdn).replace(/\/?$/, '/'));
+}
+// extra IRP-code
+CDN_CANDIDATES.push('https://irp.cdn-website.com/8ad19938/dms3rep/multi/');
+// unieke lijst maken
+CDN_CANDIDATES = Array.from(new Set(CDN_CANDIDATES));
+// alleen .jpg gebruiken (HV-afbeeldingen zijn .jpg)
+var IMG_CACHE_BUSTER = false;
+var PLACEHOLDER_IMG = (CDN_CANDIDATES[0] || IMG_CDN) + 'placeholder.jpg';
+/* ================== Helpers ================== */
+function boostAboveTheFold(){
+  var imgs = document.querySelectorAll('#grid .card .img img');
+  for (var i=0; i<imgs.length && i<2; i++){
+    imgs[i].loading = 'eager';
+    imgs[i].setAttribute('fetchpriority','high');
+    var src = imgs[i].getAttribute('src');
+    if (src){ var l=document.createElement('link'); l.rel='preload'; l.as='image'; l.href=src; document.head.appendChild(l); }
+  }
+}
+function engineRowHtml(f, k){
+  const pol = enginePolicyFromFit(f, k);
+  if ((!pol.allowLabels || !pol.allowLabels.length) && (!pol.denyLabels || !pol.denyLabels.length)) return '';
+  return `
+    <div class="k">Motoren</div>
+    <div class="engine-wrap">
+      ${engineChipsHtml(f, k)}
+    </div>
+  `;
+}
+function isYearActive(){ return FILTER.year != null; }
+function axleKeyFromKit(k){
+  var p = String(k && k.position || '').toLowerCase();
+  if (p === 'front') return 'voor';
+  if (p === 'rear')  return 'achter';
+  return null;
+}
+function axleLabel(key){ return key === 'voor' ? 'Vooras' : (key === 'achter' ? 'Achteras' : ''); }
+// Heuristiek: check expliciete booleans; anders zoek woorden in kit/fitment notes/remark/titel.
+// Geen aanname op family_code om misclassificatie te vermijden.
+/* ===== Schokdemper-heuristiek ===== */
+function damperKeyFrom(k, f){
+  if (k && (k.includes_shocks || k.with_shocks || k.shocks_included || k.dampers_included)) return 'met';
+  if (k && (k.without_shocks || k.springs_only || k.only_springs))                        return 'zonder';
+  if (f && (f.includes_shocks || f.with_shocks || f.shocks_included || f.dampers_included)) return 'met';
+  if (f && (f.without_shocks || f.springs_only || f.only_springs))                          return 'zonder';
+  var fam = String((k && k.family_code) || '').trim().toUpperCase();
+  if (fam === 'SD') return 'met';
+  if (['HV','LK','AL','LV'].includes(fam)) return 'zonder';
+  var hay = [
+    k && k.notes, k && k.remark, k && k.title, k && k.name, k && k.sku,
+    f && f.notes, f && f.remark
+  ].filter(Boolean).join(' ').toLowerCase();
+  var reMet    = /\b(incl(?:\.|usief)?|met|with|inkl\.?|inklusive|avec)\s+(schok|shock|dempers?|absorbers?|amortisseurs?)\b|(?:\bkit\b.*\b(shock|damper|amortisseur))/i;
+  var reZonder = /\b(excl(?:\.|usief)?|zonder|without|ohne|sans)\s+(schok|shock|dempers?|absorbers?|amortisseurs?)\b|\b(springs?\s*only|alleen\s*veren)\b/i;
+  if (reMet.test(hay))    return 'met';
+  if (reZonder.test(hay)) return 'zonder';
+  if (/\b-(dmp|ds|sh)\b/i.test(hay)) return 'met';
+  if (/\b-(sp)\b/i.test(hay))        return 'zonder';
+  return null;
+}
+function damperLabel(key){
+  return key === 'met' ? 'Met schokdempers'
+       : key === 'zonder' ? 'Geen schokdempers'
+       : '';
+}
+function damperLabel(key){
+  return key === 'met' ? 'Met schokdempers'
+       : key === 'zonder' ? 'Geen schokdempers'
+       : '';
+}
+/* === Weergave-helpers voor hoofdletters === */
+/* === Weergave-helpers voor hoofdletters === */
+const MAKE_DISPLAY_MAP = {
+  'AUDI':'Audi','VOLKSWAGEN':'Volkswagen','SKODA':'Škoda','ŠKODA':'Škoda',
+  'SEAT':'SEAT','CUPRA':'CUPRA',
+  'MERCEDES-BENZ':'Mercedes-Benz','MERCEDES BENZ':'Mercedes-Benz','MERCEDES':'Mercedes-Benz',
+  'FIAT':'Fiat','PEUGEOT':'Peugeot',
+  'CITROËN':'Citroën','CITROEN':'Citroën'
+};
+const MODEL_DISPLAY_MAP = {
+  'smart-1': 'Smart #1',
+  'smart 1': 'Smart #1',
+  '1': 'Smart #1',
+  '#1': 'Smart #1'
+};
+function titleCaseWord(w){
+  if(!w) return '';
+  const ACR = ['SUV','MPV','AWD','RWD','FWD','GTI','GTE','RS','VR6','TDI','TFSI','TSI','MPI','HDI','DCI','PHEV','HEV','MHEV'];
+  if (ACR.includes(w)) return w;
+  if (/^iv$/i.test(w)) return 'iV';
+  if (/^e-?tron$/i.test(w)) return 'e-tron';
+  if (/^[a-z]+[0-9]+[a-z0-9]*$/i.test(w)){
+    return w.replace(/^([a-z])([a-z0-9]*)$/i, (_,a,b)=> a.toUpperCase()+b.toLowerCase());
+  }
+  return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+}
+function displayMake(make){
+  const key = String(make||'').replace(/\s+/g,' ').trim().toUpperCase();
+  if (MAKE_DISPLAY_MAP[key]) return MAKE_DISPLAY_MAP[key];
+  return String(make||'').split('-').map(titleCaseWord).join('-');
+}
+function displayModel(model){
+  const s = String(model||'').trim();
+  if (!s) return '';
+  // normaliseer naar key die op smart-1 matcht
+  const key = s.toLowerCase().replace(/\s+/g,'-');
+  if (MODEL_DISPLAY_MAP[key]) return MODEL_DISPLAY_MAP[key];
+  return s.split(' ')
+          .map(part => part.split('-').map(titleCaseWord).join('-'))
+          .join(' ');
+}
+/* ===== Posities / assen ===== */
+function normalizePositions(item){
+  const raw = item.positions ?? item.position ?? '';
+  const parts = Array.isArray(raw) ? raw : String(raw).split(/[,+/|/\\\s]+/);
+  const map = {
+    front:'front', f:'front', voor:'front', 'front-axle':'front',
+    rear:'rear', r:'rear', achter:'rear', back:'rear', 'rear-axle':'rear',
+    both:'both', all:'both'
+  };
+  const set = new Set();
+  for (let p of parts){
+    const k = (p||'').toString().toLowerCase().trim();
+    const m = map[k] || k;
+    if (m === 'both'){ set.add('front'); set.add('rear'); }
+    if (m === 'front' || m === 'rear') set.add(m);
+  }
+  if (!set.size && /both|all/.test(String(raw).toLowerCase())) {
+    set.add('front'); set.add('rear');
+  }
+  return set;
+}
+function axleSetFromKit(k){
+  const pos = normalizePositions(k);
+  const out = new Set();
+  if (pos.has('front')) out.add('voor');
+  if (pos.has('rear'))  out.add('achter');
+  return out;
+}
+function axleLabel(key){
+  return key === 'voor' ? 'Vooras' : (key === 'achter' ? 'Achteras' : '');
+}
+/* ===== HV subtype helpers ===== */
+function hvLastDigit(sku){ var m = String(sku||'').match(/-([0-9]{6})$/); return m ? m[1].slice(-1) : ''; }
+const HV_KIND_MAP = { '0': 'Hulpveren','1': 'Verhogingsveren','3': 'Hulpveren','5': 'Hulpveren','7': 'Hulpveren','8': 'Versterkte vervangingsveren' };
+function nlKindFromKit(k){
+  var fc = String((k && k.family_code) || '').toUpperCase();
+  if (fc === 'HV'){ var d = hvLastDigit((k && k.sku) || ''); if (d && HV_KIND_MAP[d]) return HV_KIND_MAP[d]; return 'Hulpveer (HV)'; }
+  if (fc === 'SD') return 'Special Duty Kit';
+  if (fc === 'LV') return 'Luchtvering';
+  if (fc === 'AL') return 'Add-a-Leaf';
+  if (fc === 'LK') return 'Leveling / Verhogingskit';
+  return 'Hulpveer';
+}
+function nlAxis(p){ var x=String(p||'').toLowerCase(); if(x==='front') return 'Vooras'; if(x==='rear') return 'Achteras'; return ''; }
+/* ===== Ondersteuning (Leeg & beladen vs Continue beladen) ===== */
+function tokenizeMeta(){ const out = []; for (let i=0;i<arguments.length;i++){ let t = arguments[i]; if (!t) continue; t = String(t).replace(/Incl\.(?=\S)/gi,'Incl. ').replace(/Excl\.(?=\S)/gi,'Excl. ').replace(/[;|/]+/g, ',').replace(/\s*,\s*/g, ',').replace(/\u00A0/g,' ').trim(); if (!t) continue; t.split(',').forEach(p=>{ const tok = String(p).trim(); if (tok) out.push(tok); }); } return out; }
+function supportModeFromFit(f){
+  const toks = tokenizeMeta((f && f.notes), (f && f.remark)).map(function(t){ return String(t).toLowerCase(); });
+  const isContinue = toks.some(function(t){ return /\b(continue\s*beladen|constante\s*belast(?:ing)?|permanent\s*beladen|constant\s*load|fixed\s*load|permanent\s*load)\b/.test(t); });
+  const isLeegBeladen = toks.some(function(t){ return /\b(leeg\s*(?:&|en|\/)\s*beladen|empty\s*(?:&|and|\/)\s*loaded)\b/.test(t); });
+  if (isContinue && !isLeegBeladen) return 'continue';
+  if (isLeegBeladen && !isContinue) return 'leeg';
+  if (isContinue && isLeegBeladen)  return 'continue';
+  return null;
+}
+function supportKeyOf(f,k){
+  const m = supportModeFromFit(f);
+  if (m) return m;
+  const fc = String((k && k.family_code) || '').toUpperCase();
+  if (fc==='SD' || fc==='LV') return 'continue';
+  return 'leeg';
+}
+function nlSupportFromFit(f,k){
+  const key = supportKeyOf(f,k);
+  if (key==='leeg') return 'Leeg & beladen — comfortabel onbeladen; extra steun bij lading';
+  if (key==='continue') return 'Continue beladen — compenseert constante/permanente belasting';
+  return '';
+}
+/* ===== Engine detectie & beleid ===== */
+const ENGINE_SYNONYMS = {
+  benzine: ['benzine','petrol','gasoline','essence','tsi','mpi','tfsi'],
+  diesel:  ['diesel','tdi','dci','tdci','hdi'],
+  phev:    ['plug-in hybrid','plug in hybrid','phev','e-hybrid','e hybrid'],
+  hybrid:  ['hybrid','hybride','hev','mhev','mild hybrid'],
+  electric:['electric','ev','bev','elektrisch']
+};
+const ENGINE_LABELS = { electric:'Electric', phev:'Plug-in Hybrid', hybrid:'Hybrid', benzine:'Benzine', diesel:'Diesel' };
+const ENGINE_LABEL_ORDER = ['Electric','Plug-in Hybrid','Hybrid','Benzine','Diesel'];
+function engineKeyFromString(s){
+  const t = String(s||'').toLowerCase();
+  if (ENGINE_SYNONYMS.electric.some(k=>t.includes(k))) return 'electric';
+  if (ENGINE_SYNONYMS.phev.some(k=>t.includes(k)))     return 'phev';
+  if (ENGINE_SYNONYMS.hybrid.some(k=>t.includes(k)))   return 'hybrid';
+  if (ENGINE_SYNONYMS.diesel.some(k=>t.includes(k)))   return 'diesel';
+  if (ENGINE_SYNONYMS.benzine.some(k=>t.includes(k)))  return 'benzine';
+  return null;
+}
+function detectEngine(token){
+  const s = String(token||'');
+  const m = s.match(/^\s*(engine|motor)\s*:\s*(.+)$/i);
+  return engineKeyFromString(m ? m[2] : s);
+}
+function enginePolicyFromFit(f, k){
+  const ALL = new Set(['electric','phev','hybrid','benzine','diesel']);
+  const toks = tokenizeMeta((f && f.notes), (f && f.remark));
+  let onlyMode = false, sawAll = false;
+  const inc = new Set(); const exc = new Set();
+  for (const raw of toks){
+    const s = String(raw||'').trim();
+    if (/^(engine|motor)\s*:\s*all$/i.test(s)) { sawAll = true; continue; }
+    const pm = s.match(/^\s*(excl(?:usief)?|except|without|niet voor|only|alleen|ook voor)\s*\.?\s*[:-]?\s*(.+)$/i);
+    const payload = pm ? pm[2] : s;
+    const keyRaw = detectEngine(payload);
+    if (!keyRaw) continue;
+    const key = String(keyRaw).toLowerCase();
+    if (pm){
+      const pol = pm[1].toLowerCase();
+      if (pol==='only' || pol==='alleen'){ onlyMode = true; inc.add(key); }
+      else if (pol==='ook voor'){ inc.add(key); }
+      else { exc.add(key); }
+    } else { inc.add(key); }
+  }
+  let allow;
+  if (onlyMode && inc.size)      allow = new Set(inc);
+  else if (inc.size)             allow = new Set([...inc].filter(k2 => !exc.has(k2)));
+  else if (exc.size)             allow = new Set([...ALL].filter(k2 => !exc.has(k2)));
+  else if (sawAll)               allow = new Set(ALL);
+  else                           allow = new Set();
+  exc.forEach(e => allow.delete(e));
+  const deny = new Set([...ALL].filter(k2 => exc.has(k2)));
+  const toLabels = function(arr){
+    return arr.map(k=>ENGINE_LABELS[k]).filter(Boolean).sort(function(a,b){
+      var ai = ENGINE_LABEL_ORDER.indexOf(a);
+      var bi = ENGINE_LABEL_ORDER.indexOf(b);
+      if (ai===-1 && bi===-1) return a.localeCompare(b);
+      if (ai===-1) return 1;
+      if (bi===-1) return -1;
+      return ai-bi;
+    });
+  };
+  return { allowKeys:new Set(allow), allowLabels:toLabels([...allow]), denyLabels:toLabels([...deny]) };
+}
+function engineChipsHtml(f, k){
+  const g = enginePolicyFromFit(f, k);
+  let html = '';
+  if (g.allowLabels.length){
+    html += `<span class="chip stack ok"><b>Motoren:</b><span class="sub">${g.allowLabels.map(l=>`<span>${esc(l)}</span>`).join('')}</span></span>`;
+  }
+  if (g.denyLabels.length){
+    html += `<span class="chip stack danger"><b>Niet voor</b><span class="sub">${g.denyLabels.map(l=>`<span>${esc(l)}</span>`).join('')}</span></span>`;
+  }
+  return html;
+}
+function engineRowHtml(f, k){
+  const pol = enginePolicyFromFit(f, k);
+  if ((!pol.allowLabels || !pol.allowLabels.length) && (!pol.denyLabels || !pol.denyLabels.length)) return '';
+  return `
+    <div class="k">Motoren</div>
+    <div class="engine-wrap">${engineChipsHtml(f, k)}</div>
+  `;
+}
+/* ===== Opmerkingen (zonder motor-dubbelingen) ===== */
+const ENGINE_WORD_RE = /\b(benzine|petrol|gasoline|essence|tsi|tfsi|mpi|diesel|tdi|dci|tdci|hdi|hybrid|hybride|hev|phev|mhev|mild\s*hybrid|e-?hybrid|electric|ev|bev|plug-?in\s*hybrid)\b/i;
+function notesHtmlFromFitment(f){
+  if(!f) return '';
+  let raw = [f.remark, f.notes].filter(Boolean).join(', ');
+  raw = String(raw).replace(/\u00A0/g,' ')
+    .replace(/Incl\.(?=\S)/gi,'Incl. ')
+    .replace(/Excl\.(?=\S)/gi,'Excl. ')
+    .trim();
+  const parts = raw.split(/[\,\n;|/]+/).map(s => s.trim()).filter(Boolean);
+  const normDrive = s => String(s||'')
+    .replace(/\bx[\s-]?drive\b/ig,'xDrive')
+    .replace(/\b4[\s-]?matic\b/ig,'4MATIC')
+    .replace(/\b4[\s-]?motion\b/ig,'4Motion')
+    .replace(/\ball4\b/ig,'ALL4')
+    .replace(/\bquattro\b/ig,'quattro')
+    .replace(/\bawd\b/ig,'AWD')
+    .replace(/\brwd\b/ig,'RWD')
+    .replace(/\bfwd\b/ig,'FWD')
+    .trim();
+  const isBody = t => /^(hatchback|liftback|sedan|variant|combi|estate|wagon|mpv|suv|cabrio(?:let)?|convertible|coupe|limousine|sportback)$/i.test(t);
+  const DRIVE_WORD = /\b(x[\s-]?drive|quattro|4[\s-]?matic|4[\s-]?motion|all4|awd|rwd|fwd)\b/i;
+  const canonDrive = d => ({
+    xdrive:'xDrive', quattro:'quattro', '4matic':'4MATIC', '4motion':'4Motion', all4:'ALL4',
+    awd:'AWD', rwd:'RWD', fwd:'FWD'
+  }[String(d).replace(/\s|-/g,'').toLowerCase()] || d);
+  const out = []; const seen = new Set();
+  const push = (cls,label)=>{
+    const key=(cls||'')+'|'+label.toLowerCase();
+    if(!seen.has(key)){ seen.add(key); out.push({cls,label}); }
+  };
+  parts.map(normDrive)
+    .filter(p => p && !isBody(p))
+    .filter(p => !/^(engine|motor)\s*:/i.test(p) && !ENGINE_WORD_RE.test(p))
+    .forEach(p=>{
+      let m;
+      if (DRIVE_WORD.test(p)) {
+        const d = canonDrive(p.match(DRIVE_WORD)[1]);
+        if (/^\s*(excl(?:usief)?|except|without)/i.test(p)) return push('danger', 'Niet voor ' + d);
+        if (/^\s*(incl(?:usief)?)/i.test(p))                return push('ok',     'Ook voor ' + d);
+        if (/^\s*(only|alleen)/i.test(p))                   return push('ok',     'Alleen '   + d);
+      }
+      if (m = p.match(/^\s*(excl(?:usief)?|except|without)\s*\.?\s*[:-]?\s*(.+)$/i)){
+        const label = m[2].trim(); if (ENGINE_WORD_RE.test(label)) return;
+        return push('danger', 'Niet voor ' + label);
+      }
+      if (m = p.match(/^\s*(incl(?:usief)?)\s*\.?\s*[:-]?\s*(.+)$/i)){
+        const label = m[2].trim(); if (ENGINE_WORD_RE.test(label)) return;
+        return push('ok', 'Ook voor ' + label);
+      }
+      if (m = p.match(/^\s*(only|alleen)\s*\.?\s*[:-]?\s*(.+)$/i)){
+        const label = m[2].trim(); if (ENGINE_WORD_RE.test(label)) return;
+        return push('ok', 'Alleen ' + label);
+      }
+      if (/^niet voor\b/i.test(p)){
+        const label = p.replace(/^niet voor\b/i,'').trim();
+        if (ENGINE_WORD_RE.test(label)) return;
+        return push('danger', 'Niet voor ' + label);
+      }
+      if (/^ook voor\b/i.test(p)){
+        const label = p.replace(/^ook voor\b/i,'').trim();
+        if (ENGINE_WORD_RE.test(label)) return;
+        return push('ok', 'Ook voor ' + label);
+      }
+      push('', p);
+    });
+  if(!out.length) return '';
+  return '<div class="k">Opmerking</div><div><div class="notes">'+
+    out.map(it => '<button class="btn-note'+(it.cls?(' '+it.cls):'')+'">'+esc(it.label)+'</button>').join('') +
+    '</div></div>';
+}
+/* ===== Meta helpers ===== */
+function setMetaContent(id, property, value){
+  var el = id ? document.getElementById(id) : null;
+  if(!el && property){ el = document.querySelector('meta[property="'+property+'"]'); }
+  if(!el){ el = document.createElement('meta'); if(id) el.id=id; if(property) el.setAttribute('property',property); document.head.appendChild(el); }
+  el.setAttribute('content', value);
+}
+/* ===== Normalisatie & URL ===== */
+function parseSlugs(){
+  var parts = location.pathname.replace(/\/+$/,'').split('/').filter(Boolean);
+  var cat = (parts[0] || '').toLowerCase();
+  var make = (parts[1] || '').toLowerCase();
+  var model= (parts[2] || '').toLowerCase();
+  return { cat, make, model };
+}
+function buildSetUrl(sku){
+  if(!CATEGORY_SLUG || !MAKE_SLUG || !MODEL_SLUG) return '#';
+  // <== Pas dit pad aan als jouw set-URL anders is
+  return '/' + CATEGORY_SLUG + '/' + MAKE_SLUG + '/' + MODEL_SLUG + '/' + String(sku||'').toLowerCase();
+}
+function normMake(s){ return String(s||'').replace(/\s+/g,' ').trim().toUpperCase(); }
+function normModel(s){ return String(s||'').replace(/-/g,' ').replace(/\s+/g,' ').trim().toLowerCase(); }
+function parseMakeModel(){
+  var out={make:'',model:''};
+  try{
+    var u=new URL(location.href);
+    var qpM=u.searchParams.get('merk')||u.searchParams.get('make');
+    var qpMd=u.searchParams.get('model');
+    if(qpM) out.make=qpM; if(qpMd) out.model=qpMd;
+  }catch(_){}
+  if(!out.make||!out.model){
+    var parts=location.pathname.replace(/\/+$/,'').split('/').filter(Boolean);
+    var idxA=parts.indexOf('hulpveren'); var idxB=parts.indexOf('helper-springs'); var idx=Math.max(idxA,idxB);
+    if(idx>=0 && parts[idx+1] && parts[idx+2]){ out.make=parts[idx+1]; out.model=decodeURIComponent(parts[idx+2]).replace(/-/g,' '); }
+  }
+  return out;
+}
+/* ================== Data Load ================== */
+function tryParseJSON(raw){ try{ return JSON.parse(raw) }catch(_){ return null } }
+function discoverData(){
+  if (window.LLS_FOOTER_DATA 
+    && Array.isArray(window.LLS_FOOTER_DATA.kits) 
+    && window.LLS_FOOTER_DATA.kits.length){
+  return { obj: window.LLS_FOOTER_DATA, source: 'window.LLS_FOOTER_DATA' };
+}
+  var el=document.querySelector('#lls-footer-data[type="application/json"]');
+  if(el){
+    var o=tryParseJSON(el.textContent||el.innerHTML||'')||{};
+    if (o.kits && o.kits.length) return { obj:o, source:'#lls-footer-data' };
+  }
+  var best = null;
+  document.querySelectorAll('script[type="application/json"]').forEach(s=>{
+    var txt = s.textContent || s.innerHTML || '';
+    if (!/"kits"\s*:/.test(txt)) return;
+    var o = tryParseJSON(txt);
+    if (o && Array.isArray(o.kits)){
+      if (!best || (o.kits.length > (best.obj.kits||[]).length)){
+        best = { obj:o, source: s.id ? ('#'+s.id) : '<json-script>' };
+      }
+    }
+  });
+  if (best) return best;
+  for (var k in window){
+    try{
+      var v = window[k];
+      if (v && typeof v==='object' && Array.isArray(v.kits) && v.kits.length){
+        return { obj:v, source:'window.'+k };
+      }
+    }catch(_){ }
+  }
+  if (window.LLS_DATA_INLINE && Array.isArray(window.LLS_DATA_INLINE.kits) && window.LLS_DATA_INLINE.kits.length){
+    return { obj: window.LLS_DATA_INLINE, source:'INLINE_SAMPLE' };
+  }
+  return { obj:{kits:[]}, source:'none' };
+}
+function betterThan(a,b){
+  if(!a||!a.obj) return false; if(!b||!b.obj) return true;
+  var ak=(a.obj.kits||[]).length, bk=(b.obj.kits||[]).length;
+  if(ak!==bk) return ak>bk;
+  var rank=s=>s==='window.LLS_FOOTER_DATA'?3: s==='#lls-footer-data'?2: s==='INLINE_SAMPLE'?1:0;
+  return rank(a.source)>rank(b.source);
+}
+function watchForBetterData(onChange){
+  var obs=new MutationObserver(function(){ var cand=discoverData(); if(betterThan(cand, CURRENT_SOURCE)){ CURRENT_SOURCE=cand; onChange(cand); } });
+  obs.observe(document.documentElement,{childList:true,subtree:true});
+  var iv=setInterval(function(){ var cand=discoverData(); if(betterThan(cand, CURRENT_SOURCE)){ CURRENT_SOURCE=cand; onChange(cand); } },800);
+  return function(){ try{obs.disconnect()}catch(_){ } try{clearInterval(iv)}catch(_){ } };
+}
+/* ================== State ================== */
+var RAW = {kits:[]};
+var KITS = [];
+var CURRENT_SOURCE = null;
+var DATA_SOURCE = '';
+var MAKE_LABEL = '', MODEL_LABEL = '';
+var MAKE_VIEW = '', MODEL_VIEW = '';
+var MAKE_N = '', MODEL_N = '';
+var CATEGORY_SLUG = '';
+var MAKE_SLUG = '';
+var MODEL_SLUG = '';
+var FILTER = {
+  q:'',
+  year: null,            // ← begin leeg (toon alle sets)
+  modes:new Set(),
+  engines:new Set(),
+  bodies:new Set(),
+  axles:new Set(),       
+  dampers:new Set(),
+  fuels:new Set()
+};
+var YEAR_MIN=1990, YEAR_MAX=2030;
+/* ================== UI: Chips (filter-balk) ================== */
+function chip(label, on, extra){ return '<span class="chip small" data-label="'+esc(label)+'" '+(extra||'')+' data-on="'+(on?1:0)+'"><span class="dot"></span>'+esc(label)+'</span>'; }
+function renderModeChips(kitsMM){
+  var wrap = $('grp-mode');
+  var el = $('mode-chips');
+  if (!wrap || !el){ FILTER.modes.clear(); return; }
+  var hasLeeg=false, hasCont=false;
+  (kitsMM||[]).forEach(function(k){
+    (k.fitments||[]).forEach(function(f){
+      if (normMake(f.make)!==MAKE_N || normModel(f.model)!==MODEL_N) return;
+      var y1 = +String(f.year_from||'').slice(-4)||1990;
+      var y2 = +String(f.year_to||'').slice(-4)||2030;
+      var matchYear = !isYearActive() || (FILTER.year >= y1 && FILTER.year <= y2);
+      if (!matchYear) return;
+      var key = supportKeyOf(f,k);
+      if (key==='leeg') hasLeeg = true;
+      if (key==='continue') hasCont = true;
+    });
+  });
+  if (hasLeeg && hasCont){
+    var L = chip('Leeg & beladen', FILTER.modes.has('leeg'), 'data-key="leeg"');
+    var C = chip('Continue beladen', FILTER.modes.has('continue'), 'data-key="continue"');
+    el.innerHTML = L + C; wrap.classList.remove('hide');
+  } else {
+    el.innerHTML=''; wrap.classList.add('hide'); FILTER.modes.clear();
+  }
+}
+function renderAxleChips(kitsMM){
+  var wrap = $('grp-axle');
+  var el   = $('axle-chips');
+  if (!wrap || !el){ FILTER.axles.clear(); return; }
+  var hasVoor=false, hasAchter=false;
+  (kitsMM||[]).forEach(function(k){
+    (k.fitments||[]).forEach(function(f){
+      if (normMake(f.make)!==MAKE_N || normModel(f.model)!==MODEL_N) return;
+      // respecteer gekozen jaar (of alle jaren)
+      var y1 = +String(f.year_from||'').slice(-4)||1990;
+      var y2 = +String(f.year_to||'').slice(-4)||2030;
+      if (isYearActive() && (FILTER.year < y1 || FILTER.year > y2)) return;
+      const set = axleSetFromKit(k);
+if (set.has('voor'))   hasVoor   = true;
+if (set.has('achter')) hasAchter = true;
+    });
+  });
+  if (hasVoor && hasAchter){
+    var V = chip(axleLabel('voor'  ), FILTER.axles.has('voor'  ), 'data-key="voor"');
+    var A = chip(axleLabel('achter'), FILTER.axles.has('achter'), 'data-key="achter"');
+    el.innerHTML = V + A;
+    wrap.classList.remove('hide');
+  } else {
+    el.innerHTML = '';
+    wrap.classList.add('hide');
+    FILTER.axles.clear();
+  }
+}
+function renderDamperChips(kitsMM){
+  var wrap = document.getElementById('grp-damper');
+  var el   = document.getElementById('damper-chips');
+  if (!wrap || !el){ if (FILTER && FILTER.dampers) FILTER.dampers.clear(); return; }
+  var hasMet=false, hasZonder=false;
+  (kitsMM||[]).forEach(function(k){
+    (k.fitments||[]).forEach(function(f){
+      if (normMake(f.make)!==MAKE_N || normModel(f.model)!==MODEL_N) return;
+      var key = damperKeyFrom(k,f); // 'met' | 'zonder' | null
+      if (key === 'met')    hasMet = true;
+      if (key === 'zonder') hasZonder = true;
+    });
+  });
+  // Alleen tonen als er ÉN met ÉN zonder schokdempers beschikbaar is
+  if (!(hasMet && hasZonder)) {
+    el.innerHTML = '';
+    wrap.classList.add('hide');
+    FILTER.dampers.clear();    // actief filter netjes resetten
+    return;
+  }
+  var html = ''
+    + '<span class="chip small" data-key="met" data-on="'+(FILTER.dampers.has('met')?'1':'0')+'"><span class="dot"></span>Met schokdempers</span>'
+    + '<span class="chip small" data-key="zonder" data-on="'+(FILTER.dampers.has('zonder')?'1':'0')+'"><span class="dot"></span>Zonder schokdempers</span>';
+  el.innerHTML = html;
+  wrap.classList.remove('hide');
+}
+function renderFuelChips(kitsMM){
+  var wrap = document.getElementById('grp-fuel');
+  var el   = document.getElementById('fuel-chips');
+  if (!wrap || !el){ if (FILTER && FILTER.fuels) FILTER.fuels.clear(); return; }
+  var avail = new Set(); // labels zoals 'Electric','Plug-in Hybrid','Hybrid','Benzine','Diesel'
+  (kitsMM||[]).forEach(function(k){
+    (k.fitments||[]).forEach(function(f){
+      if (normMake(f.make)!==MAKE_N || normModel(f.model)!==MODEL_N) return;
+      var pol = enginePolicyFromFit(f, k);
+      (pol.allowLabels||[]).forEach(function(lbl){ avail.add(lbl); });
+    });
+  });
+  // Alleen tonen als er echt iets te kiezen is
+  var list = Array.from(avail).sort(function(a,b){
+    return ENGINE_LABEL_ORDER.indexOf(a) - ENGINE_LABEL_ORDER.indexOf(b);
+  });
+  if (list.length <= 1){
+    el.innerHTML = '';
+    wrap.classList.add('hide');
+    FILTER.fuels.clear();
+    return;
+  }
+  // Chips tekenen
+  var html = list.map(function(lbl){
+    var on = FILTER.fuels.has(lbl) ? '1' : '0';
+    return '<span class="chip small" data-key="'+esc(lbl)+'" data-on="'+on+'"><span class="dot"></span>'+esc(lbl)+'</span>';
+  }).join('');
+  el.innerHTML = html;
+  wrap.classList.remove('hide');
+}
+/* ====== Schema: ItemList (FIX) ====== */
+function renderItemListSchema(kitsMM){
+  if (renderItemListSchema.__done) return;
+  try{
+    var kitsUrls = (kitsMM||[])
+      .map(k => location.origin + buildSetUrl(k.sku));
+    kitsUrls = Array.from(new Set(kitsUrls));
+    var schemaEl = document.getElementById('schema-itemlist');
+    if(!schemaEl){
+      schemaEl = document.createElement('script');
+      schemaEl.type = 'application/ld+json';
+      schemaEl.id = 'schema-itemlist';
+      document.head.appendChild(schemaEl);
+    }
+    schemaEl.textContent = JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"ItemList",
+      "name":"MAD hulpveren sets voor " + MAKE_VIEW + " " + MODEL_VIEW,
+      "itemListOrder":"https://schema.org/ItemListOrderAscending",
+      "numberOfItems": kitsUrls.length,
+      "itemListElement": kitsUrls.map(function(u,i){
+        return {"@type":"ListItem","position":i+1,"url":u};
+      })
+    });
+    renderItemListSchema.__done = true;
+  }catch(e){
+    console.error('[LLS] ItemList schema error:', e);
+  }
+}
+/* ================== Filter + Render ================== */
+function yearsInQuery(q){ return (String(q||'').match(/\b(19\d{2}|20\d{2})\b/g) || []).map(Number); }
+function queryMatchesYear(q, f){ const ys = yearsInQuery(q); if (!ys.length) return false; const y1=+String(f.year_from||'').slice(-4)||1990; const y2=+String(f.year_to||'').slice(-4)||2030; return ys.some(y => y >= y1 && y <= y2); }
+function fitMatchesFilters(f, k){
+  var qRaw = (FILTER.q||'').trim();
+  var q = qRaw.toLowerCase();
+  if (q){
+    var hay = [
+      k.sku || '', k.family_code || '',
+      (f.platform_codes||[]).join(','),
+      f.notes || '', f.remark || '',
+      f.year_from || '', f.year_to || ''
+    ].join('\n').toLowerCase();
+    var yearHit = /\b(19\d{2}|20\d{2})\b/.test(qRaw);
+if (hay.indexOf(q) < 0 && !(yearHit && queryMatchesYear(qRaw, f))) return false;
+  }
+  // Jaar (alleen als actief)
+  var y1 = +String(f.year_from||'').slice(-4)||1990;
+  var y2 = +String(f.year_to||'').slice(-4)||2030;
+  if (isYearActive() && (FILTER.year < y1 || FILTER.year > y2)) return false;
+  // Ondersteuning
+  if (FILTER.modes.size){
+    var modeKey = supportKeyOf(f,k); // 'leeg' | 'continue'
+    if (!FILTER.modes.has(modeKey)) return false;
+  }
+  // As (voor/achter)
+  if (FILTER.axles.size){
+    const axSet = axleSetFromKit(k); // Set('voor','achter')
+    if (!axSet.size) return false;
+    let hit = false;
+    FILTER.axles.forEach(function(a){ if (axSet.has(a)) hit = true; });
+    if (!hit) return false;
+  }
+// Schokdempers
+if (FILTER.dampers && FILTER.dampers.size){
+  const dKey = damperKeyFrom(k, f);  // 'met' | 'zonder' | null
+  if (!dKey || !FILTER.dampers.has(dKey)) return false;
+}
+  // Brandstof/powertrain (labels: 'Electric','Plug-in Hybrid','Hybrid','Benzine','Diesel')
+  if (FILTER.fuels && FILTER.fuels.size){
+    var pol = enginePolicyFromFit(f, k);
+    var allowed = new Set((pol && pol.allowLabels) || []);
+    var ok = true;
+    FILTER.fuels.forEach(function(lbl){ if(!allowed.has(lbl)) ok = false; });
+    if (!ok) return false;
+  }
+  return true;
+}
+/* ====== Card HTML (met CTA-knop) ====== */
+function buildImageCandidates(sku){
+  var urls = []; 
+  var S = String(sku || '');
+  var up = S.toUpperCase();
+  var family = (S.match(/^([A-Z]{2})-/) || [])[1] || 'HV';
+  var last6  = (S.match(/-([0-9]{6})$/) || [])[1] || '';
+  var lastDigit = last6 ? last6.slice(-1) : '5';
+  var bust = IMG_CACHE_BUSTER ? ('?v=' + encodeURIComponent(up)) : '';
+  var bases = (window.CDN_CANDIDATES || CDN_CANDIDATES || []);
+  bases.forEach(function(base){
+    base = String(base).replace(/\/?$/, '/');
+    urls.push(base + encodeURIComponent(up) + '.jpg' + bust);                 // 1) SKU.jpg
+    urls.push(base + family.toUpperCase() + '-' + lastDigit + '.jpg' + bust); // 2) HV-<digit>.jpg
+    urls.push(base + family.toUpperCase() + '.jpg' + bust);                   // 3) HV.jpg
+  });
+  urls.push(PLACEHOLDER_IMG); // 4) placeholder als laatste
+  var seen = new Set();
+  return urls.filter(function(u){
+    if(seen.has(u)) return false;
+    seen.add(u);
+    return true;
+  });
+}
+function nextImage(img){
+  try{
+    var list = img.getAttribute('data-cands') ? JSON.parse(img.getAttribute('data-cands')) : [];
+    var idx  = +(img.getAttribute('data-idx')||0);
+    if(idx < list.length){ img.src = list[idx]; img.setAttribute('data-idx', String(idx+1)); }
+    else { var wrap = img.closest('.img'); if(wrap) wrap.classList.add('error'); }
+  }catch(_){ var wrap = img.closest('.img'); if(wrap) wrap.classList.add('error'); }
+}
+window.nextImage = nextImage;
+var $ = function(id){ return document.getElementById(id); };
+var esc = function(s){
+  return String(s||'').replace(/[&<>"']/g, m => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'          // <-- deze ontbrak
+  }[m]));
+};
+function priceFmtEUR(n){ if(n==null||n==='') return ''; var v=Number(n); if(!isFinite(v)) return ''; return v.toLocaleString('nl-NL',{style:'currency',currency:'EUR',maximumFractionDigits:0}); }
+function cardHtml(k, f){
+  var price = (k.pricing_nl && k.pricing_nl.total_inc_vat_from_eur!=null) ? k.pricing_nl.total_inc_vat_from_eur : '';
+  var appr = String(k.approval||'').toUpperCase();
+  var apprTxt = appr.indexOf('TUV')>-1 ? 'TÜV' : (appr||'');
+  var bs = '';
+  var autoType = (displayMake(f.make)+' '+displayModel(f.model)+(bs?(' — '+bs):'')).trim();
+  var years = (f.year_from||'') + ' — ' + (f.year_to||'');
+  var platform = (f.platform_codes && f.platform_codes.length) ? f.platform_codes.join(', ') : '';
+  var detailUrl = buildSetUrl(k.sku);
+  return `
+  <article class="card">
+    <div class="img">
+                  <img
+        loading="lazy"
+        decoding="async"
+        width="800"
+        height="600"
+        src="${esc(PLACEHOLDER_IMG)}"
+        data-sku="${esc(k.sku)}"
+        class="kit-img"
+        alt="${esc(k.sku)}"
+      >
+      ${price!==''?`<div class="badge">${esc(priceFmtEUR(price))}</div>`:''}
+    </div>
+    <div class="body">
+      <div class="sku">
+  <a href="${esc(detailUrl)}" aria-label="Bekijk set ${esc(k.sku)}">
+    ${esc(k.sku)}
+  </a>
+</div>
+      <div class="rows">
+        <div class="k">Soort</div><div>${esc(nlKindFromKit(k))}</div>
+        ${(function(){
+    const pos = normalizePositions(k);
+    const lbls = [];
+    if (pos.has('front')) lbls.push('Vooras');
+    if (pos.has('rear'))  lbls.push('Achteras');
+    return lbls.length ? `<div class="k">As</div><div>${esc(lbls.join(' & '))}</div>` : '';
+  })()}
+        ${nlSupportFromFit(f,k)? `<div class="k">Ondersteuning</div><div>${esc(nlSupportFromFit(f,k))}</div>`:''}
+        ${apprTxt? `<div class="k">Keuring</div><div>${esc(apprTxt)}</div>`:''}
+        ${(platform? `<div class="k">Platform</div><div>${esc(platform)}</div>`:'')}
+        <div class="k">Bouwjaren</div><div>${esc(years)}</div>
+        ${notesHtmlFromFitment(f)}
+        ${engineRowHtml(f, k)}
+      </div>
+      <div class="chips">
+  ${apprTxt? `<span class="chip small">${esc(apprTxt)}</span>`:''}
+  ${k.height_diff_mm? `<span class="chip small">+${esc(k.height_diff_mm)} mm</span>`:''}
+  ${k.install_time_min? `<span class="chip small">${esc(k.install_time_min)} min</span>`:''}
+  <span class="chip small">Prijs: incl. montage &amp; btw</span>
+  ${String(k.family_code||'').toUpperCase()==='SD' ? '<span class="chip small">Koni FSD schokdempers</span>' : '' }
+</div>
+      <div class="cta-row">
+  <a class="btn ghost" href="${esc(detailUrl)}">Bekijk set</a>
+  <button class="btn" data-lead="1"
+    data-sku="${esc(k.sku)}"
+    data-auto="${esc(autoType)}"
+    data-platform="${esc(platform)}"
+    data-years="${esc(years)}"
+  >Meer info / afspraak</button>
+</div>
+    </div>
+  </article>`;
+}
+function loadKitImages(){
+  var imgs  = document.querySelectorAll('#grid img.kit-img[data-sku]');
+  if (!imgs.length) return;
+  var bases = (window.CDN_CANDIDATES || CDN_CANDIDATES || []);
+  if (!bases.length) return;
+  imgs.forEach(function(img){
+    var sku = img.getAttribute('data-sku');
+    if (!sku) return;
+    var up = String(sku).toUpperCase();
+    var loaded = false;
+    var i = 0;
+    function tryNext(){
+      if (loaded || i >= bases.length) return;
+      var base = String(bases[i++] || '').replace(/\/?$/, '/');
+      if (!base) return;
+      var test = new Image();
+      // helpt soms bij 403/hotlink issues
+      test.referrerPolicy = 'no-referrer';
+      test.onload = function(){
+        if (loaded) return;
+        loaded = true;
+        img.src = test.src;        // vervang placeholder door echte foto
+      };
+      test.onerror = function(){
+        // probeer volgende CDN als deze faalt
+        tryNext();
+      };
+      // alle HV-afbeeldingen zijn .jpg
+      test.src = base + encodeURIComponent(up) + '.jpg';
+    }
+    tryNext();
+  });
+}
+// === SEO helpers ============================================================
+function setNameMeta(name, value){
+  var el = document.querySelector('meta[name="'+name+'"]');
+  if(!el){ el = document.createElement('meta'); el.setAttribute('name', name); document.head.appendChild(el); }
+  el.setAttribute('content', value);
+}
+function uniq(arr){ return Array.from(new Set((arr||[]).filter(Boolean))); }
+function fmtRange(min, max, unit){
+  if(min==null && max==null) return '';
+  if(min==null) return String(max)+ ' ' + unit;
+  if(max==null) return String(min)+ ' ' + unit;
+  if(min===max) return String(min)+ ' ' + unit;
+  return String(min)+'–'+String(max)+' '+unit;
+}
+function num(v){ v = Number(v); return isFinite(v)? v : null; }
+/* Optionele override:*/
+/*   window.LLS_FORCE_VEHICLE_TYPE = 'personenauto'|'bedrijfswagen'|'camper' */
+function aggregateForSeo(kitsMM){
+  var yMin=9999, yMax=0, count=0, hasAny=false;
+  var hasLeeg=false, hasCont=false;
+  var hasFront=false, hasRear=false;
+  var hasSD=false, hasTUV=false;
+  var families=new Set();
+  var platforms=new Set();
+  var sampleSkus=[];
+  var hMin=null, hMax=null;
+  var tMin=null, tMax=null;
+  var typeCount = { camper:0, bedrijfswagen:0, personenauto:0 }; // ← nieuw
+  kitsMM.forEach(function(k){
+    (k.fitments||[]).forEach(function(f){
+      if (normMake(f.make)!==MAKE_N || normModel(f.model)!==MODEL_N) return;
+      hasAny=true; count++;
+      // jaren
+      var y1 = +String(f.year_from||'').slice(-4)||1990; 
+      var y2 = +String(f.year_to  ||'').slice(-4)||2030;
+      yMin = Math.min(yMin, y1); yMax = Math.max(yMax, y2);
+      // modes
+      var m = supportKeyOf(f,k);
+      if (m==='leeg') hasLeeg = true;
+      if (m==='continue') hasCont = true;
+      // posities
+      var posSet = normalizePositions(k);
+      if (posSet.has('front')) hasFront = true;
+      if (posSet.has('rear'))  hasRear  = true;
+      // families / keur / platforms
+      var fam = String(k.family_code||'').toUpperCase();
+      if (fam) families.add(fam);
+      if (fam==='SD') hasSD = true;
+      var appr = String(k.approval||'').toUpperCase();
+      if (appr.indexOf('TUV')>-1) hasTUV = true;
+      (f.platform_codes||[]).forEach(function(p){ platforms.add(p); });
+      // samples
+      if (sampleSkus.length<3) sampleSkus.push(k.sku);
+      // hoogte / montage
+      var hd = num(k.height_diff_mm);
+      if (hd!=null){ hMin = (hMin==null? hd : Math.min(hMin, hd)); hMax = (hMax==null? hd : Math.max(hMax, hd)); }
+      var tt = num(k.install_time_min);
+      if (tt!=null){ tMin = (tMin==null? tt : Math.min(tMin, tt)); tMax = (tMax==null? tt : Math.max(tMax, tt)); }
+      // voertuigtype (← nieuw)
+      var vt = vehicleTypeFromFit(f,k);
+      if (typeCount[vt] != null) typeCount[vt]++; 
+    });
+  });
+  if (!hasAny){ yMin=1998; yMax=(new Date().getFullYear())+1; }
+  return {
+    count, yMin, yMax,
+    hasLeeg, hasCont,
+    hasFront, hasRear,
+    hasSD, hasTUV,
+    families: Array.from(families),
+    platforms: Array.from(platforms),
+    sampleSkus: sampleSkus,
+    heightRange: (hMin==null && hMax==null)? '' : fmtRange(hMin, hMax, 'mm'),
+    timeRange: (tMin==null && tMax==null)? '' : fmtRange(tMin, tMax, 'min'),
+    typeCount // ← nieuw in return
+  };
+}
+// === Nieuwe dynamische SEO-lead =============================================
+function renderSeoLead(){
+  var el = document.getElementById('seo-lead');
+  var p1 = document.getElementById('lead-p1');
+  var btn = document.getElementById('lead-more');
+  var box = document.getElementById('lead-more-txt');
+  if(!el||!p1||!btn||!box) return;
+  var kitsMM = (KITS||[]).filter(kitHasMakeModel);
+  var agg = aggregateForSeo(kitsMM);
+  // 1) Korte, unieke intro
+  var mk = MAKE_VIEW || 'Merk';
+  var md = MODEL_VIEW || 'Model';
+  var cnt = String(agg.count||0);
+  var range = agg.yMin + '–' + agg.yMax;
+  var metaBits = [];
+  if (agg.hasLeeg || agg.hasCont){
+    var modesLbl = [];
+    if (agg.hasLeeg) modesLbl.push('Leeg & beladen');
+    if (agg.hasCont) modesLbl.push('Continue beladen');
+    metaBits.push('Gebruik: ' + modesLbl.join(' / '));
+  }
+  if (agg.heightRange) metaBits.push('Rijhoogte: +' + agg.heightRange);
+  if (agg.timeRange)   metaBits.push('Montage: ' + agg.timeRange);
+  if (agg.hasTUV)      metaBits.push('TÜV-goedgekeurd');
+  p1.innerHTML =
+    '<strong>MAD hulpveren</strong> voor '+esc(mk)+' '+esc(md)+
+    ' — '+esc(cnt)+' set'+(agg.count===1?'':'s')+
+    ' beschikbaar ('+esc(range)+'). '+
+    (metaBits.length ? esc(metaBits.join(' • ')) + '.' : '');
+  // 2) Lange uitleg (alleen relevante secties)
+  var parts = [];
+  // Overzicht + voorbeelden
+  var famLabels = agg.families.map(function(f){
+    if (f==='HV') return 'HV (hulp-/vervangingsveren)';
+    if (f==='SD') return 'SD (Koni FSD schokdempers)';
+    if (f==='LK') return 'Leveling/verhogingskit';
+    if (f==='LV') return 'Luchtvering';
+    return f;
+  });
+  var introBullets = [];
+  introBullets.push('<b>Bouwjaren:</b> '+esc(range));
+  if (famLabels.length) introBullets.push('<b>Soorten:</b> '+esc(famLabels.join(', ')));
+  if (agg.platforms.length) introBullets.push('<b>Platformcodes:</b> '+esc(uniq(agg.platforms).slice(0,6).join(', ')));
+  if (agg.sampleSkus.length) introBullets.push('<b>Voorbeelden:</b> '+esc(agg.sampleSkus.join(', ')));
+  if (agg.heightRange) introBullets.push('<b>Typische lift:</b> +'+esc(agg.heightRange));
+  if (agg.timeRange)   introBullets.push('<b>Montagetijd:</b> '+esc(agg.timeRange));
+  if (agg.hasTUV)      introBullets.push('<b>Keuring:</b> TÜV-goedgekeurd');
+  parts.push(
+    '<h2 style="margin:.4em 0 .2em">Alle sets voor '+esc(mk)+' '+esc(md)+'</h2>'+
+    '<ul style="margin:.3em 0 0 18px">'+ introBullets.map(b => '<li>'+b+'</li>').join('') +'</ul>'
+  );
+  // “Leeg & beladen”
+  if (agg.hasLeeg){
+    parts.push(
+      '<h3 style="margin:1em 0 .2em">Leeg &amp; beladen — dagelijkse inzet</h3>'+
+      '<p>Geschikt voor voertuigen die <em>meestal leeg</em> rijden en af en toe beladen worden. De set <strong>houdt het comfort onbeladen</strong> en geeft <strong>extra steun wanneer het voertuig geladen is</strong>, zodat de achterkant minder doorzakt en de wegligging verbetert bij aanhangergebruik, passagiers of gereedschap.</p>'
+    );
+  }
+// “Continue beladen” — gesplitst in personenauto vs bedrijfswagen/camper
+if (agg.hasCont){
+  var nPA  = (agg.typeCount && agg.typeCount.personenauto)  || 0;
+  var nLCV = ((agg.typeCount && agg.typeCount.bedrijfswagen) || 0)
+           + ((agg.typeCount && agg.typeCount.camper) || 0);
+  if (nPA > 0){
+    parts.push(
+      '<h3 style="margin:1em 0 .2em">Continue beladen — personenauto</h3>'+
+      '<p>Voor personenauto’s met een <em>permanente extra massa</em> (bijv. LPG-tank, rolstoellift, zware audio/accu of vaste kofferbakinrichting). '+
+      'De veren <strong>compenseren het constante gewicht</strong>, houden de achterzijde op hoogte en voorkomen oplichten van koplampen. '+
+      'Comfort blijft behouden bij onbeladen rijden.</p>'
+    );
+  }
+  if (nLCV > 0){
+    parts.push(
+      '<h3 style="margin:1em 0 .2em">Continue beladen — bedrijfswagen/camper</h3>'+
+      '<p>Voor voertuigen met een <em>vaste inrichting of constante last</em> zoals <strong>servicebussen (stelling, gereedschap) en campers</strong> (opbouw, water-/gas-/accutanks). '+
+      'Houdt de rijhoogte constanter, vermindert overhellen en verbetert stabiliteit bij zijwind en lange snelwegritten.</p>'
+    );
+  }
+}
+  // FSD / Koni
+  if (agg.hasSD){
+    parts.push(
+      '<h3 style="margin:1em 0 .2em">FSD set (Koni FSD schokdempers)</h3>'+
+      '<p>FSD (Frequency Selective Damping) past de demping automatisch aan de ondergrond en rij-situatie aan. In de praktijk betekent dat <strong>meer controle bij campers en belading</strong> en <em>merkbaar</em> comfort op dwarsnaden en klinkers. Een SD-kit wordt vaak gecombineerd met hulpveren voor maximale stabiliteit.</p>'
+    );
+  }
+  // Voor & achter (lift set) — toon alleen als beide assen beschikbaar zijn
+  if (agg.hasFront && agg.hasRear){
+    parts.push(
+      '<h3 style="margin:1em 0 .2em">Veren voor &amp; achter (lift set)</h3>'+
+      '<p>Voor een vlakke, verhoogde stance zijn er voor & achter kits, of je kunt vooras- en achteras-sets combineren. Dit <strong>verhoogt de praktische beladingsreserve en verbetert de balans</strong>bij accessoires zoals trekhaak of bullbar. '+
+      (agg.heightRange ? ('Reken op circa <b>+'+esc(agg.heightRange)+'</b> rijhoogte, afhankelijk van uitvoering.') : '')+
+      ' Laat na montage de uitlijning controleren voor het beste resultaat.</p>'
+    );
+  }
+  // Call-to-action link naar grid (blijft zoals bij jou)
+  parts.push('<p style="margin:.8em 0 0"><a href="#grid" class="btn ghost">Bekijk alle sets ↓</a></p>');
+  // 3) Schrijf lange tekst en toggle
+  box.innerHTML = parts.join('');
+  btn.setAttribute('aria-controls','lead-more-txt');
+  btn.setAttribute('aria-expanded','false');
+  var open = false;
+  btn.onclick = function(){
+    open = !open;
+    btn.textContent = open ? 'Minder info' : 'Meer info';
+    btn.setAttribute('aria-expanded', String(open));
+    box.style.display = open ? 'block' : 'none';
+    document.getElementById('seo-lead')?.classList.toggle('open', open);
+  };
+  // Start samengeklapt op mobiel; zichtbaar op desktop
+  var openByDefault = false; // zet op true als je ‘open’ wilt starten
+box.style.display = openByDefault ? 'block' : 'none';
+btn.textContent   = openByDefault ? 'Minder info' : 'Meer info';
+  // 4) Dynamische meta description (korte variant, 155–165 chars is prima)
+    var metaParts = ['MAD hulpveren voor '+mk+' '+md, 'bouwjaren '+range];
+  if (agg.hasLeeg || agg.hasCont){
+    var m = [];
+    if (agg.hasLeeg) m.push('leeg & beladen');
+    if (agg.hasCont) m.push('continue beladen');
+    metaParts.push('gebruik: '+m.join(' / '));
+  }
+  if (agg.hasSD) metaParts.push('FSD (Koni)');
+  if (agg.hasTUV) metaParts.push('TÜV');
+  // type-informatie eerst toevoegen
+  if (agg.hasCont){
+    const t = [];
+    if (agg.typeCount?.personenauto)  t.push('personenauto');
+    if (agg.typeCount?.bedrijfswagen) t.push('bedrijfswagen');
+    if (agg.typeCount?.camper)        t.push('camper');
+    if (t.length) metaParts.push('continue beladen: ' + t.join('/'));
+  }
+  // ✅ daarna pas meta description zetten
+  setNameMeta('description', metaParts.join(' • ') + '. Prijs incl. montage & btw.');
+  // 5) Toon de hele leadbox
+  el.classList.remove('hide');
+}
+function render(){
+  var grid=$('grid');
+  var kitsMM = KITS.filter(kitHasMakeModel);
+  renderModeChips(kitsMM);
+  renderAxleChips(kitsMM);
+  renderDamperChips(kitsMM);
+  renderFuelChips(kitsMM);
+  renderItemListSchema(kitsMM);
+  var cards=[];
+  kitsMM.forEach(function(k){
+    (k.fitments||[])
+      .filter(f => {
+  if (normMake(f.make)!==MAKE_N) return false;
+  var fm = normModel(f.model);
+  return (fm === MODEL_N || fm.startsWith(MODEL_N+' '));
+})
+      .filter(f => fitMatchesFilters(f, k))
+      .forEach(f => cards.push(cardHtml(k,f)));
+  });
+  $('count').textContent = String(cards.length);
+  grid.innerHTML = cards.join('') || '<div class="note">Geen resultaten met deze filters.</div>';
+  // images etc...
+  try{
+    grid.querySelectorAll('img.kit-img[data-sku]').forEach(function(img){
+      var sku = img.getAttribute('data-sku');
+      var cands = buildImageCandidates(sku);
+      img.setAttribute('data-cands', JSON.stringify(cands));
+      img.setAttribute('data-idx', '0');
+      nextImage(img);
+    });
+  }catch(_){}
+  updateFilterSummary();
+  boostAboveTheFold();
+  renderSeoLead();
+}
+  // ---- ItemList schema voor Google ----
+  try{
+    var kitsUrls = [];
+    kitsMM.forEach(function(k){
+      if (!kitHasMakeModel(k)) return;
+      kitsUrls.push(location.origin + buildSetUrl(k.sku));
+    });
+    kitsUrls = Array.from(new Set(kitsUrls));
+    var schemaEl = document.getElementById('schema-itemlist');
+    if(!schemaEl){
+      schemaEl = document.createElement('script');
+      schemaEl.type = 'application/ld+json';
+      schemaEl.id = 'schema-itemlist';
+      document.head.appendChild(schemaEl);
+    }
+    schemaEl.textContent = JSON.stringify({
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name": "MAD hulpveren sets voor " + MAKE_VIEW + " " + MODEL_VIEW,
+  "itemListOrder": "https://schema.org/ItemListOrderAscending",
+  "numberOfItems": kitsUrls.length,
+  "itemListElement": kitsUrls.map(function(u,i){
+    return {"@type":"ListItem","position":i+1,"url":u};
+  })
+});
+  }catch(e){}
+/* ================== Voertuigtype-detectie ================== */
+/* Herkenning op basis van modelnaam + remark/notes (NL/EN/DE varianten). */
+const VAN_MODEL_TOKENS = [
+  'DUCATO','BOXER','JUMPER','TRANSPORTER','T5','T6','CRAFTER','SPRINTER','VITO','V-CLASS',
+  'TRANSIT','TRANSIT CUSTOM','E-TRANSIT','CONNECT','MASTER','MOVANO','VIVARO','TRAFIC',
+  'EXPERT','JUMPY','SCUDO','PROACE','PROACE CITY','PROACE MAX','BERLINGO','PARTNER',
+  'KANGOO','DOBLO','COMBO','CADDY','HIACE','DAILY','NV200','NV300','NV400'
+];
+const PASSENGER_BODY_TOKENS = /(hatchback|sedan|saloon|estate|wagon|combi|liftback|sportback|coup[eé]|cabrio|convertible|limousine)/i;
+const CAMPER_TOKENS = /(camper|motorhome|wohnmobil|rv)\b/i;
+const CAMPER_CHASSIS_TOKENS = /\bal-?\s?ko\b/i;       // AL-KO camperchassis
+function isVanModel(make, model){
+  const t = (String(make)+' '+String(model)).toUpperCase();
+  return VAN_MODEL_TOKENS.some(k => t.includes(k));
+}
+function vehicleTypeFromFit(f,k){
+    if (window.LLS_FORCE_VEHICLE_TYPE){
+    return window.LLS_FORCE_VEHICLE_TYPE;
+  }
+  const blob = [f?.remark, f?.notes, k?.title, k?.name].filter(Boolean).join(' ').toLowerCase();
+  if (CAMPER_TOKENS.test(blob) || CAMPER_CHASSIS_TOKENS.test(blob)) return 'camper';
+  if (/\b(kastenwagen|minibus|combi\s*van|panel\s*van|bestel)\b/.test(blob) || isVanModel(f?.make, f?.model)) return 'bedrijfswagen';
+  if (PASSENGER_BODY_TOKENS.test([f?.remark,f?.notes].filter(Boolean).join(' '))) return 'personenauto';
+  // Fallback: als model op VAN-lijst staat → bedrijfswagen, anders personenauto
+  return isVanModel(f?.make, f?.model) ? 'bedrijfswagen' : 'personenauto';
+}
+/* ========== Breid bestaande aggregatie uit met type-telling ========== */
+/* Voeg in jouw aggregateForSeo(...) return-object deze veld toe:
+     typeCount: { camper:n, bedrijfswagen:n, personenauto:n }
+   → Als je mijn aggregateForSeo al gebruikt: patch ‘m zoals hieronder. */
+/* ========== Voeg 2 varianten “Continue beladen” toe in renderSeoLead() ========== */
+(function(){
+  if (typeof window.renderSeoLead !== 'function') return;
+  const _orig = window.renderSeoLead;
+  window.renderSeoLead = function(){
+    // laat de originele tekst eerst opbouwen
+    _orig();
+    // pak elementen & aggregatie (zoals de originele functie doet)
+    var el  = document.getElementById('seo-lead');
+    var box = document.getElementById('lead-more-txt');
+    if (!el || !box) return;
+    var kitsMM = (window.KITS||[]).filter(kitHasMakeModel);
+    var agg    = window.aggregateForSeo ? window.aggregateForSeo(kitsMM) : null;
+    if (!agg || !agg.hasCont) return; // geen continue-beladen sets → niets toevoegen
+    // Stel secties samen op basis van aanwezige types
+    const mk = window.MAKE_VIEW || 'Merk';
+    const md = window.MODEL_VIEW || 'Model';
+    const parts = [];
+    // Personenauto-variant (nieuw)
+    if (agg.typeCount?.personenauto > 0){
+      parts.push(
+        '<h3 style="margin:1em 0 .2em">Continue beladen — personenauto</h3>'+
+        '<p>Voor personenauto’s met een <em>permanente extra massa</em> (bijv. LPG-tank, rolstoel-lift, zware audio/accu of vaste kofferbakinrichting). '+
+        'De veren compenseren het constante gewicht, houden de achterzijde op hoogte en voorkomen oplichten van koplampen. '+
+        'Comfort blijft behouden bij onbeladen rijden.</p>'
+      );
+    }
+    // Bedrijfswagen/Camper-variant (bestond al impliciet; nu expliciet)
+    if ((agg.typeCount?.bedrijfswagen || 0) + (agg.typeCount?.camper || 0) > 0){
+      parts.push(
+        '<h3 style="margin:1em 0 .2em">Continue beladen — bedrijfswagen/camper</h3>'+
+        '<p>Geschikt voor voertuigen met <em>vaste inrichting of constante last</em> zoals servicebussen (stelling, gereedschap) en campers (opbouw, watertanks, zonnepanelen). '+
+        'Houdt de rijhoogte constanter, vermindert overhellen en verbetert stabiliteit bij zijwind en lange snelwegritten.</p>'
+      );
+    }
+    if (!parts.length) return;
+    // Injecteer net vóór de afsluitende CTA binnen de bestaande long copy
+    // (we plakken erachteraan; als je de plek wilt bepalen kun je dit fijner parsen)
+    box.innerHTML = box.innerHTML.replace(/(<p[^>]*>.*?Bekijk alle sets.*?<\/p>\s*)$/is, '') + parts.join('') +
+                    '<p style="margin:.8em 0 0"><a href="#grid" class="btn ghost">Bekijk alle sets ↓</a></p>';
+  };
+})();
+function updateFilterSummary(){
+  var parts = [];
+  parts.push('jaar: ' + (isYearActive() ? FILTER.year : 'alle'));
+  if (FILTER.modes.size){
+    var ms = Array.from(FILTER.modes).map(function(k){ return k==='leeg'?'Leeg & beladen':'Continue beladen'; });
+    parts.push('ondersteuning: ' + ms.join(', '));
+  }
+  if (FILTER.axles.size){
+    var as = Array.from(FILTER.axles).map(axleLabel);
+    parts.push('as: ' + as.join(', '));
+  }
+  if (FILTER.dampers.size){
+    var ds = Array.from(FILTER.dampers).map(damperLabel);
+    parts.push('schokdempers: ' + ds.join(', '));
+  }
+  if (FILTER.fuels && FILTER.fuels.size){
+  parts.push('brandstof: ' + Array.from(FILTER.fuels).join(', '));
+}
+  var q = (FILTER.q||'').trim();
+  if (q) parts.push('zoek: "'+q+'"');
+  var el = $('filtersum');
+  if (el) el.textContent = parts.join(' • ');
+}
+/* ================== Page wiring ================== */
+function kitHasMakeModel(k){ 
+  return (k.fitments||[]).some(f => {
+    if (normMake(f.make)!==MAKE_N) return false;
+    var fm = normModel(f.model);
+    return (fm === MODEL_N || fm.startsWith(MODEL_N+' '));
+  }); 
+}
+function parseMakeModelOrFromData(){
+  var sl = parseSlugs();
+  CATEGORY_SLUG = sl.cat || 'hulpveren';
+  MAKE_SLUG = sl.make || '';
+  MODEL_SLUG = sl.model || '';
+  var mm = parseMakeModel();
+  MAKE_LABEL = (mm.make||'').toUpperCase();
+  MODEL_LABEL = (mm.model||'');
+  MAKE_N = normMake(mm.make||'');
+  MODEL_N = normModel(mm.model||'');
+  if((!MAKE_N || !MODEL_N) && KITS.length){
+    outer: for(var i=0;i<KITS.length;i++){
+      var fs=KITS[i].fitments||[];
+      for(var j=0;j<fs.length;j++){
+        if(fs[j].make && fs[j].model){
+          MAKE_LABEL = String(fs[j].make).toUpperCase();
+          MODEL_LABEL = String(fs[j].model);
+          MAKE_N = normMake(fs[j].make);
+          MODEL_N = normModel(fs[j].model);
+          break outer;
+        }
+      }
+    }
+  }
+  MAKE_VIEW  = displayMake(MAKE_LABEL || '');
+  MODEL_VIEW = displayModel(MODEL_LABEL || '');
+}
+/* ====== Lead Form — Mijndomein Contact Form integratie ====== */
+function findNativeFormRoot(){
+  return document.getElementById('lead-native') || document.querySelector('[data-lls-native-form="lead"]') || null;
+}
+function findNativeForm(){ const r=findNativeFormRoot(); return r ? r.querySelector('form') : null; }
+function _norm(s){ return String(s||'').trim().toLowerCase().replace(/\s+/g,' '); }
+function fillFieldByLabel(form, labelTxt, value){
+  if (!form || value == null) return;
+  var labs = Array.prototype.slice.call(form.querySelectorAll('label'));
+  var key  = _norm(labelTxt);
+  // Veilige CSS.escape fallback
+  var cssEscape = (window.CSS && typeof CSS.escape === 'function')
+    ? CSS.escape
+    : function(s){ return String(s).replace(/[^a-zA-Z0-9_\-]/g, '\\$&'); };
+  for (var i = 0; i < labs.length; i++){
+    var lab = labs[i];
+    if (_norm(lab.textContent) !== key) continue;
+    var input = null;
+    // 1) Prefer label[for]
+    var forId = lab.getAttribute('for');
+    if (forId){
+      try { input = form.querySelector('#' + cssEscape(forId)); } catch(_){}
+    }
+    // 2) Fallback: eerste invoerveld binnen een logisch container-element
+    if (!input){
+      var root = (lab.closest && lab.closest('div,li,fieldset')) || null;
+      if (root){ input = root.querySelector('input,textarea,select'); }
+    }
+    if (!input) continue;
+    // 3) Waarde zetten
+    if (input.tagName === 'SELECT'){
+      var opts = Array.prototype.slice.call(input.options || []);
+      var wanted = _norm(String(value));
+      var match = null;
+      for (var j = 0; j < opts.length; j++){
+        var o = opts[j];
+        if (_norm(o.textContent) === wanted || _norm(o.value) === wanted){ match = o; break; }
+      }
+      input.value = match ? match.value : String(value);
+    } else {
+      input.value = value;
+    }
+    // 4) Events afvuren (voor eventuele listeners/validators)
+    try {
+      input.dispatchEvent(new Event('input',  { bubbles:true }));
+      input.dispatchEvent(new Event('change', { bubbles:true }));
+    } catch(_) {}
+    break; // enkel eerste exacte label-hit invullen
+  }
+}
+function submitViaNativeForm(data){
+  if (window.LEAD_FORM_ENDPOINT) return false; // als extern endpoint, sla native over
+  const form = findNativeForm(); if(!form) return false;
+  const map = {
+    'Ik wil': data.intent, 'Naam': data.name, 'E-mail': data.email, 'Telefoon': data.phone,
+    'Kenteken': data.plate, 'Set': data.sku, 'Auto': data.auto, 'Platform': data.platform,
+    'Bouwjaren': data.years, 'Pagina titel': data.page_title, 'Pagina URL': data.page_url,
+    'Opmerking': data.note
+  };
+  // extra poging voor sites met label “Bericht”
+  fillFieldByLabel(form, 'Bericht', data.note);
+  Object.keys(map).forEach(label => fillFieldByLabel(form, label, map[label]));
+  if (form.requestSubmit) form.requestSubmit();
+  else if (form.submit) form.submit();
+  else { 
+    const btn=form.querySelector('button[type="submit"],input[type="submit"]'); 
+    if(btn) btn.click(); else return false; 
+  }
+  return true;
+}
+/* — Modaal open/dicht + payload — */
+function openLeadModal(payload){
+  var M = document.getElementById('lead-modal');
+  if(!M) return;
+  $('lf-sku').textContent     = payload.sku || '';
+  $('lf-auto').textContent    = payload.auto || '';
+  $('lf-platform').textContent= payload.platform || '';
+  $('lf-years').textContent   = payload.years || '';
+  $('lf-sku-h').value      = payload.sku || '';
+  $('lf-auto-h').value     = payload.auto || '';
+  $('lf-platform-h').value = payload.platform || '';
+  $('lf-years-h').value    = payload.years || '';
+  $('lf-url-h').value      = location.href;
+  $('lf-title-h').value    = document.title || '';
+  $('lf-intent').value = 'Meer informatie';
+  $('lf-name').value   = '';
+  $('lf-email').value  = '';
+  $('lf-phone').value  = '';
+  $('lf-plate').value  = '';
+  $('lf-note').value   = '';
+  $('lf-ok').style.display  = 'none';
+  $('lf-err').style.display = 'none';
+  M.classList.remove('hide');
+  setTimeout(()=>{ $('lf-name').focus(); }, 50);
+}
+function closeLeadModal(){ var M = document.getElementById('lead-modal'); if(M) M.classList.add('hide'); }
+function onLeadButtonClick(e){
+  var btn = e.target.closest('button[data-lead="1"]'); if(!btn) return;
+  e.preventDefault();
+  var payload = {
+    sku: btn.getAttribute('data-sku') || '',
+    auto: btn.getAttribute('data-auto') || '',
+    platform: btn.getAttribute('data-platform') || '',
+    years: btn.getAttribute('data-years') || ''
+  };
+  openLeadModal(payload);
+}
+/* — Validatie en verzenden — */
+function normalizePlate(p){ return String(p||'').toUpperCase().replace(/\s+/g,'').replace(/[^A-Z0-9-]/g,''); }
+function submitLead(e){
+  e.preventDefault();
+  const okBox  = document.getElementById('lf-ok');
+  const errBox = document.getElementById('lf-err');
+  okBox.style.display='none'; errBox.style.display='none';
+  const data = {
+    intent:  document.getElementById('lf-intent').value,
+    name:    (document.getElementById('lf-name').value||'').trim(),
+    email:   (document.getElementById('lf-email').value||'').trim(),
+    phone:   (document.getElementById('lf-phone').value||'').trim(),
+    plate:   normalizePlate(document.getElementById('lf-plate').value),
+    note:    (document.getElementById('lf-note').value||'').trim(),
+    sku:     document.getElementById('lf-sku-h').value,
+    auto:    document.getElementById('lf-auto-h').value,
+    platform:document.getElementById('lf-platform-h').value,
+    years:   document.getElementById('lf-years-h').value,
+    page_url:location.href,
+    page_title:document.title||'',
+    site: (RAW && RAW.site) || ''
+  };
+  if(!data.name || !data.email || !data.phone || !data.plate){
+    errBox.textContent = 'Vul alle verplichte velden in.'; 
+    errBox.style.display='block'; 
+    return;
+  }
+  // 1) Extern endpoint?
+  if (window.LEAD_FORM_ENDPOINT){
+    fetch(window.LEAD_FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function(r){
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      okBox.style.display='block';
+      setTimeout(closeLeadModal, 900);
+    })
+    .catch(function(err){
+      errBox.textContent = 'Verzenden mislukt. Probeer opnieuw of gebruik e-mail.';
+      errBox.style.display='block';
+      console.error(err);
+    });
+    return;
+  }
+  // 2) Native Mijndomein/Duda contactformulier
+  if (submitViaNativeForm(data)){ 
+    okBox.style.display='block'; 
+    setTimeout(closeLeadModal, 900); 
+    return; 
+  }
+  // 3) Fallback mailto
+  const to = (window.LEAD_FORM_MAILTO && String(window.LEAD_FORM_MAILTO).trim())
+    || 'info@auto-parts-roosendaal.nl';
+  const subj = `Aanvraag: ${data.intent} — ${data.sku} (${data.auto})`;
+  const body =
+`Beste,
+Ik heb interesse in: ${data.intent}
+Set: ${data.sku}
+Auto: ${data.auto}
+Platform: ${data.platform}
+Bouwjaren: ${data.years}
+Naam: ${data.name}
+E-mail: ${data.email}
+Telefoon: ${data.phone}
+Kenteken: ${data.plate}
+Opmerking: ${data.note || '-'}
+Pagina: ${data.page_title}
+URL: ${data.page_url}
+Alvast bedankt!`;
+  location.href = 'mailto:'+encodeURIComponent(to)+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  okBox.style.display='block'; 
+  setTimeout(closeLeadModal, 600);
+}
+function bindLeadFormEvents(){
+  var grid = document.getElementById('grid');
+  if(grid && !grid.__leadBound){ grid.addEventListener('click', onLeadButtonClick); grid.__leadBound = true; }
+  var closeBtn = document.getElementById('lf-close');
+  var cancelBtn= document.getElementById('lf-cancel');
+  if(closeBtn)  closeBtn.onclick = closeLeadModal;
+  if(cancelBtn) cancelBtn.onclick = closeLeadModal;
+  var fm = document.getElementById('lead-form'); 
+  if(fm) fm.addEventListener('submit', submitLead);
+  document.addEventListener('keydown', function(ev){ if(ev.key==='Escape') closeLeadModal(); });
+}
+function waitForBetterDataBeforeFirstRender(done){
+  var start = Date.now();
+  var maxMs = 1400; // korte SEO-wacht
+  (function tick(){
+    var cand = discoverData();
+    if (betterThan(cand, CURRENT_SOURCE)){
+      CURRENT_SOURCE = cand;
+      RAW  = cand.obj;
+      DATA_SOURCE = cand.source;
+      KITS = RAW.kits || [];
+      parseMakeModelOrFromData();
+      return done();
+    }
+    if (Date.now() - start > maxMs) return done();
+    setTimeout(tick, 120);
+  })();
+}
+/* ---- Init ---- */
+function startupFiltersAndRender(){
+  var kitsMM=(KITS||[]).filter(kitHasMakeModel);
+  var ymin=9999, ymax=0, hasAny=false;
+  kitsMM.forEach(function(k){
+    (k.fitments||[]).forEach(function(f){
+      if(normMake(f.make)!==MAKE_N||normModel(f.model)!==MODEL_N) return;
+      hasAny=true;
+      var y1=+String(f.year_from||'').slice(-4)||1990;
+      var y2=+String(f.year_to||'').slice(-4)||2030;
+      ymin=Math.min(ymin,y1); ymax=Math.max(ymax,y2);
+    });
+  });
+  if(!hasAny){ ymin=1998; ymax=(new Date().getFullYear())+1; }
+  YEAR_MIN=ymin; YEAR_MAX=ymax;
+  // Laat bouwjaar leeg bij start
+  if (FILTER.year != null && (FILTER.year < YEAR_MIN || FILTER.year > YEAR_MAX)){
+    FILTER.year = null;
+  }
+  var ySel=$('ySel'), ySelNum=$('ySel-num'), ySelLb=$('ySel-lb');
+  if (ySel){
+    ySel.min=YEAR_MIN; ySel.max=YEAR_MAX;
+    if (!isYearActive()){
+      ySel.dataset.active='0';
+      if (ySelNum) ySelNum.value='';
+      if (ySelLb) ySelLb.textContent='Alle';
+    } else {
+      ySel.dataset.active='1';
+      ySel.value=String(FILTER.year);
+      if (ySelNum) ySelNum.value=String(FILTER.year);
+      if (ySelLb) ySelLb.textContent=String(FILTER.year);
+    }
+    if (!ySel.__llsBound){
+      ySel.addEventListener('input', function(e){
+        FILTER.year = +e.target.value; 
+        ySel.dataset.active='1';
+        if (ySelNum) ySelNum.value=String(FILTER.year);
+        if (ySelLb) ySelLb.textContent=String(FILTER.year);
+        render();
+      });
+      if (ySelNum) ySelNum.addEventListener('input', function(e){
+        var v = e.target.value;
+        if (v === '' || v == null){
+          FILTER.year = null;
+          ySel.dataset.active='0';
+          if (ySelLb) ySelLb.textContent='Alle';
+        } else {
+          v = +v||YEAR_MIN; v=Math.max(YEAR_MIN,Math.min(YEAR_MAX,v));
+          FILTER.year=v; ySel.value=String(v); ySel.dataset.active='1';
+          if (ySelLb) ySelLb.textContent=String(v);
+          e.target.value=String(v);
+        }
+        render();
+      });
+      if (ySelLb){
+        ySelLb.addEventListener('click', function(){
+          FILTER.year = null;
+          ySel.dataset.active='0';
+          if (ySelNum) ySelNum.value='';
+          ySelLb.textContent='Alle';
+          render();
+        });
+      }
+      ySel.__llsBound = true;
+    }
+  } else {
+    // Oude dubbele slider fallback
+    var yMinEl=$('ymin'), yMaxEl=$('ymax'), yMinNum=$('ymin-num'), yMaxNum=$('ymax-num'), yMinLb=$('ymin-lb'), yMaxLb=$('ymax-lb');
+    if (yMinEl && yMaxEl){
+      yMinEl.min=YEAR_MIN; yMaxEl.min=YEAR_MIN; yMinEl.max=YEAR_MAX; yMaxEl.max=YEAR_MAX;
+      if (!isYearActive()){
+        yMinEl.value=YEAR_MIN; yMaxEl.value=YEAR_MAX; // waarden, maar niet actief filteren
+        if (yMinNum) yMinNum.value=''; if (yMaxNum) yMaxNum.value='';
+        if (yMinLb) yMinLb.textContent='Alle'; if (yMaxLb) yMaxLb.textContent='Alle';
+      } else {
+        yMinEl.value=FILTER.year; yMaxEl.value=FILTER.year;
+        if (yMinNum) yMinNum.value=FILTER.year; if (yMaxNum) yMaxNum.value=FILTER.year;
+        if (yMinLb) yMinLb.textContent=String(FILTER.year); if (yMaxLb) yMaxLb.textContent=String(FILTER.year);
+      }
+      if (!yMinEl.__llsBound){
+        var activate = function(v){
+          FILTER.year = +v; 
+          yMinEl.value = yMaxEl.value = FILTER.year;
+          if (yMinNum) yMinNum.value=FILTER.year;
+          if (yMaxNum) yMaxNum.value=FILTER.year;
+          if (yMinLb) yMinLb.textContent=String(FILTER.year);
+          if (yMaxLb) yMaxLb.textContent=String(FILTER.year);
+          render();
+        };
+        var clear = function(){
+          FILTER.year = null;
+          if (yMinNum) yMinNum.value=''; if (yMaxNum) yMaxNum.value='';
+          if (yMinLb) yMinLb.textContent='Alle'; if (yMaxLb) yMaxLb.textContent='Alle';
+          render();
+        };
+        yMinEl.addEventListener('input', function(e){ activate(+e.target.value||YEAR_MIN); });
+        yMaxEl.addEventListener('input', function(e){ activate(+e.target.value||YEAR_MIN); });
+        if (yMinNum) yMinNum.addEventListener('input', function(e){ if (e.target.value==='') clear(); else activate(+e.target.value||YEAR_MIN); });
+        if (yMaxNum) yMaxNum.addEventListener('input', function(e){ if (e.target.value==='') clear(); else activate(+e.target.value||YEAR_MIN); });
+        if (yMinLb) yMinLb.addEventListener('click', clear);
+        if (yMaxLb) yMaxLb.addEventListener('click', clear);
+        yMinEl.__llsBound = yMaxEl.__llsBound = true;
+      }
+    }
+  }
+  render();
+}
+/* ================== Init ================== */
+function init(){
+  CURRENT_SOURCE=discoverData();
+  RAW=CURRENT_SOURCE.obj;
+  DATA_SOURCE=CURRENT_SOURCE.source;
+  KITS=RAW.kits||[];
+  parseMakeModelOrFromData();
+  try{
+  var clean = location.origin + location.pathname.replace(/\/+$/,'');
+  var linkCanonical = $('link-canonical');
+  if(linkCanonical) linkCanonical.href = clean;
+  setMetaContent('og-url','og:url', clean);
+  document.title = 'Hulpveren — ' + (MAKE_VIEW||'') + ' ' + (MODEL_VIEW||'') + ' | MAD sets met montage';
+  setMetaContent('og-title', 'og:title', document.title);
+}catch(e){
+  console.error('[LLS] meta init error:', e);
+}
+  if ($('mk'))  $('mk').textContent  = MAKE_VIEW || 'Merk';
+  if ($('mk2')) $('mk2').textContent = MAKE_VIEW || 'Merk';
+  if ($('md'))  $('md').textContent  = MODEL_VIEW || 'Model';
+  if (!window.__LLS_MM_EVENTS_BOUND__){
+    var modeWrap=$('mode-chips');
+    if(modeWrap){
+      modeWrap.addEventListener('click', function(e){
+        var t=e.target.closest('.chip'); if(!t) return;
+        var on=t.getAttribute('data-on')==='1';
+        var key=t.getAttribute('data-key');
+        t.setAttribute('data-on', on?'0':'1');
+        if(on) FILTER.modes.delete(key); else FILTER.modes.add(key);
+        render();
+      });
+    }
+    var axleWrap=$('axle-chips');
+    if(axleWrap){
+      axleWrap.addEventListener('click', function(e){
+        var t=e.target.closest('.chip'); if(!t) return;
+        var on=t.getAttribute('data-on')==='1';
+        var key=t.getAttribute('data-key');
+        t.setAttribute('data-on', on?'0':'1');
+        if(on) FILTER.axles.delete(key); else FILTER.axles.add(key);
+        render();
+      });
+    }
+    var damperWrap=$('damper-chips');
+    if(damperWrap){
+      damperWrap.addEventListener('click', function(e){
+        var t=e.target.closest('.chip'); if(!t) return;
+        var on=t.getAttribute('data-on')==='1';
+        var key=t.getAttribute('data-key');
+        t.setAttribute('data-on', on?'0':'1');
+        if(on) FILTER.dampers.delete(key); else FILTER.dampers.add(key);
+        render();
+      });
+    }
+    var fuelWrap=$('fuel-chips');
+    if(fuelWrap){
+      fuelWrap.addEventListener('click', function(e){
+        var t=e.target.closest('.chip'); if(!t) return;
+        var on=t.getAttribute('data-on')==='1';
+        var key=t.getAttribute('data-key');
+        t.setAttribute('data-on', on?'0':'1');
+        if(on) FILTER.fuels.delete(key); else FILTER.fuels.add(key);
+        render();
+      });
+    }
+    var qEl=$('q');
+    if(qEl) qEl.addEventListener('input', function(e){ FILTER.q=e.target.value||''; render(); });
+    var clr=$('clear');
+    if(clr) clr.addEventListener('click', function(){
+      if(qEl) qEl.value=''; FILTER.q=''; render();
+    });
+    var seeAll=$('see-all');
+    if(seeAll){
+      seeAll.addEventListener('click', function(){
+        var path = location.pathname.replace(/\/hulpveren\/.+$/, '/hulpveren/'+(MAKE_LABEL||'').toLowerCase());
+        location.href = path;
+      });
+    }
+    window.__LLS_MM_EVENTS_BOUND__=true;
+  }
+  var gridEl=$('grid');
+  if(gridEl && !gridEl.__imgErrBound){
+    gridEl.addEventListener('error', function(ev){
+      var t=ev.target;
+      if(t && t.tagName==='IMG') nextImage(t);
+    }, true);
+    gridEl.__imgErrBound=true;
+  }
+  waitForBetterDataBeforeFirstRender(function(){
+    startupFiltersAndRender();
+    // bindLeadFormEvents();  <-- laat staan zodra je je lead-form functies terugplakt
+    watchForBetterData(function(cand){
+      RAW=cand.obj; KITS=RAW.kits||[]; DATA_SOURCE=cand.source;
+      parseMakeModelOrFromData();
+      if ($('mk'))  $('mk').textContent  = MAKE_VIEW || 'Merk';
+      if ($('mk2')) $('mk2').textContent = MAKE_VIEW || 'Merk';
+      if ($('md'))  $('md').textContent  = MODEL_VIEW || 'Model';
+      startupFiltersAndRender();
+    });
+  });
+  console.log('[LLS] source:', DATA_SOURCE, 'kits:', KITS.length);
+console.log('[LLS] MAKE_N/MODEL_N:', MAKE_N, MODEL_N);
+console.log('[LLS] models in data:', 
+  Array.from(new Set((KITS[0]?.fitments||[]).map(f=>normModel(f.model)))).slice(0,10)
+);
+}
+function safeInit(){
+  try{ init(); }
+  catch(e){ console.error('[LLS] init error:', e); }
+}
+if (document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', safeInit);
+} else {
+  safeInit();
+}
+})();
+  </script>
+ </main>

@@ -1,0 +1,177 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "model": {
+    "slug": "jetta",
+    "label": "Jetta"
+  },
+  "kits": [
+    {
+      "sku": "HV-173145",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947013551.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 161.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 249
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "1J"
+          ],
+          "remark": "Only Syncro",
+          "year_from": "10-1998",
+          "year_to": "09-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-192117",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013766.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 186.6,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 319
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "III",
+            "1HX0"
+          ],
+          "remark": "Excl. 16V, Excl. GT, Excl. VR6",
+          "year_from": "04-1992",
+          "year_to": "10-1998",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "II (19E",
+            "1G2",
+            "165)"
+          ],
+          "remark": "Excl. 16V, Excl. GT, Excl. VR6",
+          "year_from": "08-1983",
+          "year_to": "12-1992",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-193138",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947013841.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 329
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "IV",
+            "1J"
+          ],
+          "remark": "",
+          "year_from": "10-1998",
+          "year_to": "09-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-193148",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947013858.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 227.4,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 56.25,
+        "labor_ex_vat_max_eur": 56.25,
+        "total_inc_vat_from_eur": 349
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "V",
+            "1K2"
+          ],
+          "remark": "Excl. Bluemotion",
+          "year_from": "08-2005",
+          "year_to": "10-2010",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-199515",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947014091.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 180.35,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 269
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "16"
+          ],
+          "remark": "Incl. Bluemotion & Hybrid",
+          "year_from": "01-2011",
+          "year_to": "",
+          "notes": "Engine: All"
+        },
+        {
+          "platform_codes": [
+            "V",
+            "1KM"
+          ],
+          "remark": "Incl. Bluemotion",
+          "year_from": "09-2005",
+          "year_to": "01-2011",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

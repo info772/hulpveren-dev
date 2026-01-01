@@ -1,0 +1,70 @@
+<%- include("../partials/header") %>
+
+<div class="panel">
+  <h2><%= isEdit ? "Blog bewerken" : "Nieuwe blog" %></h2>
+  <% if (errors && errors.length) { %>
+    <div class="flash error">Problemen: <%= errors.join(", ") %></div>
+  <% } %>
+  <form
+    method="post"
+    enctype="multipart/form-data"
+    action="<%= isEdit ? `/admin/blogs/${blog.id}` : "/admin/blogs" %>"
+  >
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <div class="form-row">
+      <div>
+        <label for="title">Titel</label>
+        <input id="title" name="title" value="<%= blog.title || "" %>" required />
+      </div>
+      <div>
+        <label for="slug">Slug</label>
+        <input id="slug" name="slug" value="<%= blog.slug || "" %>" required />
+      </div>
+      <div>
+        <label for="status">Status</label>
+        <select id="status" name="status">
+          <option value="draft" <%= blog.status === "draft" ? "selected" : "" %>>Draft</option>
+          <option value="published" <%= blog.status === "published" ? "selected" : "" %>>Published</option>
+          <option value="archived" <%= blog.status === "archived" ? "selected" : "" %>>Archived</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label for="category">Categorie</label>
+        <input id="category" name="category" value="<%= blog.category || "" %>" />
+      </div>
+      <div>
+        <label for="author">Auteur</label>
+        <input id="author" name="author" value="<%= blog.author || "" %>" />
+      </div>
+      <div>
+        <label for="date">Datum</label>
+        <input id="date" name="date" type="date" value="<%= blog.date || "" %>" />
+      </div>
+      <div>
+        <label for="readTime">Leestijd</label>
+        <input id="readTime" name="readTime" value="<%= blog.readTime || "" %>" />
+      </div>
+    </div>
+    <div>
+      <label for="excerpt">Excerpt</label>
+      <textarea id="excerpt" name="excerpt" rows="3"><%= blog.excerpt || "" %></textarea>
+    </div>
+    <div>
+      <label for="content">Content (HTML)</label>
+      <textarea id="content" name="content" rows="14"><%= blog.content || "" %></textarea>
+    </div>
+    <div>
+      <label for="heroImage">Hero image</label>
+      <% if (blog.heroImagePath) { %>
+        <div class="muted">Huidig: <%= blog.heroImagePath %></div>
+      <% } %>
+      <input id="heroImage" name="heroImage" type="file" accept=".jpg,.jpeg,.png,.webp,.gif" />
+    </div>
+    <button type="submit"><%= isEdit ? "Opslaan" : "Aanmaken" %></button>
+    <a href="/admin/blogs" class="button secondary">Terug</a>
+  </form>
+</div>
+
+<%- include("../partials/footer") %>

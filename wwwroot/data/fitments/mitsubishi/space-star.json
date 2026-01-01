@@ -1,0 +1,96 @@
+{
+  "make": {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi"
+  },
+  "model": {
+    "slug": "space-star",
+    "label": "Space Star"
+  },
+  "kits": [
+    {
+      "sku": "HV-101225",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947072176.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 170.25,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 259
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "A0_A"
+          ],
+          "remark": "",
+          "year_from": "05-2012",
+          "year_to": "",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-102008",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947012165.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 245.9,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 439
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "DG_A"
+          ],
+          "remark": "",
+          "year_from": "06-1998",
+          "year_to": "12-2004",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-102018",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947012189.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 166.95,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 112.5,
+        "labor_ex_vat_max_eur": 112.5,
+        "total_inc_vat_from_eur": 339
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "DG_A"
+          ],
+          "remark": "Maximum support",
+          "year_from": "06-1998",
+          "year_to": "12-2004",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "model": {
+    "slug": "accent",
+    "label": "Accent"
+  },
+  "kits": [
+    {
+      "sku": "HV-492057",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "",
+      "ean": "8717947015920.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 160.2,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "I (X-3)"
+          ],
+          "remark": "",
+          "year_from": "10-1994",
+          "year_to": "01-2000",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-492067",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "RDW-TUV",
+      "ean": "8717947015937.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 196.7,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 37.5,
+        "labor_ex_vat_max_eur": 37.5,
+        "total_inc_vat_from_eur": 289
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "II (LC)"
+          ],
+          "remark": "",
+          "year_from": "01-2000",
+          "year_to": "11-2005",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}

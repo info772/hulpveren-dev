@@ -1,0 +1,68 @@
+{
+  "make": {
+    "slug": "kia",
+    "label": "KIA"
+  },
+  "model": {
+    "slug": "optima",
+    "label": "Optima"
+  },
+  "kits": [
+    {
+      "sku": "HV-373225",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075092.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 173.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "JF"
+          ],
+          "remark": "Incl. SW, Incl. Hybrid",
+          "year_from": "09-2015",
+          "year_to": "07-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    },
+    {
+      "sku": "HV-373235",
+      "family_code": "HV",
+      "family_label": "Hulpveren",
+      "position": "rear",
+      "approval": "TUV",
+      "ean": "8717947075085.0",
+      "pricing_nl": {
+        "parts_ex_vat_eur": 173.05,
+        "minute_rate_eur": 1.25,
+        "vat_rate": 0.21,
+        "mode": "add",
+        "labor_ex_vat_min_eur": 75.0,
+        "labor_ex_vat_max_eur": 75.0,
+        "total_inc_vat_from_eur": 309
+      },
+      "fitments": [
+        {
+          "platform_codes": [
+            "JF"
+          ],
+          "remark": "Maximum support, Incl. SW, Incl. hybrid",
+          "year_from": "09-2015",
+          "year_to": "07-2020",
+          "notes": "Engine: All"
+        }
+      ]
+    }
+  ]
+}
