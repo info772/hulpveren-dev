@@ -1274,7 +1274,7 @@
 
       return {
         plateSlug: info.plateSlug,
-        plateMasked: "**-**-**",
+        plateMasked: "",
         plate,
         vehicle,
         yearRange,
@@ -4019,7 +4019,7 @@
 
     return {
       plateSlug: plateSlug(plateValue),
-      plateMasked: "**-**-**",
+      plateMasked: "",
       plate: (vehicle && vehicle.plate) || String(plateValue || "").toUpperCase(),
       vehicle,
       yearRange,
@@ -4482,7 +4482,7 @@
 
     const plateRaw = (route && route.plate) || "";
     const plateNormalized = normalizePlateInput(plateRaw);
-    const plateDisplay = plateNormalized || plateRaw.toUpperCase() || "**-**-**";
+    const plateDisplay = plateNormalized || plateRaw.toUpperCase() || "";
     const routeMakeSlug = String(route?.make || "").toLowerCase();
     const routeModelSlug = String(route?.model || "").toLowerCase();
 

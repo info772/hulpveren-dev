@@ -21,11 +21,10 @@
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "");
 
-  const sanitizePlateInput = (value) => {
-    const raw = String(value || "").toUpperCase();
-    const cleaned = raw.replace(/[^A-Z0-9-]+/g, "").replace(/-+/g, "-");
-    return cleaned.replace(/^-+/, "").replace(/-+$/, "");
-  };
+  const sanitizePlateInput = (value) =>
+    String(value || "")
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, "");
 
   const slugify = (value) =>
     String(value || "")
@@ -306,7 +305,9 @@
 
   const renderPlatePill = (ctx) => {
     const pill = ensurePlatePill(true);
-    const input = document.querySelector("[data-plate-input]");
+    const input =
+      document.getElementById("plateInput") ||
+      document.querySelector(".plate-input");
     if (!pill) return;
     const row = pill.closest("[data-plate-pill-row]");
     const pillText = pill.querySelector("[data-plate-pill-text]");
@@ -390,24 +391,27 @@
   };
 
   const buildPlateBarMarkup = () => `
-    <div class="nlplate">
-      <span class="nlplate__eu" aria-hidden="true">
-        <span class="nlplate__nl">NL</span>
-      </span>
-      <form class="nlplate__form" data-plate-form role="search" aria-label="Kenteken zoeken">
-        <input class="nlplate__input" name="plate" inputmode="text" autocomplete="off"
-               placeholder="5VLL95" aria-label="Kenteken" data-plate-input />
-        <button class="nlplate__btn" type="submit" aria-label="Zoeken">
-          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M13.6 12.2a6 6 0 1 0-1.4 1.4l3.6 3.6a1 1 0 0 0 1.4-1.4l-3.6-3.6ZM4 8a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z"/>
-          </svg>
-        </button>
-      </form>
+    <div class="plate-search">
+      <div class="plate-ui">
+        <div class="plate-eu">NL</div>
+
+        <input
+          class="plate-input"
+          type="text"
+          id="plateInput"
+          name="plate"
+          placeholder="5VLL95"
+          autocomplete="off"
+          inputmode="latin"
+        />
+      </div>
+
+      <button class="plate-button" type="button" id="plateSearchBtn">Zoek</button>
     </div>
   `;
 
   const ensurePlateBar = () => {
-    let bar = document.querySelector("[data-platebar]");
+    let bar = document.querySelector(".plate-search");
     if (bar) return bar;
     const target =
       document.querySelector(".hv2-cta") ||
@@ -416,12 +420,11 @@
       document.querySelector(".site-header");
     if (!target) return null;
 
-    bar = document.createElement("div");
-    bar.className = "platebar";
-    bar.setAttribute("data-platebar", "1");
-    bar.innerHTML = buildPlateBarMarkup();
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = buildPlateBarMarkup();
+    bar = wrapper.firstElementChild;
+    if (!bar) return null;
     if (target.classList.contains("nav-shell")) {
-      bar.classList.add("nav-cta");
       target.appendChild(bar);
       return bar;
     }
@@ -442,8 +445,10 @@
       }
       return;
     }
-    const form = bar.querySelector("[data-plate-form]");
-    const input = bar.querySelector("[data-plate-input]");
+    const input =
+      bar.querySelector("#plateInput") || bar.querySelector(".plate-input");
+    const button =
+      bar.querySelector("#plateSearchBtn") || bar.querySelector(".plate-button");
 
     if (input) {
       input.addEventListener("input", () => {
@@ -455,26 +460,38 @@
       });
     }
 
-    if (form) {
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const normalized = normalizePlate(input ? input.value : "");
-        if (input) input.value = sanitizePlateInput(input.value);
-        if (!normalized || normalized.length < 6) {
-          if (input) input.focus();
-          return;
+    const submitPlate = () => {
+      const normalized = normalizePlate(input ? input.value : "");
+      if (input) input.value = sanitizePlateInput(input.value);
+      if (!normalized || normalized.length < 6) {
+        if (input) input.focus();
+        return;
+      }
+      const ctx = {
+        plate: normalized,
+        vehicle: null,
+        range: null,
+        yearRange: null,
+        updatedAt: Date.now(),
+      };
+      savePlateContext(ctx);
+      renderPlatePill(ctx);
+      dispatchPlateEvent(ctx);
+      window.location.href = `${PLATE_PATH}${normalized}`;
+    };
+
+    if (button && button.dataset.plateBound !== "1") {
+      button.dataset.plateBound = "1";
+      button.addEventListener("click", submitPlate);
+    }
+
+    if (input && input.dataset.plateBound !== "1") {
+      input.dataset.plateBound = "1";
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          submitPlate();
         }
-        const ctx = {
-          plate: normalized,
-          vehicle: null,
-          range: null,
-          yearRange: null,
-          updatedAt: Date.now(),
-        };
-        savePlateContext(ctx);
-        renderPlatePill(ctx);
-        dispatchPlateEvent(ctx);
-        window.location.href = `${PLATE_PATH}${normalized}`;
       });
     }
   };

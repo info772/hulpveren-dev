@@ -48,21 +48,22 @@
     </nav>
 
     <div class="hv2-cta">
-      <div class="platebar" data-platebar>
-        <div class="nlplate">
-          <span class="nlplate__eu" aria-hidden="true">
-            <span class="nlplate__nl">NL</span>
-          </span>
-          <form class="nlplate__form" data-plate-form role="search" aria-label="Kenteken zoeken">
-            <input class="nlplate__input" name="plate" inputmode="text" autocomplete="off"
-                   placeholder="5VLL95" aria-label="Kenteken" data-plate-input />
-            <button class="nlplate__btn" type="submit" aria-label="Zoeken">
-              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
-                <path fill="currentColor" d="M13.6 12.2a6 6 0 1 0-1.4 1.4l3.6 3.6a1 1 0 0 0 1.4-1.4l-3.6-3.6ZM4 8a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z"/>
-              </svg>
-            </button>
-          </form>
+      <div class="plate-search">
+        <div class="plate-ui">
+          <div class="plate-eu">NL</div>
+
+          <input
+            class="plate-input"
+            type="text"
+            id="plateInput"
+            name="plate"
+            placeholder="5VLL95"
+            autocomplete="off"
+            inputmode="latin"
+          />
         </div>
+
+        <button class="plate-button" type="button" id="plateSearchBtn">Zoek</button>
       </div>
       <a class="hv2-btn" data-native-nav="1" data-setting-link="phoneTel" href="tel:+31165856568">
         Bel <span data-setting="phone">0165 856568</span>
