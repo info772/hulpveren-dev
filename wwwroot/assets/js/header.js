@@ -2,217 +2,178 @@
 (() => {
   "use strict";
 
-  const header = document.querySelector(".site-header");
-  if (!header) return;
-  if (header.dataset.hvMenuBound === "1") return;
-  header.dataset.hvMenuBound = "1";
+  if (window.__HV_HEADER_V2_LOADED__) return;
+  window.__HV_HEADER_V2_LOADED__ = true;
 
-  const menuToggle = header.querySelector("[data-nav-toggle]");
-  const nav = header.querySelector(".nav");
+  const PARTIAL_URL = "/partials/header-v2.html";
+  const BUILD_ID_URL = "/assets/build-id.txt";
 
-  const slugify = (s) =>
-    String(s || "")
+  const sanitizeBuildId = (value) =>
+    String(value || "")
       .trim()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase()
-      .replace(/&/g, " and ")
-      .replace(/#/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
+      .replace(/[^a-zA-Z0-9._-]/g, "");
 
-  const MEGA_CACHE = Object.create(null);
-  const MEGA_PROMISE = Object.create(null);
-
-  const MEGA_CFG = {
-    hv: { base: "/hulpveren", url: "/data/hv-kits.json" },
-    nr: { base: "/luchtvering", url: "/data/nr-kits.json" },
-    ls: { base: "/verlagingsveren", url: "/data/ls-kits.json" },
-  };
-
-  function emptyResult(base) {
-    return { brands: [], base };
-  }
-
-  async function loadKits(url, base) {
+  const updateAssetUrl = (url, buildId) => {
+    if (!url) return url;
     try {
-      const res = await fetch(url, { cache: "force-cache" });
-      if (!res.ok) return emptyResult(base);
-
-      const data = await res.json();
-      const kits = Array.isArray(data) ? data : (data?.kits || []);
-
-      const brandMap = new Map();
-      for (const k of kits) {
-        const fitments = Array.isArray(k?.fitments) ? k.fitments : [];
-        for (const f of fitments) {
-          const makeLabel = String(f?.make || "").trim();
-          const modelLabel = String(f?.model || "").trim();
-          const make = slugify(makeLabel);
-          if (!make || !modelLabel) continue;
-
-          const curMakeLabel = brandMap.get(make);
-          if (!curMakeLabel || makeLabel.length > curMakeLabel.length) {
-            brandMap.set(make, makeLabel);
-          }
-
-        }
-      }
-
-      const brands = Array.from(brandMap.entries())
-        .map(([slug, label]) => ({ slug, label }))
-        .sort((a, b) => a.label.localeCompare(b.label, "nl"));
-      return { brands, base };
+      const parsed = new URL(url, window.location.origin);
+      if (!parsed.pathname.startsWith("/assets/")) return url;
+      parsed.searchParams.set("v", buildId);
+      return parsed.pathname + parsed.search + parsed.hash;
     } catch {
-      return emptyResult(base);
+      return url;
     }
-  }
-
-  function ensureMegaData(family) {
-    if (MEGA_CACHE[family]) return Promise.resolve(MEGA_CACHE[family]);
-    if (MEGA_PROMISE[family]) return MEGA_PROMISE[family];
-
-    const cfg = MEGA_CFG[family];
-    if (!cfg) return Promise.resolve(emptyResult("/"));
-
-    MEGA_PROMISE[family] = loadKits(cfg.url, cfg.base).then((data) => {
-      MEGA_CACHE[family] = data;
-      return data;
-    });
-
-    return MEGA_PROMISE[family];
-  }
-
-  function renderMegaMenu(family) {
-    const cache = MEGA_CACHE[family];
-    if (!cache) return;
-
-    const base = cache.base || MEGA_CFG[family]?.base || "/";
-    const brandsEl = header.querySelector(`#hv-mega-brands-${family}`);
-    if (!brandsEl) return;
-
-    const brands = cache.brands || [];
-
-    brandsEl.innerHTML = brands
-      .map((b) => `<li><a href="${base}/${b.slug}">${b.label}</a></li>`)
-      .join("");
-  }
-
-  // mobile toggle
-  if (menuToggle && nav) {
-    menuToggle.addEventListener("click", () => {
-      const open = header.classList.toggle("nav-open");
-      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  }
-
-  function closeItem(item) {
-    item.classList.remove("is-open");
-    const b = item.querySelector(".nav-toggle-cta");
-    if (b) b.setAttribute("aria-expanded", "false");
-    const panel = item.querySelector(".mega-panel");
-    if (panel) {
-      panel.setAttribute("aria-hidden", "true");
-      panel.setAttribute("hidden", "");
-    }
-  }
-
-  function openItem(item) {
-    header.querySelectorAll(".nav-item-mega").forEach((other) => {
-      if (other !== item) closeItem(other);
-    });
-
-    item.classList.add("is-open");
-    const b = item.querySelector(".nav-toggle-cta");
-    if (b) b.setAttribute("aria-expanded", "true");
-    const panel = item.querySelector(".mega-panel");
-    if (panel) {
-      panel.removeAttribute("hidden");
-      panel.setAttribute("aria-hidden", "false");
-    }
-
-    const fam = item.getAttribute("data-family");
-    if (!fam) return;
-    ensureMegaData(fam).then(() => renderMegaMenu(fam));
-  }
-
-  const focusFirstLink = (item) => {
-    const link = item.querySelector(".mega-panel a");
-    if (link) link.focus();
   };
 
-  header.querySelectorAll(".nav-item-mega .nav-toggle-cta").forEach((btn) => {
-    btn.setAttribute("aria-expanded", "false");
-    btn.setAttribute("aria-haspopup", "true");
-    const item = btn.closest(".nav-item-mega");
-    if (item) {
-      const fam = item.getAttribute("data-family") || "menu";
-      const panel = item.querySelector(".mega-panel");
-      if (panel) {
-        const panelId = panel.id || `mega-menu-${fam}`;
-        panel.id = panelId;
-        panel.setAttribute("role", "region");
-        const labelMap = {
-          hv: "Merken hulpveren",
-          nr: "Merken luchtvering",
-          ls: "Merken verlagingsveren",
-        };
-        panel.setAttribute("aria-label", labelMap[fam] || "Merken menu");
-        panel.setAttribute("aria-hidden", "true");
-        panel.setAttribute("hidden", "");
-        btn.setAttribute("aria-controls", panelId);
-      }
-    }
+  const applyBuildId = (buildId) => {
+    const cleaned = sanitizeBuildId(buildId);
+    if (!cleaned) return;
 
-    btn.addEventListener("click", (e) => {
-      const item = e.currentTarget.closest(".nav-item-mega");
-      if (!item) return;
-      if (item.classList.contains("is-open")) closeItem(item);
-      else openItem(item);
+    document.documentElement.dataset.buildId = cleaned;
+
+    const currentScript = document.currentScript;
+    const updateAttr = (el, attr) => {
+      const raw = el.getAttribute(attr);
+      const next = updateAssetUrl(raw, cleaned);
+      if (next && raw !== next) {
+        el.setAttribute(attr, next);
+      }
+    };
+
+    document
+      .querySelectorAll('link[rel="stylesheet"][href]')
+      .forEach((link) => updateAttr(link, "href"));
+
+    document.querySelectorAll("script[src]").forEach((script) => {
+      if (script === currentScript) return;
+      updateAttr(script, "src");
     });
-    btn.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        const item = e.currentTarget.closest(".nav-item-mega");
-        if (!item) return;
-        if (item.classList.contains("is-open")) closeItem(item);
-        else {
-          openItem(item);
-          focusFirstLink(item);
+
+    if (currentScript) {
+      const raw = currentScript.getAttribute("src") || "";
+      if (raw && raw.indexOf("v=") === -1) {
+        const warmed = updateAssetUrl(raw, cleaned);
+        if (warmed && warmed !== raw) {
+          const warmScript = document.createElement("script");
+          warmScript.src = warmed;
+          warmScript.defer = true;
+          warmScript.dataset.hvBuildWarm = "1";
+          document.head.appendChild(warmScript);
         }
-      } else if (e.key === "ArrowDown") {
-        e.preventDefault();
-        const item = e.currentTarget.closest(".nav-item-mega");
-        if (!item) return;
-        openItem(item);
-        focusFirstLink(item);
-      } else if (e.key === "Escape") {
-        e.preventDefault();
-        const item = e.currentTarget.closest(".nav-item-mega");
-        if (item) closeItem(item);
       }
-    });
-  });
-
-  const closeAllNav = () => {
-    header.classList.remove("nav-open");
-    header.querySelectorAll(".nav-item-mega").forEach(closeItem);
+    }
   };
 
-  header.querySelectorAll(".nav a, .mega-panel a").forEach((link) => {
-    link.addEventListener("click", () => closeAllNav());
-  });
+  const fallbackBuildId = () => {
+    applyBuildId(String(Date.now()));
+  };
 
-  document.addEventListener("click", (evt) => {
-    if (!header.contains(evt.target)) {
-      closeAllNav();
+  const ensureBuildId = async () => {
+    try {
+      const res = await fetch(BUILD_ID_URL, { cache: "no-store" });
+      if (!res.ok) {
+        fallbackBuildId();
+        return;
+      }
+      const text = await res.text();
+      if (!String(text || "").trim()) {
+        fallbackBuildId();
+        return;
+      }
+      applyBuildId(text);
+    } catch {
+      fallbackBuildId();
     }
-  });
+  };
 
-  document.addEventListener("keydown", (evt) => {
-    if (evt.key !== "Escape") return;
-    closeAllNav();
-  });
+  const getMountTarget = () => {
+    const existing = document.getElementById("site-header");
+    if (existing) return { mountEl: existing };
+
+    const legacy = document.querySelector("header.site-header");
+    if (legacy) return { legacy };
+
+    return {};
+  };
+
+  const createMountEl = (fallbackTarget) => {
+    const mountEl = document.createElement("div");
+    mountEl.id = "site-header";
+
+    if (fallbackTarget && fallbackTarget.parentNode) {
+      fallbackTarget.parentNode.replaceChild(mountEl, fallbackTarget);
+      return mountEl;
+    }
+
+    const body = document.body || document.documentElement;
+    if (body.firstChild) {
+      body.insertBefore(mountEl, body.firstChild);
+    } else {
+      body.appendChild(mountEl);
+    }
+
+    return mountEl;
+  };
+
+  const setNavState = (header, toggle, overlay, drawer, open) => {
+    header.classList.toggle("hv2-open", open);
+    document.body.classList.toggle("nav-open", open);
+    if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    if (overlay) overlay.setAttribute("aria-hidden", open ? "false" : "true");
+    if (drawer) drawer.setAttribute("aria-hidden", open ? "false" : "true");
+  };
+
+  const bindNav = (mountEl) => {
+    if (mountEl.dataset.hv2Bound === "1") return;
+    mountEl.dataset.hv2Bound = "1";
+
+    const header = mountEl.querySelector(".hv2-header");
+    if (!header) return;
+
+    const toggle = mountEl.querySelector("[data-hv2-toggle]");
+    const overlay = mountEl.querySelector("[data-hv2-overlay]");
+    const drawer = mountEl.querySelector("[data-hv2-drawer]");
+    const navLinks = mountEl.querySelectorAll(".hv2-nav a");
+
+    const isOpen = () => header.classList.contains("hv2-open");
+    const closeNav = () => {
+      if (!isOpen()) return;
+      setNavState(header, toggle, overlay, drawer, false);
+    };
+    const openNav = () => {
+      if (isOpen()) return;
+      setNavState(header, toggle, overlay, drawer, true);
+    };
+
+    setNavState(header, toggle, overlay, drawer, false);
+
+    if (toggle) {
+      toggle.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        if (isOpen()) closeNav();
+        else openNav();
+      });
+    }
+
+    if (overlay) {
+      overlay.addEventListener("click", () => closeNav());
+    }
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => closeNav());
+    });
+
+    document.addEventListener("keydown", (evt) => {
+      if (evt.key === "Escape") closeNav();
+    });
+
+    document.addEventListener("click", (evt) => {
+      if (!isOpen()) return;
+      if (drawer && drawer.contains(evt.target)) return;
+      if (toggle && toggle.contains(evt.target)) return;
+      closeNav();
+    });
+  };
 
   const TITLE_MAP = {
     "algemene-voorwaarden": "Algemene voorwaarden",
@@ -252,7 +213,7 @@
     return toTitleCase(raw);
   };
 
-  const injectBreadcrumbs = () => {
+  const injectBreadcrumbs = (mountEl) => {
     if (document.getElementById("site-breadcrumbs")) return;
 
     const path = window.location.pathname || "/";
@@ -303,41 +264,41 @@
 
     wrap.appendChild(list);
     navEl.appendChild(wrap);
-    header.insertAdjacentElement("afterend", navEl);
+
+    const headerEl =
+      (mountEl && mountEl.querySelector(".hv2-header")) ||
+      document.querySelector(".hv2-header") ||
+      document.querySelector("header");
+
+    if (headerEl) {
+      headerEl.insertAdjacentElement("afterend", navEl);
+    }
   };
 
-  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-  let shrinkRange = 140;
+  const mount = async () => {
+    const target = getMountTarget();
+    const res = await fetch(PARTIAL_URL, { cache: "no-cache" });
+    if (!res.ok) return;
 
-  const updateShrinkRange = () => {
-    shrinkRange = window.matchMedia("(max-width: 960px)").matches ? 90 : 140;
+    const html = await res.text();
+    const mountEl = target.mountEl || createMountEl(target.legacy);
+    mountEl.innerHTML = html;
+    mountEl.dataset.hv2Mounted = "1";
+
+    bindNav(mountEl);
+    injectBreadcrumbs(mountEl);
   };
 
-  const applyScrollState = () => {
-    const y = window.scrollY || 0;
-    const shrink = clamp(y / shrinkRange, 0, 1);
-    header.style.setProperty("--header-shrink", shrink.toFixed(3));
-    header.classList.toggle("is-scrolled", shrink > 0.02);
+  const init = () => {
+    ensureBuildId();
+    mount();
   };
 
-  let scrollTicking = false;
-  const onScroll = () => {
-    if (scrollTicking) return;
-    scrollTicking = true;
-    requestAnimationFrame(() => {
-      applyScrollState();
-      scrollTicking = false;
-    });
-  };
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", () => {
-    updateShrinkRange();
-    onScroll();
-  });
-  updateShrinkRange();
-  injectBreadcrumbs();
-  applyScrollState();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();
 
 
