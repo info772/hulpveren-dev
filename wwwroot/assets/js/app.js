@@ -5,8 +5,8 @@
   "use strict";
 
   /* Fix Summary:
-   * Broken: Plate fetch could hang without timeout and plate tabs could show empty sets after strict filtering.
-   * Change: Added timeout/diagnostic logging for plate API, fallback rendering for filtered tabs, and route audit helper.
+   * Broken: Plate fetch could hang and some plate routes rendered empty after strict filtering.
+   * Change: Added timeout/single-flight fetch, route cache storage, filtered-tab fallbacks, and a debug route audit.
    * Test: /kenteken search + /hulpveren/<make>/<model>/kt_<plate>; add ?debug=1 for route audit logs.
    */
 
@@ -33,6 +33,7 @@
   );
   const PLATE_CACHE_TTL_MS = 15 * 60 * 1000;
   const PLATE_FETCH_TIMEOUT_MS = 12000;
+  const PLATE_FETCH_INFLIGHT = new Map();
   const PLATE_ROUTE_KEYS = {
     make: "hv_plate_make_slug",
     model: "hv_plate_model_slug",
@@ -531,6 +532,13 @@
 
     const findPlateSegment = (parts) => {
       if (!Array.isArray(parts) || !parts.length) return null;
+      const lastIndex = parts.length - 1;
+      if (parts[lastIndex] && parts[lastIndex].startsWith(PLATE_PREFIX)) {
+        const platePart = parts[lastIndex] || "";
+        const plate = platePart.slice(PLATE_PREFIX.length);
+        if (!plate) return null;
+        return { index: lastIndex, plate, platePart };
+      }
       const index = parts.findIndex(
         (part) => part && part.startsWith(PLATE_PREFIX)
       );
@@ -565,6 +573,32 @@
       }
       try {
         localStorage.setItem(PLATE_ROUTE_KEYS.model, modelSlug || "");
+      } catch (err) {
+        // ignore storage failures
+      }
+    };
+
+    const plateRouteCacheKey = (plate) => `hv_plate_route_${plate}`;
+
+    const readPlateRouteCache = (plate) => {
+      if (!plate) return null;
+      try {
+        const raw = localStorage.getItem(plateRouteCacheKey(plate));
+        const parsed = raw ? JSON.parse(raw) : null;
+        if (!parsed || !parsed.makeSlug || !parsed.modelSlug) return null;
+        return parsed;
+      } catch (err) {
+        return null;
+      }
+    };
+
+    const storePlateRouteCache = (plate, makeSlug, modelSlug) => {
+      if (!plate || !makeSlug || !modelSlug) return;
+      try {
+        localStorage.setItem(
+          plateRouteCacheKey(plate),
+          JSON.stringify({ makeSlug, modelSlug, updatedAt: Date.now() })
+        );
       } catch (err) {
         // ignore storage failures
       }
@@ -703,33 +737,45 @@
         debugLog("plate:cache_hit", { plate: normalized });
         return cached;
       }
+      if (PLATE_FETCH_INFLIGHT.has(normalized)) {
+        return PLATE_FETCH_INFLIGHT.get(normalized);
+      }
 
-      const endpoint = `${PLATE_API_BASE}/${encodeURIComponent(normalized)}`;
-      const res = await fetchWithTimeout(endpoint, { cache: "no-store" });
-      const snippet = await res
-        .clone()
-        .text()
-        .then((text) => text.slice(0, 200))
-        .catch(() => "");
-      debugLog("plate:fetch", { plate: normalized, status: res.status, endpoint });
-      if (!res.ok) {
-        console.warn("plate:fetch_error", {
-          plate: normalized,
-          endpoint,
-          status: res.status,
-          snippet,
-        });
-        const err = new Error(`plate_fetch_failed:${res.status}`);
-        err.status = res.status;
-        err.endpoint = endpoint;
-        throw err;
+      const inflight = (async () => {
+        const endpoint = `${PLATE_API_BASE}/${encodeURIComponent(normalized)}`;
+        const res = await fetchWithTimeout(endpoint, { cache: "no-store" });
+        const snippet = await res
+          .clone()
+          .text()
+          .then((text) => text.slice(0, 200))
+          .catch(() => "");
+        debugLog("plate:fetch", { plate: normalized, status: res.status, endpoint });
+        if (!res.ok) {
+          console.warn("plate:fetch_error", {
+            plate: normalized,
+            endpoint,
+            status: res.status,
+            snippet,
+          });
+          const err = new Error(`plate_fetch_failed:${res.status}`);
+          err.status = res.status;
+          err.endpoint = endpoint;
+          throw err;
+        }
+        if (snippet) {
+          debugLog("plate:fetch_snippet", { plate: normalized, endpoint, snippet });
+        }
+        const data = await res.json();
+        writeSessionCache(cacheKey, data, PLATE_CACHE_TTL_MS);
+        return data;
+      })();
+
+      PLATE_FETCH_INFLIGHT.set(normalized, inflight);
+      try {
+        return await inflight;
+      } finally {
+        PLATE_FETCH_INFLIGHT.delete(normalized);
       }
-      if (snippet) {
-        debugLog("plate:fetch_snippet", { plate: normalized, endpoint, snippet });
-      }
-      const data = await res.json();
-      writeSessionCache(cacheKey, data, PLATE_CACHE_TTL_MS);
-      return data;
     };
 
     const normalizeKey = (key) =>
@@ -1005,7 +1051,7 @@
       window.addEventListener("hv:vehicleSelected", async (event) => {
         const detail = event && event.detail ? event.detail : {};
         const vehicle = detail.vehicle || {};
-        const plateValue = plateSlug(detail.plate);
+        const plateValue = normalizePlateInput(detail.plate);
         const makeSlug = slugify(vehicle.make || vehicle.makename || "");
         const modelSlugRaw = slugify(vehicle.model || vehicle.modelname || "");
         if (!makeSlug || !modelSlugRaw || !plateValue) return;
@@ -1018,30 +1064,17 @@
           modelSlug: modelSlugRaw,
         });
         storePlateRouteSlugs(makeSlug, modelSlug);
+        storePlateRouteCache(plateValue, makeSlug, modelSlug);
         window.dispatchEvent(
           new CustomEvent("hv:plateRouteResolved", {
             detail: { plate: detail.plate, makeSlug, modelSlug, vehicle },
           })
         );
-        if (base) {
-          const target = `${base}/${makeSlug}/${modelSlug}/${PLATE_PREFIX}${plateValue}`;
-          if (normalizeForRoute(location.pathname) !== normalizeForRoute(target)) {
-            window.location.href = target;
-          }
-          return;
+        const targetBase = base || HV_BASE;
+        const target = `${targetBase}/${makeSlug}/${modelSlug}/${PLATE_PREFIX}${plateValue}`;
+        if (normalizeForRoute(location.pathname) !== normalizeForRoute(target)) {
+          window.location.href = target;
         }
-
-        const target = `${PLATE_LANDING_PATH}/?kt=${plateValue}`;
-        if (
-          normalizeForRoute(location.pathname) ===
-          normalizeForRoute(PLATE_LANDING_PATH)
-        ) {
-          if (window.history && typeof window.history.replaceState === "function") {
-            window.history.replaceState(null, "", target);
-          }
-          return;
-        }
-        window.location.href = target;
       });
     };
 
@@ -4955,6 +4988,7 @@
       caddyGeneration,
       isCaddy,
     };
+    storePlateRouteCache(plateNormalized, makeSlug, modelSlugForContext);
     if (
       window.HVPlateContext &&
       typeof window.HVPlateContext.setPlateContextFromVehicle === "function"

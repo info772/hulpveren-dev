@@ -3,9 +3,9 @@
   "use strict";
 
   /* Fix Summary:
-   * Broken: Plate bar bindings could duplicate after partial reloads and had no status feedback.
-   * Change: Guarded input/button bindings and added plate bar status/reset state updates.
-   * Test: Use the header plate search with valid/invalid input and confirm single submit.
+   * Broken: Plate bar bindings could duplicate after partial reloads and lacked reliable redirect logic.
+   * Change: Guarded bindings, added plate status/reset UI, and use cached route redirects when available.
+   * Test: Use the header plate search with valid/invalid input; verify redirect to /kenteken/{plate}.
    */
 
   const STORAGE_KEY = "hv_plate_context";
@@ -39,6 +39,20 @@
       .replace(/&/g, " and ")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
+
+  const plateRouteCacheKey = (plate) => `hv_plate_route_${plate}`;
+
+  const readPlateRouteCache = (plate) => {
+    if (!plate) return null;
+    try {
+      const raw = localStorage.getItem(plateRouteCacheKey(plate));
+      const parsed = safeJsonParse(raw);
+      if (!parsed || !parsed.makeSlug || !parsed.modelSlug) return null;
+      return parsed;
+    } catch {
+      return null;
+    }
+  };
 
   const escapeHtml = (value) =>
     String(value ?? "").replace(/[&<>"']/g, (m) => ({
@@ -457,9 +471,8 @@
           autocomplete="off"
           inputmode="latin"
         />
+        <button class="plate-button" type="button" id="plateSearchBtn">Zoek</button>
       </div>
-
-      <button class="plate-button" type="button" id="plateSearchBtn">Zoek</button>
     </div>
   `;
 
@@ -521,6 +534,7 @@
         if (input) input.focus();
         return;
       }
+      console.info("plate:parsed", { plate: normalized, source: "header" });
       setPlateBarState(bar, statusEl, "loading", "Bezig met zoeken...");
       const ctx = {
         plate: normalized,
@@ -532,8 +546,14 @@
       savePlateContext(ctx);
       renderPlatePill(ctx);
       dispatchPlateEvent(ctx);
+      const cached = readPlateRouteCache(normalized);
+      const target =
+        cached && cached.makeSlug && cached.modelSlug
+          ? `/hulpveren/${cached.makeSlug}/${cached.modelSlug}/kt_${normalized}`
+          : `${PLATE_PATH}${normalized}`;
       setPlateBarState(bar, statusEl, "success", "Kenteken gevonden. Doorsturen...");
-      window.location.href = `${PLATE_PATH}${normalized}`;
+      console.info("plate:redirect", { plate: normalized, target, source: "header" });
+      window.location.href = target;
     };
 
     if (button && button.dataset.plateBound !== "1") {

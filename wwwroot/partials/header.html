@@ -116,6 +116,11 @@
       </ul>
     </nav>
 
+    <!-- Fix Summary:
+     * Broken: Plate button sat outside the plate UI, causing styling regression.
+     * Change: Moved the search button into the plate bar for the integrated layout.
+     * Test: Header plate search renders as a Dutch plate with small integrated button.
+     -->
     <div class="plate-search">
       <div class="plate-ui">
         <div class="plate-eu">NL</div>
@@ -129,9 +134,8 @@
           autocomplete="off"
           inputmode="latin"
         />
+        <button class="plate-button" type="button" id="plateSearchBtn">Zoek</button>
       </div>
-
-      <button class="plate-button" type="button" id="plateSearchBtn">Zoek</button>
     </div>
   </div>
 </header>

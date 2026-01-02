@@ -435,6 +435,10 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
     margin-left: 0;
   }
   .platebar{ width: 100%; justify-content: flex-start; }
+  .plate-search{ width: 100%; }
+  .plate-ui{ width: 100%; max-width: 280px; }
+  .plate-input{ width: 120px; font-size: 16px; letter-spacing: .12em; }
+  .plate-button{ height: 30px; min-width: 32px; }
   .nlplate{ width: 100%; max-width: 280px; }
   .nlplate__input{ width: 120px; font-size: 16px; }
   .nlplate__btn{ height: 30px; width: 32px; }
@@ -442,6 +446,8 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
 }
 
 @media (max-width: 760px){
+  .plate-ui{ height: 42px; }
+  .plate-input{ width: 115px; font-size: 16px; letter-spacing: .12em; }
   .nlplate{ height: 42px; }
   .nlplate__input{ width: 115px; font-size: 16px; letter-spacing: .12em; }
 }
@@ -790,18 +796,17 @@ body.plate-route .hero{
 }
 
 /* Fix Summary:
- * Broken: Plate status/reset UI lacked styling for header/search feedback.
- * Change: Added plate status states, reset/action styles, and loading affordances.
- * Test: Header plate search and /kenteken widget status messages and reset links.
+ * Broken: Plate UI regressed visually and status/reset feedback lacked styling.
+ * Change: Restyled the plate input/button to Dutch plate proportions and added status/reset styles.
+ * Test: Header plate search styling on desktop/mobile + status/reset states.
  */
 
 /* --- Plate UI (NL) --- */
 .plate-search{
   display:inline-flex;
   flex-direction:column;
-  gap:0;
-  align-items:stretch;
-  width: 260px; /* pas aan indien nodig */
+  gap:6px;
+  align-items:flex-start;
 }
 
 /* De plaat zelf */
@@ -809,12 +814,13 @@ body.plate-route .hero{
   position:relative;
   display:flex;
   align-items:center;
-  border:2px solid #111;
-  border-bottom:0;            /* zodat knop de onderrand wordt */
-  border-radius:12px 12px 0 0;
-  background:#f3c400;         /* geel */
-  padding:10px 12px 10px 54px; /* ruimte voor NL band */
-  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  height:44px;
+  border-radius:10px;
+  background:#f2c200;
+  border:1px solid rgba(0,0,0,.18);
+  box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  overflow:hidden;
+  padding:0 52px 0 44px;
 }
 
 /* EU/NL band links */
@@ -824,46 +830,51 @@ body.plate-route .hero{
   top:0;
   bottom:0;
   width:44px;
-  background:#0b3a7a;         /* blauw */
+  background:#0b4ea2;
   color:#fff;
   font-weight:800;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius:10px 0 0 0;
-  letter-spacing:.5px;
+  letter-spacing:.08em;
+  font-size:12px;
 }
 
 /* Input */
 .plate-input{
-  width:100%;
+  width:140px;
   border:0;
   outline:0;
   background:transparent;
-  font-weight:900;
-  font-size:20px;
-  letter-spacing:2px;
+  height:100%;
+  font-weight:800;
+  font-size:18px;
+  letter-spacing:.14em;
   text-transform:uppercase;
   color:#111;
   text-align:center;
-  padding:4px 0;
+  padding:0 8px;
 }
 
-/* Onderstrip/houder met tekst */
 .plate-button{
-  border:2px solid #111;
-  border-top:0;               /* sluit aan op plaat */
-  border-radius:0 0 12px 12px;
-  background:#fff;
+  position:absolute;
+  right:6px;
+  top:50%;
+  transform:translateY(-50%);
+  height:32px;
+  min-width:34px;
+  border:0;
+  border-radius:8px;
+  background: rgba(0,0,0,.15);
   color:#111;
-  font-weight:800;
-  padding:10px 12px;
+  font-weight:700;
+  font-size:12px;
+  padding:0 8px;
   cursor:pointer;
-  line-height:1;
 }
 
 .plate-button:hover{
-  background:#f7f7f7;
+  background: rgba(0,0,0,.22);
 }
 
 .plate-search[data-plate-state="loading"] .plate-button{

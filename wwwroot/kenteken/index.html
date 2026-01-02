@@ -19,6 +19,11 @@
 </head>
 
 <body>
+  <!-- Fix Summary:
+   * Broken: /kenteken/{plate} stayed on a generic page without resolving to HV routes.
+   * Change: Added resolver logic to look up plate data, cache slugs, and redirect to /hulpveren/{make}/{model}/kt_{plate}.
+   * Test: Open /kenteken/13GTRG and confirm redirect to the HV plate route.
+   -->
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand" href="/" aria-label="Hulpveren.shop">
@@ -211,6 +216,172 @@
           .toUpperCase()
           .replace(/[^A-Z0-9]/g, "");
 
+      const PLATE_API_BASE = (window.HV_PLATE_API_BASE || "/api/plate").replace(
+        /\/+$/,
+        ""
+      );
+      const PLATE_TIMEOUT_MS = 12000;
+      const PLATE_CACHE_TTL_MS = 15 * 60 * 1000;
+
+      const setStatus = (message, useHtml = false) => {
+        if (!statusEl) return;
+        if (useHtml) {
+          statusEl.innerHTML = message || "";
+        } else {
+          statusEl.textContent = message || "";
+        }
+      };
+
+      const plateRouteCacheKey = (plate) => `hv_plate_route_${plate}`;
+
+      const readPlateRouteCache = (plate) => {
+        if (!plate) return null;
+        try {
+          const raw = localStorage.getItem(plateRouteCacheKey(plate));
+          const parsed = raw ? JSON.parse(raw) : null;
+          if (!parsed || !parsed.makeSlug || !parsed.modelSlug) return null;
+          return parsed;
+        } catch (err) {
+          return null;
+        }
+      };
+
+      const storePlateRouteCache = (plate, makeSlug, modelSlug) => {
+        if (!plate || !makeSlug || !modelSlug) return;
+        try {
+          localStorage.setItem(
+            plateRouteCacheKey(plate),
+            JSON.stringify({ makeSlug, modelSlug, updatedAt: Date.now() })
+          );
+        } catch (err) {
+          return;
+        }
+      };
+
+      const cachePlateData = (plate, data) => {
+        if (!plate) return;
+        try {
+          sessionStorage.setItem(
+            `plate:${plate}`,
+            JSON.stringify({
+              value: data,
+              expiresAt: Date.now() + PLATE_CACHE_TTL_MS,
+            })
+          );
+        } catch (err) {
+          return;
+        }
+      };
+
+      const extractPlateFromRoute = () => {
+        const clean = (location.pathname || "").replace(/\/+$/, "");
+        const parts = clean.split("/").filter(Boolean);
+        if (parts[0] === "kenteken" && parts.length > 1) return parts[1];
+        const params = new URLSearchParams(location.search || "");
+        return params.get("kt") || "";
+      };
+
+      const showManualTiles = (message) => {
+        setStatus(message, true);
+        if (vehicleEl) vehicleEl.textContent = "";
+        if (tilesEl) tilesEl.style.display = "";
+        if (linkHv) linkHv.href = "/hulpveren";
+        if (linkNr) linkNr.href = "/luchtvering";
+        if (linkLs) linkLs.href = "/verlagingsveren";
+      };
+
+      const fetchWithTimeout = async (url, options = {}) => {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), PLATE_TIMEOUT_MS);
+        try {
+          return await fetch(url, { ...options, signal: controller.signal });
+        } catch (err) {
+          if (err && err.name === "AbortError") {
+            const timeoutErr = new Error("plate_timeout");
+            timeoutErr.code = "timeout";
+            throw timeoutErr;
+          }
+          throw err;
+        } finally {
+          clearTimeout(timer);
+        }
+      };
+
+      const resolvePlateRoute = async (rawPlate) => {
+        const normalized = normalizePlate(rawPlate);
+        if (!normalized || normalized.length < 6) {
+          showManualTiles(
+            'Voer een geldig kenteken in. <a href="/hulpveren">Kies handmatig</a>.'
+          );
+          return;
+        }
+        console.info("plate:parsed", { plate: normalized, source: "resolver" });
+        const cached = readPlateRouteCache(normalized);
+        if (cached) {
+          const target = `/hulpveren/${cached.makeSlug}/${cached.modelSlug}/kt_${normalized}`;
+          console.info("plate:redirect", { plate: normalized, target, source: "cache" });
+          location.replace(target);
+          return;
+        }
+
+        setStatus("Kenteken wordt gecontroleerd...");
+        if (tilesEl) tilesEl.style.display = "none";
+        const endpoint = `${PLATE_API_BASE}/${encodeURIComponent(normalized)}`;
+        console.info("plate:lookup_start", { plate: normalized, endpoint });
+        try {
+          const res = await fetchWithTimeout(endpoint, { cache: "no-store" });
+          const ok = res.ok;
+          console.info("plate:lookup_end", {
+            plate: normalized,
+            status: res.status,
+            ok,
+          });
+          if (!ok) throw new Error(`status_${res.status}`);
+          const data = await res.json();
+          cachePlateData(normalized, data);
+
+          const candidates = Array.isArray(data?.vehicleCandidates)
+            ? data.vehicleCandidates
+            : Array.isArray(data?.candidates)
+              ? data.candidates
+              : data?.vehicle
+                ? [data.vehicle]
+                : [];
+          const vehicle =
+            candidates.find((c) => c?.isMain || c?.main) || candidates[0];
+          const makeLabel = vehicle?.make || vehicle?.makename || "";
+          const modelLabel = vehicle?.model || vehicle?.modelname || "";
+          const makeSlug = slugify(makeLabel);
+          const modelSlug = slugify(modelLabel);
+          if (!makeSlug || !modelSlug) {
+            showManualTiles(
+              'Geen voertuig gevonden. <a href="/hulpveren">Kies handmatig</a>.'
+            );
+            return;
+          }
+
+          storePlateRouteCache(normalized, makeSlug, modelSlug);
+          try {
+            localStorage.setItem("hv_plate_make_slug", makeSlug);
+            localStorage.setItem("hv_plate_model_slug", modelSlug);
+            localStorage.setItem("hv_plate", normalized);
+            localStorage.setItem("hv_vehicle_selected", JSON.stringify(vehicle));
+          } catch (err) {
+            // ignore storage failures
+          }
+
+          const target = `/hulpveren/${makeSlug}/${modelSlug}/kt_${normalized}`;
+          console.info("plate:redirect", { plate: normalized, target, source: "resolver" });
+          location.replace(target);
+        } catch (err) {
+          const message =
+            err?.code === "timeout"
+              ? 'Kentekenservice reageert niet. <a href="/hulpveren">Kies handmatig</a>.'
+              : 'Kenteken niet gevonden. <a href="/hulpveren">Kies handmatig</a>.';
+          showManualTiles(message);
+        }
+      };
+
       const readSelection = () => {
         let vehicle = null;
         try {
@@ -255,9 +426,7 @@
         if (!makeSlug || !modelSlug || !plateSlug) {
           if (tilesEl) tilesEl.style.display = "none";
           if (vehicleEl) vehicleEl.textContent = "";
-          if (statusEl) {
-            statusEl.textContent = "Geen kenteken gevonden. Voer hierboven opnieuw in.";
-          }
+          setStatus("Geen kenteken gevonden. Voer hierboven opnieuw in.");
           return;
         }
 
@@ -265,7 +434,7 @@
         if (vehicleEl) {
           vehicleEl.textContent = `Gevonden voertuig: ${label} (${plate})`;
         }
-        if (statusEl) statusEl.textContent = "Kies hieronder wat je wilt bekijken.";
+        setStatus("Kies hieronder wat je wilt bekijken.");
         if (tilesEl) tilesEl.style.display = "";
 
         const hvUrl = `/hulpveren/${makeSlug}/${modelSlug}/kt_${plateSlug}`;
@@ -275,6 +444,12 @@
         if (linkNr) linkNr.href = nrUrl;
         if (linkLs) linkLs.href = lsUrl;
       };
+
+      const routePlate = extractPlateFromRoute();
+      if (routePlate) {
+        resolvePlateRoute(routePlate);
+        return;
+      }
 
       updateTiles(readSelection());
 
