@@ -1,15 +1,23 @@
 # Kentekenzoeker + proxyv7 integratie
+<!-- Fix Summary:
+  Broken: /kenteken auto-init + redirect behavior was undefined in docs.
+  Change: Documented /kenteken/?kt= auto-init and /kenteken/<plate> redirect behavior.
+  Test: /kenteken/?kt=13GTRG auto-loads; /kenteken/13GTRG redirects.
+-->
 
 ## Wijzigingen (kenteken route)
 - `assets/js/app.js`: herkent `/hulpveren/<make>/<model>/kt_<plate>`, haalt Aldoc data via `/api/plate/:plate`, filtert sets en rendert dezelfde kaarten.
+- `assets/js/plate.js`: auto-init lookup op `/kenteken/?kt=...` en schrijft `hv_plate_make_slug` + `hv_plate_model_slug`.
 - `web.config`: IIS rewrite voor `kt_` routes naar de model shell.
 - `docs/server/nginx-hulpveren-kt.conf`: nginx snippet voor dezelfde rewrite.
+- `infra/nginx/dev.hulpveren.shop.api.conf`: redirect `/kenteken/<plate>` -> `/kenteken/?kt=<plate>` voor autoload.
 
 ## Kenteken-URL routing (server)
 Gebruik de juiste snippet voor de host:
 
 - IIS: `web.config` bevat de rewrite rule. Plaats deze in de root van de site (of merge met bestaande rewrite rules).
 - nginx: gebruik `docs/server/nginx-hulpveren-kt.conf` in de server block (of include als snippet).
+- nginx (dev): `infra/nginx/dev.hulpveren.shop.api.conf` bevat de `/kenteken/<plate>` redirect; apply via `infra/apply-infra.sh`.
 
 De front-end verwacht een backend endpoint:
 - `GET /api/plate/:plate` (zie Backend sectie). Deze response wordt 15 minuten gecached in `sessionStorage` (key `plate:<plate>`).
@@ -109,6 +117,12 @@ const parts = await window.HVPlate.Menu.loadRelevantMenuParts(vehicle);
 - `hv_plate`
 - `hv_vehicle_selected`
 - `hv_vehicle_selected_at`
+- `hv_plate_make_slug`
+- `hv_plate_model_slug`
+
+## Notes (deploy)
+- `assets/js/plate.js` is een statisch bestand in de webroot; wijzigingen gaan mee met de webroot deploy.
+- `/kenteken/<plate>` redirect zit in de nginx snippet en wordt toegepast via `infra/apply-infra.sh`.
 
 ## Handmatige testcases
 - Geldig kenteken: open `/hulpveren/volkswagen/caddy-iii-2ka-2kh-2ca-2ch/kt_5vll95` en controleer dat er een grid met sets staat.

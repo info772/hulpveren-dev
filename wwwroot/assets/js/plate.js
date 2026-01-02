@@ -1,8 +1,8 @@
 (function () {
   /* Fix Summary:
-   * Broken: Kenteken lookup could hang without timeout and errors lacked reset/fallback links.
-   * Change: Added timeout-based fetch with diagnostics, explicit state handling, and reset/manual actions.
-   * Test: Use /kenteken with valid/invalid plates and simulate API failure/timeout.
+   * Broken: /kenteken/?kt= did not auto-load a plate lookup and could hang without timeout.
+   * Change: Added URL auto-init, slug caching for routes, and timeout-based lookup with clear states.
+   * Test: Open /kenteken/?kt=13GTRG and confirm auto lookup + tiles render.
    */
 
   const STORAGE_KEYS = {
@@ -19,7 +19,7 @@
     /\/+$/,
     ""
   );
-  const PLATE_TIMEOUT_MS = 12000;
+  const PLATE_TIMEOUT_MS = 10000;
 
   function normalizePlate(value) {
     return String(value || "")
@@ -30,6 +30,30 @@
 
   function isValidPlate(value) {
     return value.length >= 6;
+  }
+
+  function slugify(value) {
+    return String(value || "")
+      .trim()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/&/g, " and ")
+      .replace(/#/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function setRouteSlugsFromVehicle(vehicle) {
+    if (!vehicle) return;
+    const makeSlug = slugify(vehicle.make || vehicle.makename || "");
+    const modelSlug = slugify(vehicle.model || vehicle.modelname || "");
+    try {
+      if (makeSlug) localStorage.setItem("hv_plate_make_slug", makeSlug);
+      if (modelSlug) localStorage.setItem("hv_plate_model_slug", modelSlug);
+    } catch (err) {
+      return;
+    }
   }
 
   function escapeHtml(value) {
@@ -163,11 +187,17 @@
     return res.json();
   }
 
-  async function fetchWithTimeout(url, options = {}, timeoutMs = PLATE_TIMEOUT_MS) {
+  async function fetchJsonWithTimeout(url, timeoutMs = PLATE_TIMEOUT_MS) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
-      return await fetch(url, { ...options, signal: controller.signal });
+      const res = await fetch(url, { cache: "no-store", signal: controller.signal });
+      if (!res.ok) {
+        const error = new Error(`Request failed: ${res.status}`);
+        error.status = res.status;
+        throw error;
+      }
+      return res.json();
     } catch (err) {
       if (err && err.name === "AbortError") {
         const timeoutErr = new Error("plate_timeout");
@@ -178,24 +208,6 @@
     } finally {
       clearTimeout(timer);
     }
-  }
-
-  async function fetchPlateJson(plate) {
-    const url = `${PLATE_API_BASE}/${encodeURIComponent(plate)}`;
-    const res = await fetchWithTimeout(url, { cache: "no-store" });
-    const snippet = await res
-      .clone()
-      .text()
-      .then((text) => text.slice(0, 200))
-      .catch(() => "");
-    if (!res.ok) {
-      console.warn("plate:fetch_error", { url, status: res.status, snippet });
-      const error = new Error(`Request failed: ${res.status}`);
-      error.status = res.status;
-      throw error;
-    }
-    console.info("plate:fetch", { url, status: res.status, snippet });
-    return res.json();
   }
 
   function candidateLabel(candidate) {
@@ -248,15 +260,19 @@
     }
   }
 
-  async function lookupPlate(plate) {
+  async function lookupPlateWithTimeout(plate) {
     const normalized = normalizePlate(plate);
     if (!isValidPlate(normalized)) {
       const err = new Error("invalid_plate");
       err.code = "invalid_plate";
       throw err;
     }
-    const data = await fetchPlateJson(normalized);
-    return data;
+    const url = `${PLATE_API_BASE}/${encodeURIComponent(normalized)}`;
+    return fetchJsonWithTimeout(url, PLATE_TIMEOUT_MS);
+  }
+
+  async function lookupPlate(plate) {
+    return lookupPlateWithTimeout(plate);
   }
 
   function resolveMake(vehicle) {
@@ -481,6 +497,111 @@
     container.appendChild(list);
   }
 
+  function getPlateFromUrl() {
+    const params = new URLSearchParams(location.search || "");
+    const fromParam = params.get("kt");
+    if (fromParam) return fromParam;
+    const match = (location.pathname || "").match(/^\/kenteken\/([^/]+)\/?$/i);
+    return match ? match[1] : "";
+  }
+
+  function normalizeKentekenUrl(plate) {
+    if (!plate) return;
+    if (!window.history || typeof window.history.replaceState !== "function") return;
+    try {
+      if ((location.pathname || "").toLowerCase().startsWith("/kenteken")) {
+        window.history.replaceState(null, "", `/kenteken/?kt=${plate}`);
+      }
+    } catch (err) {
+      return;
+    }
+  }
+
+  async function initFromUrl(elements, options = {}) {
+    if (!elements || !elements.form || !elements.input || !elements.status) return;
+    if (elements.form.dataset.hvPlateAutoInit === "1") return;
+    const raw = getPlateFromUrl();
+    if (!raw) return;
+    const normalized = normalizePlate(raw);
+    if (!isValidPlate(normalized)) return;
+
+    elements.form.dataset.hvPlateAutoInit = "1";
+    elements.input.value = normalized;
+    normalizeKentekenUrl(normalized);
+    console.info("plate:parsed", { plate: normalized, source: "url" });
+
+    const resetForm = () => {
+      elements.input.value = "";
+      elements.results.innerHTML = "";
+      setStatus(elements.status, "", false, { state: "idle" });
+      elements.input.focus();
+    };
+
+    const manualActionsHtml = buildStatusActions({ showReset: true, showManual: true });
+    setLoading(elements.form, true);
+    setStatus(elements.status, "Bezig met ophalen...", false, { state: "loading" });
+    console.info("plate:lookup_start", { plate: normalized, source: "url" });
+
+    try {
+      const data = await lookupPlateWithTimeout(normalized);
+      console.info("plate:lookup_end", { plate: normalized, ok: true });
+      const candidates = extractCandidates(data);
+
+      if (!candidates.length) {
+        setStatus(elements.status, "Geen voertuig gevonden voor dit kenteken.", true, {
+          state: "error",
+          actionsHtml: manualActionsHtml,
+          onReset: resetForm,
+        });
+        return;
+      }
+
+      const autoSelect =
+        candidates.length === 1 && options.autoSelectIfSingle !== false;
+      if (autoSelect) {
+        finalizeSelection(normalized, candidates[0], data, {
+          results: elements.results,
+          status: elements.status,
+        });
+        return;
+      }
+
+      const renderCandidates =
+        options.renderCandidates ||
+        ((list, onPick) =>
+          renderCandidatePicker(elements.results, normalized, list, onPick));
+      renderCandidates(candidates, (selection) => {
+        finalizeSelection(normalized, selection, data, {
+          results: elements.results,
+          status: elements.status,
+        });
+      });
+      setStatus(elements.status, "Kies variant.", false, { state: "success" });
+    } catch (err) {
+      const message =
+        err.code === "invalid_plate" || err.status === 400
+          ? "Ongeldig kenteken"
+          : err.status === 404
+            ? "Geen voertuig gevonden voor dit kenteken."
+          : err.code === "timeout"
+            ? "Kentekencheck duurt te lang. Probeer opnieuw."
+          : "Fout bij het ophalen. Probeer later opnieuw.";
+      const allowManual =
+        err.code === "timeout" || err.status === 404 || !err.status || Number(err.status) >= 500;
+      const actionsHtml = buildStatusActions({
+        showReset: true,
+        showManual: allowManual,
+      });
+      setStatus(elements.status, message, true, {
+        state: "error",
+        actionsHtml,
+        onReset: resetForm,
+      });
+    } finally {
+      setLoading(elements.form, false);
+    }
+  }
+
   function mount(selector, options = {}) {
     const container = typeof selector === "string" ? document.querySelector(selector) : selector;
     if (!container) return null;
@@ -497,6 +618,11 @@
     if (existing) {
       renderSelected(elements.results, existing);
     }
+
+    initFromUrl(elements, {
+      autoSelectIfSingle: settings.autoSelectIfSingle,
+      renderCandidates: (candidates, onPick) => renderCandidateList(elements.results, candidates, onPick),
+    });
 
     elements.form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -614,6 +740,7 @@
   function finalizeSelection(plate, vehicle, data, elements) {
     if (!vehicle) return;
     persistSelection(plate, vehicle);
+    setRouteSlugsFromVehicle(vehicle);
     if (elements && elements.results) {
       renderSelected(elements.results, vehicle);
     }
@@ -641,6 +768,12 @@
 
     const existing = getSelectedVehicle();
     if (existing) renderSelected(results, existing);
+
+    initFromUrl({ form, input, status, results }, {
+      autoSelectIfSingle: true,
+      renderCandidates: (candidates, onPick) =>
+        renderCandidatePicker(results, normalizePlate(input.value), candidates, onPick),
+    });
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();

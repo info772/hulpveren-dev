@@ -1070,11 +1070,23 @@
             detail: { plate: detail.plate, makeSlug, modelSlug, vehicle },
           })
         );
-        const targetBase = base || HV_BASE;
-        const target = `${targetBase}/${makeSlug}/${modelSlug}/${PLATE_PREFIX}${plateValue}`;
-        if (normalizeForRoute(location.pathname) !== normalizeForRoute(target)) {
-          window.location.href = target;
+        const currentPath = normalizeForRoute(location.pathname);
+        if (base) {
+          const target = `${base}/${makeSlug}/${modelSlug}/${PLATE_PREFIX}${plateValue}`;
+          if (normalizeForRoute(location.pathname) !== normalizeForRoute(target)) {
+            window.location.href = target;
+          }
+          return;
         }
+
+        const landingTarget = `${PLATE_LANDING_PATH}/?kt=${plateValue}`;
+        if (currentPath === normalizeForRoute(PLATE_LANDING_PATH)) {
+          if (window.history && typeof window.history.replaceState === "function") {
+            window.history.replaceState(null, "", landingTarget);
+          }
+          return;
+        }
+        window.location.href = landingTarget;
       });
     };
 
