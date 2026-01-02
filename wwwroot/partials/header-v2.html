@@ -1,14 +1,10 @@
 <header class="hv2-header" role="banner">
-  <div class="hv2-shell">
+  <div class="hv2-inner">
     <a class="hv2-brand" href="/" aria-label="Home">
       <img src="/img/logo.svg" alt="Auto Parts Roosendaal" class="hv2-logo" />
     </a>
 
-    <button class="hv2-burger" type="button" data-hv2-toggle aria-expanded="false" aria-controls="hv2-nav">
-      Menu
-    </button>
-
-    <div class="hv2-nav-layer" data-hv2-layer aria-hidden="true">
+    <div class="hv2-nav-layer" data-hv2-layer>
       <div class="nav-overlay" data-hv2-overlay aria-hidden="true"></div>
       <div class="nav-drawer" data-hv2-drawer aria-hidden="true">
         <nav id="hv2-nav" class="hv2-nav" aria-label="Hoofdmenu">
@@ -52,33 +48,71 @@
       </div>
     </div>
 
-    <div class="hv2-cta">
-      <!-- Fix Summary:
-       * Broken: Plate button sat outside the plate UI, causing styling regression.
-       * Change: Moved the search button into the plate bar for the integrated layout.
-       * Test: Header plate search renders as a Dutch plate with small integrated button.
-       -->
-      <div class="plate-search">
-        <div class="plate-ui">
-          <div class="plate-eu">NL</div>
+    <div class="hv2-actions">
+      <div class="hv2-plate">
+        <div class="plate-search">
+          <div class="plate-ui">
+            <div class="plate-eu">NL</div>
 
-          <input
-            class="plate-input"
-            type="text"
-            id="plateInput"
-            name="plate"
-            placeholder="5VLL95"
-            autocomplete="off"
-            inputmode="latin"
-          />
-          <button class="plate-button" type="button" id="plateSearchBtn">Zoek</button>
+            <input
+              class="plate-input"
+              type="text"
+              id="plateInput"
+              name="plate"
+              placeholder="5VLL95"
+              autocomplete="off"
+              inputmode="latin"
+            />
+            <button class="plate-button" type="button" id="plateSearchBtn">Zoek</button>
+          </div>
         </div>
       </div>
-      <a class="hv2-btn" data-native-nav="1" data-setting-link="phoneTel" href="tel:+31165856568">
-        Bel <span data-setting="phone">0165 856568</span>
-      </a>
-      <a class="hv2-btn" data-native-nav="1" data-setting-link="whatsappUrl" href="https://wa.me/311651320219">WhatsApp</a>
-      <a class="hv2-btn hv2-btn-primary" data-native-nav="1" href="/montage/">Plan montage</a>
+
+      <div class="hv2-cta-group" aria-label="Contact acties">
+        <a
+          class="hv2-btn hv2-btn-ghost"
+          data-native-nav="1"
+          data-setting-link="phoneTel"
+          href="tel:+31165856568"
+          aria-label="Bel ons"
+        >
+          <span class="hv2-btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+              <path d="M6.6 3.2c.4-.4 1.1-.4 1.5 0l2.2 2.2c.4.4.4 1.1 0 1.5l-1.4 1.4a14.5 14.5 0 0 0 6.7 6.7l1.4-1.4c.4-.4 1.1-.4 1.5 0l2.2 2.2c.4.4.4 1.1 0 1.5l-1.5 1.5c-1 .9-2.4 1.2-3.6.5-2.7-1.5-5.5-4-8.1-6.6-2.6-2.6-5.1-5.4-6.6-8.1-.7-1.2-.4-2.6.5-3.6l1.5-1.5z" />
+            </svg>
+          </span>
+          <span class="hv2-btn-label">Bel</span>
+          <span class="hv2-btn-sub" data-setting="phone">0165 856568</span>
+        </a>
+        <a
+          class="hv2-btn hv2-btn-ghost"
+          data-native-nav="1"
+          data-setting-link="whatsappUrl"
+          href="https://wa.me/311651320219"
+          aria-label="WhatsApp"
+        >
+          <span class="hv2-btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+              <path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" />
+            </svg>
+          </span>
+          <span class="hv2-btn-label">WhatsApp</span>
+        </a>
+        <a class="hv2-btn hv2-btn-primary" data-native-nav="1" href="/montage/">
+          Plan montage
+        </a>
+      </div>
     </div>
+
+    <button
+      class="hv2-burger"
+      type="button"
+      data-hv2-toggle
+      aria-expanded="false"
+      aria-controls="hv2-nav"
+      aria-label="Open menu"
+    >
+      Menu
+    </button>
   </div>
 </header>

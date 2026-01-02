@@ -115,13 +115,18 @@
     return mountEl;
   };
 
+  const isMobileNav = () =>
+    window.matchMedia("(max-width: 979px)").matches;
+
   const setNavState = (header, toggle, overlay, drawer, open) => {
+    const mobile = isMobileNav();
     header.classList.toggle("hv2-open", open);
-    document.body.classList.toggle("nav-open", open);
+    document.body.classList.toggle("nav-open", mobile && open);
     if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    if (overlay) overlay.setAttribute("aria-hidden", open ? "false" : "true");
-    if (drawer) drawer.setAttribute("aria-hidden", open ? "false" : "true");
+    if (overlay) overlay.setAttribute("aria-hidden", mobile && open ? "false" : "true");
+    if (drawer) drawer.setAttribute("aria-hidden", mobile ? (open ? "false" : "true") : "false");
   };
+
 
   const bindNav = (mountEl) => {
     if (mountEl.dataset.hv2Bound === "1") return;
@@ -161,6 +166,10 @@
 
     navLinks.forEach((link) => {
       link.addEventListener("click", () => closeNav());
+    });
+
+    window.addEventListener("resize", () => {
+      setNavState(header, toggle, overlay, drawer, isOpen());
     });
 
     document.addEventListener("keydown", (evt) => {
