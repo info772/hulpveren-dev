@@ -789,6 +789,12 @@ body.plate-route .hero{
   display: none;
 }
 
+/* Fix Summary:
+ * Broken: Plate status/reset UI lacked styling for header/search feedback.
+ * Change: Added plate status states, reset/action styles, and loading affordances.
+ * Test: Header plate search and /kenteken widget status messages and reset links.
+ */
+
 /* --- Plate UI (NL) --- */
 .plate-search{
   display:inline-flex;
@@ -858,5 +864,54 @@ body.plate-route .hero{
 
 .plate-button:hover{
   background:#f7f7f7;
+}
+
+.plate-search[data-plate-state="loading"] .plate-button{
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.plate-status,
+.hv-plate-status{
+  margin-top: 6px;
+  font-size: 12px;
+  color: #1e2430;
+  display: grid;
+  gap: 6px;
+}
+
+.plate-status[data-state="error"],
+.hv-plate-status[data-state="error"]{
+  color: #b0302a;
+}
+
+.plate-status[data-state="success"],
+.hv-plate-status[data-state="success"]{
+  color: #1f7a4d;
+}
+
+.plate-status__actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.plate-status__reset{
+  border: 1px solid #1e2430;
+  background: #fff;
+  color: #1e2430;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.plate-status__link{
+  text-decoration: none;
+  color: #0b3a7a;
+  border: 1px solid rgba(11,58,122,0.25);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
 }
 

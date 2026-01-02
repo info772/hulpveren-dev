@@ -4,6 +4,12 @@
 (() => {
   "use strict";
 
+  /* Fix Summary:
+   * Broken: Plate fetch could hang without timeout and plate tabs could show empty sets after strict filtering.
+   * Change: Added timeout/diagnostic logging for plate API, fallback rendering for filtered tabs, and route audit helper.
+   * Test: /kenteken search + /hulpveren/<make>/<model>/kt_<plate>; add ?debug=1 for route audit logs.
+   */
+
 	const DATA_URL = "/data/hv-kits.json";
 	const HV_BASE = "/hulpveren";
 	const NR_BASE = "/luchtvering";
@@ -21,7 +27,12 @@
 	  CURRENT_FAMILY === "nr" ? NR_BASE : CURRENT_FAMILY === "ls" ? LS_BASE : HV_BASE;
   const PLATE_LANDING_PATH = "/kenteken";
   const PLATE_PREFIX = "kt_";
+  const PLATE_API_BASE = (window.HV_PLATE_API_BASE || "/api/plate").replace(
+    /\/+$/,
+    ""
+  );
   const PLATE_CACHE_TTL_MS = 15 * 60 * 1000;
+  const PLATE_FETCH_TIMEOUT_MS = 12000;
   const PLATE_ROUTE_KEYS = {
     make: "hv_plate_make_slug",
     model: "hv_plate_model_slug",
@@ -59,6 +70,99 @@
   const debugLog = (...args) => {
     if (!DEBUG || !window.console || typeof window.console.log !== "function") return;
     window.console.log("[hv-debug]", ...args);
+  };
+
+  const ROUTE_AUDIT_URLS = [
+    "/",
+    "/hulpveren/",
+    "/luchtvering/",
+    "/verlagingsveren/",
+    "/blog/",
+    "/hulpveren/audi/a4/",
+    "/luchtvering/audi/a4/",
+    "/verlagingsveren/audi/a4/",
+  ];
+
+  const runRouteAudit = async () => {
+    if (!DEBUG || !window.fetch || !window.DOMParser) return;
+    const origin = window.location.origin;
+    const resolved = (value, base) => {
+      try {
+        return new URL(value, base).toString();
+      } catch {
+        return "";
+      }
+    };
+    const isSameOrigin = (value) => {
+      try {
+        return new URL(value).origin === origin;
+      } catch {
+        return false;
+      }
+    };
+    const collectAssets = (doc, baseUrl) => {
+      const urls = new Set();
+      doc.querySelectorAll('link[rel="stylesheet"][href]').forEach((el) => {
+        const href = resolved(el.getAttribute("href") || "", baseUrl);
+        if (href) urls.add(href);
+      });
+      doc.querySelectorAll("script[src]").forEach((el) => {
+        const src = resolved(el.getAttribute("src") || "", baseUrl);
+        if (src) urls.add(src);
+      });
+      return Array.from(urls);
+    };
+    const checkAsset = async (url) => {
+      try {
+        const res = await fetch(url, { method: "HEAD", cache: "no-store" });
+        if (!res.ok) {
+          console.warn("route-audit:asset", { url, status: res.status });
+        }
+        return res.ok;
+      } catch (err) {
+        try {
+          const res = await fetch(url, { cache: "no-store" });
+          if (!res.ok) {
+            console.warn("route-audit:asset", { url, status: res.status });
+          }
+          return res.ok;
+        } catch (err2) {
+          console.warn("route-audit:asset", { url, error: String(err2) });
+          return false;
+        }
+      }
+    };
+
+    console.groupCollapsed("route-audit");
+    for (const path of ROUTE_AUDIT_URLS) {
+      try {
+        const res = await fetch(path, { cache: "no-store", redirect: "follow" });
+        const finalUrl = res.url || resolved(path, origin);
+        if (res.redirected) {
+          console.info("route-audit:redirect", { path, finalUrl, status: res.status });
+        }
+        if (!res.ok) {
+          console.warn("route-audit:route", { path, status: res.status });
+          continue;
+        }
+        const html = await res.text();
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute("href") || "";
+        if (canonical) {
+          const canonicalUrl = resolved(canonical, finalUrl);
+          if (canonicalUrl && canonicalUrl !== finalUrl) {
+            console.info("route-audit:canonical", { path, canonical: canonicalUrl });
+          }
+        }
+        const assets = collectAssets(doc, finalUrl).filter(isSameOrigin);
+        for (const assetUrl of assets) {
+          await checkAsset(assetUrl);
+        }
+      } catch (err) {
+        console.warn("route-audit:error", { path, error: String(err) });
+      }
+    }
+    console.groupEnd();
   };
 
   const loadScriptOnce = (src, key) =>
@@ -378,6 +482,15 @@
     applyHeadFixes();
   }
   setTimeout(applyHeadFixes, 200);
+  if (DEBUG) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(runRouteAudit, 600);
+      });
+    } else {
+      setTimeout(runRouteAudit, 600);
+    }
+  }
 
   /* ================== Basis helpers ================== */
 
@@ -554,6 +667,29 @@
       return pickBestModelSlug(modelSlug, candidates);
     };
 
+    const fetchWithTimeout = async (
+      url,
+      options = {},
+      timeoutMs = PLATE_FETCH_TIMEOUT_MS
+    ) => {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        return await fetch(url, { ...options, signal: controller.signal });
+      } catch (err) {
+        if (err && err.name === "AbortError") {
+          const timeoutErr = new Error("plate_timeout");
+          timeoutErr.code = "timeout";
+          timeoutErr.status = 408;
+          timeoutErr.endpoint = url;
+          throw timeoutErr;
+        }
+        throw err;
+      } finally {
+        clearTimeout(timer);
+      }
+    };
+
     const fetchPlateData = async (plateRaw) => {
       const normalized = normalizePlateInput(plateRaw);
       if (!normalized || normalized.length < 6) {
@@ -568,14 +704,28 @@
         return cached;
       }
 
-      const res = await fetch(`/api/plate/${encodeURIComponent(normalized)}`, {
-        cache: "no-store",
-      });
-      debugLog("plate:fetch", { plate: normalized, status: res.status });
+      const endpoint = `${PLATE_API_BASE}/${encodeURIComponent(normalized)}`;
+      const res = await fetchWithTimeout(endpoint, { cache: "no-store" });
+      const snippet = await res
+        .clone()
+        .text()
+        .then((text) => text.slice(0, 200))
+        .catch(() => "");
+      debugLog("plate:fetch", { plate: normalized, status: res.status, endpoint });
       if (!res.ok) {
+        console.warn("plate:fetch_error", {
+          plate: normalized,
+          endpoint,
+          status: res.status,
+          snippet,
+        });
         const err = new Error(`plate_fetch_failed:${res.status}`);
         err.status = res.status;
+        err.endpoint = endpoint;
         throw err;
+      }
+      if (snippet) {
+        debugLog("plate:fetch_snippet", { plate: normalized, endpoint, snippet });
       }
       const data = await res.json();
       writeSessionCache(cacheKey, data, PLATE_CACHE_TTL_MS);
@@ -4163,6 +4313,24 @@
         allPairs.push({ k, f });
       }
     }
+    if (!allPairs.length) {
+      console.warn("kits:model_empty", {
+        makeSlug,
+        modelSlug,
+        totalKits: Array.isArray(kits) ? kits.length : 0,
+      });
+      app.innerHTML = wrap(`
+        <div class="crumbs">
+          <a href="${BASE}">Hulpveren</a> >
+          <a href="${BASE}/${esc(makeSlug)}">${esc(makeLabel)}</a> >
+          ${esc(modelLabel)}
+        </div>
+        <h1>${esc(makeLabel)} ${esc(modelLabel)} hulpveren</h1>
+        ${plateInfoHtml}
+        <p class="note">Geen sets gevonden voor dit model.</p>
+      `);
+      return;
+    }
 
     const { min: yearMin, max: yearMax } = getYearRange(allPairs);
     const showFilters = allPairs.length > 2;
@@ -4517,6 +4685,8 @@
       data = await fetchPlateData(plateNormalized);
     } catch (err) {
       const isNotFound = err?.status === 404;
+      const isServiceError =
+        err?.code === "timeout" || !err?.status || Number(err?.status) >= 500;
       debugLog("plate:fetch_error", {
         plate: plateNormalized,
         message: err?.message || String(err),
@@ -4531,7 +4701,9 @@
         <p class="note">${
           isNotFound
             ? "Kenteken niet gevonden. Kies handmatig je model of probeer opnieuw."
-            : "We kunnen het kenteken nu niet ophalen. Probeer het later opnieuw of neem contact op."
+            : err?.code === "timeout"
+              ? "Kentekenservice reageert niet. Probeer opnieuw of kies handmatig."
+              : "We kunnen het kenteken nu niet ophalen. Probeer het later opnieuw of neem contact op."
         }</p>
         <div class="cta-row">
           ${
@@ -4545,6 +4717,16 @@
             isNotFound ? "" : 'target="_blank" rel="noopener noreferrer"'
           }>${isNotFound ? "Opnieuw zoeken" : "WhatsApp"}</a>
         </div>
+        ${
+          isServiceError
+            ? `
+        <div class="cta-row">
+          <a class="btn btn-ghost" href="/hulpveren">Hulpveren</a>
+          <a class="btn btn-ghost" href="/luchtvering">Luchtvering</a>
+          <a class="btn btn-ghost" href="/verlagingsveren">Verlagingsveren</a>
+        </div>`
+            : ""
+        }
       `);
       return;
     }
@@ -4869,9 +5051,27 @@
         logRangeEmpty(CURRENT_ROUTE_CTX, lsPairs.pairs, "aldoc-ls");
       }
 
-      const hvPairsSorted = sortPairsByPrice(hvPairsFiltered);
-      const nrPairsSorted = sortPairsByPrice(nrPairsFiltered);
-      const lsPairsSorted = sortPairsByPrice(lsPairsFiltered);
+      const fallbackFiltered = (pairs, filtered, label) => {
+        if (pairs.length && filtered.length === 0) {
+          console.warn("plate:range_fallback", {
+            plate: plateNormalized,
+            label,
+            count: pairs.length,
+          });
+          return pairs;
+        }
+        return filtered;
+      };
+
+      const hvPairsSorted = sortPairsByPrice(
+        fallbackFiltered(hvPairs.pairs, hvPairsFiltered, "hv")
+      );
+      const nrPairsSorted = sortPairsByPrice(
+        fallbackFiltered(nrPairs.pairs, nrPairsFiltered, "nr")
+      );
+      const lsPairsSorted = sortPairsByPrice(
+        fallbackFiltered(lsPairs.pairs, lsPairsFiltered, "ls")
+      );
 
       const driveAvail = new Set();
       let hasSRW = false;
@@ -5537,15 +5737,30 @@
   }
 
   async function fetchKits(url, allowedFamilies) {
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error(`Fetch ${url} failed: ${res.status}`);
-
-    const data = await res.json();
-    const kits = Array.isArray(data) ? data : data.kits || [];
-    return kits.filter((k) => {
-      const fc = String(k.family_code || "").toUpperCase();
-      return allowedFamilies.has(fc);
-    });
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) {
+        console.warn("kits:fetch_failed", { url, status: res.status });
+        return [];
+      }
+      const data = await res.json();
+      const kits = Array.isArray(data) ? data : data.kits || [];
+      const filtered = kits.filter((k) => {
+        const fc = String(k.family_code || "").toUpperCase();
+        return allowedFamilies.has(fc);
+      });
+      if (!filtered.length && kits.length) {
+        console.warn("kits:family_empty", {
+          url,
+          families: Array.from(allowedFamilies),
+          total: kits.length,
+        });
+      }
+      return filtered;
+    } catch (err) {
+      console.warn("kits:fetch_error", { url, error: err?.message || String(err) });
+      return [];
+    }
   }
 
   const fetchHvKits = () =>
@@ -5604,6 +5819,11 @@
     }
 
     if (!pairs.length) {
+      console.warn("kits:nr_model_empty", {
+        makeSlug,
+        modelSlug,
+        totalKits: Array.isArray(kits) ? kits.length : 0,
+      });
       app.innerHTML = wrap(`
         <div class="crumbs">
           <a href="${NR_BASE}">Luchtvering</a> > ${esc(makeLabel)} > ${esc(

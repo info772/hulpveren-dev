@@ -1,4 +1,10 @@
 (function () {
+  /* Fix Summary:
+   * Broken: Kenteken lookup could hang without timeout and errors lacked reset/fallback links.
+   * Change: Added timeout-based fetch with diagnostics, explicit state handling, and reset/manual actions.
+   * Test: Use /kenteken with valid/invalid plates and simulate API failure/timeout.
+   */
+
   const STORAGE_KEYS = {
     plate: "hv_plate",
     vehicle: "hv_vehicle_selected",
@@ -9,6 +15,11 @@
   const MAPPING_CACHE_KEY = "hv_menu_mapping";
   const MAPPING_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
   const MAPPING_URL = "/config/menuMapping.json";
+  const PLATE_API_BASE = (window.HV_PLATE_API_BASE || "/api/plate").replace(
+    /\/+$/,
+    ""
+  );
+  const PLATE_TIMEOUT_MS = 12000;
 
   function normalizePlate(value) {
     return String(value || "")
@@ -21,10 +32,54 @@
     return value.length >= 6;
   }
 
-  function setStatus(el, message, isError) {
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (m) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[m]));
+  }
+
+  function buildStatusActions({ showReset, showManual }) {
+    const actions = [];
+    if (showReset) {
+      actions.push(
+        '<button type="button" class="plate-status__reset" data-plate-reset="1">Reset</button>'
+      );
+    }
+    if (showManual) {
+      actions.push(
+        '<a class="plate-status__link" href="/hulpveren">Hulpveren</a>'
+      );
+      actions.push(
+        '<a class="plate-status__link" href="/luchtvering">Luchtvering</a>'
+      );
+      actions.push(
+        '<a class="plate-status__link" href="/verlagingsveren">Verlagingsveren</a>'
+      );
+    }
+    if (!actions.length) return "";
+    return `<div class="plate-status__actions">${actions.join("")}</div>`;
+  }
+
+  function setStatus(el, message, isError, options = {}) {
     if (!el) return;
-    el.textContent = message || "";
+    const state =
+      options.state || (isError ? "error" : message ? "success" : "idle");
+    el.dataset.state = state;
     el.classList.toggle("is-error", Boolean(isError));
+    if (options.actionsHtml) {
+      const safeMessage = escapeHtml(message || "");
+      el.innerHTML = `<span class="plate-status__text">${safeMessage}</span>${options.actionsHtml}`;
+      const resetBtn = el.querySelector("[data-plate-reset]");
+      if (resetBtn && typeof options.onReset === "function") {
+        resetBtn.addEventListener("click", options.onReset, { once: true });
+      }
+      return;
+    }
+    el.textContent = message || "";
   }
 
   function setLoading(form, isLoading) {
@@ -108,6 +163,41 @@
     return res.json();
   }
 
+  async function fetchWithTimeout(url, options = {}, timeoutMs = PLATE_TIMEOUT_MS) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      return await fetch(url, { ...options, signal: controller.signal });
+    } catch (err) {
+      if (err && err.name === "AbortError") {
+        const timeoutErr = new Error("plate_timeout");
+        timeoutErr.code = "timeout";
+        throw timeoutErr;
+      }
+      throw err;
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  async function fetchPlateJson(plate) {
+    const url = `${PLATE_API_BASE}/${encodeURIComponent(plate)}`;
+    const res = await fetchWithTimeout(url, { cache: "no-store" });
+    const snippet = await res
+      .clone()
+      .text()
+      .then((text) => text.slice(0, 200))
+      .catch(() => "");
+    if (!res.ok) {
+      console.warn("plate:fetch_error", { url, status: res.status, snippet });
+      const error = new Error(`Request failed: ${res.status}`);
+      error.status = res.status;
+      throw error;
+    }
+    console.info("plate:fetch", { url, status: res.status, snippet });
+    return res.json();
+  }
+
   function candidateLabel(candidate) {
     if (!candidate) return "Onbekend";
     const make = candidate.make || candidate.makename || "";
@@ -165,7 +255,7 @@
       err.code = "invalid_plate";
       throw err;
     }
-    const data = await fetchJson(`/api/plate/${encodeURIComponent(normalized)}`);
+    const data = await fetchPlateJson(normalized);
     return data;
   }
 
@@ -410,19 +500,30 @@
 
     elements.form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      setStatus(elements.status, "");
+      setStatus(elements.status, "", false, { state: "idle" });
       elements.results.innerHTML = "";
 
       const normalized = normalizePlate(elements.input.value);
       elements.input.value = normalized;
       if (!isValidPlate(normalized)) {
-        setStatus(elements.status, "Ongeldig kenteken", true);
+        const actionsHtml = buildStatusActions({ showReset: true, showManual: false });
+        const resetForm = () => {
+          elements.input.value = "";
+          elements.results.innerHTML = "";
+          setStatus(elements.status, "", false, { state: "idle" });
+          elements.input.focus();
+        };
+        setStatus(elements.status, "Ongeldig kenteken", true, {
+          state: "error",
+          actionsHtml,
+          onReset: resetForm,
+        });
         return;
       }
 
       emitEvent("hv:plateLookup", { plate: normalized });
       setLoading(elements.form, true);
-      setStatus(elements.status, "Bezig met ophalen...");
+      setStatus(elements.status, "Bezig met ophalen...", false, { state: "loading" });
 
       try {
         const data = await lookupPlate(normalized);
@@ -435,7 +536,18 @@
         });
 
         if (!candidates.length) {
-          setStatus(elements.status, "Geen voertuig gevonden voor dit kenteken.", true);
+          const actionsHtml = buildStatusActions({ showReset: true, showManual: false });
+          const resetForm = () => {
+            elements.input.value = "";
+            elements.results.innerHTML = "";
+            setStatus(elements.status, "", false, { state: "idle" });
+            elements.input.focus();
+          };
+          setStatus(elements.status, "Geen voertuig gevonden voor dit kenteken.", true, {
+            state: "error",
+            actionsHtml,
+            onReset: resetForm,
+          });
           return;
         }
 
@@ -453,7 +565,9 @@
             status: elements.status,
           });
         });
-        setStatus(elements.status, "Kies een voertuigvariant.");
+        setStatus(elements.status, "Kies een voertuigvariant.", false, {
+          state: "success",
+        });
       } catch (err) {
         const message =
           err.code === "invalid_plate" || err.status === 400
@@ -462,8 +576,26 @@
               ? "Geen voertuig gevonden voor dit kenteken."
             : err.status === 429
               ? "Te veel verzoeken, probeer zo opnieuw"
-              : "Fout bij het ophalen. Probeer later opnieuw.";
-        setStatus(elements.status, message, true);
+              : err.code === "timeout"
+                ? "Kentekenservice reageert niet. Probeer opnieuw."
+                : "Fout bij het ophalen. Probeer later opnieuw.";
+        const isServiceError =
+          err.code === "timeout" || !err.status || Number(err.status) >= 500;
+        const actionsHtml = buildStatusActions({
+          showReset: true,
+          showManual: isServiceError,
+        });
+        const resetForm = () => {
+          elements.input.value = "";
+          elements.results.innerHTML = "";
+          setStatus(elements.status, "", false, { state: "idle" });
+          elements.input.focus();
+        };
+        setStatus(elements.status, message, true, {
+          state: "error",
+          actionsHtml,
+          onReset: resetForm,
+        });
       } finally {
         setLoading(elements.form, false);
       }
@@ -486,7 +618,7 @@
       renderSelected(elements.results, vehicle);
     }
     if (elements && elements.status) {
-      setStatus(elements.status, "Voertuig gevonden.");
+      setStatus(elements.status, "Voertuig gevonden.", false, { state: "success" });
     }
     emitEvent("hv:vehicleSelected", {
       plate,
@@ -512,23 +644,45 @@
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      setStatus(status, "");
+      setStatus(status, "", false, { state: "idle" });
       results.innerHTML = "";
 
       const normalized = normalizePlate(input.value);
       if (!isValidPlate(normalized)) {
-        setStatus(status, "Voer een geldig kenteken in.", true);
+        const actionsHtml = buildStatusActions({ showReset: true, showManual: false });
+        const resetForm = () => {
+          input.value = "";
+          results.innerHTML = "";
+          setStatus(status, "", false, { state: "idle" });
+          input.focus();
+        };
+        setStatus(status, "Voer een geldig kenteken in.", true, {
+          state: "error",
+          actionsHtml,
+          onReset: resetForm,
+        });
         return;
       }
 
       setLoading(form, true);
-      setStatus(status, "Bezig met ophalen...");
+      setStatus(status, "Bezig met ophalen...", false, { state: "loading" });
 
       try {
         const data = await lookupPlate(normalized);
         const candidates = extractCandidates(data);
         if (!candidates.length) {
-          setStatus(status, "Geen voertuig gevonden voor dit kenteken.", true);
+          const actionsHtml = buildStatusActions({ showReset: true, showManual: false });
+          const resetForm = () => {
+            input.value = "";
+            results.innerHTML = "";
+            setStatus(status, "", false, { state: "idle" });
+            input.focus();
+          };
+          setStatus(status, "Geen voertuig gevonden voor dit kenteken.", true, {
+            state: "error",
+            actionsHtml,
+            onReset: resetForm,
+          });
           return;
         }
 
@@ -540,15 +694,35 @@
         renderCandidatePicker(results, normalized, candidates, (selection) => {
           finalizeSelection(normalized, selection, data, { results, status });
         });
-        setStatus(status, "Meerdere voertuigen gevonden.");
+        setStatus(status, "Meerdere voertuigen gevonden.", false, {
+          state: "success",
+        });
       } catch (err) {
         const message =
           err.code === "invalid_plate"
             ? "Voer een geldig kenteken in."
             : err.status === 404
               ? "Geen voertuig gevonden voor dit kenteken."
-            : "Fout bij het ophalen. Probeer later opnieuw.";
-        setStatus(status, message, true);
+            : err.code === "timeout"
+              ? "Kentekenservice reageert niet. Probeer opnieuw."
+              : "Fout bij het ophalen. Probeer later opnieuw.";
+        const isServiceError =
+          err.code === "timeout" || !err.status || Number(err.status) >= 500;
+        const actionsHtml = buildStatusActions({
+          showReset: true,
+          showManual: isServiceError,
+        });
+        const resetForm = () => {
+          input.value = "";
+          results.innerHTML = "";
+          setStatus(status, "", false, { state: "idle" });
+          input.focus();
+        };
+        setStatus(status, message, true, {
+          state: "error",
+          actionsHtml,
+          onReset: resetForm,
+        });
       } finally {
         setLoading(form, false);
       }

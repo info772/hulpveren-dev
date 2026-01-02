@@ -2,6 +2,12 @@
 (() => {
   "use strict";
 
+  /* Fix Summary:
+   * Broken: Plate bar bindings could duplicate after partial reloads and had no status feedback.
+   * Change: Guarded input/button bindings and added plate bar status/reset state updates.
+   * Test: Use the header plate search with valid/invalid input and confirm single submit.
+   */
+
   const STORAGE_KEY = "hv_plate_context";
   const EVENT_NAME = "plate:changed";
   const PLATE_PATH = "/kenteken/";
@@ -33,6 +39,53 @@
       .replace(/&/g, " and ")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
+
+  const escapeHtml = (value) =>
+    String(value ?? "").replace(/[&<>"']/g, (m) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[m]));
+
+  const ensurePlateStatus = (bar) => {
+    if (!bar) return null;
+    let status = bar.querySelector(".plate-status");
+    if (status) return status;
+    status = document.createElement("div");
+    status.className = "plate-status";
+    status.setAttribute("role", "status");
+    status.setAttribute("aria-live", "polite");
+    bar.appendChild(status);
+    return status;
+  };
+
+  const setPlateBarState = (bar, statusEl, state, message, options = {}) => {
+    if (!bar || !statusEl) return;
+    bar.dataset.plateState = state || "";
+    statusEl.dataset.state = state || "";
+    if (!message) {
+      statusEl.textContent = "";
+      return;
+    }
+    if (options.actionLabel) {
+      statusEl.innerHTML = `
+        <span class="plate-status__text">${escapeHtml(message)}</span>
+        <div class="plate-status__actions">
+          <button type="button" class="plate-status__reset" data-plate-reset="1">${escapeHtml(
+            options.actionLabel
+          )}</button>
+        </div>
+      `;
+      const resetBtn = statusEl.querySelector("[data-plate-reset]");
+      if (resetBtn && typeof options.onAction === "function") {
+        resetBtn.addEventListener("click", options.onAction, { once: true });
+      }
+      return;
+    }
+    statusEl.textContent = message;
+  };
 
   const parseYM = (input, defaultMonth = 1) => {
     if (input == null || input === "") return null;
@@ -449,24 +502,26 @@
       bar.querySelector("#plateInput") || bar.querySelector(".plate-input");
     const button =
       bar.querySelector("#plateSearchBtn") || bar.querySelector(".plate-button");
+    const statusEl = ensurePlateStatus(bar);
 
-    if (input) {
-      input.addEventListener("input", () => {
-        const cleaned = sanitizePlateInput(input.value);
-        if (cleaned !== input.value) input.value = cleaned;
-      });
-      input.addEventListener("blur", () => {
-        input.value = sanitizePlateInput(input.value);
-      });
-    }
+    const resetBar = () => {
+      if (input) input.value = "";
+      if (input) input.focus();
+      setPlateBarState(bar, statusEl, "idle", "");
+    };
 
     const submitPlate = () => {
       const normalized = normalizePlate(input ? input.value : "");
       if (input) input.value = sanitizePlateInput(input.value);
       if (!normalized || normalized.length < 6) {
+        setPlateBarState(bar, statusEl, "error", "Voer een geldig kenteken in.", {
+          actionLabel: "Reset",
+          onAction: resetBar,
+        });
         if (input) input.focus();
         return;
       }
+      setPlateBarState(bar, statusEl, "loading", "Bezig met zoeken...");
       const ctx = {
         plate: normalized,
         vehicle: null,
@@ -477,6 +532,7 @@
       savePlateContext(ctx);
       renderPlatePill(ctx);
       dispatchPlateEvent(ctx);
+      setPlateBarState(bar, statusEl, "success", "Kenteken gevonden. Doorsturen...");
       window.location.href = `${PLATE_PATH}${normalized}`;
     };
 
@@ -487,6 +543,13 @@
 
     if (input && input.dataset.plateBound !== "1") {
       input.dataset.plateBound = "1";
+      input.addEventListener("input", () => {
+        const cleaned = sanitizePlateInput(input.value);
+        if (cleaned !== input.value) input.value = cleaned;
+      });
+      input.addEventListener("blur", () => {
+        input.value = sanitizePlateInput(input.value);
+      });
       input.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
           event.preventDefault();
@@ -494,6 +557,8 @@
         }
       });
     }
+
+    setPlateBarState(bar, statusEl, "idle", "");
   };
 
   function getContextRange(ctx) {
