@@ -246,7 +246,7 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
   margin-top: var(--hv2-header-gap);
 }
 .header-inner{
-  width: min(100%;
+  width: 100%;
   max-width: none;
   margin: 0;
   padding: 12px 20px;
