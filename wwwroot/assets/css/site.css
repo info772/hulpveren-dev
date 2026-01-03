@@ -45,6 +45,10 @@ html { scroll-behavior: smooth;
 html{ scroll-behavior:smooth; }
 
 body { 
+--hv2-header-h: 72px;
+--hv2-header-gap: 12px;
+--hv2-header-offset: calc(var(--hv2-header-h) + var(--hv2-header-gap));
+scroll-padding-top: var(--hv2-header-offset);
 margin: 0; 
 font-family: var(--font); 
 background: radial-gradient(circle at 10% 10%, rgba(88,213,255,0.08), transparent 30%), radial-gradient(circle at 80% 0%, rgba(244,162,97,0.08), transparent 35%), var(--bg); 
@@ -221,7 +225,6 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
 
 .platebar { display: flex; align-items: center; gap: 10px; justify-self: end; }
 .nav-shell .platebar { justify-self: end; }
-.hv2-cta { display: flex; align-items: center; gap: 12px; }
 
 /* Header v2 */
 .hv2-header{
@@ -232,6 +235,16 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
   background: rgba(5, 7, 15, 0.75);
   border-bottom: 1px solid var(--border);
 }
+#site-header{
+  min-height: var(--hv2-header-h);
+}
+#site-header ~ main,
+#site-header ~ .page-main{
+  padding-top: var(--hv2-header-offset);
+}
+.hv2-header + .site-breadcrumbs{
+  margin-top: var(--hv2-header-gap);
+}
 .hv2-inner{
   width: min(100%, var(--max));
   margin: 0 auto;
@@ -240,7 +253,7 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  min-height: 72px;
+  min-height: var(--hv2-header-h);
 }
 .hv2-brand{
   display: inline-flex;
@@ -456,7 +469,11 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
 body.nav-open{ overflow: hidden; }
 
 @media (max-width: 1199px){
-  .hv2-inner{ gap: 12px; padding: 10px 18px; min-height: 68px; }
+  body{
+    --hv2-header-h: 68px;
+    --hv2-header-gap: 10px;
+  }
+  .hv2-inner{ gap: 12px; padding: 10px 18px; }
   .hv2-top{ gap: 12px; }
   .hv2-nav a{ padding: 8px 10px; font-size: 0.9rem; }
   .hv2-actions{ gap: 10px; }
@@ -467,7 +484,11 @@ body.nav-open{ overflow: hidden; }
 }
 
 @media (max-width: 979px){
-  .hv2-inner{ padding: 10px 16px; min-height: 64px; }
+  body{
+    --hv2-header-h: 64px;
+    --hv2-header-gap: 8px;
+  }
+  .hv2-inner{ padding: 10px 16px; }
   .hv2-burger{ display: inline-flex; }
   .hv2-nav-layer{
     position: fixed;
