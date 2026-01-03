@@ -1,3 +1,27 @@
+name: Deploy via deploy-dev.sh (rsync) instead of webroot git
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USER }}
+          key: ${{ secrets.DEV_SSH_KEY }}
+          script_stop: true
+          command_timeout: 30m
           script: |
             set -euo pipefail
 
@@ -10,4 +34,5 @@
             systemctl reload nginx
 
             cat /var/www/dev.hulpveren.shop/public/assets/build-id.txt || true
+
 
