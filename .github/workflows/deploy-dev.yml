@@ -1,0 +1,31 @@
+name: Deploy DEV (hulpveren.shop)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USER }}
+          key: ${{ secrets.DEV_SSH_KEY }}
+          script_stop: true
+          command_timeout: 30m
+          script: |
+            set -euo pipefail
+            cd /var/www/dev.hulpveren.shop/public
+            git pull --ff-only
+            bash infra/apply-infra.sh
+            nginx -t
+            systemctl reload nginx
+            cat assets/build-id.txt || true
