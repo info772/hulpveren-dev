@@ -1,6 +1,6 @@
 <!-- Deprecated: use /partials/header-v2.html. This v1 layout is retained for compatibility. -->
 <header class="site-header hv-header">
-<header class="site-header hv-header">  <script>    (() => {      const redirectToSlashless = () => {        const cleanPath = location.pathname.replace(/\/+/g, "/");        if (cleanPath === "/") return;        const basePaths = ["/hulpveren", "/luchtvering", "/verlagingsveren"];        const matchesBase = basePaths.some((base) => {          const lower = cleanPath.toLowerCase();          return (            lower.startsWith(base.toLowerCase()) &&            cleanPath.length > base.length &&            cleanPath.endsWith("/")          );        });        if (!matchesBase) return;        const normalized = cleanPath.replace(/\/+$/, "");        const search = location.search || "";        const hash = location.hash || "";        location.replace(`${normalized}${search}${hash}`);      };      redirectToSlashless();    })();  </script>  <div class="nav-shell apr-header-inner">
+  <div class="nav-shell apr-header-inner">
     <a class="apr-logo" href="/" aria-label="Hulpveren.shop">
       <img src="/img/branding/Logo-wit.png"
            alt="Hulpveren.shop"
