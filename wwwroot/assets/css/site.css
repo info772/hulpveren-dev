@@ -306,19 +306,18 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
   display: flex;
   justify-content: center;
 }
-.nav-overlay{
-  display: none;
+/* Desktop nav: gewoon inline, geen drawer */
+@media (min-width: 1024px){
+  .hv2-nav-layer{ position: static; pointer-events: auto; }
+  .nav-overlay{ display: none; }
+  .nav-drawer{ position: static; display: block; background: transparent; padding: 0; box-shadow: none; border: 0; transform: none; }
+  .hv2-nav{ display: flex; }
+  .hv2-top{ display: flex; align-items: center; gap: 20px; }
+  .hv2-sub{ display: none; }
+  .hv2-drop:hover .hv2-sub,
+  .hv2-drop:focus-within .hv2-sub{ display: block; }
 }
-.nav-drawer{
-  position: static;
-  display: flex;
-  justify-content: center;
-  background: transparent;
-  padding: 0;
-  box-shadow: none;
-  border: 0;
-  transform: none;
-}
+
 .header-nav{
   display: flex;
 }
