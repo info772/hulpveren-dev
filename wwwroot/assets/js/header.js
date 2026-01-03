@@ -116,7 +116,7 @@
   };
 
   const isMobileNav = () =>
-    window.matchMedia("(max-width: 979px)").matches;
+    window.matchMedia("(max-width: 1023px)").matches;
 
   const setNavState = (header, toggle, overlay, drawer, open) => {
     const mobile = isMobileNav();
