@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Algemene Voorwaarden – Hulpveren.shop</title>
+  <meta name="description" content="Algemene Voorwaarden van Hulpveren.shop (Auto Parts Roosendaal) voor montage van hulpveren, luchtvering en verlagingsveren." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.hulpveren.shop/voorwaarden/" />
+
+  <link rel="icon" href="/img/branding/APR-Favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
+
+  <link rel="stylesheet" href="/assets/css/site.css" />
+
+  <!-- Page-only styling: scoped zodat je header/nav CSS niet kapot gaat -->
+  <style>
+.voorwaarden-page{
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(250,184,25,.18), transparent 60%),
+    radial-gradient(1000px 600px at 80% 10%, rgba(250,184,25,.10), transparent 55%),
+    #0b0f14;
+  min-height: 100vh;
+}
+
+
+    .voorwaarden-wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    .voorwaarden-head{
+      padding: 18px 0 10px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      margin-bottom: 22px;
+    }
+
+    .voorwaarden-kicker{
+      opacity: .85;
+      font-size: .95rem;
+      margin: 0 0 8px;
+    }
+
+    .voorwaarden-head h1{
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+      letter-spacing: -0.02em;
+    }
+
+    .voorwaarden-lead{
+      margin: 0 0 10px;
+      opacity: .85;
+      max-width: 72ch;
+      line-height: 1.65;
+    }
+
+    .voorwaarden-meta{
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      opacity: .85;
+      font-size: .95rem;
+    }
+
+    .voorwaarden-badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .voorwaarden-main{
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .voorwaarden-card{
+      background: rgba(18,24,35,.75);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .voorwaarden-card h2{
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .voorwaarden-card p{ margin: 0 0 12px; line-height: 1.65; }
+    .voorwaarden-card ol{ margin: 0 0 12px; padding-left: 20px; }
+    .voorwaarden-card li{ margin: 8px 0; }
+
+    .voorwaarden-grid2{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .voorwaarden-contactbox{
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .voorwaarden-foot{
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      opacity: .85;
+      font-size: .95rem;
+    }
+
+    @media (min-width: 860px){
+      .voorwaarden-grid2{
+        grid-template-columns: 1.1fr .9fr;
+        align-items: start;
+      }
+    }
+  </style>
+</head>
+
+<body class="voorwaarden-page">
+
+  <!-- HEADER: moet op ALLE pagina's gelijk zijn -->
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Hulpveren.shop">
+        <img class="brand-logo" src="/img/branding/Logo-wit.png" alt="Hulpveren.shop" loading="lazy" decoding="async" />
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open navigatie">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" aria-label="Hoofdmenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+
+          <li class="nav-item nav-item-mega" data-family="hv">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD hulpveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-hv" class="mega-list" aria-label="Merken hulpveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="nr">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Luchtvering</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-nr" class="mega-list" aria-label="Merken luchtvering"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="ls">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Verlagingsveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-ls" class="mega-list" aria-label="Merken verlagingsveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="/montage">Montage</a></li>
+          <li class="nav-item"><a class="nav-link" href="/onze-ervaring">Onze ervaring</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="voorwaarden-wrap">
+    <header class="voorwaarden-head">
+      <p class="voorwaarden-kicker">Algemene voorwaarden</p>
+      <h1>Algemene Voorwaarden</h1>
+      <p class="voorwaarden-lead">
+        Deze algemene voorwaarden zijn van toepassing op alle offertes, afspraken en werkzaamheden van Hulpveren.shop
+        (Auto Parts Roosendaal) voor het leveren en monteren van hulpveren, luchtvering en verlagingsveren.
+        Verzending van producten vindt in principe niet plaats.
+      </p>
+      <div class="voorwaarden-meta">
+        <span class="voorwaarden-badge">Website: <strong>Hulpveren.shop</strong></span>
+        <span class="voorwaarden-badge">Laatste update: <strong>20 december 2025</strong></span>
+      </div>
+    </header>
+
+    <main class="voorwaarden-main">
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 1 – Definities</h2>
+        <ol>
+          <li><strong>Hulpveren.shop</strong>: de website en handelsnaam van Auto Parts Roosendaal.</li>
+          <li><strong>Ondernemer</strong>: Auto Parts Roosendaal.</li>
+          <li><strong>Klant</strong>: iedere natuurlijke of rechtspersoon die gebruikmaakt van de diensten van Hulpveren.shop.</li>
+          <li><strong>Diensten</strong>: het leveren en monteren van hulpveren, luchtvering en verlagingsveren.</li>
+          <li><strong>Overeenkomst</strong>: de overeenkomst tussen ondernemer en klant betreffende montage en/of levering van producten in combinatie met montage.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 2 – Identiteit van de ondernemer</h2>
+        <div class="voorwaarden-grid2">
+          <div>
+            <p>
+              <strong>Auto Parts Roosendaal</strong><br />
+              Westelijke Havendijk 17c<br />
+              4703 RA Roosendaal<br />
+              Nederland
+            </p>
+            <p style="margin:0;">
+              Hulpveren.shop is een handelsnaam van Auto Parts Roosendaal.
+            </p>
+          </div>
+          <div class="voorwaarden-contactbox">
+            <p style="margin:0 0 8px;"><strong>Contact</strong></p>
+            <p style="margin:0; opacity:.85;">
+              E-mail: <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a><br />
+              Telefoon: <a href="tel:+31165856568">0165-856568</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 3 – Toepasselijkheid</h2>
+        <ol>
+          <li>Deze algemene voorwaarden zijn van toepassing op alle offertes, afspraken, overeenkomsten en diensten van Hulpveren.shop.</li>
+          <li>Afwijkingen van deze voorwaarden zijn alleen geldig indien schriftelijk overeengekomen.</li>
+          <li>Algemene voorwaarden van de klant worden uitdrukkelijk uitgesloten.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 4 – Aanbod en advies</h2>
+        <ol>
+          <li>Alle offertes en prijsindicaties zijn vrijblijvend, tenzij anders vermeld.</li>
+          <li>Advies over voertuiggeschiktheid wordt gegeven op basis van door de klant verstrekte informatie.</li>
+          <li>De klant is verantwoordelijk voor het juist en volledig aanleveren van voertuiggegevens (zoals kenteken, merk, model, bouwjaar en uitvoering).</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 5 – Totstandkoming van de overeenkomst</h2>
+        <ol>
+          <li>De overeenkomst komt tot stand na bevestiging van een afspraak, offerte of opdracht door Hulpveren.shop.</li>
+          <li>Mondelinge afspraken zijn bindend zodra de werkzaamheden zijn ingepland.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 6 – Prijzen</h2>
+        <ol>
+          <li>Alle prijzen zijn vermeld in euro’s en inclusief btw, tenzij anders aangegeven.</li>
+          <li>Montagekosten en eventuele bijkomende werkzaamheden worden vooraf gecommuniceerd.</li>
+          <li>Meerwerk door onvoorziene omstandigheden (bijvoorbeeld vastzittende onderdelen of afwijkingen aan het voertuig) wordt in overleg uitgevoerd.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 7 – Betaling</h2>
+        <ol>
+          <li>Betaling dient te geschieden vóór of direct na uitvoering van de werkzaamheden, tenzij anders overeengekomen.</li>
+          <li>De ondernemer behoudt zich het recht voor vooruitbetaling te verlangen (bijvoorbeeld bij speciaal bestelde onderdelen).</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 8 – Uitvoering van de werkzaamheden</h2>
+        <ol>
+          <li>Montage vindt plaats in de werkplaats van Hulpveren.shop of op een vooraf overeengekomen locatie.</li>
+          <li>Werkzaamheden worden uitgevoerd naar beste inzicht en vakmanschap.</li>
+          <li>Opgegeven montagetijden zijn indicatief en geven geen recht op schadevergoeding bij uitloop of vertraging.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 9 – Geen verzending</h2>
+        <ol>
+          <li>Hulpveren.shop levert producten in beginsel uitsluitend in combinatie met montage.</li>
+          <li>Verzending van producten vindt alleen plaats indien dit uitdrukkelijk en schriftelijk is overeengekomen.</li>
+          <li>Indien verzending toch wordt overeengekomen, kunnen aanvullende (verzend- en retour)voorwaarden van toepassing zijn.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 10 – Annuleren en herroepingsrecht</h2>
+        <ol>
+          <li>Bij diensten met een vaste afspraak kan het herroepingsrecht (voor consumenten) vervallen zodra de werkzaamheden zijn uitgevoerd.</li>
+          <li>Bij annulering door de klant binnen <strong>48 uur</strong> vóór de afspraak behoudt Hulpveren.shop zich het recht voor kosten in rekening te brengen (bijvoorbeeld gereserveerde tijd en/of bestelde onderdelen).</li>
+          <li>Specifiek bestelde of op maat samengestelde producten kunnen na bestelling niet kosteloos worden geannuleerd.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 11 – Garantie</h2>
+        <ol>
+          <li>Op gemonteerde producten is de fabrieksgarantie van toepassing.</li>
+          <li>Garantie vervalt bij onjuist gebruik, verkeerde montage door derden of wijzigingen/modificaties aan het voertuig die invloed kunnen hebben op het product.</li>
+          <li>Slijtage en gevolgschade vallen buiten de garantie.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 12 – Aansprakelijkheid</h2>
+        <ol>
+          <li>De aansprakelijkheid van Hulpveren.shop is beperkt tot het bedrag van de uitgevoerde werkzaamheden en/of het betreffende factuurbedrag.</li>
+          <li>Hulpveren.shop is niet aansprakelijk voor indirecte schade, gevolgschade of bedrijfsschade.</li>
+          <li>Gebruik van het voertuig na montage (waaronder belasting, belading en rijstijl) is de verantwoordelijkheid van de klant.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 13 – Overmacht</h2>
+        <ol>
+          <li>In geval van overmacht is Hulpveren.shop gerechtigd de overeenkomst op te schorten of te annuleren.</li>
+          <li>Onder overmacht wordt onder meer verstaan: leveringsproblemen, ziekte, technische storingen, transportproblemen en overheidsmaatregelen.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 14 – Klachten</h2>
+        <ol>
+          <li>Klachten dienen zo spoedig mogelijk na ontdekking te worden gemeld, bij voorkeur schriftelijk.</li>
+          <li>Hulpveren.shop zal klachten naar redelijkheid en in overleg behandelen en streven naar een passende oplossing.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 15 – Privacy</h2>
+        <ol>
+          <li>Persoonsgegevens worden verwerkt conform de privacyverklaring van Hulpveren.shop.</li>
+          <li>De privacyverklaring is beschikbaar via de website.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 16 – Toepasselijk recht</h2>
+        <ol>
+          <li>Op alle overeenkomsten is uitsluitend Nederlands recht van toepassing.</li>
+          <li>Geschillen worden voorgelegd aan de bevoegde rechter in Nederland.</li>
+        </ol>
+      </section>
+
+      <section class="voorwaarden-card">
+        <h2>Artikel 17 – Wijzigingen</h2>
+        <ol>
+          <li>Hulpveren.shop behoudt zich het recht voor deze voorwaarden te wijzigen.</li>
+          <li>De meest actuele versie is altijd beschikbaar op de website.</li>
+        </ol>
+      </section>
+
+      <footer class="voorwaarden-foot">
+        <p style="margin:0;">
+          <strong>Hulpveren.shop</strong> | Algemene Voorwaarden<br />
+          Vragen? Mail naar <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a>.
+        </p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Site scripts (nodig voor header + mega menus) -->
+  <script defer src="/assets/js/header.js?v=20251215_1"></script>
+  <script defer src="/assets/js/app.js?v=20251212c"></script>
+</body>
+</html>

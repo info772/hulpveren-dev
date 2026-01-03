@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <title>TOYOTA Land Cruiser Hulpveren - MAD sets met montage</title>
+  <meta name="description" content="TOYOTA Land Cruiser Hulpveren - MAD sets met montage" />
+  <link rel="canonical" href="https://www.hulpveren.shop/hulpveren/toyota/land-cruiser" />
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="TOYOTA Land Cruiser Hulpveren - MAD sets met montage" />
+  <meta property="og:description" content="TOYOTA Land Cruiser Hulpveren - MAD sets met montage" />
+  <meta property="og:url" content="https://www.hulpveren.shop/hulpveren/toyota/land-cruiser" />
+  <meta property="og:site_name" content="Hulpveren.shop"/>
+
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260103"/>
+</head>
+<body class="page-hulpveren">
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="brand" href="/" aria-label="Hulpveren.shop">
+      <img class="brand-logo" src="/img/branding/Logo-wit.png" alt="Hulpveren.shop" loading="lazy" decoding="async" />
+    </a>
+
+    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open navigatie">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" aria-label="Hoofdmenu">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item nav-item-mega" data-family="hv">
+          <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD hulpveren</button>
+          <div class="mega-panel" role="menu">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <h3>Alle merken</h3>
+                <ul id="hv-mega-brands-hv" class="mega-list" aria-label="Merken hulpveren"></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item nav-item-mega" data-family="nr">
+          <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Luchtvering</button>
+          <div class="mega-panel" role="menu">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <h3>Alle merken</h3>
+                <ul id="hv-mega-brands-nr" class="mega-list" aria-label="Merken luchtvering"></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item nav-item-mega" data-family="ls">
+          <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Verlagingsveren</button>
+          <div class="mega-panel" role="menu">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <h3>Alle merken</h3>
+                <ul id="hv-mega-brands-ls" class="mega-list" aria-label="Merken verlagingsveren"></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/montage">Montage</a></li>
+        <li class="nav-item"><a class="nav-link" href="/onze-ervaring">Onze ervaring</a></li>
+        <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main id="hv-app" class="app" role="main">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">MAD hulpveren</span>
+        <h1>Alle hulpveren per merk en model</h1>
+        <p class="lead">Filter op bouwjaar, aandrijving en belasting. Kies je set en plan direct montage in onze werkplaats.</p>
+        <div class="hero-actions">
+          <a class="btn" href="/contact">Vraag advies</a>
+          <a class="btn btn-ghost" href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div id="app" class="app">
+      <div class="loading">Sets laden</div>
+      <noscript><p>JavaScript is nodig om de sets te tonen.</p></noscript>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-shell">
+    <section class="footer-block">
+      <p class="eyebrow">Hulpveren.shop</p>
+      <h2>Veilig rijden met de juiste set</h2>
+      <p>Wij bouwen dagelijks MAD hulpveren, luchtvering en verlagingsveren in. Altijd inclusief montage, uitlijning en eerlijk advies.</p>
+      <div class="footer-cta">
+        <a class="btn" href="/hulpveren">Bekijk hulpveren</a>
+        <a class="btn btn-ghost" href="/montage">Plan montage</a>
+      </div>
+      <ul class="footer-list">
+        <li>Gecertificeerde monteurs</li>
+        <li>Persoonlijk advies per kenteken</li>
+        <li>Snelle beschikbaarheid uit voorraad</li>
+      </ul>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Kies je merk</p>
+      <div id="hv-footer-brands" class="taglist" aria-live="polite"></div>
+      <a class="footer-link" href="/hulpveren">Alle merken</a>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Populaire modellen</p>
+      <p id="hv-footer-models-label" class="footer-muted">We tonen modellen die passen bij de huidige pagina.</p>
+      <div id="hv-footer-models" class="taglist" aria-labelledby="hv-footer-models-label"></div>
+    </section>
+
+        <section class="footer-block">
+      <p class="eyebrow">Contact</p>
+      <ul class="footer-list">
+        <li><strong>Auto Parts Roosendaal</strong></li>
+        <li>Westelijke Havendijk 17c</li>
+        <li>4703 RA Roosendaal</li>
+        <li>Bel: <a href="tel:+31165856568">0165 856568</a></li>
+        <li>WhatsApp: <a href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">Direct advies</a></li>
+        <li>Mail: <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a></li>
+        <li>Ma-Vr 10:00-18:00</li>
+        <li>Za 10:00-12:00</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="footer-bottom">
+    <p> <span id="hv-footer-year"></span> Hulpveren.shop  MAD specialist sinds 2008</p>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/algemene-voorwaarden">Algemene voorwaarden</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script defer src="/assets/js/header.js?v=20251215_1"></script>
+<script defer src="/assets/js/app.js?v=20251212c"></script>
+</body>
+</html>
+
+
+
+

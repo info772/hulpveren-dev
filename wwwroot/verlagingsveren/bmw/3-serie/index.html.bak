@@ -1,0 +1,3310 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+
+  <title>Bmw 3-serie Verlagingsveren - MAD sets met montage</title>
+  <meta name="description" content="Bmw 3-serie Verlagingsveren - MAD sets met montage" />
+  <link rel="canonical" href="https://www.hulpveren.shop/verlagingsveren/bmw/3-serie/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Bmw 3-serie Verlagingsveren - MAD sets met montage" />
+  <meta property="og:description" content="Bmw 3-serie Verlagingsveren - MAD sets met montage" />
+  <meta property="og:url" content="https://www.hulpveren.shop/verlagingsveren/bmw/3-serie/" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260103" />
+</head>
+<body>
+  <header class="site-header">
+  <div class="nav-shell">
+    <a class="brand" href="/" aria-label="Hulpveren.shop">
+      <img class="brand-logo" src="/img/branding/Logo-wit.png" alt="Hulpveren.shop" loading="lazy" decoding="async" />
+    </a>
+
+    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open navigatie">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" aria-label="Hoofdmenu">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item nav-item-mega" data-family="hv">
+          <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD hulpveren</button>
+          <div class="mega-panel" role="menu">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <h3>Alle merken</h3>
+                <ul id="hv-mega-brands-hv" class="mega-list" aria-label="Merken hulpveren"></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item nav-item-mega" data-family="nr">
+          <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Luchtvering</button>
+          <div class="mega-panel" role="menu">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <h3>Alle merken</h3>
+                <ul id="hv-mega-brands-nr" class="mega-list" aria-label="Merken luchtvering"></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item nav-item-mega" data-family="ls">
+          <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Verlagingsveren</button>
+          <div class="mega-panel" role="menu">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <h3>Alle merken</h3>
+                <ul id="hv-mega-brands-ls" class="mega-list" aria-label="Merken verlagingsveren"></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/montage">Montage</a></li>
+        <li class="nav-item"><a class="nav-link" href="/onze-ervaring">Onze ervaring</a></li>
+        <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Verlagingsveren</span>
+          <h1>Bmw 3-serie verlagen</h1>
+          <p class="lead">Complete MAD verlagingsveren-sets voor Bmw 3-serie, inclusief montage en uitlijning.</p>
+          <div class="hero-actions">
+            <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Offerte opvragen</a>
+            <a class="btn btn-ghost" href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">Stuur je kenteken</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="crumbs">
+        <a href="/">Home</a> / <a href="/verlagingsveren">Verlagingsveren</a> / Bmw 3-serie
+      </div>
+
+      <div class="filters-wrap">      <div class="filters ls-filters" style="display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px 0;">
+        <div class="grp" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+          <span class="muted">Bouwjaar van</span>
+          <input type="number" id="ls-year-from" placeholder="van" style="width:90px;padding:6px 8px;">
+          <span class="muted">t/m</span>
+          <input type="number" id="ls-year-to" placeholder="tot" style="width:90px;padding:6px 8px;">
+        </div>
+        <div class="grp" style="display:flex;gap:10px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+          <span class="muted">Bouwjaar</span>
+          <input type="range" id="ls-year-slider" min="1990" max="2025" value="0" style="width:180px;">
+          <span class="muted" id="ls-year-label">Alle</span>
+        </div>
+        <div class="grp" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+          <span class="muted">Min. verlaging</span>
+          <input type="number" id="ls-drop-front" placeholder="voor (mm)" style="width:100px;padding:6px 8px;">
+          <input type="number" id="ls-drop-rear" placeholder="achter (mm)" style="width:100px;padding:6px 8px;">
+        </div>
+        <div class="grp" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+          <span class="muted">Motor</span>
+          <input type="text" id="ls-engine" placeholder="bijv. diesel, hybrid, 2.0" style="width:180px;padding:6px 8px;">
+        </div>
+        <div class="grp" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;flex-wrap:wrap;">
+          <span class="muted">As</span>
+          <label><input type="checkbox" class="ls-pos" value="front"> Voor</label>
+          <label><input type="checkbox" class="ls-pos" value="rear"> Achter</label>
+          <label><input type="checkbox" class="ls-pos" value="both"> Voor+achter</label>
+        </div>
+        <div class="grp" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+          <button id="ls-apply" class="btn" type="button" style="padding:8px 10px;">Filter</button>
+          <button id="ls-reset" class="btn btn-ghost" type="button" style="padding:8px 10px;">Reset</button>
+          <span class="muted">Resultaten: <span id="ls-count"></span></span>
+        </div>
+      </div></div><div class="grid" id="ls-grid">
+        <article class="card product" data-year-from="2024" data-year-to="" data-drop-front="35" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-031150</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2024-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-031150/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="M340i xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-031152</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">M340i xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-031152/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="40" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="318i, 320i, 330i, 316D, 318D, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030752</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">318i, 320i, 330i, 316D, 318D, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030752/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="30" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="318i, 320i, 330i, 316D, 318D, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030754</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">318i, 320i, 330i, 316D, 318D, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030754/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="35" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="M340i xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030790</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">M340i xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030790/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="45" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="330D xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030794</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 45 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030794/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="40" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030852</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 699</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030852/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="30" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030890</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 699</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030890/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="40" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030934</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 699</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030934/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="30" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030936</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 699</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030936/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="25" data-drop-rear="" data-pos="front" data-setcount="2" data-engine="M3 COMPETITION">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-2.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-031008</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Vooras</div>
+              <div class="k">Set</div><div class="v">2 veren (Vooras)</div>
+              <div class="k">Motor</div><div class="v">M3 COMPETITION</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 509</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-031008/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="35" data-drop-rear="5" data-pos="both" data-setcount="4" data-engine="M3 COMPETITION">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-031010</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 5 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">M3 COMPETITION</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 779</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-031010/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="35" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="M3 COMPETITION">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-031012</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">M3 COMPETITION</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 779</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-031012/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2019" data-year-to="" data-drop-front="25" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="M340i xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-031154</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2019-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 25 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">M340i xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-031154/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="318i, 320i, 330i, 316D, 318D, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030698</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">318i, 320i, 330i, 316D, 318D, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030698/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="30" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="318i, 320i, 330i, 316D, 318D, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030700</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">318i, 320i, 330i, 316D, 318D, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030700/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="30" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="M340i xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030776</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">M340i xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030776/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="330D xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030778</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030778/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="45" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030792</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 45 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030792/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="30" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="M340i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030824</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">M340i</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030824/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="35" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="M3 ,  M3 COMPETITION">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030856</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">M3 ,  M3 COMPETITION</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 769</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030856/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="30" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030888</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030888/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="25" data-drop-rear="" data-pos="front" data-setcount="2" data-engine="M3, M3 COMPETITION">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-2.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030968</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Vooras</div>
+              <div class="k">Set</div><div class="v">2 veren (Vooras)</div>
+              <div class="k">Motor</div><div class="v">M3, M3 COMPETITION</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 509</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030968/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="30" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030976</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030976/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2018" data-year-to="" data-drop-front="45" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030978</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2018-</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 45 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030978/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2012" data-year-to="2019" data-drop-front="30" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="316i, 318i, 320i, 328i, 316D, 318D, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030586</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2012-2019</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i, 320i, 328i, 316D, 318D, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 629</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030586/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2012" data-year-to="2019" data-drop-front="30" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="330i, 335i, 340i, 325D, 330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030588</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2012-2019</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330i, 335i, 340i, 325D, 330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 639</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030588/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2012" data-year-to="2019" data-drop-front="40" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="316i, 318i, 320i, 328i, 316D, 318D, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030590</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2012-2019</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i, 320i, 328i, 316D, 318D, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 619</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030590/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2012" data-year-to="2019" data-drop-front="40" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="330i, 335i, 340i, 325D, 330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030592</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2012-2019</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330i, 335i, 340i, 325D, 330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 639</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030592/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2012" data-year-to="2019" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="320i, 328i, 330i, 318D, 320D xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030848</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2012-2019</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 328i, 330i, 318D, 320D xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030848/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2012" data-year-to="2019" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="335i, 340i, 330D, 335D xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030850</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2012-2019</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">335i, 340i, 330D, 335D xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030850/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="30" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="316i, 318i, 320i, 328i, 316D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030578</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i, 320i, 328i, 316D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 619</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030578/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="30" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="330i, 335i, 340i, 325D, 330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030580</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330i, 335i, 340i, 325D, 330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 639</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030580/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="316i, 318i, 320i, 328i, 316D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030582</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i, 320i, 328i, 316D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 629</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030582/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="330i, 335i, 340i, 325D, 330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030584</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330i, 335i, 340i, 325D, 330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030584/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="25" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030640</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 25 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030640/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="35" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030642</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030642/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="25" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="Hybrid">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030644</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 25 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">Hybrid</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030644/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="3.0 ,  3.0 COMPETITION">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030686</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">3.0 ,  3.0 COMPETITION</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 639</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030686/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="30" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="320i, 328i, 330i, 318D, 320D xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030718</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 328i, 330i, 318D, 320D xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 619</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030718/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="30" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="335i, 340i, 330D, 335D xDrive">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030720</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">335i, 340i, 330D, 335D xDrive</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 619</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030720/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="25" data-drop-rear="10" data-pos="both" data-setcount="4" data-engine="3.0 ,  3.0 COMPETITION">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030756</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 25 mm &middot; Achter: 10 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">3.0 ,  3.0 COMPETITION</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030756/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2011" data-year-to="2018" data-drop-front="30" data-drop-rear="10" data-pos="both" data-setcount="4" data-engine="3.0 ,  3.0 COMPETITION">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030854</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2011-2018</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 10 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">3.0 ,  3.0 COMPETITION</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030854/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2006" data-year-to="2013" data-drop-front="30" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="318i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030536</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2006-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">318i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030536/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2006" data-year-to="2013" data-drop-front="45" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="318i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030538</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2006-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 45 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">318i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030538/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2006" data-year-to="2013" data-drop-front="30" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="320i, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030540</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2006-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030540/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2006" data-year-to="2013" data-drop-front="45" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="320i, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030542</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2006-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 45 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030542/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2006" data-year-to="2013" data-drop-front="30" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="323i, 325i, 330i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030544</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2006-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">323i, 325i, 330i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030544/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2006" data-year-to="2013" data-drop-front="30" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="335i, 325D, 330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030546</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2006-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">335i, 325D, 330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030546/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2006" data-year-to="2013" data-drop-front="45" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="335i, 325D, 330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030548</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2006-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 45 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">335i, 325D, 330D</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030548/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2006" data-year-to="2013" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="323i, 325i, 330i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030630</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2006-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">323i, 325i, 330i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030630/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2005" data-year-to="2013" data-drop-front="35" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="320i, 323i, 325i, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030508</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2005-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 323i, 325i, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030508/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2005" data-year-to="2013" data-drop-front="35" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="330i, 335i, 325D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030510</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2005-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330i, 335i, 325D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030510/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2005" data-year-to="2013" data-drop-front="40" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="330D, 335D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030512</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2005-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D, 335D</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030512/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2005" data-year-to="2013" data-drop-front="25" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="4.0 V8">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030518</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2005-2013</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 25 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4.0 V8</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030518/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2004" data-year-to="2012" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="316i, 318i, 320i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030496</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2004-2012</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i, 320i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030496/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2004" data-year-to="2012" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="325i, 330i, 316D, 318D, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030498</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2004-2012</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">325i, 330i, 316D, 318D, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030498/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2004" data-year-to="2012" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="335, 325D, 330D, 335D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030524</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2004-2012</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">335, 325D, 330D, 335D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030524/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2004" data-year-to="2012" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="316i, 318i, 320i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030474</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2004-2012</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i, 320i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030474/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2004" data-year-to="2012" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="325i, 330i, 316D, 318D, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030476</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2004-2012</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">325i, 330i, 316D, 318D, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030476/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2004" data-year-to="2012" data-drop-front="45" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="316i, 318i, 320i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030478</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2004-2012</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 45 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i, 320i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030478/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2004" data-year-to="2012" data-drop-front="45" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="325i, 330i, 316D, 318D, 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030480</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2004-2012</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 45 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">325i, 330i, 316D, 318D, 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030480/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2004" data-year-to="2012" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="4.0 V8">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030520</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2004-2012</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4.0 V8</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030520/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2004" data-year-to="2012" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="335, 325D, 330D, 335D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030522</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2004-2012</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">335, 325D, 330D, 335D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030522/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2001" data-year-to="2005" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030404</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2001-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030404/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2001" data-year-to="2005" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="6CYL.+ 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030406</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2001-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.+ 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030406/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2000" data-year-to="2007" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030358</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2000-2007</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030358/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1999" data-year-to="2005" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030358</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1999-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030358/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2000" data-year-to="2007" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="6CYL.+ 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030360</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2000-2007</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.+ 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030360/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1999" data-year-to="2005" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="6CYL.+ 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030360</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1999-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.+ 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030360/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2000" data-year-to="2007" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030370</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2000-2007</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030370/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1999" data-year-to="2005" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030370</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1999-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030370/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2000" data-year-to="2007" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="3.2 (252 KW)">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030388</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2000-2007</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">3.2 (252 KW)</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 729</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030388/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1998" data-year-to="2006" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="3.2 (252 KW)">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030388</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1998-2006</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">3.2 (252 KW)</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 729</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030388/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2000" data-year-to="2007" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030412</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2000-2007</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030412/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1999" data-year-to="2005" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030412</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1999-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030412/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2000" data-year-to="2007" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="6CYL.+ 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030414</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2000-2007</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.+ 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030414/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1999" data-year-to="2005" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="6CYL.+ 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030414</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1999-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.+ 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030414/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="2000" data-year-to="2007" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030416</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">2000-2007</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030416/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1999" data-year-to="2005" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030416</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1999-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030416/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1998" data-year-to="2006" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030302</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1998-2006</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030302/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1997" data-year-to="2005" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030302</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1997-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030302/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1998" data-year-to="2006" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="6CYL.+ 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030314</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1998-2006</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.+ 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030314/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1997" data-year-to="2005" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="6CYL.+ 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030314</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1997-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.+ 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030314/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1998" data-year-to="2006" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030338</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1998-2006</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030338/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1997" data-year-to="2005" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030338</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1997-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030338/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1998" data-year-to="2006" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="6CYL.+ 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030340</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1998-2006</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.+ 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030340/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1997" data-year-to="2005" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="6CYL.+ 320D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030340</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1997-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.+ 320D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030340/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1998" data-year-to="2006" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030368</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1998-2006</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030368/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1997" data-year-to="2005" data-drop-front="40" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030368</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1997-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030368/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1998" data-year-to="2006" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030402</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1998-2006</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030402/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1997" data-year-to="2005" data-drop-front="50" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="330D">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030402</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1997-2005</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">330D</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030402/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1996" data-year-to="1999" data-drop-front="30" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="3.0 (210 KW)">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030124</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1996-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">3.0 (210 KW)</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030124/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1996" data-year-to="1999" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="320i, 325i, 325TD, TDS, 328i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030272</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1996-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 325i, 325TD, TDS, 328i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030272/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1996" data-year-to="1999" data-drop-front="50" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="320i, 325i, 325TD, TDS, 328i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030274</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1996-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 325i, 325TD, TDS, 328i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030274/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1996" data-year-to="1999" data-drop-front="25" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="3.2 (236 KW)">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030292</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1996-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 25 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">3.2 (236 KW)</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030292/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1994" data-year-to="1999" data-drop-front="35" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="6CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030132</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1994-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030132/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1994" data-year-to="1999" data-drop-front="35" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030280</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1994-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030280/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1994" data-year-to="2000" data-drop-front="35" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="316i, 318i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030118</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1994-2000</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030118/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1994" data-year-to="2000" data-drop-front="50" data-drop-rear="50" data-pos="both" data-setcount="4" data-engine="316i, 318i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030122</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1994-2000</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 50 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030122/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1994" data-year-to="2000" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="318TDS, 323Ti">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030130</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1994-2000</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">318TDS, 323Ti</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030130/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1994" data-year-to="2000" data-drop-front="50" data-drop-rear="30" data-pos="both" data-setcount="4" data-engine="316i, 318i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030214</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1994-2000</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 30 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030214/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1993" data-year-to="1999" data-drop-front="35" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="318i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030104</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1993-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">318i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 659</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030104/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1993" data-year-to="1999" data-drop-front="40" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="320i, 325i, 328i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030106</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1993-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 325i, 328i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030106/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1992" data-year-to="1995" data-drop-front="30" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="320i, 325i, 325TD, TDS, 328i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030100</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1992-1995</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 325i, 325TD, TDS, 328i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030100/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1992" data-year-to="1995" data-drop-front="50" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="320i, 325i, 325TD, TDS, 328i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030114</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1992-1995</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 325i, 325TD, TDS, 328i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 679</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030114/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1990" data-year-to="1999" data-drop-front="30" data-drop-rear="15" data-pos="both" data-setcount="4" data-engine="316i, 318i, 318TDS">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030054</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1990-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 15 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i, 318TDS</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030054/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1990" data-year-to="1992" data-drop-front="30" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="320i, 325i, 325TD, TDS, 328i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030056</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1990-1992</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 30 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 325i, 325TD, TDS, 328i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 689</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030056/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1990" data-year-to="1999" data-drop-front="50" data-drop-rear="20" data-pos="both" data-setcount="4" data-engine="316i, 318i, 318TDS">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030108</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1990-1999</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 50 mm &middot; Achter: 20 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316i, 318i, 318TDS</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 669</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030108/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1987" data-year-to="1994" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="4CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030164</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1987-1994</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">4CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030164/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1987" data-year-to="1994" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="6CYL.">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030172</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1987-1994</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">6CYL.</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030172/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1982" data-year-to="1993" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="320i, 323i, 325, i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030048</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1982-1993</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320i, 323i, 325, i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030048/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1982" data-year-to="1993" data-drop-front="35" data-drop-rear="35" data-pos="both" data-setcount="4" data-engine="318i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030050</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1982-1993</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 35 mm &middot; Achter: 35 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">318i</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030050/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1982" data-year-to="1992" data-drop-front="25" data-drop-rear="25" data-pos="both" data-setcount="4" data-engine="M3">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030064</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1982-1992</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 25 mm &middot; Achter: 25 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">M3</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030064/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1982" data-year-to="1992" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="316, 318">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030066</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1982-1992</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">316, 318</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030066/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1982" data-year-to="1992" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="320, 323, 324TD, 325">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030068</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1982-1992</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">320, 323, 324TD, 325</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030068/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1982" data-year-to="1992" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="ALLRAD 6CYL. + TOURING">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030156</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1982-1992</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">ALLRAD 6CYL. + TOURING</div>
+              <div class="k">Goedkeuring</div><div class="v">T&Uuml;V</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 649</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030156/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1975" data-year-to="1984" data-drop-front="60" data-drop-rear="60" data-pos="both" data-setcount="4" data-engine="315, 316, 318, 320, 323i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030036</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1975-1984</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 60 mm &middot; Achter: 60 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">315, 316, 318, 320, 323i</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 709</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030036/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1975" data-year-to="1984" data-drop-front="40" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="315, 316, 318, 320, 323i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030058</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1975-1984</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 40 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">315, 316, 318, 320, 323i</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 699</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030058/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+        <article class="card product" data-year-from="1975" data-year-to="1984" data-drop-front="60" data-drop-rear="40" data-pos="both" data-setcount="4" data-engine="315, 316, 318, 320, 323i">
+          <div class="img">
+            <img src="/assets/img/HV-kits/LS-4.jpg" alt="Verlagingsveren BMW 3-serie" loading="lazy" />
+            <div class="badge">Inclusief montage</div>
+          </div>
+          <div class="body">
+            <div class="sku">LS-030138</div>
+            <div class="meta">
+              <div class="k">Bouwjaren</div><div class="v">1975-1984</div>
+              <div class="k">Verlaging</div><div class="v">Voor: 60 mm &middot; Achter: 40 mm</div>
+              <div class="k">Positie</div><div class="v">Voor- en achteras</div>
+              <div class="k">Set</div><div class="v">4 veren (voor+achter)</div>
+              <div class="k">Motor</div><div class="v">315, 316, 318, 320, 323i</div>
+              <div class="k">Goedkeuring</div><div class="v">Op aanvraag</div>
+            </div>
+            <div class="chips">
+              <span class="chip support">Montage &amp; uitlijning</span>
+              <span class="chip">&euro; 709</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-ghost" href="/verlagingsveren/ls-030138/">Bekijk set</a>
+              <a class="btn" href="/contact?onderwerp=ls-bmw-3-serie">Plan mijn set</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <script>(function(){
+  const grid=document.getElementById('ls-grid');
+  if(!grid) return;
+  const cards=Array.prototype.slice.call(grid.querySelectorAll('.card.product'));
+  const yearFrom=document.getElementById('ls-year-from');
+  const yearTo=document.getElementById('ls-year-to');
+  const yearSlider=document.getElementById('ls-year-slider');
+  const yearLabel=document.getElementById('ls-year-label');
+  const dropFront=document.getElementById('ls-drop-front');
+  const dropRear=document.getElementById('ls-drop-rear');
+  const engineInput=document.getElementById('ls-engine');
+  const posBoxes=Array.prototype.slice.call(document.querySelectorAll('.ls-pos'));
+    var posGroup=null;
+    if(posBoxes.length){
+      var node=posBoxes[0];
+      while(node && node!==document){
+        if(node.classList&&node.classList.contains('grp')){ posGroup=node; break; }
+        node=node.parentElement;
+      }
+    }
+    var posAvail={};
+    cards.forEach(function(c){
+      var p=(c.dataset.pos||'').trim();
+      if(p) posAvail[p]=1;
+    });
+    if(posGroup && Object.keys(posAvail).length<2){
+      posGroup.style.display='none';
+      posBoxes.forEach(function(b){ b.checked=false; });
+    }
+  const countEl=document.getElementById('ls-count');
+  function num(v){var n=parseInt(v,10);return isNaN(n)?null:n;}
+  (function initYearSlider(){
+    if(!yearSlider||!cards.length) return;
+    var ys=[],ye=[];
+    cards.forEach(function(c){
+      var a=num(c.dataset.yearFrom); var b=num(c.dataset.yearTo);
+      if(a!==null) ys.push(a);
+      if(b!==null) ye.push(b);
+    });
+    var min=Math.min.apply(null, ys.length?ys:[1990]);
+    var max=Math.max.apply(null, ye.length?ye:ys.length?ys:[new Date().getFullYear()]);
+    if(!isFinite(min)||!isFinite(max)) { min=1990; max=new Date().getFullYear(); }
+    yearSlider.min=min; yearSlider.max=max; yearSlider.value=0;
+    if(yearLabel) { yearLabel.textContent='Alle'; }
+    yearSlider.addEventListener('input', function(){
+      var v=num(yearSlider.value);
+      if(v===0){ if(yearLabel) { yearLabel.textContent='Alle'; } }
+      else { if(yearLabel) { yearLabel.textContent=String(v); } }
+    });
+  })();
+
+  function match(card){
+    var yf=num(yearFrom&&yearFrom.value);
+    var yt=num(yearTo&&yearTo.value);
+    var ys=num(yearSlider&&yearSlider.value);
+    if(ys===0) ys=null;
+    var df=num(dropFront&&dropFront.value);
+    var dr=num(dropRear&&dropRear.value);
+    var eng=(engineInput&&engineInput.value||'').toLowerCase().trim();
+    var cy1=num(card.dataset.yearFrom);
+    var cy2=num(card.dataset.yearTo);
+    var cf=num(card.dataset.dropFront);
+    var cr=num(card.dataset.dropRear);
+    var ce=(card.dataset.engine||'').toLowerCase();
+    var posSel=posBoxes.filter(function(b){return b.checked;}).map(function(b){return b.value;});
+    var cardPos=(card.dataset.pos||'').toLowerCase();
+    if(yf!==null && cy2!==null && yf>cy2) return false;
+    if(yt!==null && cy1!==null && yt<cy1) return false;
+    if(ys!==null){
+      if(cy1!==null && ys<cy1) return false;
+      if(cy2!==null && ys>cy2) return false;
+    }
+    if(df!==null){ if(cf===null || cf<df) return false; }
+    if(dr!==null){ if(cr===null || cr<dr) return false; }
+    if(eng){ if(!ce || ce.indexOf(eng)===-1) return false; }
+    if(posSel.length){ if(posSel.indexOf(cardPos)===-1) return false; }
+    return true;
+  }
+  function apply(){
+    var visible=0;
+    cards.forEach(function(c){
+      var ok=match(c);
+      c.style.display=ok?'':'none';
+      if(ok) visible++;
+    });
+    if(countEl) countEl.textContent=String(visible);
+  }
+  var applyBtn=document.getElementById('ls-apply');
+  var resetBtn=document.getElementById('ls-reset');
+  if(applyBtn) applyBtn.addEventListener('click', apply);
+  if(resetBtn) resetBtn.addEventListener('click', function(){
+    if(yearFrom) yearFrom.value='';
+    if(yearTo) yearTo.value='';
+    if(yearSlider){ yearSlider.value=0; if(yearLabel) yearLabel.textContent='Alle'; }
+    if(dropFront) dropFront.value='';
+    if(dropRear) dropRear.value='';
+    if(engineInput) engineInput.value='';
+    posBoxes.forEach(function(b){ b.checked=false; });
+    apply();
+  });
+  apply();
+})();</script>
+    </section>
+
+    <footer class="site-footer">
+  <div class="footer-shell">
+    <footer class="site-footer">
+  <div class="footer-shell">
+    <section class="footer-block">
+      <p class="eyebrow">Hulpveren.shop</p>
+      <h2>Veilig rijden met de juiste set</h2>
+      <p>Wij bouwen dagelijks MAD hulpveren, luchtvering en verlagingsveren in. Altijd inclusief montage, uitlijning en eerlijk advies.</p>
+      <div class="footer-cta">
+        <a class="btn" href="/hulpveren">Bekijk hulpveren</a>
+        <a class="btn btn-ghost" href="/montage">Plan montage</a>
+      </div>
+      <ul class="footer-list">
+        <li>Gecertificeerde monteurs</li>
+        <li>Persoonlijk advies per kenteken</li>
+        <li>Snelle beschikbaarheid uit voorraad</li>
+      </ul>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Kies je merk</p>
+      <div id="hv-footer-brands" class="taglist" aria-live="polite"></div>
+      <a class="footer-link" href="/hulpveren">Alle merken</a>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Populaire modellen</p>
+      <p id="hv-footer-models-label" class="footer-muted">We tonen modellen die passen bij de huidige pagina.</p>
+      <div id="hv-footer-models" class="taglist" aria-labelledby="hv-footer-models-label"></div>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Contact</p>
+      <ul class="footer-list">
+        <li><strong>Auto Parts Roosendaal</strong></li>
+        <li>Westelijke Havendijk 17c</li>
+        <li>4703 RA Roosendaal</li>
+        <li>Bel: <a href="tel:+31165856568">0165 856568</a></li>
+        <li>WhatsApp: <a href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">Direct advies</a></li>
+        <li>Mail: <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a></li>
+        <li>Ma-Vr 10:00-18:00</li>
+        <li>Za 10:00-12:00</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="footer-bottom">
+    <p> <span id="hv-footer-year"></span> Hulpveren.shop  MAD specialist sinds 2008</p>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/algemene-voorwaarden">Algemene voorwaarden</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script defer src="/assets/js/header.js?v=20251215_1"></script>
+<script defer src="/assets/js/app.js?v=20251213a"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Blog – Hulpveren.shop</title>
+  <meta name="description" content="Tips, uitleg en praktijkervaring over MAD hulpveren, luchtvering en verlagingsveren. Montage in Roosendaal." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.hulpveren.shop/blog/" />
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Blog – Hulpveren.shop" />
+  <meta property="og:description" content="Tips, uitleg en praktijkervaring over MAD hulpveren, luchtvering en verlagingsveren. Montage in Roosendaal." />
+  <meta property="og:url" content="https://www.hulpveren.shop/blog/"/>
+  <meta property="og:site_name" content="Hulpveren.shop"/>
+
+  <link rel="icon" href="/img/branding/APR-Favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
+
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260103" />
+  <link rel="stylesheet" href="/assets/css/blog.css?v=20251220_1" />
+
+  <style>
+    body.page-bloghome{
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(250,184,25,.18), transparent 60%),
+        radial-gradient(1000px 600px at 80% 10%, rgba(250,184,25,.10), transparent 55%),
+        #0b0f14;
+      min-height: 100vh;
+    }
+
+    .bloghome-wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+
+    .bloghome-head{
+      padding: 18px 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      margin-bottom: 18px;
+    }
+
+    .bloghome-kicker{ opacity:.85; font-size:.95rem; margin:0 0 8px; }
+    .bloghome-head h1{ margin:0 0 10px; font-size:clamp(2rem,3vw,2.6rem); letter-spacing:-.02em; }
+    .bloghome-lead{ margin:0; opacity:.85; max-width:78ch; line-height:1.7; }
+
+    .bloghome-tools{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:16px;
+    }
+
+    .bloghome-search{
+      flex: 1 1 320px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+
+    .bloghome-search input{
+      width:100%;
+      border:0;
+      outline:0;
+      background:transparent;
+      color: inherit;
+      font-size: 1rem;
+    }
+
+    .bloghome-pill{
+        display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #ffffff !important;   /* <- hard override */
+  background: #111827;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.15);
+    }
+    .bloghome-pill:hover{ transform: translateY(-1px); filter: brightness(1.07); }
+    .bloghome-pill[aria-pressed="true"]{
+      background: rgba(250,184,25,.16);
+      border-color: rgba(250,184,25,.35);
+    }
+
+    .bloghome-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    @media(min-width: 820px){
+      .bloghome-grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .blogcard{
+      display:block;
+      text-decoration:none;
+      color: inherit;
+      background: rgba(18,24,35,.75);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .blogcard:hover{ transform: translateY(-2px); filter: brightness(1.06); }
+
+    .blogcard img{
+      width:100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display:block;
+      background: rgba(255,255,255,.06);
+    }
+
+    .blogcard-body{ padding: 12px 12px 14px; }
+
+    .blogcard-title{
+      margin:0 0 6px;
+      font-size: 1.05rem;
+      letter-spacing: -.01em;
+      line-height: 1.3;
+    }
+
+    .blogcard-meta{
+      opacity:.8;
+      font-size:.9rem;
+      margin:0 0 10px;
+    }
+
+    .blogcard-desc{
+      margin:0;
+      opacity:.85;
+      line-height: 1.55;
+      font-size: .98rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
+
+    .bloghome-empty{
+      margin-top: 18px;
+      border: 1px dashed rgba(255,255,255,.18);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 14px;
+      opacity: .9;
+    }
+
+    .bloghome-footnote{
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      opacity: .9;
+      font-size: .95rem;
+    }
+  </style>
+</head>
+
+<body class="page-bloghome">
+
+  <!-- HEADER: gelijk aan andere pagina’s -->
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Hulpveren.shop">
+        <img class="brand-logo" src="/img/branding/Logo-wit.png" alt="Hulpveren.shop" loading="lazy" decoding="async" />
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open navigatie">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" aria-label="Hoofdmenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+
+          <li class="nav-item nav-item-mega" data-family="hv">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD hulpveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-hv" class="mega-list" aria-label="Merken hulpveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="nr">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Luchtvering</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-nr" class="mega-list" aria-label="Merken luchtvering"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="ls">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Verlagingsveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-ls" class="mega-list" aria-label="Merken verlagingsveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="/montage">Montage</a></li>
+          <li class="nav-item"><a class="nav-link" href="/onze-ervaring">Onze ervaring</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog" aria-current="page">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="bloghome-wrap" role="main">
+  
+      <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Kennis &amp; praktijk</span>
+          <h1>
+			Blog
+		  </h1>   
+		<p class="bloghome-lead">
+        Uitleg, tips en praktijkervaring over <strong>hulpveren</strong>, <strong>luchtvering</strong> en <strong>verlagingsveren</strong>.
+        Montage in Roosendaal (Auto Parts Roosendaal).
+      </p>		  
+        </div>
+      </div>
+    </section>
+	
+    <header class="bloghome-head">
+     
+      
+
+      <div class="bloghome-tools">
+        <div class="bloghome-search" role="search" aria-label="Zoeken in blogartikelen">
+          <span aria-hidden="true">🔎</span>
+          <input id="blogSearch" type="search" placeholder="Zoek in blogs (bijv. camper, Ducato, luchtvering, KONI)..." autocomplete="off" />
+        </div>
+
+        <button class="bloghome-pill" type="button" data-tag="hulpveren" aria-pressed="false">Hulpveren</button>
+        <button class="bloghome-pill" type="button" data-tag="luchtvering" aria-pressed="false">Luchtvering</button>
+        <button class="bloghome-pill" type="button" data-tag="verlagingsveren" aria-pressed="false">Verlagingsveren</button>
+      </div>
+    </header>
+
+    <section aria-label="Blogoverzicht">
+      <div id="blogGrid" class="bloghome-grid" aria-live="polite"></div>
+
+      <div id="blogEmpty" class="bloghome-empty" hidden>
+        Geen blogs gevonden. Pas je zoekterm of filter aan.
+      </div>
+
+      <noscript>
+        <div class="bloghome-empty">Schakel JavaScript in om de blogs te laden.</div>
+      </noscript>
+
+      <footer class="bloghome-footnote">
+        <p style="margin:0;">
+          Vragen of wil je advies voor jouw voertuig? Mail
+          <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a> of bel
+          <a href="tel:+31165856568">0165 856568</a>.
+        </p>
+      </footer>
+    </section>
+  </main>
+
+<!-- FOOTER placeholder -->
+  <div id="site-footer"></div>
+
+<!-- Site scripts -->
+  <script defer src="/assets/js/siteSettings.js"></script>
+  <script defer src="/assets/js/blog.js"></script>
+  <script defer src="/assets/js/footerLoader.js"></script>
+  <script defer src="/assets/js/header.js?v=20251215_1"></script>
+  <script defer src="/assets/js/app.js?v=20251213a"></script>
+
+
+</body>
+</html>
+

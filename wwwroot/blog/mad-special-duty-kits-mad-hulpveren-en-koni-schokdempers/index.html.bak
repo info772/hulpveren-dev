@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MAD Special Duty Kits – hulpveren & KONI schokdempers</title>
+  <meta name="description" content="MAD Special Duty Kits combineren MAD hulpveren met KONI schokdempers voor maximale stabiliteit en comfort bij zware belasting." />
+  <meta name="blog:tags" content="hulpveren,koni,special duty,bedrijfswagen,camper" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.hulpveren.shop/blog/mad-special-duty-kits-mad-hulpveren-en-koni-schokdempers/" />
+
+  <link rel="icon" href="/img/branding/APR-Favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
+
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260103" />
+  <link rel="stylesheet" href="/assets/css/blog.css?v=20251220_1" />
+
+  <style>
+    body.page-blog-post{
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(250,184,25,.18), transparent 60%),
+        radial-gradient(1000px 600px at 80% 10%, rgba(250,184,25,.10), transparent 55%),
+        #0b0f14;
+      min-height: 100vh;
+    }
+
+    .page-blog-post .wrap{
+      max-width: 980px;
+    }
+
+    .page-blog-post .hero--blog{
+      padding-top: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      margin-bottom: 18px;
+    }
+
+    .page-blog-post .breadcrumbs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      font-size:.95rem;
+      opacity:.88;
+      margin:0 0 10px;
+    }
+    .page-blog-post .breadcrumbs a{ text-decoration:none; }
+    .page-blog-post .breadcrumbs a:hover{ text-decoration:underline; }
+
+    .page-blog-post .blog-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .page-blog-post .blog-article{
+      padding-top: 10px;
+      padding-bottom: 30px;
+    }
+
+    .page-blog-post .blog-article h2{
+      margin: 26px 0 10px;
+      font-size: 1.35rem;
+      letter-spacing: -.01em;
+      line-height: 1.25;
+    }
+
+    .page-blog-post .blog-article p{
+      margin: 0 0 14px;
+      line-height: 1.75;
+      opacity: .95;
+    }
+
+    .page-blog-post .blog-article ul{
+      margin: 0 0 14px;
+      padding-left: 18px;
+    }
+    .page-blog-post .blog-article li{
+      margin: 6px 0;
+      line-height: 1.65;
+    }
+
+    .page-blog-post figure{
+      margin: 18px 0;
+    }
+
+    .page-blog-post .blog-figure{
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .page-blog-post .blog-figure img{
+      width:100%;
+      display:block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: rgba(255,255,255,.06);
+    }
+
+    .page-blog-post figcaption{
+      padding: 10px 12px 12px;
+      font-size: .92rem;
+      opacity: .78;
+      line-height: 1.45;
+    }
+
+    .page-blog-post .media-split{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      align-items: start;
+      margin: 18px 0;
+    }
+    @media (min-width: 860px){
+      .page-blog-post .media-split{
+        grid-template-columns: 1.15fr .85fr;
+        gap: 18px;
+        align-items: center;
+      }
+    }
+    .page-blog-post .media-split .blog-figure{
+      margin: 0;
+    }
+
+    .page-blog-post .blog-gallery{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 18px 0 10px;
+    }
+    @media (min-width: 720px){
+      .page-blog-post .blog-gallery{
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .page-blog-post .callout{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      padding: 14px 14px;
+      margin: 18px 0;
+    }
+
+    .page-blog-post .cta-box{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      padding: 16px 14px;
+      margin-top: 18px;
+    }
+    .page-blog-post .cta-box h3{
+      margin: 0 0 8px;
+      letter-spacing: -.01em;
+      line-height: 1.2;
+    }
+    .page-blog-post .cta-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .page-blog-post .related-blogs{
+      margin-top: 36px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .page-blog-post .related-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (min-width: 900px){
+      .page-blog-post .related-grid{
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .page-blog-post .related-card{
+      display:flex;
+      flex-direction: column;
+      min-height: 100%;
+      background: rgba(18,24,35,.75);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      overflow:hidden;
+      text-decoration:none;
+      color: inherit;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .page-blog-post .related-card:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .page-blog-post .related-card img{
+      width:100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: rgba(255,255,255,.06);
+      display:block;
+    }
+
+    .page-blog-post .related-card .related-body{
+      padding: 12px 12px 14px;
+      display:flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .page-blog-post .related-card h3{
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.25;
+      letter-spacing: -.01em;
+    }
+    .page-blog-post .related-card p{
+      margin: 0;
+      opacity: .84;
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
+    .page-blog-post .related-meta{
+      font-size: .9rem;
+      opacity: .78;
+      margin-top: auto;
+    }
+
+    .page-blog-post .hero--blog .wrap{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .page-blog-post .breadcrumbs{
+      margin: 0;
+    }
+
+    .page-blog-post .eyebrow{
+      margin: 0;
+    }
+
+    .page-blog-post .hero--blog h1{
+      margin: 0;
+      line-height: 1.12;
+    }
+
+    .page-blog-post .hero--blog .lead{
+      margin: 0;
+      max-width: 78ch;
+    }
+
+    .page-blog-post .blog-meta{
+      margin: 0;
+    }
+
+    .page-blog-post .blog-footer{
+      margin-top: 18px;
+      font-size: .95rem;
+      opacity: .85;
+    }
+
+    .page-blog-post .cta-button-row{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    .page-blog-post .cta-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      font-weight: 550;
+      text-decoration: none;
+      color: #ffffff;
+      background: #1f2933;
+      border-radius: 5px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .page-blog-post .cta-btn:hover{
+      background: #111827;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 640px){
+      .page-blog-post .cta-btn{
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-blog-post">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="Hulpveren.shop">
+        <img class="brand-logo" src="/img/branding/Logo-wit.png" alt="Hulpveren.shop" loading="lazy" decoding="async" />
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Open navigatie">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" aria-label="Hoofdmenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+
+          <li class="nav-item nav-item-mega" data-family="hv">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD hulpveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-hv" class="mega-list" aria-label="Merken hulpveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="nr">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Luchtvering</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-nr" class="mega-list" aria-label="Merken luchtvering"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item nav-item-mega" data-family="ls">
+            <button class="nav-link nav-toggle-cta" type="button" aria-expanded="false">MAD Verlagingsveren</button>
+            <div class="mega-panel" role="menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h3>Alle merken</h3>
+                  <ul id="hv-mega-brands-ls" class="mega-list" aria-label="Merken verlagingsveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="/montage">Montage</a></li>
+          <li class="nav-item"><a class="nav-link" href="/onze-ervaring">Onze ervaring</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="blog" role="main">
+
+  <section class="hero hero--blog">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Kruimelpad">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="/blog">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>MAD Special Duty Kits</span>
+      </nav>
+
+      <span class="eyebrow">Zware belading &amp; stabiliteit</span>
+
+      <h1>MAD Special Duty Kits - hulpveren &amp; KONI schokdempers</h1>
+
+      <p class="lead">
+        Maximale stabiliteit en controle bij zware belasting door de combinatie van MAD hulpveren en KONI schokdempers.
+      </p>
+
+      <div class="blog-meta">
+        <span>Auto Parts Roosendaal</span>
+        <span aria-hidden="true">&bull;</span>
+        <time datetime="2025-04-29">29 april 2025</time>
+        <span aria-hidden="true">&bull;</span>
+        <span>Leestijd 4 min</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="wrap blog-article">
+
+    <figure class="blog-figure" aria-label="MAD Special Duty Kit">
+      <img
+        src="img/mad-special-duty-kit-hero.jpg"
+        alt="MAD Special Duty Kit met hulpveren en KONI schokdempers"
+        loading="eager"
+        decoding="async"
+      />
+      <figcaption>Een MAD Special Duty Kit combineert hulpveren met KONI schokdempers voor extra stabiliteit bij zware belasting.</figcaption>
+    </figure>
+
+    <p>
+      De <strong>MAD Special Duty Kits</strong> zijn ontworpen voor voertuigen die structureel zwaar belast worden.
+      Door MAD hulpveren te combineren met hoogwaardige <strong>KONI schokdempers</strong> ontstaat een setup
+      die comfort en controle behoudt - ook bij maximale belading.
+    </p>
+
+    <h2>Wat maakt een Special Duty Kit uniek?</h2>
+    <p>
+      Waar standaard vering vaak tekortschiet bij campers en bedrijfswagens,
+      biedt een Special Duty Kit extra draagvermogen zonder het rijcomfort te verliezen.
+    </p>
+
+    <figure class="blog-figure">
+      <img
+        src="img/mad-special-duty-kit-montage.jpg"
+        alt="Montage van MAD Special Duty Kit"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>Montage van een MAD Special Duty Kit in onze werkplaats.</figcaption>
+    </figure>
+
+    <h2>Voor welke camper basissen?</h2>
+    <div class="cta-button-row">
+      <a href="/hulpveren/citroen/jumper/" class="cta-btn">
+        Citroen Jumper
+      </a>
+      <a href="/hulpveren/fiat/ducato/" class="cta-btn">
+        Fiat Ducato
+      </a>
+      <a href="/hulpveren/ford/transit/" class="cta-btn">
+        Ford Transit
+      </a>
+
+      <a href="/hulpveren/mercedes-benz/sprinter/" class="cta-btn">
+        Mercedes Sprinter
+      </a>
+
+      <a href="/hulpveren/peugeot/boxer/" class="cta-btn">
+        Peugeot Boxer
+      </a>
+
+      <a href="/hulpveren/volkswagen/crafter/" class="cta-btn">
+        Volkswagen Crafter
+      </a>
+    </div>
+
+    <div class="blog-gallery">
+      <figure class="blog-figure">
+        <img src="img/mad-special-duty-kit-montage.jpg" alt="Detail MAD hulpveren" loading="lazy" decoding="async">
+      </figure>
+      <figure class="blog-figure">
+        <img src="img/mad-special-duty-kit-hero.jpg" alt="KONI Special Active schokdemper" loading="lazy" decoding="async">
+      </figure>
+    </div>
+
+    <h2>Conclusie</h2>
+    <p>
+      Met een MAD Special Duty Kit investeer je in veiligheid, stabiliteit en duurzaamheid.
+      Zeker bij dagelijks gebruik of lange reizen is dit een merkbare upgrade.
+    </p>
+
+    <section class="related-blogs" aria-label="Gerelateerde blogs" data-related-section>
+      <h2 style="margin:0;">Gerelateerd</h2>
+      <div class="related-grid" data-related-grid data-related-limit="3"></div>
+      <p class="related-meta" data-related-empty hidden>Geen gerelateerde blogs gevonden.</p>
+    </section>
+
+  </article>
+</main>
+
+<!-- FOOTER placeholder -->
+  <div id="site-footer"></div>
+
+  <!-- 1) Eerst footer laden -->
+  <script>
+    (async () => {
+      try {
+        const res = await fetch("/partials/footer-hulpveren.html", { cache: "no-store" });
+        if (res.ok) {
+          const html = await res.text();
+          document.getElementById("site-footer").innerHTML = html;
+        }
+      } catch (e) {
+        console.warn("Footer load failed:", e);
+      }
+
+      // 2) Daarna pas je site scripts laden (zodat footer elements bestaan)
+      const s1 = document.createElement("script");
+      s1.src = "/assets/js/header.js?v=20251215_1";
+      s1.defer = true;
+
+      const s2 = document.createElement("script");
+      s2.src = "/assets/js/app.js?v=20251212c";
+      s2.defer = true;
+
+      const s3 = document.createElement("script");
+      s3.src = "/assets/js/blog-related.js?v=20251222_1";
+      s3.defer = true;
+
+      document.body.appendChild(s1);
+      document.body.appendChild(s2);
+      document.body.appendChild(s3);
+    })();
+  </script>
+
+</body>
+</html>
+
+
