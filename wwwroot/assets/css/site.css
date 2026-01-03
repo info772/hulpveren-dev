@@ -1,3 +1,10 @@
+/* Kill v1 header zodra v2 bestaat */
+.hv-header{ display:none !important; }
+#site-header.hv-header{ display:none !important; }
+
+/* Zorg dat v2 altijd zichtbaar is */
+.hv2-header{ display:block; }
+
 :root { 
 --bg: #05070f; 
 --panel: #0c1224; 
