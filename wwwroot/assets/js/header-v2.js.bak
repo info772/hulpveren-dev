@@ -1,7 +1,7 @@
 // Deprecated: use /assets/js/header.js. Kept for compatibility.
 (() => {
   "use strict";
-  if (window.__HV_HEADER_V2_LOADED__ || document.querySelector('script[src*="/partials/header.js"]')) return;
+  if (window.__HV_HEADER_V2_LOADED__ || document.querySelector('script[src*="/partials/header.js"]')return;
 
   const script = document.createElement("script");
   script.src = "/assets/js/header.js";
