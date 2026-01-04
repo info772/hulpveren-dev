@@ -436,6 +436,25 @@
     mountEl.dataset.hv2MegaBound = "1";
   };
 
+  const bindHeaderScroll = (mountEl) => {
+    const header = (mountEl && mountEl.querySelector(".hv2-header")) || document.querySelector(".hv2-header");
+    if (!header) return;
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const scrolled = window.scrollY > 24;
+        header.classList.toggle("is-scrolled", scrolled);
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  };
+
   const TITLE_MAP = {
     "algemene-voorwaarden": "Algemene voorwaarden",
     blog: "Blog",
@@ -551,6 +570,7 @@
     bindMegaMenus(mountEl);
     injectBreadcrumbs(mountEl);
     mountMakesWhenReady();
+    bindHeaderScroll(mountEl);
   };
 
   const init = () => {
