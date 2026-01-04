@@ -151,47 +151,39 @@
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-  const loadBrandsJson = async () => {
-    const candidates = [
-      "/assets/data/brands.json",
-      "/assets/json/brands.json",
-      "/assets/brands.json",
-      "/data/brands.json",
-      "/assets/data/makes.json",
-      "/assets/json/makes.json",
-      "/assets/makes.json",
-      "/data/makes.json",
-      "/data/makes.json",
-    ];
+  const MAKES_URL = "/data/makes.json";
 
-    const attempts = [];
-    for (const url of candidates) {
-      try {
-        const res = await fetch(url, { cache: "no-store" });
-        attempts.push({ url, ok: res.ok, status: res.status });
-        if (!res.ok) continue;
-        const data = await res.json();
-        return { url, data, attempts };
-      } catch (e) {
-        attempts.push({ url, ok: false, error: String(e) });
+  const loadMakesJson = async () => {
+    try {
+      const res = await fetch(MAKES_URL, { cache: "no-store" });
+      const attempt = { url: MAKES_URL, ok: res.ok, status: res.status };
+      console.log("[header][makes] attempt:", attempt);
+      if (!res.ok) {
+        console.warn("[header][makes] fetch failed", attempt);
+        return null;
       }
+      const data = await res.json();
+      return { url: MAKES_URL, data };
+    } catch (e) {
+      console.warn("[header][makes] fetch error", { url: MAKES_URL, error: String(e) });
+      return null;
     }
-    console.warn("[header][brands] JSON not found", attempts);
-    return null;
   };
 
-  const normalizeBrands = (data) => {
+  const normalizeMakes = (data) => {
     const pick = (obj, path) =>
       path.split(".").reduce((o, k) => (o && o[k] != null ? o[k] : null), obj);
 
     const raw =
       (Array.isArray(data) && data) ||
+      pick(data, "makes") ||
       pick(data, "brands") ||
-      pick(data, "items") ||
+      pick(data, "data.makes") ||
       pick(data, "data.brands") ||
+      pick(data, "items") ||
       pick(data, "data.items") ||
+      pick(data, "result.makes") ||
       pick(data, "result.brands") ||
-      pick(data, "result.items") ||
       [];
 
     const arr = Array.isArray(raw) ? raw : [];
@@ -208,41 +200,45 @@
       .filter((x) => x.label && x.slug);
   };
 
-  const renderBrands = (listEl, brands) => {
-    if (!brands.length) {
-      listEl.innerHTML = `<li class="mega-item"><span class="mega-link">Geen merken gevonden</span></li>`;
+  const renderMakes = (listEl, makes) => {
+    if (!makes.length) {
+      console.warn("[header][makes] no makes after normalize");
       return;
     }
 
     const frag = document.createDocumentFragment();
-    brands.forEach((b) => {
+    makes.forEach((m) => {
       const li = document.createElement("li");
       li.className = "mega-item";
       const a = document.createElement("a");
       a.className = "mega-link";
-      a.href = `/merken/${b.slug}/`;
-      a.textContent = b.label;
+      a.href = `/hulpveren/${m.slug}/`;
+      a.textContent = m.label;
       li.appendChild(a);
       frag.appendChild(li);
     });
+
     listEl.innerHTML = "";
     listEl.appendChild(frag);
+    listEl.dataset.hvBrandsReady = "1";
+    listEl.classList.add("is-ready");
   };
 
   const mountBrandsMega = async () => {
     const listEl = document.querySelector("[data-hv-brands-list]");
     console.log("[header][brands] listEl:", !!listEl);
     if (!listEl) return;
+    if (listEl.dataset.hvBrandsReady === "1") return;
 
-    const result = await loadBrandsJson();
+    const result = await loadMakesJson();
     if (!result) return;
 
-    const brands = normalizeBrands(result.data).sort((a, b) =>
+    const makes = normalizeMakes(result.data).sort((a, b) =>
       a.label.localeCompare(b.label, "nl", { sensitivity: "base" })
     );
 
-    console.log("[header][brands] loaded from:", result.url, "count:", brands.length);
-    renderBrands(listEl, brands);
+    console.log("[header][brands] loaded from:", result.url, "count:", makes.length);
+    renderMakes(listEl, makes);
   };
 
   const mountBrandsWhenReady = () => {
@@ -253,7 +249,8 @@
 
     const host = document.querySelector("#site-header") || document.body;
     const obs = new MutationObserver(() => {
-      if (document.querySelector("[data-hv-brands-list]")) {
+      const listEl = document.querySelector("[data-hv-brands-list]");
+      if (listEl) {
         obs.disconnect();
         mountBrandsMega();
       }
