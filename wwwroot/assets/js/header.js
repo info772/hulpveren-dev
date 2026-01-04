@@ -6,7 +6,7 @@
   if (window.__HV_HEADER_V2_LOADED__) return;
   window.__HV_HEADER_V2_LOADED__ = true;
 
-  const PARTIAL_URL = "/partials/header.html";
+  const PARTIAL_URL = "/partials/header-v2.html";
   const BUILD_ID_URL = "/assets/build-id.txt";
 
   const sanitizeBuildId = (value) =>
