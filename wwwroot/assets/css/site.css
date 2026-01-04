@@ -299,6 +299,7 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
 /* V1 skin – veilig, geen JS hooks aanpassen */
 .hv2-header.v1-skin .hv2-logo{
   height: 36px;           /* pas aan naar V1 */
+  width: auto;
 }
 
 .hv2-header.v1-skin .header-inner{
@@ -311,6 +312,13 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
 
 .hv2-header.v1-skin .hv2-top > li > a{
   font-weight: 500;       /* V1 gevoel */
+}
+.hv2-header.v1-skin .header-center{
+  display: block;
+}
+
+.hv2-header.v1-skin .hv2-nav{
+  display: flex;
 }
 
 
