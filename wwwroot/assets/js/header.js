@@ -182,7 +182,12 @@
     if (!makesPromise) {
       makesPromise = loadMakesJson();
     }
-    return makesPromise;
+    return makesPromise.then((result) => {
+      if (!result) {
+        makesPromise = null;
+      }
+      return result;
+    });
   };
 
   const normalizeMakes = (data) => {
@@ -218,6 +223,7 @@
   const renderMakes = (listEl, makes, routePrefix) => {
     if (!makes.length) {
       console.warn("[header][makes] no makes after normalize");
+      listEl.innerHTML = `<li class="mega-item"><span class="mega-link">Geen merken gevonden</span></li>`;
       return;
     }
 
@@ -245,7 +251,10 @@
     if (listEl.dataset[flagKey] === "1") return;
 
     const result = await getMakes();
-    if (!result) return;
+    if (!result) {
+      console.warn("[header][makes] no data for", selector);
+      return;
+    }
 
     const makes = normalizeMakes(result.data).sort((a, b) =>
       a.label.localeCompare(b.label, "nl", { sensitivity: "base" })
