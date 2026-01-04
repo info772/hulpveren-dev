@@ -703,10 +703,22 @@ body.nav-open{ overflow: hidden; }
     --hv2-header-gap: 8px;
   }
   .header-inner{ gap: 12px; padding: 8px 16px; }
+  .header-left{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .header-left .brand{
+    display: inline-flex;
+    align-items: center;
+  }
   .hv2-burger{ display: inline-flex; }
   .hv2-cta-group{ display: none; }
-  .hv2-plate{ flex-basis: 180px; max-width: 180px; }
-  .hv2-header .plate-search{ max-width: 180px; }
+  .hv2-plate{ flex-basis: 200px; max-width: 220px; width: 100%; }
+  .hv2-header .plate-search{
+    width: 100%;
+    max-width: 220px;
+  }
   .hv2-nav-layer{
     position: fixed;
     inset: 0;
