@@ -423,16 +423,39 @@
 
       closeItem(item);
 
+      let leaveTimer = null;
+      const scheduleClose = () => {
+        clearTimeout(leaveTimer);
+        leaveTimer = setTimeout(() => {
+          const hovering =
+            item.matches(":hover") ||
+            (panel && panel.matches(":hover")) ||
+            (trig && trig.matches(":hover"));
+          if (!hovering && mqDesktop.matches) {
+            closeItem(item);
+          }
+        }, 180);
+      };
+
+      const cancelClose = () => {
+        clearTimeout(leaveTimer);
+      };
+
       const onDesktop = () => mqDesktop.matches;
 
       if (pointerFine) {
         item.addEventListener("mouseenter", () => {
           if (!onDesktop()) return;
+          cancelClose();
           openItem(item);
         });
         item.addEventListener("mouseleave", () => {
           if (!onDesktop()) return;
-          closeItem(item);
+          scheduleClose();
+        });
+        panel.addEventListener("mouseenter", cancelClose);
+        panel.addEventListener("mouseleave", () => {
+          if (onDesktop()) scheduleClose();
         });
       }
 
