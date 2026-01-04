@@ -237,8 +237,10 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
    Header V2 – basis
    ========================= */
   .hv2-header{
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 2500;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -253,13 +255,13 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
   }
   
   #site-header{
-    min-height: 72px;
+    min-height: var(--hv2-header-h, 80px);
     overflow: visible;
   }
   
   #site-header ~ main,
   #site-header ~ .page-main{
-    padding-top: 72px;
+    padding-top: var(--hv2-header-h, 80px);
   }
   
   .header-inner{
