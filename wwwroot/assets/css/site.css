@@ -1361,6 +1361,7 @@ body.plate-route .hero{
   #site-header .hv2-nav{ display:block; }
   #site-header .hv2-top{ display:flex; gap:12px; align-items:center; flex-wrap:nowrap; }
   #site-header .hv2-burger{ display:none; }
+  #site-header .hv2-nav{ overflow: visible; }
 }
 @media (min-width: 1024px){
   #site-header .header-inner{
