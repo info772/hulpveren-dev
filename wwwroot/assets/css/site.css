@@ -236,19 +236,22 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
 /* =========================
    Header V2 – basis
    ========================= */
-.hv2-header{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  background: rgba(10,12,16,0.75);
-  border-bottom: 1px solid var(--border);
-  transition: padding .16s ease, min-height .16s ease, background .16s ease;
-}
+  .hv2-header{
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(10,12,16,0.75);
+    border-bottom: 1px solid var(--border);
+    transition: padding .16s ease, min-height .16s ease, background .16s ease;
+    --hv2-logo-h: 48px;
+    --hv2-logo-h-scrolled: 32px;
+  }
   
   #site-header{
     min-height: 72px;
+    overflow: visible;
   }
   
   #site-header ~ main,
@@ -360,9 +363,9 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
      Logo (V1-look)
      ========================= */
 .hv2-logo{
-  height: 46px;
+  height: var(--hv2-logo-h);
   width: auto;
-  max-height: 46px;
+  max-height: var(--hv2-logo-h);
   object-fit: contain;
   transition: height .16s ease, max-height .16s ease;
 }
@@ -804,8 +807,8 @@ body.nav-open .plate-search,
 }
 
 .hv2-header.is-scrolled .hv2-logo{
-  height: 34px;
-  max-height: 34px;
+  height: var(--hv2-logo-h-scrolled);
+  max-height: var(--hv2-logo-h-scrolled);
 }
 @media (max-width: 1024px){
   .site-header.hv-header .plate-search{

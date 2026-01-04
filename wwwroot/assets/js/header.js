@@ -445,7 +445,7 @@
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const scrolled = window.scrollY > 24;
+        const scrolled = window.scrollY > 20;
         header.classList.toggle("is-scrolled", scrolled);
         ticking = false;
       });
