@@ -710,7 +710,7 @@ body.nav-open{ overflow: hidden; }
   .hv2-nav-layer{
     position: fixed;
     inset: 0;
-    z-index: 11980;
+    z-index: 12010;
     pointer-events: none;
     display: block;
   }
@@ -722,7 +722,7 @@ body.nav-open{ overflow: hidden; }
     opacity: 0;
     transition: opacity .2s ease;
     pointer-events: none;
-    z-index: 11990;
+    z-index: 12020;
   }
   .nav-drawer{
     position: fixed;
@@ -738,7 +738,7 @@ body.nav-open{ overflow: hidden; }
     transition: transform .22s ease;
     box-shadow: 0 20px 50px rgba(0,0,0,0.35);
     overflow-y: auto;
-    z-index: 12000;
+    z-index: 12030;
     visibility: hidden;
     display: flex;
     flex-direction: column;
