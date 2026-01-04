@@ -133,6 +133,91 @@
     if (drawer) drawer.setAttribute("aria-hidden", mobile ? (open ? "false" : "true") : "false");
   };
 
+  const ensureDrawerClosedOnMount = (mountEl) => {
+    const root = mountEl || document;
+    const header = root.querySelector(".hv2-header");
+    if (!header) return;
+    const toggle = root.querySelector("[data-hv2-toggle]");
+    const overlay = root.querySelector("[data-hv2-overlay]");
+    const drawer = root.querySelector("[data-hv2-drawer]");
+    setNavState(header, toggle, overlay, drawer, false);
+  };
+
+  const slugify = (s) =>
+    String(s || "")
+      .toLowerCase()
+      .trim()
+      .replace(/&/g, "en")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+  const loadBrandsJson = async () => {
+    const candidates = [
+      "/assets/data/brands.json",
+      "/assets/json/brands.json",
+      "/api/brands",
+    ];
+
+    for (const url of candidates) {
+      try {
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) continue;
+        const data = await res.json();
+        return { url, data };
+      } catch {
+        /* ignore */
+      }
+    }
+    return null;
+  };
+
+  const normalizeBrands = (data) => {
+    const raw = Array.isArray(data) ? data : (data && (data.brands || data.items)) || [];
+    return raw
+      .map((entry) => {
+        if (typeof entry === "string") return { label: entry, slug: slugify(entry) };
+        const label = entry.label || entry.name || entry.merk || "";
+        const slug = entry.slug || entry.handle || entry.code || slugify(label);
+        return { label, slug };
+      })
+      .filter((x) => x.label && x.slug);
+  };
+
+  const renderBrands = (listEl, brands) => {
+    const frag = document.createDocumentFragment();
+    brands.forEach((b) => {
+      const li = document.createElement("li");
+      li.className = "mega-item";
+      const a = document.createElement("a");
+      a.className = "mega-link";
+      a.href = `/hulpveren/${b.slug}/`;
+      a.textContent = b.label;
+      li.appendChild(a);
+      frag.appendChild(li);
+    });
+    listEl.innerHTML = "";
+    listEl.appendChild(frag);
+  };
+
+  const mountBrandsMega = async (mountEl) => {
+    const scope = mountEl || document;
+    const listEl = scope.querySelector("[data-hv-brands-list]");
+    if (!listEl) return;
+
+    const result = await loadBrandsJson();
+    if (!result) {
+      // laat bestaande statische inhoud staan
+      return;
+    }
+
+    const brands = normalizeBrands(result.data).sort((a, b) =>
+      a.label.localeCompare(b.label, "nl", { sensitivity: "base" })
+    );
+    if (!brands.length) return;
+
+    renderBrands(listEl, brands);
+  };
+
 
   const bindNav = (mountEl) => {
     if (mountEl.dataset.hv2Bound === "1") return;
@@ -402,8 +487,10 @@
     mountEl.innerHTML = html;
     mountEl.dataset.hv2Mounted = "1";
 
+    ensureDrawerClosedOnMount(mountEl);
     bindNav(mountEl);
     bindMegaMenus(mountEl);
+    mountBrandsMega(mountEl);
     injectBreadcrumbs(mountEl);
   };
 
