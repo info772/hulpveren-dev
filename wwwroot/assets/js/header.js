@@ -141,6 +141,13 @@
     const overlay = root.querySelector("[data-hv2-overlay]");
     const drawer = root.querySelector("[data-hv2-drawer]");
     setNavState(header, toggle, overlay, drawer, false);
+    document.body.classList.remove("nav-open");
+    header.classList.remove("hv2-open");
+    root.querySelectorAll(".hv-mega-panel, .mega-panel").forEach((panel) => {
+      panel.hidden = true;
+      panel.classList.remove("is-open");
+    });
+    root.querySelectorAll(".hv-nav-toggle, .nav-toggle-cta").forEach((trig) => trig.setAttribute("aria-expanded", "false"));
   };
 
   const slugify = (s) =>
@@ -342,6 +349,7 @@
     );
     if (!items.length) return;
 
+    const mqDesktop = window.matchMedia("(min-width: 921px)");
     const pointerFine = window.matchMedia("(hover:hover)").matches;
     const triggerMap = new Map();
     const panelMap = new Map();
@@ -400,23 +408,46 @@
 
       closeItem(item);
 
+      const onDesktop = () => mqDesktop.matches;
+
       if (pointerFine) {
-        item.addEventListener("mouseenter", () => openItem(item));
-        item.addEventListener("mouseleave", () => closeItem(item));
+        item.addEventListener("mouseenter", () => {
+          if (!onDesktop()) return;
+          openItem(item);
+        });
+        item.addEventListener("mouseleave", () => {
+          if (!onDesktop()) return;
+          closeItem(item);
+        });
       }
 
       trig.addEventListener("click", (evt) => {
         evt.preventDefault();
-        if (item.classList.contains("is-open")) {
-          closeItem(item);
-        } else {
-          openItem(item);
+        if (onDesktop()) {
+          if (item.classList.contains("is-open")) {
+            closeItem(item);
+          } else {
+            openItem(item);
+          }
+          return;
+        }
+
+        // mobile accordion
+        const isOpen = !panel.hidden;
+        closeAll();
+        if (!isOpen) {
+          panel.hidden = false;
+          panel.classList.add("is-open");
+          trig.setAttribute("aria-expanded", "true");
+          item.classList.add("is-open");
         }
       });
 
-      item.addEventListener("focusin", () => openItem(item));
+      item.addEventListener("focusin", () => {
+        if (onDesktop()) openItem(item);
+      });
       item.addEventListener("focusout", (evt) => {
-        if (!item.contains(evt.relatedTarget)) {
+        if (!item.contains(evt.relatedTarget) && onDesktop()) {
           closeItem(item);
         }
       });
@@ -424,7 +455,7 @@
 
     document.addEventListener("click", (evt) => {
       const within = items.some((item) => item.contains(evt.target));
-      if (!within) closeAll();
+      if (!within && mqDesktop.matches) closeAll();
     });
 
     document.addEventListener("keydown", (evt) => {
@@ -437,7 +468,9 @@
   };
 
   const bindHeaderScroll = (mountEl) => {
-    const header = (mountEl && mountEl.querySelector(".hv2-header")) || document.querySelector(".hv2-header");
+    const header =
+      (mountEl && mountEl.querySelector(".hv2-header")) ||
+      document.querySelector(".hv2-header");
     if (!header) return;
     const syncHeaderHeight = () => {
       const h = header.offsetHeight || 0;
