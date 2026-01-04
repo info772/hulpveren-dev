@@ -707,7 +707,7 @@ body.nav-open{ overflow: hidden; }
   .hv2-nav-layer{
     position: fixed;
     inset: 0;
-    z-index: 1200;
+    z-index: 11980;
     pointer-events: none;
     display: block;
   }
