@@ -1225,3 +1225,13 @@ body.plate-route .hero{
     display: block;
   }
 }
+@media (max-width: 1023px){
+  #site-header [data-hv2-drawer]{
+    width: min(92vw, 360px) !important;
+    height: 100vh !important;
+    min-width: 280px !important;
+    min-height: 100vh !important;
+    padding: 16px !important;
+    box-sizing: border-box !important;
+  }
+}
