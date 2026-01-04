@@ -1544,3 +1544,28 @@ body.nav-open .plate-search,
 body.nav-open .hv2-burger{
   z-index: 2 !important;
 }
+
+@media (min-width: 1024px){
+  #site-header .hv2-nav-layer{
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+    height: auto !important;
+    pointer-events: auto !important;
+    z-index: auto !important;
+  }
+  #site-header .nav-overlay{
+    display: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+  }
+  #site-header .nav-drawer{
+    position: static !important;
+    transform: none !important;
+    visibility: visible !important;
+    width: auto !important;
+    height: auto !important;
+    z-index: auto !important;
+  }
+}
