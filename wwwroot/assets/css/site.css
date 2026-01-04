@@ -1471,7 +1471,7 @@ body.plate-route .hero{
    - keep drawer/overlay above logo/plate
    ========================= */
 #site-header .hv2-header{
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
@@ -1479,23 +1479,25 @@ body.plate-route .hero{
 }
 
 #site-header .hv2-nav-layer{
-  position: fixed;
+  position: fixed !important;
   inset: 0;
   pointer-events: none;
+  z-index: 13000;
 }
 
 #site-header .nav-overlay{
-  position: fixed;
+  position: fixed !important;
   inset: 0;
   z-index: 13010;
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  transition: opacity .22s ease;
+  display: block !important;
+  transition: opacity .22s ease, visibility .22s ease;
 }
 
 #site-header .nav-drawer{
-  position: fixed;
+  position: fixed !important;
   top: 0;
   right: 0;
   left: auto;
@@ -1504,7 +1506,7 @@ body.plate-route .hero{
   z-index: 13020;
   transform: translateX(100%);
   visibility: hidden;
-  transition: transform .25s ease;
+  transition: transform .25s ease, visibility .25s ease;
 }
 
 #site-header .hv2-header.hv2-open .hv2-nav-layer{

@@ -434,7 +434,7 @@
           if (!hovering && mqDesktop.matches) {
             closeItem(item);
           }
-        }, 180);
+        }, 400);
       };
 
       const cancelClose = () => {
