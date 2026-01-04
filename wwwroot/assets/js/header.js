@@ -512,7 +512,7 @@
     if (!header) return;
     const syncHeaderHeight = () => {
       const h = header.offsetHeight || 0;
-      document.documentElement.style.setProperty("--hv2-header-h", `${h}px`);
+      document.documentElement.style.setProperty("--hv-header-h", `${h}px`);
     };
 
     let ticking = false;
@@ -523,7 +523,7 @@
       requestAnimationFrame(() => {
         const scrolled = window.scrollY > 20;
         if (lastState !== scrolled) {
-          header.classList.toggle("is-scrolled", scrolled);
+          header.classList.toggle("is-stuck", scrolled);
           syncHeaderHeight();
           lastState = scrolled;
         }

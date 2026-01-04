@@ -18,6 +18,9 @@
 --radius: 14px; --shadow: 0 30px 80px rgba(5, 9, 22, 0.6); 
 --max: 1200px; 
 --font: 'Manrope','Inter','Segoe UI','Helvetica Neue',Arial,sans-serif; 
+--hv-header-h: 88px;
+--hv-header-bg: rgba(8,14,26,0.75);
+--hv-header-blur: 10px;
 } 
 
 * { box-sizing: border-box; } 
@@ -234,34 +237,34 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
 .nav-shell .platebar { justify-self: end; }
 
 /* =========================
-   Header V2 – basis
+   Header V2 – basis (fixed + offset)
    ========================= */
   .hv2-header{
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 12000;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background: rgba(12,14,18,0.75);
+    z-index: 10020;
+    backdrop-filter: blur(var(--hv-header-blur));
+    -webkit-backdrop-filter: blur(var(--hv-header-blur));
+    background: var(--hv-header-bg);
     border-bottom: 1px solid rgba(255,255,255,0.08);
     transition: padding .16s ease, min-height .16s ease, background .16s ease;
     --hv2-logo-h: 48px;
     --hv2-logo-h-scrolled: 32px;
   }
-  .hv2-header.is-scrolled{
+  .hv2-header.is-stuck{
     background: rgba(12,14,18,0.88);
   }
   
   #site-header{
-    min-height: var(--hv2-header-h, 80px);
+    min-height: var(--hv-header-h, 88px);
     overflow: visible;
   }
   
   #site-header ~ main,
   #site-header ~ .page-main{
-    padding-top: var(--hv2-header-h, 80px);
+    padding-top: var(--hv-header-h, 88px);
   }
   
   .header-inner{
