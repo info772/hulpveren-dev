@@ -733,6 +733,16 @@ body.nav-open{ overflow: hidden; }
     box-shadow: none;
   }
 }
+
+/* Zorg overlay/drawer boven header-content liggen */
+.hv2-header [data-hv2-overlay]{ z-index: 2000; }
+.hv2-header [data-hv2-drawer]{ z-index: 2001; }
+.hv2-header{ position: relative; z-index: 1; }
+body.nav-open .plate-search,
+.hv2-header.hv2-open .plate-search{
+  position: relative;
+  z-index: 0;
+}
 @media (max-width: 1024px){
   .site-header.hv-header .plate-search{
     width: 100%;

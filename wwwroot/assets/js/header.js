@@ -144,7 +144,7 @@
   };
 
   const slugify = (s) =>
-    String(s || "")
+    String(s)
       .toLowerCase()
       .trim()
       .replace(/&/g, "en")
@@ -155,42 +155,72 @@
     const candidates = [
       "/assets/data/brands.json",
       "/assets/json/brands.json",
-      "/api/brands",
+      "/assets/brands.json",
+      "/data/brands.json",
+      "/assets/data/makes.json",
+      "/assets/json/makes.json",
+      "/assets/makes.json",
+      "/data/makes.json",
+      "/data/makes.json",
     ];
 
+    const attempts = [];
     for (const url of candidates) {
       try {
         const res = await fetch(url, { cache: "no-store" });
+        attempts.push({ url, ok: res.ok, status: res.status });
         if (!res.ok) continue;
         const data = await res.json();
-        return { url, data };
-      } catch {
-        /* ignore */
+        return { url, data, attempts };
+      } catch (e) {
+        attempts.push({ url, ok: false, error: String(e) });
       }
     }
+    console.warn("[header][brands] JSON not found", attempts);
     return null;
   };
 
   const normalizeBrands = (data) => {
-    const raw = Array.isArray(data) ? data : (data && (data.brands || data.items)) || [];
-    return raw
-      .map((entry) => {
-        if (typeof entry === "string") return { label: entry, slug: slugify(entry) };
-        const label = entry.label || entry.name || entry.merk || "";
-        const slug = entry.slug || entry.handle || entry.code || slugify(label);
+    const pick = (obj, path) =>
+      path.split(".").reduce((o, k) => (o && o[k] != null ? o[k] : null), obj);
+
+    const raw =
+      (Array.isArray(data) && data) ||
+      pick(data, "brands") ||
+      pick(data, "items") ||
+      pick(data, "data.brands") ||
+      pick(data, "data.items") ||
+      pick(data, "result.brands") ||
+      pick(data, "result.items") ||
+      [];
+
+    const arr = Array.isArray(raw) ? raw : [];
+
+    return arr
+      .map((b) => {
+        if (typeof b === "string") return { label: b, slug: slugify(b) };
+
+        const label = b.label || b.name || b.merk || b.brand || b.title || "";
+        const slug = b.slug || b.handle || b.code || slugify(label);
+
         return { label, slug };
       })
       .filter((x) => x.label && x.slug);
   };
 
   const renderBrands = (listEl, brands) => {
+    if (!brands.length) {
+      listEl.innerHTML = `<li class="mega-item"><span class="mega-link">Geen merken gevonden</span></li>`;
+      return;
+    }
+
     const frag = document.createDocumentFragment();
     brands.forEach((b) => {
       const li = document.createElement("li");
       li.className = "mega-item";
       const a = document.createElement("a");
       a.className = "mega-link";
-      a.href = `/hulpveren/${b.slug}/`;
+      a.href = `/merken/${b.slug}/`;
       a.textContent = b.label;
       li.appendChild(a);
       frag.appendChild(li);
@@ -199,23 +229,36 @@
     listEl.appendChild(frag);
   };
 
-  const mountBrandsMega = async (mountEl) => {
-    const scope = mountEl || document;
-    const listEl = scope.querySelector("[data-hv-brands-list]");
+  const mountBrandsMega = async () => {
+    const listEl = document.querySelector("[data-hv-brands-list]");
+    console.log("[header][brands] listEl:", !!listEl);
     if (!listEl) return;
 
     const result = await loadBrandsJson();
-    if (!result) {
-      // laat bestaande statische inhoud staan
-      return;
-    }
+    if (!result) return;
 
     const brands = normalizeBrands(result.data).sort((a, b) =>
       a.label.localeCompare(b.label, "nl", { sensitivity: "base" })
     );
-    if (!brands.length) return;
 
+    console.log("[header][brands] loaded from:", result.url, "count:", brands.length);
     renderBrands(listEl, brands);
+  };
+
+  const mountBrandsWhenReady = () => {
+    if (document.querySelector("[data-hv-brands-list]")) {
+      mountBrandsMega();
+      return;
+    }
+
+    const host = document.querySelector("#site-header") || document.body;
+    const obs = new MutationObserver(() => {
+      if (document.querySelector("[data-hv-brands-list]")) {
+        obs.disconnect();
+        mountBrandsMega();
+      }
+    });
+    obs.observe(host, { childList: true, subtree: true });
   };
 
 
@@ -490,8 +533,8 @@
     ensureDrawerClosedOnMount(mountEl);
     bindNav(mountEl);
     bindMegaMenus(mountEl);
-    mountBrandsMega(mountEl);
     injectBreadcrumbs(mountEl);
+    mountBrandsWhenReady();
   };
 
   const init = () => {
