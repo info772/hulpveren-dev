@@ -439,19 +439,30 @@
   const bindHeaderScroll = (mountEl) => {
     const header = (mountEl && mountEl.querySelector(".hv2-header")) || document.querySelector(".hv2-header");
     if (!header) return;
+    const syncHeaderHeight = () => {
+      const h = header.offsetHeight || 0;
+      document.documentElement.style.setProperty("--hv2-header-h", `${h}px`);
+    };
 
     let ticking = false;
+    let lastState = null;
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
         const scrolled = window.scrollY > 20;
-        header.classList.toggle("is-scrolled", scrolled);
+        if (lastState !== scrolled) {
+          header.classList.toggle("is-scrolled", scrolled);
+          syncHeaderHeight();
+          lastState = scrolled;
+        }
         ticking = false;
       });
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", syncHeaderHeight);
+    syncHeaderHeight();
     onScroll();
   };
 

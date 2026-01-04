@@ -239,14 +239,17 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
   .hv2-header{
     position: sticky;
     top: 0;
-    z-index: 2000;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    background: rgba(10,12,16,0.75);
-    border-bottom: 1px solid var(--border);
+    z-index: 2500;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(12,14,18,0.75);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     transition: padding .16s ease, min-height .16s ease, background .16s ease;
     --hv2-logo-h: 48px;
     --hv2-logo-h-scrolled: 32px;
+  }
+  .hv2-header.is-scrolled{
+    background: rgba(12,14,18,0.88);
   }
   
   #site-header{
@@ -771,8 +774,8 @@ body.nav-open{ overflow: hidden; }
 }
 
 /* Zorg overlay/drawer boven header-content liggen */
-.hv2-header [data-hv2-overlay]{ z-index: 2000; }
-.hv2-header [data-hv2-drawer]{ z-index: 2001; }
+.hv2-header [data-hv2-overlay]{ z-index: 2600; }
+.hv2-header [data-hv2-drawer]{ z-index: 2601; }
 .hv2-header{ position: relative; z-index: 1; }
 body.nav-open .plate-search,
 .hv2-header.hv2-open .plate-search{
