@@ -737,6 +737,8 @@ body.nav-open{ overflow: hidden; }
     overflow-y: auto;
     z-index: 12000;
     visibility: hidden;
+    display: flex;
+    flex-direction: column;
   }
   #site-header .hv2-header .nav-shell{
     width: 100%;
@@ -809,6 +811,13 @@ body.nav-open{ overflow: hidden; }
     max-height: 60dvh;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+    padding: 0;
+    margin: 0;
+  }
+  [data-hv2-drawer] .mega-inner,
+  [data-hv2-drawer] .mega-col{
+    padding: 0;
+    margin: 0;
   }
 }
 
