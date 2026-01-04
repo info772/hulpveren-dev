@@ -163,17 +163,21 @@
 
   const loadMakesJson = async () => {
     try {
-      const res = await fetch(MAKES_URL, { cache: "no-store" });
-      const attempt = { url: MAKES_URL, ok: res.ok, status: res.status };
-      console.log("[header][makes] attempt:", attempt);
+      const url = `${MAKES_URL}?ts=${Date.now()}`;
+      document.documentElement.dataset.hvMakesLoader = "1";
+      console.log("[header][makes] start", url);
+      const res = await fetch(url, { cache: "no-store" });
+      console.log("[header][makes] status", res.status, res.ok);
       if (!res.ok) {
-        console.warn("[header][makes] fetch failed", attempt);
+        console.error("[header][makes] fail status", res.status);
+        document.documentElement.dataset.hvMakesErr = "1";
         return null;
       }
       const data = await res.json();
-      return { url: MAKES_URL, data };
+      return { url, data };
     } catch (e) {
-      console.warn("[header][makes] fetch error", { url: MAKES_URL, error: String(e) });
+      console.error("[header][makes] fail", e);
+      document.documentElement.dataset.hvMakesErr = "1";
       return null;
     }
   };
@@ -210,19 +214,19 @@
 
     return arr
       .map((b) => {
-        if (typeof b === "string") return { label: b, slug: slugify(b) };
+        if (typeof b === "string") return { name: b, slug: slugify(b) };
 
-        const label = b.label || b.name || b.merk || b.brand || b.title || "";
-        const slug = b.slug || b.handle || b.code || slugify(label);
+        const name = b.name || b.make || b.label || b.merk || b.brand || b.title || "";
+        const slug = b.slug || b.handle || b.code || slugify(name);
 
-        return { label, slug };
+        return { name, slug };
       })
-      .filter((x) => x.label && x.slug);
+      .filter((x) => x.name && x.slug);
   };
 
   const renderMakes = (listEl, makes, routePrefix) => {
     if (!makes.length) {
-      console.warn("[header][makes] no makes after normalize");
+      console.warn("[header][makes] empty");
       listEl.innerHTML = `<li class="mega-item"><span class="mega-link">Geen merken gevonden</span></li>`;
       return;
     }
@@ -234,7 +238,7 @@
       const a = document.createElement("a");
       a.className = "mega-link";
       a.href = `${routePrefix}${m.slug}/`;
-      a.textContent = m.label;
+      a.textContent = m.name;
       li.appendChild(a);
       frag.appendChild(li);
     });
@@ -257,10 +261,12 @@
     }
 
     const makes = normalizeMakes(result.data).sort((a, b) =>
-      a.label.localeCompare(b.label, "nl", { sensitivity: "base" })
+      a.name.localeCompare(b.name, "nl", { sensitivity: "base" })
     );
 
     console.log("[header][makes] loaded from:", result.url, "count:", makes.length, "selector:", selector);
+    document.documentElement.dataset.hvMakesOk = "1";
+    document.documentElement.dataset.hvMakesCount = String(makes.length);
     renderMakes(listEl, makes, routePrefix);
     listEl.dataset[flagKey] = "1";
   };

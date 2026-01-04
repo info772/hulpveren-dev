@@ -719,7 +719,7 @@ body.nav-open{ overflow: hidden; }
     opacity: 0;
     transition: opacity .2s ease;
     pointer-events: none;
-    z-index: 1050;
+    z-index: 10040;
   }
   .nav-drawer{
     position: fixed;
@@ -735,7 +735,8 @@ body.nav-open{ overflow: hidden; }
     transition: transform .22s ease;
     box-shadow: 0 20px 50px rgba(0,0,0,0.35);
     overflow-y: auto;
-    z-index: 1100;
+    z-index: 10050;
+    visibility: hidden;
   }
   #site-header .hv2-header .nav-shell{
     width: 100%;
@@ -756,7 +757,7 @@ body.nav-open{ overflow: hidden; }
     opacity: 1;
     pointer-events: auto;
   }
-  body.nav-open .nav-drawer{ transform: translateX(0); }
+  body.nav-open .nav-drawer{ transform: translateX(0); visibility: visible; }
 
   .header-nav{ display: block; width: 100%; }
   .hv2-top{
@@ -820,6 +821,8 @@ body.nav-open .plate-search,
   position: relative;
   z-index: 0;
 }
+/* baseline z-index laag houden */
+.plate-search{ position: relative; z-index: 10; }
 
 /* Contact stack */
 .hv2-contact-stack{
