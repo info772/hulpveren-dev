@@ -262,6 +262,64 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
     padding: 12px 16px;
     min-height: 72px;
   }
+
+  /* V1 logo + megamenu terug in hv2 */
+  #site-header .hv2-header .brand{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #f6f8ff;
+    text-decoration: none;
+  }
+  #site-header .hv2-header .brand-logo{
+    height: 64px;
+    width: auto;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.06);
+    padding: 10px 14px;
+  }
+  #site-header .hv2-header .nav-shell{
+    width: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  #site-header .hv2-header .nav{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  #site-header .hv2-header .nav-list{
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  #site-header .hv2-header .nav-link{
+    color: #f6f8ff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    font-size: 0.98rem;
+  }
+  #site-header .hv2-header .nav-link:hover{
+    background: rgba(255,255,255,0.06);
+  }
+  #site-header .hv2-header .nav-toggle-cta{
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
   
   /* =========================
      Header zones
