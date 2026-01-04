@@ -1475,20 +1475,30 @@ body.plate-route .hero{
   top: 0;
   left: 0;
   right: 0;
-  z-index: 13000;
+  z-index: 20000 !important;
+}
+
+#site-header .header-inner,
+#site-header .header-left,
+#site-header .header-center,
+#site-header .header-right{
+  position: relative;
+  z-index: 1;
 }
 
 #site-header .hv2-nav-layer{
   position: fixed !important;
   inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  z-index: 13000;
+  z-index: 20010 !important;
 }
 
 #site-header .nav-overlay{
   position: fixed !important;
   inset: 0;
-  z-index: 13010;
+  z-index: 20020 !important;
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
@@ -1503,10 +1513,11 @@ body.plate-route .hero{
   left: auto;
   height: 100dvh;
   width: min(92vw, 380px);
-  z-index: 13020;
+  z-index: 20030 !important;
   transform: translateX(100%);
   visibility: hidden;
   transition: transform .25s ease, visibility .25s ease;
+  will-change: transform;
 }
 
 #site-header .hv2-header.hv2-open .hv2-nav-layer{
@@ -1526,5 +1537,10 @@ body.plate-route .hero{
 
 body.nav-open .plate-search,
 #site-header .hv2-header.hv2-open .plate-search{
+  position: relative;
   z-index: 0 !important;
+}
+
+body.nav-open .hv2-burger{
+  z-index: 2 !important;
 }
