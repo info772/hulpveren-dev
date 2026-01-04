@@ -3,6 +3,11 @@
   "use strict";
   if (document.querySelector("script[src*=\"/partials/header.js\"]")) return;
 
+  // JS hooks (markup must align):
+  // - Burger toggle: [data-hv2-toggle], overlay: [data-hv2-overlay], drawer: [data-hv2-drawer], state class on .hv2-header = "hv2-open"
+  // - Mobile close: any link in .hv2-nav, body gets .nav-open when drawer open
+  // - Mega menu: items use .nav-item-mega/.hv-nav-item-mega, trigger .nav-toggle-cta/.hv-nav-toggle, panel .mega-panel/.hv-mega-panel, open class "is-open"
+
   if (window.__HV_HEADER_V2_LOADED__) return;
   window.__HV_HEADER_V2_LOADED__ = true;
 
@@ -185,6 +190,108 @@
     });
   };
 
+  const bindMegaMenus = (mountEl) => {
+    if (!mountEl || mountEl.dataset.hv2MegaBound === "1") return;
+
+    const items = Array.from(
+      mountEl.querySelectorAll(".nav-item-mega, .hv-nav-item-mega")
+    );
+    if (!items.length) return;
+
+    const pointerFine = window.matchMedia("(hover:hover)").matches;
+    const triggerMap = new Map();
+    const panelMap = new Map();
+
+    items.forEach((item, idx) => {
+      const trigger =
+        item.querySelector(".nav-toggle-cta, .hv-nav-toggle") ||
+        item.querySelector("a.nav-link");
+      const panel = item.querySelector(".mega-panel, .hv-mega-panel");
+      if (!trigger || !panel) return;
+
+      if (!panel.id) {
+        panel.id = `hv2-mega-${idx + 1}`;
+      }
+      trigger.setAttribute("aria-controls", panel.id);
+      trigger.setAttribute("aria-expanded", "false");
+
+      triggerMap.set(item, trigger);
+      panelMap.set(item, panel);
+    });
+
+    const getTrigger = (item) => triggerMap.get(item);
+    const getPanel = (item) => panelMap.get(item);
+
+    const closeItem = (item) => {
+      const trig = getTrigger(item);
+      const panel = getPanel(item);
+      item.classList.remove("is-open");
+      if (trig) trig.setAttribute("aria-expanded", "false");
+      if (panel) panel.hidden = true;
+    };
+
+    const closeAll = (except) => {
+      items.forEach((item) => {
+        if (item === except) return;
+        if (triggerMap.has(item) && panelMap.has(item)) {
+          closeItem(item);
+        }
+      });
+    };
+
+    const openItem = (item) => {
+      const trig = getTrigger(item);
+      const panel = getPanel(item);
+      if (!trig || !panel) return;
+      closeAll(item);
+      item.classList.add("is-open");
+      trig.setAttribute("aria-expanded", "true");
+      panel.hidden = false;
+    };
+
+    items.forEach((item) => {
+      const trig = getTrigger(item);
+      const panel = getPanel(item);
+      if (!trig || !panel) return;
+
+      closeItem(item);
+
+      if (pointerFine) {
+        item.addEventListener("mouseenter", () => openItem(item));
+        item.addEventListener("mouseleave", () => closeItem(item));
+      }
+
+      trig.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        if (item.classList.contains("is-open")) {
+          closeItem(item);
+        } else {
+          openItem(item);
+        }
+      });
+
+      item.addEventListener("focusin", () => openItem(item));
+      item.addEventListener("focusout", (evt) => {
+        if (!item.contains(evt.relatedTarget)) {
+          closeItem(item);
+        }
+      });
+    });
+
+    document.addEventListener("click", (evt) => {
+      const within = items.some((item) => item.contains(evt.target));
+      if (!within) closeAll();
+    });
+
+    document.addEventListener("keydown", (evt) => {
+      if (evt.key === "Escape" || evt.key === "Esc") {
+        closeAll();
+      }
+    });
+
+    mountEl.dataset.hv2MegaBound = "1";
+  };
+
   const TITLE_MAP = {
     "algemene-voorwaarden": "Algemene voorwaarden",
     blog: "Blog",
@@ -296,6 +403,7 @@
     mountEl.dataset.hv2Mounted = "1";
 
     bindNav(mountEl);
+    bindMegaMenus(mountEl);
     injectBreadcrumbs(mountEl);
   };
 
@@ -310,5 +418,3 @@
     init();
   }
 })();
-
-

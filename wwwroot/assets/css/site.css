@@ -693,6 +693,20 @@ body.nav-open{ overflow: hidden; }
     box-shadow: 0 20px 50px rgba(0,0,0,0.35);
     overflow-y: auto;
   }
+  #site-header .hv2-header .nav-shell{
+    width: 100%;
+    padding: 0;
+    justify-content: flex-start;
+  }
+  #site-header .hv2-header .nav-list{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  #site-header .hv2-header .nav-link{
+    width: 100%;
+    justify-content: space-between;
+  }
   body.nav-open .hv2-nav-layer{ pointer-events: auto; }
   body.nav-open .nav-overlay{
     opacity: 1;
@@ -1237,7 +1251,7 @@ body.plate-route .hero{
   #site-header .header-right{ justify-content: flex-end; }
 }
 @media (max-width: 1023px){
-  #site-header .header-center{ display:none; }
+  #site-header .header-center{ display:block; width:100%; }
   #site-header .hv2-burger{ display:inline-flex; }
   #site-header .nav-drawer{
     position: fixed;
