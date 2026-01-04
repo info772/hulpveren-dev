@@ -152,6 +152,7 @@
       .replace(/^-+|-+$/g, "");
 
   const MAKES_URL = "/data/makes.json";
+  let makesPromise = null;
 
   const loadMakesJson = async () => {
     try {
@@ -168,6 +169,13 @@
       console.warn("[header][makes] fetch error", { url: MAKES_URL, error: String(e) });
       return null;
     }
+  };
+
+  const getMakes = () => {
+    if (!makesPromise) {
+      makesPromise = loadMakesJson();
+    }
+    return makesPromise;
   };
 
   const normalizeMakes = (data) => {
@@ -200,7 +208,7 @@
       .filter((x) => x.label && x.slug);
   };
 
-  const renderMakes = (listEl, makes) => {
+  const renderMakes = (listEl, makes, routePrefix) => {
     if (!makes.length) {
       console.warn("[header][makes] no makes after normalize");
       return;
@@ -212,7 +220,7 @@
       li.className = "mega-item";
       const a = document.createElement("a");
       a.className = "mega-link";
-      a.href = `/hulpveren/${m.slug}/`;
+      a.href = `${routePrefix}${m.slug}/`;
       a.textContent = m.label;
       li.appendChild(a);
       frag.appendChild(li);
@@ -220,39 +228,50 @@
 
     listEl.innerHTML = "";
     listEl.appendChild(frag);
-    listEl.dataset.hvBrandsReady = "1";
     listEl.classList.add("is-ready");
   };
 
-  const mountBrandsMega = async () => {
-    const listEl = document.querySelector("[data-hv-brands-list]");
-    console.log("[header][brands] listEl:", !!listEl);
+  const mountMakesInto = async (selector, routePrefix, flagKey) => {
+    const listEl = document.querySelector(selector);
+    console.log("[header][makes] list", selector, !!listEl);
     if (!listEl) return;
-    if (listEl.dataset.hvBrandsReady === "1") return;
+    if (listEl.dataset[flagKey] === "1") return;
 
-    const result = await loadMakesJson();
+    const result = await getMakes();
     if (!result) return;
 
     const makes = normalizeMakes(result.data).sort((a, b) =>
       a.label.localeCompare(b.label, "nl", { sensitivity: "base" })
     );
 
-    console.log("[header][brands] loaded from:", result.url, "count:", makes.length);
-    renderMakes(listEl, makes);
+    console.log("[header][makes] loaded from:", result.url, "count:", makes.length, "selector:", selector);
+    renderMakes(listEl, makes, routePrefix);
+    listEl.dataset[flagKey] = "1";
   };
 
-  const mountBrandsWhenReady = () => {
-    if (document.querySelector("[data-hv-brands-list]")) {
-      mountBrandsMega();
+  const mountMakesWhenReady = () => {
+    const selectors = [
+      { sel: "[data-hv-brands-list]", route: "/hulpveren/", flag: "hvBrandsReady" },
+      { sel: "[data-hv-air-list]", route: "/luchtvering/", flag: "hvAirReady" },
+      { sel: "[data-hv-lowering-list]", route: "/verlagingsveren/", flag: "hvLoweringReady" },
+    ];
+
+    const tryMount = () => {
+      selectors.forEach((cfg) => mountMakesInto(cfg.sel, cfg.route, cfg.flag));
+    };
+
+    const anyPresent = selectors.some((cfg) => document.querySelector(cfg.sel));
+    if (anyPresent) {
+      tryMount();
       return;
     }
 
     const host = document.querySelector("#site-header") || document.body;
     const obs = new MutationObserver(() => {
-      const listEl = document.querySelector("[data-hv-brands-list]");
-      if (listEl) {
+      const found = selectors.some((cfg) => document.querySelector(cfg.sel));
+      if (found) {
         obs.disconnect();
-        mountBrandsMega();
+        tryMount();
       }
     });
     obs.observe(host, { childList: true, subtree: true });
@@ -531,7 +550,7 @@
     bindNav(mountEl);
     bindMegaMenus(mountEl);
     injectBreadcrumbs(mountEl);
-    mountBrandsWhenReady();
+    mountMakesWhenReady();
   };
 
   const init = () => {
