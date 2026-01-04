@@ -1464,3 +1464,65 @@ body.plate-route .hero{
     box-sizing: border-box !important;
   }
 }
+
+/* =========================
+   HV2 header/drawer final overrides
+   - force header fixed + high stacking
+   - keep drawer/overlay above logo/plate
+   ========================= */
+#site-header .hv2-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 13000;
+}
+
+#site-header .hv2-nav-layer{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#site-header .nav-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 13010;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity .22s ease;
+}
+
+#site-header .nav-drawer{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: auto;
+  height: 100dvh;
+  width: min(92vw, 380px);
+  z-index: 13020;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform .25s ease;
+}
+
+#site-header .hv2-header.hv2-open .hv2-nav-layer{
+  pointer-events: auto;
+}
+
+#site-header .hv2-header.hv2-open .nav-overlay{
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+#site-header .hv2-header.hv2-open .nav-drawer{
+  transform: translateX(0);
+  visibility: visible;
+}
+
+body.nav-open .plate-search,
+#site-header .hv2-header.hv2-open .plate-search{
+  z-index: 0 !important;
+}
