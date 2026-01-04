@@ -1168,3 +1168,13 @@ body.plate-route .hero{
   #site-header .hv2-top{ display:flex; gap:18px; align-items:center; }
   #site-header .hv2-burger{ display:none; }
 }
+@media (min-width: 1024px){
+  #site-header .header-inner{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+  #site-header .header-left{ justify-content: flex-start; }
+  #site-header .header-center{ justify-content: center; }
+  #site-header .header-right{ justify-content: flex-end; }
+}
