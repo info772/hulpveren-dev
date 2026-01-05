@@ -25,6 +25,7 @@ Optioneel:
 
 - `NODE_ENV=production` (zet secure cookies aan)
 - `PLATE_INCLUDE_RAW=1` (bestaande plate API)
+- `GEMONTEERD_DIR` (pad naar gemonteerde fotos, default `/var/www/dev.hulpveren.shop/public/assets/img/Gemonteerd`)
 
 ## Run
 
@@ -35,6 +36,12 @@ npm start
 Admin UI:
 
 - `http://localhost:3000/admin/login`
+- `http://localhost:3000/admin/gemonteerd` (foto-overzicht + hernoemen)
+
+Admin assets:
+
+- `/admin-assets/gemonteerd/<filename>`
+- `/admin-assets/gemonteerd/manifest.json` (no-store)
 
 JSON files worden opgebouwd bij server start en via de Rebuild knop in het admin dashboard.
 
@@ -134,6 +141,8 @@ Scope scheiding:
 - Webroot deploy: `server/scripts/deploy-dev.sh` (rsync naar `/var/www/...`, reload nginx)
 - Backend deploy: rsync naar `/opt/apps/backend`, `npm ci`, `systemctl restart lowland-api`
 - Infra apply: alleen via `infra/apply-infra.sh`
+
+`server/scripts/deploy-dev.sh` voert ook `node --check /opt/apps/backend/server/index.js` uit als die file bestaat.
 
 Optionele variabelen voor `infra/apply-infra.sh`:
 

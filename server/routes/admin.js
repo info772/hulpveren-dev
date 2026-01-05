@@ -7,6 +7,7 @@ const { listBlogs, getBlogById, createBlog, updateBlog, deleteBlog, buildBlogJso
 const { handleMadUpload, listImports, setCurrentImport, rebuildMadIndexFromCurrent } = require("../services/madService");
 const { getSettings, updateSettings } = require("../services/settingsService");
 const { listRedirects, createRedirect, updateRedirect, deleteRedirect, writeRedirectsJson } = require("../services/redirectService");
+const { listGemonteerdImages, renameGemonteerdImage } = require("../services/gemonteerdService");
 
 function setFlash(req, type, message) {
   req.session.flash = { type, message };
@@ -27,9 +28,20 @@ function getHeroPath(file, slug) {
 module.exports = (db, csrfProtection) => {
   const router = express.Router();
 
-  router.use(csrfProtection);
+  const injectCsrfToken = (req, res, next) => {
+    if (req.method === "GET" || req.method === "HEAD" || req.method === "OPTIONS") {
+      csrfProtection(req, res, () => {
+        res.locals.csrfToken = req.csrfToken();
+        next();
+      });
+      return;
+    }
+    res.locals.csrfToken = "";
+    next();
+  };
+
+  router.use(injectCsrfToken);
   router.use((req, res, next) => {
-    res.locals.csrfToken = req.csrfToken();
     res.locals.user = req.session.adminUser || null;
     res.locals.flash = getFlash(req);
     next();
@@ -39,7 +51,7 @@ module.exports = (db, csrfProtection) => {
     res.render("login", { title: "Login" });
   });
 
-  router.post("/login", (req, res) => {
+  router.post("/login", csrfProtection, (req, res) => {
     const user = verifyLogin(db, req.body.username, req.body.password);
     if (!user) {
       setFlash(req, "error", "Ongeldige login.");
@@ -50,7 +62,7 @@ module.exports = (db, csrfProtection) => {
     res.redirect("/admin/dashboard");
   });
 
-  router.post("/logout", requireAdmin, (req, res) => {
+  router.post("/logout", requireAdmin, csrfProtection, (req, res) => {
     req.session.destroy(() => {
       res.redirect("/admin/login");
     });
@@ -93,7 +105,7 @@ module.exports = (db, csrfProtection) => {
     res.render("blogs/form", { title: "Blog bewerken", blog, isEdit: true, errors: [] });
   });
 
-  router.post("/blogs", heroUpload.single("heroImage"), (req, res, next) => {
+  router.post("/blogs", heroUpload.single("heroImage"), csrfProtection, (req, res, next) => {
     try {
       const slug = sanitizeSlug(req.body.slug || req.body.title);
       const payload = {
@@ -112,6 +124,7 @@ module.exports = (db, csrfProtection) => {
       }
       const result = createBlog(db, payload);
       if (result.errors) {
+        res.locals.csrfToken = req.csrfToken();
         res.render("blogs/form", { title: "Nieuwe blog", blog: payload, isEdit: false, errors: result.errors });
         return;
       }
@@ -122,7 +135,7 @@ module.exports = (db, csrfProtection) => {
     }
   });
 
-  router.post("/blogs/:id", heroUpload.single("heroImage"), (req, res, next) => {
+  router.post("/blogs/:id", heroUpload.single("heroImage"), csrfProtection, (req, res, next) => {
     try {
       const id = Number.parseInt(req.params.id, 10);
       const slug = sanitizeSlug(req.body.slug || req.body.title);
@@ -142,6 +155,7 @@ module.exports = (db, csrfProtection) => {
       }
       const result = updateBlog(db, id, payload);
       if (result.errors) {
+        res.locals.csrfToken = req.csrfToken();
         res.render("blogs/form", { title: "Blog bewerken", blog: { id, ...payload }, isEdit: true, errors: result.errors });
         return;
       }
@@ -152,14 +166,14 @@ module.exports = (db, csrfProtection) => {
     }
   });
 
-  router.post("/blogs/:id/delete", (req, res) => {
+  router.post("/blogs/:id/delete", csrfProtection, (req, res) => {
     const id = Number.parseInt(req.params.id, 10);
     deleteBlog(db, id);
     setFlash(req, "success", "Blog verwijderd.");
     res.redirect("/admin/blogs");
   });
 
-  router.post("/blogs/:id/publish", (req, res) => {
+  router.post("/blogs/:id/publish", csrfProtection, (req, res) => {
     const id = Number.parseInt(req.params.id, 10);
     const result = updateBlog(db, id, { status: "published" });
     if (result.errors) {
@@ -170,7 +184,7 @@ module.exports = (db, csrfProtection) => {
     res.redirect("/admin/blogs");
   });
 
-  router.post("/blogs/:id/unpublish", (req, res) => {
+  router.post("/blogs/:id/unpublish", csrfProtection, (req, res) => {
     const id = Number.parseInt(req.params.id, 10);
     const result = updateBlog(db, id, { status: "draft" });
     if (result.errors) {
@@ -181,7 +195,7 @@ module.exports = (db, csrfProtection) => {
     res.redirect("/admin/blogs");
   });
 
-  router.post("/blogs/:id/status", (req, res) => {
+  router.post("/blogs/:id/status", csrfProtection, (req, res) => {
     const id = Number.parseInt(req.params.id, 10);
     const status = normalizeStatus(req.body.status);
     const result = updateBlog(db, id, { status });
@@ -198,7 +212,7 @@ module.exports = (db, csrfProtection) => {
     res.render("mad", { title: "MAD Upload", imports });
   });
 
-  router.post("/mad/upload", madUpload.single("madFile"), (req, res, next) => {
+  router.post("/mad/upload", madUpload.single("madFile"), csrfProtection, (req, res, next) => {
     try {
       if (!req.file) {
         setFlash(req, "error", "Geen bestand gekozen.");
@@ -228,15 +242,46 @@ module.exports = (db, csrfProtection) => {
     }
   };
 
-  router.post("/mad/:id/current", setCurrentHandler);
-  router.post("/mad/:id/set-current", setCurrentHandler);
+  router.post("/mad/:id/current", csrfProtection, setCurrentHandler);
+  router.post("/mad/:id/set-current", csrfProtection, setCurrentHandler);
+
+  router.get("/gemonteerd", (req, res) => {
+    const items = listGemonteerdImages();
+    res.render("gemonteerd/index", { title: "Gemonteerd", items });
+  });
+
+  router.post("/gemonteerd/rename", csrfProtection, (req, res) => {
+    const from = String(req.body.from || "").trim();
+    const to = String(req.body.to || "").trim();
+    if (!from || !to) {
+      setFlash(req, "error", "Vul een nieuwe bestandsnaam in.");
+      res.redirect("/admin/gemonteerd");
+      return;
+    }
+    try {
+      const result = renameGemonteerdImage(from, to);
+      setFlash(req, "success", `Bestand hernoemd naar ${result.to}.`);
+    } catch (err) {
+      const code = err?.code || err?.message || "";
+      const messages = {
+        invalid_from: "Huidige bestandsnaam is ongeldig.",
+        invalid_to: "Nieuwe bestandsnaam is ongeldig.",
+        invalid_extension: "Bestandstype niet toegestaan (jpg, jpeg, png, webp).",
+        already_exists: "Deze bestandsnaam bestaat al.",
+        not_found: "Bestand niet gevonden.",
+        same_name: "Nieuwe naam is hetzelfde als de oude.",
+      };
+      setFlash(req, "error", messages[code] || "Hernoemen mislukt.");
+    }
+    res.redirect("/admin/gemonteerd");
+  });
 
   router.get("/settings", (req, res) => {
     const settings = getSettings(db);
     res.render("settings", { title: "Settings", settings });
   });
 
-  router.post("/settings", (req, res) => {
+  router.post("/settings", csrfProtection, (req, res) => {
     const payload = {
       footer: {
         phone: req.body.footer_phone || "",
@@ -281,7 +326,7 @@ module.exports = (db, csrfProtection) => {
     res.render("redirects/form", { title: "Redirect bewerken", redirect, isEdit: true });
   });
 
-  router.post("/redirects", (req, res) => {
+  router.post("/redirects", csrfProtection, (req, res) => {
     const result = createRedirect(db, req.body);
     if (result.errors) {
       setFlash(req, "error", "Redirect niet opgeslagen.");
@@ -291,7 +336,7 @@ module.exports = (db, csrfProtection) => {
     res.redirect("/admin/redirects");
   });
 
-  router.post("/redirects/:id", (req, res) => {
+  router.post("/redirects/:id", csrfProtection, (req, res) => {
     const id = Number.parseInt(req.params.id, 10);
     const result = updateRedirect(db, id, req.body);
     if (result.errors) {
@@ -302,14 +347,14 @@ module.exports = (db, csrfProtection) => {
     res.redirect("/admin/redirects");
   });
 
-  router.post("/redirects/:id/delete", (req, res) => {
+  router.post("/redirects/:id/delete", csrfProtection, (req, res) => {
     const id = Number.parseInt(req.params.id, 10);
     deleteRedirect(db, id);
     setFlash(req, "success", "Redirect verwijderd.");
     res.redirect("/admin/redirects");
   });
 
-  router.post("/rebuild", (req, res, next) => {
+  router.post("/rebuild", csrfProtection, (req, res, next) => {
     try {
       const blogCount = buildBlogJson(db);
       const madCount = rebuildMadIndexFromCurrent();

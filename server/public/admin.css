@@ -260,3 +260,30 @@ button.secondary,
     flex-wrap: wrap;
   }
 }
+
+.gemonteerd-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.gemonteerd-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f7f2e6;
+}
+
+.gemonteerd-meta {
+  margin: 10px 0 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.gemonteerd-card label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}

@@ -1,0 +1,36 @@
+<%- include("../partials/header") %>
+
+<div class="panel">
+  <h2>Gemonteerd foto's</h2>
+  <p class="muted">
+    Beheer de foto's uit <strong>/assets/img/Gemonteerd</strong>. Laat de extensie weg om de originele extensie te behouden.
+  </p>
+</div>
+
+<% if (!items || !items.length) { %>
+  <div class="panel">
+    <div class="muted">Geen foto's gevonden.</div>
+  </div>
+<% } else { %>
+  <div class="panel">
+    <div class="grid gemonteerd-grid">
+      <% items.forEach((item, i) => { %>
+        <div class="tile gemonteerd-card">
+          <a href="<%= item.url %>" target="_blank" rel="noopener">
+            <img src="<%= item.url %>" alt="<%= item.name %>" loading="lazy" />
+          </a>
+          <div class="gemonteerd-meta"><%= item.name %></div>
+          <form method="post" action="/admin/gemonteerd/rename">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <input type="hidden" name="from" value="<%= item.name %>" />
+            <label for="rename-<%= i %>">Nieuwe naam</label>
+            <input id="rename-<%= i %>" name="to" value="<%= item.name %>" required />
+            <button type="submit">Opslaan</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+<% } %>
+
+<%- include("../partials/footer") %>

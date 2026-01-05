@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "check": "node --check index.js",
     "test": "node --test tests/smoke.test.js",
     "build:blog-index": "node scripts/generate-blog-index.js"
   },

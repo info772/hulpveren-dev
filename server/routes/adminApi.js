@@ -6,6 +6,7 @@ const { createBlog, updateBlog, deleteBlog, buildBlogJson } = require("../servic
 const { handleMadUpload, setCurrentImport, rebuildMadIndexFromCurrent } = require("../services/madService");
 const { updateSettings } = require("../services/settingsService");
 const { createRedirect, updateRedirect, deleteRedirect, writeRedirectsJson } = require("../services/redirectService");
+const { renameGemonteerdImage } = require("../services/gemonteerdService");
 
 function getHeroPath(file, slug) {
   if (!file) return "";
@@ -135,6 +136,38 @@ module.exports = (db, csrfProtection) => {
       }
       res.json({ ok: true, id: result.id });
     } catch (err) {
+      next(err);
+    }
+  });
+
+  router.post("/gemonteerd/rename", (req, res, next) => {
+    try {
+      const from = req.body.from || req.body.oldName || "";
+      const to = req.body.to || req.body.newName || "";
+      if (!from || !to) {
+        res.status(400).json({ error: "invalid_payload" });
+        return;
+      }
+      const result = renameGemonteerdImage(from, to);
+      res.json({ ok: true, renamed: { from: result.from, to: result.to }, items: result.items });
+    } catch (err) {
+      const code = err?.code || err?.message || "";
+      if (["invalid_from", "invalid_to", "invalid_extension", "invalid_payload"].includes(code)) {
+        res.status(400).json({ error: code });
+        return;
+      }
+      if (code === "same_name") {
+        res.status(409).json({ error: code });
+        return;
+      }
+      if (code === "already_exists") {
+        res.status(409).json({ error: code });
+        return;
+      }
+      if (code === "not_found") {
+        res.status(404).json({ error: code });
+        return;
+      }
       next(err);
     }
   });
