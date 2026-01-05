@@ -1,0 +1,21 @@
+[Unit]
+Description=Lowland API (Hulpveren backend)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/apps/backend/server
+Environment=STORAGE_ROOT=/var/lib/lowland-api
+Environment=LOG_DIR=/var/log/lowland-api
+Environment=DB_PATH=/var/lib/lowland-api/db.sqlite
+ExecStart=/usr/bin/node /opt/apps/backend/server/index.js
+Restart=on-failure
+StateDirectory=lowland-api
+LogsDirectory=lowland-api
+RuntimeDirectory=lowland-api
+RuntimeDirectoryMode=0755
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target

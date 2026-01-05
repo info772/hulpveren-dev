@@ -2,8 +2,15 @@ const path = require("path");
 const Database = require("better-sqlite3");
 const bcrypt = require("bcryptjs");
 const { ensureDefaultSettings } = require("./settingsService");
+const { storagePaths } = require("./storage");
 
-const dbPath = path.join(__dirname, "..", "db.sqlite");
+const resolveDbPath = () => {
+  const raw = String(process.env.DB_PATH || "").trim();
+  if (raw) return path.resolve(raw);
+  return path.join(storagePaths.storageRoot, "db.sqlite");
+};
+
+const dbPath = resolveDbPath();
 
 function migrate(db) {
   db.exec(`

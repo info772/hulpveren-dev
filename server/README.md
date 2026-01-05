@@ -26,6 +26,9 @@ Optioneel:
 - `NODE_ENV=production` (zet secure cookies aan)
 - `PLATE_INCLUDE_RAW=1` (bestaande plate API)
 - `GEMONTEERD_DIR` (pad naar gemonteerde fotos, default `/var/www/dev.hulpveren.shop/public/assets/img/Gemonteerd`)
+- `STORAGE_ROOT` (default `/var/lib/lowland-api`, bevat blogs/mad/generated)
+- `LOG_DIR` (default `/var/log/lowland-api`)
+- `DB_PATH` (default `${STORAGE_ROOT}/db.sqlite`)
 
 ## Run
 
@@ -42,6 +45,11 @@ Admin assets:
 
 - `/admin-assets/gemonteerd/<filename>`
 - `/admin-assets/gemonteerd/manifest.json` (no-store)
+
+Storage strategy:
+
+- Runtime data staat buiten de git working tree (storage, logs, sqlite).
+- Gebruik de env vars hierboven om paden te wijzigen of data te migreren.
 
 JSON files worden opgebouwd bij server start en via de Rebuild knop in het admin dashboard.
 
@@ -111,6 +119,21 @@ sudo cp server/scripts/deploy-dev.sh /usr/local/bin/deploy-dev.sh
 sudo chmod +x /usr/local/bin/deploy-dev.sh
 ```
 
+Backend deploy script (dev):
+
+```bash
+sudo cp server/scripts/deploy-backend-dev.sh /usr/local/bin/deploy-backend-dev.sh
+sudo chmod +x /usr/local/bin/deploy-backend-dev.sh
+```
+
+Systemd unit (dev):
+
+```bash
+sudo cp server/scripts/lowland-api.service /etc/systemd/system/lowland-api.service
+sudo systemctl daemon-reload
+sudo systemctl restart lowland-api
+```
+
 Sudoers (minimal):
 
 ```bash
@@ -143,6 +166,7 @@ Scope scheiding:
 - Infra apply: alleen via `infra/apply-infra.sh`
 
 `server/scripts/deploy-dev.sh` voert ook `node --check /opt/apps/backend/server/index.js` uit als die file bestaat.
+`server/scripts/deploy-backend-dev.sh` controleert writeable dirs, voert `git pull`, `npm ci/install`, `node --check` en restart uit.
 
 Optionele variabelen voor `infra/apply-infra.sh`:
 
