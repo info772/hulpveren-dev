@@ -1939,42 +1939,45 @@
 
       let include = false;
       let label = makeLabel;
-      let fileModelLabel = resolveModelLabel(modelMap, fileSlug);
+      const fileModelLabel = resolveModelLabel(modelMap, fileSlug);
 
+      const matchesMake = makeSlug && fileSlug.includes(makeSlug);
+      const matchesModel = modelSlug && fileSlug.includes(modelSlug);
+      let matchesSku = false;
+      let skuModelLabel = "";
+
+      if (sku && skuIndex && skuIndex.has(sku)) {
+        const skuMakeMap = skuIndex.get(sku);
+        if (skuMakeMap && skuMakeMap.has(makeSlug)) {
+          matchesSku = true;
+          skuModelLabel = skuMakeMap.get(makeSlug) || "";
+        }
+      }
+
+      // Model/plate pagina: alleen als foto expliciet model of SKU voor dit merk raakt
       if (route.kind === "model" || route.kind === "plate") {
-        const hasMake = fileSlug.includes(makeSlug);
-        const hasModel = fileSlug.includes(modelSlug);
-        if ((hasMake && hasModel) || (!hasMake && hasModel)) {
+        if (matchesModel || (matchesMake && matchesModel) || (matchesSku && (!modelSlug || slugify(skuModelLabel) === modelSlug))) {
           include = true;
-          label = modelLabel
-            ? `${makeLabel} ${modelLabel}`
-            : humanizeFileLabel(baseName, makeLabel);
-        } else if (sku && skuIndex && skuIndex.has(sku)) {
-          const skuMakeMap = skuIndex.get(sku);
-          if (skuMakeMap && skuMakeMap.has(makeSlug)) {
-            const skuModelLabel = skuMakeMap.get(makeSlug) || "";
-            if (!modelSlug || slugify(skuModelLabel) === modelSlug) {
-              include = true;
-              label = skuModelLabel
-                ? `${makeLabel} ${skuModelLabel}`
-                : `${makeLabel} ${sku}`;
-            }
+          if (matchesSku && skuModelLabel) {
+            label = `${makeLabel} ${skuModelLabel}`;
+          } else if (modelLabel) {
+            label = `${makeLabel} ${modelLabel}`;
+          } else if (fileModelLabel) {
+            label = `${makeLabel} ${fileModelLabel}`;
+          } else {
+            label = humanizeFileLabel(baseName, makeLabel);
           }
         }
       } else {
-        if (fileSlug.includes(makeSlug) || fileSlug.includes(modelSlug)) {
+        // Merkpagina: alleen foto’s met merk in bestandsnaam of SKU die bij het merk hoort
+        if (matchesMake || matchesSku) {
           include = true;
-          label = fileModelLabel
-            ? `${makeLabel} ${fileModelLabel}`
-            : humanizeFileLabel(baseName, makeLabel);
-        } else if (sku && skuIndex && skuIndex.has(sku)) {
-          const skuMakeMap = skuIndex.get(sku);
-          if (skuMakeMap && skuMakeMap.has(makeSlug)) {
-            const skuModelLabel = skuMakeMap.get(makeSlug) || "";
-            include = true;
-            label = skuModelLabel
-              ? `${makeLabel} ${skuModelLabel}`
-              : `${makeLabel} ${sku}`;
+          if (matchesSku && skuModelLabel) {
+            label = `${makeLabel} ${skuModelLabel}`;
+          } else if (fileModelLabel) {
+            label = `${makeLabel} ${fileModelLabel}`;
+          } else {
+            label = humanizeFileLabel(baseName, makeLabel);
           }
         }
       }
@@ -6179,4 +6182,3 @@
     }
   });
 })();
-
