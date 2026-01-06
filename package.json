@@ -1,0 +1,11 @@
+{
+  "name": "hulpveren-dev-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "data:lint": "npm --prefix tools/data-quality run data:lint",
+    "data:derive": "npm --prefix tools/data-quality run data:derive",
+    "data:check": "npm --prefix tools/data-quality run data:check",
+    "data:fix": "npm --prefix tools/data-quality run data:fix"
+  }
+}

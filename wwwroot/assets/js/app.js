@@ -504,6 +504,14 @@
       "'": "&#39;",
     }[m]));
 
+  // Prefer source field, fallback to derived.* (used for dynamic SEO/sets)
+  function getField(record, key) {
+    if (!record || !key) return undefined;
+    if (record[key] !== undefined && record[key] !== null) return record[key];
+    if (record.derived && record.derived[key] !== undefined) return record.derived[key];
+    return undefined;
+  }
+
   const slugify = (s) =>
     String(s || "")
       .trim()
