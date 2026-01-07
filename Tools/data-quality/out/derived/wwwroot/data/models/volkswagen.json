@@ -1,0 +1,179 @@
+{
+  "make": {
+    "slug": "volkswagen",
+    "label": "Volkswagen"
+  },
+  "models": [
+    {
+      "slug": "amarok",
+      "label": "Amarok",
+      "kits_count": 10
+    },
+    {
+      "slug": "arteon",
+      "label": "Arteon",
+      "kits_count": 1
+    },
+    {
+      "slug": "beetle",
+      "label": "Beetle",
+      "kits_count": 1
+    },
+    {
+      "slug": "bora",
+      "label": "Bora",
+      "kits_count": 3
+    },
+    {
+      "slug": "caddy",
+      "label": "Caddy",
+      "kits_count": 10
+    },
+    {
+      "slug": "caravelle",
+      "label": "Caravelle",
+      "kits_count": 1
+    },
+    {
+      "slug": "crafter",
+      "label": "Crafter",
+      "kits_count": 8
+    },
+    {
+      "slug": "cross-touran",
+      "label": "Cross Touran",
+      "kits_count": 1
+    },
+    {
+      "slug": "eos",
+      "label": "Eos",
+      "kits_count": 1
+    },
+    {
+      "slug": "fox",
+      "label": "Fox",
+      "kits_count": 1
+    },
+    {
+      "slug": "golf",
+      "label": "Golf",
+      "kits_count": 15
+    },
+    {
+      "slug": "golf-plus-sportsvan",
+      "label": "Golf Plus / Sportsvan",
+      "kits_count": 4
+    },
+    {
+      "slug": "id-buzz",
+      "label": "ID. Buzz",
+      "kits_count": 4
+    },
+    {
+      "slug": "id-3",
+      "label": "ID.3",
+      "kits_count": 1
+    },
+    {
+      "slug": "id-4",
+      "label": "ID.4",
+      "kits_count": 1
+    },
+    {
+      "slug": "id-5",
+      "label": "ID.5",
+      "kits_count": 1
+    },
+    {
+      "slug": "id-7",
+      "label": "ID.7",
+      "kits_count": 1
+    },
+    {
+      "slug": "jetta",
+      "label": "Jetta",
+      "kits_count": 5
+    },
+    {
+      "slug": "lt",
+      "label": "LT",
+      "kits_count": 1
+    },
+    {
+      "slug": "lupo",
+      "label": "Lupo",
+      "kits_count": 1
+    },
+    {
+      "slug": "multivan",
+      "label": "Multivan",
+      "kits_count": 6
+    },
+    {
+      "slug": "new-beetle",
+      "label": "New Beetle",
+      "kits_count": 1
+    },
+    {
+      "slug": "passat",
+      "label": "Passat",
+      "kits_count": 6
+    },
+    {
+      "slug": "polo",
+      "label": "Polo",
+      "kits_count": 6
+    },
+    {
+      "slug": "sharan",
+      "label": "Sharan",
+      "kits_count": 1
+    },
+    {
+      "slug": "t-cross",
+      "label": "T-Cross",
+      "kits_count": 1
+    },
+    {
+      "slug": "t-roc",
+      "label": "T-Roc",
+      "kits_count": 2
+    },
+    {
+      "slug": "taigo",
+      "label": "Taigo",
+      "kits_count": 1
+    },
+    {
+      "slug": "tayron",
+      "label": "Tayron",
+      "kits_count": 1
+    },
+    {
+      "slug": "tiguan",
+      "label": "Tiguan",
+      "kits_count": 3
+    },
+    {
+      "slug": "touran",
+      "label": "Touran",
+      "kits_count": 5
+    },
+    {
+      "slug": "transporter",
+      "label": "Transporter",
+      "kits_count": 24
+    },
+    {
+      "slug": "up",
+      "label": "UP!",
+      "kits_count": 1
+    },
+    {
+      "slug": "vento",
+      "label": "Vento",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

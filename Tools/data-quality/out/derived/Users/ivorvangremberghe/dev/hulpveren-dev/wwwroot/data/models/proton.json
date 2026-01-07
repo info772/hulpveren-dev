@@ -1,0 +1,14 @@
+{
+  "make": {
+    "slug": "proton",
+    "label": "Proton"
+  },
+  "models": [
+    {
+      "slug": "persona-sei",
+      "label": "Persona Sei",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

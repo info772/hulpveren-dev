@@ -1,0 +1,14 @@
+{
+  "make": {
+    "slug": "talbot",
+    "label": "Talbot"
+  },
+  "models": [
+    {
+      "slug": "expres-van",
+      "label": "Expres Van",
+      "kits_count": 2
+    }
+  ],
+  "derived": {}
+}

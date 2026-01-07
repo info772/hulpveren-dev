@@ -1,0 +1,99 @@
+{
+  "make": {
+    "slug": "renault",
+    "label": "Renault"
+  },
+  "models": [
+    {
+      "slug": "alaskan",
+      "label": "Alaskan",
+      "kits_count": 6
+    },
+    {
+      "slug": "arkana",
+      "label": "Arkana",
+      "kits_count": 1
+    },
+    {
+      "slug": "austral",
+      "label": "Austral",
+      "kits_count": 2
+    },
+    {
+      "slug": "captur",
+      "label": "Captur",
+      "kits_count": 2
+    },
+    {
+      "slug": "clio",
+      "label": "Clio",
+      "kits_count": 5
+    },
+    {
+      "slug": "espace",
+      "label": "Espace",
+      "kits_count": 6
+    },
+    {
+      "slug": "express",
+      "label": "Express",
+      "kits_count": 2
+    },
+    {
+      "slug": "kadjar",
+      "label": "Kadjar",
+      "kits_count": 2
+    },
+    {
+      "slug": "kangoo",
+      "label": "Kangoo",
+      "kits_count": 16
+    },
+    {
+      "slug": "koleos",
+      "label": "Koleos",
+      "kits_count": 1
+    },
+    {
+      "slug": "laguna",
+      "label": "Laguna",
+      "kits_count": 3
+    },
+    {
+      "slug": "master",
+      "label": "Master",
+      "kits_count": 9
+    },
+    {
+      "slug": "megane",
+      "label": "Megane",
+      "kits_count": 5
+    },
+    {
+      "slug": "modus",
+      "label": "Modus",
+      "kits_count": 1
+    },
+    {
+      "slug": "scenic",
+      "label": "Scenic",
+      "kits_count": 4
+    },
+    {
+      "slug": "talisman",
+      "label": "Talisman",
+      "kits_count": 2
+    },
+    {
+      "slug": "trafic",
+      "label": "Trafic",
+      "kits_count": 6
+    },
+    {
+      "slug": "vel-satis",
+      "label": "Vel Satis",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

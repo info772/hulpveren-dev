@@ -1,0 +1,373 @@
+[
+  {
+    "slug": "alfa-romeo",
+    "label": "Alfa Romeo",
+    "models_count": 3,
+    "kits_count": 4,
+    "derived": {}
+  },
+  {
+    "slug": "audi",
+    "label": "AUDI",
+    "models_count": 9,
+    "kits_count": 16,
+    "derived": {}
+  },
+  {
+    "slug": "bmw",
+    "label": "BMW",
+    "models_count": 2,
+    "kits_count": 5,
+    "derived": {}
+  },
+  {
+    "slug": "buick",
+    "label": "BUICK",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "chevrolet",
+    "label": "Chevrolet",
+    "models_count": 12,
+    "kits_count": 10,
+    "derived": {}
+  },
+  {
+    "slug": "chevrolet-usa",
+    "label": "Chevrolet Usa",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "chrysler",
+    "label": "Chrysler",
+    "models_count": 1,
+    "kits_count": 2,
+    "derived": {}
+  },
+  {
+    "slug": "citroen",
+    "label": "Citroën",
+    "models_count": 24,
+    "kits_count": 70,
+    "derived": {}
+  },
+  {
+    "slug": "cupra",
+    "label": "CUPRA",
+    "models_count": 5,
+    "kits_count": 3,
+    "derived": {}
+  },
+  {
+    "slug": "dacia",
+    "label": "DACIA",
+    "models_count": 7,
+    "kits_count": 13,
+    "derived": {}
+  },
+  {
+    "slug": "daihatsu",
+    "label": "Daihatsu",
+    "models_count": 5,
+    "kits_count": 5,
+    "derived": {}
+  },
+  {
+    "slug": "dodge",
+    "label": "DODGE",
+    "models_count": 1,
+    "kits_count": 2,
+    "derived": {}
+  },
+  {
+    "slug": "ds",
+    "label": "DS",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "fiat",
+    "label": "FIAT",
+    "models_count": 22,
+    "kits_count": 74,
+    "derived": {}
+  },
+  {
+    "slug": "ford",
+    "label": "FORD",
+    "models_count": 23,
+    "kits_count": 71,
+    "derived": {}
+  },
+  {
+    "slug": "honda",
+    "label": "HONDA",
+    "models_count": 4,
+    "kits_count": 10,
+    "derived": {}
+  },
+  {
+    "slug": "hyundai",
+    "label": "Hyundai",
+    "models_count": 28,
+    "kits_count": 43,
+    "derived": {}
+  },
+  {
+    "slug": "isuzu",
+    "label": "ISUZU",
+    "models_count": 1,
+    "kits_count": 6,
+    "derived": {}
+  },
+  {
+    "slug": "iveco",
+    "label": "IVECO",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "jeep",
+    "label": "JEEP",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "kia",
+    "label": "KIA",
+    "models_count": 15,
+    "kits_count": 31,
+    "derived": {}
+  },
+  {
+    "slug": "lada",
+    "label": "LADA",
+    "models_count": 5,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "lancia",
+    "label": "Lancia",
+    "models_count": 5,
+    "kits_count": 4,
+    "derived": {}
+  },
+  {
+    "slug": "land-rover",
+    "label": "Land Rover",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "lexus",
+    "label": "LEXUS",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "lynk-and-co",
+    "label": "Lynk & Co",
+    "models_count": 2,
+    "kits_count": 2,
+    "derived": {}
+  },
+  {
+    "slug": "man",
+    "label": "MAN",
+    "models_count": 1,
+    "kits_count": 3,
+    "derived": {}
+  },
+  {
+    "slug": "maxus",
+    "label": "MAXUS",
+    "models_count": 4,
+    "kits_count": 3,
+    "derived": {}
+  },
+  {
+    "slug": "mazda",
+    "label": "MAZDA",
+    "models_count": 12,
+    "kits_count": 15,
+    "derived": {}
+  },
+  {
+    "slug": "mercedes-benz",
+    "label": "Mercedes Benz",
+    "models_count": 11,
+    "kits_count": 47,
+    "derived": {}
+  },
+  {
+    "slug": "mg",
+    "label": "MG",
+    "models_count": 2,
+    "kits_count": 2,
+    "derived": {}
+  },
+  {
+    "slug": "mitsubishi",
+    "label": "Mitsubishi",
+    "models_count": 18,
+    "kits_count": 34,
+    "derived": {}
+  },
+  {
+    "slug": "nissan",
+    "label": "Nissan",
+    "models_count": 24,
+    "kits_count": 71,
+    "derived": {}
+  },
+  {
+    "slug": "oldsmobile",
+    "label": "Oldsmobile",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "opel",
+    "label": "OPEL",
+    "models_count": 21,
+    "kits_count": 85,
+    "derived": {}
+  },
+  {
+    "slug": "peugeot",
+    "label": "Peugeot",
+    "models_count": 28,
+    "kits_count": 77,
+    "derived": {}
+  },
+  {
+    "slug": "pontiac",
+    "label": "Pontiac",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "proton",
+    "label": "Proton",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "ram",
+    "label": "RAM",
+    "models_count": 2,
+    "kits_count": 8,
+    "derived": {}
+  },
+  {
+    "slug": "renault",
+    "label": "Renault",
+    "models_count": 18,
+    "kits_count": 70,
+    "derived": {}
+  },
+  {
+    "slug": "rover",
+    "label": "ROVER",
+    "models_count": 1,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "saab",
+    "label": "SAAB",
+    "models_count": 5,
+    "kits_count": 4,
+    "derived": {}
+  },
+  {
+    "slug": "seat",
+    "label": "SEAT",
+    "models_count": 12,
+    "kits_count": 14,
+    "derived": {}
+  },
+  {
+    "slug": "skoda",
+    "label": "SKODA",
+    "models_count": 16,
+    "kits_count": 25,
+    "derived": {}
+  },
+  {
+    "slug": "smart",
+    "label": "SMART",
+    "models_count": 2,
+    "kits_count": 1,
+    "derived": {}
+  },
+  {
+    "slug": "ssangyong",
+    "label": "Ssangyong",
+    "models_count": 8,
+    "kits_count": 8,
+    "derived": {}
+  },
+  {
+    "slug": "subaru",
+    "label": "Subaru",
+    "models_count": 4,
+    "kits_count": 5,
+    "derived": {}
+  },
+  {
+    "slug": "suzuki",
+    "label": "Suzuki",
+    "models_count": 12,
+    "kits_count": 30,
+    "derived": {}
+  },
+  {
+    "slug": "talbot",
+    "label": "Talbot",
+    "models_count": 1,
+    "kits_count": 2,
+    "derived": {}
+  },
+  {
+    "slug": "toyota",
+    "label": "Toyota",
+    "models_count": 24,
+    "kits_count": 71,
+    "derived": {}
+  },
+  {
+    "slug": "vauxhall",
+    "label": "Vauxhall",
+    "models_count": 24,
+    "kits_count": 79,
+    "derived": {}
+  },
+  {
+    "slug": "volkswagen",
+    "label": "Volkswagen",
+    "models_count": 34,
+    "kits_count": 91,
+    "derived": {}
+  },
+  {
+    "slug": "volvo",
+    "label": "VOLVO",
+    "models_count": 15,
+    "kits_count": 13,
+    "derived": {}
+  }
+]

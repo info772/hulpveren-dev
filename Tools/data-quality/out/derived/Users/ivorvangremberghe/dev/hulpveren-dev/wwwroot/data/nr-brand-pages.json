@@ -1,0 +1,904 @@
+[
+  {
+    "MAKE": "Audi",
+    "MAKE_RAW": "AUDI",
+    "MAKE_SLUG": "audi",
+    "MODELS": [
+      {
+        "MODEL_NAME": "A3",
+        "MODEL_SLUG": "a3"
+      },
+      {
+        "MODEL_NAME": "A4",
+        "MODEL_SLUG": "a4"
+      },
+      {
+        "MODEL_NAME": "A6",
+        "MODEL_SLUG": "a6"
+      },
+      {
+        "MODEL_NAME": "Q2",
+        "MODEL_SLUG": "q2"
+      },
+      {
+        "MODEL_NAME": "Q3",
+        "MODEL_SLUG": "q3"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Cupra",
+    "MAKE_RAW": "CUPRA",
+    "MAKE_SLUG": "cupra",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Formentor",
+        "MODEL_SLUG": "formentor"
+      },
+      {
+        "MODEL_NAME": "Leon",
+        "MODEL_SLUG": "leon"
+      },
+      {
+        "MODEL_NAME": "Terramar",
+        "MODEL_SLUG": "terramar"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Seat",
+    "MAKE_RAW": "SEAT",
+    "MAKE_SLUG": "seat",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Alhambra",
+        "MODEL_SLUG": "alhambra"
+      },
+      {
+        "MODEL_NAME": "Altea",
+        "MODEL_SLUG": "altea"
+      },
+      {
+        "MODEL_NAME": "Ateca",
+        "MODEL_SLUG": "ateca"
+      },
+      {
+        "MODEL_NAME": "Leon",
+        "MODEL_SLUG": "leon"
+      },
+      {
+        "MODEL_NAME": "Tarraco",
+        "MODEL_SLUG": "tarraco"
+      },
+      {
+        "MODEL_NAME": "Toledo",
+        "MODEL_SLUG": "toledo"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Skoda",
+    "MAKE_RAW": "SKODA",
+    "MAKE_SLUG": "skoda",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Karoq",
+        "MODEL_SLUG": "karoq"
+      },
+      {
+        "MODEL_NAME": "Kodiaq",
+        "MODEL_SLUG": "kodiaq"
+      },
+      {
+        "MODEL_NAME": "Octavia",
+        "MODEL_SLUG": "octavia"
+      },
+      {
+        "MODEL_NAME": "Superb",
+        "MODEL_SLUG": "superb"
+      },
+      {
+        "MODEL_NAME": "Yeti",
+        "MODEL_SLUG": "yeti"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Volkswagen",
+    "MAKE_RAW": "VOLKSWAGEN",
+    "MAKE_SLUG": "volkswagen",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Amarok",
+        "MODEL_SLUG": "amarok"
+      },
+      {
+        "MODEL_NAME": "Arteon",
+        "MODEL_SLUG": "arteon"
+      },
+      {
+        "MODEL_NAME": "Bora",
+        "MODEL_SLUG": "bora"
+      },
+      {
+        "MODEL_NAME": "Caddy",
+        "MODEL_SLUG": "caddy"
+      },
+      {
+        "MODEL_NAME": "Crafter",
+        "MODEL_SLUG": "crafter"
+      },
+      {
+        "MODEL_NAME": "Eos",
+        "MODEL_SLUG": "eos"
+      },
+      {
+        "MODEL_NAME": "Golf",
+        "MODEL_SLUG": "golf"
+      },
+      {
+        "MODEL_NAME": "Golf Plus / Sportsvan",
+        "MODEL_SLUG": "golf-plus--sportsvan"
+      },
+      {
+        "MODEL_NAME": "Jetta",
+        "MODEL_SLUG": "jetta"
+      },
+      {
+        "MODEL_NAME": "LT",
+        "MODEL_SLUG": "lt"
+      },
+      {
+        "MODEL_NAME": "Passat",
+        "MODEL_SLUG": "passat"
+      },
+      {
+        "MODEL_NAME": "Sharan",
+        "MODEL_SLUG": "sharan"
+      },
+      {
+        "MODEL_NAME": "Tayron",
+        "MODEL_SLUG": "tayron"
+      },
+      {
+        "MODEL_NAME": "Tiguan",
+        "MODEL_SLUG": "tiguan"
+      },
+      {
+        "MODEL_NAME": "Touran",
+        "MODEL_SLUG": "touran"
+      },
+      {
+        "MODEL_NAME": "Transporter",
+        "MODEL_SLUG": "transporter"
+      },
+      {
+        "MODEL_NAME": "T-Roc",
+        "MODEL_SLUG": "t-roc"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Chrysler",
+    "MAKE_RAW": "CHRYSLER",
+    "MAKE_SLUG": "chrysler",
+    "MODELS": {
+      "MODEL_NAME": "PT Cruiser",
+      "MODEL_SLUG": "pt-cruiser"
+    },
+    "derived": {}
+  },
+  {
+    "MAKE": "Citroen",
+    "MAKE_RAW": "CITROEN",
+    "MAKE_SLUG": "citroen",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Berlingo",
+        "MODEL_SLUG": "berlingo"
+      },
+      {
+        "MODEL_NAME": "C8",
+        "MODEL_SLUG": "c8"
+      },
+      {
+        "MODEL_NAME": "Evasion / Synergie",
+        "MODEL_SLUG": "evasion--synergie"
+      },
+      {
+        "MODEL_NAME": "Jumper",
+        "MODEL_SLUG": "jumper"
+      },
+      {
+        "MODEL_NAME": "Jumper + AL-KO chassis",
+        "MODEL_SLUG": "jumper--al-ko-chassis"
+      },
+      {
+        "MODEL_NAME": "Jumpy",
+        "MODEL_SLUG": "jumpy"
+      },
+      {
+        "MODEL_NAME": "SpaceTourer",
+        "MODEL_SLUG": "spacetourer"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Fiat",
+    "MAKE_RAW": "FIAT",
+    "MAKE_SLUG": "fiat",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Doblo",
+        "MODEL_SLUG": "doblo"
+      },
+      {
+        "MODEL_NAME": "Ducato",
+        "MODEL_SLUG": "ducato"
+      },
+      {
+        "MODEL_NAME": "Ducato + AL-KO chassis",
+        "MODEL_SLUG": "ducato--al-ko-chassis"
+      },
+      {
+        "MODEL_NAME": "Fullback",
+        "MODEL_SLUG": "fullback"
+      },
+      {
+        "MODEL_NAME": "Scudo",
+        "MODEL_SLUG": "scudo"
+      },
+      {
+        "MODEL_NAME": "Talento",
+        "MODEL_SLUG": "talento"
+      },
+      {
+        "MODEL_NAME": "Ulysse",
+        "MODEL_SLUG": "ulysse"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Opel",
+    "MAKE_RAW": "OPEL",
+    "MAKE_SLUG": "opel",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Combo",
+        "MODEL_SLUG": "combo"
+      },
+      {
+        "MODEL_NAME": "Frontera",
+        "MODEL_SLUG": "frontera"
+      },
+      {
+        "MODEL_NAME": "Movano",
+        "MODEL_SLUG": "movano"
+      },
+      {
+        "MODEL_NAME": "Movano + AL-KO",
+        "MODEL_SLUG": "movano--al-ko"
+      },
+      {
+        "MODEL_NAME": "Vivaro",
+        "MODEL_SLUG": "vivaro"
+      },
+      {
+        "MODEL_NAME": "Zafira Life",
+        "MODEL_SLUG": "zafira-life"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Peugeot",
+    "MAKE_RAW": "PEUGEOT",
+    "MAKE_SLUG": "peugeot",
+    "MODELS": [
+      {
+        "MODEL_NAME": "307",
+        "MODEL_SLUG": "307"
+      },
+      {
+        "MODEL_NAME": "806",
+        "MODEL_SLUG": "806"
+      },
+      {
+        "MODEL_NAME": "807",
+        "MODEL_SLUG": "807"
+      },
+      {
+        "MODEL_NAME": "Boxer",
+        "MODEL_SLUG": "boxer"
+      },
+      {
+        "MODEL_NAME": "Boxer + AL-KO",
+        "MODEL_SLUG": "boxer--al-ko"
+      },
+      {
+        "MODEL_NAME": "Expert",
+        "MODEL_SLUG": "expert"
+      },
+      {
+        "MODEL_NAME": "Partner",
+        "MODEL_SLUG": "partner"
+      },
+      {
+        "MODEL_NAME": "Rifter",
+        "MODEL_SLUG": "rifter"
+      },
+      {
+        "MODEL_NAME": "Traveller",
+        "MODEL_SLUG": "traveller"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Toyota",
+    "MAKE_RAW": "TOYOTA",
+    "MAKE_SLUG": "toyota",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Avensis Verso",
+        "MODEL_SLUG": "avensis-verso"
+      },
+      {
+        "MODEL_NAME": "Hi-Ace",
+        "MODEL_SLUG": "hi-ace"
+      },
+      {
+        "MODEL_NAME": "Hi-Lux",
+        "MODEL_SLUG": "hi-lux"
+      },
+      {
+        "MODEL_NAME": "Land Cruiser",
+        "MODEL_SLUG": "land-cruiser"
+      },
+      {
+        "MODEL_NAME": "Previa",
+        "MODEL_SLUG": "previa"
+      },
+      {
+        "MODEL_NAME": "Proace",
+        "MODEL_SLUG": "proace"
+      },
+      {
+        "MODEL_NAME": "Proace city",
+        "MODEL_SLUG": "proace-city"
+      },
+      {
+        "MODEL_NAME": "Proace max",
+        "MODEL_SLUG": "proace-max"
+      },
+      {
+        "MODEL_NAME": "RAV4",
+        "MODEL_SLUG": "rav4"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Vauxhall",
+    "MAKE_RAW": "VAUXHALL",
+    "MAKE_SLUG": "vauxhall",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Combo",
+        "MODEL_SLUG": "combo"
+      },
+      {
+        "MODEL_NAME": "Frontera",
+        "MODEL_SLUG": "frontera"
+      },
+      {
+        "MODEL_NAME": "Movano",
+        "MODEL_SLUG": "movano"
+      },
+      {
+        "MODEL_NAME": "Movano + AL-KO",
+        "MODEL_SLUG": "movano--al-ko"
+      },
+      {
+        "MODEL_NAME": "Vivaro",
+        "MODEL_SLUG": "vivaro"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Lancia",
+    "MAKE_RAW": "LANCIA",
+    "MAKE_SLUG": "lancia",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Phedra",
+        "MODEL_SLUG": "phedra"
+      },
+      {
+        "MODEL_NAME": "Zeta",
+        "MODEL_SLUG": "zeta"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Ram",
+    "MAKE_RAW": "RAM",
+    "MAKE_SLUG": "ram",
+    "MODELS": {
+      "MODEL_NAME": "Promaster",
+      "MODEL_SLUG": "promaster"
+    },
+    "derived": {}
+  },
+  {
+    "MAKE": "Dacia",
+    "MAKE_RAW": "DACIA",
+    "MAKE_SLUG": "dacia",
+    "MODELS": {
+      "MODEL_NAME": "Logan",
+      "MODEL_SLUG": "logan"
+    },
+    "derived": {}
+  },
+  {
+    "MAKE": "Dodge",
+    "MAKE_RAW": "DODGE",
+    "MAKE_SLUG": "dodge",
+    "MODELS": {
+      "MODEL_NAME": "RAM 1500",
+      "MODEL_SLUG": "ram-1500"
+    },
+    "derived": {}
+  },
+  {
+    "MAKE": "Mitsubishi",
+    "MAKE_RAW": "MITSUBISHI",
+    "MAKE_SLUG": "mitsubishi",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Grandis",
+        "MODEL_SLUG": "grandis"
+      },
+      {
+        "MODEL_NAME": "L200",
+        "MODEL_SLUG": "l200"
+      },
+      {
+        "MODEL_NAME": "Pajero",
+        "MODEL_SLUG": "pajero"
+      },
+      {
+        "MODEL_NAME": "Shogun",
+        "MODEL_SLUG": "shogun"
+      },
+      {
+        "MODEL_NAME": "Space Runner",
+        "MODEL_SLUG": "space-runner"
+      },
+      {
+        "MODEL_NAME": "Space Wagon",
+        "MODEL_SLUG": "space-wagon"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Nissan",
+    "MAKE_RAW": "NISSAN",
+    "MAKE_SLUG": "nissan",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Interstar",
+        "MODEL_SLUG": "interstar"
+      },
+      {
+        "MODEL_NAME": "Murano",
+        "MODEL_SLUG": "murano"
+      },
+      {
+        "MODEL_NAME": "Navara / NP 300",
+        "MODEL_SLUG": "navara--np-300"
+      },
+      {
+        "MODEL_NAME": "NV 300",
+        "MODEL_SLUG": "nv-300"
+      },
+      {
+        "MODEL_NAME": "NV 400",
+        "MODEL_SLUG": "nv-400"
+      },
+      {
+        "MODEL_NAME": "Pathfinder",
+        "MODEL_SLUG": "pathfinder"
+      },
+      {
+        "MODEL_NAME": "Primastar",
+        "MODEL_SLUG": "primastar"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Renault",
+    "MAKE_RAW": "RENAULT",
+    "MAKE_SLUG": "renault",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Alaskan",
+        "MODEL_SLUG": "alaskan"
+      },
+      {
+        "MODEL_NAME": "Espace",
+        "MODEL_SLUG": "espace"
+      },
+      {
+        "MODEL_NAME": "Master",
+        "MODEL_SLUG": "master"
+      },
+      {
+        "MODEL_NAME": "Trafic",
+        "MODEL_SLUG": "trafic"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Ford",
+    "MAKE_RAW": "FORD",
+    "MAKE_SLUG": "ford",
+    "MODELS": [
+      {
+        "MODEL_NAME": "C-Max / Grand C-Max",
+        "MODEL_SLUG": "c-max--grand-c-max"
+      },
+      {
+        "MODEL_NAME": "Edge",
+        "MODEL_SLUG": "edge"
+      },
+      {
+        "MODEL_NAME": "Focus",
+        "MODEL_SLUG": "focus"
+      },
+      {
+        "MODEL_NAME": "Galaxy",
+        "MODEL_SLUG": "galaxy"
+      },
+      {
+        "MODEL_NAME": "Mondeo",
+        "MODEL_SLUG": "mondeo"
+      },
+      {
+        "MODEL_NAME": "Ranger",
+        "MODEL_SLUG": "ranger"
+      },
+      {
+        "MODEL_NAME": "S-Max",
+        "MODEL_SLUG": "s-max"
+      },
+      {
+        "MODEL_NAME": "Tourneo Connect",
+        "MODEL_SLUG": "tourneo-connect"
+      },
+      {
+        "MODEL_NAME": "Tourneo Custom",
+        "MODEL_SLUG": "tourneo-custom"
+      },
+      {
+        "MODEL_NAME": "Transit",
+        "MODEL_SLUG": "transit"
+      },
+      {
+        "MODEL_NAME": "Transit Connect",
+        "MODEL_SLUG": "transit-connect"
+      },
+      {
+        "MODEL_NAME": "Transit Custom",
+        "MODEL_SLUG": "transit-custom"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Mazda",
+    "MAKE_RAW": "MAZDA",
+    "MAKE_SLUG": "mazda",
+    "MODELS": [
+      {
+        "MODEL_NAME": "3",
+        "MODEL_SLUG": "3"
+      },
+      {
+        "MODEL_NAME": "5",
+        "MODEL_SLUG": "5"
+      },
+      {
+        "MODEL_NAME": "BT-50",
+        "MODEL_SLUG": "bt-50"
+      },
+      {
+        "MODEL_NAME": "MPV",
+        "MODEL_SLUG": "mpv"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Volvo",
+    "MAKE_RAW": "VOLVO",
+    "MAKE_SLUG": "volvo",
+    "MODELS": [
+      {
+        "MODEL_NAME": "S40",
+        "MODEL_SLUG": "s40"
+      },
+      {
+        "MODEL_NAME": "V50",
+        "MODEL_SLUG": "v50"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Hyundai",
+    "MAKE_RAW": "HYUNDAI",
+    "MAKE_SLUG": "hyundai",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Galloper",
+        "MODEL_SLUG": "galloper"
+      },
+      {
+        "MODEL_NAME": "H300 / H1",
+        "MODEL_SLUG": "h300--h1"
+      },
+      {
+        "MODEL_NAME": "H350",
+        "MODEL_SLUG": "h350"
+      },
+      {
+        "MODEL_NAME": "i30",
+        "MODEL_SLUG": "i30"
+      },
+      {
+        "MODEL_NAME": "ix35",
+        "MODEL_SLUG": "ix35"
+      },
+      {
+        "MODEL_NAME": "Santa Fe",
+        "MODEL_SLUG": "santa-fe"
+      },
+      {
+        "MODEL_NAME": "Staria",
+        "MODEL_SLUG": "staria"
+      },
+      {
+        "MODEL_NAME": "Terracan",
+        "MODEL_SLUG": "terracan"
+      },
+      {
+        "MODEL_NAME": "Tucson",
+        "MODEL_SLUG": "tucson"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Kia",
+    "MAKE_RAW": "KIA",
+    "MAKE_SLUG": "kia",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Carnival",
+        "MODEL_SLUG": "carnival"
+      },
+      {
+        "MODEL_NAME": "Ceed",
+        "MODEL_SLUG": "ceed"
+      },
+      {
+        "MODEL_NAME": "Joice",
+        "MODEL_SLUG": "joice"
+      },
+      {
+        "MODEL_NAME": "Pro-ceed",
+        "MODEL_SLUG": "pro-ceed"
+      },
+      {
+        "MODEL_NAME": "Sedona",
+        "MODEL_SLUG": "sedona"
+      },
+      {
+        "MODEL_NAME": "Sorento",
+        "MODEL_SLUG": "sorento"
+      },
+      {
+        "MODEL_NAME": "Sportage",
+        "MODEL_SLUG": "sportage"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Isuzu",
+    "MAKE_RAW": "ISUZU",
+    "MAKE_SLUG": "isuzu",
+    "MODELS": {
+      "MODEL_NAME": "D-max",
+      "MODEL_SLUG": "d-max"
+    },
+    "derived": {}
+  },
+  {
+    "MAKE": "Iveco",
+    "MAKE_RAW": "IVECO",
+    "MAKE_SLUG": "iveco",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Daily C",
+        "MODEL_SLUG": "daily-c"
+      },
+      {
+        "MODEL_NAME": "Daily L/S",
+        "MODEL_SLUG": "daily-ls"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Jaguar",
+    "MAKE_RAW": "JAGUAR",
+    "MAKE_SLUG": "jaguar",
+    "MODELS": {
+      "MODEL_NAME": "X-type",
+      "MODEL_SLUG": "x-type"
+    },
+    "derived": {}
+  },
+  {
+    "MAKE": "Jeep",
+    "MAKE_RAW": "JEEP",
+    "MAKE_SLUG": "jeep",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Grand Cherokee",
+        "MODEL_SLUG": "grand-cherokee"
+      },
+      {
+        "MODEL_NAME": "Wrangler",
+        "MODEL_SLUG": "wrangler"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Land-rover",
+    "MAKE_RAW": "LAND-ROVER",
+    "MAKE_SLUG": "land-rover",
+    "MODELS": {
+      "MODEL_NAME": "Discovery",
+      "MODEL_SLUG": "discovery"
+    },
+    "derived": {}
+  },
+  {
+    "MAKE": "Man",
+    "MAKE_RAW": "MAN",
+    "MAKE_SLUG": "man",
+    "MODELS": {
+      "MODEL_NAME": "TGE",
+      "MODEL_SLUG": "tge"
+    },
+    "derived": {}
+  },
+  {
+    "MAKE": "Maxus",
+    "MAKE_RAW": "MAXUS",
+    "MAKE_SLUG": "maxus",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Deliver9",
+        "MODEL_SLUG": "deliver9"
+      },
+      {
+        "MODEL_NAME": "eDeliver7",
+        "MODEL_SLUG": "edeliver7"
+      },
+      {
+        "MODEL_NAME": "eDeliver9",
+        "MODEL_SLUG": "edeliver9"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Mercedes-benz",
+    "MAKE_RAW": "MERCEDES-BENZ",
+    "MAKE_SLUG": "mercedes-benz",
+    "MODELS": [
+      {
+        "MODEL_NAME": "EQV",
+        "MODEL_SLUG": "eqv"
+      },
+      {
+        "MODEL_NAME": "Sprinter",
+        "MODEL_SLUG": "sprinter"
+      },
+      {
+        "MODEL_NAME": "Sprinter + AL-KO chassis",
+        "MODEL_SLUG": "sprinter--al-ko-chassis"
+      },
+      {
+        "MODEL_NAME": "Sprinter + HYMER SLC chassis",
+        "MODEL_SLUG": "sprinter--hymer-slc-chassis"
+      },
+      {
+        "MODEL_NAME": "V-Class",
+        "MODEL_SLUG": "v-class"
+      },
+      {
+        "MODEL_NAME": "Vito",
+        "MODEL_SLUG": "vito"
+      },
+      {
+        "MODEL_NAME": "Vito Tourer",
+        "MODEL_SLUG": "vito-tourer"
+      },
+      {
+        "MODEL_NAME": "X-Class",
+        "MODEL_SLUG": "x-class"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Ssangyong",
+    "MAKE_RAW": "SSANGYONG",
+    "MAKE_SLUG": "ssangyong",
+    "MODELS": [
+      {
+        "MODEL_NAME": "Actyon",
+        "MODEL_SLUG": "actyon"
+      },
+      {
+        "MODEL_NAME": "Actyon Sports",
+        "MODEL_SLUG": "actyon-sports"
+      },
+      {
+        "MODEL_NAME": "Korando",
+        "MODEL_SLUG": "korando"
+      },
+      {
+        "MODEL_NAME": "Kyron",
+        "MODEL_SLUG": "kyron"
+      },
+      {
+        "MODEL_NAME": "Musso",
+        "MODEL_SLUG": "musso"
+      },
+      {
+        "MODEL_NAME": "Rexton",
+        "MODEL_SLUG": "rexton"
+      }
+    ],
+    "derived": {}
+  },
+  {
+    "MAKE": "Suzuki",
+    "MAKE_RAW": "SUZUKI",
+    "MAKE_SLUG": "suzuki",
+    "MODELS": {
+      "MODEL_NAME": "Carry",
+      "MODEL_SLUG": "carry"
+    },
+    "derived": {}
+  }
+]

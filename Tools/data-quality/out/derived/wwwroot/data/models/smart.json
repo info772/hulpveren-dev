@@ -1,0 +1,19 @@
+{
+  "make": {
+    "slug": "smart",
+    "label": "SMART"
+  },
+  "models": [
+    {
+      "slug": "1",
+      "label": "#1",
+      "kits_count": 1
+    },
+    {
+      "slug": "3",
+      "label": "#3",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

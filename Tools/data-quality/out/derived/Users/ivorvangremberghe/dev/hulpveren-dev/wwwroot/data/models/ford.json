@@ -1,0 +1,124 @@
+{
+  "make": {
+    "slug": "ford",
+    "label": "FORD"
+  },
+  "models": [
+    {
+      "slug": "c-max-grand-c-max",
+      "label": "C-Max / Grand C-Max",
+      "kits_count": 3
+    },
+    {
+      "slug": "capri",
+      "label": "Capri",
+      "kits_count": 1
+    },
+    {
+      "slug": "ecosport",
+      "label": "EcoSport",
+      "kits_count": 1
+    },
+    {
+      "slug": "edge",
+      "label": "Edge",
+      "kits_count": 1
+    },
+    {
+      "slug": "escort",
+      "label": "Escort",
+      "kits_count": 1
+    },
+    {
+      "slug": "explorer",
+      "label": "Explorer",
+      "kits_count": 1
+    },
+    {
+      "slug": "fiesta",
+      "label": "Fiesta",
+      "kits_count": 4
+    },
+    {
+      "slug": "focus",
+      "label": "Focus",
+      "kits_count": 7
+    },
+    {
+      "slug": "fusion",
+      "label": "Fusion",
+      "kits_count": 1
+    },
+    {
+      "slug": "galaxy",
+      "label": "Galaxy",
+      "kits_count": 2
+    },
+    {
+      "slug": "ka-ka",
+      "label": "Ka / Ka+",
+      "kits_count": 1
+    },
+    {
+      "slug": "kuga",
+      "label": "Kuga",
+      "kits_count": 3
+    },
+    {
+      "slug": "mondeo",
+      "label": "Mondeo",
+      "kits_count": 4
+    },
+    {
+      "slug": "puma",
+      "label": "Puma",
+      "kits_count": 1
+    },
+    {
+      "slug": "ranger",
+      "label": "Ranger",
+      "kits_count": 11
+    },
+    {
+      "slug": "s-max",
+      "label": "S-Max",
+      "kits_count": 2
+    },
+    {
+      "slug": "tourneo-connect",
+      "label": "Tourneo Connect",
+      "kits_count": 7
+    },
+    {
+      "slug": "tourneo-courier",
+      "label": "Tourneo Courier",
+      "kits_count": 6
+    },
+    {
+      "slug": "tourneo-custom",
+      "label": "Tourneo Custom",
+      "kits_count": 9
+    },
+    {
+      "slug": "transit",
+      "label": "Transit",
+      "kits_count": 13
+    },
+    {
+      "slug": "transit-connect",
+      "label": "Transit Connect",
+      "kits_count": 8
+    },
+    {
+      "slug": "transit-courier",
+      "label": "Transit Courier",
+      "kits_count": 6
+    },
+    {
+      "slug": "transit-custom",
+      "label": "Transit Custom",
+      "kits_count": 11
+    }
+  ],
+  "derived": {}
+}

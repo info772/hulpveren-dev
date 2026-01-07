@@ -1,0 +1,14 @@
+{
+  "make": {
+    "slug": "pontiac",
+    "label": "Pontiac"
+  },
+  "models": [
+    {
+      "slug": "trans-sport-apv",
+      "label": "Trans Sport APV",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

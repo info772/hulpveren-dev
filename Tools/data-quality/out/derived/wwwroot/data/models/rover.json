@@ -1,0 +1,14 @@
+{
+  "make": {
+    "slug": "rover",
+    "label": "ROVER"
+  },
+  "models": [
+    {
+      "slug": "75",
+      "label": "75",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

@@ -1,0 +1,129 @@
+{
+  "make": {
+    "slug": "toyota",
+    "label": "Toyota"
+  },
+  "models": [
+    {
+      "slug": "auris",
+      "label": "Auris",
+      "kits_count": 2
+    },
+    {
+      "slug": "avensis",
+      "label": "Avensis",
+      "kits_count": 3
+    },
+    {
+      "slug": "avensis-verso",
+      "label": "Avensis Verso",
+      "kits_count": 1
+    },
+    {
+      "slug": "aygo",
+      "label": "Aygo",
+      "kits_count": 3
+    },
+    {
+      "slug": "c-hr",
+      "label": "C-HR",
+      "kits_count": 1
+    },
+    {
+      "slug": "camry",
+      "label": "Camry",
+      "kits_count": 2
+    },
+    {
+      "slug": "carina",
+      "label": "Carina",
+      "kits_count": 2
+    },
+    {
+      "slug": "corolla",
+      "label": "Corolla",
+      "kits_count": 7
+    },
+    {
+      "slug": "corolla-verso",
+      "label": "Corolla Verso",
+      "kits_count": 1
+    },
+    {
+      "slug": "hi-ace",
+      "label": "Hi-Ace",
+      "kits_count": 1
+    },
+    {
+      "slug": "hi-lux",
+      "label": "Hi-Lux",
+      "kits_count": 4
+    },
+    {
+      "slug": "land-cruiser",
+      "label": "Land Cruiser",
+      "kits_count": 2
+    },
+    {
+      "slug": "picnic",
+      "label": "Picnic",
+      "kits_count": 1
+    },
+    {
+      "slug": "previa",
+      "label": "Previa",
+      "kits_count": 1
+    },
+    {
+      "slug": "prius",
+      "label": "Prius",
+      "kits_count": 2
+    },
+    {
+      "slug": "proace",
+      "label": "Proace",
+      "kits_count": 12
+    },
+    {
+      "slug": "proace-city",
+      "label": "Proace city",
+      "kits_count": 12
+    },
+    {
+      "slug": "proace-max",
+      "label": "Proace max",
+      "kits_count": 3
+    },
+    {
+      "slug": "rav4",
+      "label": "RAV4",
+      "kits_count": 9
+    },
+    {
+      "slug": "starlet",
+      "label": "Starlet",
+      "kits_count": 1
+    },
+    {
+      "slug": "urban-cruiser",
+      "label": "Urban Cruiser",
+      "kits_count": 1
+    },
+    {
+      "slug": "verso",
+      "label": "Verso",
+      "kits_count": 1
+    },
+    {
+      "slug": "verso-s",
+      "label": "Verso S",
+      "kits_count": 1
+    },
+    {
+      "slug": "yaris",
+      "label": "Yaris",
+      "kits_count": 5
+    }
+  ],
+  "derived": {}
+}

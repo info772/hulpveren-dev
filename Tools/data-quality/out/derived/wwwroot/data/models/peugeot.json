@@ -1,0 +1,149 @@
+{
+  "make": {
+    "slug": "peugeot",
+    "label": "Peugeot"
+  },
+  "models": [
+    {
+      "slug": "1007",
+      "label": "1007",
+      "kits_count": 1
+    },
+    {
+      "slug": "107",
+      "label": "107",
+      "kits_count": 1
+    },
+    {
+      "slug": "108",
+      "label": "108",
+      "kits_count": 1
+    },
+    {
+      "slug": "2008",
+      "label": "2008",
+      "kits_count": 2
+    },
+    {
+      "slug": "205",
+      "label": "205",
+      "kits_count": 1
+    },
+    {
+      "slug": "207",
+      "label": "207",
+      "kits_count": 2
+    },
+    {
+      "slug": "208",
+      "label": "208",
+      "kits_count": 3
+    },
+    {
+      "slug": "3008",
+      "label": "3008",
+      "kits_count": 2
+    },
+    {
+      "slug": "306",
+      "label": "306",
+      "kits_count": 3
+    },
+    {
+      "slug": "307",
+      "label": "307",
+      "kits_count": 2
+    },
+    {
+      "slug": "308",
+      "label": "308",
+      "kits_count": 5
+    },
+    {
+      "slug": "309",
+      "label": "309",
+      "kits_count": 1
+    },
+    {
+      "slug": "4007",
+      "label": "4007",
+      "kits_count": 4
+    },
+    {
+      "slug": "4008",
+      "label": "4008",
+      "kits_count": 1
+    },
+    {
+      "slug": "406",
+      "label": "406",
+      "kits_count": 1
+    },
+    {
+      "slug": "407",
+      "label": "407",
+      "kits_count": 1
+    },
+    {
+      "slug": "5008",
+      "label": "5008",
+      "kits_count": 3
+    },
+    {
+      "slug": "508",
+      "label": "508",
+      "kits_count": 2
+    },
+    {
+      "slug": "806",
+      "label": "806",
+      "kits_count": 1
+    },
+    {
+      "slug": "807",
+      "label": "807",
+      "kits_count": 1
+    },
+    {
+      "slug": "bipper",
+      "label": "Bipper",
+      "kits_count": 3
+    },
+    {
+      "slug": "boxer",
+      "label": "Boxer",
+      "kits_count": 6
+    },
+    {
+      "slug": "boxer-al-ko",
+      "label": "Boxer + AL-KO",
+      "kits_count": 6
+    },
+    {
+      "slug": "expert",
+      "label": "Expert",
+      "kits_count": 13
+    },
+    {
+      "slug": "j-5",
+      "label": "J-5",
+      "kits_count": 2
+    },
+    {
+      "slug": "partner",
+      "label": "Partner",
+      "kits_count": 14
+    },
+    {
+      "slug": "rifter",
+      "label": "Rifter",
+      "kits_count": 10
+    },
+    {
+      "slug": "traveller",
+      "label": "Traveller",
+      "kits_count": 6
+    }
+  ],
+  "derived": {}
+}

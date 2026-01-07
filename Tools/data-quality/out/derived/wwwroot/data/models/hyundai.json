@@ -1,0 +1,149 @@
+{
+  "make": {
+    "slug": "hyundai",
+    "label": "Hyundai"
+  },
+  "models": [
+    {
+      "slug": "accent",
+      "label": "Accent",
+      "kits_count": 2
+    },
+    {
+      "slug": "bayon",
+      "label": "Bayon",
+      "kits_count": 1
+    },
+    {
+      "slug": "elantra",
+      "label": "Elantra",
+      "kits_count": 1
+    },
+    {
+      "slug": "excel",
+      "label": "Excel",
+      "kits_count": 2
+    },
+    {
+      "slug": "galloper",
+      "label": "Galloper",
+      "kits_count": 1
+    },
+    {
+      "slug": "h200",
+      "label": "H200",
+      "kits_count": 1
+    },
+    {
+      "slug": "h300-h1",
+      "label": "H300 / H1",
+      "kits_count": 2
+    },
+    {
+      "slug": "h350",
+      "label": "H350",
+      "kits_count": 2
+    },
+    {
+      "slug": "highway-van",
+      "label": "Highway Van",
+      "kits_count": 1
+    },
+    {
+      "slug": "i10",
+      "label": "i10",
+      "kits_count": 2
+    },
+    {
+      "slug": "i20",
+      "label": "i20",
+      "kits_count": 2
+    },
+    {
+      "slug": "i30",
+      "label": "i30",
+      "kits_count": 5
+    },
+    {
+      "slug": "i40",
+      "label": "i40",
+      "kits_count": 1
+    },
+    {
+      "slug": "inster-casper",
+      "label": "Inster / Casper",
+      "kits_count": 1
+    },
+    {
+      "slug": "ioniq",
+      "label": "Ioniq",
+      "kits_count": 2
+    },
+    {
+      "slug": "ioniq-5",
+      "label": "Ioniq 5",
+      "kits_count": 1
+    },
+    {
+      "slug": "ioniq-6",
+      "label": "Ioniq 6",
+      "kits_count": 1
+    },
+    {
+      "slug": "ix20",
+      "label": "ix20",
+      "kits_count": 1
+    },
+    {
+      "slug": "ix35",
+      "label": "ix35",
+      "kits_count": 2
+    },
+    {
+      "slug": "kona",
+      "label": "Kona",
+      "kits_count": 4
+    },
+    {
+      "slug": "lantra",
+      "label": "Lantra",
+      "kits_count": 3
+    },
+    {
+      "slug": "pony",
+      "label": "Pony",
+      "kits_count": 1
+    },
+    {
+      "slug": "santa-fe",
+      "label": "Santa Fe",
+      "kits_count": 5
+    },
+    {
+      "slug": "scoupe-coupe",
+      "label": "Scoupé / Coupé",
+      "kits_count": 1
+    },
+    {
+      "slug": "sonata",
+      "label": "Sonata",
+      "kits_count": 1
+    },
+    {
+      "slug": "terracan",
+      "label": "Terracan",
+      "kits_count": 1
+    },
+    {
+      "slug": "trajet",
+      "label": "Trajet",
+      "kits_count": 1
+    },
+    {
+      "slug": "tucson",
+      "label": "Tucson",
+      "kits_count": 3
+    }
+  ],
+  "derived": {}
+}

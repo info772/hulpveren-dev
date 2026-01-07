@@ -1,0 +1,133 @@
+{
+  "brands": [
+    {
+      "slug": "volkswagen",
+      "label": "Volkswagen"
+    },
+    {
+      "slug": "ford",
+      "label": "Ford"
+    },
+    {
+      "slug": "mercedes-benz",
+      "label": "Mercedes-Benz"
+    },
+    {
+      "slug": "fiat",
+      "label": "Fiat"
+    },
+    {
+      "slug": "peugeot",
+      "label": "Peugeot"
+    },
+    {
+      "slug": "citroen",
+      "label": "Citroen"
+    },
+    {
+      "slug": "renault",
+      "label": "Renault"
+    },
+    {
+      "slug": "opel",
+      "label": "Opel"
+    },
+    {
+      "slug": "toyota",
+      "label": "Toyota"
+    },
+    {
+      "slug": "audi",
+      "label": "Audi"
+    },
+    {
+      "slug": "bmw",
+      "label": "BMW"
+    },
+    {
+      "slug": "skoda",
+      "label": "Skoda"
+    }
+  ],
+  "models": [
+    {
+      "makeSlug": "volkswagen",
+      "makeLabel": "Volkswagen",
+      "modelSlug": "transporter",
+      "modelLabel": "Transporter"
+    },
+    {
+      "makeSlug": "volkswagen",
+      "makeLabel": "Volkswagen",
+      "modelSlug": "crafter",
+      "modelLabel": "Crafter"
+    },
+    {
+      "makeSlug": "volkswagen",
+      "makeLabel": "Volkswagen",
+      "modelSlug": "caddy",
+      "modelLabel": "Caddy"
+    },
+    {
+      "makeSlug": "ford",
+      "makeLabel": "Ford",
+      "modelSlug": "transit",
+      "modelLabel": "Transit"
+    },
+    {
+      "makeSlug": "ford",
+      "makeLabel": "Ford",
+      "modelSlug": "transit-custom",
+      "modelLabel": "Transit Custom"
+    },
+    {
+      "makeSlug": "mercedes-benz",
+      "makeLabel": "Mercedes-Benz",
+      "modelSlug": "sprinter",
+      "modelLabel": "Sprinter"
+    },
+    {
+      "makeSlug": "mercedes-benz",
+      "makeLabel": "Mercedes-Benz",
+      "modelSlug": "vito",
+      "modelLabel": "Vito"
+    },
+    {
+      "makeSlug": "fiat",
+      "makeLabel": "Fiat",
+      "modelSlug": "ducato",
+      "modelLabel": "Ducato"
+    },
+    {
+      "makeSlug": "peugeot",
+      "makeLabel": "Peugeot",
+      "modelSlug": "boxer",
+      "modelLabel": "Boxer"
+    },
+    {
+      "makeSlug": "citroen",
+      "makeLabel": "Citroen",
+      "modelSlug": "jumper",
+      "modelLabel": "Jumper"
+    },
+    {
+      "makeSlug": "renault",
+      "makeLabel": "Renault",
+      "modelSlug": "trafic",
+      "modelLabel": "Trafic"
+    },
+    {
+      "makeSlug": "opel",
+      "makeLabel": "Opel",
+      "modelSlug": "movano",
+      "modelLabel": "Movano"
+    },
+    {
+      "makeSlug": "toyota",
+      "makeLabel": "Toyota",
+      "modelSlug": "hi-lux",
+      "modelLabel": "Hilux"
+    }
+  ],
+  "derived": {}
+}

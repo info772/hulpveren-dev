@@ -1,0 +1,129 @@
+{
+  "make": {
+    "slug": "citroen",
+    "label": "Citroën"
+  },
+  "models": [
+    {
+      "slug": "berlingo",
+      "label": "Berlingo",
+      "kits_count": 15
+    },
+    {
+      "slug": "c-crosser",
+      "label": "C-Crosser",
+      "kits_count": 4
+    },
+    {
+      "slug": "c1",
+      "label": "C1",
+      "kits_count": 2
+    },
+    {
+      "slug": "c2",
+      "label": "C2",
+      "kits_count": 1
+    },
+    {
+      "slug": "c25",
+      "label": "C25",
+      "kits_count": 2
+    },
+    {
+      "slug": "c3",
+      "label": "C3",
+      "kits_count": 3
+    },
+    {
+      "slug": "c3-aircross",
+      "label": "C3 Aircross",
+      "kits_count": 1
+    },
+    {
+      "slug": "c3-picasso",
+      "label": "C3 Picasso",
+      "kits_count": 1
+    },
+    {
+      "slug": "c4",
+      "label": "C4",
+      "kits_count": 2
+    },
+    {
+      "slug": "c4-aircross",
+      "label": "C4 Aircross",
+      "kits_count": 1
+    },
+    {
+      "slug": "c4-cactus",
+      "label": "C4 Cactus",
+      "kits_count": 1
+    },
+    {
+      "slug": "c4-picasso",
+      "label": "C4 Picasso",
+      "kits_count": 6
+    },
+    {
+      "slug": "c4-spacetourer",
+      "label": "C4 SpaceTourer",
+      "kits_count": 1
+    },
+    {
+      "slug": "c5-aircross",
+      "label": "C5 Aircross",
+      "kits_count": 1
+    },
+    {
+      "slug": "c8",
+      "label": "C8",
+      "kits_count": 1
+    },
+    {
+      "slug": "evasion-synergie",
+      "label": "Evasion / Synergie",
+      "kits_count": 1
+    },
+    {
+      "slug": "jumper",
+      "label": "Jumper",
+      "kits_count": 6
+    },
+    {
+      "slug": "jumper-al-ko-chassis",
+      "label": "Jumper + AL-KO chassis",
+      "kits_count": 6
+    },
+    {
+      "slug": "jumpy",
+      "label": "Jumpy",
+      "kits_count": 13
+    },
+    {
+      "slug": "nemo",
+      "label": "Nemo",
+      "kits_count": 3
+    },
+    {
+      "slug": "spacetourer",
+      "label": "SpaceTourer",
+      "kits_count": 6
+    },
+    {
+      "slug": "xsara",
+      "label": "Xsara",
+      "kits_count": 3
+    },
+    {
+      "slug": "xsara-picasso",
+      "label": "Xsara Picasso",
+      "kits_count": 1
+    },
+    {
+      "slug": "zx",
+      "label": "ZX",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

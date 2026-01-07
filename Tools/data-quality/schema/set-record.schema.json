@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "set-record.schema.json",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["setCode"],
+  "properties": {
+    "setCode": { "type": "string" },
+    "axle": { "type": "string" },
+    "axleConfig": { "type": "string" },
+    "solutionLevel": { "type": "string" },
+    "springApplication": { "type": "string" },
+    "includesFSD": { "type": "boolean" },
+    "dampingUpgrade": { "type": "boolean" },
+    "fitment": { "type": ["object", "array", "null"] },
+    "notes": { "type": ["string", "array", "null"] },
+    "seo": { "type": ["object", "null"] }
+  }
+}

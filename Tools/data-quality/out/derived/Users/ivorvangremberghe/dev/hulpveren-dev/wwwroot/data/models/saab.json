@@ -1,0 +1,34 @@
+{
+  "make": {
+    "slug": "saab",
+    "label": "SAAB"
+  },
+  "models": [
+    {
+      "slug": "2025-03-09-00-00-00",
+      "label": "2025-03-09 00:00:00",
+      "kits_count": 2
+    },
+    {
+      "slug": "90",
+      "label": "90",
+      "kits_count": 1
+    },
+    {
+      "slug": "900",
+      "label": "900",
+      "kits_count": 2
+    },
+    {
+      "slug": "9000",
+      "label": "9000",
+      "kits_count": 1
+    },
+    {
+      "slug": "99",
+      "label": "99",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

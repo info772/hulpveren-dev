@@ -4,6 +4,19 @@
 (() => {
   "use strict";
 
+// === SEO module (optional) ===
+let SeoContent = null;
+try {
+  SeoContent = require("./seo/seoContent.js");
+} catch (e) {
+  SeoContent = null;
+}
+if (SeoContent && typeof window !== "undefined") {
+  window.SeoContent = SeoContent;
+}
+
+
+
   /* Fix Summary:
    * Broken: Plate fetch could hang and some plate routes rendered empty after strict filtering.
    * Change: Added timeout/single-flight fetch, route cache storage, filtered-tab fallbacks, and a debug route audit.
@@ -4532,10 +4545,10 @@
 
       <h1>${esc(makeLabel)} ${esc(modelLabel)} hulpveren</h1>
 
-        <div class="set-meta">
-          <span><span id="kit-count">0</span> sets</span>
-          <span id="filter-summary" class="muted"></span>
-        </div>
+      <div class="set-meta">
+        <span><span id="kit-count">0</span> sets</span>
+        <span id="filter-summary" class="muted"></span>
+      </div>
 
         ${plateInfoHtml}
 
@@ -4543,6 +4556,16 @@
 
         <div id="model-grid" class="grid" data-set-list></div>
       `);
+
+      const kitsForSeo = (allPairs || []).map(p => p.k || p).filter(Boolean);
+      const page = { makeLabel, modelLabel };
+      const seoHtml = window.SeoContent
+        ? window.SeoContent.renderModel({ page, kits: kitsForSeo })
+        : "";
+
+      if (seoHtml) {
+        app.insertAdjacentHTML("beforeend", seoHtml12);
+      }
 
       if (plateContext && plateContext.yearRange && plateContext.yearRange.label) {
         const yearLabel = document.getElementById("flt-year-label");
@@ -4679,6 +4702,16 @@
     })();
 
     renderCards();
+
+    const kitsForSeo2 = (allPairs || []).map(p => p.k || p).filter(Boolean);
+    const pageForSeo2 = { makeLabel, modelLabel };
+    const seoHtml12 = window.SeoContent
+      ? window.SeoContent.renderModel({ page, kits: kitsForSeo2 })
+      : "";
+
+    if (seoHtml12) {
+      app.insertAdjacentHTML("beforeend", seoHtml12);
+    }
   }
 
   function renderPlateRouteError(message) {

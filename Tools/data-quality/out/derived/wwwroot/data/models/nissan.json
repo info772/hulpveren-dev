@@ -1,0 +1,129 @@
+{
+  "make": {
+    "slug": "nissan",
+    "label": "Nissan"
+  },
+  "models": [
+    {
+      "slug": "100nx",
+      "label": "100NX",
+      "kits_count": 1
+    },
+    {
+      "slug": "almera",
+      "label": "Almera",
+      "kits_count": 2
+    },
+    {
+      "slug": "almera-tino",
+      "label": "Almera Tino",
+      "kits_count": 1
+    },
+    {
+      "slug": "interstar",
+      "label": "Interstar",
+      "kits_count": 9
+    },
+    {
+      "slug": "juke",
+      "label": "Juke",
+      "kits_count": 1
+    },
+    {
+      "slug": "kubistar",
+      "label": "Kubistar",
+      "kits_count": 2
+    },
+    {
+      "slug": "leaf",
+      "label": "LEAF",
+      "kits_count": 1
+    },
+    {
+      "slug": "maxima",
+      "label": "Maxima",
+      "kits_count": 2
+    },
+    {
+      "slug": "micra",
+      "label": "Micra",
+      "kits_count": 2
+    },
+    {
+      "slug": "navara-np-300",
+      "label": "Navara / NP 300",
+      "kits_count": 16
+    },
+    {
+      "slug": "note",
+      "label": "Note",
+      "kits_count": 2
+    },
+    {
+      "slug": "nv-200",
+      "label": "NV 200",
+      "kits_count": 1
+    },
+    {
+      "slug": "nv-250",
+      "label": "NV 250",
+      "kits_count": 3
+    },
+    {
+      "slug": "nv-300",
+      "label": "NV 300",
+      "kits_count": 5
+    },
+    {
+      "slug": "nv-400",
+      "label": "NV 400",
+      "kits_count": 4
+    },
+    {
+      "slug": "pathfinder",
+      "label": "Pathfinder",
+      "kits_count": 1
+    },
+    {
+      "slug": "primastar",
+      "label": "Primastar",
+      "kits_count": 5
+    },
+    {
+      "slug": "primera",
+      "label": "Primera",
+      "kits_count": 3
+    },
+    {
+      "slug": "pulsar",
+      "label": "Pulsar",
+      "kits_count": 1
+    },
+    {
+      "slug": "qashqai",
+      "label": "Qashqai",
+      "kits_count": 4
+    },
+    {
+      "slug": "sunny",
+      "label": "Sunny",
+      "kits_count": 3
+    },
+    {
+      "slug": "terrano",
+      "label": "Terrano",
+      "kits_count": 1
+    },
+    {
+      "slug": "townstar",
+      "label": "Townstar",
+      "kits_count": 11
+    },
+    {
+      "slug": "x-trail",
+      "label": "X-trail",
+      "kits_count": 3
+    }
+  ],
+  "derived": {}
+}

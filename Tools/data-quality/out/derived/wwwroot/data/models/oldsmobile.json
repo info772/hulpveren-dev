@@ -1,0 +1,14 @@
+{
+  "make": {
+    "slug": "oldsmobile",
+    "label": "Oldsmobile"
+  },
+  "models": [
+    {
+      "slug": "silhouette-apv",
+      "label": "Silhouette APV",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

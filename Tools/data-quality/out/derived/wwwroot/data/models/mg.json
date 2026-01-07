@@ -1,0 +1,19 @@
+{
+  "make": {
+    "slug": "mg",
+    "label": "MG"
+  },
+  "models": [
+    {
+      "slug": "5",
+      "label": "5",
+      "kits_count": 1
+    },
+    {
+      "slug": "marvel-r",
+      "label": "Marvel R",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

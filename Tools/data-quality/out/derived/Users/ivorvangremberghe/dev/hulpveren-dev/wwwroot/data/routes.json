@@ -1,0 +1,3177 @@
+{
+  "generated": "2025-11-28",
+  "routes": [
+    {
+      "path": "/",
+      "type": "home"
+    },
+    {
+      "path": "/hulpveren",
+      "type": "brands"
+    },
+    {
+      "path": "/hulpveren/alfa-romeo",
+      "type": "make",
+      "make": "alfa-romeo"
+    },
+    {
+      "path": "/hulpveren/alfa-romeo/156",
+      "type": "model",
+      "make": "alfa-romeo",
+      "model": "156"
+    },
+    {
+      "path": "/hulpveren/alfa-romeo/166",
+      "type": "model",
+      "make": "alfa-romeo",
+      "model": "166"
+    },
+    {
+      "path": "/hulpveren/alfa-romeo/junior",
+      "type": "model",
+      "make": "alfa-romeo",
+      "model": "junior"
+    },
+    {
+      "path": "/hulpveren/audi",
+      "type": "make",
+      "make": "audi"
+    },
+    {
+      "path": "/hulpveren/audi/100",
+      "type": "model",
+      "make": "audi",
+      "model": "100"
+    },
+    {
+      "path": "/hulpveren/audi/a3",
+      "type": "model",
+      "make": "audi",
+      "model": "a3"
+    },
+    {
+      "path": "/hulpveren/audi/a4",
+      "type": "model",
+      "make": "audi",
+      "model": "a4"
+    },
+    {
+      "path": "/hulpveren/audi/a5",
+      "type": "model",
+      "make": "audi",
+      "model": "a5"
+    },
+    {
+      "path": "/hulpveren/audi/a6",
+      "type": "model",
+      "make": "audi",
+      "model": "a6"
+    },
+    {
+      "path": "/hulpveren/audi/q2",
+      "type": "model",
+      "make": "audi",
+      "model": "q2"
+    },
+    {
+      "path": "/hulpveren/audi/q3",
+      "type": "model",
+      "make": "audi",
+      "model": "q3"
+    },
+    {
+      "path": "/hulpveren/audi/q4",
+      "type": "model",
+      "make": "audi",
+      "model": "q4"
+    },
+    {
+      "path": "/hulpveren/audi/q5",
+      "type": "model",
+      "make": "audi",
+      "model": "q5"
+    },
+    {
+      "path": "/hulpveren/bmw",
+      "type": "make",
+      "make": "bmw"
+    },
+    {
+      "path": "/hulpveren/bmw/2-serie",
+      "type": "model",
+      "make": "bmw",
+      "model": "2-serie"
+    },
+    {
+      "path": "/hulpveren/bmw/3-serie",
+      "type": "model",
+      "make": "bmw",
+      "model": "3-serie"
+    },
+    {
+      "path": "/hulpveren/buick",
+      "type": "make",
+      "make": "buick"
+    },
+    {
+      "path": "/hulpveren/buick/verano",
+      "type": "model",
+      "make": "buick",
+      "model": "verano"
+    },
+    {
+      "path": "/hulpveren/chevrolet",
+      "type": "make",
+      "make": "chevrolet"
+    },
+    {
+      "path": "/hulpveren/chevrolet/aveo",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "aveo"
+    },
+    {
+      "path": "/hulpveren/chevrolet/captiva",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "captiva"
+    },
+    {
+      "path": "/hulpveren/chevrolet/espero",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "espero"
+    },
+    {
+      "path": "/hulpveren/chevrolet/kalos",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "kalos"
+    },
+    {
+      "path": "/hulpveren/chevrolet/lacetti",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "lacetti"
+    },
+    {
+      "path": "/hulpveren/chevrolet/lanos",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "lanos"
+    },
+    {
+      "path": "/hulpveren/chevrolet/matiz",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "matiz"
+    },
+    {
+      "path": "/hulpveren/chevrolet/nexia",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "nexia"
+    },
+    {
+      "path": "/hulpveren/chevrolet/nubira",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "nubira"
+    },
+    {
+      "path": "/hulpveren/chevrolet/orlando",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "orlando"
+    },
+    {
+      "path": "/hulpveren/chevrolet/spark",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "spark"
+    },
+    {
+      "path": "/hulpveren/chevrolet/trax",
+      "type": "model",
+      "make": "chevrolet",
+      "model": "trax"
+    },
+    {
+      "path": "/hulpveren/chevrolet-usa",
+      "type": "make",
+      "make": "chevrolet-usa"
+    },
+    {
+      "path": "/hulpveren/chevrolet-usa/lumina-mpv",
+      "type": "model",
+      "make": "chevrolet-usa",
+      "model": "lumina-mpv"
+    },
+    {
+      "path": "/hulpveren/chrysler",
+      "type": "make",
+      "make": "chrysler"
+    },
+    {
+      "path": "/hulpveren/chrysler/voyager",
+      "type": "model",
+      "make": "chrysler",
+      "model": "voyager"
+    },
+    {
+      "path": "/hulpveren/citroen",
+      "type": "make",
+      "make": "citroen"
+    },
+    {
+      "path": "/hulpveren/citroen/berlingo",
+      "type": "model",
+      "make": "citroen",
+      "model": "berlingo"
+    },
+    {
+      "path": "/hulpveren/citroen/c-crosser",
+      "type": "model",
+      "make": "citroen",
+      "model": "c-crosser"
+    },
+    {
+      "path": "/hulpveren/citroen/c1",
+      "type": "model",
+      "make": "citroen",
+      "model": "c1"
+    },
+    {
+      "path": "/hulpveren/citroen/c2",
+      "type": "model",
+      "make": "citroen",
+      "model": "c2"
+    },
+    {
+      "path": "/hulpveren/citroen/c25",
+      "type": "model",
+      "make": "citroen",
+      "model": "c25"
+    },
+    {
+      "path": "/hulpveren/citroen/c3",
+      "type": "model",
+      "make": "citroen",
+      "model": "c3"
+    },
+    {
+      "path": "/hulpveren/citroen/c3-aircross",
+      "type": "model",
+      "make": "citroen",
+      "model": "c3-aircross"
+    },
+    {
+      "path": "/hulpveren/citroen/c3-picasso",
+      "type": "model",
+      "make": "citroen",
+      "model": "c3-picasso"
+    },
+    {
+      "path": "/hulpveren/citroen/c4",
+      "type": "model",
+      "make": "citroen",
+      "model": "c4"
+    },
+    {
+      "path": "/hulpveren/citroen/c4-aircross",
+      "type": "model",
+      "make": "citroen",
+      "model": "c4-aircross"
+    },
+    {
+      "path": "/hulpveren/citroen/c4-cactus",
+      "type": "model",
+      "make": "citroen",
+      "model": "c4-cactus"
+    },
+    {
+      "path": "/hulpveren/citroen/c4-picasso",
+      "type": "model",
+      "make": "citroen",
+      "model": "c4-picasso"
+    },
+    {
+      "path": "/hulpveren/citroen/c4-spacetourer",
+      "type": "model",
+      "make": "citroen",
+      "model": "c4-spacetourer"
+    },
+    {
+      "path": "/hulpveren/citroen/c5-aircross",
+      "type": "model",
+      "make": "citroen",
+      "model": "c5-aircross"
+    },
+    {
+      "path": "/hulpveren/citroen/c8",
+      "type": "model",
+      "make": "citroen",
+      "model": "c8"
+    },
+    {
+      "path": "/hulpveren/citroen/evasion-synergie",
+      "type": "model",
+      "make": "citroen",
+      "model": "evasion-synergie"
+    },
+    {
+      "path": "/hulpveren/citroen/jumper",
+      "type": "model",
+      "make": "citroen",
+      "model": "jumper"
+    },
+    {
+      "path": "/hulpveren/citroen/jumper-al-ko-chassis",
+      "type": "model",
+      "make": "citroen",
+      "model": "jumper-al-ko-chassis"
+    },
+    {
+      "path": "/hulpveren/citroen/jumpy",
+      "type": "model",
+      "make": "citroen",
+      "model": "jumpy"
+    },
+    {
+      "path": "/hulpveren/citroen/nemo",
+      "type": "model",
+      "make": "citroen",
+      "model": "nemo"
+    },
+    {
+      "path": "/hulpveren/citroen/spacetourer",
+      "type": "model",
+      "make": "citroen",
+      "model": "spacetourer"
+    },
+    {
+      "path": "/hulpveren/citroen/xsara",
+      "type": "model",
+      "make": "citroen",
+      "model": "xsara"
+    },
+    {
+      "path": "/hulpveren/citroen/xsara-picasso",
+      "type": "model",
+      "make": "citroen",
+      "model": "xsara-picasso"
+    },
+    {
+      "path": "/hulpveren/citroen/zx",
+      "type": "model",
+      "make": "citroen",
+      "model": "zx"
+    },
+    {
+      "path": "/hulpveren/cupra",
+      "type": "make",
+      "make": "cupra"
+    },
+    {
+      "path": "/hulpveren/cupra/born",
+      "type": "model",
+      "make": "cupra",
+      "model": "born"
+    },
+    {
+      "path": "/hulpveren/cupra/formentor",
+      "type": "model",
+      "make": "cupra",
+      "model": "formentor"
+    },
+    {
+      "path": "/hulpveren/cupra/leon",
+      "type": "model",
+      "make": "cupra",
+      "model": "leon"
+    },
+    {
+      "path": "/hulpveren/cupra/tavascan",
+      "type": "model",
+      "make": "cupra",
+      "model": "tavascan"
+    },
+    {
+      "path": "/hulpveren/cupra/terramar",
+      "type": "model",
+      "make": "cupra",
+      "model": "terramar"
+    },
+    {
+      "path": "/hulpveren/dacia",
+      "type": "make",
+      "make": "dacia"
+    },
+    {
+      "path": "/hulpveren/dacia/bigster",
+      "type": "model",
+      "make": "dacia",
+      "model": "bigster"
+    },
+    {
+      "path": "/hulpveren/dacia/dokker",
+      "type": "model",
+      "make": "dacia",
+      "model": "dokker"
+    },
+    {
+      "path": "/hulpveren/dacia/duster",
+      "type": "model",
+      "make": "dacia",
+      "model": "duster"
+    },
+    {
+      "path": "/hulpveren/dacia/jogger",
+      "type": "model",
+      "make": "dacia",
+      "model": "jogger"
+    },
+    {
+      "path": "/hulpveren/dacia/lodgy",
+      "type": "model",
+      "make": "dacia",
+      "model": "lodgy"
+    },
+    {
+      "path": "/hulpveren/dacia/logan",
+      "type": "model",
+      "make": "dacia",
+      "model": "logan"
+    },
+    {
+      "path": "/hulpveren/dacia/sandero",
+      "type": "model",
+      "make": "dacia",
+      "model": "sandero"
+    },
+    {
+      "path": "/hulpveren/daihatsu",
+      "type": "make",
+      "make": "daihatsu"
+    },
+    {
+      "path": "/hulpveren/daihatsu/applause",
+      "type": "model",
+      "make": "daihatsu",
+      "model": "applause"
+    },
+    {
+      "path": "/hulpveren/daihatsu/gran-move",
+      "type": "model",
+      "make": "daihatsu",
+      "model": "gran-move"
+    },
+    {
+      "path": "/hulpveren/daihatsu/sirion",
+      "type": "model",
+      "make": "daihatsu",
+      "model": "sirion"
+    },
+    {
+      "path": "/hulpveren/daihatsu/terios",
+      "type": "model",
+      "make": "daihatsu",
+      "model": "terios"
+    },
+    {
+      "path": "/hulpveren/daihatsu/yrv",
+      "type": "model",
+      "make": "daihatsu",
+      "model": "yrv"
+    },
+    {
+      "path": "/hulpveren/dodge",
+      "type": "make",
+      "make": "dodge"
+    },
+    {
+      "path": "/hulpveren/dodge/mini-ram",
+      "type": "model",
+      "make": "dodge",
+      "model": "mini-ram"
+    },
+    {
+      "path": "/hulpveren/ds",
+      "type": "make",
+      "make": "ds"
+    },
+    {
+      "path": "/hulpveren/ds/ds4",
+      "type": "model",
+      "make": "ds",
+      "model": "ds4"
+    },
+    {
+      "path": "/hulpveren/fiat",
+      "type": "make",
+      "make": "fiat"
+    },
+    {
+      "path": "/hulpveren/fiat/500l",
+      "type": "model",
+      "make": "fiat",
+      "model": "500l"
+    },
+    {
+      "path": "/hulpveren/fiat/brava",
+      "type": "model",
+      "make": "fiat",
+      "model": "brava"
+    },
+    {
+      "path": "/hulpveren/fiat/bravo",
+      "type": "model",
+      "make": "fiat",
+      "model": "bravo"
+    },
+    {
+      "path": "/hulpveren/fiat/croma",
+      "type": "model",
+      "make": "fiat",
+      "model": "croma"
+    },
+    {
+      "path": "/hulpveren/fiat/doblo",
+      "type": "model",
+      "make": "fiat",
+      "model": "doblo"
+    },
+    {
+      "path": "/hulpveren/fiat/ducato",
+      "type": "model",
+      "make": "fiat",
+      "model": "ducato"
+    },
+    {
+      "path": "/hulpveren/fiat/ducato-al-ko-chassis",
+      "type": "model",
+      "make": "fiat",
+      "model": "ducato-al-ko-chassis"
+    },
+    {
+      "path": "/hulpveren/fiat/fiorino",
+      "type": "model",
+      "make": "fiat",
+      "model": "fiorino"
+    },
+    {
+      "path": "/hulpveren/fiat/fullback",
+      "type": "model",
+      "make": "fiat",
+      "model": "fullback"
+    },
+    {
+      "path": "/hulpveren/fiat/idea",
+      "type": "model",
+      "make": "fiat",
+      "model": "idea"
+    },
+    {
+      "path": "/hulpveren/fiat/marea",
+      "type": "model",
+      "make": "fiat",
+      "model": "marea"
+    },
+    {
+      "path": "/hulpveren/fiat/multipla",
+      "type": "model",
+      "make": "fiat",
+      "model": "multipla"
+    },
+    {
+      "path": "/hulpveren/fiat/panda",
+      "type": "model",
+      "make": "fiat",
+      "model": "panda"
+    },
+    {
+      "path": "/hulpveren/fiat/punto",
+      "type": "model",
+      "make": "fiat",
+      "model": "punto"
+    },
+    {
+      "path": "/hulpveren/fiat/qubo",
+      "type": "model",
+      "make": "fiat",
+      "model": "qubo"
+    },
+    {
+      "path": "/hulpveren/fiat/scudo",
+      "type": "model",
+      "make": "fiat",
+      "model": "scudo"
+    },
+    {
+      "path": "/hulpveren/fiat/sedici",
+      "type": "model",
+      "make": "fiat",
+      "model": "sedici"
+    },
+    {
+      "path": "/hulpveren/fiat/stilo",
+      "type": "model",
+      "make": "fiat",
+      "model": "stilo"
+    },
+    {
+      "path": "/hulpveren/fiat/talento",
+      "type": "model",
+      "make": "fiat",
+      "model": "talento"
+    },
+    {
+      "path": "/hulpveren/fiat/tempra",
+      "type": "model",
+      "make": "fiat",
+      "model": "tempra"
+    },
+    {
+      "path": "/hulpveren/fiat/tipo",
+      "type": "model",
+      "make": "fiat",
+      "model": "tipo"
+    },
+    {
+      "path": "/hulpveren/fiat/ulysse",
+      "type": "model",
+      "make": "fiat",
+      "model": "ulysse"
+    },
+    {
+      "path": "/hulpveren/ford",
+      "type": "make",
+      "make": "ford"
+    },
+    {
+      "path": "/hulpveren/ford/c-max-grand-c-max",
+      "type": "model",
+      "make": "ford",
+      "model": "c-max-grand-c-max"
+    },
+    {
+      "path": "/hulpveren/ford/capri",
+      "type": "model",
+      "make": "ford",
+      "model": "capri"
+    },
+    {
+      "path": "/hulpveren/ford/ecosport",
+      "type": "model",
+      "make": "ford",
+      "model": "ecosport"
+    },
+    {
+      "path": "/hulpveren/ford/edge",
+      "type": "model",
+      "make": "ford",
+      "model": "edge"
+    },
+    {
+      "path": "/hulpveren/ford/escort",
+      "type": "model",
+      "make": "ford",
+      "model": "escort"
+    },
+    {
+      "path": "/hulpveren/ford/explorer",
+      "type": "model",
+      "make": "ford",
+      "model": "explorer"
+    },
+    {
+      "path": "/hulpveren/ford/fiesta",
+      "type": "model",
+      "make": "ford",
+      "model": "fiesta"
+    },
+    {
+      "path": "/hulpveren/ford/focus",
+      "type": "model",
+      "make": "ford",
+      "model": "focus"
+    },
+    {
+      "path": "/hulpveren/ford/fusion",
+      "type": "model",
+      "make": "ford",
+      "model": "fusion"
+    },
+    {
+      "path": "/hulpveren/ford/galaxy",
+      "type": "model",
+      "make": "ford",
+      "model": "galaxy"
+    },
+    {
+      "path": "/hulpveren/ford/ka-ka",
+      "type": "model",
+      "make": "ford",
+      "model": "ka-ka"
+    },
+    {
+      "path": "/hulpveren/ford/kuga",
+      "type": "model",
+      "make": "ford",
+      "model": "kuga"
+    },
+    {
+      "path": "/hulpveren/ford/mondeo",
+      "type": "model",
+      "make": "ford",
+      "model": "mondeo"
+    },
+    {
+      "path": "/hulpveren/ford/puma",
+      "type": "model",
+      "make": "ford",
+      "model": "puma"
+    },
+    {
+      "path": "/hulpveren/ford/ranger",
+      "type": "model",
+      "make": "ford",
+      "model": "ranger"
+    },
+    {
+      "path": "/hulpveren/ford/s-max",
+      "type": "model",
+      "make": "ford",
+      "model": "s-max"
+    },
+    {
+      "path": "/hulpveren/ford/tourneo-connect",
+      "type": "model",
+      "make": "ford",
+      "model": "tourneo-connect"
+    },
+    {
+      "path": "/hulpveren/ford/tourneo-courier",
+      "type": "model",
+      "make": "ford",
+      "model": "tourneo-courier"
+    },
+    {
+      "path": "/hulpveren/ford/tourneo-custom",
+      "type": "model",
+      "make": "ford",
+      "model": "tourneo-custom"
+    },
+    {
+      "path": "/hulpveren/ford/transit",
+      "type": "model",
+      "make": "ford",
+      "model": "transit"
+    },
+    {
+      "path": "/hulpveren/ford/transit-connect",
+      "type": "model",
+      "make": "ford",
+      "model": "transit-connect"
+    },
+    {
+      "path": "/hulpveren/ford/transit-courier",
+      "type": "model",
+      "make": "ford",
+      "model": "transit-courier"
+    },
+    {
+      "path": "/hulpveren/ford/transit-custom",
+      "type": "model",
+      "make": "ford",
+      "model": "transit-custom"
+    },
+    {
+      "path": "/hulpveren/honda",
+      "type": "make",
+      "make": "honda"
+    },
+    {
+      "path": "/hulpveren/honda/civic",
+      "type": "model",
+      "make": "honda",
+      "model": "civic"
+    },
+    {
+      "path": "/hulpveren/honda/cr-v",
+      "type": "model",
+      "make": "honda",
+      "model": "cr-v"
+    },
+    {
+      "path": "/hulpveren/honda/hr-v",
+      "type": "model",
+      "make": "honda",
+      "model": "hr-v"
+    },
+    {
+      "path": "/hulpveren/honda/jazz",
+      "type": "model",
+      "make": "honda",
+      "model": "jazz"
+    },
+    {
+      "path": "/hulpveren/hyundai",
+      "type": "make",
+      "make": "hyundai"
+    },
+    {
+      "path": "/hulpveren/hyundai/accent",
+      "type": "model",
+      "make": "hyundai",
+      "model": "accent"
+    },
+    {
+      "path": "/hulpveren/hyundai/bayon",
+      "type": "model",
+      "make": "hyundai",
+      "model": "bayon"
+    },
+    {
+      "path": "/hulpveren/hyundai/elantra",
+      "type": "model",
+      "make": "hyundai",
+      "model": "elantra"
+    },
+    {
+      "path": "/hulpveren/hyundai/excel",
+      "type": "model",
+      "make": "hyundai",
+      "model": "excel"
+    },
+    {
+      "path": "/hulpveren/hyundai/galloper",
+      "type": "model",
+      "make": "hyundai",
+      "model": "galloper"
+    },
+    {
+      "path": "/hulpveren/hyundai/h200",
+      "type": "model",
+      "make": "hyundai",
+      "model": "h200"
+    },
+    {
+      "path": "/hulpveren/hyundai/h300-h1",
+      "type": "model",
+      "make": "hyundai",
+      "model": "h300-h1"
+    },
+    {
+      "path": "/hulpveren/hyundai/h350",
+      "type": "model",
+      "make": "hyundai",
+      "model": "h350"
+    },
+    {
+      "path": "/hulpveren/hyundai/highway-van",
+      "type": "model",
+      "make": "hyundai",
+      "model": "highway-van"
+    },
+    {
+      "path": "/hulpveren/hyundai/i10",
+      "type": "model",
+      "make": "hyundai",
+      "model": "i10"
+    },
+    {
+      "path": "/hulpveren/hyundai/i20",
+      "type": "model",
+      "make": "hyundai",
+      "model": "i20"
+    },
+    {
+      "path": "/hulpveren/hyundai/i30",
+      "type": "model",
+      "make": "hyundai",
+      "model": "i30"
+    },
+    {
+      "path": "/hulpveren/hyundai/i40",
+      "type": "model",
+      "make": "hyundai",
+      "model": "i40"
+    },
+    {
+      "path": "/hulpveren/hyundai/inster-casper",
+      "type": "model",
+      "make": "hyundai",
+      "model": "inster-casper"
+    },
+    {
+      "path": "/hulpveren/hyundai/ioniq",
+      "type": "model",
+      "make": "hyundai",
+      "model": "ioniq"
+    },
+    {
+      "path": "/hulpveren/hyundai/ioniq-5",
+      "type": "model",
+      "make": "hyundai",
+      "model": "ioniq-5"
+    },
+    {
+      "path": "/hulpveren/hyundai/ioniq-6",
+      "type": "model",
+      "make": "hyundai",
+      "model": "ioniq-6"
+    },
+    {
+      "path": "/hulpveren/hyundai/ix20",
+      "type": "model",
+      "make": "hyundai",
+      "model": "ix20"
+    },
+    {
+      "path": "/hulpveren/hyundai/ix35",
+      "type": "model",
+      "make": "hyundai",
+      "model": "ix35"
+    },
+    {
+      "path": "/hulpveren/hyundai/kona",
+      "type": "model",
+      "make": "hyundai",
+      "model": "kona"
+    },
+    {
+      "path": "/hulpveren/hyundai/lantra",
+      "type": "model",
+      "make": "hyundai",
+      "model": "lantra"
+    },
+    {
+      "path": "/hulpveren/hyundai/pony",
+      "type": "model",
+      "make": "hyundai",
+      "model": "pony"
+    },
+    {
+      "path": "/hulpveren/hyundai/santa-fe",
+      "type": "model",
+      "make": "hyundai",
+      "model": "santa-fe"
+    },
+    {
+      "path": "/hulpveren/hyundai/scoupe-coupe",
+      "type": "model",
+      "make": "hyundai",
+      "model": "scoupe-coupe"
+    },
+    {
+      "path": "/hulpveren/hyundai/sonata",
+      "type": "model",
+      "make": "hyundai",
+      "model": "sonata"
+    },
+    {
+      "path": "/hulpveren/hyundai/terracan",
+      "type": "model",
+      "make": "hyundai",
+      "model": "terracan"
+    },
+    {
+      "path": "/hulpveren/hyundai/trajet",
+      "type": "model",
+      "make": "hyundai",
+      "model": "trajet"
+    },
+    {
+      "path": "/hulpveren/hyundai/tucson",
+      "type": "model",
+      "make": "hyundai",
+      "model": "tucson"
+    },
+    {
+      "path": "/hulpveren/isuzu",
+      "type": "make",
+      "make": "isuzu"
+    },
+    {
+      "path": "/hulpveren/isuzu/d-max",
+      "type": "model",
+      "make": "isuzu",
+      "model": "d-max"
+    },
+    {
+      "path": "/hulpveren/iveco",
+      "type": "make",
+      "make": "iveco"
+    },
+    {
+      "path": "/hulpveren/iveco/daily-l-s",
+      "type": "model",
+      "make": "iveco",
+      "model": "daily-l-s"
+    },
+    {
+      "path": "/hulpveren/jeep",
+      "type": "make",
+      "make": "jeep"
+    },
+    {
+      "path": "/hulpveren/jeep/cherokee",
+      "type": "model",
+      "make": "jeep",
+      "model": "cherokee"
+    },
+    {
+      "path": "/hulpveren/kia",
+      "type": "make",
+      "make": "kia"
+    },
+    {
+      "path": "/hulpveren/kia/carens",
+      "type": "model",
+      "make": "kia",
+      "model": "carens"
+    },
+    {
+      "path": "/hulpveren/kia/ceed",
+      "type": "model",
+      "make": "kia",
+      "model": "ceed"
+    },
+    {
+      "path": "/hulpveren/kia/ev3",
+      "type": "model",
+      "make": "kia",
+      "model": "ev3"
+    },
+    {
+      "path": "/hulpveren/kia/ev6",
+      "type": "model",
+      "make": "kia",
+      "model": "ev6"
+    },
+    {
+      "path": "/hulpveren/kia/magentis",
+      "type": "model",
+      "make": "kia",
+      "model": "magentis"
+    },
+    {
+      "path": "/hulpveren/kia/niro",
+      "type": "model",
+      "make": "kia",
+      "model": "niro"
+    },
+    {
+      "path": "/hulpveren/kia/optima",
+      "type": "model",
+      "make": "kia",
+      "model": "optima"
+    },
+    {
+      "path": "/hulpveren/kia/picanto",
+      "type": "model",
+      "make": "kia",
+      "model": "picanto"
+    },
+    {
+      "path": "/hulpveren/kia/pride-wagon",
+      "type": "model",
+      "make": "kia",
+      "model": "pride-wagon"
+    },
+    {
+      "path": "/hulpveren/kia/pro-ceed",
+      "type": "model",
+      "make": "kia",
+      "model": "pro-ceed"
+    },
+    {
+      "path": "/hulpveren/kia/rio",
+      "type": "model",
+      "make": "kia",
+      "model": "rio"
+    },
+    {
+      "path": "/hulpveren/kia/sorento",
+      "type": "model",
+      "make": "kia",
+      "model": "sorento"
+    },
+    {
+      "path": "/hulpveren/kia/sportage",
+      "type": "model",
+      "make": "kia",
+      "model": "sportage"
+    },
+    {
+      "path": "/hulpveren/kia/stonic",
+      "type": "model",
+      "make": "kia",
+      "model": "stonic"
+    },
+    {
+      "path": "/hulpveren/kia/xceed",
+      "type": "model",
+      "make": "kia",
+      "model": "xceed"
+    },
+    {
+      "path": "/hulpveren/lada",
+      "type": "make",
+      "make": "lada"
+    },
+    {
+      "path": "/hulpveren/lada/110-111-112",
+      "type": "model",
+      "make": "lada",
+      "model": "110-111-112"
+    },
+    {
+      "path": "/hulpveren/lada/diva",
+      "type": "model",
+      "make": "lada",
+      "model": "diva"
+    },
+    {
+      "path": "/hulpveren/lada/granta",
+      "type": "model",
+      "make": "lada",
+      "model": "granta"
+    },
+    {
+      "path": "/hulpveren/lada/priora",
+      "type": "model",
+      "make": "lada",
+      "model": "priora"
+    },
+    {
+      "path": "/hulpveren/lada/samara",
+      "type": "model",
+      "make": "lada",
+      "model": "samara"
+    },
+    {
+      "path": "/hulpveren/lancia",
+      "type": "make",
+      "make": "lancia"
+    },
+    {
+      "path": "/hulpveren/lancia/lybra",
+      "type": "model",
+      "make": "lancia",
+      "model": "lybra"
+    },
+    {
+      "path": "/hulpveren/lancia/lybra-sw",
+      "type": "model",
+      "make": "lancia",
+      "model": "lybra-sw"
+    },
+    {
+      "path": "/hulpveren/lancia/phedra",
+      "type": "model",
+      "make": "lancia",
+      "model": "phedra"
+    },
+    {
+      "path": "/hulpveren/lancia/ypsilon",
+      "type": "model",
+      "make": "lancia",
+      "model": "ypsilon"
+    },
+    {
+      "path": "/hulpveren/lancia/zeta",
+      "type": "model",
+      "make": "lancia",
+      "model": "zeta"
+    },
+    {
+      "path": "/hulpveren/land-rover",
+      "type": "make",
+      "make": "land-rover"
+    },
+    {
+      "path": "/hulpveren/land-rover/freelander",
+      "type": "model",
+      "make": "land-rover",
+      "model": "freelander"
+    },
+    {
+      "path": "/hulpveren/lexus",
+      "type": "make",
+      "make": "lexus"
+    },
+    {
+      "path": "/hulpveren/lexus/nx",
+      "type": "model",
+      "make": "lexus",
+      "model": "nx"
+    },
+    {
+      "path": "/hulpveren/lynk-and-co",
+      "type": "make",
+      "make": "lynk-and-co"
+    },
+    {
+      "path": "/hulpveren/lynk-and-co/lynk-and-co-01",
+      "type": "model",
+      "make": "lynk-and-co",
+      "model": "lynk-and-co-01"
+    },
+    {
+      "path": "/hulpveren/lynk-and-co/lynk-and-co-02",
+      "type": "model",
+      "make": "lynk-and-co",
+      "model": "lynk-and-co-02"
+    },
+    {
+      "path": "/hulpveren/man",
+      "type": "make",
+      "make": "man"
+    },
+    {
+      "path": "/hulpveren/man/tge",
+      "type": "model",
+      "make": "man",
+      "model": "tge"
+    },
+    {
+      "path": "/hulpveren/maxus",
+      "type": "make",
+      "make": "maxus"
+    },
+    {
+      "path": "/hulpveren/maxus/deliver9",
+      "type": "model",
+      "make": "maxus",
+      "model": "deliver9"
+    },
+    {
+      "path": "/hulpveren/maxus/edeliver3",
+      "type": "model",
+      "make": "maxus",
+      "model": "edeliver3"
+    },
+    {
+      "path": "/hulpveren/maxus/edeliver7",
+      "type": "model",
+      "make": "maxus",
+      "model": "edeliver7"
+    },
+    {
+      "path": "/hulpveren/maxus/edeliver9",
+      "type": "model",
+      "make": "maxus",
+      "model": "edeliver9"
+    },
+    {
+      "path": "/hulpveren/mazda",
+      "type": "make",
+      "make": "mazda"
+    },
+    {
+      "path": "/hulpveren/mazda/121",
+      "type": "model",
+      "make": "mazda",
+      "model": "121"
+    },
+    {
+      "path": "/hulpveren/mazda/2",
+      "type": "model",
+      "make": "mazda",
+      "model": "2"
+    },
+    {
+      "path": "/hulpveren/mazda/3",
+      "type": "model",
+      "make": "mazda",
+      "model": "3"
+    },
+    {
+      "path": "/hulpveren/mazda/5",
+      "type": "model",
+      "make": "mazda",
+      "model": "5"
+    },
+    {
+      "path": "/hulpveren/mazda/6",
+      "type": "model",
+      "make": "mazda",
+      "model": "6"
+    },
+    {
+      "path": "/hulpveren/mazda/626",
+      "type": "model",
+      "make": "mazda",
+      "model": "626"
+    },
+    {
+      "path": "/hulpveren/mazda/bt-50",
+      "type": "model",
+      "make": "mazda",
+      "model": "bt-50"
+    },
+    {
+      "path": "/hulpveren/mazda/cx-30",
+      "type": "model",
+      "make": "mazda",
+      "model": "cx-30"
+    },
+    {
+      "path": "/hulpveren/mazda/cx-5",
+      "type": "model",
+      "make": "mazda",
+      "model": "cx-5"
+    },
+    {
+      "path": "/hulpveren/mazda/cx-60",
+      "type": "model",
+      "make": "mazda",
+      "model": "cx-60"
+    },
+    {
+      "path": "/hulpveren/mazda/cx3",
+      "type": "model",
+      "make": "mazda",
+      "model": "cx3"
+    },
+    {
+      "path": "/hulpveren/mazda/mx-30",
+      "type": "model",
+      "make": "mazda",
+      "model": "mx-30"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz",
+      "type": "make",
+      "make": "mercedes-benz"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/b-class",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "b-class"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/c-class",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "c-class"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/citan",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "citan"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/e-class",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "e-class"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/eqv",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "eqv"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/sprinter",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "sprinter"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/v-class",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "v-class"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/viano",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "viano"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/vito",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "vito"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/vito-tourer",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "vito-tourer"
+    },
+    {
+      "path": "/hulpveren/mercedes-benz/x-class",
+      "type": "model",
+      "make": "mercedes-benz",
+      "model": "x-class"
+    },
+    {
+      "path": "/hulpveren/mg",
+      "type": "make",
+      "make": "mg"
+    },
+    {
+      "path": "/hulpveren/mg/5",
+      "type": "model",
+      "make": "mg",
+      "model": "5"
+    },
+    {
+      "path": "/hulpveren/mg/marvel-r",
+      "type": "model",
+      "make": "mg",
+      "model": "marvel-r"
+    },
+    {
+      "path": "/hulpveren/mitsubishi",
+      "type": "make",
+      "make": "mitsubishi"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/asx",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "asx"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/carisma",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "carisma"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/colt",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "colt"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/eclipse",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "eclipse"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/galant",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "galant"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/grandis",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "grandis"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/l200",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "l200"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/lancer",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "lancer"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/outlander",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "outlander"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/pajero",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "pajero"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/pajero-pinin",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "pajero-pinin"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/pajero-sport",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "pajero-sport"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/sapporo",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "sapporo"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/shogun",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "shogun"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/shogun-pinin",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "shogun-pinin"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/shogun-sport",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "shogun-sport"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/space-star",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "space-star"
+    },
+    {
+      "path": "/hulpveren/mitsubishi/space-wagon",
+      "type": "model",
+      "make": "mitsubishi",
+      "model": "space-wagon"
+    },
+    {
+      "path": "/hulpveren/nissan",
+      "type": "make",
+      "make": "nissan"
+    },
+    {
+      "path": "/hulpveren/nissan/100nx",
+      "type": "model",
+      "make": "nissan",
+      "model": "100nx"
+    },
+    {
+      "path": "/hulpveren/nissan/almera",
+      "type": "model",
+      "make": "nissan",
+      "model": "almera"
+    },
+    {
+      "path": "/hulpveren/nissan/almera-tino",
+      "type": "model",
+      "make": "nissan",
+      "model": "almera-tino"
+    },
+    {
+      "path": "/hulpveren/nissan/interstar",
+      "type": "model",
+      "make": "nissan",
+      "model": "interstar"
+    },
+    {
+      "path": "/hulpveren/nissan/juke",
+      "type": "model",
+      "make": "nissan",
+      "model": "juke"
+    },
+    {
+      "path": "/hulpveren/nissan/kubistar",
+      "type": "model",
+      "make": "nissan",
+      "model": "kubistar"
+    },
+    {
+      "path": "/hulpveren/nissan/leaf",
+      "type": "model",
+      "make": "nissan",
+      "model": "leaf"
+    },
+    {
+      "path": "/hulpveren/nissan/maxima",
+      "type": "model",
+      "make": "nissan",
+      "model": "maxima"
+    },
+    {
+      "path": "/hulpveren/nissan/micra",
+      "type": "model",
+      "make": "nissan",
+      "model": "micra"
+    },
+    {
+      "path": "/hulpveren/nissan/navara-np-300",
+      "type": "model",
+      "make": "nissan",
+      "model": "navara-np-300"
+    },
+    {
+      "path": "/hulpveren/nissan/note",
+      "type": "model",
+      "make": "nissan",
+      "model": "note"
+    },
+    {
+      "path": "/hulpveren/nissan/nv-200",
+      "type": "model",
+      "make": "nissan",
+      "model": "nv-200"
+    },
+    {
+      "path": "/hulpveren/nissan/nv-250",
+      "type": "model",
+      "make": "nissan",
+      "model": "nv-250"
+    },
+    {
+      "path": "/hulpveren/nissan/nv-300",
+      "type": "model",
+      "make": "nissan",
+      "model": "nv-300"
+    },
+    {
+      "path": "/hulpveren/nissan/nv-400",
+      "type": "model",
+      "make": "nissan",
+      "model": "nv-400"
+    },
+    {
+      "path": "/hulpveren/nissan/pathfinder",
+      "type": "model",
+      "make": "nissan",
+      "model": "pathfinder"
+    },
+    {
+      "path": "/hulpveren/nissan/primastar",
+      "type": "model",
+      "make": "nissan",
+      "model": "primastar"
+    },
+    {
+      "path": "/hulpveren/nissan/primera",
+      "type": "model",
+      "make": "nissan",
+      "model": "primera"
+    },
+    {
+      "path": "/hulpveren/nissan/pulsar",
+      "type": "model",
+      "make": "nissan",
+      "model": "pulsar"
+    },
+    {
+      "path": "/hulpveren/nissan/qashqai",
+      "type": "model",
+      "make": "nissan",
+      "model": "qashqai"
+    },
+    {
+      "path": "/hulpveren/nissan/sunny",
+      "type": "model",
+      "make": "nissan",
+      "model": "sunny"
+    },
+    {
+      "path": "/hulpveren/nissan/terrano",
+      "type": "model",
+      "make": "nissan",
+      "model": "terrano"
+    },
+    {
+      "path": "/hulpveren/nissan/townstar",
+      "type": "model",
+      "make": "nissan",
+      "model": "townstar"
+    },
+    {
+      "path": "/hulpveren/nissan/x-trail",
+      "type": "model",
+      "make": "nissan",
+      "model": "x-trail"
+    },
+    {
+      "path": "/hulpveren/oldsmobile",
+      "type": "make",
+      "make": "oldsmobile"
+    },
+    {
+      "path": "/hulpveren/oldsmobile/silhouette-apv",
+      "type": "model",
+      "make": "oldsmobile",
+      "model": "silhouette-apv"
+    },
+    {
+      "path": "/hulpveren/opel",
+      "type": "make",
+      "make": "opel"
+    },
+    {
+      "path": "/hulpveren/opel/agila",
+      "type": "model",
+      "make": "opel",
+      "model": "agila"
+    },
+    {
+      "path": "/hulpveren/opel/antara",
+      "type": "model",
+      "make": "opel",
+      "model": "antara"
+    },
+    {
+      "path": "/hulpveren/opel/astra",
+      "type": "model",
+      "make": "opel",
+      "model": "astra"
+    },
+    {
+      "path": "/hulpveren/opel/combo",
+      "type": "model",
+      "make": "opel",
+      "model": "combo"
+    },
+    {
+      "path": "/hulpveren/opel/corsa",
+      "type": "model",
+      "make": "opel",
+      "model": "corsa"
+    },
+    {
+      "path": "/hulpveren/opel/crossland-x",
+      "type": "model",
+      "make": "opel",
+      "model": "crossland-x"
+    },
+    {
+      "path": "/hulpveren/opel/frontera",
+      "type": "model",
+      "make": "opel",
+      "model": "frontera"
+    },
+    {
+      "path": "/hulpveren/opel/grandland-x",
+      "type": "model",
+      "make": "opel",
+      "model": "grandland-x"
+    },
+    {
+      "path": "/hulpveren/opel/insignia",
+      "type": "model",
+      "make": "opel",
+      "model": "insignia"
+    },
+    {
+      "path": "/hulpveren/opel/kadett",
+      "type": "model",
+      "make": "opel",
+      "model": "kadett"
+    },
+    {
+      "path": "/hulpveren/opel/meriva",
+      "type": "model",
+      "make": "opel",
+      "model": "meriva"
+    },
+    {
+      "path": "/hulpveren/opel/mokka-mokka-x",
+      "type": "model",
+      "make": "opel",
+      "model": "mokka-mokka-x"
+    },
+    {
+      "path": "/hulpveren/opel/movano",
+      "type": "model",
+      "make": "opel",
+      "model": "movano"
+    },
+    {
+      "path": "/hulpveren/opel/movano-al-ko",
+      "type": "model",
+      "make": "opel",
+      "model": "movano-al-ko"
+    },
+    {
+      "path": "/hulpveren/opel/omega",
+      "type": "model",
+      "make": "opel",
+      "model": "omega"
+    },
+    {
+      "path": "/hulpveren/opel/senator",
+      "type": "model",
+      "make": "opel",
+      "model": "senator"
+    },
+    {
+      "path": "/hulpveren/opel/signum",
+      "type": "model",
+      "make": "opel",
+      "model": "signum"
+    },
+    {
+      "path": "/hulpveren/opel/vectra",
+      "type": "model",
+      "make": "opel",
+      "model": "vectra"
+    },
+    {
+      "path": "/hulpveren/opel/vivaro",
+      "type": "model",
+      "make": "opel",
+      "model": "vivaro"
+    },
+    {
+      "path": "/hulpveren/opel/zafira",
+      "type": "model",
+      "make": "opel",
+      "model": "zafira"
+    },
+    {
+      "path": "/hulpveren/opel/zafira-life",
+      "type": "model",
+      "make": "opel",
+      "model": "zafira-life"
+    },
+    {
+      "path": "/hulpveren/peugeot",
+      "type": "make",
+      "make": "peugeot"
+    },
+    {
+      "path": "/hulpveren/peugeot/1007",
+      "type": "model",
+      "make": "peugeot",
+      "model": "1007"
+    },
+    {
+      "path": "/hulpveren/peugeot/107",
+      "type": "model",
+      "make": "peugeot",
+      "model": "107"
+    },
+    {
+      "path": "/hulpveren/peugeot/108",
+      "type": "model",
+      "make": "peugeot",
+      "model": "108"
+    },
+    {
+      "path": "/hulpveren/peugeot/2008",
+      "type": "model",
+      "make": "peugeot",
+      "model": "2008"
+    },
+    {
+      "path": "/hulpveren/peugeot/205",
+      "type": "model",
+      "make": "peugeot",
+      "model": "205"
+    },
+    {
+      "path": "/hulpveren/peugeot/207",
+      "type": "model",
+      "make": "peugeot",
+      "model": "207"
+    },
+    {
+      "path": "/hulpveren/peugeot/208",
+      "type": "model",
+      "make": "peugeot",
+      "model": "208"
+    },
+    {
+      "path": "/hulpveren/peugeot/3008",
+      "type": "model",
+      "make": "peugeot",
+      "model": "3008"
+    },
+    {
+      "path": "/hulpveren/peugeot/306",
+      "type": "model",
+      "make": "peugeot",
+      "model": "306"
+    },
+    {
+      "path": "/hulpveren/peugeot/307",
+      "type": "model",
+      "make": "peugeot",
+      "model": "307"
+    },
+    {
+      "path": "/hulpveren/peugeot/308",
+      "type": "model",
+      "make": "peugeot",
+      "model": "308"
+    },
+    {
+      "path": "/hulpveren/peugeot/309",
+      "type": "model",
+      "make": "peugeot",
+      "model": "309"
+    },
+    {
+      "path": "/hulpveren/peugeot/4007",
+      "type": "model",
+      "make": "peugeot",
+      "model": "4007"
+    },
+    {
+      "path": "/hulpveren/peugeot/4008",
+      "type": "model",
+      "make": "peugeot",
+      "model": "4008"
+    },
+    {
+      "path": "/hulpveren/peugeot/406",
+      "type": "model",
+      "make": "peugeot",
+      "model": "406"
+    },
+    {
+      "path": "/hulpveren/peugeot/407",
+      "type": "model",
+      "make": "peugeot",
+      "model": "407"
+    },
+    {
+      "path": "/hulpveren/peugeot/5008",
+      "type": "model",
+      "make": "peugeot",
+      "model": "5008"
+    },
+    {
+      "path": "/hulpveren/peugeot/508",
+      "type": "model",
+      "make": "peugeot",
+      "model": "508"
+    },
+    {
+      "path": "/hulpveren/peugeot/806",
+      "type": "model",
+      "make": "peugeot",
+      "model": "806"
+    },
+    {
+      "path": "/hulpveren/peugeot/807",
+      "type": "model",
+      "make": "peugeot",
+      "model": "807"
+    },
+    {
+      "path": "/hulpveren/peugeot/bipper",
+      "type": "model",
+      "make": "peugeot",
+      "model": "bipper"
+    },
+    {
+      "path": "/hulpveren/peugeot/boxer",
+      "type": "model",
+      "make": "peugeot",
+      "model": "boxer"
+    },
+    {
+      "path": "/hulpveren/peugeot/boxer-al-ko",
+      "type": "model",
+      "make": "peugeot",
+      "model": "boxer-al-ko"
+    },
+    {
+      "path": "/hulpveren/peugeot/expert",
+      "type": "model",
+      "make": "peugeot",
+      "model": "expert"
+    },
+    {
+      "path": "/hulpveren/peugeot/j-5",
+      "type": "model",
+      "make": "peugeot",
+      "model": "j-5"
+    },
+    {
+      "path": "/hulpveren/peugeot/partner",
+      "type": "model",
+      "make": "peugeot",
+      "model": "partner"
+    },
+    {
+      "path": "/hulpveren/peugeot/rifter",
+      "type": "model",
+      "make": "peugeot",
+      "model": "rifter"
+    },
+    {
+      "path": "/hulpveren/peugeot/traveller",
+      "type": "model",
+      "make": "peugeot",
+      "model": "traveller"
+    },
+    {
+      "path": "/hulpveren/pontiac",
+      "type": "make",
+      "make": "pontiac"
+    },
+    {
+      "path": "/hulpveren/pontiac/trans-sport-apv",
+      "type": "model",
+      "make": "pontiac",
+      "model": "trans-sport-apv"
+    },
+    {
+      "path": "/hulpveren/proton",
+      "type": "make",
+      "make": "proton"
+    },
+    {
+      "path": "/hulpveren/proton/persona-sei",
+      "type": "model",
+      "make": "proton",
+      "model": "persona-sei"
+    },
+    {
+      "path": "/hulpveren/ram",
+      "type": "make",
+      "make": "ram"
+    },
+    {
+      "path": "/hulpveren/ram/promaster",
+      "type": "model",
+      "make": "ram",
+      "model": "promaster"
+    },
+    {
+      "path": "/hulpveren/ram/promaster-city",
+      "type": "model",
+      "make": "ram",
+      "model": "promaster-city"
+    },
+    {
+      "path": "/hulpveren/renault",
+      "type": "make",
+      "make": "renault"
+    },
+    {
+      "path": "/hulpveren/renault/alaskan",
+      "type": "model",
+      "make": "renault",
+      "model": "alaskan"
+    },
+    {
+      "path": "/hulpveren/renault/arkana",
+      "type": "model",
+      "make": "renault",
+      "model": "arkana"
+    },
+    {
+      "path": "/hulpveren/renault/austral",
+      "type": "model",
+      "make": "renault",
+      "model": "austral"
+    },
+    {
+      "path": "/hulpveren/renault/captur",
+      "type": "model",
+      "make": "renault",
+      "model": "captur"
+    },
+    {
+      "path": "/hulpveren/renault/clio",
+      "type": "model",
+      "make": "renault",
+      "model": "clio"
+    },
+    {
+      "path": "/hulpveren/renault/espace",
+      "type": "model",
+      "make": "renault",
+      "model": "espace"
+    },
+    {
+      "path": "/hulpveren/renault/express",
+      "type": "model",
+      "make": "renault",
+      "model": "express"
+    },
+    {
+      "path": "/hulpveren/renault/kadjar",
+      "type": "model",
+      "make": "renault",
+      "model": "kadjar"
+    },
+    {
+      "path": "/hulpveren/renault/kangoo",
+      "type": "model",
+      "make": "renault",
+      "model": "kangoo"
+    },
+    {
+      "path": "/hulpveren/renault/koleos",
+      "type": "model",
+      "make": "renault",
+      "model": "koleos"
+    },
+    {
+      "path": "/hulpveren/renault/laguna",
+      "type": "model",
+      "make": "renault",
+      "model": "laguna"
+    },
+    {
+      "path": "/hulpveren/renault/master",
+      "type": "model",
+      "make": "renault",
+      "model": "master"
+    },
+    {
+      "path": "/hulpveren/renault/megane",
+      "type": "model",
+      "make": "renault",
+      "model": "megane"
+    },
+    {
+      "path": "/hulpveren/renault/modus",
+      "type": "model",
+      "make": "renault",
+      "model": "modus"
+    },
+    {
+      "path": "/hulpveren/renault/scenic",
+      "type": "model",
+      "make": "renault",
+      "model": "scenic"
+    },
+    {
+      "path": "/hulpveren/renault/talisman",
+      "type": "model",
+      "make": "renault",
+      "model": "talisman"
+    },
+    {
+      "path": "/hulpveren/renault/trafic",
+      "type": "model",
+      "make": "renault",
+      "model": "trafic"
+    },
+    {
+      "path": "/hulpveren/renault/vel-satis",
+      "type": "model",
+      "make": "renault",
+      "model": "vel-satis"
+    },
+    {
+      "path": "/hulpveren/rover",
+      "type": "make",
+      "make": "rover"
+    },
+    {
+      "path": "/hulpveren/rover/75",
+      "type": "model",
+      "make": "rover",
+      "model": "75"
+    },
+    {
+      "path": "/hulpveren/saab",
+      "type": "make",
+      "make": "saab"
+    },
+    {
+      "path": "/hulpveren/saab/2025-03-09-00-00-00",
+      "type": "model",
+      "make": "saab",
+      "model": "2025-03-09-00-00-00"
+    },
+    {
+      "path": "/hulpveren/saab/90",
+      "type": "model",
+      "make": "saab",
+      "model": "90"
+    },
+    {
+      "path": "/hulpveren/saab/900",
+      "type": "model",
+      "make": "saab",
+      "model": "900"
+    },
+    {
+      "path": "/hulpveren/saab/9000",
+      "type": "model",
+      "make": "saab",
+      "model": "9000"
+    },
+    {
+      "path": "/hulpveren/saab/99",
+      "type": "model",
+      "make": "saab",
+      "model": "99"
+    },
+    {
+      "path": "/hulpveren/seat",
+      "type": "make",
+      "make": "seat"
+    },
+    {
+      "path": "/hulpveren/seat/alhambra",
+      "type": "model",
+      "make": "seat",
+      "model": "alhambra"
+    },
+    {
+      "path": "/hulpveren/seat/altea",
+      "type": "model",
+      "make": "seat",
+      "model": "altea"
+    },
+    {
+      "path": "/hulpveren/seat/arona",
+      "type": "model",
+      "make": "seat",
+      "model": "arona"
+    },
+    {
+      "path": "/hulpveren/seat/arosa",
+      "type": "model",
+      "make": "seat",
+      "model": "arosa"
+    },
+    {
+      "path": "/hulpveren/seat/ateca",
+      "type": "model",
+      "make": "seat",
+      "model": "ateca"
+    },
+    {
+      "path": "/hulpveren/seat/cordoba",
+      "type": "model",
+      "make": "seat",
+      "model": "cordoba"
+    },
+    {
+      "path": "/hulpveren/seat/exeo",
+      "type": "model",
+      "make": "seat",
+      "model": "exeo"
+    },
+    {
+      "path": "/hulpveren/seat/ibiza",
+      "type": "model",
+      "make": "seat",
+      "model": "ibiza"
+    },
+    {
+      "path": "/hulpveren/seat/leon",
+      "type": "model",
+      "make": "seat",
+      "model": "leon"
+    },
+    {
+      "path": "/hulpveren/seat/mii",
+      "type": "model",
+      "make": "seat",
+      "model": "mii"
+    },
+    {
+      "path": "/hulpveren/seat/tarraco",
+      "type": "model",
+      "make": "seat",
+      "model": "tarraco"
+    },
+    {
+      "path": "/hulpveren/seat/toledo",
+      "type": "model",
+      "make": "seat",
+      "model": "toledo"
+    },
+    {
+      "path": "/hulpveren/skoda",
+      "type": "make",
+      "make": "skoda"
+    },
+    {
+      "path": "/hulpveren/skoda/citigo",
+      "type": "model",
+      "make": "skoda",
+      "model": "citigo"
+    },
+    {
+      "path": "/hulpveren/skoda/elroq",
+      "type": "model",
+      "make": "skoda",
+      "model": "elroq"
+    },
+    {
+      "path": "/hulpveren/skoda/enyaq-iv",
+      "type": "model",
+      "make": "skoda",
+      "model": "enyaq-iv"
+    },
+    {
+      "path": "/hulpveren/skoda/fabia",
+      "type": "model",
+      "make": "skoda",
+      "model": "fabia"
+    },
+    {
+      "path": "/hulpveren/skoda/favorit",
+      "type": "model",
+      "make": "skoda",
+      "model": "favorit"
+    },
+    {
+      "path": "/hulpveren/skoda/felicia",
+      "type": "model",
+      "make": "skoda",
+      "model": "felicia"
+    },
+    {
+      "path": "/hulpveren/skoda/kamiq",
+      "type": "model",
+      "make": "skoda",
+      "model": "kamiq"
+    },
+    {
+      "path": "/hulpveren/skoda/karoq",
+      "type": "model",
+      "make": "skoda",
+      "model": "karoq"
+    },
+    {
+      "path": "/hulpveren/skoda/kodiaq",
+      "type": "model",
+      "make": "skoda",
+      "model": "kodiaq"
+    },
+    {
+      "path": "/hulpveren/skoda/octavia",
+      "type": "model",
+      "make": "skoda",
+      "model": "octavia"
+    },
+    {
+      "path": "/hulpveren/skoda/rapid",
+      "type": "model",
+      "make": "skoda",
+      "model": "rapid"
+    },
+    {
+      "path": "/hulpveren/skoda/roomster",
+      "type": "model",
+      "make": "skoda",
+      "model": "roomster"
+    },
+    {
+      "path": "/hulpveren/skoda/roomster-praktik",
+      "type": "model",
+      "make": "skoda",
+      "model": "roomster-praktik"
+    },
+    {
+      "path": "/hulpveren/skoda/scala",
+      "type": "model",
+      "make": "skoda",
+      "model": "scala"
+    },
+    {
+      "path": "/hulpveren/skoda/superb",
+      "type": "model",
+      "make": "skoda",
+      "model": "superb"
+    },
+    {
+      "path": "/hulpveren/skoda/yeti",
+      "type": "model",
+      "make": "skoda",
+      "model": "yeti"
+    },
+    {
+      "path": "/hulpveren/smart",
+      "type": "make",
+      "make": "smart"
+    },
+    {
+      "path": "/hulpveren/smart/1",
+      "type": "model",
+      "make": "smart",
+      "model": "1"
+    },
+    {
+      "path": "/hulpveren/smart/3",
+      "type": "model",
+      "make": "smart",
+      "model": "3"
+    },
+    {
+      "path": "/hulpveren/ssangyong",
+      "type": "make",
+      "make": "ssangyong"
+    },
+    {
+      "path": "/hulpveren/ssangyong/actyon",
+      "type": "model",
+      "make": "ssangyong",
+      "model": "actyon"
+    },
+    {
+      "path": "/hulpveren/ssangyong/actyon-sports",
+      "type": "model",
+      "make": "ssangyong",
+      "model": "actyon-sports"
+    },
+    {
+      "path": "/hulpveren/ssangyong/grand-musso",
+      "type": "model",
+      "make": "ssangyong",
+      "model": "grand-musso"
+    },
+    {
+      "path": "/hulpveren/ssangyong/korando",
+      "type": "model",
+      "make": "ssangyong",
+      "model": "korando"
+    },
+    {
+      "path": "/hulpveren/ssangyong/kyron",
+      "type": "model",
+      "make": "ssangyong",
+      "model": "kyron"
+    },
+    {
+      "path": "/hulpveren/ssangyong/musso",
+      "type": "model",
+      "make": "ssangyong",
+      "model": "musso"
+    },
+    {
+      "path": "/hulpveren/ssangyong/rexton",
+      "type": "model",
+      "make": "ssangyong",
+      "model": "rexton"
+    },
+    {
+      "path": "/hulpveren/ssangyong/rodius",
+      "type": "model",
+      "make": "ssangyong",
+      "model": "rodius"
+    },
+    {
+      "path": "/hulpveren/subaru",
+      "type": "make",
+      "make": "subaru"
+    },
+    {
+      "path": "/hulpveren/subaru/forester",
+      "type": "model",
+      "make": "subaru",
+      "model": "forester"
+    },
+    {
+      "path": "/hulpveren/subaru/legacy",
+      "type": "model",
+      "make": "subaru",
+      "model": "legacy"
+    },
+    {
+      "path": "/hulpveren/subaru/legacy-outback",
+      "type": "model",
+      "make": "subaru",
+      "model": "legacy-outback"
+    },
+    {
+      "path": "/hulpveren/subaru/xv",
+      "type": "model",
+      "make": "subaru",
+      "model": "xv"
+    },
+    {
+      "path": "/hulpveren/suzuki",
+      "type": "make",
+      "make": "suzuki"
+    },
+    {
+      "path": "/hulpveren/suzuki/across",
+      "type": "model",
+      "make": "suzuki",
+      "model": "across"
+    },
+    {
+      "path": "/hulpveren/suzuki/baleno",
+      "type": "model",
+      "make": "suzuki",
+      "model": "baleno"
+    },
+    {
+      "path": "/hulpveren/suzuki/grand-vitara",
+      "type": "model",
+      "make": "suzuki",
+      "model": "grand-vitara"
+    },
+    {
+      "path": "/hulpveren/suzuki/ignis",
+      "type": "model",
+      "make": "suzuki",
+      "model": "ignis"
+    },
+    {
+      "path": "/hulpveren/suzuki/jimny",
+      "type": "model",
+      "make": "suzuki",
+      "model": "jimny"
+    },
+    {
+      "path": "/hulpveren/suzuki/splash",
+      "type": "model",
+      "make": "suzuki",
+      "model": "splash"
+    },
+    {
+      "path": "/hulpveren/suzuki/swace",
+      "type": "model",
+      "make": "suzuki",
+      "model": "swace"
+    },
+    {
+      "path": "/hulpveren/suzuki/swift",
+      "type": "model",
+      "make": "suzuki",
+      "model": "swift"
+    },
+    {
+      "path": "/hulpveren/suzuki/sx4",
+      "type": "model",
+      "make": "suzuki",
+      "model": "sx4"
+    },
+    {
+      "path": "/hulpveren/suzuki/sx4-s-cross",
+      "type": "model",
+      "make": "suzuki",
+      "model": "sx4-s-cross"
+    },
+    {
+      "path": "/hulpveren/suzuki/vitara",
+      "type": "model",
+      "make": "suzuki",
+      "model": "vitara"
+    },
+    {
+      "path": "/hulpveren/suzuki/wagon-r",
+      "type": "model",
+      "make": "suzuki",
+      "model": "wagon-r"
+    },
+    {
+      "path": "/hulpveren/talbot",
+      "type": "make",
+      "make": "talbot"
+    },
+    {
+      "path": "/hulpveren/talbot/expres-van",
+      "type": "model",
+      "make": "talbot",
+      "model": "expres-van"
+    },
+    {
+      "path": "/hulpveren/toyota",
+      "type": "make",
+      "make": "toyota"
+    },
+    {
+      "path": "/hulpveren/toyota/auris",
+      "type": "model",
+      "make": "toyota",
+      "model": "auris"
+    },
+    {
+      "path": "/hulpveren/toyota/avensis",
+      "type": "model",
+      "make": "toyota",
+      "model": "avensis"
+    },
+    {
+      "path": "/hulpveren/toyota/avensis-verso",
+      "type": "model",
+      "make": "toyota",
+      "model": "avensis-verso"
+    },
+    {
+      "path": "/hulpveren/toyota/aygo",
+      "type": "model",
+      "make": "toyota",
+      "model": "aygo"
+    },
+    {
+      "path": "/hulpveren/toyota/c-hr",
+      "type": "model",
+      "make": "toyota",
+      "model": "c-hr"
+    },
+    {
+      "path": "/hulpveren/toyota/camry",
+      "type": "model",
+      "make": "toyota",
+      "model": "camry"
+    },
+    {
+      "path": "/hulpveren/toyota/carina",
+      "type": "model",
+      "make": "toyota",
+      "model": "carina"
+    },
+    {
+      "path": "/hulpveren/toyota/corolla",
+      "type": "model",
+      "make": "toyota",
+      "model": "corolla"
+    },
+    {
+      "path": "/hulpveren/toyota/corolla-verso",
+      "type": "model",
+      "make": "toyota",
+      "model": "corolla-verso"
+    },
+    {
+      "path": "/hulpveren/toyota/hi-ace",
+      "type": "model",
+      "make": "toyota",
+      "model": "hi-ace"
+    },
+    {
+      "path": "/hulpveren/toyota/hi-lux",
+      "type": "model",
+      "make": "toyota",
+      "model": "hi-lux"
+    },
+    {
+      "path": "/hulpveren/toyota/land-cruiser",
+      "type": "model",
+      "make": "toyota",
+      "model": "land-cruiser"
+    },
+    {
+      "path": "/hulpveren/toyota/picnic",
+      "type": "model",
+      "make": "toyota",
+      "model": "picnic"
+    },
+    {
+      "path": "/hulpveren/toyota/previa",
+      "type": "model",
+      "make": "toyota",
+      "model": "previa"
+    },
+    {
+      "path": "/hulpveren/toyota/prius",
+      "type": "model",
+      "make": "toyota",
+      "model": "prius"
+    },
+    {
+      "path": "/hulpveren/toyota/proace",
+      "type": "model",
+      "make": "toyota",
+      "model": "proace"
+    },
+    {
+      "path": "/hulpveren/toyota/proace-city",
+      "type": "model",
+      "make": "toyota",
+      "model": "proace-city"
+    },
+    {
+      "path": "/hulpveren/toyota/proace-max",
+      "type": "model",
+      "make": "toyota",
+      "model": "proace-max"
+    },
+    {
+      "path": "/hulpveren/toyota/rav4",
+      "type": "model",
+      "make": "toyota",
+      "model": "rav4"
+    },
+    {
+      "path": "/hulpveren/toyota/starlet",
+      "type": "model",
+      "make": "toyota",
+      "model": "starlet"
+    },
+    {
+      "path": "/hulpveren/toyota/urban-cruiser",
+      "type": "model",
+      "make": "toyota",
+      "model": "urban-cruiser"
+    },
+    {
+      "path": "/hulpveren/toyota/verso",
+      "type": "model",
+      "make": "toyota",
+      "model": "verso"
+    },
+    {
+      "path": "/hulpveren/toyota/verso-s",
+      "type": "model",
+      "make": "toyota",
+      "model": "verso-s"
+    },
+    {
+      "path": "/hulpveren/toyota/yaris",
+      "type": "model",
+      "make": "toyota",
+      "model": "yaris"
+    },
+    {
+      "path": "/hulpveren/vauxhall",
+      "type": "make",
+      "make": "vauxhall"
+    },
+    {
+      "path": "/hulpveren/vauxhall/agila",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "agila"
+    },
+    {
+      "path": "/hulpveren/vauxhall/antara",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "antara"
+    },
+    {
+      "path": "/hulpveren/vauxhall/astra",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "astra"
+    },
+    {
+      "path": "/hulpveren/vauxhall/astra-estate",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "astra-estate"
+    },
+    {
+      "path": "/hulpveren/vauxhall/carlton",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "carlton"
+    },
+    {
+      "path": "/hulpveren/vauxhall/carlton-estate",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "carlton-estate"
+    },
+    {
+      "path": "/hulpveren/vauxhall/cavalier",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "cavalier"
+    },
+    {
+      "path": "/hulpveren/vauxhall/combo",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "combo"
+    },
+    {
+      "path": "/hulpveren/vauxhall/corsa",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "corsa"
+    },
+    {
+      "path": "/hulpveren/vauxhall/crossland-x",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "crossland-x"
+    },
+    {
+      "path": "/hulpveren/vauxhall/grandland-x",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "grandland-x"
+    },
+    {
+      "path": "/hulpveren/vauxhall/insignia",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "insignia"
+    },
+    {
+      "path": "/hulpveren/vauxhall/insignia-tourer",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "insignia-tourer"
+    },
+    {
+      "path": "/hulpveren/vauxhall/mokka-mokka-x",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "mokka-mokka-x"
+    },
+    {
+      "path": "/hulpveren/vauxhall/movano",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "movano"
+    },
+    {
+      "path": "/hulpveren/vauxhall/movano-al-ko",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "movano-al-ko"
+    },
+    {
+      "path": "/hulpveren/vauxhall/nova",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "nova"
+    },
+    {
+      "path": "/hulpveren/vauxhall/omega",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "omega"
+    },
+    {
+      "path": "/hulpveren/vauxhall/omega-estate",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "omega-estate"
+    },
+    {
+      "path": "/hulpveren/vauxhall/senator",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "senator"
+    },
+    {
+      "path": "/hulpveren/vauxhall/vectra",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "vectra"
+    },
+    {
+      "path": "/hulpveren/vauxhall/vectra-estate",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "vectra-estate"
+    },
+    {
+      "path": "/hulpveren/vauxhall/vivaro",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "vivaro"
+    },
+    {
+      "path": "/hulpveren/vauxhall/zafira",
+      "type": "model",
+      "make": "vauxhall",
+      "model": "zafira"
+    },
+    {
+      "path": "/hulpveren/volkswagen",
+      "type": "make",
+      "make": "volkswagen"
+    },
+    {
+      "path": "/hulpveren/volkswagen/amarok",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "amarok"
+    },
+    {
+      "path": "/hulpveren/volkswagen/arteon",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "arteon"
+    },
+    {
+      "path": "/hulpveren/volkswagen/beetle",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "beetle"
+    },
+    {
+      "path": "/hulpveren/volkswagen/bora",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "bora"
+    },
+    {
+      "path": "/hulpveren/volkswagen/caddy",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "caddy"
+    },
+    {
+      "path": "/hulpveren/volkswagen/caravelle",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "caravelle"
+    },
+    {
+      "path": "/hulpveren/volkswagen/crafter",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "crafter"
+    },
+    {
+      "path": "/hulpveren/volkswagen/cross-touran",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "cross-touran"
+    },
+    {
+      "path": "/hulpveren/volkswagen/eos",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "eos"
+    },
+    {
+      "path": "/hulpveren/volkswagen/fox",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "fox"
+    },
+    {
+      "path": "/hulpveren/volkswagen/golf",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "golf"
+    },
+    {
+      "path": "/hulpveren/volkswagen/golf-plus-sportsvan",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "golf-plus-sportsvan"
+    },
+    {
+      "path": "/hulpveren/volkswagen/id-3",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "id-3"
+    },
+    {
+      "path": "/hulpveren/volkswagen/id-4",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "id-4"
+    },
+    {
+      "path": "/hulpveren/volkswagen/id-5",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "id-5"
+    },
+    {
+      "path": "/hulpveren/volkswagen/id-7",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "id-7"
+    },
+    {
+      "path": "/hulpveren/volkswagen/id-buzz",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "id-buzz"
+    },
+    {
+      "path": "/hulpveren/volkswagen/jetta",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "jetta"
+    },
+    {
+      "path": "/hulpveren/volkswagen/lt",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "lt"
+    },
+    {
+      "path": "/hulpveren/volkswagen/lupo",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "lupo"
+    },
+    {
+      "path": "/hulpveren/volkswagen/multivan",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "multivan"
+    },
+    {
+      "path": "/hulpveren/volkswagen/new-beetle",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "new-beetle"
+    },
+    {
+      "path": "/hulpveren/volkswagen/passat",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "passat"
+    },
+    {
+      "path": "/hulpveren/volkswagen/polo",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "polo"
+    },
+    {
+      "path": "/hulpveren/volkswagen/sharan",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "sharan"
+    },
+    {
+      "path": "/hulpveren/volkswagen/t-cross",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "t-cross"
+    },
+    {
+      "path": "/hulpveren/volkswagen/t-roc",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "t-roc"
+    },
+    {
+      "path": "/hulpveren/volkswagen/taigo",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "taigo"
+    },
+    {
+      "path": "/hulpveren/volkswagen/tayron",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "tayron"
+    },
+    {
+      "path": "/hulpveren/volkswagen/tiguan",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "tiguan"
+    },
+    {
+      "path": "/hulpveren/volkswagen/touran",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "touran"
+    },
+    {
+      "path": "/hulpveren/volkswagen/transporter",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "transporter"
+    },
+    {
+      "path": "/hulpveren/volkswagen/up",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "up"
+    },
+    {
+      "path": "/hulpveren/volkswagen/vento",
+      "type": "model",
+      "make": "volkswagen",
+      "model": "vento"
+    },
+    {
+      "path": "/hulpveren/volvo",
+      "type": "make",
+      "make": "volvo"
+    },
+    {
+      "path": "/hulpveren/volvo/240-260",
+      "type": "model",
+      "make": "volvo",
+      "model": "240-260"
+    },
+    {
+      "path": "/hulpveren/volvo/740-760",
+      "type": "model",
+      "make": "volvo",
+      "model": "740-760"
+    },
+    {
+      "path": "/hulpveren/volvo/850",
+      "type": "model",
+      "make": "volvo",
+      "model": "850"
+    },
+    {
+      "path": "/hulpveren/volvo/940",
+      "type": "model",
+      "make": "volvo",
+      "model": "940"
+    },
+    {
+      "path": "/hulpveren/volvo/c40",
+      "type": "model",
+      "make": "volvo",
+      "model": "c40"
+    },
+    {
+      "path": "/hulpveren/volvo/ex30",
+      "type": "model",
+      "make": "volvo",
+      "model": "ex30"
+    },
+    {
+      "path": "/hulpveren/volvo/s40",
+      "type": "model",
+      "make": "volvo",
+      "model": "s40"
+    },
+    {
+      "path": "/hulpveren/volvo/s60",
+      "type": "model",
+      "make": "volvo",
+      "model": "s60"
+    },
+    {
+      "path": "/hulpveren/volvo/s80",
+      "type": "model",
+      "make": "volvo",
+      "model": "s80"
+    },
+    {
+      "path": "/hulpveren/volvo/v40",
+      "type": "model",
+      "make": "volvo",
+      "model": "v40"
+    },
+    {
+      "path": "/hulpveren/volvo/v50",
+      "type": "model",
+      "make": "volvo",
+      "model": "v50"
+    },
+    {
+      "path": "/hulpveren/volvo/v60",
+      "type": "model",
+      "make": "volvo",
+      "model": "v60"
+    },
+    {
+      "path": "/hulpveren/volvo/v70",
+      "type": "model",
+      "make": "volvo",
+      "model": "v70"
+    },
+    {
+      "path": "/hulpveren/volvo/xc40",
+      "type": "model",
+      "make": "volvo",
+      "model": "xc40"
+    },
+    {
+      "path": "/hulpveren/volvo/xc60",
+      "type": "model",
+      "make": "volvo",
+      "model": "xc60"
+    }
+  ],
+  "derived": {}
+}

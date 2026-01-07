@@ -1,0 +1,34 @@
+{
+  "make": {
+    "slug": "lancia",
+    "label": "Lancia"
+  },
+  "models": [
+    {
+      "slug": "lybra",
+      "label": "Lybra",
+      "kits_count": 1
+    },
+    {
+      "slug": "lybra-sw",
+      "label": "Lybra SW",
+      "kits_count": 1
+    },
+    {
+      "slug": "phedra",
+      "label": "Phedra",
+      "kits_count": 1
+    },
+    {
+      "slug": "ypsilon",
+      "label": "Ypsilon",
+      "kits_count": 2
+    },
+    {
+      "slug": "zeta",
+      "label": "Zeta",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

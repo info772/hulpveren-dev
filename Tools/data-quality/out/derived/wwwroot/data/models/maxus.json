@@ -1,0 +1,29 @@
+{
+  "make": {
+    "slug": "maxus",
+    "label": "MAXUS"
+  },
+  "models": [
+    {
+      "slug": "deliver9",
+      "label": "Deliver9",
+      "kits_count": 2
+    },
+    {
+      "slug": "edeliver3",
+      "label": "eDeliver3",
+      "kits_count": 1
+    },
+    {
+      "slug": "edeliver7",
+      "label": "eDeliver7",
+      "kits_count": 2
+    },
+    {
+      "slug": "edeliver9",
+      "label": "eDeliver9",
+      "kits_count": 2
+    }
+  ],
+  "derived": {}
+}

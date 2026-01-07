@@ -1,0 +1,84 @@
+{
+  "make": {
+    "slug": "volvo",
+    "label": "VOLVO"
+  },
+  "models": [
+    {
+      "slug": "240-260",
+      "label": "240, 260",
+      "kits_count": 1
+    },
+    {
+      "slug": "740-760",
+      "label": "740, 760",
+      "kits_count": 1
+    },
+    {
+      "slug": "850",
+      "label": "850",
+      "kits_count": 1
+    },
+    {
+      "slug": "940",
+      "label": "940",
+      "kits_count": 1
+    },
+    {
+      "slug": "c40",
+      "label": "C40",
+      "kits_count": 1
+    },
+    {
+      "slug": "ex30",
+      "label": "EX30",
+      "kits_count": 1
+    },
+    {
+      "slug": "s40",
+      "label": "S40",
+      "kits_count": 2
+    },
+    {
+      "slug": "s60",
+      "label": "S60",
+      "kits_count": 1
+    },
+    {
+      "slug": "s80",
+      "label": "S80",
+      "kits_count": 1
+    },
+    {
+      "slug": "v40",
+      "label": "V40",
+      "kits_count": 2
+    },
+    {
+      "slug": "v50",
+      "label": "V50",
+      "kits_count": 1
+    },
+    {
+      "slug": "v60",
+      "label": "V60",
+      "kits_count": 2
+    },
+    {
+      "slug": "v70",
+      "label": "V70",
+      "kits_count": 3
+    },
+    {
+      "slug": "xc40",
+      "label": "XC40",
+      "kits_count": 1
+    },
+    {
+      "slug": "xc60",
+      "label": "XC60",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

@@ -1,0 +1,317 @@
+{
+  "findings": [],
+  "sources": [
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/footer-defaults.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/hv-kits-old.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/hv-kits.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/hv-kits.updated.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/ls-brand-pages.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/ls-kits.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/ls-model-pages.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/makes.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/alfa-romeo.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/audi.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/bmw.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/buick.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/chevrolet-usa.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/chevrolet.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/chrysler.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/citroen.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/cupra.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/dacia.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/daihatsu.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/dodge.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/ds.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/fiat.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/ford.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/honda.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/hyundai.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/isuzu.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/iveco.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/jeep.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/kia.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/lada.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/lancia.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/land-rover.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/lexus.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/lynk-and-co.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/man.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/maxus.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/mazda.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/mercedes-benz.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/mg.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/mitsubishi.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/nissan.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/oldsmobile.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/opel.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/peugeot.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/pontiac.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/proton.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/ram.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/renault.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/rover.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/saab.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/seat.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/skoda.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/smart.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/ssangyong.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/subaru.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/suzuki.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/talbot.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/toyota.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/vauxhall.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/volkswagen.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/models/volvo.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/nr-brand-pages.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/nr-kits.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/nr-model-pages.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/redirects.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/wwwroot/data/routes.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/hv-kits-old.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/hv-kits.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/hv-kits.updated.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/ls-brand-pages.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/ls-kits.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/ls-model-pages.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/makes.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/nr-brand-pages.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/nr-kits.json",
+      "type": "setRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/nr-model-pages.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/redirects.json",
+      "type": "pageRecords"
+    },
+    {
+      "path": "/Users/ivorvangremberghe/dev/hulpveren-dev/data/routes.json",
+      "type": "pageRecords"
+    }
+  ]
+}

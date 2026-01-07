@@ -1,0 +1,10 @@
+{
+  "vehicleType": ["personenwagen", "bedrijfswagen", "camper", "pickup", "SUV"],
+  "axleConfig": ["front", "rear", "both"],
+  "axle": ["front", "rear", "both"],
+  "solutionLevel": ["standard", "heavy", "special_duty"],
+  "loadProfile.type": ["wisselend", "constant"],
+  "frequency": ["incidenteel", "wekelijks", "dagelijks"],
+  "springApplication": ["assist", "replacement", "full_replacement"],
+  "severity": ["INFO", "WARN", "ERROR"]
+}

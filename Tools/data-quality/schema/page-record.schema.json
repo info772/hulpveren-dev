@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "page-record.schema.json",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [],
+  "properties": {
+    "pageType": { "type": "string", "enum": ["brand", "model", "model-generation", "set", "category"] },
+    "id": { "type": "string" },
+    "slug": { "type": "string" },
+    "brand": { "type": "string" },
+    "model": { "type": "string" },
+    "generation": { "type": "string" },
+    "vehicleType": { "type": "string" },
+    "axleConfig": { "type": "string" },
+    "sets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "setCode": { "type": "string" },
+          "axle": { "type": "string" },
+          "axleConfig": { "type": "string" },
+          "solutionLevel": { "type": "string" },
+          "springApplication": { "type": "string" },
+          "includesFSD": { "type": "boolean" },
+          "useCase": { "type": ["string", "null"] },
+          "tags": { "type": ["array", "null"] }
+        }
+      }
+    },
+    "axles": {
+      "type": "object",
+      "properties": {
+        "front": { "type": "object", "properties": { "active": { "type": "boolean" } }, "additionalProperties": true },
+        "rear": { "type": "object", "properties": { "active": { "type": "boolean" } }, "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "loadProfile": { "type": "object", "additionalProperties": true },
+    "useCases": { "type": "array" },
+    "internalLinks": { "type": "array" },
+    "seo": { "type": ["object", "null"] },
+    "description": { "type": ["string", "null"] }
+  }
+}

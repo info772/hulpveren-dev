@@ -1,0 +1,129 @@
+{
+  "make": {
+    "slug": "vauxhall",
+    "label": "Vauxhall"
+  },
+  "models": [
+    {
+      "slug": "agila",
+      "label": "Agila",
+      "kits_count": 1
+    },
+    {
+      "slug": "antara",
+      "label": "Antara",
+      "kits_count": 1
+    },
+    {
+      "slug": "astra",
+      "label": "Astra",
+      "kits_count": 6
+    },
+    {
+      "slug": "astra-estate",
+      "label": "Astra Estate",
+      "kits_count": 7
+    },
+    {
+      "slug": "carlton",
+      "label": "Carlton",
+      "kits_count": 1
+    },
+    {
+      "slug": "carlton-estate",
+      "label": "Carlton Estate",
+      "kits_count": 1
+    },
+    {
+      "slug": "cavalier",
+      "label": "Cavalier",
+      "kits_count": 1
+    },
+    {
+      "slug": "combo",
+      "label": "Combo",
+      "kits_count": 20
+    },
+    {
+      "slug": "corsa",
+      "label": "Corsa",
+      "kits_count": 6
+    },
+    {
+      "slug": "crossland-x",
+      "label": "Crossland X",
+      "kits_count": 1
+    },
+    {
+      "slug": "grandland-x",
+      "label": "Grandland X",
+      "kits_count": 1
+    },
+    {
+      "slug": "insignia",
+      "label": "Insignia",
+      "kits_count": 1
+    },
+    {
+      "slug": "insignia-tourer",
+      "label": "Insignia Tourer",
+      "kits_count": 1
+    },
+    {
+      "slug": "mokka-mokka-x",
+      "label": "Mokka / Mokka X",
+      "kits_count": 1
+    },
+    {
+      "slug": "movano",
+      "label": "Movano",
+      "kits_count": 10
+    },
+    {
+      "slug": "movano-al-ko",
+      "label": "Movano + AL-KO",
+      "kits_count": 6
+    },
+    {
+      "slug": "nova",
+      "label": "Nova",
+      "kits_count": 1
+    },
+    {
+      "slug": "omega",
+      "label": "Omega",
+      "kits_count": 1
+    },
+    {
+      "slug": "omega-estate",
+      "label": "Omega Estate",
+      "kits_count": 1
+    },
+    {
+      "slug": "senator",
+      "label": "Senator",
+      "kits_count": 1
+    },
+    {
+      "slug": "vectra",
+      "label": "Vectra",
+      "kits_count": 2
+    },
+    {
+      "slug": "vectra-estate",
+      "label": "Vectra Estate",
+      "kits_count": 2
+    },
+    {
+      "slug": "vivaro",
+      "label": "Vivaro",
+      "kits_count": 15
+    },
+    {
+      "slug": "zafira",
+      "label": "Zafira",
+      "kits_count": 3
+    }
+  ],
+  "derived": {}
+}

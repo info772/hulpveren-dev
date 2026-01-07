@@ -1,0 +1,49 @@
+{
+  "make": {
+    "slug": "ssangyong",
+    "label": "Ssangyong"
+  },
+  "models": [
+    {
+      "slug": "actyon",
+      "label": "Actyon",
+      "kits_count": 1
+    },
+    {
+      "slug": "actyon-sports",
+      "label": "Actyon Sports",
+      "kits_count": 1
+    },
+    {
+      "slug": "grand-musso",
+      "label": "Grand Musso",
+      "kits_count": 2
+    },
+    {
+      "slug": "korando",
+      "label": "Korando",
+      "kits_count": 3
+    },
+    {
+      "slug": "kyron",
+      "label": "Kyron",
+      "kits_count": 1
+    },
+    {
+      "slug": "musso",
+      "label": "Musso",
+      "kits_count": 1
+    },
+    {
+      "slug": "rexton",
+      "label": "Rexton",
+      "kits_count": 3
+    },
+    {
+      "slug": "rodius",
+      "label": "Rodius",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

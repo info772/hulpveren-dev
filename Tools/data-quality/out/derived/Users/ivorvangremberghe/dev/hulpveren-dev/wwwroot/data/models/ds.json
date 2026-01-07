@@ -1,0 +1,14 @@
+{
+  "make": {
+    "slug": "ds",
+    "label": "DS"
+  },
+  "models": [
+    {
+      "slug": "ds4",
+      "label": "DS4",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

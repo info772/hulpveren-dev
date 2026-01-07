@@ -1,0 +1,19 @@
+{
+  "make": {
+    "slug": "lynk-and-co",
+    "label": "Lynk & Co"
+  },
+  "models": [
+    {
+      "slug": "lynk-and-co-01",
+      "label": "Lynk & Co 01",
+      "kits_count": 1
+    },
+    {
+      "slug": "lynk-and-co-02",
+      "label": "Lynk & Co 02",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

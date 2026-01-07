@@ -1,0 +1,14 @@
+{
+  "make": {
+    "slug": "iveco",
+    "label": "IVECO"
+  },
+  "models": [
+    {
+      "slug": "daily-l-s",
+      "label": "Daily L/S",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

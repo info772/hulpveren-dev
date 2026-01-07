@@ -1,0 +1,19 @@
+{
+  "make": {
+    "slug": "ram",
+    "label": "RAM"
+  },
+  "models": [
+    {
+      "slug": "promaster",
+      "label": "Promaster",
+      "kits_count": 4
+    },
+    {
+      "slug": "promaster-city",
+      "label": "Promaster city",
+      "kits_count": 4
+    }
+  ],
+  "derived": {}
+}

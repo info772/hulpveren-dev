@@ -1,0 +1,84 @@
+{
+  "make": {
+    "slug": "kia",
+    "label": "KIA"
+  },
+  "models": [
+    {
+      "slug": "carens",
+      "label": "Carens",
+      "kits_count": 2
+    },
+    {
+      "slug": "ceed",
+      "label": "Ceed",
+      "kits_count": 6
+    },
+    {
+      "slug": "ev3",
+      "label": "EV3",
+      "kits_count": 1
+    },
+    {
+      "slug": "ev6",
+      "label": "EV6",
+      "kits_count": 1
+    },
+    {
+      "slug": "magentis",
+      "label": "Magentis",
+      "kits_count": 1
+    },
+    {
+      "slug": "niro",
+      "label": "Niro",
+      "kits_count": 3
+    },
+    {
+      "slug": "optima",
+      "label": "Optima",
+      "kits_count": 2
+    },
+    {
+      "slug": "picanto",
+      "label": "Picanto",
+      "kits_count": 2
+    },
+    {
+      "slug": "pride-wagon",
+      "label": "Pride Wagon",
+      "kits_count": 1
+    },
+    {
+      "slug": "pro-ceed",
+      "label": "Pro-ceed",
+      "kits_count": 2
+    },
+    {
+      "slug": "rio",
+      "label": "Rio",
+      "kits_count": 1
+    },
+    {
+      "slug": "sorento",
+      "label": "Sorento",
+      "kits_count": 6
+    },
+    {
+      "slug": "sportage",
+      "label": "Sportage",
+      "kits_count": 6
+    },
+    {
+      "slug": "stonic",
+      "label": "Stonic",
+      "kits_count": 1
+    },
+    {
+      "slug": "xceed",
+      "label": "Xceed",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

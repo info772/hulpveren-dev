@@ -1,0 +1,14 @@
+{
+  "make": {
+    "slug": "buick",
+    "label": "BUICK"
+  },
+  "models": [
+    {
+      "slug": "verano",
+      "label": "Verano",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

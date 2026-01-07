@@ -1,0 +1,17 @@
+{
+  "name": "hulpveren-data-quality",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+    "scripts": {
+      "data:smoke": "node src/index.js smoke",
+      "data:lint": "node src/index.js lint",
+      "data:derive": "node src/index.js derive",
+      "data:check": "node src/index.js all",
+      "data:fix": "node src/index.js fix"
+    },
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1"
+  }
+}

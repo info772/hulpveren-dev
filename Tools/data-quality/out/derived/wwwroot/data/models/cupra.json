@@ -1,0 +1,34 @@
+{
+  "make": {
+    "slug": "cupra",
+    "label": "CUPRA"
+  },
+  "models": [
+    {
+      "slug": "born",
+      "label": "Born",
+      "kits_count": 1
+    },
+    {
+      "slug": "formentor",
+      "label": "Formentor",
+      "kits_count": 1
+    },
+    {
+      "slug": "leon",
+      "label": "Leon",
+      "kits_count": 2
+    },
+    {
+      "slug": "tavascan",
+      "label": "Tavascan",
+      "kits_count": 1
+    },
+    {
+      "slug": "terramar",
+      "label": "Terramar",
+      "kits_count": 1
+    }
+  ],
+  "derived": {}
+}

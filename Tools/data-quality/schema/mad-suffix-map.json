@@ -1,0 +1,8 @@
+{
+  "0": { "springApplication": "assist", "mount": "next_to_original" },
+  "1": { "springApplication": "full_replacement", "mount": "lift_replacement" },
+  "3": { "springApplication": "assist", "mount": "on_shock_absorber" },
+  "5": { "springApplication": "assist", "mount": "in_original_spring" },
+  "7": { "springApplication": "assist", "mount": "in_original_spring" },
+  "8": { "springApplication": "replacement", "mount": "main_replacement" }
+}
