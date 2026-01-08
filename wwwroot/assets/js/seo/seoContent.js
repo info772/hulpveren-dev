@@ -1,3 +1,5 @@
+console.log("seoContent.js geladen");
+
 // SEO content helper for Hulpveren.shop
 (function (root, factory) {
   if (typeof module === "object" && module.exports) {
