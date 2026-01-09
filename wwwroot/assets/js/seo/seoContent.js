@@ -413,6 +413,7 @@ console.log("[seo] loaded", location.pathname);
       yearTo: yearToNumber(raw.yearTo || raw.year_to || raw.year_end),
       sku: normalizeSku(raw.sku || raw.set || ""),
       sets: normalizeSets(raw.sets || raw.kits || raw.items || []),
+      applications: normalizeApplications(raw.applications || raw.fitments || []),
     };
   }
 
@@ -562,6 +563,181 @@ console.log("[seo] loaded", location.pathname);
     return out;
   }
 
+  function applicationKey(app) {
+    const make = String(app.make || "").toLowerCase().trim();
+    const model = String(app.model || "").toLowerCase().trim();
+    const platform = String(app.platform || app.generation || "")
+      .toLowerCase()
+      .trim();
+    const yearFrom = app.yearFrom || "";
+    const yearTo = app.yearTo || "";
+    return `${make}|${model}|${platform}|${yearFrom}|${yearTo}`;
+  }
+
+  function normalizeApplications(list) {
+    const out = [];
+    const seen = new Set();
+    (list || []).forEach((item) => {
+      if (!item) return;
+      const make = titleCase(item.make || item.brand || item.makeLabel || "");
+      const model = titleCase(item.model || item.modelLabel || "");
+      if (!make || !model) return;
+      const platform = Array.isArray(item.platform_codes)
+        ? item.platform_codes.join(", ")
+        : item.platform || item.platformCode || item.platform_code || "";
+      const generation = item.generation || item.platformLabel || "";
+      const yearFrom = yearToNumber(
+        item.yearFrom || item.year_from || item.year_start || item.from
+      );
+      const yearTo = yearToNumber(
+        item.yearTo || item.year_to || item.year_end || item.to
+      );
+      const app = { make, model, platform, generation, yearFrom, yearTo };
+      const key = applicationKey(app);
+      if (seen.has(key)) return;
+      seen.add(key);
+      out.push(app);
+    });
+    return out;
+  }
+
+  function mergeApplications(...lists) {
+    const out = [];
+    const seen = new Set();
+    lists.forEach((list) => {
+      normalizeApplications(list).forEach((app) => {
+        const key = applicationKey(app);
+        if (seen.has(key)) return;
+        seen.add(key);
+        out.push(app);
+      });
+    });
+    return out;
+  }
+
+  function splitPlatformFromModel(value) {
+    const text = String(value || "").trim();
+    const match = text.match(/^(.*)\s*\(([^)]+)\)\s*$/);
+    if (!match) return { model: text, platform: "" };
+    return { model: match[1].trim(), platform: match[2].trim() };
+  }
+
+  function parseApplicationsFromDom() {
+    if (!HAS_DOM) return [];
+    const apps = [];
+    const cards = Array.from(document.querySelectorAll("#sku-fitments .card"));
+    if (cards.length) {
+      cards.forEach((card) => {
+        const make = String(
+          card.querySelector(".t")?.textContent || ""
+        ).trim();
+        if (!make) return;
+        const items = Array.from(card.querySelectorAll("ul.fitment-list li"));
+        items.forEach((item) => {
+          const link = item.querySelector("a");
+          const modelText = String(
+            link?.textContent || item.childNodes[0]?.textContent || ""
+          ).trim();
+          if (!modelText) return;
+          const split = splitPlatformFromModel(modelText);
+          const smallText = String(
+            item.querySelector("small")?.textContent || ""
+          ).trim();
+          const years = extractYearRange(smallText);
+          apps.push({
+            make,
+            model: split.model,
+            platform: split.platform,
+            yearFrom: years.yearFrom,
+            yearTo: years.yearTo,
+          });
+        });
+      });
+    }
+    if (!apps.length) {
+      const items = Array.from(document.querySelectorAll("#sku-fitments li"));
+      items.forEach((item) => {
+        const raw = String(item.textContent || "").replace(/\s+/g, " ").trim();
+        if (!raw) return;
+        const years = extractYearRange(raw);
+        const cleaned = raw.replace(/\b(19|20)\d{2}\b/g, "").trim();
+        const parts = cleaned.split(" ").filter(Boolean);
+        if (parts.length < 2) return;
+        const make = parts.shift();
+        const model = parts.join(" ");
+        apps.push({
+          make,
+          model,
+          yearFrom: years.yearFrom,
+          yearTo: years.yearTo,
+        });
+      });
+    }
+    return normalizeApplications(apps);
+  }
+
+  function collectApplications(data) {
+    const fromData = mergeApplications(
+      data.applications || [],
+      data.fitments || []
+    );
+    const fromDom = parseApplicationsFromDom();
+    return mergeApplications(fromData, fromDom);
+  }
+
+  function formatApplicationLabel(app) {
+    const platform = app.platform || app.generation || "";
+    const yearRange = formatYearRange(app.yearFrom, app.yearTo);
+    const parts = [esc(app.model || "")];
+    if (platform) parts.push(`(${esc(platform)})`);
+    if (yearRange) parts.push(`- ${esc(yearRange)}`);
+    return parts.join(" ").trim();
+  }
+
+  function buildApplicationsList(applications, limit) {
+    const list = Array.isArray(applications) ? applications.slice() : [];
+    list.sort((a, b) => {
+      const makeCmp = String(a.make).localeCompare(String(b.make), "nl");
+      if (makeCmp !== 0) return makeCmp;
+      return String(a.model).localeCompare(String(b.model), "nl");
+    });
+    const grouped = new Map();
+    list.forEach((app) => {
+      if (!app.make) return;
+      if (!grouped.has(app.make)) grouped.set(app.make, []);
+      grouped.get(app.make).push(app);
+    });
+
+    const totalCount = list.length;
+    const limitValue = Number.isFinite(limit) ? limit : 30;
+    let remaining = limitValue;
+    const items = [];
+    Array.from(grouped.keys()).forEach((make) => {
+      if (remaining <= 0) return;
+      const models = grouped.get(make) || [];
+      models.sort((a, b) =>
+        String(a.model).localeCompare(String(b.model), "nl")
+      );
+      const slice = models.slice(0, remaining);
+      remaining -= slice.length;
+      if (!slice.length) return;
+      const modelItems = slice
+        .map((app) => `<li>${formatApplicationLabel(app)}</li>`)
+        .join("");
+      items.push(`<li><strong>${esc(make)}</strong><ul>${modelItems}</ul></li>`);
+    });
+
+    const shownCount = Math.min(totalCount, limitValue - remaining);
+    const note =
+      totalCount > shownCount
+        ? `<p>En meer toepassingen beschikbaar. Gebruik de filters of zoekfunctie om sneller te vinden.</p>`
+        : "";
+    const html = items.length
+      ? `<ul>${items.join("")}</ul>${note}`
+      : `<p>Toepassingen worden ingeladen. Controleer de lijst zodra deze beschikbaar is.</p>`;
+    return { html, totalCount, shownCount };
+  }
+
   function collectGenerationLinks(makeSlug, modelSlug) {
     if (!HAS_DOM) return [];
     const links = [];
@@ -636,6 +812,10 @@ console.log("[seo] loaded", location.pathname);
       );
       const range = yearRangeFromFitments(kit?.fitments || []);
       const pick = pickFromFitments(kit?.fitments || []);
+      const applications = mergeApplications(
+        data.applications || [],
+        kit?.fitments || []
+      );
       const sets = mergeSets(data.sets || [], [{ sku, type, axle }]);
       return {
         ...data,
@@ -644,6 +824,9 @@ console.log("[seo] loaded", location.pathname);
         yearFrom: data.yearFrom || range.yearFrom || null,
         yearTo: data.yearTo || range.yearTo || null,
         sets,
+        applications,
+        fitments: kit?.fitments || data.fitments || [],
+        axle: axle || data.axle || "",
       };
     } catch (err) {
       return data;
@@ -681,6 +864,7 @@ console.log("[seo] loaded", location.pathname);
         null,
       sku: fromAttr.sku || fromPage.sku || fromUrl.sku || fromH1.sku || "",
       sets: mergeSets(fromPage.sets || []),
+      applications: fromPage.applications || [],
       makeModel: fromH1.makeModel || "",
       makeSlug: fromUrl.makeSlug || "",
       modelSlug: fromUrl.modelSlug || "",
@@ -1265,78 +1449,105 @@ console.log("[seo] loaded", location.pathname);
 
   function buildSetBlocks(data) {
     const ctx = buildContext(data);
-    const axleText = ctx.axle ? `de ${axleLabel(ctx.axle)}` : "de vooras of achteras";
+    const sku =
+      ctx.sku ||
+      normalizeSku(HAS_DOM ? location.pathname : "") ||
+      "HV-SET";
+    const skuHtml = esc(sku);
     const typeText = typeLabel(ctx.setType);
+    const isReplacement = ctx.setType === "replacement";
+    const axleLabelText = ctx.axle ? axleLabel(ctx.axle) : "";
+    const axleLower = axleLabelText ? axleLabelText.toLowerCase() : "";
+
+    const applications = collectApplications(data);
+    const listInfo = buildApplicationsList(applications, 30);
+
+    const introOptions = isReplacement
+      ? [
+          `Set ${skuHtml} is bedoeld als vervangingsveren wanneer de originele veren zijn ingezakt`,
+          `Set ${skuHtml} vervangt de originele veren en helpt de rijhoogte weer op niveau te brengen`,
+          `Met set ${skuHtml} kies je voor vervangingsveren die een vaste basis geven bij belading`,
+        ]
+      : [
+          `Set ${skuHtml} is ontworpen om extra ondersteuning te geven wanneer het voertuig zwaarder wordt belast`,
+          `Met set ${skuHtml} blijft de rijhoogte beter op peil zodra de belasting toeneemt`,
+          `Set ${skuHtml} biedt extra draagkracht bij belading of trekgewicht zonder de basisvering volledig te vervangen`,
+        ];
+    const typeSentence = isReplacement
+      ? `Dit is een ${typeText} set die de originele veren vervangt en de rijhoogte herstelt`
+      : `Dit is een ${typeText} set met focus op ondersteuning bij belading, zonder dat je de basisvering hoeft te wisselen`;
 
     const intro = paragraph([
-      pickVariant("set_intro_open", [
-        `Set ${ctx.skuHtml} is een ${typeText} oplossing voor de ${ctx.makeModelHtml} en richt zich op extra ondersteuning wanneer de belasting stijgt`,
-        `Met ${ctx.skuHtml} kies je voor ${typeText} die de ${ctx.makeModelHtml} ondersteunt zonder het karakter van de auto te veranderen`,
-        `De ${ctx.skuHtml} set is bedoeld als ${typeText} voor de ${ctx.makeModelHtml} en helpt de rijhoogte beter op peil te houden`,
-      ]),
-      `De toepassing is afgestemd op ${axleText}, zodat de ondersteuning precies op de juiste plek werkt`,
-      `Gebruik ${ctx.skuHtml} vooral wanneer je regelmatig met lading rijdt, een trekhaak gebruikt of extra uitrusting meeneemt`,
+      pickVariant(
+        isReplacement ? "set_intro_open_rep" : "set_intro_open_assist",
+        introOptions
+      ),
+      typeSentence,
+      `Hieronder vind je alle toepassingen van set ${skuHtml}, zodat je direct ziet of jouw uitvoering erbij staat`,
+      `Controleer altijd bouwjaar en uitvoering in de lijst voordat je bestelt`,
     ]);
 
-    const application = paragraph([
-      pickVariant("set_apply_open", [
-        `Deze set is ontwikkeld voor ${axleText} van de ${ctx.makeModelHtml} en geeft vooral effect zodra de auto merkbaar zwaarder wordt belast`,
-        `Op ${axleText} van de ${ctx.makeModelHtml} biedt ${ctx.skuHtml} extra draagkracht zonder dat je de originele ophanging hoeft te vervangen`,
-        `Voor ${axleText} van de ${ctx.makeModelHtml} helpt ${ctx.skuHtml} om de rijhoogte stabiel te houden bij wisselende belading`,
-      ]),
-      `Bij variabele belasting werkt de ondersteuning mee zodra er druk op de as komt, terwijl bij constante belading de basis steviger voelt`,
-      `Controleer bouwjaar en uitvoering zodat ${ctx.skuHtml} past bij jouw ${ctx.makeModelHtml}`,
-    ]);
+    const applicationsIntro = applications.length
+      ? paragraph([
+          `De toepassingen zijn gegroepeerd per merk en model om sneller te kunnen scannen`,
+          `Zo zie je in een oogopslag of set ${skuHtml} past bij jouw voertuig`,
+        ])
+      : "";
 
-    const ride = paragraph([
-      pickVariant("set_ride_open", [
-        `Na montage voelt de ${ctx.makeModelHtml} rustiger aan bij bochten en drempels, vooral wanneer de auto beladen is`,
-        `Met ${ctx.skuHtml} blijft de ${ctx.makeModelHtml} stabieler op de snelweg en reageert hij voorspelbaarder bij belading`,
-        `De ${ctx.makeModelHtml} krijgt met ${ctx.skuHtml} meer stabiliteit zonder dat het dagelijks comfort onnodig hard wordt`,
+    const applicationsBlock = `${applicationsIntro}${listInfo.html}`;
+
+    const axleBlock = axleLabelText
+      ? paragraph([
+          `Deze set is bedoeld voor de ${axleLower}, zodat de extra ondersteuning precies op de juiste plek werkt`,
+          `Montage is doorgaans binnen enkele uren mogelijk, afhankelijk van bereikbaarheid en uitvoering`,
+        ])
+      : "";
+
+    const noticeable = paragraph([
+      pickVariant("set_notice_open", [
+        `Je merkt het effect vooral wanneer het voertuig beladen is of wanneer er met trekgewicht wordt gereden`,
+        `Bij belading of extra uitrusting merk je dat de auto minder inzakt en rustiger reageert`,
+        `De ondersteuning wordt vooral merkbaar bij belading, trekhaakgebruik of extra uitrusting`,
       ]),
+      `Zonder belading blijft het karakter grotendeels gelijk, terwijl de stabiliteit bij belasting toeneemt`,
       `Het doel is meer controle en minder deinen, niet een stugge rijervaring`,
-    ]);
-
-    const install = paragraph([
-      pickVariant("set_install_open", [
-        `Montage van ${ctx.skuHtml} is doorgaans binnen enkele uren klaar, afhankelijk van bereikbaarheid en aspositie`,
-        `De montage van ${ctx.skuHtml} vraagt nauwkeurig werk, maar blijft beperkt tot de bestaande ophanging`,
-        `Voor ${ctx.skuHtml} is montage vaak een dagdeel werk, afhankelijk van uitvoering en gereedschap`,
-      ]),
-      `Na montage volstaat een visuele controle op bevestiging en rijhoogte na de eerste rit`,
     ]);
 
     const faq = buildFaq([
       {
-        q: `Past ${ctx.skuHtml} op elke uitvoering van de ${ctx.makeModel}?`,
+        q: `Verandert set ${sku} het comfort wanneer je leeg rijdt?`,
         a: paragraph([
-          `Controleer altijd bouwjaar, uitvoering en aspositie van de ${ctx.makeModelHtml}`,
-          `De set is specifiek afgestemd en past alleen op de varianten die zijn vermeld`,
+          `De set werkt vooral wanneer de belasting toeneemt, waardoor het comfort leeg meestal vergelijkbaar blijft`,
+          `Bij belading voelt het voertuig rustiger en stabieler aan`,
         ]),
       },
       {
-        q: `Is ${ctx.skuHtml} geschikt bij zware belading?`,
+        q: `Hoe weet ik of set ${sku} past bij mijn uitvoering?`,
         a: paragraph([
-          `Ja, ${ctx.skuHtml} is ontworpen om extra ondersteuning te geven wanneer de ${ctx.makeModelHtml} zwaarder wordt belast`,
-          `Bij constante zware inzet kan een zwaardere set of vervangingsveren beter passen`,
+          `Gebruik de toepassingenlijst en controleer bouwjaar en uitvoering zorgvuldig`,
+          `Bij twijfel kun je de setgegevens vergelijken met de specificaties van jouw voertuig`,
         ]),
       },
     ]);
 
     const specItems = [];
-    if (ctx.sku) specItems.push(`<li>SKU: ${ctx.skuHtml}</li>`);
+    if (sku) specItems.push(`<li>SKU: ${skuHtml}</li>`);
     if (ctx.setType) specItems.push(`<li>Type: ${typeText}</li>`);
-    if (ctx.axle) specItems.push(`<li>Aspositie: ${axleLabel(ctx.axle)}</li>`);
+    if (ctx.axle) specItems.push(`<li>Aspositie: ${axleLabelText}</li>`);
     if (ctx.yearRange) specItems.push(`<li>Bouwjaren: ${ctx.yearRangeHtml}</li>`);
     const specs = specItems.length ? `<ul>${specItems.join("")}</ul>` : "";
 
     const blocks = [
-      makeBlock(`set-intro`, `Set ${ctx.sku}`, intro),
-      makeBlock("set-application", "Toepassing", application),
-      makeBlock("set-ride", "Rijgedrag", ride),
-      makeBlock("set-install", "Montage indicatie", install),
-      makeBlock("set-faq", "FAQ", faq),
+      makeBlock("set-intro", `Set ${sku} hulpveren`, intro),
+      makeBlock("set-applications", "Toepassingen van deze set", applicationsBlock),
     ];
+
+    if (axleBlock) {
+      blocks.push(makeBlock("set-axle", "As en montage", axleBlock));
+    }
+
+    blocks.push(makeBlock("set-notice", "Wanneer merkbaar", noticeable));
+    blocks.push(makeBlock("set-faq", "Mini-FAQ", faq));
 
     if (specs) {
       blocks.push(makeBlock("set-specs", "Set-overzicht", specs));
@@ -1345,10 +1556,11 @@ console.log("[seo] loaded", location.pathname);
     const reserve = [
       makeBlock(
         "set-tips",
-        "Praktische tip",
+        "Praktische tips bij belading",
         paragraph([
-          `Voor ${axleText} werkt ${ctx.skuHtml} het best wanneer de lading gelijkmatig wordt verdeeld`,
-          `Een stabiele verdeling helpt de ${ctx.makeModelHtml} om recht te blijven staan`,
+          `Plaats zware lading zo dicht mogelijk bij de as en verdeel het gewicht gelijkmatig`,
+          `Een stabiele verdeling helpt de set beter te werken en houdt het voertuig rustiger`,
+          `Controleer bandenspanning en maximale aslast om de ondersteuning optimaal te benutten`,
         ]),
         true
       ),
