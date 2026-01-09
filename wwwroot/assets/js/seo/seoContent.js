@@ -373,6 +373,17 @@ console.log("[seo] loaded", location.pathname);
   }
 
   function formatYearRange(yearFrom, yearTo) {
+    const y1 = Number(yearFrom) || null;
+    let y2 = Number(yearTo) || null;
+    if (y2 === 0 || y2 === 9999) y2 = null;
+    if (!y1 && !y2) return "";
+    if (y1 && !y2) return `${y1}heden`;
+    if (!y1 && y2) return `${y2}`;
+    if (y1 === y2) return `${y1}`;
+    return `${y1}${y2}`;
+  }
+
+  function formatYearRangeLong(yearFrom, yearTo) {
     if (!yearFrom && !yearTo) return "";
     if (yearFrom && yearTo && yearFrom !== yearTo) {
       return `${yearFrom} tot ${yearTo}`;
@@ -644,12 +655,13 @@ console.log("[seo] loaded", location.pathname);
             item.querySelector("small")?.textContent || ""
           ).trim();
           const years = extractYearRange(smallText);
+          const hasHeden = /heden/i.test(smallText);
           apps.push({
             make,
             model: split.model,
             platform: split.platform,
             yearFrom: years.yearFrom,
-            yearTo: years.yearTo,
+            yearTo: hasHeden ? null : years.yearTo,
           });
         });
       });
@@ -660,6 +672,7 @@ console.log("[seo] loaded", location.pathname);
         const raw = String(item.textContent || "").replace(/\s+/g, " ").trim();
         if (!raw) return;
         const years = extractYearRange(raw);
+        const hasHeden = /heden/i.test(raw);
         const cleaned = raw.replace(/\b(19|20)\d{2}\b/g, "").trim();
         const parts = cleaned.split(" ").filter(Boolean);
         if (parts.length < 2) return;
@@ -669,7 +682,7 @@ console.log("[seo] loaded", location.pathname);
           make,
           model,
           yearFrom: years.yearFrom,
-          yearTo: years.yearTo,
+          yearTo: hasHeden ? null : years.yearTo,
         });
       });
     }
@@ -934,7 +947,7 @@ console.log("[seo] loaded", location.pathname);
       (make && model && `${make} ${model}`) || make || model || "dit model";
     const generation = String(data.generation || "").trim();
     const generationLabel = generation || "deze uitvoering";
-    const yearRange = formatYearRange(data.yearFrom, data.yearTo);
+    const yearRange = formatYearRangeLong(data.yearFrom, data.yearTo);
     const yearPhrase = yearRange ? `voor bouwjaren ${yearRange}` : "voor meerdere bouwjaren";
     const sets = mergeSets(data.sets || []);
     const hasReplacement = sets.some((set) => set.type === "replacement");
