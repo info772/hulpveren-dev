@@ -171,6 +171,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 	const PRODUCT_LABEL = { hv: "hulpveren", nr: "luchtvering", ls: "verlagingsveren" };
 
 	const pathLower = location.pathname.toLowerCase();
+  const IS_SET_PAGE = /^\/hulpveren\/hv-\d{6}\/?$/.test(pathLower);
 	const CURRENT_FAMILY = pathLower.startsWith(NR_BASE)
 	  ? "nr"
 	  : pathLower.startsWith(LS_BASE)
@@ -201,6 +202,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const MONTAGE_URL = "/montage";
   const MODEL_SLUG_CACHE = new Map();
   const MODEL_INDEX_CACHE = new Map();
+
+  if (IS_SET_PAGE) {
+    document.documentElement.classList.add("is-set-page");
+  }
 
 
 
@@ -1851,6 +1856,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     // Als de footer op deze pagina niet bestaat â†’ klaar
     if (!brandsEl && !modelsEl && !yearEl) return;
 
+    if (IS_SET_PAGE && brandsEl) {
+      const section = brandsEl.closest("section") || brandsEl.parentElement;
+      if (section) section.remove();
+    }
+
     const brandEntries = Array.from(safeMakes.entries()).sort((a, b) =>
       a[1].label.localeCompare(b[1].label, "nl")
     );
@@ -1872,7 +1882,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     );
 
     // ---- Merken: hv-footer-brands ----
-    if (brandsEl) {
+    if (brandsEl && !IS_SET_PAGE) {
       const maxBrands = 24;
       const frag = document.createDocumentFragment();
 
@@ -1956,7 +1966,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   async function applyFooterFallback(base, family = "hv") {
-    if (family !== "hv") return;
+    if (family !== "hv" || IS_SET_PAGE) return;
 
     const brandsEl = document.getElementById("hv-footer-brands");
     const modelsEl = document.getElementById("hv-footer-models");
