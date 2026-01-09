@@ -89,3 +89,8 @@
     font-size: 15px;
   }
 }
+
+/* Hide brand grid on set pages */
+.is-set-page section:has(#hv-footer-brands) {
+  display: none !important;
+}

@@ -1302,7 +1302,13 @@ console.log("[seo] loaded", location.pathname);
   }
 
   function init() {
-    if (!HAS_DOM || SEO_STATE.init) return;
+    if (!HAS_DOM) return;
+    const path = (location.pathname || "").toLowerCase();
+    const isSetPage = /^\/hulpveren\/hv-\d{6}\/?$/.test(path);
+    if (isSetPage) {
+      document.documentElement.classList.add("is-set-page");
+    }
+    if (SEO_STATE.init) return;
     SEO_STATE.init = true;
     const start = () => {
       renderSeo();
