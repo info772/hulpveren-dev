@@ -1545,6 +1545,35 @@ body.nav-open .hv2-burger{
   z-index: 2 !important;
 }
 
+@media (max-width: 900px){
+  .menu-open .plate-search{
+    display: none !important;
+  }
+  #site-header .nav-drawer{
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    max-width: 520px;
+    padding-inline: 18px;
+  }
+  #site-header .nav-shell{
+    width: 100%;
+  }
+  #site-header .nav-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+  #site-header .nav-link{
+    justify-content: center;
+    width: 100%;
+    padding: 12px 10px;
+  }
+}
+
 @media (min-width: 1024px){
   #site-header .hv2-nav-layer{
     position: static !important;

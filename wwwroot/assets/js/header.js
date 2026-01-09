@@ -128,6 +128,7 @@
     const mobile = isMobileNav();
     header.classList.toggle("hv2-open", open);
     document.body.classList.toggle("nav-open", mobile && open);
+    document.documentElement.classList.toggle("menu-open", mobile && open);
     if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
     if (overlay) overlay.setAttribute("aria-hidden", mobile && open ? "false" : "true");
     if (drawer) drawer.setAttribute("aria-hidden", mobile ? (open ? "false" : "true") : "false");
@@ -142,6 +143,7 @@
     const drawer = root.querySelector("[data-hv2-drawer]");
     setNavState(header, toggle, overlay, drawer, false);
     document.body.classList.remove("nav-open");
+    document.documentElement.classList.remove("menu-open");
     header.classList.remove("hv2-open");
     root.querySelectorAll(".hv-mega-panel, .mega-panel").forEach((panel) => {
       panel.hidden = true;
