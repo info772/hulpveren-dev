@@ -53,11 +53,18 @@ console.log("[seo] loaded", location.pathname);
     return "rear";
   }
 
-  function introText(springApplication) {
+  function isCamperMake(makeSlug) {
+    const campers = ["transit", "sprinter", "jumper", "boxer", "ducato"];
+    return campers.includes(String(makeSlug || "").toLowerCase());
+  }
+
+  function introText(springApplication, ctx = {}) {
+    const camper = isCamperMake(ctx.makeSlug);
     if (springApplication === "replacement" || springApplication === "full_replacement") {
       return "Onze vervangingsveren vervangen de originele veren, herstellen de rijhoogte en vormen een structurele oplossing bij doorgezakte veren.";
     }
-    return "Onze hulpveren ondersteunen de bestaande vering, geven extra draagvermogen bij belading, aanhanger of camperombouw en laten de originele veren zitten.";
+    const usage = camper ? "camperombouw of zware camperinrichting" : "belading, caravan, aanhanger of trekgewicht";
+    return `Onze hulpveren ondersteunen de bestaande vering, geven extra draagvermogen bij ${usage} en laten de originele veren zitten.`;
   }
 
   function axleText(axle) {
@@ -114,7 +121,7 @@ console.log("[seo] loaded", location.pathname);
   }
 
   function renderSet(info, ctx) {
-    const intro = introText(info.springApplication);
+    const intro = introText(info.springApplication, ctx);
     const sd = sdBlock(info);
     const bullets = bulletList(info);
     const axle = axleText(info.axle || (ctx && ctx.axleConfig));
@@ -142,14 +149,14 @@ console.log("[seo] loaded", location.pathname);
     if (Object.keys(byType).length === 1) {
       const key = Object.keys(byType)[0];
       const info = byType[key][0];
-      blocks.push(`<section class="seo-block"><h2>${makeModel} sets</h2><p class="seo-intro">${introText(key)}</p>${bulletList(info)}</section>`);
+      blocks.push(`<section class="seo-block"><h2>${makeModel} sets</h2><p class="seo-intro">${introText(key, ctx)}</p>${bulletList(info)}</section>`);
     } else {
       Object.entries(byType).forEach(([key, list]) => {
         const label = key === "replacement" || key === "full_replacement" ? "Vervangingsveren" : "Hulpveren";
         blocks.push(
           `<section class="seo-block">
             <h3>${label} voor ${makeModel}</h3>
-            <p class="seo-intro">${introText(key)}</p>
+            <p class="seo-intro">${introText(key, ctx)}</p>
             <div class="seo-kits">${list
               .map(
                 (info) =>

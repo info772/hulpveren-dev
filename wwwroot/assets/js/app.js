@@ -641,6 +641,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     applyHeadFixes();
   }
   setTimeout(applyHeadFixes, 200);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", adjustSetPageH1, { once: true });
+  } else {
+    adjustSetPageH1();
+  }
   if (DEBUG) {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", () => {
@@ -1834,6 +1839,34 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     // Voor merken/overzicht mag JS de title wel zetten
     document.title = t;
+  }
+
+  function adjustSetPageH1() {
+    const path = (location.pathname || "").toLowerCase();
+    let family = null;
+    if (/\/verlagingsveren\/ls-\d+/.test(path)) family = "ls";
+    else if (/\/luchtvering\/nr-\d+/.test(path)) family = "nr";
+    else if (/\/hulpveren\/hv-\d+/.test(path)) family = "hv";
+    if (!family) return;
+
+    const m = path.match(/(ls|nr|hv)-\d+/);
+    const sku = m ? m[0].toUpperCase() : null;
+    const h1 = document.querySelector("h1");
+    if (!h1 || !sku) return;
+
+    let base = h1.textContent.trim();
+    const crumbs = Array.from(document.querySelectorAll(".crumbs a")).map((a) =>
+      a.textContent.trim()
+    );
+    if (crumbs.length >= 2) {
+      const model = crumbs.pop();
+      const make = crumbs.pop();
+      const familyLabel = family === "ls" ? "verlagen" : family === "nr" ? "luchtvering" : "hulpveren";
+      base = `${make} ${model} ${familyLabel}`;
+    }
+    if (!base.toLowerCase().includes(sku.toLowerCase())) {
+      h1.textContent = `${base} – ${sku.toUpperCase()}`;
+    }
   }
 
   /* ================== Footer: merken + modellen ================== */
@@ -4685,8 +4718,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .filter(Boolean)
       .join("");
     const filtersBlock = filtersMarkup
-      ? `<div class="filters">${filtersMarkup}</div>`
+      ? `<div class="filters" id="hv-filters">${filtersMarkup}</div>`
       : "";
+
+    const seoHtml = hvSeoRenderModel(allPairs, {
+      makeLabel,
+      modelLabel,
+      makeSlug,
+      modelSlug,
+    });
 
     app.innerHTML = wrap(`
       <div class="crumbs">
@@ -4704,11 +4744,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
         ${plateInfoHtml}
 
+        ${seoHtml || ""}
+
         ${filtersBlock}
 
         <div id="model-grid" class="grid" data-set-list></div>
       `);
-
       if (plateContext && plateContext.yearRange && plateContext.yearRange.label) {
         const yearLabel = document.getElementById("flt-year-label");
         if (yearLabel) yearLabel.textContent = plateContext.yearRange.label;
@@ -6148,24 +6189,27 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     const filtersBlock = filters.length
-      ? `<div class="filters" style="display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px 0;">${filters.join(
+      ? `<div class="filters" id="nr-filters" style="display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px 0;">${filters.join(
           ""
         )}</div>`
       : "";
+
+    const seoHtml = hvSeoRenderModel(pairs, { makeLabel, modelLabel, makeSlug, modelSlug });
 
       app.innerHTML = wrap(`
         <div class="crumbs">
           <a href="${NR_BASE}">Luchtvering</a> >
           <a href="${NR_BASE}/${esc(makeSlug)}">${esc(makeLabel)}</a> >
           ${esc(modelLabel)}
-        </div>
-        <h1>${esc(makeLabel)} ${esc(modelLabel)} luchtvering</h1>
-        ${plateInfoHtml}
-        ${filtersBlock}
-        <div class="grid" id="nr-grid">
-          ${cardsBlock}
-        </div>
-      `);
+      </div>
+      <h1>${esc(makeLabel)} ${esc(modelLabel)} luchtvering</h1>
+      ${plateInfoHtml}
+      ${seoHtml || ""}
+      ${filtersBlock}
+      <div class="grid" id="nr-grid">
+        ${cardsBlock}
+      </div>
+    `);
 
     const grid = document.getElementById("nr-grid");
     const cards = Array.prototype.slice.call(
