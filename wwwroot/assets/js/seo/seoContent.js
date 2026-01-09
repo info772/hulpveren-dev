@@ -202,6 +202,7 @@ console.log("[seo] loaded", location.pathname);
     generation: { min: 600, max: 900 },
     model: { min: 900, max: 1300 },
     set: { min: 300, max: 500 },
+    brand: { min: 450, max: 700 },
   };
 
   const MAD_MAP = {
@@ -300,7 +301,9 @@ console.log("[seo] loaded", location.pathname);
 
   function normalizePageType(value) {
     const val = String(value || "").toLowerCase();
-    if (val === "model" || val === "generation" || val === "set") return val;
+    if (val === "model" || val === "generation" || val === "set" || val === "brand") {
+      return val;
+    }
     return "";
   }
 
@@ -423,6 +426,7 @@ console.log("[seo] loaded", location.pathname);
     if (setParam) out.sku = normalizeSku(setParam);
     const match = path.match(/\b(?:hv|sd|nr|ls)-\d{3,6}\b/i);
     if (match) out.sku = normalizeSku(match[0]);
+    const isSetPath = /^\/hulpveren\/hv-\d{6}\/?$/i.test(path);
     if (segments[0] === "hulpveren") {
       if (segments[1] && normalizeSku(segments[1])) {
         out.sku = normalizeSku(segments[1]);
@@ -436,6 +440,16 @@ console.log("[seo] loaded", location.pathname);
       if (segments[3]) {
         out.generationSlug = segments[3];
         out.generation = slugToLabel(segments[3]);
+      }
+      if (
+        segments.length === 2 &&
+        segments[1] &&
+        !out.sku &&
+        !isSetPath
+      ) {
+        out.makeSlug = segments[1];
+        out.make = slugToLabel(segments[1]);
+        out.pageType = "brand";
       }
     }
     const yearFromSlug = extractYearRange(out.generationSlug || "");
@@ -713,12 +727,17 @@ console.log("[seo] loaded", location.pathname);
     if (data.sku) return "set";
     if (data.make && data.model && data.generation) return "generation";
     if (data.make && data.model) return "model";
+    if (data.make && !data.model && !data.generation) return "brand";
     return "";
   }
 
   function shouldDelay(data, pageType) {
     if (!HAS_DOM) return false;
     if (pageType === "set") return false;
+    if (pageType === "brand") {
+      if (!data.make && SEO_STATE.retries < MAX_RETRIES) return true;
+      return false;
+    }
     if ((!data.make || !data.model) && SEO_STATE.retries < MAX_RETRIES) return true;
     if (!data.sets.length && SEO_STATE.retries < MAX_RETRIES) return true;
     return false;
@@ -1097,6 +1116,153 @@ console.log("[seo] loaded", location.pathname);
     return { blocks, reserve, target: TARGETS.model };
   }
 
+  function buildBrandBlocks(data, options) {
+    const ctx = buildContext(data);
+    const path = HAS_DOM ? (location.pathname || "").toLowerCase() : "";
+    const segments = path.split("/").filter(Boolean);
+    const brandSlug = data.makeSlug || segments[1] || "";
+    const h1Text = HAS_DOM ? (document.querySelector("h1")?.textContent || "") : "";
+    const h1Clean = h1Text.replace(/\s+/g, " ").trim();
+    const brandName = (data.make || h1Clean || slugToLabel(brandSlug) || "dit merk").trim();
+    const brandHtml = esc(brandName);
+
+    const modelLinks = [];
+    if (HAS_DOM && brandSlug) {
+      const selector = `a[href^="/hulpveren/${brandSlug}/"]`;
+      const anchors = Array.from(document.querySelectorAll(selector));
+      const seen = new Set();
+      anchors.forEach((a) => {
+        const href = a.getAttribute("href") || "";
+        const match = href.match(
+          new RegExp(`^/hulpveren/${brandSlug}/([^/]+)/?$`, "i")
+        );
+        if (!match) return;
+        const modelSlug = match[1];
+        if (!modelSlug || seen.has(modelSlug)) return;
+        seen.add(modelSlug);
+        modelLinks.push({
+          href: href.endsWith("/") ? href : `${href}/`,
+          label: slugToLabel(modelSlug),
+        });
+      });
+    }
+
+    const intro = paragraph([
+      pickVariant("brand_intro_open", [
+        `De ${brandHtml} modellenpagina helpt je snel de juiste hulpveren of vervangingsveren te vinden, afgestemd op bouwjaar en uitvoering`,
+        `Op deze ${brandHtml} merkpagina vind je per model de beschikbare hulpveren en vervangingsveren, zodat je gericht kunt vergelijken`,
+        `Voor ${brandHtml} bundelen we de beschikbare hulpveren en vervangingsveren per model, met focus op gebruik en belading`,
+      ]),
+      `Je ziet welke sets per model beschikbaar zijn en waar je op let bij wisselende belading of trekhaakgebruik`,
+      `Gebruik de modelpagina’s om de juiste set voor jouw ${brandHtml} te kiezen en controleer altijd bouwjaar en uitvoering`,
+    ]);
+
+    const situations = paragraph([
+      pickVariant("brand_situations_open", [
+        `Bij ${brandHtml} zien we dat belading, aanhanger of caravan extra druk op de achteras geeft en de rijhoogte zichtbaar kan laten zakken`,
+        `Voor ${brandHtml} ontstaat doorzakken vaak bij combinatie van gewicht, extra uitrusting en veelvuldig gebruik op lange ritten`,
+        `Wie met een ${brandHtml} regelmatig laadt of trekt, merkt soms instabiliteit of een minder strakke lijn bij drempels en bochten`,
+      ]),
+      `De balans tussen comfort en draagkracht verschilt per uitvoering, waardoor de ene ${brandHtml} sneller ondersteuning nodig heeft dan de andere`,
+      `Belangrijk is dat je niet alleen naar een enkel moment kijkt, maar naar het gemiddelde gebruik van jouw ${brandHtml}`,
+      `Daarom werken we per model, zodat je makkelijker de set vindt die past bij jouw situatie`,
+    ]);
+
+    const solutions = paragraph([
+      pickVariant("brand_solutions_open", [
+        `Hulpveren ondersteunen de originele vering van jouw ${brandHtml} en worden vooral actief zodra de belasting toeneemt`,
+        `Met hulpveren blijft de ${brandHtml} beter op niveau bij belading, terwijl de originele veren intact blijven`,
+        `Hulpveren voor ${brandHtml} geven extra draagkracht wanneer dat nodig is, zonder het dagelijkse comfort onnodig te veranderen`,
+      ]),
+      `Vervangingsveren zijn bedoeld wanneer de originele veren van de ${brandHtml} zijn ingezakt of wanneer je een vaste, hogere basisondersteuning zoekt`,
+      `De beste keuze hangt af van hoe vaak je zwaar beladen rijdt en hoe je ${brandHtml} in de praktijk gebruikt`,
+    ]);
+
+    const guidance = paragraph([
+      pickVariant("brand_guidance_open", [
+        `Rijd je incidenteel beladen met jouw ${brandHtml}, dan is extra ondersteuning die pas actief wordt vaak de meest comfortabele keuze`,
+        `Voor ${brandHtml} met wisselende lading is het prettig wanneer de ondersteuning pas toeneemt zodra de belasting hoger is`,
+        `Als jouw ${brandHtml} vooral leeg rijdt, maar af en toe zwaar wordt belast, kies je liever een oplossing die flexibel meewerkt`,
+      ]),
+      `Bij vrijwel constante zware belading is een set met meer basisondersteuning logischer, zeker als de originele veren vermoeid zijn`,
+      `Controleer bouwjaar en uitvoering op de modelpagina om zeker te weten dat de set past bij jouw ${brandHtml}`,
+    ]);
+
+    const faqItems = [
+      {
+        q: `Veranderen hulpveren het comfort van mijn ${brandName}?`,
+        a: paragraph([
+          `Hulpveren voor ${brandHtml} werken mee met de originele vering en worden vooral merkbaar bij belading`,
+          `Leeg blijft het comfort grotendeels zoals je gewend bent, terwijl beladen meer stabiliteit ontstaat`,
+        ]),
+      },
+      {
+        q: `Wanneer kies ik vervangingsveren voor mijn ${brandName}?`,
+        a: paragraph([
+          `Vervangingsveren zijn bedoeld als de originele veren van jouw ${brandHtml} zijn doorgezakt`,
+          `Ze geven een vaste basis en passen bij constante of zware belading`,
+        ]),
+      },
+      {
+        q: `Hoe weet ik welke set past bij mijn ${brandName}?`,
+        a: paragraph([
+          `Gebruik de modelpagina om bouwjaar, uitvoering en aspositie te controleren`,
+          `Zo weet je zeker dat de set aansluit op jouw ${brandHtml} uitvoering`,
+        ]),
+      },
+    ];
+
+    const faq = buildFaq((options && options.shortFaq) ? faqItems.slice(0, 2) : faqItems);
+
+    const linkItems = modelLinks.slice(0, 10).map((link) => {
+      const label = esc(link.label || "dit model");
+      const href = esc(link.href || "#");
+      return `<li><a href="${href}">Hulpveren voor ${brandHtml} ${label}</a></li>`;
+    });
+    const linksBlock = linkItems.length
+      ? `${paragraph([
+          `Bekijk de populairste ${brandHtml} modellen en klik door naar de juiste sets per bouwjaar en uitvoering`,
+        ])}${linkItems.length ? `<ul>${linkItems.join("")}</ul>` : ""}`
+      : "";
+
+    const blocks = [
+      makeBlock("brand-intro", `Hulpveren voor ${brandName}`, intro),
+      makeBlock("brand-situations", "Veelvoorkomende situaties", situations),
+      makeBlock(
+        "brand-solutions",
+        `Welke oplossing past bij jouw ${brandName}?`,
+        solutions
+      ),
+      makeBlock("brand-guidance", "Keuzehulp", guidance),
+      makeBlock("brand-faq", "Mini-FAQ", faq),
+    ];
+
+    if (linksBlock) {
+      blocks.push(
+        makeBlock(
+          "brand-links",
+          `Populaire ${brandName} modellen`,
+          linksBlock
+        )
+      );
+    }
+
+    const reserve = [
+      makeBlock(
+        "brand-tips",
+        "Praktische tips bij belading",
+        paragraph([
+          `Voor ${brandHtml} helpt het om lading zo dicht mogelijk bij de as te plaatsen en gelijkmatig te verdelen`,
+          `Een stabiele verdeling zorgt dat de ${brandHtml} rechter blijft staan en minder beweegt bij drempels`,
+          `Controleer ook bandenspanning en maximale aslast, zodat de set optimaal kan werken`,
+        ]),
+        true
+      ),
+    ];
+
+    return { blocks, reserve, target: TARGETS.brand };
+  }
+
   function buildSetBlocks(data) {
     const ctx = buildContext(data);
     const axleText = ctx.axle ? `de ${axleLabel(ctx.axle)}` : "de vooras of achteras";
@@ -1213,7 +1379,7 @@ console.log("[seo] loaded", location.pathname);
     return base;
   }
 
-  function ensureContainer() {
+  function ensureContainer(pageType) {
     if (!HAS_DOM) return null;
     let container = document.querySelector("#seo-content");
     if (!container) container = document.querySelector("[data-seo-content]");
@@ -1232,6 +1398,13 @@ console.log("[seo] loaded", location.pathname);
     container.id = "seo-content";
     container.setAttribute("data-seo-content", "1");
     container.classList.add("seo-wrap");
+    if (pageType === "brand") {
+      const grid = document.querySelector(".grid");
+      if (grid && grid.parentElement) {
+        grid.parentElement.insertBefore(container, grid);
+        return container;
+      }
+    }
     main.appendChild(container);
     return container;
   }
@@ -1263,12 +1436,20 @@ console.log("[seo] loaded", location.pathname);
       if (pageType === "generation") result = buildGenerationBlocks(data);
       if (pageType === "model") result = buildModelBlocks(data);
       if (pageType === "set") result = buildSetBlocks(data);
+      if (pageType === "brand") result = buildBrandBlocks(data);
       if (!result) return;
+
+      if (pageType === "brand" && result.target) {
+        const baseCount = wordCount(blocksToHtml(result.blocks));
+        if (baseCount > result.target.max) {
+          result = buildBrandBlocks(data, { shortFaq: true });
+        }
+      }
 
       const blocks = adjustBlocks(result.blocks, result.reserve, result.target);
       const html = blocksToHtml(blocks);
       const count = wordCount(html);
-      const container = ensureContainer();
+      const container = ensureContainer(pageType);
       if (!container) return;
       if (!container.innerHTML || force || SEO_STATE.lastHtml !== html) {
         container.innerHTML = html;
