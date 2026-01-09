@@ -2693,6 +2693,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return urls;
   }
 
+  function sdFallbackForKit(kit) {
+    const sku = String(kit?.sku || "").toUpperCase();
+    if (!sku.startsWith("SD-")) return "";
+    const pos = String(kit?.position || kit?.axle || kit?.axleConfig || "").toLowerCase();
+    if (pos.includes("front") || pos.includes("voor")) {
+      return "/assets/img/HV-kits/sd-front.png";
+    }
+    if (pos.includes("rear") || pos.includes("achter")) {
+      return "/assets/img/HV-kits/sd-rear.png";
+    }
+    return "/assets/img/HV-kits/sd-front.png";
+  }
+
   /* ================== Aandrijving-detectie (FWD/RWD/4WD) ================== */
 
   const DRIVE_SYNONYMS = {
@@ -3901,7 +3914,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const platformText = platformNL(f);
     const price = priceLabel(k?.pricing_nl?.total_inc_vat_from_eur);
     const imgSrc =
-      imageCandidatesForSku(k?.sku)?.[0] || "/assets/img/HV-kits/HV-0.jpg";
+      imageCandidatesForSku(k?.sku)?.[0] || sdFallbackForKit(k) || "/assets/img/HV-kits/HV-0.jpg";
     const sku = k?.sku || "";
     const skuLower = sku.toLowerCase();
     const fitmentRangeLabel = formatAldocRangeLabel(
