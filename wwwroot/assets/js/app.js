@@ -53,6 +53,26 @@ const ensureSeoContent = () => {
   return SeoContentPromise;
 };
 
+const shouldAutoLoadSeo = () => {
+  if (typeof window === "undefined" || typeof document === "undefined") return false;
+  const path = location.pathname || "";
+  return path.includes("/hulpveren/");
+};
+
+const initSeoAutoLoad = () => {
+  if (!shouldAutoLoadSeo()) return;
+  const run = () => {
+    ensureSeoContent();
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run, { once: true });
+  } else {
+    run();
+  }
+};
+
+initSeoAutoLoad();
+
 const buildSeoInfos = (pairs, ctx, mod) => {
   const list = Array.isArray(pairs) ? pairs : [];
   return list
@@ -4814,7 +4834,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     })();
 
     renderCards();
-    hvSeoRenderModel(allPairs, { makeLabel, modelLabel }, app);
   }
 
   function renderPlateRouteError(message) {
@@ -5880,7 +5899,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     renderCards();
 
-    hvSeoRenderModel(allPairs, { makeLabel, modelLabel }, app);
   }
 
   /* ================== Data ophalen & app starten ================== */
