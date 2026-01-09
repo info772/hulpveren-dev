@@ -3849,7 +3849,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
                 ${engines.map((x) => `<div>${esc(x)}</div>`).join("")}
               </div>
             </div>`
-      : "";
+      : `<div class="enginebox"><b>Motoren:</b> <span>Allemaal</span></div>`;
 
     return `
         <article class="card product" data-sku="${esc(
