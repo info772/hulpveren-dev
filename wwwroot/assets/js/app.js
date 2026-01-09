@@ -6,6 +6,8 @@
 
 // === SEO module (optional) ===
 let SeoContent = null;
+let SeoContentPromise = null;
+const SEO_SCRIPT_URL = "/assets/js/seo/seoContent.js";
 try {
   SeoContent = require("./seo/seoContent.js");
 } catch (e) {
@@ -14,6 +16,124 @@ try {
 if (SeoContent && typeof window !== "undefined") {
   window.SeoContent = SeoContent;
 }
+
+const resolveSeoContent = () => {
+  if (SeoContent) return SeoContent;
+  if (typeof window === "undefined") return null;
+  if (window.SeoContent) {
+    SeoContent = window.SeoContent;
+    return SeoContent;
+  }
+  if (window.HVSeo) {
+    SeoContent = window.HVSeo;
+    window.SeoContent = SeoContent;
+    return SeoContent;
+  }
+  return null;
+};
+
+const ensureSeoContent = () => {
+  const existing = resolveSeoContent();
+  if (existing) return Promise.resolve(existing);
+  if (SeoContentPromise) return SeoContentPromise;
+  if (typeof document === "undefined") return Promise.resolve(null);
+  SeoContentPromise = new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.defer = true;
+    const existingScript = document.querySelector(
+      'script[src*="/assets/js/seo/seoContent.js"]'
+    );
+    script.src = existingScript?.getAttribute("src") || SEO_SCRIPT_URL;
+    script.onload = () => resolve(resolveSeoContent());
+    script.onerror = () => resolve(null);
+    const head = document.head || document.getElementsByTagName("head")[0];
+    if (head) head.appendChild(script);
+    else document.documentElement.appendChild(script);
+  });
+  return SeoContentPromise;
+};
+
+const buildSeoInfos = (pairs, ctx, mod) => {
+  const list = Array.isArray(pairs) ? pairs : [];
+  return list
+    .map((pair) => {
+      const kit = pair?.k || pair;
+      if (!kit) return null;
+      const fitment = pair?.f || null;
+      const derived =
+        typeof mod.getKitDerived === "function" ? mod.getKitDerived(kit) : {};
+      const axle =
+        typeof mod.getAxleConfig === "function"
+          ? mod.getAxleConfig(kit, fitment, ctx)
+          : "";
+      return {
+        sku: kit?.sku || "",
+        springApplication: derived?.springApplication || "assist",
+        solutionLevel: derived?.solutionLevel || "standard",
+        includesFSD: !!derived?.includesFSD,
+        axle: axle || "rear",
+        kit,
+      };
+    })
+    .filter(Boolean);
+};
+
+const insertSeoOnce = (target, html) => {
+  if (!target || !html) return;
+  if (target.dataset && target.dataset.seoRendered === "1") return;
+  target.insertAdjacentHTML("beforeend", html);
+  if (target.dataset) target.dataset.seoRendered = "1";
+};
+
+const hvSeoRenderBrand = (ctx, target) => {
+  const mod = resolveSeoContent();
+  if (mod && typeof mod.renderBrand === "function") {
+    let html = "";
+    try {
+      html = mod.renderBrand(ctx);
+    } catch (err) {
+      html = "";
+    }
+    if (target) insertSeoOnce(target, html);
+    return html || "";
+  }
+  if (target) {
+    ensureSeoContent().then((loaded) => {
+      if (!loaded || typeof loaded.renderBrand !== "function") return;
+      let html = "";
+      try {
+        html = loaded.renderBrand(ctx);
+      } catch (err) {
+        html = "";
+      }
+      insertSeoOnce(target, html);
+    });
+  }
+  return "";
+};
+
+const hvSeoRenderModel = (pairs, ctx, target) => {
+  const renderWith = (mod) => {
+    if (!mod || typeof mod.renderModel !== "function") return "";
+    const infos = buildSeoInfos(pairs, ctx, mod);
+    if (!infos.length) return "";
+    try {
+      return mod.renderModel(infos, ctx) || "";
+    } catch (err) {
+      return "";
+    }
+  };
+  const mod = resolveSeoContent();
+  const html = renderWith(mod);
+  if (target) insertSeoOnce(target, html);
+  if (!html && target) {
+    ensureSeoContent().then((loaded) => {
+      const loadedHtml = renderWith(loaded);
+      insertSeoOnce(target, loadedHtml);
+    });
+  }
+  return html || "";
+};
 
 
 
@@ -3563,8 +3683,7 @@ if (SeoContent && typeof window !== "undefined") {
       ${grid(rows || `<p>Geen modellen gevonden.</p>`)}
     `);
 
-    const seoBrand = hvSeoRenderBrand({ makeLabel: entry.label });
-    if (seoBrand) app.insertAdjacentHTML("beforeend", seoBrand);
+    hvSeoRenderBrand({ makeLabel: entry.label }, app);
   }
 
   function buildModelCard(pair, idx, options) {
@@ -4560,16 +4679,6 @@ if (SeoContent && typeof window !== "undefined") {
         <div id="model-grid" class="grid" data-set-list></div>
       `);
 
-      const kitsForSeo = (allPairs || []).map(p => p.k || p).filter(Boolean);
-      const page = { makeLabel, modelLabel };
-      const seoHtml = window.SeoContent
-        ? window.SeoContent.renderModel({ page, kits: kitsForSeo })
-        : "";
-
-      if (seoHtml) {
-        app.insertAdjacentHTML("beforeend", seoHtml12);
-      }
-
       if (plateContext && plateContext.yearRange && plateContext.yearRange.label) {
         const yearLabel = document.getElementById("flt-year-label");
         if (yearLabel) yearLabel.textContent = plateContext.yearRange.label;
@@ -4705,16 +4814,7 @@ if (SeoContent && typeof window !== "undefined") {
     })();
 
     renderCards();
-
-    const kitsForSeo2 = (allPairs || []).map(p => p.k || p).filter(Boolean);
-    const pageForSeo2 = { makeLabel, modelLabel };
-    const seoHtml12 = window.SeoContent
-      ? window.SeoContent.renderModel({ page, kits: kitsForSeo2 })
-      : "";
-
-    if (seoHtml12) {
-      app.insertAdjacentHTML("beforeend", seoHtml12);
-    }
+    hvSeoRenderModel(allPairs, { makeLabel, modelLabel }, app);
   }
 
   function renderPlateRouteError(message) {
@@ -5780,10 +5880,7 @@ if (SeoContent && typeof window !== "undefined") {
 
     renderCards();
 
-    const seoHtml = hvSeoRenderModel(allPairs, { makeLabel, modelLabel });
-    if (seoHtml) {
-      app.insertAdjacentHTML("beforeend", seoHtml);
-    }
+    hvSeoRenderModel(allPairs, { makeLabel, modelLabel }, app);
   }
 
   /* ================== Data ophalen & app starten ================== */

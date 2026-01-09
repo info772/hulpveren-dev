@@ -5,7 +5,9 @@ console.log("seoContent.js geladen");
   if (typeof module === "object" && module.exports) {
     module.exports = factory();
   } else {
-    root.HVSeo = factory();
+    const seo = factory();
+    root.HVSeo = seo;
+    if (!root.SeoContent) root.SeoContent = seo;
   }
 })(typeof self !== "undefined" ? self : this, function () {
   const MAD_MAP = {
