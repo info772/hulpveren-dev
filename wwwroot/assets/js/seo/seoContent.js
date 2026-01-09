@@ -372,15 +372,15 @@ console.log("[seo] loaded", location.pathname);
     return { yearFrom: Math.min(...years), yearTo: Math.max(...years) };
   }
 
-  function formatYearRange(yearFrom, yearTo) {
+  function formatYearRangeNL(yearFrom, yearTo) {
     const y1 = Number(yearFrom) || null;
-    let y2 = Number(yearTo) || null;
-    if (y2 === 0 || y2 === 9999) y2 = null;
+    const y2 = Number(yearTo) || null;
+
     if (!y1 && !y2) return "";
-    if (y1 && !y2) return `${y1}heden`;
+    if (y1 && (!y2 || y2 === 0 || y2 === 9999)) return `${y1} tot heden`;
     if (!y1 && y2) return `${y2}`;
     if (y1 === y2) return `${y1}`;
-    return `${y1}${y2}`;
+    return `${y1} tot ${y2}`;
   }
 
   function formatYearRangeLong(yearFrom, yearTo) {
@@ -700,7 +700,7 @@ console.log("[seo] loaded", location.pathname);
 
   function formatApplicationLabel(app) {
     const platform = app.platform || app.generation || "";
-    const yearRange = formatYearRange(app.yearFrom, app.yearTo);
+    const yearRange = formatYearRangeNL(app.yearFrom, app.yearTo);
     const parts = [esc(app.model || "")];
     if (platform) parts.push(`(${esc(platform)})`);
     if (yearRange) parts.push(`- ${esc(yearRange)}`);
