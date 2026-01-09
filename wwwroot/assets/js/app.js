@@ -3562,6 +3562,9 @@ if (SeoContent && typeof window !== "undefined") {
       <h1>${esc(entry.label)} hulpveren</h1>
       ${grid(rows || `<p>Geen modellen gevonden.</p>`)}
     `);
+
+    const seoBrand = hvSeoRenderBrand({ makeLabel: entry.label });
+    if (seoBrand) app.insertAdjacentHTML("beforeend", seoBrand);
   }
 
   function buildModelCard(pair, idx, options) {
@@ -5776,6 +5779,11 @@ if (SeoContent && typeof window !== "undefined") {
     })();
 
     renderCards();
+
+    const seoHtml = hvSeoRenderModel(allPairs, { makeLabel, modelLabel });
+    if (seoHtml) {
+      app.insertAdjacentHTML("beforeend", seoHtml);
+    }
   }
 
   /* ================== Data ophalen & app starten ================== */
