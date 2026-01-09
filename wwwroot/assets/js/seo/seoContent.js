@@ -1488,25 +1488,32 @@ console.log("[seo] loaded", location.pathname);
     const isSetPage = /^\/hulpveren\/hv-\d{6}\/?$/.test(path);
     if (isSetPage) {
       document.documentElement.classList.add("is-set-page");
-      if (HAS_DOM) {
-        const brandsEl = document.getElementById("hv-footer-brands");
-        if (brandsEl) {
-          const section = brandsEl.closest("section") || brandsEl.parentElement;
-          if (section && section.parentElement) {
-            section.parentElement.removeChild(section);
-          } else if (section) {
-            section.remove();
-          }
-        } else {
-          const headings = Array.from(document.querySelectorAll("h1,h2,h3"));
-          const target = headings.find(
-            (h) => (h.textContent || "").trim().toLowerCase() === "hulpveren per merk"
-          );
-          if (target) {
-            const section = target.closest("section") || target.parentElement;
-            if (section) section.remove();
-          }
+      const removeBrandsGrid = () => {
+        const headings = Array.from(document.querySelectorAll("h1,h2,h3"));
+        const target = headings.find(
+          (h) => (h.textContent || "").trim().toLowerCase() === "hulpveren per merk"
+        );
+        if (!target) return false;
+        const section =
+          target.closest("section.wrap") ||
+          target.closest("section") ||
+          target.parentElement;
+        if (section) {
+          section.remove();
+          console.log("[seo] removed brands grid on set page");
+          return true;
         }
+        return false;
+      };
+      removeBrandsGrid();
+      const obs = new MutationObserver(() => {
+        if (removeBrandsGrid()) {
+          obs.disconnect();
+        }
+      });
+      if (document.body) {
+        obs.observe(document.body, { childList: true, subtree: true });
+        window.setTimeout(() => obs.disconnect(), 5000);
       }
     }
     if (SEO_STATE.init) return;
