@@ -56,7 +56,7 @@ const ensureSeoContent = () => {
 const shouldAutoLoadSeo = () => {
   if (typeof window === "undefined" || typeof document === "undefined") return false;
   const path = location.pathname || "";
-  return path.includes("/hulpveren/");
+  return /\/(hulpveren|luchtvering|verlagingsveren)(\/|$)/i.test(path);
 };
 
 const initSeoAutoLoad = () => {

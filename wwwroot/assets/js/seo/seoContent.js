@@ -307,6 +307,50 @@ console.log("[seo] loaded", location.pathname);
     return "";
   }
 
+  function getProductTypeFromPath(path) {
+    const p = String(path || "").toLowerCase();
+    if (p.startsWith("/luchtvering")) return "nr";
+    if (p.startsWith("/verlagingsveren")) return "ls";
+    return "hv";
+  }
+
+  function normalizeProductType(value) {
+    const val = String(value || "").toLowerCase();
+    if (!val) return "";
+    if (val.startsWith("nr") || val.includes("lucht")) return "nr";
+    if (val.startsWith("ls") || val.includes("verlag")) return "ls";
+    if (val.startsWith("hv") || val.includes("hulp")) return "hv";
+    return "";
+  }
+
+  function getProductBasePath(productType) {
+    if (productType === "nr") return "luchtvering";
+    if (productType === "ls") return "verlagingsveren";
+    return "hulpveren";
+  }
+
+  function isSetPath(path, productType) {
+    const base = getProductBasePath(productType);
+    if (productType === "nr") {
+      return new RegExp(`^/${base}/nr-\\d{6}/?$`, "i").test(path || "");
+    }
+    if (productType === "ls") {
+      return new RegExp(`^/${base}/ls-\\d{6}/?$`, "i").test(path || "");
+    }
+    return new RegExp(`^/${base}/(?:hv|sd)-\\d{6}/?$`, "i").test(path || "");
+  }
+
+  function productLabel(productType) {
+    if (productType === "nr") return "luchtvering";
+    if (productType === "ls") return "verlagingsveren";
+    return "hulpveren";
+  }
+
+  function productLabelTitle(productType) {
+    const label = productLabel(productType);
+    return label.charAt(0).toUpperCase() + label.slice(1);
+  }
+
   function normalizeSku(value) {
     const m = String(value || "").match(/\b(?:HV|SD|NR|LS)-\d{3,6}\b/i);
     return m ? m[0].toUpperCase() : "";
@@ -343,6 +387,75 @@ console.log("[seo] loaded", location.pathname);
 
   function typeLabel(value) {
     return value === "replacement" ? "vervangingsveren" : "hulpveren";
+  }
+
+  function collectKitText(data, limit) {
+    if (!data) return "";
+    const parts = [];
+    [data.kitKind, data.kitKindNl, data.kitRemark, data.kitNotes].forEach(
+      (item) => {
+        if (item) parts.push(String(item));
+      }
+    );
+    const fitments = Array.isArray(data.fitments) ? data.fitments : [];
+    const max = Number.isFinite(limit) ? limit : 6;
+    for (let i = 0; i < Math.min(fitments.length, max); i += 1) {
+      const fitment = fitments[i];
+      if (fitment?.remark) parts.push(String(fitment.remark));
+      if (fitment?.notes) parts.push(String(fitment.notes));
+    }
+    return parts.join(" ").replace(/\s+/g, " ").trim();
+  }
+
+  function detectAirCircuit(data) {
+    const text = collectKitText(data, 20).toLowerCase();
+    if (!text) return "";
+    if (text.includes("double air circuit") || text.includes("double circuit")) {
+      return "double";
+    }
+    if (text.includes("single air circuit") || text.includes("single circuit")) {
+      return "single";
+    }
+    if (text.includes("dubbel luchtcircuit")) return "double";
+    if (text.includes("enkel luchtcircuit")) return "single";
+    return "";
+  }
+
+  function detectAirControl(data) {
+    const text = collectKitText(data, 20).toLowerCase();
+    if (!text) return "";
+    if (text.includes("control panel") || text.includes("bedieningspaneel")) {
+      return "panel";
+    }
+    if (text.includes("compressor")) return "compressor";
+    if (text.includes("ventiel") || text.includes("valve")) return "valve";
+    return "";
+  }
+
+  function extractLoweringSpec(data) {
+    const text = collectKitText(data, 10);
+    if (!text) return { front: null, rear: null, general: null };
+    const segments = text.split(/[.;,]/).map((seg) => seg.trim());
+    const hasLower = /lower|verlaging/i;
+    let front = null;
+    let rear = null;
+    let general = null;
+    segments.forEach((segment) => {
+      if (!segment || !hasLower.test(segment)) return;
+      const frontMatch = segment.match(
+        /(?:front|voor)[^0-9]{0,10}(\d{1,2})\s?mm/i
+      );
+      const rearMatch = segment.match(
+        /(?:rear|achter)[^0-9]{0,10}(\d{1,2})\s?mm/i
+      );
+      const generalMatch = segment.match(/(\d{1,2})\s?mm/i);
+      if (frontMatch && front === null) front = Number(frontMatch[1]);
+      if (rearMatch && rear === null) rear = Number(rearMatch[1]);
+      if (generalMatch && general === null) {
+        general = Number(generalMatch[1]);
+      }
+    });
+    return { front, rear, general };
   }
 
   function titleCase(value) {
@@ -403,6 +516,7 @@ console.log("[seo] loaded", location.pathname);
     const ds = host && host.dataset ? host.dataset : {};
     return {
       pageType: normalizePageType(ds.pageType),
+      productType: normalizeProductType(ds.productType || ds.product || ""),
       make: ds.make || ds.brand || "",
       model: ds.model || "",
       generation: ds.generation || ds.platform || "",
@@ -417,6 +531,7 @@ console.log("[seo] loaded", location.pathname);
     if (!raw || typeof raw !== "object") return {};
     return {
       pageType: normalizePageType(raw.pageType || raw.type),
+      productType: normalizeProductType(raw.productType || raw.product || raw.family || ""),
       make: raw.make || raw.brand || raw.makeLabel || "",
       model: raw.model || raw.modelLabel || "",
       generation: raw.generation || raw.platform || "",
@@ -432,16 +547,20 @@ console.log("[seo] loaded", location.pathname);
     if (!HAS_DOM) return {};
     const out = {};
     const path = location.pathname || "/";
-    const segments = path.split("/").filter(Boolean);
+    const rawSegments = path.split("/").filter(Boolean);
+    const segments = rawSegments.map((segment) => segment.toLowerCase());
+    const productType = getProductTypeFromPath(path);
+    const base = getProductBasePath(productType);
     const params = new URLSearchParams(location.search || "");
     const setParam = params.get("set") || params.get("sku") || "";
     if (setParam) out.sku = normalizeSku(setParam);
     const match = path.match(/\b(?:hv|sd|nr|ls)-\d{3,6}\b/i);
     if (match) out.sku = normalizeSku(match[0]);
-    const isSetPath = /^\/hulpveren\/hv-\d{6}\/?$/i.test(path);
-    if (segments[0] === "hulpveren") {
-      if (segments[1] && normalizeSku(segments[1])) {
-        out.sku = normalizeSku(segments[1]);
+    const isSetPathMatch = isSetPath(path, productType);
+    out.productType = productType;
+    if (segments[0] === base) {
+      if (rawSegments[1] && normalizeSku(rawSegments[1])) {
+        out.sku = normalizeSku(rawSegments[1]);
       }
       if (segments[1] && segments[2]) {
         out.makeSlug = segments[1];
@@ -457,7 +576,7 @@ console.log("[seo] loaded", location.pathname);
         segments.length === 2 &&
         segments[1] &&
         !out.sku &&
-        !isSetPath
+        !isSetPathMatch
       ) {
         out.makeSlug = segments[1];
         out.make = slugToLabel(segments[1]);
@@ -751,17 +870,16 @@ console.log("[seo] loaded", location.pathname);
     return { html, totalCount, shownCount };
   }
 
-  function collectGenerationLinks(makeSlug, modelSlug) {
+  function collectGenerationLinks(makeSlug, modelSlug, productType) {
     if (!HAS_DOM) return [];
     const links = [];
     const seen = new Set();
-    const anchors = Array.from(
-      document.querySelectorAll('a[href*="/hulpveren/"]')
-    );
+    const base = getProductBasePath(productType);
+    const anchors = Array.from(document.querySelectorAll("a[href]"));
     anchors.forEach((a) => {
       const href = a.getAttribute("href") || "";
       const match = href.match(
-        /\/hulpveren\/([^/]+)\/([^/]+)\/([^/]+)\//
+        new RegExp(`/${base}/([^/]+)/([^/]+)/([^/]+)/`, "i")
       );
       if (!match) return;
       const [, make, model, gen] = match;
@@ -840,6 +958,11 @@ console.log("[seo] loaded", location.pathname);
         applications,
         fitments: kit?.fitments || data.fitments || [],
         axle: axle || data.axle || "",
+        kitKind: kit?.kind_of_kit || "",
+        kitKindNl: kit?.kind_of_kit_nl || "",
+        kitRemark: kit?.remark || "",
+        kitNotes: kit?.notes || "",
+        kitApproval: kit?.approval_nl || kit?.approval || "",
       };
     } catch (err) {
       return data;
@@ -855,6 +978,11 @@ console.log("[seo] loaded", location.pathname);
     const data = {
       pageType:
         fromAttr.pageType || fromPage.pageType || fromUrl.pageType || "",
+      productType:
+        fromAttr.productType ||
+        fromPage.productType ||
+        fromUrl.productType ||
+        "",
       make: fromAttr.make || fromPage.make || fromUrl.make || fromH1.make || "",
       model:
         fromAttr.model || fromPage.model || fromUrl.model || fromH1.model || "",
@@ -882,6 +1010,12 @@ console.log("[seo] loaded", location.pathname);
       makeSlug: fromUrl.makeSlug || "",
       modelSlug: fromUrl.modelSlug || "",
     };
+
+    if (!data.productType) {
+      data.productType = getProductTypeFromPath(
+        HAS_DOM ? location.pathname : ""
+      );
+    }
 
     const domSets = [];
     if (HAS_DOM) {
@@ -930,7 +1064,10 @@ console.log("[seo] loaded", location.pathname);
 
   function shouldDelay(data, pageType) {
     if (!HAS_DOM) return false;
-    if (pageType === "set") return false;
+    if (pageType === "set") {
+      if (!data.applications?.length && SEO_STATE.retries < MAX_RETRIES) return true;
+      return false;
+    }
     if (pageType === "brand") {
       if (!data.make && SEO_STATE.retries < MAX_RETRIES) return true;
       return false;
@@ -998,7 +1135,9 @@ console.log("[seo] loaded", location.pathname);
       .join("");
   }
 
-  function buildGenerationBlocks(data) {
+  function buildGenerationBlocks(data, productType) {
+    if (productType === "nr") return buildGenerationBlocksNr(data);
+    if (productType === "ls") return buildGenerationBlocksLs(data);
     const ctx = buildContext(data);
     const typeSummary = ctx.hasHelper && ctx.hasReplacement
       ? "hulpveren en vervangingsveren"
@@ -1146,8 +1285,275 @@ console.log("[seo] loaded", location.pathname);
     return { blocks, reserve, target: TARGETS.generation };
   }
 
-  function buildModelBlocks(data) {
+  function buildGenerationBlocksNr(data) {
     const ctx = buildContext(data);
+    const label = productLabelTitle("nr");
+
+    const intro = paragraph([
+      pickVariant("nr_gen_intro_open", [
+        `Voor de ${ctx.makeModelHtml} ${ctx.generationHtml} ${ctx.yearPhrase} draait het om regelbare rijhoogte en comfort, zeker bij wisselend gebruik`,
+        `De ${ctx.makeModelHtml} ${ctx.generationHtml} ${ctx.yearPhrase} kan profiteren van luchtvering wanneer stabiliteit en hoogte-instelling belangrijk zijn`,
+        `Wie met de ${ctx.makeModelHtml} ${ctx.generationHtml} ${ctx.yearPhrase} rijdt, merkt dat instelbaarheid helpt bij comfort en controle`,
+      ]),
+      `Op deze pagina lees je hoe ${label.toLowerCase()} de ${ctx.makeModelHtml} ${ctx.generationHtml} ondersteunt en welke settypes beschikbaar zijn`,
+      `We benoemen bediening via ventielen of compressor en laten zien welke toepassingen passen bij jouw uitvoering`,
+    ]);
+
+    const problem = paragraph([
+      pickVariant("nr_gen_problem_open", [
+        `Bij de ${ctx.makeModelHtml} ${ctx.generationHtml} kunnen wisselende belading en trekgebruik het rijgedrag beinvloeden`,
+        `De ${ctx.makeModelHtml} ${ctx.generationHtml} kan bij zwaardere inzet minder stabiel aanvoelen, zeker bij langere ritten`,
+        `Veel rijders merken bij de ${ctx.makeModelHtml} ${ctx.generationHtml} dat comfort en rijhoogte veranderen door gebruik`,
+      ]),
+      `Camperombouw of bedrijfsinzet vraagt om een oplossing die meebeweegt met de situatie`,
+      `Daarom is regelbaarheid belangrijk: je past de ondersteuning aan zonder het karakter te verliezen`,
+    ]);
+
+    const solution = paragraph([
+      pickVariant("nr_gen_solution_open", [
+        `${label} gebruikt luchtbalgen om de rijhoogte van de ${ctx.makeModelHtml} ${ctx.generationHtml} instelbaar te maken`,
+        `Met ${label.toLowerCase()} kun je de druk aanpassen en de ${ctx.makeModelHtml} ${ctx.generationHtml} weer vlak laten rijden`,
+        `${label} geeft de ${ctx.makeModelHtml} ${ctx.generationHtml} extra flexibiliteit bij wisselend gebruik`,
+      ]),
+      `Bediening kan via handmatige ventielen of een compressor, afhankelijk van de set`,
+      `Zo stem je de ${ctx.makeModelHtml} ${ctx.generationHtml} af op belading en comfortwens`,
+    ]);
+
+    const usage = paragraph([
+      pickVariant("nr_gen_use_open", [
+        `Campergebruik vraagt om extra stabiliteit; luchtvering houdt de ${ctx.makeModelHtml} ${ctx.generationHtml} netjes op hoogte`,
+        `Voor bedrijfswagens is instelbare ondersteuning prettig bij laden en lossen`,
+        `Bij trekhaakgebruik helpt luchtvering om de ${ctx.makeModelHtml} ${ctx.generationHtml} vlak en voorspelbaar te houden`,
+      ]),
+      `Kies de bediening die bij jouw routine past: eenvoud met ventielen of gemak met compressor`,
+      `Controleer altijd uitvoering en bouwjaar voordat je een set selecteert`,
+    ]);
+
+    const ride = paragraph([
+      pickVariant("nr_gen_ride_open", [
+        `Met luchtvering voelt de ${ctx.makeModelHtml} ${ctx.generationHtml} rustiger aan, vooral bij wisselende druk`,
+        `De ${ctx.makeModelHtml} ${ctx.generationHtml} profiteert van progressieve ondersteuning en instelbaar comfort`,
+        `Na afstelling blijft de ${ctx.makeModelHtml} ${ctx.generationHtml} stabieler in bochten en bij zijwind`,
+      ]),
+      `Het rijcomfort blijft beheersbaar omdat je de druk kunt aanpassen aan de rit`,
+      `Zo ontstaat een balans tussen comfort en controle bij de ${ctx.makeModelHtml} ${ctx.generationHtml}`,
+    ]);
+
+    const install = paragraph([
+      pickVariant("nr_gen_install_open", [
+        `Montage van luchtvering voor de ${ctx.makeModelHtml} ${ctx.generationHtml} is doorgaans binnen een dagdeel klaar`,
+        `De ${ctx.makeModelHtml} ${ctx.generationHtml} krijgt extra componenten zoals leidingen en ventielen, dus nauwkeurigheid is belangrijk`,
+        `Voor de ${ctx.makeModelHtml} ${ctx.generationHtml} vraagt montage om zorgvuldige routing van leidingen`,
+      ]),
+      `Controleer na montage de druk en aansluitingen, en herhaal dit periodiek`,
+      `Kwaliteitssets zijn ontworpen voor langdurig gebruik en behoud van comfort`,
+    ]);
+
+    const faq = buildFaq([
+      {
+        q: `Kan ik de hoogte van de ${ctx.makeModel} ${ctx.generation} aanpassen?`,
+        a: paragraph([
+          `Ja, luchtvering is instelbaar via ventielen of een compressor, afhankelijk van de set`,
+          `Zo pas je de rijhoogte van de ${ctx.makeModelHtml} ${ctx.generationHtml} aan op gebruik`,
+        ]),
+      },
+      {
+        q: `Heb ik altijd een compressor nodig?`,
+        a: paragraph([
+          `Niet altijd; sommige sets werken met handmatige ventielen`,
+          `Kies de bediening die past bij jouw gebruik van de ${ctx.makeModelHtml} ${ctx.generationHtml}`,
+        ]),
+      },
+      {
+        q: `Is onderhoud nodig bij luchtvering?`,
+        a: paragraph([
+          `Controleer periodiek druk en aansluitingen`,
+          `Zo blijft de ${ctx.makeModelHtml} ${ctx.generationHtml} betrouwbaar en comfortabel`,
+        ]),
+      },
+    ]);
+
+    const setItems = ctx.sets.slice(0, 12).map((set) => {
+      const axle = set.axle ? ` - ${axleLabel(set.axle)}` : "";
+      return `<li>${esc(set.sku)} - ${productLabel("nr")}${axle}</li>`;
+    });
+    const setSummary = ctx.sets.length
+      ? `<p>Voor ${ctx.makeModelHtml} ${ctx.generationHtml} zijn ${ctx.sets.length} ${productLabel("nr")} set(s) beschikbaar.</p>`
+      : `<p>De setlijst voor ${ctx.makeModelHtml} ${ctx.generationHtml} wordt ingeladen op basis van beschikbare data.</p>`;
+    const setList = `${setSummary}${setItems.length ? `<ul>${setItems.join("")}</ul>` : ""}`;
+
+    const blocks = [
+      makeBlock(
+        "nr-gen-intro",
+        `${label} voor ${ctx.makeModel} ${ctx.generation}`,
+        intro
+      ),
+      makeBlock("nr-gen-problem", "Situatie bij wisselend gebruik", problem),
+      makeBlock("nr-gen-solution", "Oplossing: luchtvering", solution),
+      makeBlock("nr-gen-use", "Gebruikssituaties", usage),
+      makeBlock("nr-gen-ride", "Rijcomfort en techniek", ride),
+      makeBlock("nr-gen-install", "Montage en onderhoud", install),
+      makeBlock("nr-gen-faq", "Mini-FAQ", faq),
+      makeBlock(
+        "nr-gen-sets",
+        `Beschikbare sets voor ${ctx.makeModel} ${ctx.generation}`,
+        setList
+      ),
+    ];
+
+    const reserve = [
+      makeBlock(
+        "nr-gen-tips",
+        "Praktische tips bij afstellen",
+        paragraph([
+          `Begin met een neutrale druk en pas daarna aan op comfort en stabiliteit`,
+          `Controleer de ${ctx.makeModelHtml} ${ctx.generationHtml} na de eerste rit op lekkage`,
+          `Een correcte afstelling houdt de rijhoogte van de ${ctx.makeModelHtml} ${ctx.generationHtml} constant`,
+        ]),
+        true
+      ),
+    ];
+
+    return { blocks, reserve, target: TARGETS.generation };
+  }
+
+  function buildGenerationBlocksLs(data) {
+    const ctx = buildContext(data);
+    const label = productLabelTitle("ls");
+
+    const intro = paragraph([
+      pickVariant("ls_gen_intro_open", [
+        `Voor de ${ctx.makeModelHtml} ${ctx.generationHtml} ${ctx.yearPhrase} draait het om een lagere wegligging en sportieve uitstraling`,
+        `De ${ctx.makeModelHtml} ${ctx.generationHtml} ${ctx.yearPhrase} kan met verlagingsveren strakker en directer aanvoelen`,
+        `Wie de ${ctx.makeModelHtml} ${ctx.generationHtml} ${ctx.yearPhrase} sportiever wil maken, kijkt vaak naar verlagingsveren`,
+      ]),
+      `Op deze pagina lees je hoe ${label.toLowerCase()} de ${ctx.makeModelHtml} ${ctx.generationHtml} beinvloeden`,
+      `We benoemen techniek, comfort en montage zodat je de juiste set kiest`,
+    ]);
+
+    const why = paragraph([
+      pickVariant("ls_gen_why_open", [
+        `Verlagen geeft de ${ctx.makeModelHtml} ${ctx.generationHtml} een sportieve uitstraling en een lagere zwaartepunt`,
+        `Bij de ${ctx.makeModelHtml} ${ctx.generationHtml} zorgt verlagen vaak voor meer focus in bochten`,
+        `Veel rijders kiezen voor verlagingsveren om de ${ctx.makeModelHtml} ${ctx.generationHtml} strakker te laten sturen`,
+      ]),
+      `De exacte verlaging verschilt per set en uitvoering`,
+      `Daarom is vergelijken per bouwjaar belangrijk`,
+    ]);
+
+    const tech = paragraph([
+      pickVariant("ls_gen_tech_open", [
+        `Verlagingsveren zijn er met een lineair of progressief karakter, afhankelijk van de set`,
+        `Bij de ${ctx.makeModelHtml} ${ctx.generationHtml} bepaalt het veerkarakter hoe direct de auto reageert`,
+        `De techniek van verlagingsveren bepaalt hoe de ${ctx.makeModelHtml} ${ctx.generationHtml} zich in bochten gedraagt`,
+      ]),
+      `Lineaire veren voelen consistent, terwijl progressieve veren iets meebewegen bij oneffenheden`,
+      `Kies het karakter dat past bij jouw rijstijl`,
+    ]);
+
+    const comfort = paragraph([
+      pickVariant("ls_gen_comfort_open", [
+        `Met verlagingsveren voelt de ${ctx.makeModelHtml} ${ctx.generationHtml} sportiever, maar het comfort wordt vaak iets strakker`,
+        `De ${ctx.makeModelHtml} ${ctx.generationHtml} krijgt meer feedback van de weg, wat past bij sportief rijden`,
+        `Verlagen geeft de ${ctx.makeModelHtml} ${ctx.generationHtml} meer controle, met een kleine concessie in comfort`,
+      ]),
+      `De mate van verschil hangt af van set en dempers`,
+      `Kies daarom bewust als je dagelijks rijdt`,
+    ]);
+
+    const dampers = paragraph([
+      pickVariant("ls_gen_dampers_open", [
+        `Veel sets werken met standaarddempers, maar sportdempers kunnen beter aansluiten bij een lagere stand`,
+        `Voor de ${ctx.makeModelHtml} ${ctx.generationHtml} kan een combinatie met sportdempers extra stabiliteit geven`,
+        `Een goede dempercombinatie houdt de ${ctx.makeModelHtml} ${ctx.generationHtml} rustig bij hogere snelheid`,
+      ]),
+      `Controleer per set of er een advies voor dempers is`,
+      `Zo voorkom je ongewenste bewegingen en behoud je controle`,
+    ]);
+
+    const install = paragraph([
+      pickVariant("ls_gen_install_open", [
+        `Montage van verlagingsveren voor de ${ctx.makeModelHtml} ${ctx.generationHtml} is doorgaans binnen een dagdeel klaar`,
+        `De ${ctx.makeModelHtml} ${ctx.generationHtml} moet na montage worden uitgelijnd om het stuurgedrag te behouden`,
+        `Voor de ${ctx.makeModelHtml} ${ctx.generationHtml} is uitlijnen na montage essentieel`,
+      ]),
+      `Controleer bandenspanning en rijhoogte na de eerste rit`,
+      `Zo blijft de ${ctx.makeModelHtml} ${ctx.generationHtml} stabiel en voorspelbaar`,
+    ]);
+
+    const faq = buildFaq([
+      {
+        q: `Wordt de ${ctx.makeModel} ${ctx.generation} veel harder?`,
+        a: paragraph([
+          `De ${ctx.makeModelHtml} ${ctx.generationHtml} voelt sportiever en iets strakker aan`,
+          `Hoe groot het verschil is hangt af van set en demperkeuze`,
+        ]),
+      },
+      {
+        q: `Moet ik uitlijnen na montage?`,
+        a: paragraph([
+          `Ja, uitlijnen is belangrijk om het stuurgedrag van de ${ctx.makeModelHtml} ${ctx.generationHtml} goed te houden`,
+          `Het voorkomt extra bandenslijtage`,
+        ]),
+      },
+      {
+        q: `Past elke set op elke uitvoering van de ${ctx.makeModel} ${ctx.generation}?`,
+        a: paragraph([
+          `Controleer altijd bouwjaar en uitvoering voor de ${ctx.makeModelHtml} ${ctx.generationHtml}`,
+          `Zo weet je zeker dat de set passend is`,
+        ]),
+      },
+    ]);
+
+    const setItems = ctx.sets.slice(0, 12).map((set) => {
+      const axle = set.axle ? ` - ${axleLabel(set.axle)}` : "";
+      return `<li>${esc(set.sku)} - ${productLabel("ls")}${axle}</li>`;
+    });
+    const setSummary = ctx.sets.length
+      ? `<p>Voor ${ctx.makeModelHtml} ${ctx.generationHtml} zijn ${ctx.sets.length} ${productLabel("ls")} set(s) beschikbaar.</p>`
+      : `<p>De setlijst voor ${ctx.makeModelHtml} ${ctx.generationHtml} wordt ingeladen op basis van beschikbare data.</p>`;
+    const setList = `${setSummary}${setItems.length ? `<ul>${setItems.join("")}</ul>` : ""}`;
+
+    const blocks = [
+      makeBlock(
+        "ls-gen-intro",
+        `${label} voor ${ctx.makeModel} ${ctx.generation}`,
+        intro
+      ),
+      makeBlock("ls-gen-why", "Waarom verlagen?", why),
+      makeBlock("ls-gen-tech", "Techniek", tech),
+      makeBlock("ls-gen-comfort", "Rijcomfort", comfort),
+      makeBlock("ls-gen-dampers", "Combinatie met dempers", dampers),
+      makeBlock("ls-gen-install", "Montage en uitlijning", install),
+      makeBlock("ls-gen-faq", "Mini-FAQ", faq),
+      makeBlock(
+        "ls-gen-sets",
+        `Beschikbare sets voor ${ctx.makeModel} ${ctx.generation}`,
+        setList
+      ),
+    ];
+
+    const reserve = [
+      makeBlock(
+        "ls-gen-tips",
+        "Praktische tips na montage",
+        paragraph([
+          `Controleer na montage de rijhoogte van de ${ctx.makeModelHtml} ${ctx.generationHtml}`,
+          `Een proefrit helpt om de balans tussen comfort en sport goed te voelen`,
+          `Laat de ${ctx.makeModelHtml} ${ctx.generationHtml} altijd netjes uitlijnen`,
+        ]),
+        true
+      ),
+    ];
+
+    return { blocks, reserve, target: TARGETS.generation };
+  }
+
+  function buildModelBlocks(data, productType) {
+    if (productType === "nr") return buildModelBlocksNr(data);
+    if (productType === "ls") return buildModelBlocksLs(data);
+    const ctx = buildContext(data);
+    const productLabelUpper = productLabelTitle(productType || "hv");
     const typeSummary = ctx.hasHelper && ctx.hasReplacement
       ? "hulpveren en vervangingsveren"
       : ctx.hasReplacement
@@ -1175,7 +1581,11 @@ console.log("[seo] loaded", location.pathname);
       `Extra ondersteuning herstelt het niveau en helpt de ${ctx.makeModelHtml} weer stabiel te reageren bij drempels en bochten`,
     ]);
 
-    const genLinks = collectGenerationLinks(ctx.makeSlug, ctx.modelSlug);
+    const genLinks = collectGenerationLinks(
+      ctx.makeSlug,
+      ctx.modelSlug,
+      productType
+    );
     const linkLabels = genLinks.map((link) => link.label).filter(Boolean);
     const fallbackLabels = ["eerste bouwjaren", "midden serie", "nieuwste uitvoeringen"];
     const labels = [];
@@ -1212,7 +1622,7 @@ console.log("[seo] loaded", location.pathname);
         `Bij particulier gebruik van de ${ctx.makeModelHtml} wisselt de belasting, waardoor ondersteuning vooral op piekmomenten nodig is`,
       ]),
       `Zakelijk gebruik of intensieve inzet vraagt juist om constante ondersteuning, omdat de ${ctx.makeModelHtml} dan vrijwel altijd gewicht draagt`,
-      `Kijk daarom niet alleen naar één rit, maar naar het gemiddelde gebruik van jouw ${ctx.makeModelHtml}`,
+      `Kijk daarom niet alleen naar een rit, maar naar het gemiddelde gebruik van jouw ${ctx.makeModelHtml}`,
       `Een set die past bij jouw ritme zorgt voor rust en voorkomt dat de auto gaat deinen bij belading`,
     ]);
 
@@ -1232,7 +1642,7 @@ console.log("[seo] loaded", location.pathname);
           const items = genLinks.slice(0, 8).map((link) => {
             const label = esc(link.label || "deze generatie");
             const href = esc(link.href || "#");
-            return `<li><a href="${href}">Hulpveren voor ${ctx.makeModelHtml} ${label}</a></li>`;
+            return `<li><a href="${href}">${productLabelUpper} voor ${ctx.makeModelHtml} ${label}</a></li>`;
           });
           return `${paragraph([
             `Bekijk per generatie welke sets passen bij de ${ctx.makeModelHtml} en vergelijk bouwjaar en uitvoering voordat je bestelt`,
@@ -1277,7 +1687,7 @@ console.log("[seo] loaded", location.pathname);
     ]);
 
     const blocks = [
-      makeBlock("model-intro", `Hulpveren voor ${ctx.makeModel}`, intro),
+      makeBlock("model-intro", `${productLabelUpper} voor ${ctx.makeModel}`, intro),
       makeBlock("model-why", `Waarom ondersteuning bij ${ctx.makeModel}`, why),
       makeBlock("model-generations", "Verschillen per generatie", generations),
       makeBlock("model-usage", "Particulier vs zakelijk gebruik", usage),
@@ -1313,8 +1723,325 @@ console.log("[seo] loaded", location.pathname);
     return { blocks, reserve, target: TARGETS.model };
   }
 
-  function buildBrandBlocks(data, options) {
+  function buildModelBlocksNr(data) {
     const ctx = buildContext(data);
+    const label = productLabelTitle("nr");
+    const labelLower = label.toLowerCase();
+
+    const intro = paragraph([
+      pickVariant("nr_model_intro_open", [
+        `De ${ctx.makeModelHtml} ${ctx.yearPhrase} kent meerdere generaties, waardoor rijhoogte en comfort per bouwjaar anders aanvoelen`,
+        `Voor de ${ctx.makeModelHtml} ${ctx.yearPhrase} verschillen gewicht en onderstel per generatie, wat invloed heeft op de keuze voor luchtvering`,
+        `Wie met een ${ctx.makeModelHtml} rijdt, merkt dat instelbaarheid per generatie verschilt, zeker bij wisselende inzet`,
+      ]),
+      `Op deze modelpagina bundelen we ${labelLower} sets voor de ${ctx.makeModelHtml}, zodat je per generatie gericht kunt vergelijken`,
+      `We leggen uit wanneer regelbare hoogte zinvol is en hoe je de bediening afstemt op jouw gebruik`,
+      `Gebruik de verschillen per generatie als startpunt en controleer daarna bouwjaar en uitvoering`,
+    ]);
+
+    const why = paragraph([
+      pickVariant("nr_model_why_open", [
+        `Bij de ${ctx.makeModelHtml} draait ${labelLower} om controle over rijhoogte en comfort wanneer de belasting wisselt`,
+        `De ${ctx.makeModelHtml} wordt vaak gebruikt met wisselende belasting, waardoor instelbare ondersteuning voordeel geeft`,
+        `Voor de ${ctx.makeModelHtml} spelen comfort en stabiliteit een grote rol, zeker bij langere ritten en variabel gebruik`,
+      ]),
+      `Met instelbare druk blijft de ${ctx.makeModelHtml} beter op niveau en voelt het stuurgedrag rustiger`,
+      `Je behoudt het dagelijkse rijgevoel, maar kunt de hoogte aanpassen wanneer dat nodig is`,
+    ]);
+
+    const genLinks = collectGenerationLinks(ctx.makeSlug, ctx.modelSlug, "nr");
+    const linkLabels = genLinks.map((link) => link.label).filter(Boolean);
+    const fallbackLabels = ["eerste bouwjaren", "midden serie", "nieuwste uitvoeringen"];
+    const labels = [];
+    linkLabels.forEach((labelText) => {
+      if (labels.length < 3 && !labels.includes(labelText)) labels.push(labelText);
+    });
+    while (labels.length < 3) {
+      labels.push(fallbackLabels[labels.length]);
+    }
+
+    const genSections = labels.map((labelText, index) => {
+      const clean = String(labelText || "").trim();
+      const labelPhrase = /\d/.test(clean) ? `bouwjaren ${clean}` : clean;
+      const labelHtml = esc(clean || "deze generatie");
+      const labelPhraseHtml = esc(labelPhrase || "deze generatie");
+      const body = paragraph([
+        pickVariant(`nr_model_gen_${index}_open`, [
+          `Binnen de ${ctx.makeModelHtml} zie je bij ${labelPhraseHtml} vaak verschillen in gewicht en afstemming, wat invloed heeft op de juiste ${labelLower}`,
+          `Voor de ${ctx.makeModelHtml} ${labelPhraseHtml} geldt dat onderstel en ruimte per uitvoering verschillen, waardoor setkeuze afwijkt`,
+          `De ${ctx.makeModelHtml} ${labelPhraseHtml} heeft zijn eigen balans tussen comfort en instelbaarheid, waardoor bediening en settype kunnen wisselen`,
+        ]),
+        `Luchtvering maakt het mogelijk de hoogte van de ${ctx.makeModelHtml} per situatie af te stemmen`,
+        `Let bij ${labelHtml} goed op bediening en aspositie, omdat die bepalen welke set past`,
+        `Met de juiste keuze blijft de ${ctx.makeModelHtml} stabieler en voorspelbaar bij wisselend gebruik`,
+      ]);
+      return `<section><h3>${labelHtml}</h3>${body}</section>`;
+    });
+    const generations = genSections.join("");
+
+    const usage = paragraph([
+      pickVariant("nr_model_usage_open", [
+        `Particulier gebruik van de ${ctx.makeModelHtml} draait vaak om vakanties, weekendritten en incidenteel trekgewicht`,
+        `Wie de ${ctx.makeModelHtml} prive gebruikt, merkt vooral verschil bij camperombouw, fietsendragers of een caravan`,
+        `Bij particulier gebruik van de ${ctx.makeModelHtml} wisselt de belasting, waardoor instelbaarheid prettig is`,
+      ]),
+      `Zakelijke inzet vraagt juist om constante stabiliteit, omdat de ${ctx.makeModelHtml} vaker beladen rijdt`,
+      `Kies daarom de bediening die past bij jouw ritme en hoe vaak je druk wilt aanpassen`,
+    ]);
+
+    const choice = paragraph([
+      pickVariant("nr_model_choice_open", [
+        `Luchtvering voor de ${ctx.makeModelHtml} is er met handmatige ventielen of bediening via compressor`,
+        `Voor de ${ctx.makeModelHtml} kun je kiezen tussen eenvoudige ventielen en extra gemak met compressor`,
+        `Bij de ${ctx.makeModelHtml} bepaalt de bediening hoe snel je de druk kunt aanpassen`,
+      ]),
+      `Een enkel circuit regelt beide zijden tegelijk, terwijl een dubbel circuit links en rechts apart kan balanceren`,
+      `Controleer in de setdetails welke bediening en aansluiting passen bij jouw ${ctx.makeModelHtml}`,
+    ]);
+
+    const linkBlock = genLinks.length
+      ? (() => {
+          const items = genLinks.slice(0, 8).map((link) => {
+            const labelText = esc(link.label || "deze generatie");
+            const href = esc(link.href || "#");
+            return `<li><a href="${href}">${label} voor ${ctx.makeModelHtml} ${labelText}</a></li>`;
+          });
+          return `${paragraph([
+            `Bekijk per generatie welke ${labelLower} sets passen bij de ${ctx.makeModelHtml} en vergelijk uitvoering en bouwjaar`,
+          ])}${items.length ? `<ul>${items.join("")}</ul>` : ""}`;
+        })()
+      : "";
+
+    const faq = buildFaq([
+      {
+        q: `Kan ik de rijhoogte van de ${ctx.makeModel} aanpassen?`,
+        a: paragraph([
+          `Ja, ${labelLower} is instelbaar via ventielen of een compressor, afhankelijk van de set`,
+          `Zo pas je de hoogte van de ${ctx.makeModelHtml} aan op gebruik en belasting`,
+        ]),
+      },
+      {
+        q: `Heb ik altijd een compressor nodig?`,
+        a: paragraph([
+          `Niet altijd; sommige sets werken met handmatige ventielen`,
+          `Kies de bediening die past bij jouw gebruik van de ${ctx.makeModelHtml}`,
+        ]),
+      },
+      {
+        q: `Is onderhoud nodig bij ${labelLower}?`,
+        a: paragraph([
+          `Controleer periodiek druk en aansluitingen`,
+          `Zo blijft de ${ctx.makeModelHtml} betrouwbaar en comfortabel`,
+        ]),
+      },
+      {
+        q: `Hoe kies ik de juiste set voor mijn ${ctx.makeModel}?`,
+        a: paragraph([
+          `Controleer bouwjaar, uitvoering en gewenste bediening`,
+          `Zo weet je zeker dat de set aansluit op jouw ${ctx.makeModelHtml}`,
+        ]),
+      },
+    ]);
+
+    const cta = paragraph([
+      `Klaar om de juiste set voor jouw ${ctx.makeModelHtml} te kiezen?`,
+      `Selecteer de generatie, controleer de bediening en bekijk de beschikbare sets`,
+    ]);
+
+    const blocks = [
+      makeBlock("nr-model-intro", `${label} voor ${ctx.makeModel}`, intro),
+      makeBlock("nr-model-why", `Waarom ${labelLower} bij ${ctx.makeModel}`, why),
+      makeBlock("nr-model-generations", "Verschillen per generatie", generations),
+      makeBlock("nr-model-usage", "Particulier vs zakelijk gebruik", usage),
+      makeBlock("nr-model-choice", "Keuzehulp: bediening en circuit", choice),
+    ];
+
+    if (linkBlock) {
+      blocks.push(
+        makeBlock("nr-model-links", `Generaties van ${ctx.makeModel}`, linkBlock)
+      );
+    }
+
+    blocks.push(makeBlock("nr-model-faq", "FAQ", faq));
+    blocks.push(makeBlock("nr-model-cta", "Kies jouw set", cta));
+
+    const reserve = [
+      makeBlock(
+        "nr-model-tips",
+        "Extra tips bij luchtvering",
+        paragraph([
+          `Stem de druk af op het gemiddelde gebruik van de ${ctx.makeModelHtml}`,
+          `Controleer aansluitingen en houd het systeem schoon voor stabiele werking`,
+          `Een goede afstelling houdt de ${ctx.makeModelHtml} comfortabel bij wisselend gebruik`,
+        ]),
+        true
+      ),
+    ];
+
+    return { blocks, reserve, target: TARGETS.model };
+  }
+
+  function buildModelBlocksLs(data) {
+    const ctx = buildContext(data);
+    const label = productLabelTitle("ls");
+    const labelLower = label.toLowerCase();
+
+    const intro = paragraph([
+      pickVariant("ls_model_intro_open", [
+        `De ${ctx.makeModelHtml} ${ctx.yearPhrase} kent meerdere generaties, waardoor verlaging en afstemming per bouwjaar verschillen`,
+        `Voor de ${ctx.makeModelHtml} ${ctx.yearPhrase} zijn er per generatie andere verlagingsopties, afhankelijk van onderstel en uitvoering`,
+        `Wie een ${ctx.makeModelHtml} sportiever wil maken, kijkt vaak per generatie naar de juiste verlagingsveren`,
+      ]),
+      `Op deze modelpagina bundelen we ${labelLower} sets voor de ${ctx.makeModelHtml}, zodat je per generatie gericht kunt vergelijken`,
+      `We leggen uit waarom verlagen helpt, welke technische keuzes er zijn en hoe je de set afstemt op jouw rijstijl`,
+      `Gebruik de verschillen per generatie als startpunt en controleer daarna bouwjaar en uitvoering`,
+    ]);
+
+    const why = paragraph([
+      pickVariant("ls_model_why_open", [
+        `Bij de ${ctx.makeModelHtml} draait verlagen om een strakkere wegligging en een sportieve uitstraling`,
+        `De ${ctx.makeModelHtml} kan met ${labelLower} directer aanvoelen in bochten en bij stuurinput`,
+        `Voor de ${ctx.makeModelHtml} kiezen veel rijders voor verlagingsveren om het onderstel sportiever te maken`,
+      ]),
+      `De exacte verlaging verschilt per set, daarom is vergelijken per bouwjaar belangrijk`,
+      `Zo voorkom je dat de ${ctx.makeModelHtml} te laag of juist te mild uitkomt`,
+    ]);
+
+    const genLinks = collectGenerationLinks(ctx.makeSlug, ctx.modelSlug, "ls");
+    const linkLabels = genLinks.map((link) => link.label).filter(Boolean);
+    const fallbackLabels = ["eerste bouwjaren", "midden serie", "nieuwste uitvoeringen"];
+    const labels = [];
+    linkLabels.forEach((labelText) => {
+      if (labels.length < 3 && !labels.includes(labelText)) labels.push(labelText);
+    });
+    while (labels.length < 3) {
+      labels.push(fallbackLabels[labels.length]);
+    }
+
+    const genSections = labels.map((labelText, index) => {
+      const clean = String(labelText || "").trim();
+      const labelPhrase = /\d/.test(clean) ? `bouwjaren ${clean}` : clean;
+      const labelHtml = esc(clean || "deze generatie");
+      const labelPhraseHtml = esc(labelPhrase || "deze generatie");
+      const body = paragraph([
+        pickVariant(`ls_model_gen_${index}_open`, [
+          `Binnen de ${ctx.makeModelHtml} zie je bij ${labelPhraseHtml} verschillen in onderstel en gewicht, wat invloed heeft op de gewenste verlaging`,
+          `Voor de ${ctx.makeModelHtml} ${labelPhraseHtml} spelen velgmaat en dempers mee, waardoor de setkeuze anders kan uitvallen`,
+          `De ${ctx.makeModelHtml} ${labelPhraseHtml} heeft zijn eigen balans tussen sport en comfort, waardoor verlaging per generatie verschilt`,
+        ]),
+        `Verlagingsveren geven de ${ctx.makeModelHtml} een lagere houding en meer focus in bochten`,
+        `Let bij ${labelHtml} goed op verlaging en demperadvies, zodat het geheel in balans blijft`,
+        `Met de juiste set voelt de ${ctx.makeModelHtml} stabieler zonder dat het dagelijkse rijden onnodig hard wordt`,
+      ]);
+      return `<section><h3>${labelHtml}</h3>${body}</section>`;
+    });
+    const generations = genSections.join("");
+
+    const usage = paragraph([
+      pickVariant("ls_model_usage_open", [
+        `Dagelijks gebruik van de ${ctx.makeModelHtml} vraagt om een verlaging die comfort en sport in balans houdt`,
+        `Wie de ${ctx.makeModelHtml} vooral voor woon-werk rijdt, kiest vaak een gematigde verlaging`,
+        `Bij dagelijks gebruik van de ${ctx.makeModelHtml} is een subtiele verlaging vaak de beste mix`,
+      ]),
+      `Sportief of weekendgebruik kan een strakkere set rechtvaardigen, zolang de dempers dat ondersteunen`,
+      `Kies een set die past bij jouw rijstijl en het gebruik van de ${ctx.makeModelHtml}`,
+    ]);
+
+    const choice = paragraph([
+      pickVariant("ls_model_choice_open", [
+        `Bij ${labelLower} voor de ${ctx.makeModelHtml} draait de keuze om de gewenste verlaging en het veerkarakter`,
+        `Voor de ${ctx.makeModelHtml} kun je kiezen tussen lineaire en progressieve veren, afhankelijk van comfortwens`,
+        `De juiste set voor de ${ctx.makeModelHtml} hangt af van verlaging, dempers en dagelijkse inzet`,
+      ]),
+      `Let op het verschil tussen voor- en achteras, zodat de houding in balans blijft`,
+      `Controleer in de setdetails welke dempers of extra onderdelen worden aanbevolen`,
+    ]);
+
+    const linkBlock = genLinks.length
+      ? (() => {
+          const items = genLinks.slice(0, 8).map((link) => {
+            const labelText = esc(link.label || "deze generatie");
+            const href = esc(link.href || "#");
+            return `<li><a href="${href}">${label} voor ${ctx.makeModelHtml} ${labelText}</a></li>`;
+          });
+          return `${paragraph([
+            `Bekijk per generatie welke ${labelLower} sets passen bij de ${ctx.makeModelHtml} en vergelijk bouwjaar en uitvoering`,
+          ])}${items.length ? `<ul>${items.join("")}</ul>` : ""}`;
+        })()
+      : "";
+
+    const faq = buildFaq([
+      {
+        q: `Verandert verlagen het comfort van de ${ctx.makeModel}?`,
+        a: paragraph([
+          `Ja, ${labelLower} geven een sportiever karakter en kunnen iets stugger aanvoelen`,
+          `De exacte ervaring hangt af van de set en dempers van de ${ctx.makeModelHtml}`,
+        ]),
+      },
+      {
+        q: `Moet ik de ${ctx.makeModel} uitlijnen na montage?`,
+        a: paragraph([
+          `Ja, uitlijnen is belangrijk om het stuurgedrag van de ${ctx.makeModelHtml} goed te houden`,
+          `Na montage voorkomt uitlijnen extra bandenslijtage`,
+        ]),
+      },
+      {
+        q: `Kan ik ${labelLower} combineren met standaard dempers?`,
+        a: paragraph([
+          `In veel gevallen kan dat, zolang de set daarvoor bedoeld is`,
+          `Controleer per model of sportdempers worden aanbevolen`,
+        ]),
+      },
+      {
+        q: `Hoe weet ik welke set past bij mijn ${ctx.makeModel}?`,
+        a: paragraph([
+          `Controleer bouwjaar, uitvoering en gewenste verlaging`,
+          `Zo weet je zeker dat de set aansluit op jouw ${ctx.makeModelHtml}`,
+        ]),
+      },
+    ]);
+
+    const cta = paragraph([
+      `Klaar om de juiste set voor jouw ${ctx.makeModelHtml} te kiezen?`,
+      `Selecteer de generatie, check de gewenste verlaging en bekijk de beschikbare sets`,
+    ]);
+
+    const blocks = [
+      makeBlock("ls-model-intro", `${label} voor ${ctx.makeModel}`, intro),
+      makeBlock("ls-model-why", "Waarom verlagen?", why),
+      makeBlock("ls-model-generations", "Verschillen per generatie", generations),
+      makeBlock("ls-model-usage", "Dagelijks vs sportief gebruik", usage),
+      makeBlock("ls-model-choice", "Keuzehulp: verlaging en dempers", choice),
+    ];
+
+    if (linkBlock) {
+      blocks.push(
+        makeBlock("ls-model-links", `Generaties van ${ctx.makeModel}`, linkBlock)
+      );
+    }
+
+    blocks.push(makeBlock("ls-model-faq", "FAQ", faq));
+    blocks.push(makeBlock("ls-model-cta", "Kies jouw set", cta));
+
+    const reserve = [
+      makeBlock(
+        "ls-model-tips",
+        "Extra tips na montage",
+        paragraph([
+          `Laat de ${ctx.makeModelHtml} na montage altijd uitlijnen om het stuurgedrag te behouden`,
+          `Controleer bandenspanning en rijhoogte zodat de verlaging gelijkmatig uitkomt`,
+          `Kies een set die past bij jouw velgmaat en dagelijks gebruik`,
+        ]),
+        true
+      ),
+    ];
+
+    return { blocks, reserve, target: TARGETS.model };
+  }
+
+  function buildBrandBlocks(data, productType, options) {
+    const ctx = buildContext(data);
+    const productLabelUpper = productLabelTitle(productType);
     const path = HAS_DOM ? (location.pathname || "").toLowerCase() : "";
     const segments = path.split("/").filter(Boolean);
     const brandSlug = data.makeSlug || segments[1] || "";
@@ -1322,16 +2049,16 @@ console.log("[seo] loaded", location.pathname);
     const h1Clean = h1Text.replace(/\s+/g, " ").trim();
     const brandName = (data.make || h1Clean || slugToLabel(brandSlug) || "dit merk").trim();
     const brandHtml = esc(brandName);
+    const basePath = getProductBasePath(productType);
 
     const modelLinks = [];
     if (HAS_DOM && brandSlug) {
-      const selector = `a[href^="/hulpveren/${brandSlug}/"]`;
-      const anchors = Array.from(document.querySelectorAll(selector));
+      const anchors = Array.from(document.querySelectorAll("a[href]"));
       const seen = new Set();
       anchors.forEach((a) => {
         const href = a.getAttribute("href") || "";
         const match = href.match(
-          new RegExp(`^/hulpveren/${brandSlug}/([^/]+)/?$`, "i")
+          new RegExp(`^/${basePath}/${brandSlug}/([^/]+)/?$`, "i")
         );
         if (!match) return;
         const modelSlug = match[1];
@@ -1344,77 +2071,200 @@ console.log("[seo] loaded", location.pathname);
       });
     }
 
+    const introOpen =
+      productType === "nr"
+        ? [
+            `Op deze ${brandHtml} merkpagina vind je per model de beschikbare luchtvering, zodat je gericht kunt vergelijken`,
+            `Voor ${brandHtml} bundelen we luchtvering per model, met aandacht voor comfort en regelbaarheid`,
+            `Deze pagina helpt je de juiste luchtvering voor ${brandHtml} te kiezen op basis van uitvoering en bouwjaar`,
+          ]
+        : productType === "ls"
+          ? [
+              `Op deze ${brandHtml} merkpagina vind je per model de beschikbare verlagingsveren voor een sportieve wegligging`,
+              `Voor ${brandHtml} bundelen we verlagingsveren per model, zodat je de juiste verlaging snel vindt`,
+              `Deze pagina helpt je verlagingsveren voor ${brandHtml} te vergelijken op basis van uitvoering en bouwjaar`,
+            ]
+          : [
+              `De ${brandHtml} modellenpagina helpt je snel de juiste hulpveren of vervangingsveren te vinden, afgestemd op bouwjaar en uitvoering`,
+              `Op deze ${brandHtml} merkpagina vind je per model de beschikbare hulpveren en vervangingsveren, zodat je gericht kunt vergelijken`,
+              `Voor ${brandHtml} bundelen we de beschikbare hulpveren en vervangingsveren per model, met focus op gebruik en belading`,
+            ];
+
     const intro = paragraph([
-      pickVariant("brand_intro_open", [
-        `De ${brandHtml} modellenpagina helpt je snel de juiste hulpveren of vervangingsveren te vinden, afgestemd op bouwjaar en uitvoering`,
-        `Op deze ${brandHtml} merkpagina vind je per model de beschikbare hulpveren en vervangingsveren, zodat je gericht kunt vergelijken`,
-        `Voor ${brandHtml} bundelen we de beschikbare hulpveren en vervangingsveren per model, met focus op gebruik en belading`,
-      ]),
-      `Je ziet welke sets per model beschikbaar zijn en waar je op let bij wisselende belading of trekhaakgebruik`,
-      `Gebruik de modelpagina’s om de juiste set voor jouw ${brandHtml} te kiezen en controleer altijd bouwjaar en uitvoering`,
+      pickVariant("brand_intro_open", introOpen),
+      productType === "nr"
+        ? `Je ziet welke luchtveringsets per model beschikbaar zijn en waar je op let bij bediening en uitvoering`
+        : productType === "ls"
+          ? `Je ziet welke verlagingssets per model beschikbaar zijn en waar je op let bij uitvoering en verlaging`
+          : `Je ziet welke sets per model beschikbaar zijn en waar je op let bij wisselende belading of trekhaakgebruik`,
+      `Gebruik de modelpaginas om de juiste set voor jouw ${brandHtml} te kiezen en controleer altijd bouwjaar en uitvoering`,
     ]);
 
+    const situationsOpen =
+      productType === "nr"
+        ? [
+            `Bij ${brandHtml} met wisselende belading kan de rijhoogte varieren, waardoor extra ondersteuning gewenst is`,
+            `Voor ${brandHtml} speelt comfort een grote rol, vooral bij langere ritten of campergebruik`,
+            `Wie met een ${brandHtml} rijdt en regelmatig laadt of trekt, merkt dat stabiliteit en hoogte belangrijk zijn`,
+          ]
+        : productType === "ls"
+          ? [
+              `Bij ${brandHtml} kiezen veel rijders voor een lagere wegligging om het stuurgevoel en de uitstraling te verbeteren`,
+              `Voor ${brandHtml} kan verlagen zorgen voor meer focus in bochten en een sportieve look`,
+              `Wie een ${brandHtml} sportiever wil laten sturen, kijkt vaak naar verlagingsveren als eerste stap`,
+            ]
+          : [
+              `Bij ${brandHtml} zien we dat belading, aanhanger of caravan extra druk op de achteras geeft en de rijhoogte zichtbaar kan laten zakken`,
+              `Voor ${brandHtml} ontstaat doorzakken vaak bij combinatie van gewicht, extra uitrusting en veelvuldig gebruik op lange ritten`,
+              `Wie met een ${brandHtml} regelmatig laadt of trekt, merkt soms instabiliteit of een minder strakke lijn bij drempels en bochten`,
+            ];
+
     const situations = paragraph([
-      pickVariant("brand_situations_open", [
-        `Bij ${brandHtml} zien we dat belading, aanhanger of caravan extra druk op de achteras geeft en de rijhoogte zichtbaar kan laten zakken`,
-        `Voor ${brandHtml} ontstaat doorzakken vaak bij combinatie van gewicht, extra uitrusting en veelvuldig gebruik op lange ritten`,
-        `Wie met een ${brandHtml} regelmatig laadt of trekt, merkt soms instabiliteit of een minder strakke lijn bij drempels en bochten`,
-      ]),
-      `De balans tussen comfort en draagkracht verschilt per uitvoering, waardoor de ene ${brandHtml} sneller ondersteuning nodig heeft dan de andere`,
+      pickVariant("brand_situations_open", situationsOpen),
+      productType === "ls"
+        ? `De balans tussen sport en comfort verschilt per uitvoering, waardoor de ene ${brandHtml} een andere verlaging vraagt dan de andere`
+        : `De balans tussen comfort en draagkracht verschilt per uitvoering, waardoor de ene ${brandHtml} sneller ondersteuning nodig heeft dan de andere`,
       `Belangrijk is dat je niet alleen naar een enkel moment kijkt, maar naar het gemiddelde gebruik van jouw ${brandHtml}`,
       `Daarom werken we per model, zodat je makkelijker de set vindt die past bij jouw situatie`,
     ]);
 
+    const solutionsOpen =
+      productType === "nr"
+        ? [
+            `Luchtvering voor ${brandHtml} maakt de rijhoogte instelbaar en helpt het voertuig stabiel te houden bij wisselend gebruik`,
+            `Met luchtvering blijft de ${brandHtml} beter op niveau, waarbij je de druk kunt afstemmen op je situatie`,
+            `Luchtvering geeft de ${brandHtml} extra flexibiliteit, met bediening via ventielen of een compressor`,
+          ]
+        : productType === "ls"
+          ? [
+              `Verlagingsveren voor ${brandHtml} verlagen de rijhoogte en geven het onderstel een strakker karakter`,
+              `Met verlagingsveren wordt de ${brandHtml} sportiever en directer, zonder dat je alles aanpast`,
+              `Verlagingsveren zorgen bij de ${brandHtml} voor een lagere houding en meer focus in bochten`,
+            ]
+          : [
+              `Hulpveren ondersteunen de originele vering van jouw ${brandHtml} en worden vooral actief zodra de belasting toeneemt`,
+              `Met hulpveren blijft de ${brandHtml} beter op niveau bij belading, terwijl de originele veren intact blijven`,
+              `Hulpveren voor ${brandHtml} geven extra draagkracht wanneer dat nodig is, zonder het dagelijkse comfort onnodig te veranderen`,
+            ];
+
     const solutions = paragraph([
-      pickVariant("brand_solutions_open", [
-        `Hulpveren ondersteunen de originele vering van jouw ${brandHtml} en worden vooral actief zodra de belasting toeneemt`,
-        `Met hulpveren blijft de ${brandHtml} beter op niveau bij belading, terwijl de originele veren intact blijven`,
-        `Hulpveren voor ${brandHtml} geven extra draagkracht wanneer dat nodig is, zonder het dagelijkse comfort onnodig te veranderen`,
-      ]),
-      `Vervangingsveren zijn bedoeld wanneer de originele veren van de ${brandHtml} zijn ingezakt of wanneer je een vaste, hogere basisondersteuning zoekt`,
-      `De beste keuze hangt af van hoe vaak je zwaar beladen rijdt en hoe je ${brandHtml} in de praktijk gebruikt`,
+      pickVariant("brand_solutions_open", solutionsOpen),
+      productType === "nr"
+        ? `De beste keuze hangt af van gebruik, gewenste hoogte en de manier waarop je de luchtvering wilt bedienen`
+        : productType === "ls"
+          ? `De juiste set hangt af van gewenste verlaging, uitvoering en de combinatie met dempers`
+          : `Vervangingsveren zijn bedoeld wanneer de originele veren van de ${brandHtml} zijn ingezakt of wanneer je een vaste, hogere basisondersteuning zoekt`,
+      productType === "hv"
+        ? `De beste keuze hangt af van hoe vaak je zwaar beladen rijdt en hoe je ${brandHtml} in de praktijk gebruikt`
+        : `Controleer bouwjaar en uitvoering op de modelpagina om zeker te weten dat de set past bij jouw ${brandHtml}`,
     ]);
 
+    const guidanceOpen =
+      productType === "nr"
+        ? [
+            `Rijd je met jouw ${brandHtml} soms licht en soms zwaar beladen, dan is instelbare luchtvering vaak de meest comfortabele keuze`,
+            `Voor ${brandHtml} met wisselende inzet is het prettig dat je de druk kunt aanpassen aan de situatie`,
+            `Als jouw ${brandHtml} wordt gebruikt als camper of bedrijfswagen, helpt luchtvering om rijhoogte en comfort te sturen`,
+          ]
+        : productType === "ls"
+          ? [
+              `Gebruik je jouw ${brandHtml} dagelijks, kies dan een verlaging die balans houdt tussen comfort en sport`,
+              `Voor een sportieve rijstijl met jouw ${brandHtml} past vaak een wat diepere verlaging, zolang het comfort acceptabel blijft`,
+              `Als je vooral looks en strakker sturen zoekt, kies je een set die past bij de gewenste verlaging van jouw ${brandHtml}`,
+            ]
+          : [
+              `Rijd je incidenteel beladen met jouw ${brandHtml}, dan is extra ondersteuning die pas actief wordt vaak de meest comfortabele keuze`,
+              `Voor ${brandHtml} met wisselende lading is het prettig wanneer de ondersteuning pas toeneemt zodra de belasting hoger is`,
+              `Als jouw ${brandHtml} vooral leeg rijdt, maar af en toe zwaar wordt belast, kies je liever een oplossing die flexibel meewerkt`,
+            ];
+
     const guidance = paragraph([
-      pickVariant("brand_guidance_open", [
-        `Rijd je incidenteel beladen met jouw ${brandHtml}, dan is extra ondersteuning die pas actief wordt vaak de meest comfortabele keuze`,
-        `Voor ${brandHtml} met wisselende lading is het prettig wanneer de ondersteuning pas toeneemt zodra de belasting hoger is`,
-        `Als jouw ${brandHtml} vooral leeg rijdt, maar af en toe zwaar wordt belast, kies je liever een oplossing die flexibel meewerkt`,
-      ]),
-      `Bij vrijwel constante zware belading is een set met meer basisondersteuning logischer, zeker als de originele veren vermoeid zijn`,
+      pickVariant("brand_guidance_open", guidanceOpen),
+      productType === "hv"
+        ? `Bij vrijwel constante zware belading is een set met meer basisondersteuning logischer, zeker als de originele veren vermoeid zijn`
+        : `Kijk daarbij ook naar uitvoering en aspositie om de set goed te laten aansluiten op jouw ${brandHtml}`,
       `Controleer bouwjaar en uitvoering op de modelpagina om zeker te weten dat de set past bij jouw ${brandHtml}`,
     ]);
 
-    const faqItems = [
-      {
-        q: `Veranderen hulpveren het comfort van mijn ${brandName}?`,
-        a: paragraph([
-          `Hulpveren voor ${brandHtml} werken mee met de originele vering en worden vooral merkbaar bij belading`,
-          `Leeg blijft het comfort grotendeels zoals je gewend bent, terwijl beladen meer stabiliteit ontstaat`,
-        ]),
-      },
-      {
-        q: `Wanneer kies ik vervangingsveren voor mijn ${brandName}?`,
-        a: paragraph([
-          `Vervangingsveren zijn bedoeld als de originele veren van jouw ${brandHtml} zijn doorgezakt`,
-          `Ze geven een vaste basis en passen bij constante of zware belading`,
-        ]),
-      },
-      {
-        q: `Hoe weet ik welke set past bij mijn ${brandName}?`,
-        a: paragraph([
-          `Gebruik de modelpagina om bouwjaar, uitvoering en aspositie te controleren`,
-          `Zo weet je zeker dat de set aansluit op jouw ${brandHtml} uitvoering`,
-        ]),
-      },
-    ];
+    const faqItems =
+      productType === "nr"
+        ? [
+            {
+              q: `Kan ik de rijhoogte van mijn ${brandName} aanpassen met luchtvering?`,
+              a: paragraph([
+                `Luchtvering voor ${brandHtml} is instelbaar via ventielen of een compressor, afhankelijk van de set`,
+                `Zo kun je de hoogte aanpassen aan belading of rijcomfort`,
+              ]),
+            },
+            {
+              q: `Is luchtvering geschikt voor camper- of bedrijfsgebruik?`,
+              a: paragraph([
+                `Ja, luchtvering wordt vaak gekozen voor wisselende belasting en langere ritten`,
+                `Het helpt de ${brandHtml} stabiel te blijven en het comfort te behouden`,
+              ]),
+            },
+            {
+              q: `Hoe weet ik welke set past bij mijn ${brandName}?`,
+              a: paragraph([
+                `Gebruik de modelpagina om bouwjaar, uitvoering en bediening te controleren`,
+                `Zo weet je zeker dat de set aansluit op jouw ${brandHtml} uitvoering`,
+              ]),
+            },
+          ]
+        : productType === "ls"
+          ? [
+              {
+                q: `Verandert verlagen het comfort van mijn ${brandName}?`,
+                a: paragraph([
+                  `Verlagingsveren geven de ${brandHtml} een sportiever karakter en kunnen iets stugger aanvoelen`,
+                  `De exacte ervaring hangt af van de gekozen set en de dempers`,
+                ]),
+              },
+              {
+                q: `Moet ik mijn ${brandName} uitlijnen na montage?`,
+                a: paragraph([
+                  `Ja, uitlijnen is belangrijk om het stuurgedrag van de ${brandHtml} goed te houden`,
+                  `Na montage voorkomt uitlijnen extra bandenslijtage`,
+                ]),
+              },
+              {
+                q: `Kan ik verlagingsveren combineren met standaard dempers?`,
+                a: paragraph([
+                  `In veel gevallen kan dat, zolang de set daarvoor bedoeld is`,
+                  `Controleer per model of sportdempers worden aanbevolen`,
+                ]),
+              },
+            ]
+          : [
+              {
+                q: `Veranderen hulpveren het comfort van mijn ${brandName}?`,
+                a: paragraph([
+                  `Hulpveren voor ${brandHtml} werken mee met de originele vering en worden vooral merkbaar bij belading`,
+                  `Leeg blijft het comfort grotendeels zoals je gewend bent, terwijl beladen meer stabiliteit ontstaat`,
+                ]),
+              },
+              {
+                q: `Wanneer kies ik vervangingsveren voor mijn ${brandName}?`,
+                a: paragraph([
+                  `Vervangingsveren zijn bedoeld als de originele veren van jouw ${brandHtml} zijn doorgezakt`,
+                  `Ze geven een vaste basis en passen bij constante of zware belading`,
+                ]),
+              },
+              {
+                q: `Hoe weet ik welke set past bij mijn ${brandName}?`,
+                a: paragraph([
+                  `Gebruik de modelpagina om bouwjaar, uitvoering en aspositie te controleren`,
+                  `Zo weet je zeker dat de set aansluit op jouw ${brandHtml} uitvoering`,
+                ]),
+              },
+            ];
 
     const faq = buildFaq((options && options.shortFaq) ? faqItems.slice(0, 2) : faqItems);
 
     const linkItems = modelLinks.slice(0, 10).map((link) => {
       const label = esc(link.label || "dit model");
       const href = esc(link.href || "#");
-      return `<li><a href="${href}">Hulpveren voor ${brandHtml} ${label}</a></li>`;
+      return `<li><a href="${href}">${productLabelUpper} voor ${brandHtml} ${label}</a></li>`;
     });
     const linksBlock = linkItems.length
       ? `${paragraph([
@@ -1423,7 +2273,7 @@ console.log("[seo] loaded", location.pathname);
       : "";
 
     const blocks = [
-      makeBlock("brand-intro", `Hulpveren voor ${brandName}`, intro),
+      makeBlock("brand-intro", `${productLabelUpper} voor ${brandName}`, intro),
       makeBlock("brand-situations", "Veelvoorkomende situaties", situations),
       makeBlock(
         "brand-solutions",
@@ -1444,15 +2294,34 @@ console.log("[seo] loaded", location.pathname);
       );
     }
 
+    const tipsTitle =
+      productType === "nr"
+        ? "Praktische tips bij luchtvering"
+        : productType === "ls"
+          ? "Praktische tips bij verlagen"
+          : "Praktische tips bij belading";
+
     const reserve = [
       makeBlock(
         "brand-tips",
-        "Praktische tips bij belading",
-        paragraph([
-          `Voor ${brandHtml} helpt het om lading zo dicht mogelijk bij de as te plaatsen en gelijkmatig te verdelen`,
-          `Een stabiele verdeling zorgt dat de ${brandHtml} rechter blijft staan en minder beweegt bij drempels`,
-          `Controleer ook bandenspanning en maximale aslast, zodat de set optimaal kan werken`,
-        ]),
+        tipsTitle,
+        productType === "nr"
+          ? paragraph([
+              `Controleer bij ${brandHtml} regelmatig de druk en kijk of de bediening soepel reageert`,
+              `Houd aansluitingen schoon en controleer op lekkage om het comfort te behouden`,
+              `Een goede afstelling helpt de ${brandHtml} stabiel te blijven bij wisselend gebruik`,
+            ])
+          : productType === "ls"
+            ? paragraph([
+                `Laat de ${brandHtml} na montage altijd uitlijnen om het stuurgedrag te behouden`,
+                `Controleer bandenspanning en rijhoogte zodat de verlaging gelijkmatig uitkomt`,
+                `Kies een set die past bij jouw velgmaat en dagelijks gebruik`,
+              ])
+            : paragraph([
+                `Voor ${brandHtml} helpt het om lading zo dicht mogelijk bij de as te plaatsen en gelijkmatig te verdelen`,
+                `Een stabiele verdeling zorgt dat de ${brandHtml} rechter blijft staan en minder beweegt bij drempels`,
+                `Controleer ook bandenspanning en maximale aslast, zodat de set optimaal kan werken`,
+              ]),
         true
       ),
     ];
@@ -1460,8 +2329,11 @@ console.log("[seo] loaded", location.pathname);
     return { blocks, reserve, target: TARGETS.brand };
   }
 
-  function buildSetBlocks(data) {
+  function buildSetBlocks(data, productType) {
+    if (productType === "nr") return buildSetBlocksNr(data);
+    if (productType === "ls") return buildSetBlocksLs(data);
     const ctx = buildContext(data);
+    const productLabelLower = productLabel(productType || "hv");
     const sku =
       ctx.sku ||
       normalizeSku(HAS_DOM ? location.pathname : "") ||
@@ -1551,7 +2423,7 @@ console.log("[seo] loaded", location.pathname);
     const specs = specItems.length ? `<ul>${specItems.join("")}</ul>` : "";
 
     const blocks = [
-      makeBlock("set-intro", `Set ${sku} hulpveren`, intro),
+      makeBlock("set-intro", `Set ${sku} ${productLabelLower}`, intro),
       makeBlock("set-applications", "Toepassingen van deze set", applicationsBlock),
     ];
 
@@ -1574,6 +2446,311 @@ console.log("[seo] loaded", location.pathname);
           `Plaats zware lading zo dicht mogelijk bij de as en verdeel het gewicht gelijkmatig`,
           `Een stabiele verdeling helpt de set beter te werken en houdt het voertuig rustiger`,
           `Controleer bandenspanning en maximale aslast om de ondersteuning optimaal te benutten`,
+        ]),
+        true
+      ),
+    ];
+
+    return { blocks, reserve, target: TARGETS.set };
+  }
+
+  function buildSetBlocksNr(data) {
+    const ctx = buildContext(data);
+    const sku =
+      ctx.sku ||
+      normalizeSku(HAS_DOM ? location.pathname : "") ||
+      "NR-SET";
+    const skuHtml = esc(sku);
+    const axleLabelText = ctx.axle ? axleLabel(ctx.axle) : "";
+    const axleLower = axleLabelText ? axleLabelText.toLowerCase() : "";
+
+    const applications = collectApplications(data);
+    const listInfo = buildApplicationsList(applications, 30);
+
+    const introOptions = [
+      `Set ${skuHtml} is een luchtveringset waarmee je de rijhoogte kunt afstellen`,
+      `Met set ${skuHtml} kies je voor luchtvering die instelbaar comfort biedt bij wisselend gebruik`,
+      `Set ${skuHtml} is bedoeld voor regelbare ondersteuning en een stabiele rijhoogte`,
+    ];
+
+    const intro = paragraph([
+      pickVariant("nr_set_intro_open", introOptions),
+      `Luchtvering werkt met druk in luchtbalgen, zodat je hoogte en stabiliteit kunt afstemmen op gebruik`,
+      `Hieronder vind je alle toepassingen van set ${skuHtml}, zodat je direct ziet of jouw uitvoering erbij staat`,
+      `Controleer altijd bouwjaar en uitvoering in de lijst voordat je bestelt`,
+    ]);
+
+    const applicationsIntro = applications.length
+      ? paragraph([
+          `De toepassingen zijn gegroepeerd per merk en model om sneller te kunnen scannen`,
+          `Zo zie je in een oogopslag of set ${skuHtml} past bij jouw voertuig`,
+        ])
+      : "";
+
+    const applicationsBlock = `${applicationsIntro}${listInfo.html}`;
+
+    const circuit = detectAirCircuit(data);
+    const control = detectAirControl(data);
+    const techLines = [];
+    if (circuit === "single") {
+      techLines.push(
+        "Deze set gebruikt een enkel luchtcircuit, waardoor beide zijden samen worden geregeld"
+      );
+    } else if (circuit === "double") {
+      techLines.push(
+        "Deze set gebruikt een dubbel luchtcircuit, zodat links en rechts afzonderlijk kunnen worden ingesteld"
+      );
+    } else {
+      techLines.push(
+        "Deze set kan een enkel of dubbel luchtcircuit hebben; controleer de setdetails voor jouw uitvoering"
+      );
+    }
+
+    if (control === "panel") {
+      techLines.push(
+        "De bediening verloopt via een bedieningspaneel; de locatie hangt af van de uitvoering"
+      );
+    } else if (control === "compressor") {
+      techLines.push(
+        "De bediening is gekoppeld aan een compressor voor snelle drukaanpassing"
+      );
+    } else if (control === "valve") {
+      techLines.push(
+        "Bediening verloopt via ventielen om de druk handmatig af te stemmen"
+      );
+    } else {
+      techLines.push(
+        "Bediening kan handmatig via ventielen of met compressor, afhankelijk van de set"
+      );
+    }
+
+    const tech = paragraph(techLines);
+
+    const axleBlock = axleLabelText
+      ? paragraph([
+          `Deze set is bedoeld voor de ${axleLower}, zodat de luchtvering op de juiste positie werkt`,
+          `Montage is doorgaans binnen enkele uren mogelijk, afhankelijk van bereikbaarheid en uitvoering`,
+        ])
+      : "";
+
+    const ride = paragraph([
+      pickVariant("nr_set_ride_open", [
+        `Na afstelling voelt het voertuig rustiger aan bij wisselende belasting en langere ritten`,
+        `Met de juiste druk blijft het rijgedrag stabieler en voorspelbaar`,
+        `De set helpt om de rijhoogte constant te houden bij gebruik dat varieert`,
+      ]),
+      `Het doel is comfort en controle, niet een stugge rijervaring`,
+      `Pas de druk aan op jouw situatie voor het beste resultaat`,
+    ]);
+
+    const install = paragraph([
+      pickVariant("nr_set_install_open", [
+        `Montage van luchtvering vraagt om nette routing van leidingen en een goede afdichting`,
+        `Na montage is het verstandig om de druk en aansluitingen periodiek te controleren`,
+        `Zorg dat leidingen vrij lopen en controleer op lekkage na de eerste rit`,
+      ]),
+      `Zo blijft de set betrouwbaar en comfortabel in gebruik`,
+    ]);
+
+    const faq = buildFaq([
+      {
+        q: `Verandert set ${sku} het comfort wanneer je leeg rijdt?`,
+        a: paragraph([
+          `Met lagere druk blijft het comfort vergelijkbaar, terwijl beladen meer ondersteuning ontstaat`,
+          `De set is instelbaar zodat je het rijgevoel kunt afstemmen`,
+        ]),
+      },
+      {
+        q: `Hoe stel ik de juiste druk in voor set ${sku}?`,
+        a: paragraph([
+          `Begin met een neutrale druk en pas aan op basis van hoogte en rijgevoel`,
+          `Gebruik de setdetails als richtlijn voor jouw voertuig`,
+        ]),
+      },
+    ]);
+
+    const specItems = [];
+    if (sku) specItems.push(`<li>SKU: ${skuHtml}</li>`);
+    specItems.push(`<li>Type: ${productLabelTitle("nr")}</li>`);
+    if (ctx.axle) specItems.push(`<li>Aspositie: ${axleLabelText}</li>`);
+    if (ctx.yearRange) specItems.push(`<li>Bouwjaren: ${ctx.yearRangeHtml}</li>`);
+    const specs = specItems.length ? `<ul>${specItems.join("")}</ul>` : "";
+
+    const blocks = [
+      makeBlock("nr-set-intro", `Set ${sku} luchtvering`, intro),
+      makeBlock("nr-set-applications", "Toepassingen van deze set", applicationsBlock),
+      makeBlock("nr-set-tech", "Techniek en bediening", tech),
+    ];
+
+    if (axleBlock) {
+      blocks.push(makeBlock("nr-set-axle", "As en montage", axleBlock));
+    }
+
+    blocks.push(makeBlock("nr-set-ride", "Rijcomfort", ride));
+    blocks.push(makeBlock("nr-set-install", "Montage indicatie", install));
+    blocks.push(makeBlock("nr-set-faq", "Mini-FAQ", faq));
+
+    if (specs) {
+      blocks.push(makeBlock("nr-set-specs", "Set-overzicht", specs));
+    }
+
+    const reserve = [
+      makeBlock(
+        "nr-set-tips",
+        "Praktische tips bij luchtvering",
+        paragraph([
+          `Controleer periodiek de druk en kijk of de hoogte links en rechts gelijk blijft`,
+          `Houd aansluitingen schoon en let op beschadigingen aan leidingen`,
+          `Een goede afstelling helpt de set comfortabel te blijven werken`,
+        ]),
+        true
+      ),
+    ];
+
+    return { blocks, reserve, target: TARGETS.set };
+  }
+
+  function buildSetBlocksLs(data) {
+    const ctx = buildContext(data);
+    const sku =
+      ctx.sku ||
+      normalizeSku(HAS_DOM ? location.pathname : "") ||
+      "LS-SET";
+    const skuHtml = esc(sku);
+    const axleLabelText = ctx.axle ? axleLabel(ctx.axle) : "";
+    const axleLower = axleLabelText ? axleLabelText.toLowerCase() : "";
+
+    const applications = collectApplications(data);
+    const listInfo = buildApplicationsList(applications, 30);
+
+    const introOptions = [
+      `Set ${skuHtml} is een verlagingsveren set die de rijhoogte verlaagt voor een sportieve houding`,
+      `Met set ${skuHtml} kies je voor verlagingsveren die de sportieve uitstraling versterken`,
+      `Set ${skuHtml} is bedoeld om het onderstel van het voertuig lager en strakker te laten aanvoelen`,
+    ];
+
+    const intro = paragraph([
+      pickVariant("ls_set_intro_open", introOptions),
+      `Verlagen geeft de auto een lagere wegligging en meer focus in bochten`,
+      `Hieronder vind je alle toepassingen van set ${skuHtml}, zodat je direct ziet of jouw uitvoering erbij staat`,
+      `Controleer altijd bouwjaar en uitvoering in de lijst voordat je bestelt`,
+    ]);
+
+    const applicationsIntro = applications.length
+      ? paragraph([
+          `De toepassingen zijn gegroepeerd per merk en model om sneller te kunnen scannen`,
+          `Zo zie je in een oogopslag of set ${skuHtml} past bij jouw voertuig`,
+        ])
+      : "";
+
+    const applicationsBlock = `${applicationsIntro}${listInfo.html}`;
+
+    const lowering = extractLoweringSpec(data);
+    let loweringLine = "";
+    if (lowering.front !== null && lowering.rear !== null) {
+      loweringLine = `De opgegeven verlaging is ${lowering.front} mm voor en ${lowering.rear} mm achter, afhankelijk van uitvoering`;
+    } else if (lowering.front !== null) {
+      loweringLine = `De opgegeven verlaging voor de vooras is ${lowering.front} mm, afhankelijk van uitvoering`;
+    } else if (lowering.rear !== null) {
+      loweringLine = `De opgegeven verlaging voor de achteras is ${lowering.rear} mm, afhankelijk van uitvoering`;
+    } else if (lowering.general !== null) {
+      loweringLine = `De opgegeven verlaging is ongeveer ${lowering.general} mm, afhankelijk van uitvoering`;
+    }
+    if (!loweringLine) {
+      loweringLine = "Controleer de setdetails voor de exacte verlaging in mm per uitvoering";
+    }
+
+    const tech = paragraph([
+      loweringLine,
+      `Let op het verschil tussen voor- en achteras zodat de houding in balans blijft`,
+    ]);
+
+    const axleBlock = axleLabelText
+      ? paragraph([
+          `Deze set is bedoeld voor de ${axleLower}, zodat de verlaging op de juiste positie werkt`,
+          `Montage is doorgaans binnen enkele uren mogelijk, afhankelijk van bereikbaarheid en uitvoering`,
+        ])
+      : "";
+
+    const ride = paragraph([
+      pickVariant("ls_set_ride_open", [
+        `Na montage voelt het voertuig strakker aan bij sturen en bochten`,
+        `De set geeft meer feedback van de weg en een sportiever karakter`,
+        `Verlagen zorgt voor meer focus in bochten en een lagere houding`,
+      ]),
+      `Het comfort kan iets steviger aanvoelen, afhankelijk van de set en dempers`,
+    ]);
+
+    const install = paragraph([
+      pickVariant("ls_set_install_open", [
+        `Montage van verlagingsveren vraagt om een nette montage en correcte veerspanning`,
+        `Na montage is uitlijnen belangrijk om het stuurgedrag goed te houden`,
+        `Plan na montage altijd een uitlijning om bandenslijtage te voorkomen`,
+      ]),
+      `Zo blijft de set veilig en prettig rijden`,
+    ]);
+
+    const faq = buildFaq([
+      {
+        q: `Wordt het comfort stugger met set ${sku}?`,
+        a: paragraph([
+          `Verlagingsveren geven een sportiever karakter en kunnen iets stugger aanvoelen`,
+          `De exacte ervaring hangt af van de set en dempers`,
+        ]),
+      },
+      {
+        q: `Moet ik uitlijnen na montage?`,
+        a: paragraph([
+          `Ja, uitlijnen is belangrijk om het stuurgedrag te behouden`,
+          `Het voorkomt extra bandenslijtage en houdt de auto recht`,
+        ]),
+      },
+    ]);
+
+    const specItems = [];
+    if (sku) specItems.push(`<li>SKU: ${skuHtml}</li>`);
+    specItems.push(`<li>Type: ${productLabelTitle("ls")}</li>`);
+    if (ctx.axle) specItems.push(`<li>Aspositie: ${axleLabelText}</li>`);
+    if (ctx.yearRange) specItems.push(`<li>Bouwjaren: ${ctx.yearRangeHtml}</li>`);
+    let loweringSpec = "";
+    if (lowering.front !== null && lowering.rear !== null) {
+      loweringSpec = `Voor ${lowering.front} mm, achter ${lowering.rear} mm`;
+    } else if (lowering.front !== null) {
+      loweringSpec = `Voor ${lowering.front} mm`;
+    } else if (lowering.rear !== null) {
+      loweringSpec = `Achter ${lowering.rear} mm`;
+    } else if (lowering.general !== null) {
+      loweringSpec = `${lowering.general} mm`;
+    }
+    if (loweringSpec) specItems.push(`<li>Verlaging: ${loweringSpec}</li>`);
+    const specs = specItems.length ? `<ul>${specItems.join("")}</ul>` : "";
+
+    const blocks = [
+      makeBlock("ls-set-intro", `Set ${sku} verlagingsveren`, intro),
+      makeBlock("ls-set-applications", "Toepassingen van deze set", applicationsBlock),
+      makeBlock("ls-set-tech", "Verlaging en techniek", tech),
+    ];
+
+    if (axleBlock) {
+      blocks.push(makeBlock("ls-set-axle", "As en montage", axleBlock));
+    }
+
+    blocks.push(makeBlock("ls-set-ride", "Rijgedrag", ride));
+    blocks.push(makeBlock("ls-set-install", "Montage indicatie", install));
+    blocks.push(makeBlock("ls-set-faq", "Mini-FAQ", faq));
+
+    if (specs) {
+      blocks.push(makeBlock("ls-set-specs", "Set-overzicht", specs));
+    }
+
+    const reserve = [
+      makeBlock(
+        "ls-set-tips",
+        "Praktische tips na montage",
+        paragraph([
+          `Laat de auto na montage altijd uitlijnen en controleer de rijhoogte`,
+          `Controleer bandenspanning en houd rekening met verkeersdrempels`,
+          `Een korte proefrit helpt om de nieuwe balans te beoordelen`,
         ]),
         true
       ),
@@ -1648,6 +2825,8 @@ console.log("[seo] loaded", location.pathname);
     try {
       const data = await getPageData();
       const pageType = detectPageType(data);
+      const productType =
+        data.productType || getProductTypeFromPath(location.pathname || "");
       if (!pageType) return;
       if (shouldDelay(data, pageType)) {
         SEO_STATE.retries += 1;
@@ -1658,16 +2837,18 @@ console.log("[seo] loaded", location.pathname);
 
       SEO_STATE.retries = 0;
       let result = null;
-      if (pageType === "generation") result = buildGenerationBlocks(data);
-      if (pageType === "model") result = buildModelBlocks(data);
-      if (pageType === "set") result = buildSetBlocks(data);
-      if (pageType === "brand") result = buildBrandBlocks(data);
+      if (pageType === "generation") {
+        result = buildGenerationBlocks(data, productType);
+      }
+      if (pageType === "model") result = buildModelBlocks(data, productType);
+      if (pageType === "set") result = buildSetBlocks(data, productType);
+      if (pageType === "brand") result = buildBrandBlocks(data, productType);
       if (!result) return;
 
       if (pageType === "brand" && result.target) {
         const baseCount = wordCount(blocksToHtml(result.blocks));
         if (baseCount > result.target.max) {
-          result = buildBrandBlocks(data, { shortFaq: true });
+          result = buildBrandBlocks(data, productType, { shortFaq: true });
         }
       }
 
@@ -1682,7 +2863,14 @@ console.log("[seo] loaded", location.pathname);
       SEO_STATE.lastHtml = html;
       SEO_STATE.lastPageType = pageType;
       SEO_STATE.rendered = true;
-      console.log("[seo] pageType=", pageType, "words=", count);
+      console.log(
+        "[seo] productType=",
+        productType,
+        "pageType=",
+        pageType,
+        "words=",
+        count
+      );
     } catch (err) {
       console.log("[seo] render error", err);
     } finally {
@@ -1710,13 +2898,20 @@ console.log("[seo] loaded", location.pathname);
   function init() {
     if (!HAS_DOM) return;
     const path = (location.pathname || "").toLowerCase();
-    const isSetPage = /^\/hulpveren\/hv-\d{6}\/?$/.test(path);
+    const productType = getProductTypeFromPath(path);
+    const isSetPage = isSetPath(path, productType);
     if (isSetPage) {
       document.documentElement.classList.add("is-set-page");
+      const targetLabels = new Set([
+        "hulpveren per merk",
+        "luchtvering per merk",
+        "verlagingsveren per merk",
+        `${productLabel(productType)} per merk`,
+      ]);
       const removeBrandsGrid = () => {
         const headings = Array.from(document.querySelectorAll("h1,h2,h3"));
         const target = headings.find(
-          (h) => (h.textContent || "").trim().toLowerCase() === "hulpveren per merk"
+          (h) => targetLabels.has((h.textContent || "").trim().toLowerCase())
         );
         if (!target) return false;
         const section =
