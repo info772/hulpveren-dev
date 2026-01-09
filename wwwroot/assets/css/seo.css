@@ -1,0 +1,91 @@
+/* /assets/css/seo.css */
+
+#seo-content.seo-wrap {
+  max-width: 980px;
+  margin: 56px auto 80px;
+  padding: 0 20px;
+}
+
+.seo-wrap .seo-block {
+  margin: 18px 0;
+  padding: 20px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.seo-wrap h2 {
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+
+.seo-wrap h3 {
+  font-size: 18px;
+  line-height: 1.25;
+  margin: 18px 0 8px;
+  opacity: 0.95;
+}
+
+.seo-wrap p {
+  font-size: 15.5px;
+  line-height: 1.65;
+  margin: 10px 0;
+  opacity: 0.92;
+}
+
+.seo-wrap ul {
+  margin: 10px 0 6px 18px;
+}
+
+.seo-wrap li {
+  margin: 6px 0;
+  line-height: 1.6;
+  opacity: 0.92;
+}
+
+.seo-wrap details {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.seo-wrap summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+.seo-wrap summary::-webkit-details-marker {
+  display: none;
+}
+
+.seo-wrap a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.seo-wrap a:hover {
+  opacity: 0.95;
+}
+
+@media (max-width: 640px) {
+  #seo-content.seo-wrap {
+    margin: 36px auto 60px;
+    padding: 0 14px;
+  }
+
+  .seo-wrap .seo-block {
+    padding: 16px 16px;
+    border-radius: 14px;
+  }
+
+  .seo-wrap h2 {
+    font-size: 22px;
+  }
+
+  .seo-wrap p {
+    font-size: 15px;
+  }
+}

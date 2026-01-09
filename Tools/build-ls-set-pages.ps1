@@ -136,6 +136,7 @@ foreach ($kit in $ls.kits) {
 
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/assets/css/site.css?v=20251210" />
+  <link rel="stylesheet" href="/assets/css/seo.css?v=20260108_1" />
 </head>
 <body>
   <header class="site-header">

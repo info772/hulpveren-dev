@@ -1219,6 +1219,7 @@ console.log("[seo] loaded", location.pathname);
     if (!container) container = document.querySelector("[data-seo-content]");
     if (container) {
       if (!container.id) container.id = "seo-content";
+      container.classList.add("seo-wrap");
       return container;
     }
     const main =
@@ -1230,6 +1231,7 @@ console.log("[seo] loaded", location.pathname);
     container = document.createElement("div");
     container.id = "seo-content";
     container.setAttribute("data-seo-content", "1");
+    container.classList.add("seo-wrap");
     main.appendChild(container);
     return container;
   }
