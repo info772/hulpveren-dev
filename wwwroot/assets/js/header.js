@@ -587,7 +587,7 @@
     return toTitleCase(raw);
   };
 
-  const injectBreadcrumbs = (mountEl) => {
+  const injectBreadcrumbs = (mountEl, attempt = 0) => {
     if (document.querySelector(".site-breadcrumbs")) {
       document.documentElement.classList.add("has-site-breadcrumbs");
       return;
@@ -648,9 +648,16 @@
       document.querySelector("header") ||
       mountEl;
 
-    if (!headerEl) return;
+    const anchor = headerEl || document.querySelector("main") || document.body;
+    if (!anchor) {
+      if (attempt < 6) {
+        setTimeout(() => injectBreadcrumbs(mountEl, attempt + 1), 250);
+      }
+      return;
+    }
 
-    headerEl.insertAdjacentElement("afterend", navEl);
+    const position = headerEl ? "afterend" : "afterbegin";
+    anchor.insertAdjacentElement(position, navEl);
     document.documentElement.classList.add("has-site-breadcrumbs");
     document.querySelectorAll(".breadcrumbs, .crumbs").forEach((el) => el.remove());
   };

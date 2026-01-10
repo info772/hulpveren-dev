@@ -1460,6 +1460,61 @@ body.plate-route .hero{
   font-size: 12px;
 }
 
+.platepill-row{
+  background: rgba(5, 7, 15, 0.35);
+  border-bottom: 1px solid var(--border);
+}
+
+.platepill{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+}
+
+.platepill__label{
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.platepill__text{
+  font-weight: 600;
+}
+
+.platepill__clear{
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: #fff;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.plate-type-choice{
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.plate-type-choice__title{
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.plate-type-choice__actions{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+}
+
 /* Desktop: menu zichtbaar, burger uit */
 @media (min-width: 1024px){
   #site-header .header-center{ display:flex; }

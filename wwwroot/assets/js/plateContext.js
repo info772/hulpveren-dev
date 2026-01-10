@@ -3,9 +3,9 @@
   "use strict";
 
   /* Fix Summary:
-   * Broken: Plate bar bindings could duplicate after partial reloads and lacked reliable redirect logic.
-   * Change: Guarded bindings, added plate status/reset UI, and use cached route redirects when available.
-   * Test: Use the header plate search with valid/invalid input; verify redirect to /kenteken/{plate}.
+   * Broken: Plate bar bindings could duplicate after partial reloads and lacked reliable redirects.
+   * Change: Guarded bindings, added plate status/reset UI, and standardized redirects to /kenteken.
+   * Test: Use the header plate search with valid/invalid input; verify redirect to /kenteken/?kt=.
    */
 
   const STORAGE_KEY = "hv_plate_context";
@@ -40,19 +40,6 @@
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-  const plateRouteCacheKey = (plate) => `hv_plate_route_${plate}`;
-
-  const readPlateRouteCache = (plate) => {
-    if (!plate) return null;
-    try {
-      const raw = localStorage.getItem(plateRouteCacheKey(plate));
-      const parsed = safeJsonParse(raw);
-      if (!parsed || !parsed.makeSlug || !parsed.modelSlug) return null;
-      return parsed;
-    } catch {
-      return null;
-    }
-  };
 
   const escapeHtml = (value) =>
     String(value ?? "").replace(/[&<>"']/g, (m) => ({
@@ -341,7 +328,13 @@
   };
 
   const dispatchPlateEvent = (ctx) => {
-    window.dispatchEvent(new CustomEvent(EVENT_NAME, { detail: ctx || null }));
+    const detail = ctx || null;
+    window.dispatchEvent(new CustomEvent(EVENT_NAME, { detail }));
+    if (detail && detail.plate) {
+      window.dispatchEvent(new CustomEvent("vehicle:changed", { detail }));
+    } else {
+      window.dispatchEvent(new CustomEvent("vehicle:cleared", { detail }));
+    }
   };
 
   const clearPlateContext = () => {
@@ -356,7 +349,7 @@
 
   const buildVehicleSummary = (ctx) => {
     if (!ctx || !ctx.plate) return "";
-    if (!ctx.vehicle) return `${ctx.plate} kenteken actief`;
+    if (!ctx.vehicle) return `${ctx.plate}`;
     const make = ctx.vehicle.make || "";
     const model = ctx.vehicle.modelLabel || ctx.vehicle.model || "";
     const rangeLabel =
@@ -364,10 +357,9 @@
       ctx.yearRange?.label ||
       formatRangeLabel(getContextRange(ctx)) ||
       "";
-    const base = [ctx.plate, [make, model].filter(Boolean).join(" ")]
+    return [ctx.plate, [make, model].filter(Boolean).join(" "), rangeLabel]
       .filter(Boolean)
       .join(" ");
-    return rangeLabel ? `${base} (${rangeLabel})` : base;
   };
 
   const renderPlatePill = (ctx) => {
@@ -394,15 +386,24 @@
 
   const buildPlatePillMarkup = () => `
     <div class="platepill" data-plate-pill hidden>
-      <span data-plate-pill-text></span>
-      <button type="button" class="platepill__clear" data-plate-clear aria-label="Wis kenteken">x</button>
+      <span class="platepill__label">Kenteken:</span>
+      <span class="platepill__text" data-plate-pill-text></span>
+      <button type="button" class="platepill__clear" data-plate-clear>Annuleer</button>
     </div>
   `;
 
   const ensurePlatePillRow = (allowFallback = false) => {
     let row = document.querySelector("[data-plate-pill-row]");
-    if (row) return row;
-    const crumbs = document.querySelector(".site-breadcrumbs");
+    const crumbs =
+      document.querySelector(".site-breadcrumbs") ||
+      document.querySelector(".crumbs") ||
+      document.querySelector(".breadcrumbs");
+    if (row) {
+      if (crumbs && row.previousElementSibling !== crumbs) {
+        crumbs.insertAdjacentElement("afterend", row);
+      }
+      return row;
+    }
     if (crumbs) {
       row = document.createElement("div");
       row.className = "platepill-row";
@@ -451,6 +452,7 @@
       clearBtn.dataset.plateClearBound = "1";
       clearBtn.addEventListener("click", () => {
         clearPlateContext();
+        window.location.href = window.location.pathname;
       });
     }
     const ctx = loadPlateContext();
@@ -536,21 +538,30 @@
       }
       console.info("plate:parsed", { plate: normalized, source: "header" });
       setPlateBarState(bar, statusEl, "loading", "Bezig met zoeken...");
+      const path = String(window.location.pathname || "").toLowerCase();
+      const intentType = path.startsWith("/hulpveren/")
+        ? "hulpveren"
+        : path.startsWith("/luchtvering/")
+          ? "luchtvering"
+          : path.startsWith("/verlagingsveren/")
+            ? "verlagingsveren"
+            : "";
       const ctx = {
         plate: normalized,
         vehicle: null,
         range: null,
         yearRange: null,
+        intentType,
         updatedAt: Date.now(),
       };
       savePlateContext(ctx);
       renderPlatePill(ctx);
       dispatchPlateEvent(ctx);
-      const cached = readPlateRouteCache(normalized);
-      const target =
-        cached && cached.makeSlug && cached.modelSlug
-          ? `/hulpveren/${cached.makeSlug}/${cached.modelSlug}/kt_${normalized}`
-          : `${PLATE_PATH}${normalized}`;
+      const encoded = encodeURIComponent(normalized);
+      const targetBase = PLATE_PATH.endsWith("/") ? PLATE_PATH : `${PLATE_PATH}/`;
+      const target = intentType
+        ? `${targetBase}?kt=${encoded}&type=${encodeURIComponent(intentType)}`
+        : `${targetBase}?kt=${encoded}`;
       setPlateBarState(bar, statusEl, "success", "Kenteken gevonden. Doorsturen...");
       console.info("plate:redirect", { plate: normalized, target, source: "header" });
       window.location.href = target;
@@ -791,6 +802,9 @@
   const setPlateContextFromVehicle = (plate, vehicle, options = {}) => {
     const normalized = normalizePlate(plate);
     if (!normalized) return null;
+    const previous = loadPlateContext();
+    const intentType = options.intentType || (previous && previous.intentType) || "";
+    const route = options.route || (previous && previous.route) || null;
     const yearRange = options.yearRange || null;
     const range =
       options.range ||
@@ -814,6 +828,8 @@
       vehicle: vehicleBasic,
       range,
       yearRange,
+      intentType,
+      route,
       updatedAt: Date.now(),
     };
     savePlateContext(ctx);
@@ -831,10 +847,13 @@
       dispatchPlateEvent(ctx);
       applyPlateContext(ctx);
     }
-    window.addEventListener(EVENT_NAME, (evt) => {
-      renderPlatePill(evt.detail);
-      applyPlateContext(evt.detail);
-    });
+    const handleEvent = (detail) => {
+      renderPlatePill(detail);
+      applyPlateContext(detail);
+    };
+    window.addEventListener(EVENT_NAME, (evt) => handleEvent(evt.detail));
+    window.addEventListener("vehicle:changed", (evt) => handleEvent(evt.detail));
+    window.addEventListener("vehicle:cleared", () => handleEvent(null));
   };
 
   window.HVPlateContext = {

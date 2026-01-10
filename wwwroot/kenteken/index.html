@@ -21,8 +21,8 @@
 
 <body>
   <!-- Fix Summary:
-   * Broken: /kenteken/?kt= showed no tiles when localStorage was empty.
-   * Change: Display a loading status for URL plates; plate.js now auto-inits and sets storage.
+   * Broken: /kenteken/?kt= showed no tiles when plate context was missing.
+   * Change: Bind tiles to HVPlateContext + show default product group choices.
    * Test: Open /kenteken/?kt=13GTRG and confirm tiles appear without manual input.
    -->
   <div id="site-header"></div>
@@ -175,85 +175,104 @@
         return match ? normalizePlate(match[1]) : "";
       };
 
-      const readSelection = () => {
-        let vehicle = null;
-        try {
-          const raw = localStorage.getItem("hv_vehicle_selected");
-          vehicle = raw ? JSON.parse(raw) : null;
-        } catch (err) {
-          vehicle = null;
+      const getPlateContext = () => {
+        if (window.HVPlateContext && typeof window.HVPlateContext.getPlateContext === "function") {
+          return window.HVPlateContext.getPlateContext();
         }
-        const plate = localStorage.getItem("hv_plate") || "";
-        return { vehicle, plate };
+        return null;
       };
 
-      const readRouteSlugs = () => {
-        let makeSlug = "";
-        let modelSlug = "";
-        try {
-          makeSlug = localStorage.getItem("hv_plate_make_slug") || "";
-        } catch (err) {
-          makeSlug = "";
-        }
-        try {
-          modelSlug = localStorage.getItem("hv_plate_model_slug") || "";
-        } catch (err) {
-          modelSlug = "";
-        }
-        return { makeSlug, modelSlug };
+      const setBaseLinks = () => {
+        if (linkHv) linkHv.href = "/hulpveren/";
+        if (linkNr) linkNr.href = "/luchtvering/";
+        if (linkLs) linkLs.href = "/verlagingsveren/";
       };
 
-      const updateTiles = (selection) => {
-        const vehicle = selection && selection.vehicle ? selection.vehicle : null;
-        const plateRaw = selection && selection.plate ? selection.plate : "";
+      const updateTiles = (context, options = {}) => {
+        const ctx = context || null;
+        const vehicle = ctx && ctx.vehicle ? ctx.vehicle : null;
+        const plateRaw = ctx && ctx.plate ? ctx.plate : "";
         const make = vehicle ? vehicle.make || vehicle.makename : "";
         const model = vehicle ? vehicle.model || vehicle.modelname : "";
-        const fallbackMakeSlug = slugify(make);
-        const fallbackModelSlug = slugify(model);
-        const storedSlugs = readRouteSlugs();
-        const makeSlug = storedSlugs.makeSlug || fallbackMakeSlug;
-        const modelSlug = storedSlugs.modelSlug || fallbackModelSlug;
+        const makeSlug = slugify(make);
         const plate = normalizePlate(plateRaw);
-        const plateSlug = plate.toLowerCase();
 
-        if (!makeSlug || !modelSlug || !plateSlug) {
-          if (tilesEl) tilesEl.style.display = "none";
+        if (options.loading) {
+          setStatus("Bezig met ophalen...");
+        }
+
+        if (!makeSlug) {
+          setBaseLinks();
+          if (tilesEl) tilesEl.style.display = "";
           if (vehicleEl) vehicleEl.textContent = "";
-          setStatus("Geen kenteken gevonden. Voer hierboven opnieuw in.");
+          if (!options.loading) {
+            setStatus("Kies je productgroep.");
+          }
           return;
         }
 
         const label = [make, model].filter(Boolean).join(" ");
         if (vehicleEl) {
-          vehicleEl.textContent = `Gevonden voertuig: ${label} (${plate})`;
+          vehicleEl.textContent = label
+            ? `Gevonden voertuig: ${label} (${plate})`
+            : `Gevonden voertuig: ${plate}`;
         }
         setStatus("Kies hieronder wat je wilt bekijken.");
         if (tilesEl) tilesEl.style.display = "";
 
-        const hvUrl = `/hulpveren/${makeSlug}/${modelSlug}/kt_${plateSlug}`;
-        const nrUrl = `/luchtvering/${makeSlug}/${modelSlug}/kt_${plateSlug}`;
-        const lsUrl = `/verlagingsveren/${makeSlug}/${modelSlug}/kt_${plateSlug}`;
-        if (linkHv) linkHv.href = hvUrl;
-        if (linkNr) linkNr.href = nrUrl;
-        if (linkLs) linkLs.href = lsUrl;
+        if (linkHv) linkHv.href = `/hulpveren/${makeSlug}/`;
+        if (linkNr) linkNr.href = `/luchtvering/${makeSlug}/`;
+        if (linkLs) linkLs.href = `/verlagingsveren/${makeSlug}/`;
       };
 
-      const selection = readSelection();
-      updateTiles(selection);
-      const urlPlate = getUrlPlate();
-      if (urlPlate && (!selection.plate || normalizePlate(selection.plate) !== urlPlate)) {
-        setStatus("Bezig met ophalen...");
+      const init = () => {
+        const ctx = getPlateContext();
+        const urlPlate = getUrlPlate();
+        const loading = Boolean(urlPlate && (!ctx || !ctx.vehicle));
+        updateTiles(ctx, { loading });
+
+        window.HVKentekenChoice = (context) => {
+          const next = context || getPlateContext();
+          updateTiles(next, { loading: false });
+        };
+
+        window.addEventListener("vehicle:changed", (event) => {
+          updateTiles(event && event.detail ? event.detail : null);
+        });
+        window.addEventListener("vehicle:cleared", () => {
+          updateTiles(null);
+        });
+        window.addEventListener("plate:changed", (event) => {
+          updateTiles(event && event.detail ? event.detail : null);
+        });
+      };
+
+      const boot = () => {
+        if (window.HVPlateContext || window.HVPlateContextLoading) {
+          init();
+          return;
+        }
+        let attempts = 0;
+        const poll = () => {
+          attempts += 1;
+          if (window.HVPlateContext) {
+            init();
+            return;
+          }
+          if (attempts < 10) {
+            setTimeout(poll, 200);
+            return;
+          }
+          init();
+        };
+        poll();
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+      } else {
+        boot();
       }
-
-      window.addEventListener("hv:vehicleSelected", (event) => {
-        const detail = event && event.detail ? event.detail : {};
-        updateTiles({ vehicle: detail.vehicle, plate: detail.plate });
-      });
-
-      window.addEventListener("hv:plateRouteResolved", (event) => {
-        const detail = event && event.detail ? event.detail : {};
-        updateTiles({ vehicle: detail.vehicle, plate: detail.plate });
-      });
     })();
   </script>
 </body>

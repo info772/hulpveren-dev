@@ -7,7 +7,7 @@
 
 ## Wijzigingen (kenteken route)
 - `assets/js/app.js`: herkent `/hulpveren/<make>/<model>/kt_<plate>`, haalt Aldoc data via `/api/plate/:plate`, filtert sets en rendert dezelfde kaarten.
-- `assets/js/plate.js`: auto-init lookup op `/kenteken/?kt=...` en schrijft `hv_plate_make_slug` + `hv_plate_model_slug`.
+- `assets/js/plate.js`: auto-init lookup op `/kenteken/?kt=...` en zet `HVPlateContext` (sessionStorage).
 - `web.config`: IIS rewrite voor `kt_` routes naar de model shell.
 - `docs/server/nginx-hulpveren-kt.conf`: nginx snippet voor dezelfde rewrite.
 - `infra/nginx/dev.hulpveren.shop.api.conf`: redirect `/kenteken/<plate>` -> `/kenteken/?kt=<plate>` voor autoload.
@@ -114,11 +114,7 @@ const parts = await window.HVPlate.Menu.loadRelevantMenuParts(vehicle);
 ```
 
 ### Storage keys
-- `hv_plate`
-- `hv_vehicle_selected`
-- `hv_vehicle_selected_at`
-- `hv_plate_make_slug`
-- `hv_plate_model_slug`
+- `hv_plate_context` (sessionStorage, via `plateContext.js`)
 
 ## Notes (deploy)
 - `assets/js/plate.js` is een statisch bestand in de webroot; wijzigingen gaan mee met de webroot deploy.

@@ -1,9 +1,4 @@
 (function () {
-  const STORAGE_KEYS = {
-    plate: "hv_plate",
-    vehicle: "hv_vehicle_selected",
-    selectedAt: "hv_vehicle_selected_at",
-  };
 
   function normalizePlate(value) {
     return String(value || "")
@@ -29,57 +24,36 @@
     if (button) button.disabled = isLoading;
   }
 
-  function storageSet(key, value) {
-    try {
-      localStorage.setItem(key, value);
-    } catch (err) {
-      return;
-    }
-  }
-
-  function storageGet(key) {
-    try {
-      return localStorage.getItem(key);
-    } catch (err) {
-      return null;
-    }
-  }
-
-  function storageRemove(key) {
-    try {
-      localStorage.removeItem(key);
-    } catch (err) {
-      return;
-    }
-  }
-
-  function storageGetJson(key) {
-    const raw = storageGet(key);
-    if (!raw) return null;
-    try {
-      return JSON.parse(raw);
-    } catch (err) {
-      return null;
-    }
-  }
-
   function saveSelection(plate, vehicle) {
-    storageSet(STORAGE_KEYS.plate, plate);
-    storageSet(STORAGE_KEYS.vehicle, JSON.stringify(vehicle));
-    storageSet(STORAGE_KEYS.selectedAt, String(Date.now()));
+    if (
+      window.HVPlateContext &&
+      typeof window.HVPlateContext.setPlateContextFromVehicle === "function"
+    ) {
+      window.HVPlateContext.setPlateContextFromVehicle(plate, vehicle);
+    }
   }
 
   function getSelection() {
-    const plate = storageGet(STORAGE_KEYS.plate);
-    const vehicle = storageGetJson(STORAGE_KEYS.vehicle);
-    const selectedAt = storageGet(STORAGE_KEYS.selectedAt);
-    return { plate, vehicle, selectedAt };
+    if (
+      window.HVPlateContext &&
+      typeof window.HVPlateContext.getPlateContext === "function"
+    ) {
+      const ctx = window.HVPlateContext.getPlateContext();
+      return {
+        plate: ctx && ctx.plate ? String(ctx.plate) : "",
+        vehicle: ctx && ctx.vehicle ? ctx.vehicle : null,
+      };
+    }
+    return { plate: "", vehicle: null };
   }
 
   function clearSelection() {
-    storageRemove(STORAGE_KEYS.plate);
-    storageRemove(STORAGE_KEYS.vehicle);
-    storageRemove(STORAGE_KEYS.selectedAt);
+    if (
+      window.HVPlateContext &&
+      typeof window.HVPlateContext.clearPlateContext === "function"
+    ) {
+      window.HVPlateContext.clearPlateContext();
+    }
   }
 
   function emit(name, detail) {

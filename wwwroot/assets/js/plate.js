@@ -1,15 +1,10 @@
 (function () {
   /* Fix Summary:
    * Broken: /kenteken/?kt= did not auto-load a plate lookup and could hang without timeout.
-   * Change: Added URL auto-init, slug caching for routes, and timeout-based lookup with clear states.
+   * Change: Added URL auto-init, HVPlateContext sync, and timeout-based lookup with clear states.
    * Test: Open /kenteken/?kt=13GTRG and confirm auto lookup + tiles render.
    */
 
-  const STORAGE_KEYS = {
-    plate: "hv_plate",
-    vehicle: "hv_vehicle_selected",
-    selectedAt: "hv_vehicle_selected_at",
-  };
   const MENU_CACHE_KEY = "hv_menu_cache";
   const MENU_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
   const MAPPING_CACHE_KEY = "hv_menu_mapping";
@@ -44,17 +39,10 @@
       .replace(/^-+|-+$/g, "");
   }
 
-  function setRouteSlugsFromVehicle(vehicle) {
-    if (!vehicle) return;
-    const makeSlug = slugify(vehicle.make || vehicle.makename || "");
-    const modelSlug = slugify(vehicle.model || vehicle.modelname || "");
-    try {
-      if (makeSlug) localStorage.setItem("hv_plate_make_slug", makeSlug);
-      if (modelSlug) localStorage.setItem("hv_plate_model_slug", modelSlug);
-    } catch (err) {
-      return;
-    }
+  function setRouteSlugsFromVehicle() {
+    return;
   }
+
 
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, (m) => ({
@@ -115,7 +103,7 @@
 
   function storageSet(key, value) {
     try {
-      localStorage.setItem(key, value);
+      sessionStorage.setItem(key, value);
     } catch (err) {
       return;
     }
@@ -123,7 +111,7 @@
 
   function storageGet(key) {
     try {
-      return localStorage.getItem(key);
+      return sessionStorage.getItem(key);
     } catch (err) {
       return null;
     }
@@ -131,7 +119,7 @@
 
   function storageRemove(key) {
     try {
-      localStorage.removeItem(key);
+      sessionStorage.removeItem(key);
     } catch (err) {
       return;
     }
@@ -221,37 +209,28 @@
     return [make, model, type].filter(Boolean).join(" ") + (years ? ` (${years})` : "");
   }
 
-  function saveSelection(plate, vehicle) {
-    storageSet(STORAGE_KEYS.plate, plate);
-    storageSet(STORAGE_KEYS.vehicle, JSON.stringify(vehicle));
-    storageSet(STORAGE_KEYS.selectedAt, String(Date.now()));
+  function saveSelection(plate, vehicle, options = {}) {
     if (
       window.HVPlateContext &&
       typeof window.HVPlateContext.setPlateContextFromVehicle === "function"
     ) {
-      window.HVPlateContext.setPlateContextFromVehicle(plate, vehicle);
+      window.HVPlateContext.setPlateContextFromVehicle(plate, vehicle, options);
     }
   }
 
-  function persistSelection(plate, vehicle) {
-    if (typeof saveSelection === "function") {
-      saveSelection(plate, vehicle);
-      return;
-    }
-    storageSet(
-      "hv_plate_selection",
-      JSON.stringify({ plate, vehicle, selectedAt: Date.now() })
-    );
+  function persistSelection(plate, vehicle, options = {}) {
+    saveSelection(plate, vehicle, options);
   }
 
   function getSelectedVehicle() {
-    return storageGetJson(STORAGE_KEYS.vehicle);
+    const ctx =
+      window.HVPlateContext && typeof window.HVPlateContext.getPlateContext === "function"
+        ? window.HVPlateContext.getPlateContext()
+        : null;
+    return ctx && ctx.vehicle ? ctx.vehicle : null;
   }
 
   function clearSelection() {
-    storageRemove(STORAGE_KEYS.plate);
-    storageRemove(STORAGE_KEYS.vehicle);
-    storageRemove(STORAGE_KEYS.selectedAt);
     if (
       window.HVPlateContext &&
       typeof window.HVPlateContext.clearPlateContext === "function"
@@ -376,11 +355,13 @@
     container.appendChild(card);
 
     const clearButton = card.querySelector(".hv-plate-clear");
-clearButton.addEventListener("click", () => {
-  clearPlateContext();
-  location.href = location.pathname;
-});
-
+    if (clearButton) {
+      clearButton.addEventListener("click", () => {
+        clearSelection();
+        window.location.href = window.location.pathname;
+      });
+    }
+  }
 
   function renderCandidatePicker(container, plate, candidates, onPick) {
     container.innerHTML = "";
@@ -497,6 +478,55 @@ clearButton.addEventListener("click", () => {
     container.appendChild(list);
   }
 
+  function normalizeType(value) {
+    const raw = String(value || "").toLowerCase().trim();
+    if (!raw) return "";
+    if (raw === "hv" || raw === "hulpveren") return "hulpveren";
+    if (raw === "nr" || raw === "luchtvering") return "luchtvering";
+    if (raw === "ls" || raw === "verlagingsveren") return "verlagingsveren";
+    return "";
+  }
+
+  function getIntentTypeFromLocation() {
+    const params = new URLSearchParams(location.search || "");
+    const viaParam = normalizeType(params.get("type"));
+    if (viaParam) return viaParam;
+    const path = String(location.pathname || "").toLowerCase();
+    if (path.startsWith("/hulpveren/")) return "hulpveren";
+    if (path.startsWith("/luchtvering/")) return "luchtvering";
+    if (path.startsWith("/verlagingsveren/")) return "verlagingsveren";
+    return "";
+  }
+
+  function renderTypeChoice(container, makeSlug) {
+    if (!container || !makeSlug) return;
+    let block = container.querySelector("[data-plate-type-choice]");
+    if (!block) {
+      block = document.createElement("div");
+      block.className = "plate-type-choice";
+      block.setAttribute("data-plate-type-choice", "1");
+      container.appendChild(block);
+    }
+    block.innerHTML = `
+      <div class="plate-type-choice__title">Kies productgroep</div>
+      <div class="plate-type-choice__actions">
+        <button type="button" class="btn" data-type="hulpveren">Hulpveren</button>
+        <button type="button" class="btn" data-type="luchtvering">Luchtvering</button>
+        <button type="button" class="btn" data-type="verlagingsveren">Verlagingsveren</button>
+      </div>
+    `;
+    if (block.dataset.bound !== "1") {
+      block.dataset.bound = "1";
+      block.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-type]");
+        if (!button) return;
+        const type = normalizeType(button.dataset.type);
+        if (!type) return;
+        window.location.href = `/${type}/${makeSlug}/`;
+      });
+    }
+  }
+
   function getPlateFromUrl() {
     const params = new URLSearchParams(location.search || "");
     const fromParam = params.get("kt");
@@ -510,7 +540,10 @@ clearButton.addEventListener("click", () => {
     if (!window.history || typeof window.history.replaceState !== "function") return;
     try {
       if ((location.pathname || "").toLowerCase().startsWith("/kenteken")) {
-        window.history.replaceState(null, "", `/kenteken/?kt=${plate}`);
+        const params = new URLSearchParams(location.search || "");
+        const type = normalizeType(params.get("type"));
+        const suffix = type ? `&type=${type}` : "";
+        window.history.replaceState(null, "", `/kenteken/?kt=${plate}${suffix}`);
       }
     } catch (err) {
       return;
@@ -521,7 +554,12 @@ clearButton.addEventListener("click", () => {
     if (!elements || !elements.form || !elements.input || !elements.status) return;
     if (elements.form.dataset.hvPlateAutoInit === "1") return;
     const raw = getPlateFromUrl();
-    if (!raw) return;
+    if (!raw) {
+      if (typeof window.HVKentekenChoice === "function") {
+        window.HVKentekenChoice(null);
+      }
+      return;
+    }
     const normalized = normalizePlate(raw);
     if (!isValidPlate(normalized)) return;
 
@@ -617,6 +655,7 @@ clearButton.addEventListener("click", () => {
     const existing = getSelectedVehicle();
     if (existing) {
       renderSelected(elements.results, existing);
+      renderTypeChoice(elements.results, slugify(existing.make || existing.makename || ""));
     }
 
     initFromUrl(elements, {
@@ -737,7 +776,7 @@ clearButton.addEventListener("click", () => {
     };
   }
 
-  function finalizeSelection(plate, vehicle, data, elements) {
+  function finalizeSelectionLegacy(plate, vehicle, data, elements) {
     if (!vehicle) return;
     persistSelection(plate, vehicle);
     setRouteSlugsFromVehicle(vehicle);
@@ -756,7 +795,7 @@ if (isHV || isNR || isLS) {
 
 // ⬇️ NIET op HV/NR/LS → vraag keuze
 const make = slugify(vehicle.make || vehicle.makename || "");
-const choice = window.prompt("Waar wil je heen? Typ: HV, NR of LS");
+const choice = null;
 if (!choice) return;
 
 const map = { HV: "hulpveren", NR: "luchtvering", LS: "verlagingsveren" };
@@ -766,6 +805,45 @@ if (type) location.href = `/${type}/${make}/`;
 
     if (elements && elements.results) {
       renderSelected(elements.results, vehicle);
+    }
+    if (elements && elements.status) {
+      setStatus(elements.status, "Voertuig gevonden.", false, { state: "success" });
+    }
+    emitEvent("hv:vehicleSelected", {
+      plate,
+      vehicle,
+      source: (data && data.source) || "api",
+    });
+  }
+
+  function finalizeSelection(plate, vehicle, data, elements) {
+    if (!vehicle) return;
+    const makeSlug = slugify(vehicle.make || vehicle.makename || "");
+    const intentType = getIntentTypeFromLocation();
+    persistSelection(plate, vehicle, { intentType });
+
+    const path = String(location.pathname || "").toLowerCase();
+    const isHV = path.startsWith("/hulpveren/");
+    const isNR = path.startsWith("/luchtvering/");
+    const isLS = path.startsWith("/verlagingsveren/");
+    if (isHV || isNR || isLS) {
+      const type = isHV ? "hulpveren" : isNR ? "luchtvering" : "verlagingsveren";
+      if (makeSlug) {
+        window.location.href = `/${type}/${makeSlug}/`;
+      }
+      return;
+    }
+
+    if (intentType && makeSlug) {
+      window.location.href = `/${intentType}/${makeSlug}/`;
+      return;
+    }
+
+    if (elements && elements.results) {
+      renderSelected(elements.results, vehicle);
+      if (!document.getElementById("kenteken-tiles")) {
+        renderTypeChoice(elements.results, makeSlug);
+      }
     }
     if (elements && elements.status) {
       setStatus(elements.status, "Voertuig gevonden.", false, { state: "success" });
@@ -790,7 +868,10 @@ if (type) location.href = `/${type}/${make}/`;
     const results = container.querySelector(".hv-plate-results");
 
     const existing = getSelectedVehicle();
-    if (existing) renderSelected(results, existing);
+    if (existing) {
+      renderSelected(results, existing);
+      renderTypeChoice(results, slugify(existing.make || existing.makename || ""));
+    }
 
     initFromUrl({ form, input, status, results }, {
       autoSelectIfSingle: true,

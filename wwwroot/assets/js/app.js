@@ -159,7 +159,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   /* Fix Summary:
    * Broken: Plate fetch could hang and some plate routes rendered empty after strict filtering.
-   * Change: Added timeout/single-flight fetch, route cache storage, filtered-tab fallbacks, and a debug route audit.
+   * Change: Added timeout/single-flight fetch, filtered-tab fallbacks, and a debug route audit.
    * Test: /kenteken search + /hulpveren/<make>/<model>/kt_<plate>; add ?debug=1 for route audit logs.
    */
 
@@ -188,10 +188,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const PLATE_CACHE_TTL_MS = 15 * 60 * 1000;
   const PLATE_FETCH_TIMEOUT_MS = 12000;
   const PLATE_FETCH_INFLIGHT = new Map();
-  const PLATE_ROUTE_KEYS = {
-    make: "hv_plate_make_slug",
-    model: "hv_plate_model_slug",
-  };
   const ALDOC_CODES = {
     brand: 204,
     hv: 1031,
@@ -720,61 +716,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       return { index, plate, platePart };
     };
 
-    const readPlateRouteSlugs = () => {
-      let makeSlug = "";
-      let modelSlug = "";
-      try {
-        makeSlug = localStorage.getItem(PLATE_ROUTE_KEYS.make) || "";
-      } catch (err) {
-        makeSlug = "";
-      }
-      try {
-        modelSlug = localStorage.getItem(PLATE_ROUTE_KEYS.model) || "";
-      } catch (err) {
-        modelSlug = "";
-      }
-      return { makeSlug, modelSlug };
-    };
-
-    const storePlateRouteSlugs = (makeSlug, modelSlug) => {
-      try {
-        localStorage.setItem(PLATE_ROUTE_KEYS.make, makeSlug || "");
-      } catch (err) {
-        // ignore storage failures
-      }
-      try {
-        localStorage.setItem(PLATE_ROUTE_KEYS.model, modelSlug || "");
-      } catch (err) {
-        // ignore storage failures
-      }
-    };
-
-    const plateRouteCacheKey = (plate) => `hv_plate_route_${plate}`;
-
-    const readPlateRouteCache = (plate) => {
-      if (!plate) return null;
-      try {
-        const raw = localStorage.getItem(plateRouteCacheKey(plate));
-        const parsed = raw ? JSON.parse(raw) : null;
-        if (!parsed || !parsed.makeSlug || !parsed.modelSlug) return null;
-        return parsed;
-      } catch (err) {
-        return null;
-      }
-    };
-
-    const storePlateRouteCache = (plate, makeSlug, modelSlug) => {
-      if (!plate || !makeSlug || !modelSlug) return;
-      try {
-        localStorage.setItem(
-          plateRouteCacheKey(plate),
-          JSON.stringify({ makeSlug, modelSlug, updatedAt: Date.now() })
-        );
-      } catch (err) {
-        // ignore storage failures
-      }
-    };
-
     const readSessionCache = (key) => {
       try {
         const raw = sessionStorage.getItem(key);
@@ -1218,47 +1159,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const bindPlateRedirect = () => {
       if (window.__hvPlateRedirectBound) return;
       window.__hvPlateRedirectBound = true;
-
-      window.addEventListener("hv:vehicleSelected", async (event) => {
-        const detail = event && event.detail ? event.detail : {};
-        const vehicle = detail.vehicle || {};
-        const plateValue = normalizePlateInput(detail.plate);
-        const makeSlug = slugify(vehicle.make || vehicle.makename || "");
-        const modelSlugRaw = slugify(vehicle.model || vehicle.modelname || "");
-        if (!makeSlug || !modelSlugRaw || !plateValue) return;
-
-        const base = getPlateBaseFromPath(location.pathname);
-        const lookupBase = base || HV_BASE;
-        const modelSlug = await resolvePlateModelSlug({
-          base: lookupBase,
-          makeSlug,
-          modelSlug: modelSlugRaw,
-        });
-        storePlateRouteSlugs(makeSlug, modelSlug);
-        storePlateRouteCache(plateValue, makeSlug, modelSlug);
-        window.dispatchEvent(
-          new CustomEvent("hv:plateRouteResolved", {
-            detail: { plate: detail.plate, makeSlug, modelSlug, vehicle },
-          })
-        );
-        const currentPath = normalizeForRoute(location.pathname);
-        if (base) {
-          const target = `${base}/${makeSlug}/${modelSlug}/${PLATE_PREFIX}${plateValue}`;
-          if (normalizeForRoute(location.pathname) !== normalizeForRoute(target)) {
-            window.location.href = target;
-          }
-          return;
-        }
-
-        const landingTarget = `${PLATE_LANDING_PATH}/?kt=${plateValue}`;
-        if (currentPath === normalizeForRoute(PLATE_LANDING_PATH)) {
-          if (window.history && typeof window.history.replaceState === "function") {
-            window.history.replaceState(null, "", landingTarget);
-          }
-          return;
-        }
-        window.location.href = landingTarget;
-      });
+      window.addEventListener("hv:vehicleSelected", () => {});
     };
 
     const initPlateHelpers = () => {
@@ -1273,21 +1174,21 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     const readPlateSelection = () => {
-      let vehicle = null;
-      let plate = "";
-      try {
-        const raw = localStorage.getItem("hv_vehicle_selected");
-        vehicle = raw ? JSON.parse(raw) : null;
-      } catch (err) {
-        vehicle = null;
-      }
-      try {
-        plate = localStorage.getItem("hv_plate") || "";
-      } catch (err) {
-        plate = "";
-      }
-      return { plate, vehicle };
+      const ctx =
+        window.HVPlateContext && typeof window.HVPlateContext.getPlateContext === "function"
+          ? window.HVPlateContext.getPlateContext()
+          : null;
+      return {
+        plate: ctx && ctx.plate ? String(ctx.plate) : "",
+        vehicle: ctx && ctx.vehicle ? ctx.vehicle : null,
+        route: ctx && ctx.route ? ctx.route : null,
+      };
     };
+
+    const getActivePlateContext = () =>
+      window.HVPlateContext && typeof window.HVPlateContext.getPlateContext === "function"
+        ? window.HVPlateContext.getPlateContext()
+        : null;
 
     const getPlatePathInfo = (pathname, base) => {
       if (!base) return null;
@@ -1609,9 +1510,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (vehicle) {
         const makeMatch = slugify(vehicle.make || vehicle.makename || "");
         const modelMatch = slugify(vehicle.model || vehicle.modelname || "");
-        const storedSlugs = readPlateRouteSlugs();
-        const makeResolved = storedSlugs.makeSlug || makeMatch;
-        const modelResolved = storedSlugs.modelSlug || modelMatch;
+        const route = selection && selection.route ? selection.route : null;
+        const makeResolved = (route && route.makeSlug) || makeMatch;
+        const modelResolved = (route && route.modelSlug) || modelMatch;
         if (makeResolved !== info.makeSlug || modelResolved !== info.modelSlug) {
           vehicle = null;
         }
@@ -1678,7 +1579,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         filtersWrap.insertAdjacentHTML("beforebegin", html);
         return;
       }
-      const crumbs = document.querySelector(".crumbs");
+      const crumbs =
+        document.querySelector(".site-breadcrumbs") ||
+        document.querySelector(".crumbs") ||
+        document.querySelector(".breadcrumbs");
       if (crumbs) {
         crumbs.insertAdjacentHTML("afterend", html);
         return;
@@ -1693,6 +1597,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (!context || !context.yearRange) return;
       const grid = document.getElementById("ls-grid");
       if (!grid) return;
+      if (!grid.children.length && context.plate) {
+        const parts = normalizeForRoute(location.pathname).split("/").filter(Boolean);
+        const makeSlug = parts[1] || "";
+        const target = makeSlug ? `${LS_BASE}/${makeSlug}/` : `${LS_BASE}/`;
+        window.location.href = target;
+        return;
+      }
       const from = context.yearRange.from ?? context.yearRange.to;
       const to = context.yearRange.to ?? context.yearRange.from;
       const yearFrom = document.getElementById("ls-year-from");
@@ -1711,12 +1622,16 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     const initPlateContextFeatures = () => {
       if (hasApp) return;
-      const context = buildPlateContext({ base: CURRENT_BASE });
-      if (!context) return;
-      insertPlateInfoBlock(context);
-      if (CURRENT_FAMILY === "ls") {
-        applyPlateContextToStaticLs(context);
-      }
+      const refresh = () => {
+        const context = buildPlateContext({ base: CURRENT_BASE });
+        if (!context) return;
+        insertPlateInfoBlock(context);
+        if (CURRENT_FAMILY === "ls") {
+          applyPlateContextToStaticLs(context);
+        }
+      };
+      refresh();
+      window.addEventListener("vehicle:changed", refresh);
     };
 
     if (document.readyState === "loading") {
@@ -3740,6 +3655,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     setTitle(`Hulpveren - ${entry.label} | MAD Sets met montage`);
     updateHero(entry.label);
+    const activeCtx = getActivePlateContext();
+    const vehicleActive = Boolean(activeCtx && activeCtx.plate);
+    if ((!entry.models || entry.models.size === 0) && vehicleActive) {
+      window.location.href = `${BASE}/`;
+      return;
+    }
 
     const rows = Array.from(entry.models.entries())
       .sort((a, b) => a[1].localeCompare(b[1]))
@@ -4569,6 +4490,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const modelLabel = entry.models.get(modelSlug);
       const plateContext = buildPlateContext({ base: BASE, makeSlug, modelSlug });
       const plateInfoHtml = buildPlateInfoHtml(plateContext);
+      const activeCtx = getActivePlateContext();
+      const vehicleActive = Boolean(activeCtx && activeCtx.plate);
       setTitle(`Hulpveren - ${makeLabel} ${modelLabel} | MAD Sets met montage`);
       updateHero(makeLabel, modelLabel);
 
@@ -4581,6 +4504,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       }
     }
     if (!allPairs.length) {
+      if (vehicleActive) {
+        window.location.href = `${BASE}/${makeSlug}/`;
+        return;
+      }
       console.warn("kits:model_empty", {
         makeSlug,
         modelSlug,
@@ -4779,6 +4706,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       showRearMeta,
     };
 
+    let initialRender = true;
     function renderCards() {
   const filtered = filterPairs(allPairs).sort((a, b) => {
     const pa = a.k?.pricing_nl?.total_inc_vat_from_eur;
@@ -4794,6 +4722,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   if (countEl) countEl.textContent = String(filtered.length);
 
   if (!gridEl) return;
+
+  if (initialRender) {
+    initialRender = false;
+    if (!filtered.length && vehicleActive) {
+      window.location.href = `${BASE}/${makeSlug}/`;
+      return;
+    }
+  }
 
   if (!filtered.length) {
     gridEl.innerHTML = `<p class="note">Geen resultaten met deze filters.</p>`;
@@ -5230,7 +5166,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       caddyGeneration,
       isCaddy,
     };
-    storePlateRouteCache(plateNormalized, makeSlug, modelSlugForContext);
     if (
       window.HVPlateContext &&
       typeof window.HVPlateContext.setPlateContextFromVehicle === "function"
@@ -5238,6 +5173,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       window.HVPlateContext.setPlateContextFromVehicle(plateNormalized, vehicle, {
         range: vehicleRange,
         yearRange: plateContext?.yearRange,
+        route: { makeSlug, modelSlug: modelSlugForContext || "" },
       });
     }
 
@@ -6085,6 +6021,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const plateInfoHtml = buildPlateInfoHtml(plateContext);
       const plateYearRange =
         plateContext && plateContext.yearRange ? plateContext.yearRange : null;
+      const activeCtx = getActivePlateContext();
+      const vehicleActive = Boolean(activeCtx && activeCtx.plate);
 
     const pairs = [];
     for (const k of kits || []) {
@@ -6096,6 +6034,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (!pairs.length) {
+      if (vehicleActive) {
+        window.location.href = `${NR_BASE}/${makeSlug}/`;
+        return;
+      }
       console.warn("kits:nr_model_empty", {
         makeSlug,
         modelSlug,
@@ -6303,6 +6245,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       return true;
     }
 
+    let initialApply = true;
     function apply() {
       let visible = 0;
       cards.forEach((c) => {
@@ -6311,6 +6254,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         if (ok) visible += 1;
       });
       if (countEl) countEl.textContent = String(visible);
+      if (initialApply) {
+        initialApply = false;
+        if (!visible && vehicleActive) {
+          window.location.href = `${NR_BASE}/${makeSlug}/`;
+        }
+      }
     }
 
     const applyBtn = document.getElementById("nr-apply");
