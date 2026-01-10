@@ -582,7 +582,6 @@
       document.documentElement.classList.add("has-site-breadcrumbs");
       return;
     }
-    if (document.querySelector(".breadcrumbs, .crumbs")) return;
 
     const path = window.location.pathname || "/";
     if (path === "/" || path === "/index.html") return;
@@ -635,30 +634,44 @@
     const headerEl =
       (mountEl && mountEl.querySelector(".hv2-header")) ||
       document.querySelector(".hv2-header") ||
-      document.querySelector("header");
+      document.querySelector("header") ||
+      mountEl ||
+      document.getElementById("site-header");
 
-    if (headerEl) {
-      headerEl.insertAdjacentElement("afterend", navEl);
-      document.documentElement.classList.add("has-site-breadcrumbs");
-    }
+    if (!headerEl) return;
+
+    headerEl.insertAdjacentElement("afterend", navEl);
+    document.documentElement.classList.add("has-site-breadcrumbs");
+    document.querySelectorAll(".breadcrumbs, .crumbs").forEach((el) => el.remove());
   };
 
   const mount = async () => {
     const target = getMountTarget();
-    const res = await fetch(PARTIAL_URL, { cache: "no-cache" });
-    if (!res.ok) return;
+    let mountEl = target.mountEl || target.legacy || null;
+    let html = null;
 
-    const html = await res.text();
-    const mountEl = target.mountEl || createMountEl(target.legacy);
-    mountEl.innerHTML = html;
-    mountEl.dataset.hv2Mounted = "1";
+    try {
+      const res = await fetch(PARTIAL_URL, { cache: "no-cache" });
+      if (res.ok) {
+        html = await res.text();
+      }
+    } catch {
+      html = null;
+    }
 
-    ensureDrawerClosedOnMount(mountEl);
-    bindNav(mountEl);
-    bindMegaMenus(mountEl);
+    if (html) {
+      mountEl = target.mountEl || createMountEl(target.legacy);
+      mountEl.innerHTML = html;
+      mountEl.dataset.hv2Mounted = "1";
+
+      ensureDrawerClosedOnMount(mountEl);
+      bindNav(mountEl);
+      bindMegaMenus(mountEl);
+      mountMakesWhenReady();
+      bindHeaderScroll(mountEl);
+    }
+
     injectBreadcrumbs(mountEl);
-    mountMakesWhenReady();
-    bindHeaderScroll(mountEl);
   };
 
   const init = () => {
