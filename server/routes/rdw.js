@@ -94,10 +94,16 @@ router.get("/:plate", async (req, res) => {
 
     // ✅ debug moet ALTIJD iets teruggeven
     if (req.query.debug === "1") {
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        data = null;
+      }
       return res.json({
         url,
         status,
-        head: text.slice(0, 300),
+        head: String(text || JSON.stringify(data)).slice(0, 300),
       });
     }
 
