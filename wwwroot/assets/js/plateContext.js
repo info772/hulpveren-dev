@@ -386,15 +386,20 @@
     pill.hidden = false;
     if (row) row.hidden = false;
     if (pillText) pillText.textContent = buildVehicleSummary(ctx);
-    const y = ctx?.vehicle?.estimatedYear;
-    const min = ctx?.vehicle?.estimatedYearMin;
-    const max = ctx?.vehicle?.estimatedYearMax;
-    if (y) {
-      const basis =
-        ctx?.vehicle?.estimatedYearFrom === "eerste_toelating"
-          ? "eerste toelating"
-          : "bouwjaar";
-      note.textContent = `Bouwjaar-inschatting: ${min ?? ""}${min ? "–" : ""}${max ?? ""} (op basis van ${basis})`;
+    const yMin = ctx?.vehicle?.yearMin ?? ctx?.vehicle?.estimatedYearMin;
+    const yMax = ctx?.vehicle?.yearMax ?? ctx?.vehicle?.estimatedYearMax;
+    const basisRaw = ctx?.vehicle?.yearSource || ctx?.vehicle?.estimatedYearFrom;
+    const basis =
+      basisRaw === "eerste_toelating"
+        ? "eerste toelating"
+        : basisRaw === "rdw"
+          ? "RDW"
+          : "indicatie";
+    if (yMin != null || yMax != null) {
+      const minTxt = yMin != null ? String(yMin) : "";
+      const maxTxt = yMax != null ? String(yMax) : "";
+      const dash = minTxt && maxTxt ? "–" : "";
+      note.textContent = `Bouwjaar-inschatting: ${minTxt}${dash}${maxTxt} (op basis van ${basis})`;
     } else {
       note.textContent = "";
     }

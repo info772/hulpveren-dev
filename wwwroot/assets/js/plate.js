@@ -94,6 +94,36 @@
     return { make, model };
   }
 
+  function parseAldocRangeFromText(text) {
+    const s = String(text || "");
+    const m = s.match(/\(([^)]*)\)/);
+    const inside = m ? m[1] : s;
+    const years = inside.match(/\b(19\d{2}|20\d{2})\b/g);
+    if (!years || !years.length) return null;
+    const y1 = Number(years[0]);
+    const y2 = Number(years[1] || years[0]);
+    const minY = Math.min(y1, y2);
+    const maxY = Math.max(y1, y2);
+    return { minY, maxY, source: "aldoc_uitvoering" };
+  }
+
+  async function fetchRdwYear(plate) {
+    const res = await fetch(`/api/rdw/${encodeURIComponent(plate)}`, { cache: "no-store" });
+    if (!res.ok) throw new Error("rdw_failed");
+    const data = await res.json();
+    const year = Number(data.year || 0);
+    if (!year) throw new Error("rdw_no_year");
+    return { year, source: "rdw" };
+  }
+
+  function applyYearContext(vehicle, yearMin, yearMax, source) {
+    if (!vehicle) return;
+    vehicle.yearMin = yearMin;
+    vehicle.yearMax = yearMax;
+    vehicle.yearSource = source || "indicatief";
+    vehicle.yearNote = "Indicatie: kan afwijken";
+  }
+
   function setRouteSlugsFromVehicle() {
     return;
   }
@@ -890,49 +920,73 @@ if (type) location.href = `/${type}/${make}/`;
 
   function finalizeSelection(plate, vehicle, data, elements) {
     if (!vehicle) return;
-    const est = getEstimatedYear(vehicle);
-    if (est.year) {
-      vehicle.estimatedYear = est.year;
-      vehicle.estimatedYearFrom = est.source;
-      vehicle.estimatedYearMin = est.year - 1;
-      vehicle.estimatedYearMax = est.year + 1;
-    }
-
-    const makeSlug = slugify(vehicle.make || vehicle.makename || "");
-    const intentType = getIntentTypeFromLocation();
-    persistSelection(plate, vehicle, { intentType });
 
     const { make, model } = computeMakeModelSlug(vehicle);
+    const intentType = getIntentTypeFromLocation();
 
-    const path = String(location.pathname || "").toLowerCase();
-    const isHV = path.startsWith("/hulpveren/");
-    const isNR = path.startsWith("/luchtvering/");
-    const isLS = path.startsWith("/verlagingsveren/");
-    if (isHV || isNR || isLS) {
-      const type = isHV ? "hulpveren" : isNR ? "luchtvering" : "verlagingsveren";
-      window.location.href = model ? `/${type}/${make}/${model}/` : `/${type}/${make}/`;
-      return;
-    }
+    const proceed = () => {
+      const makeSlug = make;
+      persistSelection(plate, vehicle, { intentType });
+      setRouteSlugsFromVehicle(vehicle);
 
-    if (intentType && makeSlug) {
-      window.location.href = model ? `/${intentType}/${make}/${model}/` : `/${intentType}/${makeSlug}/`;
-      return;
-    }
-
-    if (elements && elements.results) {
-      renderSelected(elements.results, vehicle);
-      if (!document.getElementById("kenteken-tiles")) {
-        renderTypeChoice(elements.results, makeSlug);
+      const path = String(location.pathname || "").toLowerCase();
+      const isHV = path.startsWith("/hulpveren/");
+      const isNR = path.startsWith("/luchtvering/");
+      const isLS = path.startsWith("/verlagingsveren/");
+      if (isHV || isNR || isLS) {
+        const type = isHV ? "hulpveren" : isNR ? "luchtvering" : "verlagingsveren";
+        window.location.href = model ? `/${type}/${make}/${model}/` : `/${type}/${make}/`;
+        return;
       }
-    }
-    if (elements && elements.status) {
-      setStatus(elements.status, "Voertuig gevonden.", false, { state: "success" });
-    }
-    emitEvent("hv:vehicleSelected", {
-      plate,
-      vehicle,
-      source: (data && data.source) || "api",
-    });
+
+      if (intentType && makeSlug) {
+        window.location.href = model ? `/${intentType}/${make}/${model}/` : `/${intentType}/${makeSlug}/`;
+        return;
+      }
+
+      if (elements && elements.results) {
+        renderSelected(elements.results, vehicle);
+        if (!document.getElementById("kenteken-tiles")) {
+          renderTypeChoice(elements.results, makeSlug);
+        }
+      }
+      if (elements && elements.status) {
+        setStatus(elements.status, "Voertuig gevonden.", false, { state: "success" });
+      }
+      emitEvent("hv:vehicleSelected", {
+        plate,
+        vehicle,
+        source: (data && data.source) || "api",
+      });
+    };
+
+    (async () => {
+      try {
+        const rdw = await fetchRdwYear(plate);
+        applyYearContext(vehicle, rdw.year - 1, rdw.year + 1, rdw.source);
+      } catch (e) {
+        const est = getEstimatedYear(vehicle);
+        if (est.year) {
+          vehicle.estimatedYear = est.year;
+          vehicle.estimatedYearFrom = est.source;
+          vehicle.estimatedYearMin = est.year - 1;
+          vehicle.estimatedYearMax = est.year + 1;
+          applyYearContext(vehicle, est.year - 1, est.year + 1, est.source || "aldoc");
+        } else {
+          const txt =
+            vehicle.uitvoering ||
+            vehicle.trim ||
+            vehicle.typeLabel ||
+            vehicle.typename ||
+            vehicle.type ||
+            "";
+          const r = parseAldocRangeFromText(txt);
+          if (r) applyYearContext(vehicle, r.minY, r.maxY, r.source);
+        }
+      } finally {
+        proceed();
+      }
+    })();
   }
 
   function initWidget() {
