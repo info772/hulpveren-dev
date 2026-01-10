@@ -823,6 +823,33 @@
     applyPlateToContent(ctx);
   };
 
+  function setVehicleYearRange(ctx, yearMin, yearMax, source) {
+    if (!ctx) return;
+    ctx.vehicle = ctx.vehicle || {};
+    ctx.vehicle.yearMin = yearMin ? Number(yearMin) : undefined;
+    ctx.vehicle.yearMax = yearMax ? Number(yearMax) : undefined;
+    ctx.vehicle.yearSource = source || ctx.vehicle.yearSource;
+
+    if (ctx.vehicle.yearMin && ctx.vehicle.yearMax) {
+      ctx.vehicle.rangeLabel = `${ctx.vehicle.yearMin} — ${ctx.vehicle.yearMax}`;
+    } else if (ctx.vehicle.yearMin) {
+      ctx.vehicle.rangeLabel = `${ctx.vehicle.yearMin} —`;
+    }
+
+    if (ctx.vehicle.yearMin || ctx.vehicle.yearMax) {
+      window.dispatchEvent(
+        new CustomEvent("hv:vehicleYearRange", {
+          detail: {
+            yearMin: ctx.vehicle.yearMin,
+            yearMax: ctx.vehicle.yearMax,
+            source: ctx.vehicle.yearSource || "unknown",
+            plate: ctx.plate || null,
+          },
+        })
+      );
+    }
+  }
+
   const setPlateContextFromVehicle = (plate, vehicle, options = {}) => {
     const normalized = normalizePlate(plate);
     if (!normalized) return null;
@@ -901,6 +928,9 @@
       route,
       updatedAt: Date.now(),
     };
+    if (yearRange && (yearRange.from != null || yearRange.to != null)) {
+      setVehicleYearRange(ctx, yearRange.from, yearRange.to, yearRange.source);
+    }
     savePlateContext(ctx);
     renderPlatePill(ctx);
     dispatchPlateEvent(ctx);

@@ -2939,6 +2939,39 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const RANGE_FILTER_LOGGED = new Set();
   const RANGE_EMPTY_LOGGED = new Set();
 
+  window.addEventListener("hv:vehicleYearRange", (e) => {
+    const detail = e?.detail || {};
+    const yearMin = detail.yearMin ?? null;
+    const yearMax = detail.yearMax ?? null;
+    const source = detail.source || "plate";
+    console.log("[filters] got vehicleYearRange", yearMin, yearMax, source);
+    if (yearMin == null && yearMax == null) return;
+    FILTER.yearRange = {
+      from: yearMin,
+      to: yearMax,
+      label: formatYearRangeLabel({ from: yearMin, to: yearMax }),
+      source,
+    };
+    const elMin = document.querySelector("[name='flt-year-from'], [data-year-min]");
+    const elMax = document.querySelector("[name='flt-year-to'], [data-year-max]");
+    if (elMin) elMin.value = yearMin ?? "";
+    if (elMax) elMax.value = yearMax ?? "";
+    const labelEl = document.getElementById("flt-year-label");
+    if (labelEl) {
+      labelEl.textContent =
+        FILTER.yearRange.label || formatYearRangeLabel(FILTER.yearRange) || "Alle";
+    }
+    updateFilterSummary();
+    if (typeof window.applyHvFilters === "function") {
+      window.applyHvFilters();
+    } else if (typeof window.applyFilters === "function") {
+      window.applyFilters();
+    } else {
+      // fallback: force rerender via event
+      window.dispatchEvent(new Event("hv:filtersChanged"));
+    }
+  });
+
   function getYearRange(pairs) {
     const currentYear = new Date().getFullYear();
     let min = 9999;
