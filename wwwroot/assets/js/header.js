@@ -314,6 +314,8 @@
     const drawer = mountEl.querySelector("[data-hv2-drawer]");
     const navLinks = mountEl.querySelectorAll(".hv2-nav a");
 
+    const closeBtn = mountEl.querySelector("[data-hv2-close]");
+
     const isOpen = () => header.classList.contains("hv2-open");
     const closeNav = () => {
       if (!isOpen()) return;
@@ -322,6 +324,7 @@
     const openNav = () => {
       if (isOpen()) return;
       setNavState(header, toggle, overlay, drawer, true);
+      if (closeBtn) closeBtn.focus();
     };
 
     setNavState(header, toggle, overlay, drawer, false);
@@ -336,6 +339,13 @@
 
     if (overlay) {
       overlay.addEventListener("click", () => closeNav());
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        closeNav();
+      });
     }
 
     navLinks.forEach((link) => {

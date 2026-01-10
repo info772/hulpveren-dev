@@ -292,6 +292,50 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
     background: rgba(255,255,255,0.06);
     padding: 10px 14px;
   }
+  .hv2-drawer-close{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    color: #f6f8ff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .hv2-drawer-close:hover{ background: rgba(255,255,255,0.16); }
+  .hv2-drawer-close:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .hv2-drawer-close span{
+    position: relative;
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+  .hv2-drawer-close span::before,
+  .hv2-drawer-close span::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    transform-origin: center;
+  }
+  .hv2-drawer-close span::before{ transform: translate(-50%, -50%) rotate(45deg); }
+  .hv2-drawer-close span::after{ transform: translate(-50%, -50%) rotate(-45deg); }
+
+@media (min-width: 1024px){
+  .hv2-drawer-close{ display: none; }
+}
+
   #site-header .hv2-header .nav-shell{
     width: 100%;
     padding: 0;
@@ -745,11 +789,12 @@ body.nav-open{ overflow: hidden; }
     width: min(92vw, 380px);
     background: var(--surface);
     border-left: 1px solid var(--border);
-    padding: 18px 16px 24px;
+    padding: 56px 16px 24px;
     transform: translateX(100%);
     transition: transform .22s ease;
     box-shadow: 0 20px 50px rgba(0,0,0,0.35);
     overflow-y: auto;
+    overflow-x: hidden;
     z-index: 12030;
     visibility: hidden;
     display: flex;
@@ -824,10 +869,25 @@ body.nav-open{ overflow: hidden; }
   [data-hv2-drawer] .mega-list,
   [data-hv2-drawer] .hv-mega-list{
     max-height: 60dvh;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     padding: 0;
     margin: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    justify-items: stretch;
+    align-content: start;
+  }
+  [data-hv2-drawer] .mega-list a,
+  [data-hv2-drawer] .hv-mega-list a{
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    overflow-wrap: anywhere;
   }
   [data-hv2-drawer] .mega-inner,
   [data-hv2-drawer] .mega-col{
@@ -1542,7 +1602,8 @@ body.nav-open .plate-search,
 }
 
 body.nav-open .hv2-burger{
-  z-index: 2 !important;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 @media (max-width: 900px){
