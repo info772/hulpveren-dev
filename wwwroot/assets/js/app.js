@@ -4531,14 +4531,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       isCaddy: false,
     };
 
-      const makeLabel = entry.label;
-      const modelLabel = entry.models.get(resolvedModelSlug);
-      const plateContext = buildPlateContext({ base: BASE, makeSlug, modelSlug: resolvedModelSlug });
-      const plateInfoHtml = buildPlateInfoHtml(plateContext);
-      const activeCtx = getActivePlateContext();
-      const vehicleActive = Boolean(activeCtx && activeCtx.plate);
-      setTitle(`Hulpveren - ${makeLabel} ${modelLabel} | MAD Sets met montage`);
-      updateHero(makeLabel, modelLabel);
+    const makeLabel = entry.label;
+    const modelLabel = entry.models.get(resolvedModelSlug);
+    const plateContext = buildPlateContext({ base: BASE, makeSlug, modelSlug: resolvedModelSlug });
+    const plateInfoHtml = buildPlateInfoHtml(plateContext);
+    const activeCtx = getActivePlateContext();
+    const vehicleActive = Boolean(activeCtx && activeCtx.plate);
+    setTitle(`Hulpveren - ${makeLabel} ${modelLabel} | MAD Sets met montage`);
+    updateHero(makeLabel, modelLabel);
 
     const allPairs = [];
     for (const k of kits || []) {
@@ -4685,12 +4685,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       `;
     }
 
-      FILTER.year = null;
-      const yr = plateContext && plateContext.yearRange ? plateContext.yearRange : null;
-      const label = yr && yr.label ? yr.label : formatYearRangeLabel(yr);
-      FILTER.yearRange = yr
-        ? { ...yr, label: label || undefined, source: "plate" }
-        : null;
+    FILTER.year = null;
+    const yr =
+      (plateContext && plateContext.yearRange) ||
+      (activeCtx && activeCtx.yearRange) ||
+      null;
+    const label = yr && yr.label ? yr.label : formatYearRangeLabel(yr);
+    FILTER.yearRange = yr
+      ? { ...yr, label: label || undefined, source: "plate" }
+      : null;
       FILTER.support.clear();
       FILTER.drive.clear();
       FILTER.rear.clear();
@@ -4738,6 +4741,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
         <div id="model-grid" class="grid" data-set-list></div>
       `);
+    const yearLabelEl = document.getElementById("flt-year-label");
+    if (yearLabelEl && FILTER.yearRange) {
+      yearLabelEl.textContent =
+        FILTER.yearRange.label || formatYearRangeLabel(FILTER.yearRange) || "Alle";
+    }
       if (plateContext && plateContext.yearRange && plateContext.yearRange.label) {
         const yearLabel = document.getElementById("flt-year-label");
         if (yearLabel) yearLabel.textContent = plateContext.yearRange.label;
@@ -5759,7 +5767,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     FILTER.year = null;
-    const plateYR = plateContext ? plateContext.yearRange : null;
+    const plateYR =
+      (plateContext && plateContext.yearRange) ||
+      (activeCtx && activeCtx.yearRange) ||
+      null;
     const labelPlate = plateYR && plateYR.label ? plateYR.label : formatYearRangeLabel(plateYR);
     FILTER.yearRange = plateYR ? { ...plateYR, label: labelPlate || undefined, source: "plate" } : null;
     FILTER.support.clear();
@@ -5874,6 +5885,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const yearInput = document.getElementById("flt-year");
       const yearLabel = document.getElementById("flt-year-label");
       if (yearInput && yearLabel) {
+        if (FILTER.yearRange) {
+          yearLabel.textContent =
+            FILTER.yearRange.label || formatYearRangeLabel(FILTER.yearRange) || "Alle";
+        }
         yearInput.addEventListener("input", (e) => {
           const v = +e.target.value || yearMin;
           FILTER.year = v;
@@ -6063,16 +6078,28 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   function renderNrModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp) return;
+    suppressHomeSectionsForApp();
       const entry = makes.get(makeSlug);
       const makeLabel = entry?.label || makeSlug;
       const modelLabel =
         (entry?.models && entry.models.get(modelSlug)) || modelSlug;
       const plateContext = buildPlateContext({ base: NR_BASE, makeSlug, modelSlug });
       const plateInfoHtml = buildPlateInfoHtml(plateContext);
-      const plateYearRange =
-        plateContext && plateContext.yearRange ? plateContext.yearRange : null;
       const activeCtx = getActivePlateContext();
+      const plateYearRange =
+        (plateContext && plateContext.yearRange) ||
+        (activeCtx && activeCtx.yearRange) ||
+        null;
       const vehicleActive = Boolean(activeCtx && activeCtx.plate);
+
+    FILTER.year = null;
+    const plateLabel =
+      plateYearRange && plateYearRange.label
+        ? plateYearRange.label
+        : formatYearRangeLabel(plateYearRange);
+    FILTER.yearRange = plateYearRange
+      ? { ...plateYearRange, label: plateLabel || undefined, source: "plate" }
+      : null;
 
     const pairs = [];
     for (const k of kits || []) {
@@ -6232,6 +6259,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       document.querySelectorAll(".nr-appr")
     );
     const countEl = document.getElementById("nr-count");
+
+    if (yearLabel && FILTER.yearRange) {
+      yearLabel.textContent =
+        FILTER.yearRange.label || formatYearRangeLabel(FILTER.yearRange) || "Alle";
+    }
 
     if (plateYearRange) {
       const from = plateYearRange.from ?? plateYearRange.to;
