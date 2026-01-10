@@ -27,6 +27,47 @@
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "");
 
+  function normalizeKt(raw) {
+    const s = String(raw || "").trim();
+    if (!s) return "";
+    return s.startsWith("kt_") ? s : `kt_${s}`;
+  }
+
+  function stripStateSegments(pathname) {
+    const parts = pathname.split("/").filter(Boolean);
+    if (parts.length && /^kt_[a-z0-9]+$/i.test(parts[parts.length - 1])) {
+      parts.pop();
+    }
+    if (parts.length && /^[A-Z0-9]{4,8}$/i.test(parts[parts.length - 1])) {
+      parts.pop();
+    }
+    return "/" + parts.join("/") + "/";
+  }
+
+  function buildPlateKtUrl({ plateRaw, ktRaw }) {
+    const plate = normalizePlate(plateRaw);
+    const kt = normalizeKt(ktRaw);
+    const base = stripStateSegments(window.location.pathname);
+    const segments = [];
+    if (plate) segments.push(plate);
+    if (kt) segments.push(kt);
+    return base + segments.join("/");
+  }
+
+  function readPlateKtFromUrl() {
+    const parts = window.location.pathname.split("/").filter(Boolean);
+    let kt = "";
+    let plate = "";
+    const last = parts[parts.length - 1] || "";
+    if (/^kt_[a-z0-9]+$/i.test(last)) {
+      kt = last;
+      const prev = parts[parts.length - 2] || "";
+      if (/^[A-Z0-9]{4,8}$/i.test(prev)) plate = prev.toUpperCase();
+    } else {
+      if (/^[A-Z0-9]{4,8}$/i.test(last)) plate = last.toUpperCase();
+    }
+    return { plate, kt };
+  }
   const sanitizePlateInput = (value) =>
     String(value || "")
       .toUpperCase()
@@ -981,4 +1022,27 @@
   if (typeof window.setPlateContextFromVehicle === "undefined") {
     window.setPlateContextFromVehicle = setPlateContextFromVehicle;
   }
+  // Ensure the global context exists (many parts of the site expect this)
+  if (typeof window.hv_plate_context === "undefined") {
+    window.hv_plate_context = window.HVPlateContext;
+  }
+
+  // Hydrate from URL: /.../<PLATE>/kt_xxx or variants
+  (function hydrateFromUrl() {
+    const { plate, kt } = readPlateKtFromUrl();
+    window.hv_plate_context = window.hv_plate_context || { plate: "", vehicle: {} };
+    if (plate) {
+      window.hv_plate_context.plate = plate;
+      try {
+        localStorage.setItem("hv_plate", plate);
+      } catch (_) {}
+    }
+    if (kt) {
+      window.hv_plate_context.vehicle = window.hv_plate_context.vehicle || {};
+      window.hv_plate_context.vehicle.kt = kt;
+    }
+    if (plate && typeof window.setPlateContextFromPlate === "function") {
+      window.setPlateContextFromPlate(plate);
+    }
+  })();
 })();

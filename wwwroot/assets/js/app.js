@@ -6509,11 +6509,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const applyBtn = document.getElementById("nr-apply");
     const resetBtn = document.getElementById("nr-reset");
     if (applyBtn) applyBtn.addEventListener("click", apply);
-    if (resetBtn)
-      resetBtn.addEventListener("click", () => {
-        if (yearSlider && yearsAvail.length) {
-          yearSlider.value = 0;
-          if (yearLabel) yearLabel.textContent = "Alle";
+  if (resetBtn)
+    resetBtn.addEventListener("click", () => {
+      if (yearSlider && yearsAvail.length) {
+        yearSlider.value = 0;
+        if (yearLabel) yearLabel.textContent = "Alle";
         }
         if (yearFrom) yearFrom.value = "";
         if (yearTo) yearTo.value = "";
@@ -6525,6 +6525,101 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     apply();
   }
+
+
+  // Build range injection + sync + filter trigger
+  (function () {
+    function parseCompactRange(s) {
+      s = String(s || "").trim();
+      if (!s) return { from: "", to: "" };
+      s = s.replace("—", "/").replace("-", "-");
+      const parts = s.split("/");
+      if (parts.length < 2) return { from: "", to: "" };
+      const a = parts[0].trim();
+      const b = parts[1].trim();
+      function toYM(mmYYYY) {
+        const m = mmYYYY.match(/^(\d{2})-(\d{4})$/);
+        if (!m) return "";
+        return `${m[2]}-${m[1]}`;
+      }
+      return { from: toYM(a), to: toYM(b) };
+    }
+
+    function ctx() {
+      return (
+        window.hv_plate_context || (window.hv_plate_context = { plate: "", vehicle: {} })
+      );
+    }
+
+    function triggerFilterRefresh() {
+      if (typeof window.applyHvFilters === "function") window.applyHvFilters();
+      else if (typeof window.applyFilters === "function") window.applyFilters();
+      else window.dispatchEvent(new Event("hv:filtersChanged"));
+    }
+
+    function ensureBuildRangeInputs() {
+      const host =
+        document.querySelector("[data-build-range]") ||
+        document.querySelector("#build-range") ||
+        document.querySelector(".build-range");
+
+      if (!host) return;
+      if (host.querySelector("[data-build-from]")) return;
+
+      const compactText = host.getAttribute("data-range") || host.textContent || "";
+      const parsed = parseCompactRange(compactText);
+
+      const v = ctx().vehicle || (ctx().vehicle = {});
+      const fromInit = v.buildFrom || v.build_from || parsed.from || "";
+      const toInit = v.buildTo || v.build_to || parsed.to || "";
+
+      v.buildFrom = fromInit;
+      v.buildTo = toInit;
+
+      const y0 = fromInit ? Number(String(fromInit).slice(0, 4)) : null;
+      const y1 = toInit ? Number(String(toInit).slice(0, 4)) : null;
+      if (y0) v.yearMin = y0;
+      if (y1) v.yearMax = y1;
+
+      host.innerHTML = `
+        <div class="build-range-fields">
+          <label class="br-label">Van</label>
+          <input class="br-input" type="month" data-build-from />
+          <label class="br-label">Tot</label>
+          <input class="br-input" type="month" data-build-to />
+        </div>
+      `;
+
+      const inpFrom = host.querySelector("[data-build-from]");
+      const inpTo = host.querySelector("[data-build-to]");
+      inpFrom.value = fromInit;
+      inpTo.value = toInit;
+
+      function onChange() {
+        const v2 = ctx().vehicle || (ctx().vehicle = {});
+        v2.buildFrom = inpFrom.value || "";
+        v2.buildTo = inpTo.value || "";
+
+        const yy0 = v2.buildFrom ? Number(String(v2.buildFrom).slice(0, 4)) : null;
+        const yy1 = v2.buildTo ? Number(String(v2.buildTo).slice(0, 4)) : null;
+        v2.yearMin = yy0 || undefined;
+        v2.yearMax = yy1 || undefined;
+
+        triggerFilterRefresh();
+      }
+
+      inpFrom.addEventListener("change", onChange);
+      inpTo.addEventListener("change", onChange);
+
+      triggerFilterRefresh();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", ensureBuildRangeInputs);
+    } else {
+      ensureBuildRangeInputs();
+    }
+  })();
 
 
   async function run() {

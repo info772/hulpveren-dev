@@ -1750,3 +1750,18 @@ body.nav-open .hv2-burger{
     z-index: auto !important;
   }
 }
+
+/* Build range inputs */
+.build-range-fields {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.br-label { white-space: nowrap; }
+.br-input { width: 100%; }
+@media (max-width: 600px) {
+  .build-range-fields {
+    grid-template-columns: 1fr;
+  }
+}
