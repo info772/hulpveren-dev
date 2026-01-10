@@ -829,27 +829,63 @@
     const previous = loadPlateContext();
     const intentType = options.intentType || (previous && previous.intentType) || "";
     const route = options.route || (previous && previous.route) || null;
-    const yearRange = options.yearRange || null;
+    let yearRange = options.yearRange || null;
+
+    let v = vehicle ? Object.assign({}, vehicle) : null;
+    if (v) {
+      v.make = v.make || v.makename || "";
+      v.model = v.model || v.modelname || "";
+      v.rangeLabel =
+        v.rangeLabel ||
+        v.uitvoering ||
+        v.typeLabel ||
+        v.typename ||
+        v.type ||
+        v.modelRangeText ||
+        v.modelRange ||
+        "";
+
+      if ((!v.yearMin || !v.yearMax) && v.rangeLabel) {
+        const years = String(v.rangeLabel).match(/\b(19\d{2}|20\d{2})\b/g);
+        if (years && years.length) {
+          const y1 = Number(years[0]);
+          const y2 = Number(years[1] || years[0]);
+          if (Number.isFinite(y1) && Number.isFinite(y2)) {
+            v.yearMin = Math.min(y1, y2);
+            v.yearMax = Math.max(y1, y2);
+            v.yearSource = v.yearSource || "aldoc_uitvoering";
+          }
+        }
+      }
+
+      if (!yearRange && (v.yearMin != null || v.yearMax != null)) {
+        const from = v.yearMin ?? v.yearMax;
+        const to = v.yearMax ?? v.yearMin;
+        let label = "";
+        if (from != null && to != null) {
+          label = from === to ? String(from) : `${from}-${to}`;
+        } else if (from != null) {
+          label = `${from}-nu`;
+        } else if (to != null) {
+          label = `tot ${to}`;
+        }
+        yearRange = {
+          from,
+          to,
+          label,
+          source: v.yearSource || "plate",
+        };
+      }
+    }
+
     const range =
       options.range ||
       parseRange(yearRange) ||
       parseRange(vehicle?.modelRangeText || vehicle?.modelRange || null) ||
       null;
-    const vehicleBasic = vehicle
-      ? {
-          make: vehicle.make || vehicle.makename || "",
-          model: vehicle.model || vehicle.modelname || "",
-          modelLabel:
-            vehicle.modelLabel ||
-            vehicle.modelRemark ||
-            vehicle.model_remark ||
-            "",
-          rangeLabel: yearRange?.label || vehicle?.modelRangeText || "",
-        }
-      : null;
     const ctx = {
       plate: normalized,
-      vehicle: vehicleBasic,
+      vehicle: v,
       range,
       yearRange,
       intentType,
