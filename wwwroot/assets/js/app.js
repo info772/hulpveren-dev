@@ -1423,6 +1423,28 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     const buildPlateYearRange = (vehicle) => {
       if (!vehicle) return null;
+      const minYear =
+        vehicle.yearMin ??
+        vehicle.estimatedYearMin ??
+        vehicle.year_min ??
+        vehicle.year_from ??
+        null;
+      const maxYear =
+        vehicle.yearMax ??
+        vehicle.estimatedYearMax ??
+        vehicle.year_max ??
+        vehicle.year_to ??
+        null;
+      if (minYear != null || maxYear != null) {
+        const from = minYear ?? maxYear;
+        const to = maxYear ?? minYear;
+        return {
+          from,
+          to,
+          label: formatYearRangeLabel({ from, to }),
+          source: vehicle.yearSource || "plate",
+        };
+      }
       const fromRaw =
         vehicle.typeFrom ??
         vehicle.type_from ??
@@ -2902,6 +2924,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     rear: new Set(), // 'srw' | 'drw'
     pos: new Set(), // 'front' | 'rear' | 'both'
   };
+  let YEAR_FILTER_NOTICE = "";
   let CURRENT_ROUTE_CTX = {
     makeSlug: null,
     modelSlug: null,
@@ -3075,20 +3098,28 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return true;
   }
 
+  function yearOverlap(setFrom, setTill, minY, maxY) {
+    const from = Number(setFrom || 0);
+    const till = Number(setTill || 9999);
+    return !(maxY < from || minY > till);
+  }
+
   function filterPairs(allPairs) {
+    YEAR_FILTER_NOTICE = "";
     const ctx = CURRENT_ROUTE_CTX || {};
     const driveException = !!ctx.driveException;
     let yearRange = FILTER.yearRange;
     if (!yearRange) {
-      const ctx = getActivePlateContext && getActivePlateContext();
-      if (ctx && ctx.vehicle && ctx.vehicle.estimatedYearMin && ctx.vehicle.estimatedYearMax) {
-        const minY = ctx.vehicle.estimatedYearMin;
-        const maxY = ctx.vehicle.estimatedYearMax;
+      const ctxActive = getActivePlateContext && getActivePlateContext();
+      const v = ctxActive && ctxActive.vehicle;
+      const minY = v?.yearMin || v?.estimatedYearMin || null;
+      const maxY = v?.yearMax || v?.estimatedYearMax || null;
+      if (minY && maxY) {
         yearRange = {
           from: minY,
           to: maxY,
           label: formatYearRangeLabel({ from: minY, to: maxY }),
-          source: "plate_est",
+          source: v.yearSource || "plate_est",
         };
         FILTER.yearRange = yearRange;
       }
@@ -3099,67 +3130,87 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (rangeFiltered.length === 0 && allPairs.length) {
       logRangeEmpty(ctx, allPairs, "filters");
     }
-    return rangeFiltered.filter(({ k, f }) => {
-      const y1 = +String(f.year_from || "").slice(-4) || 1990;
-      const y2 = +String(f.year_to || "").slice(-4) || new Date().getFullYear();
-      if (FILTER.year != null) {
-        if (FILTER.year < y1 || FILTER.year > y2) return false;
-      } else if (yearRange && (yearRange.from != null || yearRange.to != null)) {
-        const rangeFrom = yearRange.from ?? yearRange.to;
-        const rangeTo = yearRange.to ?? yearRange.from;
-        if (rangeFrom != null && y2 < rangeFrom) return false;
-        if (rangeTo != null && y1 > rangeTo) return false;
-      }
-      if (FILTER.support.size) {
-        const mode = supportKeyOf(f, k);
-        if (!FILTER.support.has(mode)) return false;
-      }
-      if (FILTER.drive.size) {
-        const pol = drivePolicyFromFit(f, k);
-        const allow = new Set(
-          pol.allowLabels && pol.allowLabels.length
-            ? pol.allowLabels
-            : ["FWD", "RWD", "4WD"]
-        );
-        if (!driveException && (allow.has("FWD") || allow.has("RWD"))) {
-          allow.add("2WD");
+    const applyFilters = (skipYear) =>
+      rangeFiltered.filter(({ k, f }) => {
+        const y1 = +String(f.year_from || "").slice(-4) || 1990;
+        const y2 = +String(f.year_to || "").slice(-4) || new Date().getFullYear();
+
+        if (!skipYear) {
+          if (FILTER.year != null) {
+            if (FILTER.year < y1 || FILTER.year > y2) return false;
+          } else if (yearRange && (yearRange.from != null || yearRange.to != null)) {
+            const rangeFrom = yearRange.from ?? yearRange.to;
+            const rangeTo = yearRange.to ?? yearRange.from;
+            if (rangeFrom != null && rangeTo != null) {
+              if (!yearOverlap(y1, y2, rangeFrom, rangeTo)) {
+                return false;
+              }
+            }
+          }
         }
-        let ok = false;
-        for (const wanted of FILTER.drive) {
-          if (wanted === "2WD") {
-            if (
-              allow.has("2WD") ||
-              (!driveException && (allow.has("FWD") || allow.has("RWD")))
-            ) {
+        if (FILTER.support.size) {
+          const mode = supportKeyOf(f, k);
+          if (!FILTER.support.has(mode)) return false;
+        }
+        if (FILTER.drive.size) {
+          const pol = drivePolicyFromFit(f, k);
+          const allow = new Set(
+            pol.allowLabels && pol.allowLabels.length
+              ? pol.allowLabels
+              : ["FWD", "RWD", "4WD"]
+          );
+          if (!driveException && (allow.has("FWD") || allow.has("RWD"))) {
+            allow.add("2WD");
+          }
+          let ok = false;
+          for (const wanted of FILTER.drive) {
+            if (wanted === "2WD") {
+              if (
+                allow.has("2WD") ||
+                (!driveException && (allow.has("FWD") || allow.has("RWD")))
+              ) {
+                ok = true;
+                break;
+              }
+            } else if (allow.has(wanted)) {
               ok = true;
               break;
             }
-          } else if (allow.has(wanted)) {
-            ok = true;
-            break;
           }
+          if (!ok) return false;
         }
-        if (!ok) return false;
-      }
-      if (FILTER.rear.size) {
-        const wantsSRW = FILTER.rear.has("srw");
-        const strict = !wantsSRW;
-        const pol = rearWheelsPolicyFrom(f, k, strict);
-        let ok = false;
-        for (const wanted of FILTER.rear) {
-          if (pol.allow.has(wanted)) {
-            ok = true;
-            break;
+        if (FILTER.rear.size) {
+          const wantsSRW = FILTER.rear.has("srw");
+          const strict = !wantsSRW;
+          const pol = rearWheelsPolicyFrom(f, k, strict);
+          let ok = false;
+          for (const wanted of FILTER.rear) {
+            if (pol.allow.has(wanted)) {
+              ok = true;
+              break;
+            }
           }
+          if (!ok) return false;
         }
-        if (!ok) return false;
-      }
-      if (FILTER.pos.size) {
-        const posKey = positionKey(k);
-        if (!FILTER.pos.has(posKey)) return false;
-      }
-      return true;
-    });
+        if (FILTER.pos.size) {
+          const posKey = positionKey(k);
+          if (!FILTER.pos.has(posKey)) return false;
+        }
+        return true;
+      });
+
+    const filtered = applyFilters(false);
+    if (
+      FILTER.year == null &&
+      yearRange &&
+      yearRange.source !== "manual" &&
+      (yearRange.from != null || yearRange.to != null) &&
+      filtered.length === 0
+    ) {
+      YEAR_FILTER_NOTICE = `Bouwjaar-indicatie ${formatYearRangeLabel(yearRange) || ""} leverde geen matches; tonen alle opties.`;
+      return applyFilters(true);
+    }
+    return filtered;
   }
 
   function explainPairMatch(pair) {
@@ -3359,10 +3410,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const baseLabel =
         FILTER.yearRange.label || formatYearRangeLabel(FILTER.yearRange);
       if (baseLabel) {
-        yearLabel =
-          FILTER.yearRange.source === "plate"
-            ? `${baseLabel} (kenteken)`
-            : baseLabel;
+        const plateSources = new Set(["plate", "rdw", "plate_est", "aldoc", "aldoc_uitvoering"]);
+        yearLabel = plateSources.has(FILTER.yearRange.source)
+          ? `${baseLabel} (kenteken)`
+          : baseLabel;
       }
     }
     parts.push(`jaar: ${yearLabel}`);
@@ -3407,12 +3458,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       parts.push(
         "locatie: " +
           Array.from(FILTER.pos)
-            .map((k) => map[k] || k)
-            .join(", ")
+          .map((k) => map[k] || k)
+          .join(", ")
       );
     }
+    const notice = YEAR_FILTER_NOTICE ? ` — ${YEAR_FILTER_NOTICE}` : "";
     const el = document.getElementById("filter-summary");
-    if (el) el.textContent = parts.join(" | ");
+    if (el) el.textContent = parts.join(" | ") + notice;
   }
 
   /* ================== Lead-modal (lichte versie) ================== */
@@ -4172,6 +4224,20 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   function getVehicleRange(vehicle, plateContext) {
     if (!vehicle && !plateContext) return null;
+    const yearMin =
+      vehicle?.yearMin ??
+      vehicle?.estimatedYearMin ??
+      vehicle?.year_min ??
+      vehicle?.year_from ??
+      null;
+    const yearMax =
+      vehicle?.yearMax ??
+      vehicle?.estimatedYearMax ??
+      vehicle?.year_max ??
+      vehicle?.year_to ??
+      null;
+    let range = parseRange({ from: yearMin, to: yearMax });
+    if (range) return range;
     const textRange =
       vehicle?.modelRangeText ??
       vehicle?.modelRangeLabel ??
@@ -4181,7 +4247,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       vehicle?.yearRange ??
       vehicle?.year_range ??
       null;
-    let range = parseRange(textRange);
+    range = parseRange(textRange);
     if (!range) {
       range = parseRange({
         start:

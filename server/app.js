@@ -32,6 +32,7 @@ const apiSettingsRoutes = require("./routes/apiSettings");
 const apiMadRoutes = require("./routes/apiMad");
 const apiRedirectsRoutes = require("./routes/apiRedirects");
 const apiGemonteerdRoutes = require("./routes/apiGemonteerd");
+const rdwRoutes = require("./routes/rdw");
 const adminRoutes = require("./routes/admin");
 const adminApiRoutes = require("./routes/adminApi");
 const deployRoutes = require("./routes/deploy");
@@ -111,6 +112,8 @@ function createApp() {
 
   app.use("/api/plate", rateLimit({ windowMs: 60 * 1000, max: 30 }));
   app.use("/api/plate", plateRoutes);
+  app.use("/api/rdw", rateLimit({ windowMs: 60 * 1000, max: 30 }));
+  app.use("/api/rdw", rdwRoutes);
   app.get("/api/health", (req, res) => {
     res.json({
       ok: true,
