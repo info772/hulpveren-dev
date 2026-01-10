@@ -68,15 +68,45 @@ router.get("/:plate", async (req, res) => {
 
   try {
     const url = `${RDW_URL}?kenteken=${encodeURIComponent(plate)}`;
-    const data = await fetchJsonWithTimeout(url, 8000);
 
+    // RAW fetch zodat we kunnen debuggen wat Node écht terugkrijgt
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), 8000);
+
+    let status = 0;
+    let text = "";
+    try {
+      const rdwRes = await fetch(url, {
+        signal: controller.signal,
+        headers: {
+          Accept: "application/json",
+          "User-Agent": "curl/8.0",
+        },
+      });
+      status = rdwRes.status;
+      text = await rdwRes.text();
+    } catch (e) {
+      clearTimeout(t);
+      return res.status(502).json({ error: "rdw_fetch_failed" });
+    } finally {
+      clearTimeout(t);
+    }
+
+    // ✅ debug moet ALTIJD iets teruggeven
     if (req.query.debug === "1") {
       return res.json({
         url,
-        isArray: Array.isArray(data),
-        length: Array.isArray(data) ? data.length : null,
-        sample: Array.isArray(data) ? data[0] : data,
+        status,
+        head: text.slice(0, 300),
       });
+    }
+
+    // Parse JSON pas na debug
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      return res.status(502).json({ error: "rdw_bad_json" });
     }
 
     if (!Array.isArray(data) || data.length === 0) {
