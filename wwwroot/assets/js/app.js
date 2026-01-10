@@ -4681,7 +4681,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
       FILTER.year = null;
       FILTER.yearRange =
-        plateContext && plateContext.yearRange ? plateContext.yearRange : null;
+        plateContext && plateContext.yearRange
+          ? { ...plateContext.yearRange, source: "plate" }
+          : null;
       FILTER.support.clear();
       FILTER.drive.clear();
       FILTER.rear.clear();
@@ -5750,7 +5752,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     FILTER.year = null;
-    FILTER.yearRange = plateContext ? plateContext.yearRange : null;
+    FILTER.yearRange = plateContext ? { ...plateContext.yearRange, source: "plate" } : null;
     FILTER.support.clear();
     FILTER.drive.clear();
     FILTER.rear.clear();
