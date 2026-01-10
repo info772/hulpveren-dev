@@ -3639,6 +3639,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   function renderMake(makes, makeSlug) {
     if (!hasApp || !app) return;
+    suppressHomeSectionsForApp();
     CURRENT_ROUTE_CTX = {
       makeSlug,
       modelSlug: null,
@@ -4465,6 +4466,16 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     });
   }
 
+  function suppressHomeSectionsForApp() {
+    const main = document.querySelector("main");
+    if (!main) return;
+    main.querySelectorAll("section").forEach((section) => {
+      if (section.querySelector("#app") || section.querySelector(".app")) return;
+      section.setAttribute("data-app-hidden", "1");
+      section.style.display = "none";
+    });
+  }
+
   /* ================== Render: sets per model (met filters) ================== */
 
   function resolveModelSlugVariant(modelsMap, targetSlug) {
@@ -4493,6 +4504,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   function renderModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp || !app) return;
+    suppressHomeSectionsForApp();
     const entry = makes.get(makeSlug);
     if (!entry) return renderMake(makes, makeSlug);
 
