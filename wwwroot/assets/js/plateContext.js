@@ -831,38 +831,45 @@
     const route = options.route || (previous && previous.route) || null;
     let yearRange = options.yearRange || null;
 
-    // ✅ Bewaar volledige vehicle (nodig voor jaar-range, uitvoering, motorcode, etc.)
-    const v = Object.assign({}, vehicle || {});
+    // ✅ Klein voertuigobject voor UI, plus raw bewaren
+    const vSmall = {
+      make: vehicle?.make || vehicle?.makename || "",
+      model: vehicle?.model || vehicle?.modelname || "",
+      modelLabel: vehicle?.modelLabel || vehicle?.model || vehicle?.modelname || "",
+      rangeLabel:
+        vehicle?.rangeLabel ||
+        vehicle?.uitvoering ||
+        vehicle?.trim ||
+        vehicle?.typeLabel ||
+        vehicle?.typename ||
+        vehicle?.type ||
+        "",
+      yearMin: vehicle?.yearMin || vehicle?.estimatedYearMin || null,
+      yearMax: vehicle?.yearMax || vehicle?.estimatedYearMax || null,
+      yearSource: vehicle?.yearSource || vehicle?.estimatedYearFrom || null,
+    };
 
-    // Normaliseer basisvelden
-    v.make = v.make || v.makename || "";
-    v.model = v.model || v.modelname || "";
+    vSmall.make = String(vSmall.make || "");
+    vSmall.model = String(vSmall.model || "");
+    vSmall.modelLabel = String(vSmall.modelLabel || "");
+    vSmall.rangeLabel = String(vSmall.rangeLabel || "");
 
-    // Zorg dat er een tekstveld is waar jaarranges in kunnen zitten
-    v.rangeLabel =
-      v.rangeLabel ||
-      v.uitvoering ||
-      v.trim ||
-      v.typeLabel ||
-      v.typename ||
-      v.type ||
-      "";
-
-    // 🔎 Parse jaarrange uit rangeLabel indien yearMin/yearMax nog niet bestaat
-    if ((!v.yearMin || !v.yearMax) && v.rangeLabel) {
-      const years = String(v.rangeLabel).match(/\b(19\d{2}|20\d{2})\b/g);
+    if ((!vSmall.yearMin || !vSmall.yearMax) && vSmall.rangeLabel) {
+      const years = String(vSmall.rangeLabel).match(/\b(19\d{2}|20\d{2})\b/g);
       if (years && years.length) {
         const y1 = Number(years[0]);
         const y2 = Number(years[1] || years[0]);
-        v.yearMin = Math.min(y1, y2);
-        v.yearMax = Math.max(y1, y2);
-        v.yearSource = v.yearSource || "aldoc_uitvoering";
+        vSmall.yearMin = Math.min(y1, y2);
+        vSmall.yearMax = Math.max(y1, y2);
+        vSmall.yearSource = vSmall.yearSource || "aldoc_uitvoering";
       }
     }
 
-    if (!yearRange && (v.yearMin != null || v.yearMax != null)) {
-      const from = v.yearMin ?? v.yearMax;
-      const to = v.yearMax ?? v.yearMin;
+    const vehicleRaw = vehicle || null;
+
+    if (!yearRange && (vSmall.yearMin != null || vSmall.yearMax != null)) {
+      const from = vSmall.yearMin ?? vSmall.yearMax;
+      const to = vSmall.yearMax ?? vSmall.yearMin;
       let label = "";
       if (from != null && to != null) {
         label = from === to ? String(from) : `${from}-${to}`;
@@ -875,7 +882,7 @@
         from,
         to,
         label,
-        source: v.yearSource || "plate",
+        source: vSmall.yearSource || "plate",
       };
     }
 
@@ -886,7 +893,8 @@
       null;
     const ctx = {
       plate: normalized,
-      vehicle: v,
+      vehicle: vSmall,
+      vehicleRaw,
       range,
       yearRange,
       intentType,
