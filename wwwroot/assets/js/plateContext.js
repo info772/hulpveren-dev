@@ -831,51 +831,52 @@
     const route = options.route || (previous && previous.route) || null;
     let yearRange = options.yearRange || null;
 
-    let v = vehicle ? Object.assign({}, vehicle) : null;
-    if (v) {
-      v.make = v.make || v.makename || "";
-      v.model = v.model || v.modelname || "";
-      v.rangeLabel =
-        v.rangeLabel ||
-        v.uitvoering ||
-        v.typeLabel ||
-        v.typename ||
-        v.type ||
-        v.modelRangeText ||
-        v.modelRange ||
-        "";
+    // ✅ Bewaar volledige vehicle (nodig voor jaar-range, uitvoering, motorcode, etc.)
+    const v = Object.assign({}, vehicle || {});
 
-      if ((!v.yearMin || !v.yearMax) && v.rangeLabel) {
-        const years = String(v.rangeLabel).match(/\b(19\d{2}|20\d{2})\b/g);
-        if (years && years.length) {
-          const y1 = Number(years[0]);
-          const y2 = Number(years[1] || years[0]);
-          if (Number.isFinite(y1) && Number.isFinite(y2)) {
-            v.yearMin = Math.min(y1, y2);
-            v.yearMax = Math.max(y1, y2);
-            v.yearSource = v.yearSource || "aldoc_uitvoering";
-          }
-        }
-      }
+    // Normaliseer basisvelden
+    v.make = v.make || v.makename || "";
+    v.model = v.model || v.modelname || "";
 
-      if (!yearRange && (v.yearMin != null || v.yearMax != null)) {
-        const from = v.yearMin ?? v.yearMax;
-        const to = v.yearMax ?? v.yearMin;
-        let label = "";
-        if (from != null && to != null) {
-          label = from === to ? String(from) : `${from}-${to}`;
-        } else if (from != null) {
-          label = `${from}-nu`;
-        } else if (to != null) {
-          label = `tot ${to}`;
-        }
-        yearRange = {
-          from,
-          to,
-          label,
-          source: v.yearSource || "plate",
-        };
+    // Zorg dat er een tekstveld is waar jaarranges in kunnen zitten
+    v.rangeLabel =
+      v.rangeLabel ||
+      v.uitvoering ||
+      v.trim ||
+      v.typeLabel ||
+      v.typename ||
+      v.type ||
+      "";
+
+    // 🔎 Parse jaarrange uit rangeLabel indien yearMin/yearMax nog niet bestaat
+    if ((!v.yearMin || !v.yearMax) && v.rangeLabel) {
+      const years = String(v.rangeLabel).match(/\b(19\d{2}|20\d{2})\b/g);
+      if (years && years.length) {
+        const y1 = Number(years[0]);
+        const y2 = Number(years[1] || years[0]);
+        v.yearMin = Math.min(y1, y2);
+        v.yearMax = Math.max(y1, y2);
+        v.yearSource = v.yearSource || "aldoc_uitvoering";
       }
+    }
+
+    if (!yearRange && (v.yearMin != null || v.yearMax != null)) {
+      const from = v.yearMin ?? v.yearMax;
+      const to = v.yearMax ?? v.yearMin;
+      let label = "";
+      if (from != null && to != null) {
+        label = from === to ? String(from) : `${from}-${to}`;
+      } else if (from != null) {
+        label = `${from}-nu`;
+      } else if (to != null) {
+        label = `tot ${to}`;
+      }
+      yearRange = {
+        from,
+        to,
+        label,
+        source: v.yearSource || "plate",
+      };
     }
 
     const range =
@@ -923,6 +924,8 @@
     savePlateContext,
     clearPlateContext,
     setPlateContextFromVehicle,
+    setPlateContextFromPlate,
+    applyPlateContext,
     initPlateBar,
     initPlatePill,
     init,
