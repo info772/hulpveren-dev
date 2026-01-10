@@ -317,13 +317,30 @@
     const closeBtn = mountEl.querySelector("[data-hv2-close]");
 
     const isOpen = () => header.classList.contains("hv2-open");
+    const toggleMobileMegaPanels = (open) => {
+      if (!isMobileNav()) return;
+      const items = mountEl.querySelectorAll(".nav-item-mega, .hv-nav-item-mega");
+      items.forEach((item) => {
+        const trig = item.querySelector(".nav-toggle-cta, .hv-nav-toggle");
+        const panel = item.querySelector(".mega-panel, .hv-mega-panel");
+        if (panel) {
+          panel.hidden = !open;
+          panel.classList.toggle("is-open", open);
+        }
+        item.classList.toggle("is-open", open);
+        if (trig) trig.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    };
+
     const closeNav = () => {
       if (!isOpen()) return;
       setNavState(header, toggle, overlay, drawer, false);
+      toggleMobileMegaPanels(false);
     };
     const openNav = () => {
       if (isOpen()) return;
       setNavState(header, toggle, overlay, drawer, true);
+      toggleMobileMegaPanels(true);
       if (closeBtn) closeBtn.focus();
     };
 
