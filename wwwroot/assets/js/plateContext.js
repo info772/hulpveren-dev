@@ -943,4 +943,12 @@
     initPlatePill,
     init,
   };
+
+  // Backward-compatible globals for legacy callers
+  if (typeof window.setPlateContextFromPlate === "undefined") {
+    window.setPlateContextFromPlate = setPlateContextFromPlate;
+  }
+  if (typeof window.setPlateContextFromVehicle === "undefined") {
+    window.setPlateContextFromVehicle = setPlateContextFromVehicle;
+  }
 })();
