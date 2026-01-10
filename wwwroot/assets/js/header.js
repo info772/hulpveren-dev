@@ -632,11 +632,11 @@
     navEl.appendChild(wrap);
 
     const headerEl =
+      document.getElementById("site-header") ||
       (mountEl && mountEl.querySelector(".hv2-header")) ||
       document.querySelector(".hv2-header") ||
       document.querySelector("header") ||
-      mountEl ||
-      document.getElementById("site-header");
+      mountEl;
 
     if (!headerEl) return;
 
