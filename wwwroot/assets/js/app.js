@@ -4467,17 +4467,44 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   /* ================== Render: sets per model (met filters) ================== */
 
+  function resolveModelSlugVariant(modelsMap, targetSlug) {
+    if (!modelsMap || !modelsMap.size || !targetSlug) return targetSlug;
+    if (modelsMap.has(targetSlug)) return targetSlug;
+    let best = "";
+    const candidates = Array.from(modelsMap.keys());
+    candidates.forEach((c) => {
+      if ((targetSlug.startsWith(c) || c.startsWith(targetSlug)) && c.length > best.length) {
+        best = c;
+      }
+    });
+    if (!best) {
+      const parts = targetSlug.split("-");
+      while (parts.length > 1) {
+        parts.pop();
+        const shorter = parts.join("-");
+        if (modelsMap.has(shorter)) {
+          best = shorter;
+          break;
+        }
+      }
+    }
+    return best || targetSlug;
+  }
+
   function renderModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp || !app) return;
     const entry = makes.get(makeSlug);
-    if (!entry || !entry.models.has(modelSlug)) return renderMake(makes, makeSlug);
+    if (!entry) return renderMake(makes, makeSlug);
 
-    debugLog("render:model", { make: makeSlug, model: modelSlug });
+    const resolvedModelSlug = resolveModelSlugVariant(entry.models, modelSlug);
+    if (!entry.models.has(resolvedModelSlug)) return renderMake(makes, makeSlug);
+
+    debugLog("render:model", { make: makeSlug, model: resolvedModelSlug });
 
     CURRENT_ROUTE_CTX = {
       makeSlug,
-      modelSlug,
-      driveException: isDriveException(makeSlug, modelSlug),
+      modelSlug: resolvedModelSlug,
+      driveException: isDriveException(makeSlug, resolvedModelSlug),
       plate: null,
       vehicleYM: null,
       vehicleRange: null,
@@ -4487,8 +4514,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     };
 
       const makeLabel = entry.label;
-      const modelLabel = entry.models.get(modelSlug);
-      const plateContext = buildPlateContext({ base: BASE, makeSlug, modelSlug });
+      const modelLabel = entry.models.get(resolvedModelSlug);
+      const plateContext = buildPlateContext({ base: BASE, makeSlug, modelSlug: resolvedModelSlug });
       const plateInfoHtml = buildPlateInfoHtml(plateContext);
       const activeCtx = getActivePlateContext();
       const vehicleActive = Boolean(activeCtx && activeCtx.plate);
@@ -4499,7 +4526,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     for (const k of kits || []) {
       for (const f of k.fitments || []) {
         if (slugify(f.make) !== makeSlug) continue;
-        if (slugify(f.model) !== modelSlug) continue;
+        if (slugify(f.model) !== resolvedModelSlug) continue;
         allPairs.push({ k, f });
       }
     }
