@@ -822,42 +822,38 @@ if (type) location.href = `/${type}/${make}/`;
     const intentType = getIntentTypeFromLocation();
     persistSelection(plate, vehicle, { intentType });
 
+    const computeModelSlug = () => {
+      const make = slugify(vehicle.make || vehicle.makename || "");
+      let baseModel = (vehicle.modelname || vehicle.model || "").toString().trim();
+      const extra =
+        (vehicle.typename || vehicle.type || vehicle.type_remark || "").toString().trim();
+
+      if (baseModel && extra) {
+        const b = baseModel.toLowerCase();
+        const e = extra.toLowerCase();
+        if (!b.includes(e) && extra.length <= 18) {
+          baseModel = `${baseModel} ${extra}`;
+        }
+      }
+      const modelKey = baseModel || extra;
+      const model = slugify(modelKey);
+      return { make, model };
+    };
+
+    const { make, model } = computeModelSlug();
+
     const path = String(location.pathname || "").toLowerCase();
     const isHV = path.startsWith("/hulpveren/");
     const isNR = path.startsWith("/luchtvering/");
     const isLS = path.startsWith("/verlagingsveren/");
     if (isHV || isNR || isLS) {
       const type = isHV ? "hulpveren" : isNR ? "luchtvering" : "verlagingsveren";
-
-      const make = slugify(vehicle.make || vehicle.makename || "");
-
-      // Basis modelnaam (liefst de meest specifieke)
-      let baseModel = (vehicle.modelname || vehicle.model || "").toString().trim();
-
-      // Variant/uitvoering (soms staat “Custom” hier)
-      const extra = (vehicle.typename || vehicle.type || "").toString().trim();
-
-      // Combineer alleen als extra iets toevoegt en niet al in base zit
-      if (baseModel && extra) {
-        const b = baseModel.toLowerCase();
-        const e = extra.toLowerCase();
-
-        // Voeg alleen korte variant woorden toe
-        if (!b.includes(e) && extra.length <= 18) {
-          baseModel = `${baseModel} ${extra}`;
-        }
-      }
-
-      // Fallback: als base leeg is, pak extra
-      const modelKey = baseModel || extra;
-      const model = slugify(modelKey);
-
       window.location.href = model ? `/${type}/${make}/${model}/` : `/${type}/${make}/`;
       return;
     }
 
     if (intentType && makeSlug) {
-      window.location.href = `/${intentType}/${makeSlug}/`;
+      window.location.href = model ? `/${intentType}/${make}/${model}/` : `/${intentType}/${makeSlug}/`;
       return;
     }
 
