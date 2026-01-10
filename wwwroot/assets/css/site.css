@@ -1184,9 +1184,9 @@ outline: 1px solid var(--accent); }
   }
 }
 
-/* Stabiele breadcrumbs (oude varianten uitzetten) */
-.crumbs,
-.breadcrumbs{
+/* Legacy breadcrumbs fallback */
+.has-site-breadcrumbs .crumbs,
+.has-site-breadcrumbs .breadcrumbs{
   display: none !important;
 }
 

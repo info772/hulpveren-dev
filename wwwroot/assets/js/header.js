@@ -578,12 +578,14 @@
   };
 
   const injectBreadcrumbs = (mountEl) => {
-    if (document.getElementById("site-breadcrumbs")) return;
+    if (document.querySelector(".site-breadcrumbs")) {
+      document.documentElement.classList.add("has-site-breadcrumbs");
+      return;
+    }
+    if (document.querySelector(".breadcrumbs, .crumbs")) return;
 
     const path = window.location.pathname || "/";
     if (path === "/" || path === "/index.html") return;
-
-    document.querySelectorAll(".breadcrumbs, .crumbs").forEach((el) => el.remove());
 
     const segments = path.split("/").filter(Boolean);
     if (!segments.length) return;
@@ -593,6 +595,7 @@
     if (!segments.length) return;
 
     const navEl = document.createElement("nav");
+    navEl.id = "site-breadcrumbs";
     navEl.className = "site-breadcrumbs";
     navEl.setAttribute("aria-label", "Breadcrumb");
 
@@ -636,6 +639,7 @@
 
     if (headerEl) {
       headerEl.insertAdjacentElement("afterend", navEl);
+      document.documentElement.classList.add("has-site-breadcrumbs");
     }
   };
 
