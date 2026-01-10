@@ -1513,7 +1513,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         const route = selection && selection.route ? selection.route : null;
         const makeResolved = (route && route.makeSlug) || makeMatch;
         const modelResolved = (route && route.modelSlug) || modelMatch;
-        if (makeResolved !== info.makeSlug || modelResolved !== info.modelSlug) {
+
+        const modelMatches =
+          modelResolved === info.modelSlug ||
+          info.modelSlug.startsWith(modelResolved) ||
+          modelResolved.startsWith(info.modelSlug);
+        if (makeResolved !== info.makeSlug || !modelMatches) {
           vehicle = null;
         }
       }
@@ -5890,17 +5895,20 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const yearLabel = document.getElementById("flt-year-label");
     const yearFromInput = document.getElementById("flt-year-from");
     const yearToInput = document.getElementById("flt-year-to");
-      if (yearInput && yearLabel) {
-        if (FILTER.yearRange) {
-          yearLabel.textContent =
-            FILTER.yearRange.label || formatYearRangeLabel(FILTER.yearRange) || "Alle";
-          if (yearFromInput && FILTER.yearRange.from != null) {
-            yearFromInput.value = String(FILTER.yearRange.from);
-          }
-          if (yearToInput && FILTER.yearRange.to != null) {
-            yearToInput.value = String(FILTER.yearRange.to);
-          }
+    if (yearInput && yearLabel) {
+      if (FILTER.yearRange) {
+        yearLabel.textContent =
+          FILTER.yearRange.label || formatYearRangeLabel(FILTER.yearRange) || "Alle";
+        if (yearFromInput && FILTER.yearRange.from != null) {
+          yearFromInput.value = String(FILTER.yearRange.from);
         }
+        if (yearToInput && FILTER.yearRange.to != null) {
+          yearToInput.value = String(FILTER.yearRange.to);
+        }
+        if (yearInput && FILTER.yearRange.from != null) {
+          yearInput.value = String(FILTER.yearRange.from);
+        }
+      }
         yearInput.addEventListener("input", (e) => {
           const v = +e.target.value || yearMin;
           FILTER.year = v;
