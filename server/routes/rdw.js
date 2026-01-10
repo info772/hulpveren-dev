@@ -69,18 +69,40 @@ router.get("/:plate", async (req, res) => {
 
     const row = data[0];
 
-    // RDW veldnaam: datum_eerste_toelating (YYYYMMDD)
-    const ymd = String(row.datum_eerste_toelating || "");
-    const year = ymd && ymd.length >= 4 ? Number(ymd.slice(0, 4)) : 0;
+    if (req.query.debug === "1") {
+      return res.json({ keys: Object.keys(row), sample: row });
+    }
+
+    const raw =
+      row.datum_eerste_toelating || // vaak YYYYMMDD
+      row.datum_eerste_toelating_dt || // soms ISO
+      row.datum_eerste_toelating_date || // soms
+      row.datum_eerste_toelating_as_string || // soms
+      row.datum_eerste_afgifte_nederland || // alternatief
+      row.datum_eerste_afgifte_nederland_dt ||
+      "";
+
+    let year = 0;
+    let firstAdmissionDate = null;
+
+    if (raw) {
+      const s = String(raw);
+
+      if (/^\d{8}$/.test(s)) {
+        year = Number(s.slice(0, 4));
+        firstAdmissionDate = `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}`;
+      } else {
+        const m = s.match(/\b(19\d{2}|20\d{2})\b/);
+        if (m) year = Number(m[1]);
+
+        const d = s.match(/\b(19\d{2}|20\d{2})-(\d{2})-(\d{2})\b/);
+        if (d) firstAdmissionDate = `${d[1]}-${d[2]}-${d[3]}`;
+      }
+    }
 
     if (!year || Number.isNaN(year)) {
       return res.status(422).json({ error: "no_year" });
     }
-
-    const firstAdmissionDate =
-      ymd.length === 8
-        ? `${ymd.slice(0, 4)}-${ymd.slice(4, 6)}-${ymd.slice(6, 8)}`
-        : null;
 
     const payload = { year, firstAdmissionDate };
 
