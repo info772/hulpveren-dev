@@ -2810,7 +2810,7 @@ console.log("[seo] loaded", location.pathname);
     if (pageType === "brand") {
       const grid = document.querySelector(".grid");
       if (grid && grid.parentElement) {
-        grid.parentElement.insertBefore(container, grid);
+        grid.insertAdjacentElement("afterend", container);
         return container;
       }
     }

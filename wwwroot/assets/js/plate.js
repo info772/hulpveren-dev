@@ -376,11 +376,11 @@
     container.appendChild(card);
 
     const clearButton = card.querySelector(".hv-plate-clear");
-    clearButton.addEventListener("click", () => {
-      clearSelection();
-      container.innerHTML = "";
-    });
-  }
+clearButton.addEventListener("click", () => {
+  clearPlateContext();
+  location.href = location.pathname;
+});
+
 
   function renderCandidatePicker(container, plate, candidates, onPick) {
     container.innerHTML = "";
@@ -741,6 +741,29 @@
     if (!vehicle) return;
     persistSelection(plate, vehicle);
     setRouteSlugsFromVehicle(vehicle);
+	// 🔁 spring naar juiste merkpagina binnen huidige categorie
+const path = location.pathname;
+const isHV = path.startsWith("/hulpveren/");
+const isNR = path.startsWith("/luchtvering/");
+const isLS = path.startsWith("/verlagingsveren/");
+
+if (isHV || isNR || isLS) {
+  const type = isHV ? "hulpveren" : isNR ? "luchtvering" : "verlagingsveren";
+  const make = slugify(vehicle.make || vehicle.makename || "");
+  location.href = `/${type}/${make}/`;
+  return;
+}
+
+// ⬇️ NIET op HV/NR/LS → vraag keuze
+const make = slugify(vehicle.make || vehicle.makename || "");
+const choice = window.prompt("Waar wil je heen? Typ: HV, NR of LS");
+if (!choice) return;
+
+const map = { HV: "hulpveren", NR: "luchtvering", LS: "verlagingsveren" };
+const type = map[String(choice).trim().toUpperCase()];
+if (type) location.href = `/${type}/${make}/`;
+
+
     if (elements && elements.results) {
       renderSelected(elements.results, vehicle);
     }
