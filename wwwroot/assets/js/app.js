@@ -3337,15 +3337,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (FILTER.year != null) {
       yearLabel = String(FILTER.year);
     } else if (FILTER.yearRange) {
-      const rangeFrom = FILTER.yearRange.from ?? FILTER.yearRange.to;
-      const rangeTo = FILTER.yearRange.to ?? FILTER.yearRange.from;
-      const fallbackRange =
-        rangeFrom != null && rangeTo != null
-          ? rangeFrom === rangeTo
-            ? String(rangeFrom)
-            : `${rangeFrom}-${rangeTo}`
-          : "";
-      const baseLabel = FILTER.yearRange.label || fallbackRange;
+      const baseLabel =
+        FILTER.yearRange.label || formatYearRangeLabel(FILTER.yearRange);
       if (baseLabel) {
         yearLabel =
           FILTER.yearRange.source === "plate"
@@ -4476,6 +4469,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     });
   }
 
+  function formatYearRangeLabel(range) {
+    if (!range) return "";
+    const from = range.from ?? range.to;
+    const to = range.to ?? range.from;
+    if (from != null && to != null) {
+      if (from === to) return String(from);
+      return `${from}-${to}`;
+    }
+    if (from != null && to == null) return `${from}-nu`;
+    if (from == null && to != null) return `tot ${to}`;
+    return "";
+  }
+
   /* ================== Render: sets per model (met filters) ================== */
 
   function resolveModelSlugVariant(modelsMap, targetSlug) {
@@ -4680,10 +4686,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
       FILTER.year = null;
-      FILTER.yearRange =
-        plateContext && plateContext.yearRange
-          ? { ...plateContext.yearRange, source: "plate" }
-          : null;
+      const yr = plateContext && plateContext.yearRange ? plateContext.yearRange : null;
+      const label = yr && yr.label ? yr.label : formatYearRangeLabel(yr);
+      FILTER.yearRange = yr
+        ? { ...yr, label: label || undefined, source: "plate" }
+        : null;
       FILTER.support.clear();
       FILTER.drive.clear();
       FILTER.rear.clear();
@@ -5752,7 +5759,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     FILTER.year = null;
-    FILTER.yearRange = plateContext ? { ...plateContext.yearRange, source: "plate" } : null;
+    const plateYR = plateContext ? plateContext.yearRange : null;
+    const labelPlate = plateYR && plateYR.label ? plateYR.label : formatYearRangeLabel(plateYR);
+    FILTER.yearRange = plateYR ? { ...plateYR, label: labelPlate || undefined, source: "plate" } : null;
     FILTER.support.clear();
     FILTER.drive.clear();
     FILTER.rear.clear();
