@@ -1460,6 +1460,13 @@ body.plate-route .hero{
   font-size: 12px;
 }
 
+.plate-year-note{
+  display: block;
+  opacity: .75;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 .platepill-row{
   background: rgba(5, 7, 15, 0.35);
   border-bottom: 1px solid var(--border);

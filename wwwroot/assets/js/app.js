@@ -3078,7 +3078,21 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function filterPairs(allPairs) {
     const ctx = CURRENT_ROUTE_CTX || {};
     const driveException = !!ctx.driveException;
-    const yearRange = FILTER.yearRange;
+    let yearRange = FILTER.yearRange;
+    if (!yearRange) {
+      const ctx = getActivePlateContext && getActivePlateContext();
+      if (ctx && ctx.vehicle && ctx.vehicle.estimatedYearMin && ctx.vehicle.estimatedYearMax) {
+        const minY = ctx.vehicle.estimatedYearMin;
+        const maxY = ctx.vehicle.estimatedYearMax;
+        yearRange = {
+          from: minY,
+          to: maxY,
+          label: formatYearRangeLabel({ from: minY, to: maxY }),
+          source: "plate_est",
+        };
+        FILTER.yearRange = yearRange;
+      }
+    }
     const rangeFiltered = allPairs.filter(({ k, f }) =>
       pairMatchesVehicleContext({ k, f }, ctx)
     );

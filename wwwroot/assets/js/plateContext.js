@@ -370,15 +370,34 @@
     if (!pill) return;
     const row = pill.closest("[data-plate-pill-row]");
     const pillText = pill.querySelector("[data-plate-pill-text]");
+    let note = pill.querySelector(".plate-year-note");
+    if (!note) {
+      note = document.createElement("small");
+      note.className = "plate-year-note";
+      pill.appendChild(note);
+    }
     if (!ctx || !ctx.plate) {
       pill.hidden = true;
       if (row) row.hidden = true;
       if (pillText) pillText.textContent = "";
+      note.textContent = "";
       return;
     }
     pill.hidden = false;
     if (row) row.hidden = false;
     if (pillText) pillText.textContent = buildVehicleSummary(ctx);
+    const y = ctx?.vehicle?.estimatedYear;
+    const min = ctx?.vehicle?.estimatedYearMin;
+    const max = ctx?.vehicle?.estimatedYearMax;
+    if (y) {
+      const basis =
+        ctx?.vehicle?.estimatedYearFrom === "eerste_toelating"
+          ? "eerste toelating"
+          : "bouwjaar";
+      note.textContent = `Bouwjaar-inschatting: ${min ?? ""}${min ? "–" : ""}${max ?? ""} (op basis van ${basis})`;
+    } else {
+      note.textContent = "";
+    }
     if (input && !input.value) {
       input.value = ctx.plate;
     }

@@ -39,6 +39,42 @@
       .replace(/^-+|-+$/g, "");
   }
 
+  function extractYear(value) {
+    if (!value) return null;
+    const s = String(value);
+    const m = s.match(/\b(19\d{2}|20\d{2})\b/);
+    if (!m) return null;
+    return Number(m[1]);
+  }
+
+  function getEstimatedYear(candidate) {
+    if (!candidate) return { year: null, source: null };
+    const year =
+      extractYear(
+        candidate.firstAdmissionDate ||
+          candidate.dateFirstAdmission ||
+          candidate.eersteToelating
+      ) ||
+      extractYear(
+        candidate.buildYear || candidate.bouwjaar || candidate.year
+      ) ||
+      extractYear(
+        candidate.registrationDate || candidate.datumEersteToelating
+      );
+
+    const source =
+      year &&
+      (candidate.firstAdmissionDate ||
+        candidate.dateFirstAdmission ||
+        candidate.eersteToelating)
+        ? "eerste_toelating"
+        : year
+        ? "bouwjaar"
+        : null;
+
+    return { year: year || null, source };
+  }
+
   function computeMakeModelSlug(vehicle) {
     if (!vehicle) return { make: "", model: "" };
     const make = slugify(vehicle.make || vehicle.makename || "");
@@ -854,6 +890,14 @@ if (type) location.href = `/${type}/${make}/`;
 
   function finalizeSelection(plate, vehicle, data, elements) {
     if (!vehicle) return;
+    const est = getEstimatedYear(vehicle);
+    if (est.year) {
+      vehicle.estimatedYear = est.year;
+      vehicle.estimatedYearFrom = est.source;
+      vehicle.estimatedYearMin = est.year - 1;
+      vehicle.estimatedYearMax = est.year + 1;
+    }
+
     const makeSlug = slugify(vehicle.make || vehicle.makename || "");
     const intentType = getIntentTypeFromLocation();
     persistSelection(plate, vehicle, { intentType });
