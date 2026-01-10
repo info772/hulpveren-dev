@@ -39,6 +39,25 @@
       .replace(/^-+|-+$/g, "");
   }
 
+  function computeMakeModelSlug(vehicle) {
+    if (!vehicle) return { make: "", model: "" };
+    const make = slugify(vehicle.make || vehicle.makename || "");
+    let baseModel = (vehicle.modelname || vehicle.model || "").toString().trim();
+    const extra = (vehicle.typename || vehicle.type || vehicle.type_remark || "")
+      .toString()
+      .trim();
+    if (baseModel && extra) {
+      const b = baseModel.toLowerCase();
+      const e = extra.toLowerCase();
+      if (!b.includes(e) && extra.length <= 18) {
+        baseModel = `${baseModel} ${extra}`;
+      }
+    }
+    const modelKey = baseModel || extra;
+    const model = slugify(modelKey);
+    return { make, model };
+  }
+
   function setRouteSlugsFromVehicle() {
     return;
   }
@@ -816,31 +835,30 @@ if (type) location.href = `/${type}/${make}/`;
     });
   }
 
+  function bindBaseNavRedirect() {
+    const selected = getSelectedVehicle();
+    if (!selected) return;
+    const { make, model } = computeMakeModelSlug(selected);
+    if (!make) return;
+    const targets = ["/hulpveren", "/hulpveren/"];
+    document.addEventListener("click", (evt) => {
+      const a = evt.target.closest("a");
+      if (!a) return;
+      const href = a.getAttribute("href") || "";
+      if (!targets.includes(href)) return;
+      evt.preventDefault();
+      const next = model ? `/hulpveren/${make}/${model}/` : `/hulpveren/${make}/`;
+      window.location.href = next;
+    });
+  }
+
   function finalizeSelection(plate, vehicle, data, elements) {
     if (!vehicle) return;
     const makeSlug = slugify(vehicle.make || vehicle.makename || "");
     const intentType = getIntentTypeFromLocation();
     persistSelection(plate, vehicle, { intentType });
 
-    const computeModelSlug = () => {
-      const make = slugify(vehicle.make || vehicle.makename || "");
-      let baseModel = (vehicle.modelname || vehicle.model || "").toString().trim();
-      const extra =
-        (vehicle.typename || vehicle.type || vehicle.type_remark || "").toString().trim();
-
-      if (baseModel && extra) {
-        const b = baseModel.toLowerCase();
-        const e = extra.toLowerCase();
-        if (!b.includes(e) && extra.length <= 18) {
-          baseModel = `${baseModel} ${extra}`;
-        }
-      }
-      const modelKey = baseModel || extra;
-      const model = slugify(modelKey);
-      return { make, model };
-    };
-
-    const { make, model } = computeModelSlug();
+    const { make, model } = computeMakeModelSlug(vehicle);
 
     const path = String(location.pathname || "").toLowerCase();
     const isHV = path.startsWith("/hulpveren/");
@@ -995,7 +1013,9 @@ if (type) location.href = `/${type}/${make}/`;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initWidget);
+    document.addEventListener("DOMContentLoaded", bindBaseNavRedirect);
   } else {
     initWidget();
+    bindBaseNavRedirect();
   }
 })();
