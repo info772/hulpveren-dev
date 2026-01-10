@@ -1,4 +1,5 @@
 const express = require("express");
+const fetch = require("node-fetch");
 
 const router = express.Router();
 
@@ -34,7 +35,13 @@ async function fetchJsonWithTimeout(url, timeoutMs = 8000) {
   const controller = new AbortController();
   const t = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const res = await fetch(url, { signal: controller.signal });
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        Accept: "application/json",
+        "User-Agent": "curl/8.0",
+      },
+    });
     if (!res.ok) {
       const err = new Error(`rdw_http_${res.status}`);
       err.status = res.status;
@@ -62,6 +69,15 @@ router.get("/:plate", async (req, res) => {
   try {
     const url = `${RDW_URL}?kenteken=${encodeURIComponent(plate)}`;
     const data = await fetchJsonWithTimeout(url, 8000);
+
+    if (req.query.debug === "1") {
+      return res.json({
+        url,
+        isArray: Array.isArray(data),
+        length: Array.isArray(data) ? data.length : null,
+        sample: Array.isArray(data) ? data[0] : data,
+      });
+    }
 
     if (!Array.isArray(data) || data.length === 0) {
       return res.status(404).json({ error: "not_found" });
