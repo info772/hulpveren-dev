@@ -907,6 +907,11 @@
     return ctx;
   };
 
+  // Backwards compat: some code calls setPlateContextFromPlate
+  function setPlateContextFromPlate(plate, vehicle) {
+    return setPlateContextFromVehicle(plate, vehicle);
+  }
+
   const init = () => {
     initPlateBar();
     initPlatePill();
