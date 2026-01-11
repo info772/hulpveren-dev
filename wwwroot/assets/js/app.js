@@ -4982,14 +4982,18 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   if (initialRender) {
     initialRender = false;
-    if (!filtered.length && vehicleActive) {
-      window.location.href = `${BASE}/${makeSlug}/`;
-      return;
-    }
   }
 
   if (!filtered.length) {
-    gridEl.innerHTML = `<p class="note">Geen resultaten met deze filters.</p>`;
+    const plateContext = getActivePlateContext && getActivePlateContext();
+    const plateLabel =
+      (plateContext && plateContext.plate) || (plateContext && plateContext.plateSlug) || "";
+    const msg = plateLabel
+      ? `Geen sets beschikbaar voor ${esc(makeLabel)} ${esc(
+          modelLabel
+        )} (kenteken ${esc(plateLabel)}).`
+      : `Geen sets beschikbaar voor ${esc(makeLabel)} ${esc(modelLabel)}.`;
+    gridEl.innerHTML = `<p class="note">${msg}</p>`;
   } else {
     gridEl.innerHTML = filtered
       .map((pair, idx) => buildModelCard(pair, idx, cardOptions))
@@ -6352,22 +6356,27 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (!pairs.length) {
-      if (vehicleActive) {
-        window.location.href = `${NR_BASE}/${makeSlug}/`;
-        return;
-      }
       console.warn("kits:nr_model_empty", {
         makeSlug,
         modelSlug,
         totalKits: Array.isArray(kits) ? kits.length : 0,
       });
+      const plateLabel =
+        (activeCtx && (activeCtx.plate || activeCtx.plateSlug)) ||
+        (plateContext && (plateContext.plate || plateContext.plateSlug)) ||
+        "";
+      const msg = plateLabel
+        ? `Geen sets beschikbaar voor ${esc(makeLabel)} ${esc(
+            modelLabel
+          )} (kenteken ${esc(plateLabel)}).`
+        : `Geen sets beschikbaar voor ${esc(makeLabel)} ${esc(modelLabel)}.`;
       app.innerHTML = wrap(`
         <div class="crumbs">
           <a href="${NR_BASE}">Luchtvering</a> > ${esc(makeLabel)} > ${esc(
         modelLabel
       )}
         </div>
-        <p>Geen sets gevonden.</p>
+        <p class="note">${msg}</p>
       `);
       return;
     }

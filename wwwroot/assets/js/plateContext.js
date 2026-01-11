@@ -1073,4 +1073,17 @@
       window.setPlateContextFromPlate(plate);
     }
   })();
+
+  // Ensure global plate context exists (filters/UI expect this)
+  window.hv_plate_context = window.hv_plate_context || {
+    plate: "",
+    vehicle: {},
+  };
+
+  // If your internal context object exists, expose it.
+  try {
+    if (typeof HVPlateContext !== "undefined") {
+      window.hv_plate_context = HVPlateContext;
+    }
+  } catch (_) {}
 })();
