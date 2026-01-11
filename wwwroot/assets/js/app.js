@@ -1659,10 +1659,27 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     const buildPlateInfoHtml = (context) => {
       if (!context || !context.vehicle) return "";
+      const v = context.vehicle || {};
       const rows = [];
       if (context.autoLabel) rows.push(buildMetaRow("Auto", context.autoLabel));
       if (context.uitvoering) rows.push(buildMetaRow("Uitvoering", context.uitvoering));
       if (context.motorCode) rows.push(buildMetaRow("Motorcode", context.motorCode));
+      if (v.voertuigsoort) rows.push(buildMetaRow("Voertuigsoort", v.voertuigsoort));
+      if (v.inrichting) rows.push(buildMetaRow("Inrichting", v.inrichting));
+      if (v.eerste_kleur || v.eersteKleur) {
+        rows.push(buildMetaRow("Eerste kleur", v.eerste_kleur || v.eersteKleur));
+      }
+      if (v.aantal_cilinders) rows.push(buildMetaRow("Aantal cilinders", v.aantal_cilinders));
+      if (v.cilinderinhoud) rows.push(buildMetaRow("Cilinderinhoud", v.cilinderinhoud));
+      if (v.massa_ledig_voertuig)
+        rows.push(buildMetaRow("Massa ledig voertuig", v.massa_ledig_voertuig));
+      if (v.toegestane_maximum_massa_voertuig)
+        rows.push(
+          buildMetaRow(
+            "Toegestane max. massa",
+            v.toegestane_maximum_massa_voertuig
+          )
+        );
       rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked));
       if (!rows.length) return "";
       return `
