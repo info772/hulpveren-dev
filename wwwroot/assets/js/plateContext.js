@@ -984,6 +984,8 @@
     if (yearRange && (yearRange.from != null || yearRange.to != null)) {
       setVehicleYearRange(ctx, yearRange.from, yearRange.to, yearRange.source);
     }
+
+    window.hv_plate_context = ctx;
     savePlateContext(ctx);
     renderPlatePill(ctx);
     dispatchPlateEvent(ctx);
@@ -1036,7 +1038,7 @@
   }
   // Ensure the global context exists (many parts of the site expect this)
   if (typeof window.hv_plate_context === "undefined") {
-    window.hv_plate_context = window.HVPlateContext;
+    window.hv_plate_context = loadPlateContext() || { plate: "", vehicle: {} };
   }
 
   // Hydrate from URL: /.../<PLATE>/kt_xxx or variants
