@@ -1757,14 +1757,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .slice((baseLower + "/").length)
       .split("/")
       .filter(Boolean);
-    if (parts.length < 2) return null;
+    if (!parts.length) return null;
     const plateMatch = findPlateSegment(parts);
-    if (!plateMatch || plateMatch.index < 2) return null;
+    if (!plateMatch) return null;
+    const make = parts[0] || "";
+    const model =
+      plateMatch.index >= 2 ? parts[1] || "" : ""; // model alleen als er een extra segment vóór kt_ zit
+    const variant =
+      plateMatch.index >= 3 ? parts[2] || "" : "";
     return {
-      make: parts[0],
-      model: parts[1],
+      make,
+      model,
       plate: plateMatch.plate,
-      variant: plateMatch.index > 2 ? parts[2] : "",
+      variant,
     };
   }
 
@@ -6324,13 +6329,29 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function renderNrModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp) return;
     suppressHomeSectionsForApp();
-      const entry = makes.get(makeSlug);
-      const makeLabel = entry?.label || makeSlug;
-      const modelLabel =
-        (entry?.models && entry.models.get(modelSlug)) || modelSlug;
       const plateContext = buildPlateContext({ base: NR_BASE, makeSlug, modelSlug });
-      const plateInfoHtml = buildPlateInfoHtml(plateContext);
       const activeCtx = getActivePlateContext();
+      const resolvedMake =
+        makeSlug ||
+        plateContext?.route?.makeSlug ||
+        activeCtx?.route?.makeSlug ||
+        plateContext?.vehicle?.makeSlug ||
+        activeCtx?.vehicle?.makeSlug ||
+        "";
+      const resolvedModel =
+        modelSlug ||
+        plateContext?.route?.modelSlug ||
+        activeCtx?.route?.modelSlug ||
+        plateContext?.vehicle?.modelSlug ||
+        activeCtx?.vehicle?.modelSlug ||
+        "";
+      const entry = makes.get(resolvedMake);
+      const makeLabel = entry?.label || resolvedMake;
+      const modelLabel =
+        (entry?.models && entry.models.get(resolvedModel)) || resolvedModel;
+      const useMake = resolvedMake || makeSlug;
+      const useModel = resolvedModel || modelSlug;
+      const plateInfoHtml = buildPlateInfoHtml(plateContext);
       const plateYearRange =
         (plateContext && plateContext.yearRange) ||
         (activeCtx && activeCtx.yearRange) ||
@@ -6349,8 +6370,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const pairs = [];
     for (const k of kits || []) {
       for (const f of k.fitments || []) {
-        if (slugify(f.make) !== makeSlug) continue;
-        if (slugify(f.model) !== modelSlug) continue;
+        if (slugify(f.make) !== useMake) continue;
+        if (useModel && slugify(f.model) !== useModel) continue;
         pairs.push({ k, f });
       }
     }

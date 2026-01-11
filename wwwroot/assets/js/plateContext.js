@@ -879,9 +879,10 @@
   function setVehicleYearRange(ctx, yearMin, yearMax, source) {
     if (!ctx) return;
     ctx.vehicle = ctx.vehicle || {};
-    ctx.vehicle.yearMin = yearMin ? Number(yearMin) : undefined;
-    ctx.vehicle.yearMax = yearMax ? Number(yearMax) : undefined;
+    ctx.vehicle.yearMin = yearMin ? Number(yearMin) : ctx.vehicle.yearMin;
+    ctx.vehicle.yearMax = yearMax ? Number(yearMax) : ctx.vehicle.yearMax;
     ctx.vehicle.yearSource = source || ctx.vehicle.yearSource;
+    ctx.vehicle.yearUpdatedAt = Date.now();
 
     if (ctx.vehicle.yearMin && ctx.vehicle.yearMax) {
       ctx.vehicle.rangeLabel = `${ctx.vehicle.yearMin} — ${ctx.vehicle.yearMax}`;
@@ -927,6 +928,8 @@
       yearMin: vehicle?.yearMin || vehicle?.estimatedYearMin || null,
       yearMax: vehicle?.yearMax || vehicle?.estimatedYearMax || null,
       yearSource: vehicle?.yearSource || vehicle?.estimatedYearFrom || null,
+      baseSource: vehicle?.baseSource || vehicle?.base_source || vehicle?.source || "aldoc",
+      baseUpdatedAt: vehicle?.baseUpdatedAt || Date.now(),
     };
 
     vSmall.make = String(vSmall.make || "");
