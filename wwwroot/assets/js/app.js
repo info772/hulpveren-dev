@@ -1703,19 +1703,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         return `${Math.round(n)} kg`;
       }
       const rows = [];
-      if (context.autoLabel) rows.push(buildMetaRow("Auto", context.autoLabel));
-      if (context.uitvoering) rows.push(buildMetaRow("Uitvoering", context.uitvoering));
-      if (context.motorCode) rows.push(buildMetaRow("Motorcode", context.motorCode));
+      rows.push(buildMetaRow("Auto", context.autoLabel || ""));
+      rows.push(buildMetaRow("Uitvoering", context.uitvoering || ""));
+      rows.push(buildMetaRow("Motorcode", context.motorCode || ""));
       const soort = pick("voertuigsoort", "vehicle_type");
-      if (soort) rows.push(buildMetaRow("Voertuigsoort", soort));
+      rows.push(buildMetaRow("Voertuigsoort", soort || ""));
       const inrichting = pick("inrichting", "bodyType", "bodytype");
-      if (inrichting) rows.push(buildMetaRow("Inrichting", inrichting));
+      rows.push(buildMetaRow("Inrichting", inrichting || ""));
       const kleur = pick("eerste_kleur", "eersteKleur", "eerste_kleur_voertuig");
-      if (kleur) rows.push(buildMetaRow("Eerste kleur", kleur));
+      rows.push(buildMetaRow("Eerste kleur", kleur || ""));
       const cilinders = pick("aantal_cilinders");
-      if (cilinders) rows.push(buildMetaRow("Aantal cilinders", cilinders));
+      rows.push(buildMetaRow("Aantal cilinders", cilinders || ""));
       const inhoud = pick("cilinderinhoud");
-      if (inhoud) rows.push(buildMetaRow("Cilinderinhoud", inhoud));
+      rows.push(buildMetaRow("Cilinderinhoud", inhoud || ""));
       const massaLedig = pick(
         "massa_ledig_voertuig",
         "massaLedigVoertuig",
@@ -1724,7 +1724,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         "curb_weight",
         "curbWeight"
       );
-      if (massaLedig) rows.push(buildMetaRow("Massa ledig voertuig", fmtKg(massaLedig)));
+      rows.push(buildMetaRow("Massa ledig voertuig", fmtKg(massaLedig)));
       const massaToegestaan = pick(
         "toegestane_maximum_massa_voertuig",
         "toegestaneMaximumMassaVoertuig",
@@ -1733,9 +1733,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         "gvw",
         "grossVehicleWeight"
       );
-      if (massaToegestaan)
-        rows.push(buildMetaRow("Toegestane maximum massa voertuig", fmtKg(massaToegestaan)));
-      rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked));
+      rows.push(buildMetaRow("Toegestane maximum massa voertuig", fmtKg(massaToegestaan)));
+      rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked || ""));
       return rows;
     };
 
