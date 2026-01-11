@@ -5483,6 +5483,18 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       nr: aldocSets.nrSkus.length,
       ls: aldocSets.lsSkus.length,
     });
+    if (typeof window.hvSetBaseFromAldoc === "function") {
+      const v = (data && data.vehicle) || vehicle || {};
+      const base = {
+        make: v.make || v.merk || v.brand,
+        model: v.model || v.type || v.modelnaam || v.modelname,
+        makeSlug: v.makeSlug || v.merkSlug || v.brandSlug,
+        modelSlug: v.modelSlug || v.typeSlug,
+        kt: v.kt || data?.kt || null,
+        rangeLabel: v.rangeLabel || null,
+      };
+      window.hvSetBaseFromAldoc(base, data || v);
+    }
     const hasAldocSets =
       aldocSets.hvSkus.length ||
       aldocSets.nrSkus.length ||

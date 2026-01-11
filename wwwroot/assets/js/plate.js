@@ -1021,6 +1021,12 @@ if (type) location.href = `/${type}/${make}/`;
           } else {
             applyYearContext(vehicle, year.yearMin, year.yearMax, rdw.source);
           }
+          if (window.hv_plate_context) {
+            window.hv_plate_context.vehicleRaw = window.hv_plate_context.vehicleRaw || {};
+            window.hv_plate_context.vehicleRaw = window.hvSetYearFromRdw
+              ? window.hv_plate_context.vehicleRaw
+              : { ...(window.hv_plate_context.vehicleRaw || {}), ...rdw };
+          }
         }
       } catch (e) {
         const est = getEstimatedYear(vehicle);
