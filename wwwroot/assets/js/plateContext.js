@@ -354,7 +354,13 @@
 
   const loadPlateContext = () => {
     try {
-      return safeJsonParse(sessionStorage.getItem(STORAGE_KEY));
+      const sess = safeJsonParse(sessionStorage.getItem(STORAGE_KEY));
+      if (sess) return sess;
+      const local = safeJsonParse(localStorage.getItem(STORAGE_KEY));
+      if (local) return local;
+      const plateOnly = localStorage.getItem("hv_plate");
+      if (plateOnly) return { plate: plateOnly, vehicle: {} };
+      return null;
     } catch {
       return null;
     }
@@ -363,6 +369,10 @@
   const savePlateContext = (ctx) => {
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(ctx || null));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ctx || null));
+      if (ctx && ctx.plate) {
+        localStorage.setItem("hv_plate", ctx.plate);
+      }
     } catch {
       return;
     }
@@ -381,6 +391,8 @@
   const clearPlateContext = () => {
     try {
       sessionStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem("hv_plate");
     } catch {
       return;
     }
@@ -1030,17 +1042,19 @@
   // Hydrate from URL: /.../<PLATE>/kt_xxx or variants
   (function hydrateFromUrl() {
     const { plate, kt } = readPlateKtFromUrl();
-    window.hv_plate_context = window.hv_plate_context || { plate: "", vehicle: {} };
+    const existing = loadPlateContext() || { plate: "", vehicle: {} };
+    window.hv_plate_context = existing;
     if (plate) {
-      window.hv_plate_context.plate = plate;
+      existing.plate = plate;
       try {
         localStorage.setItem("hv_plate", plate);
       } catch (_) {}
     }
     if (kt) {
-      window.hv_plate_context.vehicle = window.hv_plate_context.vehicle || {};
-      window.hv_plate_context.vehicle.kt = kt;
+      existing.vehicle = existing.vehicle || {};
+      existing.vehicle.kt = kt;
     }
+    savePlateContext(existing);
     if (plate && typeof window.setPlateContextFromPlate === "function") {
       window.setPlateContextFromPlate(plate);
     }

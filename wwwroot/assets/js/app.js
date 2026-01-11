@@ -199,6 +199,35 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const MODEL_SLUG_CACHE = new Map();
   const MODEL_INDEX_CACHE = new Map();
 
+  function getKtSegment() {
+    const ctx =
+      (window.HVPlateContext &&
+      typeof window.HVPlateContext.getPlateContext === "function" &&
+      window.HVPlateContext.getPlateContext()) ||
+      window.hv_plate_context ||
+      {};
+    const plate = ctx.plate ? normalizePlateInput(ctx.plate).toLowerCase() : "";
+    if (!plate) return "";
+    return `${PLATE_PREFIX}${plate}`;
+  }
+
+  document.addEventListener("click", (evt) => {
+    const a = evt.target.closest("a");
+    if (!a) return;
+    const href = a.getAttribute("href") || "";
+    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+      return;
+    }
+    const ktSeg = getKtSegment();
+    if (!ktSeg) return;
+    const url = new URL(href, window.location.origin);
+    if (!/^\/(hulpveren|luchtvering|verlagingsveren)\//i.test(url.pathname)) return;
+    if (url.pathname.toLowerCase().includes("/kt_")) return;
+    url.pathname = url.pathname.replace(/\/+$/, "") + `/${ktSeg}/`;
+    evt.preventDefault();
+    window.location.href = url.toString();
+  });
+
   if (IS_SET_PAGE) {
     document.documentElement.classList.add("is-set-page");
   }
