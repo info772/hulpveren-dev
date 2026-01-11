@@ -1774,29 +1774,28 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const context = window.hv_plate_context || null;
       if (!context) return;
       const html = buildPlateInfoHtml(context);
+      if (!html) return;
       const card = document.querySelector("[data-vehicle-info-card]");
-      if (card && html) {
-        card.innerHTML = html.replace(/^<div class="card product plate-context"[^>]*>/, "").replace(/<\/div>\s*<\/div>\s*$/, "");
+      if (card) {
+        card.outerHTML = html;
         return;
       }
-      if (!card && html) {
-        const filtersWrap = document.querySelector(".filters-wrap");
-        if (filtersWrap) {
-          filtersWrap.insertAdjacentHTML("beforebegin", html);
-          return;
-        }
-        const crumbs =
-          document.querySelector(".site-breadcrumbs") ||
-          document.querySelector(".crumbs") ||
-          document.querySelector(".breadcrumbs");
-        if (crumbs) {
-          crumbs.insertAdjacentHTML("afterend", html);
-          return;
-        }
-        const mainWrap = document.querySelector("main .wrap");
-        if (mainWrap) {
-          mainWrap.insertAdjacentHTML("afterbegin", html);
-        }
+      const filtersWrap = document.querySelector(".filters-wrap");
+      if (filtersWrap) {
+        filtersWrap.insertAdjacentHTML("beforebegin", html);
+        return;
+      }
+      const crumbs =
+        document.querySelector(".site-breadcrumbs") ||
+        document.querySelector(".crumbs") ||
+        document.querySelector(".breadcrumbs");
+      if (crumbs) {
+        crumbs.insertAdjacentHTML("afterend", html);
+        return;
+      }
+      const mainWrap = document.querySelector("main .wrap");
+      if (mainWrap) {
+        mainWrap.insertAdjacentHTML("afterbegin", html);
       }
     };
 
