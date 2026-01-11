@@ -69,6 +69,10 @@
         ctx.vehicleRaw = { ...(ctx.vehicleRaw || {}), ...rawPayload };
       }
     }
+
+    try {
+      savePlateContext(ctx);
+    } catch (_) {}
   }
 
   function setYearFromRdw(year, rawPayload) {
@@ -98,6 +102,10 @@
         ctx.vehicleRaw = { ...(ctx.vehicleRaw || {}), ...rawPayload };
       }
     }
+
+    try {
+      savePlateContext(ctx);
+    } catch (_) {}
   }
 
   function normalizeKt(raw) {
