@@ -6713,7 +6713,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       makes = nrMakes.size ? nrMakes : buildIndex(kits);
       base = NR_BASE;
     } else if (family === "ls") {
-      makes = await fetchNrLsMakes("/data/ls-brand-pages.json", "/data/ls-model-pages.json");
+      const lsMakes = await fetchNrLsMakes("/data/ls-brand-pages.json", "/data/ls-model-pages.json");
+      kits = await fetchLsKits();
+      makes = lsMakes.size ? lsMakes : buildIndex(kits);
+      base = LS_BASE;
     } else {
       kits = await fetchHvKits();
       makes = buildIndex(kits);
@@ -6762,7 +6765,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (family === "nr") {
-      if (route.kind === "model") {
+      if (route.kind === "model" || route.kind === "plate") {
+        renderNrModel(kits, makes, route.make, route.model);
+      }
+      return;
+    }
+
+    if (family === "ls") {
+      if (route.kind === "model" || route.kind === "plate") {
         renderNrModel(kits, makes, route.make, route.model);
       }
       return;
