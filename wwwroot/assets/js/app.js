@@ -1660,7 +1660,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const buildPlateInfoHtml = (context) => {
       if (!context || !context.vehicle) return "";
       const v = context.vehicle || {};
-      const raw0 = context.vehicleRaw || {};
+      const rawBase = context.vehicleRaw || {};
+      const raw0 = Array.isArray(rawBase) ? rawBase[0] || {} : rawBase;
       const roots = [
         raw0,
         raw0.rdw,

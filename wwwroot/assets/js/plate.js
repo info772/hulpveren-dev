@@ -1015,17 +1015,18 @@ if (type) location.href = `/${type}/${make}/`;
       try {
         const rdw = await fetchRdwYear(plate);
         if (rdw && typeof rdw === "object") {
-          const year = { yearMin: rdw.year - 1, yearMax: rdw.year + 1 };
+          const rdwRaw = Array.isArray(rdw) ? rdw[0] || {} : rdw;
+          const yMin = rdwRaw?.datum_eerste_toelating
+            ? Number(String(rdwRaw.datum_eerste_toelating).slice(0, 4))
+            : rdwRaw.year
+              ? Number(rdwRaw.year)
+              : null;
+          const yMax = yMin ? new Date().getFullYear() : null;
+          const year = { yearMin: yMin, yearMax: yMax || yMin };
           if (window.hvSetYearFromRdw && typeof window.hvSetYearFromRdw === "function") {
-            window.hvSetYearFromRdw(year, rdw);
+            window.hvSetYearFromRdw(year, rdwRaw);
           } else {
             applyYearContext(vehicle, year.yearMin, year.yearMax, rdw.source);
-          }
-          if (window.hv_plate_context) {
-            window.hv_plate_context.vehicleRaw = window.hv_plate_context.vehicleRaw || {};
-            window.hv_plate_context.vehicleRaw = window.hvSetYearFromRdw
-              ? window.hv_plate_context.vehicleRaw
-              : { ...(window.hv_plate_context.vehicleRaw || {}), ...rdw };
           }
         }
       } catch (e) {

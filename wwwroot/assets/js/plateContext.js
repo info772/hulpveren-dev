@@ -72,6 +72,8 @@
   }
 
   function setYearFromRdw(year, rawPayload) {
+    if (Array.isArray(rawPayload)) rawPayload = rawPayload[0] || {};
+    if (rawPayload && Array.isArray(rawPayload.data)) rawPayload = rawPayload.data[0] || {};
     const ctx = ensureCtx();
     const v = ctx.vehicle;
 
