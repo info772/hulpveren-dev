@@ -1661,24 +1661,46 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (!context || !context.vehicle) return "";
       const v = context.vehicle || {};
       const raw0 = context.vehicleRaw || {};
-      // support nested raw containers (rdw/aldoc/vehicle/data)
-      const raw = raw0.rdw || raw0.aldoc || raw0.vehicle || raw0.data || raw0;
-      const pick = (...keys) => {
+      const roots = [
+        raw0,
+        raw0.rdw,
+        raw0.aldoc,
+        raw0.data,
+        raw0.payload,
+        raw0.result,
+        raw0.vehicle,
+      ].filter(Boolean);
+
+      function deepGet(obj, key, depth = 0) {
+        if (!obj || typeof obj !== "object") return undefined;
+        if (Object.prototype.hasOwnProperty.call(obj, key)) return obj[key];
+        if (depth >= 3) return undefined;
+        for (const v2 of Object.values(obj)) {
+          if (v2 && typeof v2 === "object") {
+            const found = deepGet(v2, key, depth + 1);
+            if (found !== undefined) return found;
+          }
+        }
+        return undefined;
+      }
+
+      function pick(...keys) {
         for (const k of keys) {
-          const val = raw?.[k];
-          if (val !== undefined && val !== null && String(val).trim() !== "") return val;
-          const v0 = raw0?.[k];
-          if (v0 !== undefined && v0 !== null && String(v0).trim() !== "") return v0;
+          for (const root of roots) {
+            const val = deepGet(root, k);
+            if (val !== undefined && val !== null && String(val).trim() !== "") return val;
+          }
           if (v[k] !== undefined && v[k] !== null && String(v[k]).trim() !== "") return v[k];
         }
         return "";
-      };
-      const fmtKg = (x) => {
+      }
+
+      function fmtKg(x) {
         if (x === undefined || x === null || x === "") return "";
         const n = Number(String(x).replace(",", "."));
         if (!Number.isFinite(n)) return String(x);
         return `${Math.round(n)} kg`;
-      };
+      }
       const rows = [];
       if (context.autoLabel) rows.push(buildMetaRow("Auto", context.autoLabel));
       if (context.uitvoering) rows.push(buildMetaRow("Uitvoering", context.uitvoering));
@@ -1697,15 +1719,18 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         "massa_ledig_voertuig",
         "massaLedigVoertuig",
         "massa_ledig",
-        "massEmpty"
+        "mass_empty",
+        "curb_weight",
+        "curbWeight"
       );
       if (massaLedig) rows.push(buildMetaRow("Massa ledig voertuig", fmtKg(massaLedig)));
       const massaToegestaan = pick(
         "toegestane_maximum_massa_voertuig",
         "toegestaneMaximumMassaVoertuig",
         "max_massa",
-        "grossVehicleWeight",
-        "gvw"
+        "maximum_mass",
+        "gvw",
+        "grossVehicleWeight"
       );
       if (massaToegestaan)
         rows.push(buildMetaRow("Toegestane maximum massa voertuig", fmtKg(massaToegestaan)));
