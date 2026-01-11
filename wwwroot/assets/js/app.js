@@ -199,13 +199,18 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const MODEL_SLUG_CACHE = new Map();
   const MODEL_INDEX_CACHE = new Map();
 
-  function getKtSegment() {
-    const ctx =
+  function getPlateContext() {
+    return (
       (window.HVPlateContext &&
       typeof window.HVPlateContext.getPlateContext === "function" &&
       window.HVPlateContext.getPlateContext()) ||
       window.hv_plate_context ||
-      {};
+      {}
+    );
+  }
+
+  function getKtSegment() {
+    const ctx = getPlateContext();
     const plate = ctx.plate ? normalizePlateInput(ctx.plate).toLowerCase() : "";
     if (!plate) return "";
     return `${PLATE_PREFIX}${plate}`;
@@ -221,9 +226,33 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const ktSeg = getKtSegment();
     if (!ktSeg) return;
     const url = new URL(href, window.location.origin);
-    if (!/^\/(hulpveren|luchtvering|verlagingsveren)\//i.test(url.pathname)) return;
-    if (url.pathname.toLowerCase().includes("/kt_")) return;
-    url.pathname = url.pathname.replace(/\/+$/, "") + `/${ktSeg}/`;
+    const pathLower = url.pathname.toLowerCase();
+    if (!/^\/(hulpveren|luchtvering|verlagingsveren)\//i.test(pathLower)) return;
+    if (pathLower.includes("/kt_")) return;
+
+    const ctx = getPlateContext();
+    const type = pathLower.split("/").filter(Boolean)[0] || "";
+    const makeSlug =
+      slugify(
+        (ctx.route && ctx.route.makeSlug) ||
+          (ctx.vehicle && (ctx.vehicle.make || ctx.vehicle.makename)) ||
+          ""
+      ) || "";
+    const modelSlug =
+      slugify(
+        (ctx.route && ctx.route.modelSlug) ||
+          (ctx.vehicle && (ctx.vehicle.model || ctx.vehicle.modelLabel || ctx.vehicle.modelname)) ||
+          ""
+      ) || "";
+
+    let newPath = url.pathname.replace(/\/+$/, "");
+    if (makeSlug) {
+      newPath = `/${type}/${makeSlug}/`;
+      if (modelSlug) newPath += `${modelSlug}/`;
+    }
+    newPath = newPath.replace(/\/+$/, "") + `/${ktSeg}/`;
+
+    url.pathname = newPath;
     evt.preventDefault();
     window.location.href = url.toString();
   });
