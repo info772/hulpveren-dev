@@ -200,11 +200,25 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const MODEL_INDEX_CACHE = new Map();
 
   function getPlateContext() {
+    const stored = () => {
+      try {
+        const sess = sessionStorage.getItem("hv_plate_context");
+        if (sess) return JSON.parse(sess);
+      } catch (_) {}
+      try {
+        const loc = localStorage.getItem("hv_plate_context");
+        if (loc) return JSON.parse(loc);
+        const plateOnly = localStorage.getItem("hv_plate");
+        if (plateOnly) return { plate: plateOnly, vehicle: {} };
+      } catch (_) {}
+      return {};
+    };
     return (
       (window.HVPlateContext &&
-      typeof window.HVPlateContext.getPlateContext === "function" &&
-      window.HVPlateContext.getPlateContext()) ||
+        typeof window.HVPlateContext.getPlateContext === "function" &&
+        window.HVPlateContext.getPlateContext()) ||
       window.hv_plate_context ||
+      stored() ||
       {}
     );
   }
@@ -226,31 +240,38 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const ktSeg = getKtSegment();
     if (!ktSeg) return;
     const url = new URL(href, window.location.origin);
-    const pathLower = url.pathname.toLowerCase();
+    const pathLower = url.pathname.toLowerCase().replace(/\/+$/, "") + "/";
     if (!/^\/(hulpveren|luchtvering|verlagingsveren)\//i.test(pathLower)) return;
     if (pathLower.includes("/kt_")) return;
 
     const ctx = getPlateContext();
     const type = pathLower.split("/").filter(Boolean)[0] || "";
+
+    // haal bestaande path onderdelen
+    const parts = url.pathname.split("/").filter(Boolean);
+    const existingMake = parts[1] || "";
+    const existingModel = parts[2] || "";
+
     const makeSlug =
       slugify(
-        (ctx.route && ctx.route.makeSlug) ||
+        existingMake ||
+          (ctx.route && ctx.route.makeSlug) ||
           (ctx.vehicle && (ctx.vehicle.make || ctx.vehicle.makename)) ||
           ""
       ) || "";
     const modelSlug =
       slugify(
-        (ctx.route && ctx.route.modelSlug) ||
+        existingModel ||
+          (ctx.route && ctx.route.modelSlug) ||
           (ctx.vehicle && (ctx.vehicle.model || ctx.vehicle.modelLabel || ctx.vehicle.modelname)) ||
           ""
       ) || "";
 
-    let newPath = url.pathname.replace(/\/+$/, "");
-    if (makeSlug) {
-      newPath = `/${type}/${makeSlug}/`;
-      if (modelSlug) newPath += `${modelSlug}/`;
-    }
-    newPath = newPath.replace(/\/+$/, "") + `/${ktSeg}/`;
+    let newParts = [type];
+    if (makeSlug) newParts.push(makeSlug);
+    if (modelSlug) newParts.push(modelSlug);
+    newParts.push(ktSeg.toLowerCase());
+    const newPath = "/" + newParts.filter(Boolean).join("/") + "/";
 
     url.pathname = newPath;
     evt.preventDefault();
