@@ -572,6 +572,14 @@
     return "";
   }
 
+  const PLATE_PREFIX = "kt_";
+
+  function normalizeKt(raw) {
+    const s = String(raw || "").trim().toLowerCase();
+    if (!s) return "";
+    return s.startsWith(PLATE_PREFIX) ? s : `${PLATE_PREFIX}${s}`;
+  }
+
   function buildTypeUrl(type, makeSlug, modelSlug) {
     const cleanType = String(type || "").replace(/^\/+|\/+$/g, "");
     const segments = [cleanType];
@@ -584,11 +592,14 @@
       window.HVPlateContext.getPlateContext()) ||
       window.hv_plate_context ||
       {};
-    const plateSeg = ctx.plate ? normalizePlate(ctx.plate) : "";
+    const plateSeg = ctx.plate ? normalizePlate(ctx.plate).toLowerCase() : "";
     const ktRaw = ctx.vehicle && ctx.vehicle.kt ? ctx.vehicle.kt : "";
-    const ktSeg = ktRaw ? (ktRaw.startsWith("kt_") ? ktRaw : `kt_${ktRaw}`) : "";
-    if (plateSeg) segments.push(plateSeg);
-    if (ktSeg) segments.push(ktSeg.toLowerCase());
+    const finalKt = ktRaw
+      ? normalizeKt(ktRaw)
+      : plateSeg
+        ? normalizeKt(plateSeg)
+        : "";
+    if (finalKt) segments.push(finalKt);
     return "/" + segments.filter(Boolean).join("/") + "/";
   }
 
