@@ -46,6 +46,20 @@
     return ctx;
   }
 
+  function dispatchPlateContextUpdated(reason) {
+    try {
+      window.dispatchEvent(
+        new CustomEvent("hv:plateContextUpdated", {
+          detail: {
+            reason: reason || "unknown",
+            plate: window.hv_plate_context?.plate || "",
+            ts: Date.now(),
+          },
+        })
+      );
+    } catch (_) {}
+  }
+
   function setBaseFromAldoc(base, rawPayload) {
     const ctx = ensureCtx();
 
@@ -73,6 +87,7 @@
     try {
       savePlateContext(ctx);
     } catch (_) {}
+    dispatchPlateContextUpdated("aldoc");
   }
 
   function setYearFromRdw(year, rawPayload) {
@@ -106,6 +121,7 @@
     try {
       savePlateContext(ctx);
     } catch (_) {}
+    dispatchPlateContextUpdated("rdw");
   }
 
   function normalizeKt(raw) {

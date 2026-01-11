@@ -1736,9 +1736,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (massaToegestaan)
         rows.push(buildMetaRow("Toegestane maximum massa voertuig", fmtKg(massaToegestaan)));
       rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked));
-      if (!rows.length) return "";
-      return `
-        <div class="card product plate-context">
+      return rows;
+    };
+
+    const insertPlateInfoBlock = (context) => {
+      const rows = buildPlateInfoHtml(context);
+      if (!rows || !rows.length || document.querySelector(".plate-context")) return;
+      const html = `
+        <div class="card product plate-context" data-vehicle-info-card>
           <div class="body">
             <div class="eyebrow">Voertuig</div>
             <div class="meta">
@@ -1747,11 +1752,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           </div>
         </div>
       `;
-    };
-
-    const insertPlateInfoBlock = (context) => {
-      const html = buildPlateInfoHtml(context);
-      if (!html || document.querySelector(".plate-context")) return;
       const filtersWrap = document.querySelector(".filters-wrap");
       if (filtersWrap) {
         filtersWrap.insertAdjacentHTML("beforebegin", html);
@@ -1769,6 +1769,17 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (mainWrap) {
         mainWrap.insertAdjacentHTML("afterbegin", html);
       }
+    };
+
+    const renderVehicleInfoCard = () => {
+      const context = window.hv_plate_context || null;
+      if (!context) return;
+      const card = document.querySelector("[data-vehicle-info-card]");
+      if (!card) return;
+      const rows = buildPlateInfoHtml(context);
+      if (!rows || !rows.length) return;
+      const meta = card.querySelector(".meta");
+      if (meta) meta.innerHTML = rows.join("");
     };
 
     const applyPlateContextToStaticLs = (context) => {
@@ -1814,9 +1825,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", initPlateContextFeatures);
+      document.addEventListener("DOMContentLoaded", renderVehicleInfoCard);
     } else {
       initPlateContextFeatures();
+      renderVehicleInfoCard();
     }
+
+    window.addEventListener("hv:plateContextUpdated", renderVehicleInfoCard);
 
   function parsePlateRoute(pathname, base = BASE) {
     const p = normalizeForRoute(pathname);
