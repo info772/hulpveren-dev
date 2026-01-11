@@ -1014,7 +1014,14 @@ if (type) location.href = `/${type}/${make}/`;
     (async () => {
       try {
         const rdw = await fetchRdwYear(plate);
-        applyYearContext(vehicle, rdw.year - 1, rdw.year + 1, rdw.source);
+        if (rdw && typeof rdw === "object") {
+          const year = { yearMin: rdw.year - 1, yearMax: rdw.year + 1 };
+          if (window.hvSetYearFromRdw && typeof window.hvSetYearFromRdw === "function") {
+            window.hvSetYearFromRdw(year, rdw);
+          } else {
+            applyYearContext(vehicle, year.yearMin, year.yearMax, rdw.source);
+          }
+        }
       } catch (e) {
         const est = getEstimatedYear(vehicle);
         if (est.year) {

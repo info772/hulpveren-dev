@@ -39,6 +39,65 @@
     };
   }
 
+  function ensureCtx() {
+    const ctx =
+      window.hv_plate_context || (window.hv_plate_context = { plate: "", vehicle: {} });
+    ctx.vehicle = ctx.vehicle || {};
+    return ctx;
+  }
+
+  function setBaseFromAldoc(base, rawPayload) {
+    const ctx = ensureCtx();
+
+    if (base && typeof base === "object") {
+      const v = ctx.vehicle;
+      if (base.make) v.make = base.make;
+      if (base.model) v.model = base.model;
+      if (base.makeSlug) v.makeSlug = base.makeSlug;
+      if (base.modelSlug) v.modelSlug = base.modelSlug;
+      if (base.rangeLabel) v.rangeLabel = base.rangeLabel;
+      if (base.kt) v.kt = base.kt;
+    }
+
+    ctx.vehicle.baseSource = "aldoc";
+    ctx.vehicle.baseUpdatedAt = Date.now();
+
+    if (rawPayload && typeof rawPayload === "object") {
+      if (typeof mergeVehicleRaw === "function") {
+        ctx.vehicleRaw = mergeVehicleRaw(ctx.vehicleRaw, rawPayload, "aldoc");
+      } else {
+        ctx.vehicleRaw = { ...(ctx.vehicleRaw || {}), ...rawPayload };
+      }
+    }
+  }
+
+  function setYearFromRdw(year, rawPayload) {
+    const ctx = ensureCtx();
+    const v = ctx.vehicle;
+
+    if (year && typeof year === "object") {
+      if (year.buildFrom) v.buildFrom = year.buildFrom;
+      if (year.buildTo) v.buildTo = year.buildTo;
+
+      if (year.yearMin) v.yearMin = Number(year.yearMin);
+      if (year.yearMax) v.yearMax = Number(year.yearMax);
+
+      if (v.yearMin && v.yearMax) v.rangeLabel = `${v.yearMin} — ${v.yearMax}`;
+      else if (v.yearMin) v.rangeLabel = `${v.yearMin} —`;
+    }
+
+    v.yearSource = "rdw";
+    v.yearUpdatedAt = Date.now();
+
+    if (rawPayload && typeof rawPayload === "object") {
+      if (typeof mergeVehicleRaw === "function") {
+        ctx.vehicleRaw = mergeVehicleRaw(ctx.vehicleRaw, rawPayload, "rdw");
+      } else {
+        ctx.vehicleRaw = { ...(ctx.vehicleRaw || {}), ...rawPayload };
+      }
+    }
+  }
+
   function normalizeKt(raw) {
     const s = String(raw || "").trim();
     if (!s) return "";
@@ -962,7 +1021,7 @@
       }
     }
 
-    const vehicleRaw = vehicle || null;
+    let vehicleRaw = vehicle || null;
 
     if (!yearRange && (vSmall.yearMin != null || vSmall.yearMax != null)) {
       const from = vSmall.yearMin ?? vSmall.yearMax;
@@ -1051,6 +1110,8 @@
     setPlateContextFromVehicle,
     setPlateContextFromPlate,
     applyPlateContext,
+    setBaseFromAldoc,
+    setYearFromRdw,
     initPlateBar,
     initPlatePill,
     init,
