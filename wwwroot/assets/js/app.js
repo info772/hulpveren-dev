@@ -1735,13 +1735,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       );
       rows.push(buildMetaRow("Toegestane maximum massa voertuig", fmtKg(massaToegestaan)));
       rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked || ""));
-      return rows;
-    };
-
-    const insertPlateInfoBlock = (context) => {
-      const rows = buildPlateInfoHtml(context);
-      if (!rows || !rows.length || document.querySelector(".plate-context")) return;
-      const html = `
+      if (!rows.length) return "";
+      return `
         <div class="card product plate-context" data-vehicle-info-card>
           <div class="body">
             <div class="eyebrow">Voertuig</div>
@@ -1751,6 +1746,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           </div>
         </div>
       `;
+    };
+
+    const insertPlateInfoBlock = (context) => {
+      const html = buildPlateInfoHtml(context);
+      if (!html || document.querySelector(".plate-context")) return;
       const filtersWrap = document.querySelector(".filters-wrap");
       if (filtersWrap) {
         filtersWrap.insertAdjacentHTML("beforebegin", html);
@@ -1773,12 +1773,31 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const renderVehicleInfoCard = () => {
       const context = window.hv_plate_context || null;
       if (!context) return;
+      const html = buildPlateInfoHtml(context);
       const card = document.querySelector("[data-vehicle-info-card]");
-      if (!card) return;
-      const rows = buildPlateInfoHtml(context);
-      if (!rows || !rows.length) return;
-      const meta = card.querySelector(".meta");
-      if (meta) meta.innerHTML = rows.join("");
+      if (card && html) {
+        card.innerHTML = html.replace(/^<div class="card product plate-context"[^>]*>/, "").replace(/<\/div>\s*<\/div>\s*$/, "");
+        return;
+      }
+      if (!card && html) {
+        const filtersWrap = document.querySelector(".filters-wrap");
+        if (filtersWrap) {
+          filtersWrap.insertAdjacentHTML("beforebegin", html);
+          return;
+        }
+        const crumbs =
+          document.querySelector(".site-breadcrumbs") ||
+          document.querySelector(".crumbs") ||
+          document.querySelector(".breadcrumbs");
+        if (crumbs) {
+          crumbs.insertAdjacentHTML("afterend", html);
+          return;
+        }
+        const mainWrap = document.querySelector("main .wrap");
+        if (mainWrap) {
+          mainWrap.insertAdjacentHTML("afterbegin", html);
+        }
+      }
     };
 
     const applyPlateContextToStaticLs = (context) => {
