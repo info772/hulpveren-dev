@@ -156,7 +156,7 @@ router.get("/:plate", async (req, res) => {
       return res.status(422).json({ error: "no_year" });
     }
 
-    const payload = { year, firstAdmissionDate };
+    const payload = { year, firstAdmissionDate, raw: row };
 
     setCached(plate, payload);
 

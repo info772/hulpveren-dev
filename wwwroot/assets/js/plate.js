@@ -1015,7 +1015,7 @@ if (type) location.href = `/${type}/${make}/`;
       try {
         const rdw = await fetchRdwYear(plate);
         if (rdw && typeof rdw === "object") {
-          const rdwRaw = Array.isArray(rdw) ? rdw[0] || {} : rdw;
+          const rdwRaw = rdw.raw ? rdw.raw : Array.isArray(rdw) ? rdw[0] || {} : rdw;
           const yMin = rdwRaw?.datum_eerste_toelating
             ? Number(String(rdwRaw.datum_eerste_toelating).slice(0, 4))
             : rdwRaw.year
