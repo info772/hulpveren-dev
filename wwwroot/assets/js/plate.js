@@ -615,7 +615,7 @@
   }
 
   function renderTypeChoice(container, makeSlug) {
-    if (!container || !makeSlug) return;
+    if (!container) return;
     let block = container.querySelector("[data-plate-type-choice]");
     if (!block) {
       block = document.createElement("div");
@@ -638,7 +638,27 @@
         if (!button) return;
         const type = normalizeType(button.dataset.type);
         if (!type) return;
-        window.location.href = buildTypeUrl(type, makeSlug);
+        const ctx =
+          (window.HVPlateContext &&
+            typeof window.HVPlateContext.getPlateContext === "function" &&
+            window.HVPlateContext.getPlateContext()) ||
+          window.hv_plate_context ||
+          {};
+        const vehicle = ctx && ctx.vehicle ? ctx.vehicle : null;
+        const make =
+          makeSlug ||
+          slugify(
+            (ctx.route && ctx.route.makeSlug) ||
+              (vehicle && (vehicle.make || vehicle.makename)) ||
+              ""
+          );
+        const model = slugify(
+          (ctx.route && ctx.route.modelSlug) ||
+            (vehicle &&
+              (vehicle.model || vehicle.modelLabel || vehicle.modelname)) ||
+            ""
+        );
+        window.location.href = buildTypeUrl(type, make, model);
       });
     }
   }
