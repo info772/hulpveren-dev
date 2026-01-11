@@ -6420,8 +6420,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   function buildMetaRow(label, value) {
-    if (!value) return "";
-    return `<div class="k">${esc(label)}</div><div class="v">${esc(value)}</div>`;
+    const val =
+      value === undefined || value === null || String(value).trim() === ""
+        ? "—"
+        : String(value);
+    return `<div class="k">${esc(label)}</div><div class="v">${esc(val)}</div>`;
   }
 
   function renderNrModel(kits, makes, makeSlug, modelSlug) {
