@@ -1660,26 +1660,33 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const buildPlateInfoHtml = (context) => {
       if (!context || !context.vehicle) return "";
       const v = context.vehicle || {};
+      const raw = context.vehicleRaw || {};
+      const pick = (...keys) => {
+        for (const k of keys) {
+          if (v[k] != null && v[k] !== "") return v[k];
+          if (raw[k] != null && raw[k] !== "") return raw[k];
+        }
+        return null;
+      };
       const rows = [];
       if (context.autoLabel) rows.push(buildMetaRow("Auto", context.autoLabel));
       if (context.uitvoering) rows.push(buildMetaRow("Uitvoering", context.uitvoering));
       if (context.motorCode) rows.push(buildMetaRow("Motorcode", context.motorCode));
-      if (v.voertuigsoort) rows.push(buildMetaRow("Voertuigsoort", v.voertuigsoort));
-      if (v.inrichting) rows.push(buildMetaRow("Inrichting", v.inrichting));
-      if (v.eerste_kleur || v.eersteKleur) {
-        rows.push(buildMetaRow("Eerste kleur", v.eerste_kleur || v.eersteKleur));
-      }
-      if (v.aantal_cilinders) rows.push(buildMetaRow("Aantal cilinders", v.aantal_cilinders));
-      if (v.cilinderinhoud) rows.push(buildMetaRow("Cilinderinhoud", v.cilinderinhoud));
-      if (v.massa_ledig_voertuig)
-        rows.push(buildMetaRow("Massa ledig voertuig", v.massa_ledig_voertuig));
-      if (v.toegestane_maximum_massa_voertuig)
-        rows.push(
-          buildMetaRow(
-            "Toegestane max. massa",
-            v.toegestane_maximum_massa_voertuig
-          )
-        );
+      const soort = pick("voertuigsoort", "vehicle_type");
+      if (soort) rows.push(buildMetaRow("Voertuigsoort", soort));
+      const inrichting = pick("inrichting", "bodyType", "bodytype");
+      if (inrichting) rows.push(buildMetaRow("Inrichting", inrichting));
+      const kleur = pick("eerste_kleur", "eersteKleur", "eerste_kleur_voertuig");
+      if (kleur) rows.push(buildMetaRow("Eerste kleur", kleur));
+      const cilinders = pick("aantal_cilinders");
+      if (cilinders) rows.push(buildMetaRow("Aantal cilinders", cilinders));
+      const inhoud = pick("cilinderinhoud");
+      if (inhoud) rows.push(buildMetaRow("Cilinderinhoud", inhoud));
+      const massaLedig = pick("massa_ledig_voertuig");
+      if (massaLedig) rows.push(buildMetaRow("Massa ledig voertuig", massaLedig));
+      const massaToegestaan = pick("toegestane_maximum_massa_voertuig");
+      if (massaToegestaan)
+        rows.push(buildMetaRow("Toegestane max. massa", massaToegestaan));
       rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked));
       if (!rows.length) return "";
       return `
