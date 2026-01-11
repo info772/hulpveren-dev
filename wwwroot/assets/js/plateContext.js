@@ -27,6 +27,18 @@
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "");
 
+  function mergeVehicleRaw(existing, incoming, source) {
+    const a = existing && typeof existing === "object" ? existing : {};
+    const b = incoming && typeof incoming === "object" ? incoming : {};
+    return {
+      ...a,
+      ...b,
+      _rawSources: Array.from(
+        new Set([...(a._rawSources || []), source].filter(Boolean))
+      ),
+    };
+  }
+
   function normalizeKt(raw) {
     const s = String(raw || "").trim();
     if (!s) return "";
