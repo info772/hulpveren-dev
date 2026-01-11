@@ -1031,7 +1031,14 @@
       }
     }
 
-    let vehicleRaw = vehicle || null;
+    const existingCtx =
+      window.hv_plate_context ||
+      loadPlateContext() || { plate: "", vehicle: {}, vehicleRaw: null };
+    let vehicleRaw =
+      (options && options.vehicleRaw) ||
+      existingCtx.vehicleRaw ||
+      previous?.vehicleRaw ||
+      null;
 
     if (!yearRange && (vSmall.yearMin != null || vSmall.yearMax != null)) {
       const from = vSmall.yearMin ?? vSmall.yearMax;
