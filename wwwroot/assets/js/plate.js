@@ -572,6 +572,26 @@
     return "";
   }
 
+  function buildTypeUrl(type, makeSlug, modelSlug) {
+    const cleanType = String(type || "").replace(/^\/+|\/+$/g, "");
+    const segments = [cleanType];
+    if (makeSlug) segments.push(String(makeSlug).replace(/^\/+|\/+$/g, ""));
+    if (modelSlug) segments.push(String(modelSlug).replace(/^\/+|\/+$/g, ""));
+
+    const ctx =
+      (window.HVPlateContext &&
+      typeof window.HVPlateContext.getPlateContext === "function" &&
+      window.HVPlateContext.getPlateContext()) ||
+      window.hv_plate_context ||
+      {};
+    const plateSeg = ctx.plate ? normalizePlate(ctx.plate) : "";
+    const ktRaw = ctx.vehicle && ctx.vehicle.kt ? ctx.vehicle.kt : "";
+    const ktSeg = ktRaw ? (ktRaw.startsWith("kt_") ? ktRaw : `kt_${ktRaw}`) : "";
+    if (plateSeg) segments.push(plateSeg);
+    if (ktSeg) segments.push(ktSeg.toLowerCase());
+    return "/" + segments.filter(Boolean).join("/") + "/";
+  }
+
   function getIntentTypeFromLocation() {
     const params = new URLSearchParams(location.search || "");
     const viaParam = normalizeType(params.get("type"));
@@ -607,7 +627,7 @@
         if (!button) return;
         const type = normalizeType(button.dataset.type);
         if (!type) return;
-        window.location.href = `/${type}/${makeSlug}/`;
+        window.location.href = buildTypeUrl(type, makeSlug);
       });
     }
   }
@@ -935,12 +955,12 @@ if (type) location.href = `/${type}/${make}/`;
       const isLS = path.startsWith("/verlagingsveren/");
       if (isHV || isNR || isLS) {
         const type = isHV ? "hulpveren" : isNR ? "luchtvering" : "verlagingsveren";
-        window.location.href = model ? `/${type}/${make}/${model}/` : `/${type}/${make}/`;
+        window.location.href = buildTypeUrl(type, make, model);
         return;
       }
 
       if (intentType && makeSlug) {
-        window.location.href = model ? `/${intentType}/${make}/${model}/` : `/${intentType}/${makeSlug}/`;
+        window.location.href = buildTypeUrl(intentType, make, model);
         return;
       }
 
