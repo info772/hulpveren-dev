@@ -859,7 +859,7 @@
       <div class="body">
         <div class="eyebrow">Voor jouw voertuig</div>
         <p>${text ? text : "Kenteken actief"}</p>
-        <a class="btn" href="${PLATE_PATH}${ctx.plate}">Bekijk passende sets</a>
+        <a class="btn" href="${PLATE_PATH}?kt=${encodeURIComponent(ctx.plate)}">Kies productgroep</a>
       </div>
     `;
     const firstWrap = main.querySelector(".wrap") || main.firstElementChild;
