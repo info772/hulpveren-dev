@@ -1660,13 +1660,24 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const buildPlateInfoHtml = (context) => {
       if (!context || !context.vehicle) return "";
       const v = context.vehicle || {};
-      const raw = context.vehicleRaw || {};
+      const raw0 = context.vehicleRaw || {};
+      // support nested raw containers (rdw/aldoc/vehicle/data)
+      const raw = raw0.rdw || raw0.aldoc || raw0.vehicle || raw0.data || raw0;
       const pick = (...keys) => {
         for (const k of keys) {
-          if (v[k] != null && v[k] !== "") return v[k];
-          if (raw[k] != null && raw[k] !== "") return raw[k];
+          const val = raw?.[k];
+          if (val !== undefined && val !== null && String(val).trim() !== "") return val;
+          const v0 = raw0?.[k];
+          if (v0 !== undefined && v0 !== null && String(v0).trim() !== "") return v0;
+          if (v[k] !== undefined && v[k] !== null && String(v[k]).trim() !== "") return v[k];
         }
-        return null;
+        return "";
+      };
+      const fmtKg = (x) => {
+        if (x === undefined || x === null || x === "") return "";
+        const n = Number(String(x).replace(",", "."));
+        if (!Number.isFinite(n)) return String(x);
+        return `${Math.round(n)} kg`;
       };
       const rows = [];
       if (context.autoLabel) rows.push(buildMetaRow("Auto", context.autoLabel));
@@ -1682,11 +1693,22 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (cilinders) rows.push(buildMetaRow("Aantal cilinders", cilinders));
       const inhoud = pick("cilinderinhoud");
       if (inhoud) rows.push(buildMetaRow("Cilinderinhoud", inhoud));
-      const massaLedig = pick("massa_ledig_voertuig");
-      if (massaLedig) rows.push(buildMetaRow("Massa ledig voertuig", massaLedig));
-      const massaToegestaan = pick("toegestane_maximum_massa_voertuig");
+      const massaLedig = pick(
+        "massa_ledig_voertuig",
+        "massaLedigVoertuig",
+        "massa_ledig",
+        "massEmpty"
+      );
+      if (massaLedig) rows.push(buildMetaRow("Massa ledig voertuig", fmtKg(massaLedig)));
+      const massaToegestaan = pick(
+        "toegestane_maximum_massa_voertuig",
+        "toegestaneMaximumMassaVoertuig",
+        "max_massa",
+        "grossVehicleWeight",
+        "gvw"
+      );
       if (massaToegestaan)
-        rows.push(buildMetaRow("Toegestane max. massa", massaToegestaan));
+        rows.push(buildMetaRow("Toegestane maximum massa voertuig", fmtKg(massaToegestaan)));
       rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked));
       if (!rows.length) return "";
       return `
