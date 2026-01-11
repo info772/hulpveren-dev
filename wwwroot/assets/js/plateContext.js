@@ -908,7 +908,7 @@
     if (!normalized) return null;
     const previous = loadPlateContext();
     const intentType = options.intentType || (previous && previous.intentType) || "";
-    const route = options.route || (previous && previous.route) || null;
+    let route = options.route || (previous && previous.route) || null;
     let yearRange = options.yearRange || null;
 
     // ✅ Klein voertuigobject voor UI, plus raw bewaren
@@ -933,6 +933,8 @@
     vSmall.model = String(vSmall.model || "");
     vSmall.modelLabel = String(vSmall.modelLabel || "");
     vSmall.rangeLabel = String(vSmall.rangeLabel || "");
+    vSmall.makeSlug = slugify(vSmall.make);
+    vSmall.modelSlug = slugify(vSmall.model || vSmall.modelLabel);
 
     if ((!vSmall.yearMin || !vSmall.yearMax) && vSmall.rangeLabel) {
       const years = String(vSmall.rangeLabel).match(/\b(19\d{2}|20\d{2})\b/g);
@@ -981,6 +983,16 @@
       route,
       updatedAt: Date.now(),
     };
+    if (!route) {
+      ctx.route = {
+        makeSlug: vSmall.makeSlug || undefined,
+        modelSlug: vSmall.modelSlug || undefined,
+      };
+    } else {
+      if (!route.makeSlug) route.makeSlug = vSmall.makeSlug || route.makeSlug;
+      if (!route.modelSlug) route.modelSlug = vSmall.modelSlug || route.modelSlug;
+      ctx.route = route;
+    }
     if (yearRange && (yearRange.from != null || yearRange.to != null)) {
       setVehicleYearRange(ctx, yearRange.from, yearRange.to, yearRange.source);
     }
