@@ -25,6 +25,7 @@ Optioneel:
 
 - `NODE_ENV=production` (zet secure cookies aan)
 - `PLATE_INCLUDE_RAW=1` (bestaande plate API)
+- `PLATE_ENRICH_RDW=1` (verrijk plate API met RDW velden, default aan)
 - `GEMONTEERD_DIR` (pad naar gemonteerde fotos, default `/var/www/dev.hulpveren.shop/public/assets/img/Gemonteerd`)
 - `STORAGE_ROOT` (default `/var/lib/lowland-api`, bevat blogs/mad/generated)
 - `LOG_DIR` (default `/var/log/lowland-api`)

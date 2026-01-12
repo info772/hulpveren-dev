@@ -30,6 +30,24 @@ function normalizePlate(value) {
     .replace(/[^A-Z0-9]/g, "");
 }
 
+function toInt(value) {
+  if (value === undefined || value === null || value === "") return null;
+  const num = Number.parseInt(String(value).trim(), 10);
+  return Number.isFinite(num) ? num : null;
+}
+
+function normalizeText(value) {
+  const raw = String(value || "").trim();
+  return raw ? titleCase(raw) : "";
+}
+
+function normalizeColor(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  if (/^niet geregistreerd$/i.test(raw)) return "";
+  return titleCase(raw);
+}
+
 function parseYear(value) {
   const match = String(value || "").match(/\d{4}/);
   if (!match) return null;
@@ -127,12 +145,40 @@ async function lookupRdwVehicle(plate) {
   const model = titleCase(entry.handelsbenaming || "");
   const firstRegistrationDate = normalizeDate(entry.datum_eerste_toelating || "");
   const year = parseYear(firstRegistrationDate || "");
+  const vehicleType = normalizeText(entry.voertuigsoort || "");
+  const bodyType = normalizeText(entry.inrichting || "");
+  const firstColor = normalizeColor(entry.eerste_kleur || "");
+  const secondColor = normalizeColor(entry.tweede_kleur || "");
+  const seatCount = toInt(entry.aantal_zitplaatsen);
+  const cylinders = toInt(entry.aantal_cilinders);
+  const engineContents = toInt(entry.cilinderinhoud);
+  const weightEmpty = toInt(entry.massa_ledig_voertuig);
+  const maxWeight = toInt(entry.toegestane_maximum_massa_voertuig);
+  const apkExpiryDate = normalizeDate(entry.vervaldatum_apk || "");
+  const titleDate = normalizeDate(entry.datum_tenaamstelling || "");
   if (!make || !model || !year) {
     return { vehicle: null, raw: text, upstreamMs };
   }
 
   return {
-    vehicle: { make, model, year, firstRegistrationDate, plate: normalized },
+    vehicle: {
+      make,
+      model,
+      year,
+      firstRegistrationDate,
+      plate: normalized,
+      vehicleType,
+      bodyType,
+      firstColor,
+      secondColor,
+      seatCount,
+      cylinders,
+      engineContents,
+      weightEmpty,
+      maxWeight,
+      apkExpiryDate,
+      titleDate,
+    },
     raw: text,
     upstreamMs,
   };

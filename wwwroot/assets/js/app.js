@@ -1593,6 +1593,54 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       return match ? match[0] : "";
     };
 
+    const normalizeVehicleValue = (value) => {
+      if (value === undefined || value === null) return "";
+      const text = String(value).trim();
+      if (!text) return "";
+      if (/^niet geregistreerd$/i.test(text)) return "";
+      return text;
+    };
+
+    const pickVehicleValue = (vehicle, keys) => {
+      if (!vehicle) return "";
+      for (const key of keys) {
+        if (!Object.prototype.hasOwnProperty.call(vehicle, key)) continue;
+        const value = normalizeVehicleValue(vehicle[key]);
+        if (value) return value;
+      }
+      return "";
+    };
+
+    const pickVehicleRaw = (vehicle, keys) => {
+      if (!vehicle) return null;
+      for (const key of keys) {
+        if (!Object.prototype.hasOwnProperty.call(vehicle, key)) continue;
+        const value = vehicle[key];
+        if (value === undefined || value === null || value === "") continue;
+        if (typeof value === "string" && /^niet geregistreerd$/i.test(value.trim()))
+          continue;
+        return value;
+      }
+      return null;
+    };
+
+    const toInt = (value) => {
+      if (value === undefined || value === null || value === "") return null;
+      const num = Number.parseInt(String(value).trim(), 10);
+      return Number.isFinite(num) ? num : null;
+    };
+
+    const formatInt = (value) => {
+      const num = toInt(value);
+      return num == null ? "" : String(num);
+    };
+
+    const formatUnit = (value, unit) => {
+      const num = toInt(value);
+      if (num == null) return "";
+      return `${num} ${unit}`;
+    };
+
     const buildPlateContext = ({ base, makeSlug, modelSlug }) => {
       const info = getPlatePathInfo(location.pathname, base);
       if (!info) return null;
@@ -1703,6 +1751,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         return `${Math.round(n)} kg`;
       }
       const rows = [];
+<<<<<<< HEAD
       rows.push(buildMetaRow("Auto", context.autoLabel || ""));
       rows.push(buildMetaRow("Uitvoering", context.uitvoering || ""));
       rows.push(buildMetaRow("Motorcode", context.motorCode || ""));
@@ -1735,6 +1784,44 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       );
       rows.push(buildMetaRow("Toegestane maximum massa voertuig", fmtKg(massaToegestaan)));
       rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked || ""));
+=======
+      const vehicle = context.vehicle;
+      if (context.autoLabel) rows.push(buildMetaRow("Auto", context.autoLabel));
+      if (context.uitvoering) rows.push(buildMetaRow("Uitvoering", context.uitvoering));
+      if (context.motorCode) rows.push(buildMetaRow("Motorcode", context.motorCode));
+      const voertuigsoort = pickVehicleValue(vehicle, ["vehicleType", "voertuigsoort"]);
+      if (voertuigsoort) rows.push(buildMetaRow("Voertuigsoort", voertuigsoort));
+      const inrichting = pickVehicleValue(vehicle, ["bodyType", "inrichting"]);
+      if (inrichting) rows.push(buildMetaRow("Inrichting", inrichting));
+      const eersteKleur = pickVehicleValue(vehicle, ["firstColor", "color", "eerste_kleur"]);
+      if (eersteKleur) rows.push(buildMetaRow("Eerste kleur", eersteKleur));
+      const tweedeKleur = pickVehicleValue(vehicle, ["secondColor", "tweede_kleur"]);
+      if (tweedeKleur) rows.push(buildMetaRow("Tweede kleur", tweedeKleur));
+      const zitplaatsen = formatInt(
+        pickVehicleRaw(vehicle, ["seatCount", "aantal_zitplaatsen"])
+      );
+      if (zitplaatsen) rows.push(buildMetaRow("Aantal zitplaatsen", zitplaatsen));
+      const cilinders = formatInt(
+        pickVehicleRaw(vehicle, ["cylinders", "aantal_cilinders"])
+      );
+      if (cilinders) rows.push(buildMetaRow("Aantal cilinders", cilinders));
+      const cilinderinhoud = formatUnit(
+        pickVehicleRaw(vehicle, ["engineContents", "cilinderinhoud"]),
+        "cc"
+      );
+      if (cilinderinhoud) rows.push(buildMetaRow("Cilinderinhoud", cilinderinhoud));
+      const massaLedig = formatUnit(
+        pickVehicleRaw(vehicle, ["weightEmpty", "massa_ledig_voertuig"]),
+        "kg"
+      );
+      if (massaLedig) rows.push(buildMetaRow("Massa ledig voertuig", massaLedig));
+      const massaMax = formatUnit(
+        pickVehicleRaw(vehicle, ["maxWeight", "toegestane_maximum_massa_voertuig"]),
+        "kg"
+      );
+      if (massaMax) rows.push(buildMetaRow("Toegestane maximum massa voertuig", massaMax));
+      rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked));
+>>>>>>> aa89116da (update)
       if (!rows.length) return "";
       return `
         <div class="card product plate-context" data-vehicle-info-card>

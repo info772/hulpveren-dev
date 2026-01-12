@@ -1041,6 +1041,12 @@ margin-bottom: 16px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); transition: trans
 
 .card.product .meta { display: grid; grid-template-columns: 160px 1fr; gap: 8px 12px; font-size: 14px; align-items: center; } 
 
+.card.product.plate-context .meta { grid-template-columns: 160px 1fr 160px 1fr; } 
+
+@media (max-width: 900px) { 
+.card.product.plate-context .meta { grid-template-columns: 160px 1fr; } 
+} 
+
 .card.product .meta .k { color: var(--muted); } 
 
 .card.product .chips { display: flex; flex-wrap: wrap; gap: 6px; } 
@@ -1208,6 +1214,7 @@ outline: 1px solid var(--accent); }
 .hero { padding: 60px 0 32px; } 
 
 .card.product .meta { grid-template-columns: 1fr; }
+.card.product.plate-context .meta { grid-template-columns: 1fr; }
 }
 
 /* Header scroll shrink + transparante balk */

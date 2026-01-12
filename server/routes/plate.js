@@ -9,6 +9,36 @@ const PLATE_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const cache = new TtlCache({ defaultTtlMs: PLATE_CACHE_TTL_MS });
 const includeRaw = /^(1|true|yes)$/i.test(process.env.PLATE_INCLUDE_RAW || "");
 const DEBUG_PLATE = /^(1|true|yes)$/i.test(process.env.DEBUG_PLATE || "");
+const ENRICH_RDW = /^(1|true|yes)$/i.test(process.env.PLATE_ENRICH_RDW || "1");
+const RDW_MERGE_KEYS = [
+  "vehicleType",
+  "bodyType",
+  "firstColor",
+  "secondColor",
+  "seatCount",
+  "cylinders",
+  "engineContents",
+  "weightEmpty",
+  "maxWeight",
+  "apkExpiryDate",
+  "titleDate",
+  "firstRegistrationDate",
+  "year",
+];
+
+function mergeRdwVehicle(candidate, rdwVehicle) {
+  if (!candidate || !rdwVehicle) return candidate;
+  const merged = { ...candidate };
+  RDW_MERGE_KEYS.forEach((key) => {
+    const value = rdwVehicle[key];
+    if (value === undefined || value === null || value === "") return;
+    const current = merged[key];
+    if (current === undefined || current === null || current === "") {
+      merged[key] = value;
+    }
+  });
+  return merged;
+}
 
 router.get("/:plate", async (req, res, next) => {
   const normalized = normalizePlate(req.params.plate);
@@ -101,9 +131,30 @@ router.get("/:plate", async (req, res, next) => {
       return;
     }
 
+    let rdwVehicle = null;
+    if (ENRICH_RDW) {
+      try {
+        const rdwResult = await lookupRdwVehicle(normalized);
+        rdwVehicle = rdwResult && rdwResult.vehicle ? rdwResult.vehicle : null;
+      } catch (err) {
+        if (DEBUG_PLATE) {
+          console.log("[plate][rdw]", {
+            path: req.originalUrl,
+            plate: normalized,
+            upstreamMs: err.upstreamMs || null,
+            error: err.code || err.name || "rdw_error",
+            message: err.message || null,
+          });
+        }
+      }
+    }
+
+    const candidates = rdwVehicle
+      ? result.candidates.map((candidate) => mergeRdwVehicle(candidate, rdwVehicle))
+      : result.candidates;
     const payload = {
       plate: normalized,
-      vehicleCandidates: result.candidates,
+      vehicleCandidates: candidates,
       source: "proxyv7",
     };
     if (includeRaw) {
