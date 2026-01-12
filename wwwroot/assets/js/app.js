@@ -1713,7 +1713,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         if (value === undefined || value === null || value === "") return;
         rows.push(buildMetaRow(label, value));
       };
-      const cleanText = (value) => normalizeVehicleValue(value);
+      const cleanText = (value) => {
+        const text = normalizeVehicleValue(value);
+        if (!text) return "";
+        if (/^n\.?\s*v\.?\s*t\.?$/i.test(text)) return "";
+        if (/niet\s+van\s+toepassing/i.test(text)) return "";
+        return text;
+      };
       const cleanNumber = (value) => {
         const num = toInt(value);
         return Number.isFinite(num) && num > 0 ? num : null;
