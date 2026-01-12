@@ -1713,32 +1713,43 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         if (value === undefined || value === null || value === "") return;
         rows.push(buildMetaRow(label, value));
       };
-      addRow("Kenteken", context.plate || context.plateMasked || "");
-      addRow("Auto", context.autoLabel || "");
-      const kleurParts = [vehicle.firstColor, vehicle.secondColor].filter(Boolean);
-      const uitvoeringParts = [context.uitvoering || "", kleurParts.join(" / ")]
+      const cleanText = (value) => normalizeVehicleValue(value);
+      const cleanNumber = (value) => {
+        const num = toInt(value);
+        return Number.isFinite(num) && num > 0 ? num : null;
+      };
+      const colorText = [cleanText(vehicle.firstColor), cleanText(vehicle.secondColor)]
+        .filter(Boolean)
+        .join(" / ");
+      const uitvoeringText = [cleanText(context.uitvoering || ""), colorText]
         .filter(Boolean)
         .join(" - ");
-      addRow("Uitvoering", uitvoeringParts);
-      const voertuigsoortParts = [vehicle.vehicleType, vehicle.bodyType].filter(Boolean);
-      addRow("Voertuigsoort", voertuigsoortParts.join(" - "));
-      addRow(
-        "Cilinderinhoud",
-        vehicle.engineContents ? `${vehicle.engineContents} cc` : ""
-      );
-      addRow("Motorcode", vehicle.engineCode || context.motorCode || "");
-      addRow("Aantal cilinders", vehicle.cylinders ?? "");
-      addRow(
-        "Aandrijving",
+      const voertuigsoortText = [
+        cleanText(vehicle.vehicleType),
+        cleanText(vehicle.bodyType),
+      ]
+        .filter(Boolean)
+        .join(" - ");
+      const motorCodeText = cleanText(vehicle.engineCode || context.motorCode || "");
+      const driveText = cleanText(
         vehicle.driveTypeLabel || vehicle.driveLabel || vehicle.driveType || ""
       );
-      addRow(
-        "Massa ledig voertuig",
-        vehicle.weightEmpty ? `${vehicle.weightEmpty} kg` : ""
-      );
+      const cylinders = cleanNumber(vehicle.cylinders);
+      const engineContents = cleanNumber(vehicle.engineContents);
+      const weightEmpty = cleanNumber(vehicle.weightEmpty);
+      const maxWeight = cleanNumber(vehicle.maxWeight);
+      addRow("Kenteken", context.plate || context.plateMasked || "");
+      addRow("Auto", context.autoLabel || "");
+      addRow("Uitvoering", uitvoeringText);
+      addRow("Voertuigsoort", voertuigsoortText);
+      addRow("Cilinderinhoud", engineContents ? `${engineContents} cc` : "");
+      addRow("Motorcode", motorCodeText);
+      addRow("Aantal cilinders", cylinders != null ? String(cylinders) : "");
+      addRow("Aandrijving", driveText);
+      addRow("Massa ledig voertuig", weightEmpty ? `${weightEmpty} kg` : "");
       addRow(
         "Toegestane maximum massa voertuig",
-        vehicle.maxWeight ? `${vehicle.maxWeight} kg` : ""
+        maxWeight ? `${maxWeight} kg` : ""
       );
       if (!rows.length) return "";
       return `
