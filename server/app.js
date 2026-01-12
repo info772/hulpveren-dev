@@ -118,16 +118,17 @@ function createApp() {
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "");
     const pg = String(req.query.pg || "hv").toLowerCase();
-    const q = kt ? `?kt=${encodeURIComponent(kt)}` : "";
+    const slug = kt ? `kt_${kt.toLowerCase()}` : "";
+    const tail = slug ? `/${slug}/` : "/";
     if (pg === "air") {
-      res.redirect(302, `/luchtvering-op-kenteken${q}`);
+      res.redirect(302, `/luchtvering${tail}`);
       return;
     }
     if (pg === "ls") {
-      res.redirect(302, `/verlagingsveren-op-kenteken${q}`);
+      res.redirect(302, `/verlagingsveren${tail}`);
       return;
     }
-    res.redirect(302, `/hulpveren-op-kenteken${q}`);
+    res.redirect(302, `/hulpveren${tail}`);
   });
   app.use("/api/rdw", apiRdwRoutes);
   app.use("/api/rdw", rateLimit({ windowMs: 60 * 1000, max: 30 }));

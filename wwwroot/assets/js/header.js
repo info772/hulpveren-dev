@@ -168,16 +168,16 @@
   const plateGroupUrl = (group, plate) => {
     const p = normalizePlate(plate);
     if (!p) return "/";
-    const q = `?kt=${encodeURIComponent(p)}`;
+    const slug = `kt_${p.toLowerCase()}`;
     switch (group) {
       case "hv":
-        return `/hulpveren-op-kenteken${q}`;
+        return `/hulpveren/${slug}/`;
       case "air":
-        return `/luchtvering-op-kenteken${q}`;
+        return `/luchtvering/${slug}/`;
       case "ls":
-        return `/verlagingsveren-op-kenteken${q}`;
+        return `/verlagingsveren/${slug}/`;
       default:
-        return `/hulpveren-op-kenteken${q}`;
+        return `/hulpveren/${slug}/`;
     }
   };
 
