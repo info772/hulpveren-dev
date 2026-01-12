@@ -20,7 +20,7 @@
       });
 
       if (!entry || !entry.SETS || !entry.SETS.length) {
-        container.innerHTML = '<p>We hebben nog geen verlagingsset in de database voor deze uitvoering. Neem contact met ons op voor de mogelijkheden.</p>';
+        container.innerHTML = '<p>Voor de gekozen auto zijn geen sets beschikbaar.</p>';
         return;
       }
 
@@ -70,4 +70,3 @@
       container.innerHTML = '<p>De verlagingssets konden niet geladen worden. Probeer het later opnieuw of neem contact met ons op.</p>';
     });
 })();
-

@@ -704,7 +704,7 @@
       clearBtn.dataset.plateClearBound = "1";
       clearBtn.addEventListener("click", () => {
         clearPlateContext();
-        window.location.href = window.location.pathname;
+        window.location.href = stripStateSegments(window.location.pathname);
       });
     }
     const ctx = loadPlateContext();

@@ -4154,6 +4154,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const pos = positionKey(k);
     const approvalText = approvalClean(k?.approval);
     const engine = enginesText(k, f);
+    const engineLabel = engine && engine.trim() ? engine : "Allemaal";
     const yearLabel = yearsNL(f);
     const posText = positionNL(pos);
     const usage = nlSupportFromFit(f, k);
@@ -4178,7 +4179,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       buildMetaRow("As", posText),
       buildMetaRow("Gebruik", usage),
       buildMetaRow("Platform", platformText),
-      buildMetaRow("Motor", engine),
+      buildMetaRow("Motor", engineLabel),
       buildMetaRow("Goedkeuring", approvalText),
     ]
       .filter(Boolean)
@@ -4245,11 +4246,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
     const setLabel =
       posKey === "both" ? "4 veren (voor+achter)" : "2 veren";
-    const engineLabel =
+    const engineLabelRaw =
       f?.engine_raw ||
       (Array.isArray(f?.engines) ? f.engines.filter(Boolean).join(", ") : "") ||
       enginesFromKitAndNotes(k, f).filter((x) => x && x !== "-").join(", ") ||
       "-";
+    const engineLabel =
+      engineLabelRaw && engineLabelRaw !== "-" ? engineLabelRaw : "Allemaal";
     const imgSrc = "/assets/img/HV-kits/LS-4.jpg";
     const contactSubject = makeSlug && modelSlug
       ? `ls-${makeSlug}-${modelSlug}`
@@ -5236,14 +5239,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   if (!filtered.length) {
-    const plateContext = getActivePlateContext && getActivePlateContext();
-    const plateLabel =
-      (plateContext && plateContext.plate) || (plateContext && plateContext.plateSlug) || "";
-    const msg = plateLabel
-      ? `Geen sets beschikbaar voor ${esc(makeLabel)} ${esc(
-          modelLabel
-        )} (kenteken ${esc(plateLabel)}).`
-      : `Geen sets beschikbaar voor ${esc(makeLabel)} ${esc(modelLabel)}.`;
+    const msg = "Voor de gekozen auto zijn geen sets beschikbaar.";
     gridEl.innerHTML = `<p class="note">${msg}</p>`;
   } else {
     gridEl.innerHTML = filtered
@@ -6813,11 +6809,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         (activeCtx && (activeCtx.plate || activeCtx.plateSlug)) ||
         (plateContext && (plateContext.plate || plateContext.plateSlug)) ||
         "";
-      const msg = plateLabel
-        ? `Geen sets beschikbaar voor ${esc(makeLabel)} ${esc(
-            modelLabel
-          )} (kenteken ${esc(plateLabel)}).`
-        : `Geen sets beschikbaar voor ${esc(makeLabel)} ${esc(modelLabel)}.`;
+      const msg = "Voor de gekozen auto zijn geen sets beschikbaar.";
       app.innerHTML = wrap(`
         <div class="crumbs">
           <a href="${base}">${productTitle}</a> > ${esc(makeLabel)} > ${esc(
@@ -7158,6 +7150,22 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       ensureBuildRangeInputs();
     }
   })();
+
+  function injectEmptyStaticModelNotice() {
+    const message = "Voor de gekozen auto zijn geen sets beschikbaar.";
+    const targets = ["nr-sets-grid", "ls-grid"];
+    targets.forEach((id) => {
+      const grid = document.getElementById(id);
+      if (!grid || grid.children.length) return;
+      grid.innerHTML = `<p class="note">${message}</p>`;
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", injectEmptyStaticModelNotice);
+  } else {
+    injectEmptyStaticModelNotice();
+  }
 
 
   async function run() {
