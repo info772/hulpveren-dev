@@ -1707,82 +1707,33 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     const buildPlateInfoHtml = (context) => {
       if (!context || !context.vehicle) return "";
-      const v = context.vehicle || {};
-      const rawBase = context.vehicleRaw || {};
-      const raw0 = Array.isArray(rawBase) ? rawBase[0] || {} : rawBase;
-      const roots = [
-        raw0,
-        raw0.rdw,
-        raw0.aldoc,
-        raw0.data,
-        raw0.payload,
-        raw0.result,
-        raw0.vehicle,
-      ].filter(Boolean);
-
-      function deepGet(obj, key, depth = 0) {
-        if (!obj || typeof obj !== "object") return undefined;
-        if (Object.prototype.hasOwnProperty.call(obj, key)) return obj[key];
-        if (depth >= 3) return undefined;
-        for (const v2 of Object.values(obj)) {
-          if (v2 && typeof v2 === "object") {
-            const found = deepGet(v2, key, depth + 1);
-            if (found !== undefined) return found;
-          }
-        }
-        return undefined;
-      }
-
-      function pick(...keys) {
-        for (const k of keys) {
-          for (const root of roots) {
-            const val = deepGet(root, k);
-            if (val !== undefined && val !== null && String(val).trim() !== "") return val;
-          }
-          if (v[k] !== undefined && v[k] !== null && String(v[k]).trim() !== "") return v[k];
-        }
-        return "";
-      }
-
-      function fmtKg(x) {
-        if (x === undefined || x === null || x === "") return "";
-        const n = Number(String(x).replace(",", "."));
-        if (!Number.isFinite(n)) return String(x);
-        return `${Math.round(n)} kg`;
-      }
+      const vehicle = context.vehicle || {};
       const rows = [];
-      rows.push(buildMetaRow("Auto", context.autoLabel || ""));
-      rows.push(buildMetaRow("Uitvoering", context.uitvoering || ""));
-      rows.push(buildMetaRow("Motorcode", context.motorCode || ""));
-      const soort = pick("voertuigsoort", "vehicle_type");
-      rows.push(buildMetaRow("Voertuigsoort", soort || ""));
-      const inrichting = pick("inrichting", "bodyType", "bodytype");
-      rows.push(buildMetaRow("Inrichting", inrichting || ""));
-      const kleur = pick("eerste_kleur", "eersteKleur", "eerste_kleur_voertuig");
-      rows.push(buildMetaRow("Eerste kleur", kleur || ""));
-      const cilinders = pick("aantal_cilinders");
-      rows.push(buildMetaRow("Aantal cilinders", cilinders || ""));
-      const inhoud = pick("cilinderinhoud");
-      rows.push(buildMetaRow("Cilinderinhoud", inhoud || ""));
-      const massaLedig = pick(
-        "massa_ledig_voertuig",
-        "massaLedigVoertuig",
-        "massa_ledig",
-        "mass_empty",
-        "curb_weight",
-        "curbWeight"
+      const addRow = (label, value) => {
+        if (value === undefined || value === null || value === "") return;
+        rows.push(buildMetaRow(label, value));
+      };
+      addRow("Auto", context.autoLabel || "");
+      addRow("Uitvoering", context.uitvoering || "");
+      addRow("Motorcode", vehicle.engineCode || context.motorCode || "");
+      addRow("Aandrijving", vehicle.driveLabel || vehicle.driveType || "");
+      addRow("Voertuigsoort", vehicle.vehicleType || "");
+      addRow("Inrichting", vehicle.bodyType || "");
+      addRow("Eerste kleur", vehicle.firstColor || "");
+      addRow("Aantal cilinders", vehicle.cylinders ?? "");
+      addRow(
+        "Cilinderinhoud",
+        vehicle.engineContents ? `${vehicle.engineContents} cc` : ""
       );
-      rows.push(buildMetaRow("Massa ledig voertuig", fmtKg(massaLedig)));
-      const massaToegestaan = pick(
-        "toegestane_maximum_massa_voertuig",
-        "toegestaneMaximumMassaVoertuig",
-        "max_massa",
-        "maximum_mass",
-        "gvw",
-        "grossVehicleWeight"
+      addRow(
+        "Massa ledig voertuig",
+        vehicle.weightEmpty ? `${vehicle.weightEmpty} kg` : ""
       );
-      rows.push(buildMetaRow("Toegestane maximum massa voertuig", fmtKg(massaToegestaan)));
-      rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked || ""));
+      addRow(
+        "Toegestane maximum massa voertuig",
+        vehicle.maxWeight ? `${vehicle.maxWeight} kg` : ""
+      );
+      addRow("Kenteken", context.plate || context.plateMasked || "");
       if (!rows.length) return "";
       return `
         <div class="card product plate-context" data-vehicle-info-card>

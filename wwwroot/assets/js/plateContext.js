@@ -27,6 +27,55 @@
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "");
 
+  function normalizeDriveType(v) {
+    const s = String(v || "").toUpperCase();
+    if (!s) return "";
+    if (s === "FWD") return "2WD (FWD)";
+    if (s === "RWD") return "2WD (RWD)";
+    if (s === "AWD") return "AWD";
+    if (s === "4WD" || s === "4X4") return "4WD";
+    return s;
+  }
+
+  function parseEngineCodes(engineType) {
+    return String(engineType || "")
+      .split(";")
+      .map((x) => x.trim())
+      .filter(Boolean);
+  }
+
+  function toUiVehicleFromCandidate(c) {
+    if (!c || typeof c !== "object") return null;
+    const engineCodes = Array.isArray(c.engineCodes)
+      ? c.engineCodes
+      : parseEngineCodes(c.engineType || c.engineCode || "");
+
+    return {
+      plate: c.plate || "",
+      make: c.make || "",
+      model: c.model || "",
+      bodyType: c.bodyType || "",
+      type: c.type || "",
+      kw: c.kw ?? null,
+      kwCat: c.kwCat ?? null,
+      driveType: c.driveType || "",
+      driveLabel: c.driveLabel || normalizeDriveType(c.driveType),
+      vehicleType: c.vehicleType || "",
+      firstColor: c.firstColor || "",
+      secondColor: c.secondColor || "",
+      seatCount: c.seatCount ?? null,
+      cylinders: c.cylinders ?? null,
+      engineContents: c.engineContents ?? null,
+      weightEmpty: c.weightEmpty ?? null,
+      maxWeight: c.maxWeight ?? null,
+      engineCodes,
+      engineCode: c.engineCode || engineCodes[0] || "",
+      typeFrom: c.typeFrom ?? null,
+      typeTill: c.typeTill ?? null,
+      year: c.year ?? null,
+    };
+  }
+
   function mergeVehicleRaw(existing, incoming, source) {
     const a = existing && typeof existing === "object" ? existing : {};
     const b = incoming && typeof incoming === "object" ? incoming : {};
@@ -1047,11 +1096,17 @@
       }
     }
 
+    const uiVehicle = toUiVehicleFromCandidate(vehicle);
+    if (uiVehicle && !uiVehicle.plate) {
+      uiVehicle.plate = normalized;
+    }
+
     const existingCtx =
       window.hv_plate_context ||
       loadPlateContext() || { plate: "", vehicle: {}, vehicleRaw: null };
     let vehicleRaw =
       (options && options.vehicleRaw) ||
+      vehicle ||
       existingCtx.vehicleRaw ||
       previous?.vehicleRaw ||
       null;
@@ -1080,9 +1135,10 @@
       parseRange(yearRange) ||
       parseRange(vehicle?.modelRangeText || vehicle?.modelRange || null) ||
       null;
+    const mergedVehicle = uiVehicle ? { ...uiVehicle, ...vSmall } : vSmall;
     const ctx = {
       plate: normalized,
-      vehicle: vSmall,
+      vehicle: mergedVehicle,
       vehicleRaw,
       range,
       yearRange,
