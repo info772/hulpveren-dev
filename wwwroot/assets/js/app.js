@@ -4423,6 +4423,71 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return candidates[0];
   }
 
+  function uniqBy(arr, keyFn) {
+    const map = new Map();
+    for (const entry of arr || []) {
+      const key = keyFn(entry);
+      if (!map.has(key)) map.set(key, entry);
+    }
+    return Array.from(map.values());
+  }
+
+  function scoreCandidate(c, plateYear) {
+    let score = 0;
+    if (plateYear && c && c.year === plateYear) score += 50;
+    if (c?.engineContents) score += 10;
+    if (c?.cylinders) score += 10;
+    if (c?.weightEmpty) score += 10;
+    if (c?.maxWeight) score += 10;
+    if (c?.ktyp) score += 5;
+    return score;
+  }
+
+  function pickBestCandidate(cands, plateYear) {
+    if (!Array.isArray(cands) || !cands.length) {
+      return { best: null, ambiguous: true, sorted: [] };
+    }
+    const dedup = uniqBy(
+      cands,
+      (c) => `${String(c?.ktyp || "")}|${String(c?.typeCode || "")}`
+    );
+    const scored = dedup
+      .map((c) => ({ c, score: scoreCandidate(c, plateYear) }))
+      .sort((a, b) => b.score - a.score);
+    const best = scored[0]?.c || null;
+    const s1 = scored[0]?.score ?? 0;
+    const s2 = scored[1]?.score ?? -999;
+    const ambiguous = scored.length > 1 && s1 - s2 < 10;
+    return { best, ambiguous, sorted: scored.map((x) => x.c) };
+  }
+
+  function buildCandidateButtons(cands) {
+    const unique = uniqBy(
+      (cands || []).filter((c) => c && (c.model || c.modelname)),
+      (c) => String(c.model || c.modelname || "").toLowerCase()
+    );
+    return unique.map((c) => ({
+      label: c.model || c.modelname || "Onbekend",
+      model: c.model || c.modelname || "",
+      ktyp: c.ktyp || "",
+    }));
+  }
+
+  function selectCandidateByModel(cands, model, ktyp) {
+    if (!Array.isArray(cands)) return null;
+    if (ktyp) {
+      const found = cands.find((c) => String(c?.ktyp || "") === String(ktyp));
+      if (found) return found;
+    }
+    const target = String(model || "").toLowerCase();
+    return (
+      cands.find(
+        (c) =>
+          String(c?.model || c?.modelname || "").toLowerCase() === target
+      ) || null
+    );
+  }
+
   function resolveModelSlugFromKits(makeEntry, ...slugs) {
     if (!makeEntry || !makeEntry.models) return "";
     const candidates = Array.from(makeEntry.models.keys());
@@ -5404,9 +5469,86 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       return;
     }
 
+    const plateYear = !isRdwBasic ? getVehicleYear(candidates[0]) : null;
+    const savedKtyp = (() => {
+      try {
+        return localStorage.getItem(`plate:${plateNormalized}:ktyp`);
+      } catch (err) {
+        return null;
+      }
+    })();
+    const scored = !isRdwBasic ? pickBestCandidate(candidates, plateYear) : null;
+    const sortedCandidates = scored?.sorted?.length ? scored.sorted : candidates;
+    const savedCandidate =
+      !isRdwBasic && savedKtyp
+        ? sortedCandidates.find((c) => String(c?.ktyp || "") === String(savedKtyp))
+        : null;
+    const ambiguous =
+      !isRdwBasic && !savedCandidate ? Boolean(scored?.ambiguous) : false;
+    if (!isRdwBasic && ambiguous) {
+      const buttons = buildCandidateButtons(sortedCandidates);
+      if (!buttons.length) {
+        // fallback to best candidate when we cannot render choices
+      } else {
+        const buttonsHtml = buttons
+          .map(
+            (item) =>
+              `<button type="button" class="btn btn-ghost" data-plate-cand="1" data-model="${esc(
+                item.model
+              )}" data-ktyp="${esc(String(item.ktyp || ""))}">${esc(
+                item.label
+              )}</button>`
+          )
+          .join("");
+        const summaryLine = plateDisplay
+          ? `<p class="lead">Kenteken: ${esc(plateDisplay)}</p>`
+          : "";
+        app.innerHTML = wrap(`
+        <div class="crumbs">
+          <a href="${BASE}">Hulpveren</a> >
+          Kenteken
+        </div>
+        <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
+        ${summaryLine}
+        <p class="note">Meerdere voertuigvarianten gevonden. Kies je uitvoering.</p>
+        <div class="cta-row" id="plate-candidate-buttons">
+          ${buttonsHtml}
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-ghost" href="/hulpveren">Kies handmatig</a>
+        </div>
+      `);
+        const btnWrap = document.getElementById("plate-candidate-buttons");
+        if (btnWrap) {
+          btnWrap.addEventListener("click", (event) => {
+            const btn = event.target.closest("[data-plate-cand]");
+            if (!btn) return;
+            const model = btn.getAttribute("data-model") || "";
+            const ktyp = btn.getAttribute("data-ktyp") || "";
+            const cand = selectCandidateByModel(sortedCandidates, model, ktyp);
+            if (!cand) return;
+            try {
+              if (cand.ktyp != null && cand.ktyp !== "") {
+                localStorage.setItem(
+                  `plate:${plateNormalized}:ktyp`,
+                  String(cand.ktyp)
+                );
+              }
+            } catch (err) {
+              // ignore storage failures
+            }
+            window.location.reload();
+          });
+        }
+        return;
+      }
+    }
+
     const vehicle = isRdwBasic
       ? rdwVehicle
-      : pickPlateCandidate(candidates, routeMakeSlug, routeModelSlug);
+      : savedCandidate ||
+        scored?.best ||
+        pickPlateCandidate(candidates, routeMakeSlug, routeModelSlug);
     debugLog("plate:vehicle_pick", {
       matched: !!vehicle,
       make: routeMakeSlug,
