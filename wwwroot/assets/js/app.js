@@ -5497,6 +5497,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     })();
     const scored = !isRdwBasic ? pickBestCandidate(candidates, plateYear) : null;
     const sortedCandidates = scored?.sorted?.length ? scored.sorted : candidates;
+    const candidateModels = sortedCandidates
+      .map((c) => String(c?.model || c?.modelname || "").trim())
+      .filter(Boolean);
+    const hasMultipleCandidateModels =
+      new Set(candidateModels.map((m) => m.toLowerCase())).size > 1;
     const candidateButtons = !isRdwBasic
       ? buildCandidateButtons(sortedCandidates)
       : [];
@@ -5524,7 +5529,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       !isRdwBasic &&
       !savedCandidate &&
       !fordTransitCandidate &&
-      candidateButtons.length > 1;
+      hasMultipleCandidateModels;
     if (mustChooseModel) {
       const buttons = candidateButtons;
       if (!buttons.length) {
@@ -5676,7 +5681,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         vehicleYear
       );
 
-      if (modelCandidates.length > 1) {
+      if (modelCandidates.length > 1 && hasMultipleCandidateModels) {
         const plateContext = buildPlateContextFromVehicle(vehicle, plateNormalized);
         const plateInfoHtml = buildPlateInfoHtml(plateContext);
         const summary = buildPlateSummary(vehicle, plateContext?.yearRange);
