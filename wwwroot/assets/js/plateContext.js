@@ -27,13 +27,12 @@
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "");
 
-  function normalizeDriveType(v) {
-    const s = String(v || "").toUpperCase();
+  function driveTypeLabel(dt) {
+    const s = String(dt || "").toUpperCase();
     if (!s) return "";
-    if (s === "FWD") return "2WD (FWD)";
-    if (s === "RWD") return "2WD (RWD)";
-    if (s === "AWD") return "AWD";
-    if (s === "4WD" || s === "4X4") return "4WD";
+    if (s === "FWD") return "2WD (voorwiel)";
+    if (s === "RWD") return "2WD (achterwiel)";
+    if (s === "AWD" || s === "4WD" || s === "4X4") return "4WD";
     return s;
   }
 
@@ -59,7 +58,8 @@
       kw: c.kw ?? null,
       kwCat: c.kwCat ?? null,
       driveType: c.driveType || "",
-      driveLabel: c.driveLabel || normalizeDriveType(c.driveType),
+      driveTypeLabel: driveTypeLabel(c.driveType || ""),
+      driveLabel: c.driveLabel || driveTypeLabel(c.driveType || ""),
       vehicleType: c.vehicleType || "",
       firstColor: c.firstColor || "",
       secondColor: c.secondColor || "",

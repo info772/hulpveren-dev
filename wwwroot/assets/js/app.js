@@ -1716,7 +1716,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       addRow("Auto", context.autoLabel || "");
       addRow("Uitvoering", context.uitvoering || "");
       addRow("Motorcode", vehicle.engineCode || context.motorCode || "");
-      addRow("Aandrijving", vehicle.driveLabel || vehicle.driveType || "");
+      addRow(
+        "Aandrijving",
+        vehicle.driveTypeLabel || vehicle.driveLabel || vehicle.driveType || ""
+      );
       addRow("Voertuigsoort", vehicle.vehicleType || "");
       addRow("Inrichting", vehicle.bodyType || "");
       addRow("Eerste kleur", vehicle.firstColor || "");
@@ -2878,6 +2881,23 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (DRIVE_SYNONYMS[key].some((k) => t.includes(k))) return key;
     }
     return null;
+  }
+
+  function normalizeDriveTypeKey(dt) {
+    const s = String(dt || "").toUpperCase();
+    if (s === "AWD" || s === "4WD" || s === "4X4") return "4WD";
+    if (s === "FWD") return "FWD";
+    if (s === "RWD") return "RWD";
+    return "";
+  }
+
+  function driveFilterKeyFromVehicle(vehicle, driveException) {
+    if (!vehicle) return "";
+    const key = normalizeDriveTypeKey(vehicle.driveType || "");
+    if (!key) return "";
+    if (key === "4WD") return "4WD";
+    if (driveException) return key;
+    return "2WD";
   }
 
   function drivePolicyFromFit(f, k) {
@@ -5003,10 +5023,18 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     FILTER.yearRange = yr
       ? { ...yr, label: label || undefined, source: "plate" }
       : null;
-      FILTER.support.clear();
-      FILTER.drive.clear();
-      FILTER.rear.clear();
-      FILTER.pos.clear();
+    FILTER.support.clear();
+    FILTER.drive.clear();
+    FILTER.rear.clear();
+    FILTER.pos.clear();
+    const driveKey = driveFilterKeyFromVehicle(
+      (plateContext && plateContext.vehicle) || (activeCtx && activeCtx.vehicle),
+      CURRENT_ROUTE_CTX.driveException
+    );
+    const driveKeys = new Set(driveItems.map((item) => item.key));
+    if (driveKey && driveKeys.has(driveKey)) {
+      FILTER.drive.add(driveKey);
+    }
 
     const filtersMarkup = [
       yearGroup,
@@ -5059,6 +5087,17 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         const yearLabel = document.getElementById("flt-year-label");
         if (yearLabel) yearLabel.textContent = plateContext.yearRange.label;
       }
+    if (FILTER.drive.size) {
+      const driveWrap = document.getElementById("drive-chips");
+      if (driveWrap) {
+        driveWrap.querySelectorAll(".chip").forEach((chip) => {
+          const key = chip.getAttribute("data-key");
+          if (FILTER.drive.has(key)) {
+            chip.setAttribute("data-on", "1");
+          }
+        });
+      }
+    }
 
     const showDriveMeta = driveItems.length > 1;
     const showRearMeta = hasSRW && hasDRW;
@@ -6102,6 +6141,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     FILTER.drive.clear();
     FILTER.rear.clear();
     FILTER.pos.clear();
+    const plateDriveKey = driveFilterKeyFromVehicle(
+      plateContext && plateContext.vehicle,
+      CURRENT_ROUTE_CTX.driveException
+    );
+    const plateDriveKeys = new Set(driveItems.map((item) => item.key));
+    if (plateDriveKey && plateDriveKeys.has(plateDriveKey)) {
+      FILTER.drive.add(plateDriveKey);
+    }
 
     const filtersMarkup = [
       yearGroup,
@@ -6148,6 +6195,17 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (plateContext && plateContext.yearRange && plateContext.yearRange.label) {
       const yearLabel = document.getElementById("flt-year-label");
       if (yearLabel) yearLabel.textContent = plateContext.yearRange.label;
+    }
+    if (FILTER.drive.size) {
+      const driveWrap = document.getElementById("drive-chips");
+      if (driveWrap) {
+        driveWrap.querySelectorAll(".chip").forEach((chip) => {
+          const key = chip.getAttribute("data-key");
+          if (FILTER.drive.has(key)) {
+            chip.setAttribute("data-on", "1");
+          }
+        });
+      }
     }
 
     const showDriveMeta = driveItems.length > 1;
