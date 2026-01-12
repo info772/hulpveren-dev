@@ -4046,6 +4046,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       Array.isArray(k.powertrains_allowed) && k.powertrains_allowed.length
         ? k.powertrains_allowed
         : enginesFromKitAndNotes(k, f);
+    const engineList = (engines || []).filter((x) => x && x !== "-");
 
     const imgId = `kitimg_${idx}`;
     const autoType = `${makeLabel} ${modelLabel}`.trim();
@@ -4088,11 +4089,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .filter(Boolean)
       .join("");
 
-    const enginesHtml = engines.length
+    const enginesHtml = engineList.length
       ? `<div class="enginebox">
               <b>Motoren:</b>
               <div class="lst">
-                ${engines.map((x) => `<div>${esc(x)}</div>`).join("")}
+                ${engineList.map((x) => `<div>${esc(x)}</div>`).join("")}
               </div>
             </div>`
       : `<div class="enginebox"><b>Motoren:</b> <span>Allemaal</span></div>`;
@@ -5361,7 +5362,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       <h1>Kenteken controleren</h1>
       <p class="note">${esc(note)}</p>
       <div class="cta-row">
-        <a class="btn" href="/kenteken">Opnieuw zoeken</a>
+        <a class="btn" href="/">Opnieuw zoeken</a>
         <a class="btn btn-ghost" href="${base}">Kies merk en model</a>
       </div>
     `);
@@ -6178,7 +6179,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         <p class="note">Geen passende sets gevonden op basis van RDW-gegevens. Kies handmatig je model.</p>
         <div class="cta-row">
           <a class="btn" href="/hulpveren">Kies merk en model</a>
-          <a class="btn btn-ghost" href="/kenteken">Opnieuw zoeken</a>
+          <a class="btn btn-ghost" href="/">Opnieuw zoeken</a>
         </div>
       `);
       renderPlateDebug({
