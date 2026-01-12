@@ -460,14 +460,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     initSiteData();
   }
 
-  // Alleen SPA draaien op /hulpveren of /luchtvering, en alleen als er een echte app-container is
+  // Alleen SPA draaien op /hulpveren, /luchtvering of /verlagingsveren, en alleen als er een echte app-container is
   let app =
     document.getElementById("app") ||
     document.querySelector("main.app");
 
   const isAppRoute = (() => {
     const p = location.pathname.toLowerCase();
-    const bases = [HV_BASE, NR_BASE];
+    const bases = [HV_BASE, NR_BASE, LS_BASE];
     return bases.some((b) => p === b || p.startsWith(b + "/"));
   })();
 
@@ -4750,10 +4750,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   function buildPlateGenerationOptions(makeEntry, makeSlug, plateValue, candidates) {
     const platePart = plateSlug(plateValue);
+    const base = CURRENT_BASE || BASE;
     return (candidates || [])
       .map((modelSlug) => {
         const label = makeEntry?.models?.get(modelSlug) || modelSlug;
-        return `<a class="btn btn-ghost" href="${BASE}/${esc(
+        return `<a class="btn btn-ghost" href="${base}/${esc(
           makeSlug
         )}/${esc(modelSlug)}/${PLATE_PREFIX}${platePart}">${esc(label)}</a>`;
       })
@@ -5351,17 +5352,21 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const target = ensureAppContainer();
     if (!target) return;
     applyPlateLayout();
+    const family = CURRENT_FAMILY || "hv";
+    const base = CURRENT_BASE || BASE;
+    const productTitle =
+      family === "nr" ? "Luchtvering" : family === "ls" ? "Verlagingsveren" : "Hulpveren";
     const note = message || "Kentekenroute is ongeldig of incompleet.";
     target.innerHTML = wrap(`
       <div class="crumbs">
-        <a href="${BASE}">Hulpveren</a> >
+        <a href="${base}">${productTitle}</a> >
         Kenteken
       </div>
       <h1>Kenteken controleren</h1>
       <p class="note">${esc(note)}</p>
       <div class="cta-row">
         <a class="btn" href="/kenteken">Opnieuw zoeken</a>
-        <a class="btn btn-ghost" href="/hulpveren">Kies merk en model</a>
+        <a class="btn btn-ghost" href="${base}">Kies merk en model</a>
       </div>
     `);
   }
@@ -5369,6 +5374,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   async function renderPlateModel(kits, makes, route) {
     if (!hasApp || !app) return;
     applyPlateLayout();
+    const family = CURRENT_FAMILY || "hv";
+    const base = CURRENT_BASE || BASE;
+    const productTitle =
+      family === "nr" ? "Luchtvering" : family === "ls" ? "Verlagingsveren" : "Hulpveren";
+    const productLabel = PRODUCT_LABEL[family] || "hulpveren";
+    const plateSearchHref = PLATE_LANDING_PATH;
 
     const plateRaw = (route && route.plate) || "";
     const plateNormalized = normalizePlateInput(plateRaw);
@@ -5386,10 +5397,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     app.innerHTML = wrap(`
       <div class="crumbs">
-        <a href="${BASE}">Hulpveren</a> >
+        <a href="${base}">${productTitle}</a> >
         Kenteken
       </div>
-      <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
+      <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
       <p class="lead">Kenteken wordt gecontroleerd...</p>
       <div class="loading">Resultaten laden...</div>
       <div id="model-grid" class="grid" data-set-list></div>
@@ -5397,8 +5408,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     // Kenteken-pagina's standaard noindex; pas aan indien gewenst.
     applyPlateMeta({
-      title: `Hulpveren op kenteken: ${plateDisplay} | Hulpveren.shop`,
-      description: `Hulpveren op kenteken ${plateDisplay}. Controleer passende sets voor jouw voertuig.`,
+      title: `${productTitle} op kenteken: ${plateDisplay} | Hulpveren.shop`,
+      description: `${productTitle} op kenteken ${plateDisplay}. Controleer passende sets voor jouw voertuig.`,
       robots: "noindex, nofollow",
     });
 
@@ -5416,10 +5427,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       });
       app.innerHTML = wrap(`
         <div class="crumbs">
-          <a href="${BASE}">Hulpveren</a> >
+          <a href="${base}">${productTitle}</a> >
           Kenteken
         </div>
-        <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
+        <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
         <p class="note">${
           isNotFound
             ? "Kenteken niet gevonden. Kies handmatig je model of probeer opnieuw."
@@ -5430,11 +5441,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         <div class="cta-row">
           ${
             isNotFound
-              ? `<a class="btn" href="/hulpveren">Kies merk en model</a>`
-              : `<a class="btn" href="/kenteken">Opnieuw proberen</a>`
+              ? `<a class="btn" href="${base}">Kies merk en model</a>`
+              : `<a class="btn" href="${plateSearchHref}">Opnieuw proberen</a>`
           }
           <a class="btn btn-ghost" href="${
-            isNotFound ? "/kenteken" : "https://wa.me/311651320219"
+            isNotFound ? plateSearchHref : "https://wa.me/311651320219"
           }" ${
             isNotFound ? "" : 'target="_blank" rel="noopener noreferrer"'
           }>${isNotFound ? "Opnieuw zoeken" : "WhatsApp"}</a>
@@ -5470,18 +5481,18 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       debugLog("plate:empty_candidates", { plate: plateNormalized, source });
       app.innerHTML = wrap(`
         <div class="crumbs">
-          <a href="${BASE}">Hulpveren</a> >
+          <a href="${base}">${productTitle}</a> >
           Kenteken
         </div>
-        <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
+        <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
         <p class="note">${
           isRdwBasic
             ? "Geen RDW-voertuigdata gevonden voor dit kenteken. Kies handmatig je model."
             : "Geen voertuig gevonden voor dit kenteken. Controleer het kenteken of kies handmatig je model."
         }</p>
         <div class="cta-row">
-          <a class="btn" href="/kenteken">Opnieuw zoeken</a>
-          <a class="btn btn-ghost" href="/hulpveren">Kies merk en model</a>
+          <a class="btn" href="${plateSearchHref}">Opnieuw zoeken</a>
+          <a class="btn btn-ghost" href="${base}">Kies merk en model</a>
         </div>
       `);
       return;
@@ -5550,17 +5561,17 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           : "";
         app.innerHTML = wrap(`
         <div class="crumbs">
-          <a href="${BASE}">Hulpveren</a> >
+          <a href="${base}">${productTitle}</a> >
           Kenteken
         </div>
-        <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
+        <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
         ${summaryLine}
         <p class="note">Meerdere voertuigvarianten gevonden. Kies je uitvoering.</p>
         <div class="cta-row" id="plate-candidate-buttons">
           ${buttonsHtml}
         </div>
         <div class="cta-row">
-          <a class="btn btn-ghost" href="/hulpveren">Kies handmatig</a>
+          <a class="btn btn-ghost" href="${base}">Kies handmatig</a>
         </div>
       `);
         const btnWrap = document.getElementById("plate-candidate-buttons");
@@ -5603,14 +5614,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (!vehicle) {
       app.innerHTML = wrap(`
         <div class="crumbs">
-          <a href="${BASE}">Hulpveren</a> >
+          <a href="${base}">${productTitle}</a> >
           Kenteken
         </div>
-        <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
+        <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
         <p class="note">Geen voertuig gevonden voor dit kenteken. Controleer het kenteken of kies handmatig je model.</p>
         <div class="cta-row">
-          <a class="btn" href="/kenteken">Opnieuw zoeken</a>
-          <a class="btn btn-ghost" href="/hulpveren">Kies merk en model</a>
+          <a class="btn" href="${plateSearchHref}">Opnieuw zoeken</a>
+          <a class="btn btn-ghost" href="${base}">Kies merk en model</a>
         </div>
       `);
       return;
@@ -5636,14 +5647,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         }
         app.innerHTML = wrap(`
           <div class="crumbs">
-            <a href="${BASE}">Hulpveren</a> >
+            <a href="${base}">${productTitle}</a> >
             Kenteken
           </div>
-          <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
+          <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
           <p class="note">We hebben alleen basisgegevens gevonden. Kies handmatig je merk en model.</p>
           <div class="cta-row">
-            <a class="btn" href="/hulpveren">Kies merk en model</a>
-            <a class="btn btn-ghost" href="/kenteken">Opnieuw zoeken</a>
+            <a class="btn" href="${base}">Kies merk en model</a>
+            <a class="btn btn-ghost" href="${plateSearchHref}">Opnieuw zoeken</a>
           </div>
         `);
         renderPlateDebug({
@@ -5703,19 +5714,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         );
         app.innerHTML = wrap(`
           <div class="crumbs">
-            <a href="${BASE}">Hulpveren</a> >
-            <a href="${BASE}/${esc(makeSlug)}">${esc(
+            <a href="${base}">${productTitle}</a> >
+            <a href="${base}/${esc(makeSlug)}">${esc(
           makeEntry?.label || vehicleMakeLabel || makeSlug
         )}</a> >
             Kenteken
           </div>
-          <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
+          <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
           ${summaryLine}
           <p class="note">Meerdere generaties passen bij dit kenteken. Kies de juiste generatie.</p>
           ${plateInfoHtml}
           <div class="cta-row">${options}</div>
           <div class="cta-row">
-            <a class="btn btn-ghost" href="/hulpveren">Kies handmatig</a>
+            <a class="btn btn-ghost" href="${base}">Kies handmatig</a>
           </div>
         `);
         renderPlateDebug({
@@ -5794,10 +5805,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     applyPlateMeta({
-      title: `Hulpveren op kenteken: ${plateDisplay} | Hulpveren.shop`,
+      title: `${productTitle} op kenteken: ${plateDisplay} | Hulpveren.shop`,
       description: summary
-        ? `Hulpveren op kenteken ${plateDisplay}. ${summary}.`
-        : `Hulpveren op kenteken ${plateDisplay}.`,
+        ? `${productTitle} op kenteken ${plateDisplay}. ${summary}.`
+        : `${productTitle} op kenteken ${plateDisplay}.`,
       robots: "noindex, nofollow",
     });
 
@@ -5825,6 +5836,28 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       aldocSets.hvSkus.length ||
       aldocSets.nrSkus.length ||
       aldocSets.lsSkus.length;
+
+    if (family !== "hv" && !hasAldocSets) {
+      const targetModelSlug =
+        resolvedModelSlug || vehicleModelSlug || routeModelSlug || "";
+      if (!makeSlug || !targetModelSlug) {
+        app.innerHTML = wrap(`
+          <div class="crumbs">
+            <a href="${base}">${productTitle}</a> >
+            Kenteken
+          </div>
+          <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
+          <p class="note">We kunnen de uitvoering niet koppelen aan een model. Kies handmatig je merk en model.</p>
+          <div class="cta-row">
+            <a class="btn" href="${base}">Kies merk en model</a>
+            <a class="btn btn-ghost" href="${plateSearchHref}">Opnieuw zoeken</a>
+          </div>
+        `);
+        return;
+      }
+      renderNrModel(kits, makes, makeSlug, targetModelSlug);
+      return;
+    }
 
     if (hasAldocSets) {
       const modelSlugForCards = resolvedModelSlug || vehicleModelSlug || routeModelSlug;
@@ -5938,15 +5971,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         showRearMeta: hasSRW && hasDRW,
       };
 
-      const crumbsParts = [`<a href="${BASE}">Hulpveren</a>`];
+      const crumbsParts = [`<a href="${base}">${productTitle}</a>`];
       if (makeSlugForCards) {
         crumbsParts.push(
-          `<a href="${BASE}/${esc(makeSlugForCards)}">${esc(makeLabel)}</a>`
+          `<a href="${base}/${esc(makeSlugForCards)}">${esc(makeLabel)}</a>`
         );
       }
       if (modelSlugForCards) {
         crumbsParts.push(
-          `<a href="${BASE}/${esc(makeSlugForCards)}/${esc(
+          `<a href="${base}/${esc(makeSlugForCards)}/${esc(
             modelSlugForCards
           )}">${esc(modelLabel)}</a>`
         );
@@ -5963,10 +5996,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
       const tabLabel = (key, label) =>
         `${label} (${tabCounts[key] || 0})`;
+      const defaultTab =
+        family === "nr" ? "nr" : family === "ls" ? "ls" : "hv";
 
       app.innerHTML = wrap(`
         <div class="crumbs">${crumbsParts.join(" > ")}</div>
-        <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
+        <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
         ${summaryLine}
         <div class="set-meta">
           <span><span id="kit-count">0</span> sets</span>
@@ -6099,7 +6134,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         });
       }
 
-      setActiveTab("hv");
+      setActiveTab(defaultTab);
       renderPlateDebug({
         container: app,
         vehicle,
@@ -6713,34 +6748,42 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function renderNrModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp) return;
     suppressHomeSectionsForApp();
-      const plateContext = buildPlateContext({ base: NR_BASE, makeSlug, modelSlug });
-      const activeCtx = getActivePlateContext();
-      const resolvedMake =
-        makeSlug ||
-        plateContext?.route?.makeSlug ||
-        activeCtx?.route?.makeSlug ||
-        plateContext?.vehicle?.makeSlug ||
-        activeCtx?.vehicle?.makeSlug ||
-        "";
-      const resolvedModel =
-        modelSlug ||
-        plateContext?.route?.modelSlug ||
-        activeCtx?.route?.modelSlug ||
-        plateContext?.vehicle?.modelSlug ||
-        activeCtx?.vehicle?.modelSlug ||
-        "";
-      const entry = makes.get(resolvedMake);
-      const makeLabel = entry?.label || resolvedMake;
-      const modelLabel =
-        (entry?.models && entry.models.get(resolvedModel)) || resolvedModel;
-      const useMake = resolvedMake || makeSlug;
-      const useModel = resolvedModel || modelSlug;
-      const plateInfoHtml = buildPlateInfoHtml(plateContext);
-      const plateYearRange =
-        (plateContext && plateContext.yearRange) ||
-        (activeCtx && activeCtx.yearRange) ||
-        null;
-      const vehicleActive = Boolean(activeCtx && activeCtx.plate);
+    const family = CURRENT_FAMILY === "ls" ? "ls" : "nr";
+    const base = family === "ls" ? LS_BASE : NR_BASE;
+    const productTitle = family === "ls" ? "Verlagingsveren" : "Luchtvering";
+    const productLabel = family === "ls" ? "verlagingsveren" : "luchtvering";
+    const cardBuilder = family === "ls" ? buildLsCard : buildNrCard;
+    const useActivePlate = isPlateRoutePath(location.pathname);
+    const plateContext = buildPlateContext({ base, makeSlug, modelSlug });
+    const activeCtx = getActivePlateContext();
+    const resolvedPlateContext =
+      plateContext || (useActivePlate ? activeCtx : null);
+    const resolvedMake =
+      makeSlug ||
+      resolvedPlateContext?.route?.makeSlug ||
+      resolvedPlateContext?.vehicle?.makeSlug ||
+      activeCtx?.route?.makeSlug ||
+      activeCtx?.vehicle?.makeSlug ||
+      "";
+    const resolvedModel =
+      modelSlug ||
+      resolvedPlateContext?.route?.modelSlug ||
+      resolvedPlateContext?.vehicle?.modelSlug ||
+      activeCtx?.route?.modelSlug ||
+      activeCtx?.vehicle?.modelSlug ||
+      "";
+    const entry = makes.get(resolvedMake);
+    const makeLabel = entry?.label || resolvedMake;
+    const modelLabel =
+      (entry?.models && entry.models.get(resolvedModel)) || resolvedModel;
+    const useMake = resolvedMake || makeSlug;
+    const useModel = resolvedModel || modelSlug;
+    const plateInfoHtml = buildPlateInfoHtml(resolvedPlateContext);
+    const plateYearRange =
+      (resolvedPlateContext && resolvedPlateContext.yearRange) ||
+      (useActivePlate ? activeCtx?.yearRange : null) ||
+      null;
+    const vehicleActive = Boolean(useActivePlate && activeCtx && activeCtx.plate);
 
     FILTER.year = null;
     const plateLabel =
@@ -6777,7 +6820,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         : `Geen sets beschikbaar voor ${esc(makeLabel)} ${esc(modelLabel)}.`;
       app.innerHTML = wrap(`
         <div class="crumbs">
-          <a href="${NR_BASE}">Luchtvering</a> > ${esc(makeLabel)} > ${esc(
+          <a href="${base}">${productTitle}</a> > ${esc(makeLabel)} > ${esc(
         modelLabel
       )}
         </div>
@@ -6805,7 +6848,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     });
 
     const cardsBlock = pairs
-      .map((pair, idx) => buildNrCard(pair, idx, { makeLabel, modelLabel, makeSlug, modelSlug }))
+      .map((pair, idx) =>
+        cardBuilder(pair, idx, { makeLabel, modelLabel, makeSlug, modelSlug })
+      )
       .join("\n");
 
     const yearsAvail = years.filter((n) => Number.isFinite(n));
@@ -6885,11 +6930,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
       app.innerHTML = wrap(`
         <div class="crumbs">
-          <a href="${NR_BASE}">Luchtvering</a> >
-          <a href="${NR_BASE}/${esc(makeSlug)}">${esc(makeLabel)}</a> >
+          <a href="${base}">${productTitle}</a> >
+          <a href="${base}/${esc(makeSlug)}">${esc(makeLabel)}</a> >
           ${esc(modelLabel)}
       </div>
-      <h1>${esc(makeLabel)} ${esc(modelLabel)} luchtvering</h1>
+      <h1>${esc(makeLabel)} ${esc(modelLabel)} ${esc(productLabel)}</h1>
       ${plateInfoHtml}
       ${seoHtml || ""}
       ${filtersBlock}
@@ -6994,7 +7039,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (initialApply) {
         initialApply = false;
         if (!visible && vehicleActive) {
-          window.location.href = `${NR_BASE}/${makeSlug}/`;
+          window.location.href = `${base}/${makeSlug}/`;
         }
       }
     }
@@ -7179,16 +7224,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (family === "nr") {
-      if (route.kind === "model" || route.kind === "plate") {
-        renderNrModel(kits, makes, route.make, route.model);
-      }
+      if (route.kind === "plate") return renderPlateModel(kits, makes, route);
+      if (route.kind === "model") return renderNrModel(kits, makes, route.make, route.model);
       return;
     }
 
     if (family === "ls") {
-      if (route.kind === "model" || route.kind === "plate") {
-        renderNrModel(kits, makes, route.make, route.model);
-      }
+      if (route.kind === "plate") return renderPlateModel(kits, makes, route);
+      if (route.kind === "model") return renderNrModel(kits, makes, route.make, route.model);
       return;
     }
   }
