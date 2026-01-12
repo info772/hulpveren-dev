@@ -167,8 +167,18 @@
 
   const plateGroupUrl = (group, plate) => {
     const p = normalizePlate(plate);
-    if (!p) return "/kenteken";
-    return `/kenteken/?kt=${encodeURIComponent(p)}&pg=${encodeURIComponent(group)}`;
+    if (!p) return "/";
+    const q = `?kt=${encodeURIComponent(p)}`;
+    switch (group) {
+      case "hv":
+        return `/hulpveren-op-kenteken${q}`;
+      case "air":
+        return `/luchtvering-op-kenteken${q}`;
+      case "ls":
+        return `/verlagingsveren-op-kenteken${q}`;
+      default:
+        return `/hulpveren-op-kenteken${q}`;
+    }
   };
 
   const openPlateGroupOverlay = (plate) => {

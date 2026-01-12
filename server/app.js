@@ -113,6 +113,22 @@ function createApp() {
 
   app.use("/api/plate", rateLimit({ windowMs: 60 * 1000, max: 30 }));
   app.use("/api/plate", plateRoutes);
+  app.get(["/kenteken", "/kenteken/"], (req, res) => {
+    const kt = String(req.query.kt || "")
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, "");
+    const pg = String(req.query.pg || "hv").toLowerCase();
+    const q = kt ? `?kt=${encodeURIComponent(kt)}` : "";
+    if (pg === "air") {
+      res.redirect(302, `/luchtvering-op-kenteken${q}`);
+      return;
+    }
+    if (pg === "ls") {
+      res.redirect(302, `/verlagingsveren-op-kenteken${q}`);
+      return;
+    }
+    res.redirect(302, `/hulpveren-op-kenteken${q}`);
+  });
   app.use("/api/rdw", apiRdwRoutes);
   app.use("/api/rdw", rateLimit({ windowMs: 60 * 1000, max: 30 }));
   app.use("/api/rdw", rdwRoutes);
