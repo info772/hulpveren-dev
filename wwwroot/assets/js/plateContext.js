@@ -1080,34 +1080,10 @@
       parseRange(yearRange) ||
       parseRange(vehicle?.modelRangeText || vehicle?.modelRange || null) ||
       null;
-<<<<<<< HEAD
     const ctx = {
       plate: normalized,
       vehicle: vSmall,
       vehicleRaw,
-=======
-    let vehicleFull = null;
-    if (vehicle) {
-      vehicleFull = { ...vehicle };
-      const make = vehicleFull.make || vehicleFull.makename || "";
-      const model = vehicleFull.model || vehicleFull.modelname || "";
-      vehicleFull.make = make;
-      vehicleFull.model = model;
-      vehicleFull.modelLabel =
-        vehicleFull.modelLabel ||
-        vehicleFull.modelRemark ||
-        vehicleFull.model_remark ||
-        "";
-      vehicleFull.rangeLabel =
-        vehicleFull.rangeLabel ||
-        (yearRange && yearRange.label) ||
-        vehicleFull.modelRangeText ||
-        "";
-    }
-    const ctx = {
-      plate: normalized,
-      vehicle: vehicleFull,
->>>>>>> aa89116da (update)
       range,
       yearRange,
       intentType,

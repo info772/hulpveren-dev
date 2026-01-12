@@ -1751,7 +1751,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         return `${Math.round(n)} kg`;
       }
       const rows = [];
-<<<<<<< HEAD
       rows.push(buildMetaRow("Auto", context.autoLabel || ""));
       rows.push(buildMetaRow("Uitvoering", context.uitvoering || ""));
       rows.push(buildMetaRow("Motorcode", context.motorCode || ""));
@@ -1784,44 +1783,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       );
       rows.push(buildMetaRow("Toegestane maximum massa voertuig", fmtKg(massaToegestaan)));
       rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked || ""));
-=======
-      const vehicle = context.vehicle;
-      if (context.autoLabel) rows.push(buildMetaRow("Auto", context.autoLabel));
-      if (context.uitvoering) rows.push(buildMetaRow("Uitvoering", context.uitvoering));
-      if (context.motorCode) rows.push(buildMetaRow("Motorcode", context.motorCode));
-      const voertuigsoort = pickVehicleValue(vehicle, ["vehicleType", "voertuigsoort"]);
-      if (voertuigsoort) rows.push(buildMetaRow("Voertuigsoort", voertuigsoort));
-      const inrichting = pickVehicleValue(vehicle, ["bodyType", "inrichting"]);
-      if (inrichting) rows.push(buildMetaRow("Inrichting", inrichting));
-      const eersteKleur = pickVehicleValue(vehicle, ["firstColor", "color", "eerste_kleur"]);
-      if (eersteKleur) rows.push(buildMetaRow("Eerste kleur", eersteKleur));
-      const tweedeKleur = pickVehicleValue(vehicle, ["secondColor", "tweede_kleur"]);
-      if (tweedeKleur) rows.push(buildMetaRow("Tweede kleur", tweedeKleur));
-      const zitplaatsen = formatInt(
-        pickVehicleRaw(vehicle, ["seatCount", "aantal_zitplaatsen"])
-      );
-      if (zitplaatsen) rows.push(buildMetaRow("Aantal zitplaatsen", zitplaatsen));
-      const cilinders = formatInt(
-        pickVehicleRaw(vehicle, ["cylinders", "aantal_cilinders"])
-      );
-      if (cilinders) rows.push(buildMetaRow("Aantal cilinders", cilinders));
-      const cilinderinhoud = formatUnit(
-        pickVehicleRaw(vehicle, ["engineContents", "cilinderinhoud"]),
-        "cc"
-      );
-      if (cilinderinhoud) rows.push(buildMetaRow("Cilinderinhoud", cilinderinhoud));
-      const massaLedig = formatUnit(
-        pickVehicleRaw(vehicle, ["weightEmpty", "massa_ledig_voertuig"]),
-        "kg"
-      );
-      if (massaLedig) rows.push(buildMetaRow("Massa ledig voertuig", massaLedig));
-      const massaMax = formatUnit(
-        pickVehicleRaw(vehicle, ["maxWeight", "toegestane_maximum_massa_voertuig"]),
-        "kg"
-      );
-      if (massaMax) rows.push(buildMetaRow("Toegestane maximum massa voertuig", massaMax));
-      rows.push(buildMetaRow("Kenteken", context.plate || context.plateMasked));
->>>>>>> aa89116da (update)
       if (!rows.length) return "";
       return `
         <div class="card product plate-context" data-vehicle-info-card>
