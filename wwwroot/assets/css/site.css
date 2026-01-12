@@ -845,6 +845,11 @@ body.nav-open{ overflow: hidden; }
   }
   body.nav-open .nav-drawer{ transform: translateX(0); visibility: visible; }
 
+  #site-header .nav-drawer .nav-list{
+    max-height: none;
+    overflow: visible;
+  }
+
   .header-nav{ display: block; width: 100%; }
   .hv2-top{
     flex-direction: column;
@@ -867,7 +872,7 @@ body.nav-open{ overflow: hidden; }
 /* =========================
    MEGA PANEL: DESKTOP vs MOBILE
    ========================= */
-@media (max-width: 920px){
+@media (max-width: 1023px){
   /* Desktop-float uitschakelen op mobiel */
   .hv-mega-panel,
   .mega-panel{
@@ -992,12 +997,12 @@ body.nav-open .plate-search,
 }
 
 @media (max-width: 900px){
-  .plate-context .meta .k:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]),
-  .plate-context .meta .v:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]){
+  .plate-context:not(.is-expanded) .meta .k:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]),
+  .plate-context:not(.is-expanded) .meta .v:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]){
     display: none;
   }
-  .plate-context.is-expanded .meta .k,
-  .plate-context.is-expanded .meta .v{
+  .plate-context.is-expanded .meta .k[data-plate-key],
+  .plate-context.is-expanded .meta .v[data-plate-key]{
     display: block;
   }
   .plate-context__toggle{
@@ -1031,6 +1036,16 @@ body.nav-open .plate-search,
     word-break: break-word;
     overflow-wrap: anywhere;
     color: #f6f8ff;
+  }
+}
+
+@media (max-width: 1023px){
+  #site-header ~ main,
+  #site-header ~ .page-main{
+    padding-top: calc(var(--hv-header-h, 88px) * 0.25);
+  }
+  #site-header .nav-drawer .hv2-nav{
+    overflow: visible;
   }
 }
 

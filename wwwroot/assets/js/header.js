@@ -512,7 +512,7 @@
     );
     if (!items.length) return;
 
-    const mqDesktop = window.matchMedia("(min-width: 921px)");
+    const mqDesktop = window.matchMedia("(min-width: 1024px)");
     const pointerFine = window.matchMedia("(hover:hover)").matches;
     const triggerMap = new Map();
     const panelMap = new Map();
