@@ -4461,6 +4461,24 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return { best, ambiguous, sorted: scored.map((x) => x.c) };
   }
 
+  function pickFordTransitCandidate(cands, plateYear) {
+    if (!Array.isArray(cands) || !cands.length) return null;
+    const transit = cands.filter((c) => {
+      const make = String(c?.make || c?.makename || "").toLowerCase();
+      if (!make.includes("ford")) return false;
+      const model = String(c?.model || c?.modelname || "").toLowerCase();
+      if (!model.includes("transit")) return false;
+      if (/(courier|connect|custom)/.test(model)) return false;
+      return true;
+    });
+    if (!transit.length) return null;
+    if (transit.length === 1) return transit[0];
+    const scored = transit
+      .map((c) => ({ c, score: scoreCandidate(c, plateYear) }))
+      .sort((a, b) => b.score - a.score);
+    return scored[0]?.c || transit[0];
+  }
+
   function buildCandidateButtons(cands) {
     const unique = uniqBy(
       (cands || []).filter((c) => c && (c.model || c.modelname)),
@@ -5483,8 +5501,26 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       !isRdwBasic && savedKtyp
         ? sortedCandidates.find((c) => String(c?.ktyp || "") === String(savedKtyp))
         : null;
+    const fordTransitCandidate =
+      !isRdwBasic && !savedCandidate
+        ? pickFordTransitCandidate(sortedCandidates, plateYear)
+        : null;
+    if (!isRdwBasic && fordTransitCandidate && !savedKtyp) {
+      try {
+        if (fordTransitCandidate.ktyp != null && fordTransitCandidate.ktyp !== "") {
+          localStorage.setItem(
+            `plate:${plateNormalized}:ktyp`,
+            String(fordTransitCandidate.ktyp)
+          );
+        }
+      } catch (err) {
+        // ignore storage failures
+      }
+    }
     const ambiguous =
-      !isRdwBasic && !savedCandidate ? Boolean(scored?.ambiguous) : false;
+      !isRdwBasic && !savedCandidate && !fordTransitCandidate
+        ? Boolean(scored?.ambiguous)
+        : false;
     if (!isRdwBasic && ambiguous) {
       const buttons = buildCandidateButtons(sortedCandidates);
       if (!buttons.length) {
@@ -5547,6 +5583,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const vehicle = isRdwBasic
       ? rdwVehicle
       : savedCandidate ||
+        fordTransitCandidate ||
         scored?.best ||
         pickPlateCandidate(candidates, routeMakeSlug, routeModelSlug);
     debugLog("plate:vehicle_pick", {
