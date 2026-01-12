@@ -1713,20 +1713,24 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         if (value === undefined || value === null || value === "") return;
         rows.push(buildMetaRow(label, value));
       };
+      addRow("Kenteken", context.plate || context.plateMasked || "");
       addRow("Auto", context.autoLabel || "");
-      addRow("Uitvoering", context.uitvoering || "");
-      addRow("Motorcode", vehicle.engineCode || context.motorCode || "");
-      addRow(
-        "Aandrijving",
-        vehicle.driveTypeLabel || vehicle.driveLabel || vehicle.driveType || ""
-      );
-      addRow("Voertuigsoort", vehicle.vehicleType || "");
-      addRow("Inrichting", vehicle.bodyType || "");
-      addRow("Eerste kleur", vehicle.firstColor || "");
-      addRow("Aantal cilinders", vehicle.cylinders ?? "");
+      const kleurParts = [vehicle.firstColor, vehicle.secondColor].filter(Boolean);
+      const uitvoeringParts = [context.uitvoering || "", kleurParts.join(" / ")]
+        .filter(Boolean)
+        .join(" - ");
+      addRow("Uitvoering", uitvoeringParts);
+      const voertuigsoortParts = [vehicle.vehicleType, vehicle.bodyType].filter(Boolean);
+      addRow("Voertuigsoort", voertuigsoortParts.join(" - "));
       addRow(
         "Cilinderinhoud",
         vehicle.engineContents ? `${vehicle.engineContents} cc` : ""
+      );
+      addRow("Motorcode", vehicle.engineCode || context.motorCode || "");
+      addRow("Aantal cilinders", vehicle.cylinders ?? "");
+      addRow(
+        "Aandrijving",
+        vehicle.driveTypeLabel || vehicle.driveLabel || vehicle.driveType || ""
       );
       addRow(
         "Massa ledig voertuig",
@@ -1736,7 +1740,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         "Toegestane maximum massa voertuig",
         vehicle.maxWeight ? `${vehicle.maxWeight} kg` : ""
       );
-      addRow("Kenteken", context.plate || context.plateMasked || "");
       if (!rows.length) return "";
       return `
         <div class="card product plate-context" data-vehicle-info-card>
