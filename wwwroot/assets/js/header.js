@@ -194,6 +194,40 @@
     document.documentElement.classList.add("menu-open");
   };
 
+  const stripPlateFromUrl = () => {
+    const url = new URL(window.location.href);
+    const parts = url.pathname.split("/").filter(Boolean);
+    if (!parts.length) return;
+    const last = parts[parts.length - 1] || "";
+    const isKt = /^kt_[a-z0-9]+$/i.test(last) && /\d/.test(last);
+    const isPlate = /^[a-z0-9]{4,8}$/i.test(last) && /\d/.test(last);
+    let changed = false;
+
+    if (isKt || isPlate) {
+      parts.pop();
+      changed = true;
+      if (isKt && parts.length) {
+        const prev = parts[parts.length - 1];
+        if (/^[a-z0-9]{4,8}$/i.test(prev) && /\d/.test(prev)) {
+          parts.pop();
+        }
+      }
+    }
+
+    if (url.searchParams.has("kt")) {
+      url.searchParams.delete("kt");
+      changed = true;
+    }
+
+    if (!changed) return;
+    url.pathname = "/" + (parts.length ? parts.join("/") + "/" : "");
+    const next =
+      url.pathname +
+      (url.searchParams.toString() ? `?${url.searchParams}` : "") +
+      url.hash;
+    window.history.replaceState(null, "", next);
+  };
+
   const closePlateGroupOverlay = () => {
     const overlay = document.getElementById("plate-group-overlay");
     if (!overlay) return;
@@ -215,6 +249,7 @@
     ) {
       window.HVPlateContext.clearPlateContext();
     }
+    stripPlateFromUrl();
   };
 
   const initPlateGroupOverlay = () => {
