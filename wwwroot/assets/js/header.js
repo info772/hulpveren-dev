@@ -206,6 +206,15 @@
     if (!navOpen) {
       document.documentElement.classList.remove("menu-open");
     }
+    if (typeof window.__hvPlateOverlayPrevCtx !== "undefined") {
+      delete window.__hvPlateOverlayPrevCtx;
+    }
+    if (
+      window.HVPlateContext &&
+      typeof window.HVPlateContext.clearPlateContext === "function"
+    ) {
+      window.HVPlateContext.clearPlateContext();
+    }
   };
 
   const initPlateGroupOverlay = () => {

@@ -179,12 +179,40 @@
     return s.startsWith("kt_") ? s : `kt_${s}`;
   }
 
+  function isPlateRoot(parts) {
+    const root = String(parts && parts[0] ? parts[0] : "").toLowerCase();
+    return [
+      "hulpveren",
+      "luchtvering",
+      "verlagingsveren",
+      "kenteken",
+      "hulpveren-op-kenteken",
+      "luchtvering-op-kenteken",
+      "verlagingsveren-op-kenteken",
+    ].includes(root);
+  }
+
+  function isPlateSegment(value) {
+    const s = String(value || "").trim();
+    if (!/^[A-Z0-9]{4,8}$/i.test(s)) return false;
+    return /\d/.test(s);
+  }
+
+  function isKtSegment(value) {
+    const s = String(value || "").trim();
+    if (!/^kt_[a-z0-9]+$/i.test(s)) return false;
+    return /\d/.test(s.slice(3));
+  }
+
   function stripStateSegments(pathname) {
     const parts = pathname.split("/").filter(Boolean);
-    if (parts.length && /^kt_[a-z0-9]+$/i.test(parts[parts.length - 1])) {
+    if (!isPlateRoot(parts)) {
+      return "/" + parts.join("/") + "/";
+    }
+    if (parts.length && isKtSegment(parts[parts.length - 1])) {
       parts.pop();
     }
-    if (parts.length && /^[A-Z0-9]{4,8}$/i.test(parts[parts.length - 1])) {
+    if (parts.length && isPlateSegment(parts[parts.length - 1])) {
       parts.pop();
     }
     return "/" + parts.join("/") + "/";
@@ -202,15 +230,16 @@
 
   function readPlateKtFromUrl() {
     const parts = window.location.pathname.split("/").filter(Boolean);
+    if (!isPlateRoot(parts)) return { plate: "", kt: "" };
     let kt = "";
     let plate = "";
     const last = parts[parts.length - 1] || "";
-    if (/^kt_[a-z0-9]+$/i.test(last)) {
+    if (isKtSegment(last)) {
       kt = last;
       const prev = parts[parts.length - 2] || "";
-      if (/^[A-Z0-9]{4,8}$/i.test(prev)) plate = prev.toUpperCase();
+      if (isPlateSegment(prev)) plate = prev.toUpperCase();
     } else {
-      if (/^[A-Z0-9]{4,8}$/i.test(last)) plate = last.toUpperCase();
+      if (isPlateSegment(last)) plate = last.toUpperCase();
     }
     return { plate, kt };
   }
@@ -777,14 +806,18 @@
         intentType,
         updatedAt: Date.now(),
       };
-      savePlateContext(ctx);
-      renderPlatePill(ctx);
-      dispatchPlateEvent(ctx);
       if (typeof window.openPlateGroupOverlay === "function") {
+        window.__hvPlateOverlayPrevCtx = loadPlateContext();
+        savePlateContext(ctx);
+        renderPlatePill(ctx);
+        dispatchPlateEvent(ctx);
         setPlateBarState(bar, statusEl, "success", "Kies productgroep.");
         window.openPlateGroupOverlay(normalized);
         return;
       }
+      savePlateContext(ctx);
+      renderPlatePill(ctx);
+      dispatchPlateEvent(ctx);
       const encoded = encodeURIComponent(normalized);
       const targetBase = PLATE_PATH.endsWith("/") ? PLATE_PATH : `${PLATE_PATH}/`;
       const target = intentType
