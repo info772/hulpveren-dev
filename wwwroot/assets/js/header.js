@@ -458,7 +458,8 @@
     const openNav = () => {
       if (isOpen()) return;
       setNavState(header, toggle, overlay, drawer, true);
-      toggleMobileMegaPanels(true);
+      // Mobile: start collapsed, panels open only after tap.
+      toggleMobileMegaPanels(false);
       if (closeBtn) closeBtn.focus();
     };
 

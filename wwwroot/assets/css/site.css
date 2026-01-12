@@ -1015,14 +1015,18 @@ body.nav-open .plate-search,
     align-items: stretch;
     text-align: left;
   }
-  #site-header .nav-link,
-  #site-header .nav-toggle-cta{
+  #site-header .nav-drawer .nav-link,
+  #site-header .nav-drawer .nav-toggle-cta{
     white-space: normal;
     text-align: left;
     justify-content: space-between;
     line-height: 1.2;
-    padding: 12px 14px;
+    padding: 12px 12px;
+    width: 100%;
+    max-width: 100%;
+    word-break: break-word;
     overflow-wrap: anywhere;
+    color: #f6f8ff;
   }
 }
 
