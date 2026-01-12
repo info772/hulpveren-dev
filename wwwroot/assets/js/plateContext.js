@@ -780,6 +780,11 @@
       savePlateContext(ctx);
       renderPlatePill(ctx);
       dispatchPlateEvent(ctx);
+      if (typeof window.openPlateGroupOverlay === "function") {
+        setPlateBarState(bar, statusEl, "success", "Kies productgroep.");
+        window.openPlateGroupOverlay(normalized);
+        return;
+      }
       const encoded = encodeURIComponent(normalized);
       const targetBase = PLATE_PATH.endsWith("/") ? PLATE_PATH : `${PLATE_PATH}/`;
       const target = intentType

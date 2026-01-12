@@ -145,3 +145,41 @@
     </div>
   </div>
 </header>
+
+<!-- Plate Product Group Overlay -->
+<div id="plate-group-overlay" class="pgo" aria-hidden="true">
+  <div class="pgo-backdrop" data-pgo-close></div>
+
+  <div class="pgo-dialog" role="dialog" aria-modal="true" aria-labelledby="pgo-title">
+    <button class="pgo-close" type="button" aria-label="Sluiten" data-pgo-close>&times;</button>
+
+    <div class="pgo-header">
+      <div class="pgo-kicker">Kentekencheck</div>
+      <h2 id="pgo-title" class="pgo-title">Kies je productgroep</h2>
+      <div class="pgo-sub">
+        Kenteken: <strong id="pgo-plate"></strong>
+      </div>
+    </div>
+
+    <div class="pgo-grid">
+      <button class="pgo-card" type="button" data-pgo-go="hv">
+        <div class="pgo-card-title">MAD Hulpveren</div>
+        <div class="pgo-card-sub">Meer stabiliteit en minder doorzakken</div>
+      </button>
+
+      <button class="pgo-card" type="button" data-pgo-go="air">
+        <div class="pgo-card-title">MAD Luchtvering</div>
+        <div class="pgo-card-sub">Instelbaar comfort en hoogte</div>
+      </button>
+
+      <button class="pgo-card" type="button" data-pgo-go="ls">
+        <div class="pgo-card-title">MAD Verlagingsveren</div>
+        <div class="pgo-card-sub">Strakker rijgedrag en lagere stance</div>
+      </button>
+    </div>
+
+    <div class="pgo-footer">
+      <button class="pgo-secondary" type="button" data-pgo-close>Annuleer</button>
+    </div>
+  </div>
+</div>

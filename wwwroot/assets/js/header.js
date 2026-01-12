@@ -160,6 +160,70 @@
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
+  const normalizePlate = (value) =>
+    String(value || "")
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, "");
+
+  const plateGroupUrl = (group, plate) => {
+    const p = normalizePlate(plate);
+    if (!p) return "/kenteken";
+    return `/kenteken/?kt=${encodeURIComponent(p)}&pg=${encodeURIComponent(group)}`;
+  };
+
+  const openPlateGroupOverlay = (plate) => {
+    const p = normalizePlate(plate);
+    if (!p) return;
+    const overlay = document.getElementById("plate-group-overlay");
+    if (!overlay) return;
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    const plateEl = document.getElementById("pgo-plate");
+    if (plateEl) plateEl.textContent = p;
+    overlay.dataset.plate = p;
+    document.documentElement.classList.add("menu-open");
+  };
+
+  const closePlateGroupOverlay = () => {
+    const overlay = document.getElementById("plate-group-overlay");
+    if (!overlay) return;
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    delete overlay.dataset.plate;
+    const navOpen =
+      document.body.classList.contains("nav-open") ||
+      document.querySelector(".hv2-header")?.classList.contains("hv2-open");
+    if (!navOpen) {
+      document.documentElement.classList.remove("menu-open");
+    }
+  };
+
+  const initPlateGroupOverlay = () => {
+    const overlay = document.getElementById("plate-group-overlay");
+    if (!overlay || overlay.dataset.pgoBound === "1") return;
+    overlay.dataset.pgoBound = "1";
+    overlay.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target && target.matches("[data-pgo-close]")) {
+        event.preventDefault();
+        closePlateGroupOverlay();
+        return;
+      }
+      const btn = target && target.closest && target.closest("[data-pgo-go]");
+      if (!btn) return;
+      event.preventDefault();
+      const plate = overlay.dataset.plate || "";
+      const group = btn.getAttribute("data-pgo-go") || "";
+      window.location.href = plateGroupUrl(group, plate);
+    });
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closePlateGroupOverlay();
+    });
+  };
+
+  window.openPlateGroupOverlay = openPlateGroupOverlay;
+  window.closePlateGroupOverlay = closePlateGroupOverlay;
+
   const MAKES_URL = "/data/makes.json";
   let makesPromise = null;
 
@@ -703,6 +767,7 @@
       bindMegaMenus(mountEl);
       mountMakesWhenReady();
       bindHeaderScroll(mountEl);
+      initPlateGroupOverlay();
     }
 
     injectBreadcrumbs(mountEl);
