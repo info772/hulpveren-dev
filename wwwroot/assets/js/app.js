@@ -5497,6 +5497,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     })();
     const scored = !isRdwBasic ? pickBestCandidate(candidates, plateYear) : null;
     const sortedCandidates = scored?.sorted?.length ? scored.sorted : candidates;
+    const candidateButtons = !isRdwBasic
+      ? buildCandidateButtons(sortedCandidates)
+      : [];
     const savedCandidate =
       !isRdwBasic && savedKtyp
         ? sortedCandidates.find((c) => String(c?.ktyp || "") === String(savedKtyp))
@@ -5517,12 +5520,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         // ignore storage failures
       }
     }
-    const ambiguous =
-      !isRdwBasic && !savedCandidate && !fordTransitCandidate
-        ? Boolean(scored?.ambiguous)
-        : false;
-    if (!isRdwBasic && ambiguous) {
-      const buttons = buildCandidateButtons(sortedCandidates);
+    const mustChooseModel =
+      !isRdwBasic &&
+      !savedCandidate &&
+      !fordTransitCandidate &&
+      candidateButtons.length > 1;
+    if (mustChooseModel) {
+      const buttons = candidateButtons;
       if (!buttons.length) {
         // fallback to best candidate when we cannot render choices
       } else {
