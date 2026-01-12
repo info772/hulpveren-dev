@@ -991,6 +991,41 @@ body.nav-open .plate-search,
   .fitment-status{ flex-direction: column; align-items: flex-start; }
 }
 
+@media (max-width: 900px){
+  .plate-context.is-collapsed .meta .k:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]),
+  .plate-context.is-collapsed .meta .v:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]){
+    display: none;
+  }
+  .plate-context__toggle{
+    display: inline-flex;
+    align-self: flex-start;
+    margin-top: 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: #f6f8ff;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .plate-context__toggle:hover{
+    background: rgba(255,255,255,0.06);
+  }
+  #site-header .nav-list{
+    align-items: stretch;
+    text-align: left;
+  }
+  #site-header .nav-link,
+  #site-header .nav-toggle-cta{
+    white-space: normal;
+    text-align: left;
+    justify-content: space-between;
+    line-height: 1.2;
+    padding: 12px 14px;
+    overflow-wrap: anywhere;
+  }
+}
+
 /* Hero */ 
 
 .hero { padding: 80px 0 40px; } 

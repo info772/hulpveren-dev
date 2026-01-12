@@ -1709,9 +1709,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (!context || !context.vehicle) return "";
       const vehicle = context.vehicle || {};
       const rows = [];
+      const buildPlateRow = (label, value) => `
+        <div class="k" data-plate-key="${esc(label)}">${esc(label)}</div>
+        <div class="v" data-plate-key="${esc(label)}">${esc(value)}</div>
+      `;
       const addRow = (label, value) => {
         if (value === undefined || value === null || value === "") return;
-        rows.push(buildMetaRow(label, value));
+        rows.push(buildPlateRow(label, value));
       };
       const cleanText = (value) => {
         const text = normalizeVehicleValue(value);
@@ -1765,6 +1769,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
             <div class="meta">
               ${rows.join("")}
             </div>
+            <button class="plate-context__toggle" type="button" data-plate-toggle aria-expanded="false">
+              Meer voertuigdetails
+            </button>
           </div>
         </div>
       `;
@@ -1790,6 +1797,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (mainWrap) {
         mainWrap.insertAdjacentHTML("afterbegin", html);
       }
+      bindPlateContextToggle();
     };
 
     const renderVehicleInfoCard = () => {
@@ -1800,6 +1808,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const card = document.querySelector("[data-vehicle-info-card]");
       if (card) {
         card.outerHTML = html;
+        bindPlateContextToggle();
         return;
       }
       const filtersWrap = document.querySelector(".filters-wrap");
@@ -1819,6 +1828,49 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (mainWrap) {
         mainWrap.insertAdjacentHTML("afterbegin", html);
       }
+      bindPlateContextToggle();
+    };
+
+    const bindPlateContextToggle = () => {
+      const card = document.querySelector(".plate-context");
+      if (!card) return;
+      const toggle = card.querySelector("[data-plate-toggle]");
+      if (!toggle) return;
+
+      const mq = window.matchMedia("(max-width: 900px)");
+      const apply = () => {
+        if (mq.matches) {
+          if (!card.classList.contains("is-collapsed")) {
+            card.classList.add("is-collapsed");
+          }
+          toggle.hidden = false;
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.textContent = "Meer voertuigdetails";
+        } else {
+          card.classList.remove("is-collapsed");
+          toggle.hidden = true;
+          toggle.setAttribute("aria-expanded", "true");
+        }
+      };
+
+      if (toggle.dataset.plateToggleBound !== "1") {
+        toggle.dataset.plateToggleBound = "1";
+        toggle.addEventListener("click", () => {
+          const collapsed = card.classList.toggle("is-collapsed");
+          toggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+          toggle.textContent = collapsed
+            ? "Meer voertuigdetails"
+            : "Minder voertuigdetails";
+        });
+      }
+
+      if (toggle.dataset.plateToggleMqBound !== "1") {
+        toggle.dataset.plateToggleMqBound = "1";
+        if (mq.addEventListener) mq.addEventListener("change", apply);
+        else if (mq.addListener) mq.addListener(apply);
+      }
+
+      apply();
     };
 
     const applyPlateContextToStaticLs = (context) => {
