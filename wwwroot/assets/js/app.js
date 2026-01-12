@@ -1840,14 +1840,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const mq = window.matchMedia("(max-width: 900px)");
       const apply = () => {
         if (mq.matches) {
-          if (!card.classList.contains("is-collapsed")) {
-            card.classList.add("is-collapsed");
-          }
+          card.classList.remove("is-expanded");
           toggle.hidden = false;
           toggle.setAttribute("aria-expanded", "false");
           toggle.textContent = "Meer voertuigdetails";
         } else {
-          card.classList.remove("is-collapsed");
+          card.classList.add("is-expanded");
           toggle.hidden = true;
           toggle.setAttribute("aria-expanded", "true");
         }
@@ -1856,11 +1854,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (toggle.dataset.plateToggleBound !== "1") {
         toggle.dataset.plateToggleBound = "1";
         toggle.addEventListener("click", () => {
-          const collapsed = card.classList.toggle("is-collapsed");
-          toggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
-          toggle.textContent = collapsed
-            ? "Meer voertuigdetails"
-            : "Minder voertuigdetails";
+          const expanded = card.classList.toggle("is-expanded");
+          toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+          toggle.textContent = expanded
+            ? "Minder voertuigdetails"
+            : "Meer voertuigdetails";
         });
       }
 

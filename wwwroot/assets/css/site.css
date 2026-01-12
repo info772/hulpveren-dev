@@ -992,9 +992,13 @@ body.nav-open .plate-search,
 }
 
 @media (max-width: 900px){
-  .plate-context.is-collapsed .meta .k:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]),
-  .plate-context.is-collapsed .meta .v:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]){
+  .plate-context .meta .k:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]),
+  .plate-context .meta .v:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]){
     display: none;
+  }
+  .plate-context.is-expanded .meta .k,
+  .plate-context.is-expanded .meta .v{
+    display: block;
   }
   .plate-context__toggle{
     display: inline-flex;
