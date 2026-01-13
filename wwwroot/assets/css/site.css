@@ -1984,6 +1984,54 @@ body.nav-open .hv2-burger{
 }
 
 @media (max-width: 900px){
+  /* Mobile split-button nav */
+  .mnav-item{
+    position: relative;
+    width: 100%;
+  }
+  .mnav-link{
+    display: block;
+    padding: 14px 52px 14px 16px;
+    border-radius: 14px;
+  }
+  .mnav-toggle{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--border);
+  }
+  .mnav-chevron{
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid rgba(255,255,255,.85);
+    border-bottom: 2px solid rgba(255,255,255,.85);
+    transform: rotate(45deg);
+    transition: transform .18s ease;
+  }
+  .mnav-toggle[aria-expanded="true"] .mnav-chevron{
+    transform: rotate(-135deg);
+  }
+  .mnav-sub{
+    margin-top: 10px;
+    padding-left: 10px;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+  .mnav-sub li{
+    background: none !important;
+  }
+
   /* Drawer scroll only; prevent submenu stretch/inner scroll */
   #site-header .nav-drawer{
     overflow-y: auto;

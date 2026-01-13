@@ -6,7 +6,7 @@
   // JS hooks (markup must align):
   // - Burger toggle: [data-hv2-toggle], overlay: [data-hv2-overlay], drawer: [data-hv2-drawer], state class on .hv2-header = "hv2-open"
   // - Mobile close: any link in .hv2-nav, body gets .nav-open when drawer open
-  // - Mega menu: items use .nav-item-mega/.hv-nav-item-mega, trigger .nav-toggle-cta/.hv-nav-toggle, panel .mega-panel/.hv-mega-panel, open class "is-open"
+  // - Mega menu: items use .nav-item-mega/.hv-nav-item-mega, trigger .mnav-toggle/.nav-toggle-cta/.hv-nav-toggle, panel .mega-panel/.hv-mega-panel, open class "is-open"
 
   if (window.__HV_HEADER_V2_LOADED__) return;
   window.__HV_HEADER_V2_LOADED__ = true;
@@ -149,7 +149,9 @@
       panel.hidden = true;
       panel.classList.remove("is-open");
     });
-    root.querySelectorAll(".hv-nav-toggle, .nav-toggle-cta").forEach((trig) => trig.setAttribute("aria-expanded", "false"));
+    root
+      .querySelectorAll(".mnav-toggle, .hv-nav-toggle, .nav-toggle-cta")
+      .forEach((trig) => trig.setAttribute("aria-expanded", "false"));
   };
 
   const slugify = (s) =>
@@ -439,7 +441,7 @@
       if (!isMobileNav()) return;
       const items = mountEl.querySelectorAll(".nav-item-mega, .hv-nav-item-mega");
       items.forEach((item) => {
-        const trig = item.querySelector(".nav-toggle-cta, .hv-nav-toggle");
+        const trig = item.querySelector(".mnav-toggle, .nav-toggle-cta, .hv-nav-toggle");
         const panel = item.querySelector(".mega-panel, .hv-mega-panel");
         if (panel) {
           panel.hidden = !open;
@@ -519,7 +521,7 @@
 
     items.forEach((item, idx) => {
       const trigger =
-        item.querySelector(".nav-toggle-cta, .hv-nav-toggle") ||
+        item.querySelector(".mnav-toggle, .nav-toggle-cta, .hv-nav-toggle") ||
         item.querySelector("a.nav-link");
       const panel = item.querySelector(".mega-panel, .hv-mega-panel");
       if (!trigger || !panel) return;
