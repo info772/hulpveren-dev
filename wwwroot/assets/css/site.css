@@ -1176,22 +1176,75 @@ margin-bottom: 16px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); transition: trans
   overflow: hidden;
 }
 
-.year-fields {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 10px;
+/* Bouwjaar layout */
+.fy{
+  display:grid;
+  gap:12px;
+  align-items:center;
 }
 
-.year-pill {
-  min-width: 78px;
-  text-align: center;
-  padding: 10px 14px;
-  border-radius: 999px;
+@media (min-width: 901px){
+  .fy{
+    grid-template-columns: minmax(260px,1fr) auto;
+  }
+  .fy-right{
+    justify-self:end;
+  }
+}
+
+@media (max-width: 900px){
+  .fy{
+    grid-template-columns: 1fr;
+  }
+  .fy-right{
+    justify-self:start;
+  }
+}
+
+.fy-left{
+  display:grid;
+  gap:10px;
+}
+
+.fy-label{
+  font-weight:600;
+  opacity:.9;
+}
+
+.fy-range{
+  width:100%;
+}
+
+.fy-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:flex-end;
+}
+
+@media (max-width: 900px){
+  .fy-chips{
+    justify-content:flex-start;
+  }
+}
+
+.fy-chip{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:38px;
+  padding:0 14px;
+  border-radius:999px;
+  white-space:nowrap;
+  min-width:78px;
   border: 1px solid var(--border);
   background: rgba(255,255,255,0.06);
   color: #dfe8ff;
   font-size: 12px;
+}
+
+.fy-chip--from{
+  min-width:92px;
 }
 
 .grp .muted { color: var(--muted); font-size: 14px; } 
