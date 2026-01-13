@@ -2180,3 +2180,18 @@ body.nav-open .hv2-burger{
     grid-template-columns: 1fr;
   }
 }
+
+/* FIX: mobile drawer click-through  header-inner should not eat taps */
+@media (max-width: 900px) {
+  /* When the mobile menu is open, the inner wrapper must not intercept taps */
+  html.menu-open #site-header .hv2-header .hv2-inner.header-inner {
+    pointer-events: none;
+  }
+
+  /* Re-enable interactions inside the drawer and the burger toggle */
+  html.menu-open #site-header .hv2-header .nav-drawer,
+  html.menu-open #site-header .hv2-header .nav-drawer *,
+  html.menu-open #site-header .hv2-header [data-hv2-toggle] {
+    pointer-events: auto;
+  }
+}
