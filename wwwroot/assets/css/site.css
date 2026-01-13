@@ -2035,8 +2035,12 @@ body.nav-open .hv2-burger{
   }
 
   /* Override drawer link sizing so the toggle stays on the right */
-  #site-header .nav-drawer .mnav-link{
+  #site-header .nav-drawer a.nav-link.mnav-link{
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
+    height: 52px;
+    width: 100%;
     padding: 0 56px 0 16px;
     line-height: 1;
   }
