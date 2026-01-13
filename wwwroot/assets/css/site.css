@@ -1116,6 +1116,7 @@ margin-bottom: 16px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); transition: trans
 .chip.danger { background: rgba(244,162,97,0.15); color: #ffd4b2; } 
 
 .chip.support { background: rgba(88,213,255,0.16); color: #def5ff; } 
+.chip.price { background: #FAB819; color: #111; border-color: transparent; font-weight: 700; }
 
 .enginebox { border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; background: rgba(255,255,255,0.03); } 
 
@@ -1124,6 +1125,7 @@ margin-bottom: 16px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); transition: trans
 .pillrow { display: flex; flex-wrap: wrap; gap: 8px; } 
 
 .pill { background: rgba(255,255,255,0.06); border-radius: 999px; padding: 6px 10px; color: #dfe8ff; font-size: 12px; border: 1px solid var(--border); } 
+.pill.price { background: #FAB819; color: #111; border-color: transparent; font-weight: 700; }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: 10px; } 
 

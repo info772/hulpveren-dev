@@ -4097,6 +4097,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         ? k.powertrains_allowed
         : enginesFromKitAndNotes(k, f);
     const engineList = (engines || []).filter((x) => x && x !== "-");
+    const priceText = priceLabel(k?.pricing_nl?.total_inc_vat_from_eur);
 
     const imgId = `kitimg_${idx}`;
     const autoType = `${makeLabel} ${modelLabel}`.trim();
@@ -4174,7 +4175,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
             <div class="pillrow">
               ${approvalText ? `<span class="pill">${esc(approvalText)}</span>` : ``}
-              <span class="pill">Prijs: incl. montage &amp; btw</span>
+              <span class="pill price">Prijs: ${priceText} incl. montage &amp; btw</span>
             </div>
 
             <div class="cta-row">
@@ -4261,7 +4262,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
             </div>
             <div class="chips">
               <span class="chip support">Montage &amp; afstelling</span>
-              <span class="chip">${esc(price)}</span>
+              <span class="chip price">${esc(price)}</span>
             </div>
             <div class="cta-row">
               <a class="btn btn-ghost" href="/luchtvering/${esc(
@@ -4345,7 +4346,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
             </div>
             <div class="chips">
               <span class="chip support">Montage &amp; uitlijning</span>
-              <span class="chip">${esc(price)}</span>
+              <span class="chip price">${esc(price)}</span>
             </div>
             <div class="cta-row">
               <a class="btn btn-ghost" href="/verlagingsveren/${esc(
