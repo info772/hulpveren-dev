@@ -1025,7 +1025,7 @@ body.nav-open .plate-search,
     align-items: stretch;
     text-align: left;
   }
-  #site-header .nav-drawer .nav-link,
+  #site-header .nav-drawer a.nav-link,
   #site-header .nav-drawer .nav-toggle-cta{
     white-space: normal;
     text-align: left;
