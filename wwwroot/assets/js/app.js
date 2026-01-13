@@ -5051,10 +5051,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     value,
     onInputAttr,
     extraLeftHtml,
+    extraRightHtml,
   }) {
     const safeLabel = label || "Bouwjaar";
     const inputAttrs = onInputAttr ? ` ${onInputAttr}` : "";
     const extra = extraLeftHtml ? `\n        ${extraLeftHtml}\n` : "";
+    const extraRight = extraRightHtml ? `\n        ${extraRightHtml}\n` : "";
     return `
       <section class="filter-card grp fy">
         <div class="fy-left">
@@ -5069,6 +5071,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           />
           ${extra}
         </div>
+        ${extraRightHtml ? `<div class="fy-right">${extraRight}</div>` : ""}
       </section>
     `;
   }
@@ -5202,7 +5205,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           max: yearMax,
           value: yearMin,
           onInputAttr: 'id="flt-year"',
-          extraLeftHtml: yearExtraInputs,
+          extraRightHtml: yearExtraInputs,
         })
       : "";
 
@@ -6475,7 +6478,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           max: yearMax,
           value: yearMin,
           onInputAttr: 'id="flt-year"',
-          extraLeftHtml: yearExtraInputs,
+          extraRightHtml: yearExtraInputs,
         })
       : "";
 
@@ -7046,7 +7049,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           max: yearMax,
           value: 0,
           onInputAttr: 'id="nr-year-slider"',
-          extraLeftHtml: yearExtraInputs,
+          extraRightHtml: yearExtraInputs,
         })
       );
     }
