@@ -5048,12 +5048,43 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     toEl.textContent = values.to;
   }
 
-  function buildYearFieldsHtml(id) {
+  function renderYearFilterRow({
+    id,
+    label,
+    fromText,
+    toText,
+    min,
+    max,
+    value,
+    onInputAttr,
+    extraLeftHtml,
+  }) {
+    const safeLabel = label || "Bouwjaar";
+    const chipId = id ? ` id="${id}"` : "";
+    const inputAttrs = onInputAttr ? ` ${onInputAttr}` : "";
+    const extra = extraLeftHtml ? `\n        ${extraLeftHtml}\n` : "";
     return `
-      <div class="fy-chips" id="${id}">
-        <span class="fy-chip fy-chip--from" data-year="from" aria-label="Bouwjaar van"></span>
-        <span class="fy-chip fy-chip--to" data-year="to" aria-label="Bouwjaar tot"></span>
-      </div>
+      <section class="filter-card grp fy">
+        <div class="fy-left">
+          <div class="fy-label">${esc(safeLabel)}</div>
+          <input
+            class="fy-range"
+            type="range"
+            min="${esc(min)}"
+            max="${esc(max)}"
+            value="${esc(value)}"${inputAttrs}
+            aria-label="${esc(safeLabel)}"
+          />
+          ${extra}
+        </div>
+
+        <div class="fy-right">
+          <div class="fy-chips"${chipId}>
+            <span class="fy-chip fy-chip--from" data-year="from">${esc(fromText || "")}</span>
+            <span class="fy-chip fy-chip--to" data-year="to">${esc(toText || "")}</span>
+          </div>
+        </div>
+      </section>
     `;
   }
 
@@ -5173,25 +5204,28 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       posAvail.add(positionKey(k));
     }
 
-    const yearFieldsHtml = buildYearFieldsHtml("flt-year-label");
+    const yearFieldValues = resolveYearFieldValues(
+      (plateContext && plateContext.yearRange) || (activeCtx && activeCtx.yearRange),
+      { from: yearMin, to: yearMax }
+    );
+    const yearExtraInputs = `
+      <div class="range-row" style="gap:8px; align-items:center; margin-top:6px;">
+        <input type="number" id="flt-year-from" placeholder="van" style="width:90px;padding:6px 8px;">
+        <input type="number" id="flt-year-to" placeholder="tot" style="width:90px;padding:6px 8px;">
+      </div>
+    `;
     const yearGroup = showFilters
-      ? `
-        <section class="filter-card grp range" id="grp-year">
-          <div class="fy">
-            <div class="fy-left">
-              <div class="fy-label">Bouwjaar</div>
-              <input class="fy-range" type="range" id="flt-year" min="${yearMin}" max="${yearMax}" value="${yearMin}">
-              <div class="range-row" style="gap:8px; align-items:center; margin-top:6px;">
-                <input type="number" id="flt-year-from" placeholder="van" style="width:90px;padding:6px 8px;">
-                <input type="number" id="flt-year-to" placeholder="tot" style="width:90px;padding:6px 8px;">
-              </div>
-            </div>
-            <div class="fy-right">
-              ${yearFieldsHtml}
-            </div>
-          </div>
-        </section>
-      `
+      ? renderYearFilterRow({
+          id: "flt-year-label",
+          label: "Bouwjaar",
+          fromText: yearFieldValues.from,
+          toText: yearFieldValues.to,
+          min: yearMin,
+          max: yearMax,
+          value: yearMin,
+          onInputAttr: 'id="flt-year"',
+          extraLeftHtml: yearExtraInputs,
+        })
       : "";
 
     let modeGroup = "";
@@ -6432,21 +6466,28 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       posAvail.add(positionKey(k));
     }
 
-    const yearFieldsHtml = buildYearFieldsHtml("flt-year-label");
+    const yearFieldValues = resolveYearFieldValues(
+      (plateContext && plateContext.yearRange) || (activeCtx && activeCtx.yearRange),
+      { from: yearMin, to: yearMax }
+    );
+    const yearExtraInputs = `
+      <div class="range-row" style="gap:8px; align-items:center; margin-top:6px;">
+        <input type="number" id="flt-year-from" placeholder="van" style="width:90px;padding:6px 8px;">
+        <input type="number" id="flt-year-to" placeholder="tot" style="width:90px;padding:6px 8px;">
+      </div>
+    `;
     const yearGroup = showFilters
-      ? `
-        <section class="filter-card grp range" id="grp-year">
-          <div class="fy">
-            <div class="fy-left">
-              <div class="fy-label">Bouwjaar</div>
-              <input class="fy-range" type="range" id="flt-year" min="${yearMin}" max="${yearMax}" value="${yearMin}">
-            </div>
-            <div class="fy-right">
-              ${yearFieldsHtml}
-            </div>
-          </div>
-        </section>
-      `
+      ? renderYearFilterRow({
+          id: "flt-year-label",
+          label: "Bouwjaar",
+          fromText: yearFieldValues.from,
+          toText: yearFieldValues.to,
+          min: yearMin,
+          max: yearMax,
+          value: yearMin,
+          onInputAttr: 'id="flt-year"',
+          extraLeftHtml: yearExtraInputs,
+        })
       : "";
 
     let modeGroup = "";
@@ -7030,25 +7071,31 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const showAppr = apprSet.size > 1;
     const showEngine = hasEngine;
 
-    const yearFieldsHtml = buildYearFieldsHtml("nr-year-label");
+    const yearFieldValues = resolveYearFieldValues(
+      plateYearRange || FILTER.yearRange,
+      { from: yearMin, to: yearMax }
+    );
+    const yearExtraInputs = `
+      <div class="range-row" style="gap:8px; align-items:center;">
+        <input type="number" id="nr-year-from" placeholder="van" style="width:90px;padding:6px 8px;">
+        <input type="number" id="nr-year-to" placeholder="tot" style="width:90px;padding:6px 8px;">
+      </div>
+    `;
     const filters = [];
     if (showYear) {
-      filters.push(`
-        <section class="filter-card grp">
-          <div class="fy">
-            <div class="fy-left">
-              <div class="fy-label">Bouwjaar</div>
-              <input class="fy-range" type="range" id="nr-year-slider" min="${yearMin}" max="${yearMax}" value="0">
-              <div class="range-row" style="gap:8px; align-items:center;">
-                <input type="number" id="nr-year-from" placeholder="van" style="width:90px;padding:6px 8px;">
-                <input type="number" id="nr-year-to" placeholder="tot" style="width:90px;padding:6px 8px;">
-              </div>
-            </div>
-            <div class="fy-right">
-              ${yearFieldsHtml}
-            </div>
-          </div>
-        </section>`);
+      filters.push(
+        renderYearFilterRow({
+          id: "nr-year-label",
+          label: "Bouwjaar",
+          fromText: yearFieldValues.from,
+          toText: yearFieldValues.to,
+          min: yearMin,
+          max: yearMax,
+          value: 0,
+          onInputAttr: 'id="nr-year-slider"',
+          extraLeftHtml: yearExtraInputs,
+        })
+      );
     }
     if (showPos) {
       const posOptions = ["front", "rear", "both"];
