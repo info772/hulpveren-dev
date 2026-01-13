@@ -1990,6 +1990,12 @@ body.nav-open .hv2-burger{
     border-radius: 12px;
     display: grid;
     place-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    min-width: 40px;
+    max-width: 40px;
+    z-index: 2;
     background: rgba(255,255,255,.06);
     border: 1px solid var(--border);
   }
@@ -2023,6 +2029,50 @@ body.nav-open .hv2-burger{
   .mnav-toggle::before,
   .mnav-toggle::after{
     content: none !important;
+  }
+
+  /* Override drawer link sizing so the toggle stays on the right */
+  #site-header .nav-drawer .mnav-link{
+    justify-content: flex-start;
+    padding: 0 56px 0 16px;
+    line-height: 1;
+  }
+  #site-header .nav-drawer .mnav-toggle{
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    min-width: 40px;
+    max-width: 40px;
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Mobile mega list: ensure labels are visible */
+  #site-header .nav-drawer .mega-list,
+  #site-header .nav-drawer .mega-list li{
+    width: 100%;
+  }
+  #site-header .nav-drawer .mega-list a,
+  #site-header .nav-drawer .mega-link{
+    display: block;
+    color: #f6f8ff;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-align: left;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+  #site-header .nav-drawer .mega-list a:hover{
+    background: rgba(88,213,255,0.14);
+    color: #eaf8ff;
   }
 
   /* Drawer scroll only; prevent submenu stretch/inner scroll */
