@@ -3257,14 +3257,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       label: formatYearRangeLabel({ from: yearMin, to: yearMax }),
       source,
     };
-    const elMin = document.querySelector("[name='flt-year-from'], [data-year-min]");
-    const elMax = document.querySelector("[name='flt-year-to'], [data-year-max]");
-    if (elMin) elMin.value = yearMin ?? "";
-    if (elMax) elMax.value = yearMax ?? "";
-    const labelEl = document.getElementById("flt-year-label");
-    if (labelEl) {
-      setYearFields(labelEl, FILTER.yearRange);
-    }
+    const elMin =
+      document.getElementById("flt-year-from") ||
+      document.querySelector("[name='flt-year-from'], [data-year-min]");
+    const elMax =
+      document.getElementById("flt-year-to") ||
+      document.querySelector("[name='flt-year-to'], [data-year-max]");
+    setYearInputs(elMin, elMax, FILTER.yearRange);
     updateFilterSummary();
     if (typeof window.applyHvFilters === "function") {
       window.applyHvFilters();
@@ -5019,15 +5018,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   function resolveYearFieldValues(range, fallback) {
-    if (range && range.label) {
-      const split = splitYearLabel(range.label);
-      if (split) return split;
-    }
     if (range && (range.from != null || range.to != null)) {
       return {
         from: range.from != null ? String(range.from) : "",
         to: range.to != null ? String(range.to) : "",
       };
+    }
+    if (range && range.label) {
+      const split = splitYearLabel(range.label);
+      if (split) return split;
     }
     if (fallback && (fallback.from != null || fallback.to != null)) {
       return {
@@ -5038,21 +5037,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return { from: "", to: "" };
   }
 
-  function setYearFields(container, range, fallback) {
-    if (!container) return;
-    const fromEl = container.querySelector("[data-year='from']");
-    const toEl = container.querySelector("[data-year='to']");
-    if (!fromEl || !toEl) return;
+  function setYearInputs(fromInput, toInput, range, fallback) {
+    if (!fromInput && !toInput) return;
     const values = resolveYearFieldValues(range, fallback);
-    fromEl.textContent = values.from;
-    toEl.textContent = values.to;
+    if (fromInput) fromInput.value = values.from || "";
+    if (toInput) toInput.value = values.to || "";
   }
 
   function renderYearFilterRow({
-    id,
     label,
-    fromText,
-    toText,
     min,
     max,
     value,
@@ -5060,7 +5053,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     extraLeftHtml,
   }) {
     const safeLabel = label || "Bouwjaar";
-    const chipId = id ? ` id="${id}"` : "";
     const inputAttrs = onInputAttr ? ` ${onInputAttr}` : "";
     const extra = extraLeftHtml ? `\n        ${extraLeftHtml}\n` : "";
     return `
@@ -5076,13 +5068,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
             aria-label="${esc(safeLabel)}"
           />
           ${extra}
-        </div>
-
-        <div class="fy-right">
-          <div class="fy-chips"${chipId}>
-            <span class="fy-chip fy-chip--from" data-year="from">${esc(fromText || "")}</span>
-            <span class="fy-chip fy-chip--to" data-year="to">${esc(toText || "")}</span>
-          </div>
         </div>
       </section>
     `;
@@ -5204,10 +5189,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       posAvail.add(positionKey(k));
     }
 
-    const yearFieldValues = resolveYearFieldValues(
-      (plateContext && plateContext.yearRange) || (activeCtx && activeCtx.yearRange),
-      { from: yearMin, to: yearMax }
-    );
     const yearExtraInputs = `
       <div class="range-row" style="gap:8px; align-items:center; margin-top:6px;">
         <input type="number" id="flt-year-from" placeholder="van" style="width:90px;padding:6px 8px;">
@@ -5216,10 +5197,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     `;
     const yearGroup = showFilters
       ? renderYearFilterRow({
-          id: "flt-year-label",
           label: "Bouwjaar",
-          fromText: yearFieldValues.from,
-          toText: yearFieldValues.to,
           min: yearMin,
           max: yearMax,
           value: yearMin,
@@ -5369,13 +5347,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         <div id="model-grid" class="grid" data-set-list></div>
       `);
     initVehicleDetailsToggle(app);
-    const yearLabelEl = document.getElementById("flt-year-label");
-    if (yearLabelEl) {
-      const fallbackRange = { from: yearMin, to: yearMax };
-      setYearFields(yearLabelEl, FILTER.yearRange, fallbackRange);
-      if (plateContext && plateContext.yearRange) {
-        setYearFields(yearLabelEl, plateContext.yearRange, fallbackRange);
-      }
+    const yearFromInput = document.getElementById("flt-year-from");
+    const yearToInput = document.getElementById("flt-year-to");
+    if (FILTER.yearRange) {
+      setYearInputs(yearFromInput, yearToInput, FILTER.yearRange);
+    }
+    if (plateContext && plateContext.yearRange) {
+      setYearInputs(yearFromInput, yearToInput, plateContext.yearRange);
     }
     if (FILTER.drive.size) {
       const driveWrap = document.getElementById("drive-chips");
@@ -5449,24 +5427,42 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     (function bindFilterEvents() {
       const yearInput = document.getElementById("flt-year");
-      const yearLabel = document.getElementById("flt-year-label");
-        if (yearInput && yearLabel) {
-          yearInput.addEventListener("input", (e) => {
-            const v = +e.target.value || yearMin;
-            FILTER.year = v;
-            setYearFields(yearLabel, { from: v, to: v });
-            renderCards();
-          });
-          yearLabel.addEventListener("click", () => {
-            FILTER.year = null;
-            setYearFields(yearLabel, FILTER.yearRange, {
-              from: yearMin,
-              to: yearMax,
-            });
-            yearInput.value = String(yearMin);
-            renderCards();
-          });
+      const yearFromInput = document.getElementById("flt-year-from");
+      const yearToInput = document.getElementById("flt-year-to");
+      if (yearInput) {
+        if (FILTER.yearRange) {
+          setYearInputs(yearFromInput, yearToInput, FILTER.yearRange);
+          if (FILTER.yearRange.from != null) {
+            yearInput.value = String(FILTER.yearRange.from);
+          }
         }
+        yearInput.addEventListener("input", (e) => {
+          const v = +e.target.value || yearMin;
+          FILTER.year = v;
+          FILTER.yearRange = null;
+          if (yearFromInput) yearFromInput.value = "";
+          if (yearToInput) yearToInput.value = "";
+          renderCards();
+        });
+      }
+      if (yearFromInput || yearToInput) {
+        const updateRange = () => {
+          const from = yearFromInput && yearFromInput.value ? parseInt(yearFromInput.value, 10) : null;
+          const to = yearToInput && yearToInput.value ? parseInt(yearToInput.value, 10) : null;
+          FILTER.year = null;
+          const nextRange =
+            from != null || to != null
+              ? { from: Number.isFinite(from) ? from : null, to: Number.isFinite(to) ? to : null, label: null, source: "manual" }
+              : null;
+          if (nextRange) {
+            nextRange.label = nextRange.label || formatYearRangeLabel(nextRange);
+          }
+          FILTER.yearRange = nextRange;
+          renderCards();
+        };
+        if (yearFromInput) yearFromInput.addEventListener("input", updateRange);
+        if (yearToInput) yearToInput.addEventListener("input", updateRange);
+      }
 
       const modeWrap = document.getElementById("mode-chips");
       if (modeWrap) {
@@ -6466,10 +6462,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       posAvail.add(positionKey(k));
     }
 
-    const yearFieldValues = resolveYearFieldValues(
-      (plateContext && plateContext.yearRange) || (activeCtx && activeCtx.yearRange),
-      { from: yearMin, to: yearMax }
-    );
     const yearExtraInputs = `
       <div class="range-row" style="gap:8px; align-items:center; margin-top:6px;">
         <input type="number" id="flt-year-from" placeholder="van" style="width:90px;padding:6px 8px;">
@@ -6478,10 +6470,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     `;
     const yearGroup = showFilters
       ? renderYearFilterRow({
-          id: "flt-year-label",
           label: "Bouwjaar",
-          fromText: yearFieldValues.from,
-          toText: yearFieldValues.to,
           min: yearMin,
           max: yearMax,
           value: yearMin,
@@ -6630,13 +6619,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     initVehicleDetailsToggle(app);
 
     if (plateContext && plateContext.yearRange) {
-      const yearLabel = document.getElementById("flt-year-label");
-      if (yearLabel) {
-        setYearFields(yearLabel, plateContext.yearRange, {
-          from: yearMin,
-          to: yearMax,
-        });
-      }
+      const yearFromInput = document.getElementById("flt-year-from");
+      const yearToInput = document.getElementById("flt-year-to");
+      setYearInputs(yearFromInput, yearToInput, plateContext.yearRange);
     }
     if (FILTER.drive.size) {
       const driveWrap = document.getElementById("drive-chips");
@@ -6708,69 +6693,44 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     (function bindFilterEvents() {
     const yearInput = document.getElementById("flt-year");
-    const yearLabel = document.getElementById("flt-year-label");
     const yearFromInput = document.getElementById("flt-year-from");
     const yearToInput = document.getElementById("flt-year-to");
-    if (yearInput && yearLabel) {
-      const fallbackRange = { from: yearMin, to: yearMax };
+    if (yearInput) {
       if (FILTER.yearRange) {
-        setYearFields(yearLabel, FILTER.yearRange, fallbackRange);
-        if (yearFromInput && FILTER.yearRange.from != null) {
-          yearFromInput.value = String(FILTER.yearRange.from);
-        }
-        if (yearToInput && FILTER.yearRange.to != null) {
-          yearToInput.value = String(FILTER.yearRange.to);
-        }
-        if (yearInput && FILTER.yearRange.from != null) {
+        setYearInputs(yearFromInput, yearToInput, FILTER.yearRange);
+        if (FILTER.yearRange.from != null) {
           yearInput.value = String(FILTER.yearRange.from);
         }
-      } else {
-        setYearFields(yearLabel, null, fallbackRange);
       }
-        yearInput.addEventListener("input", (e) => {
-          const v = +e.target.value || yearMin;
-          FILTER.year = v;
-          FILTER.yearRange = null;
-          if (yearFromInput) yearFromInput.value = "";
-          if (yearToInput) yearToInput.value = "";
-          setYearFields(yearLabel, { from: v, to: v });
-          renderCards();
-        });
-        yearLabel.addEventListener("click", () => {
-          FILTER.year = null;
-          setYearFields(yearLabel, FILTER.yearRange, fallbackRange);
-          if (yearFromInput) yearFromInput.value = FILTER.yearRange?.from ?? "";
-          if (yearToInput) yearToInput.value = FILTER.yearRange?.to ?? "";
-          yearInput.value = String(yearMin);
-          renderCards();
-        });
-      }
-      if (yearFromInput || yearToInput) {
-        const updateRange = () => {
-          const from = yearFromInput && yearFromInput.value ? parseInt(yearFromInput.value, 10) : null;
-          const to = yearToInput && yearToInput.value ? parseInt(yearToInput.value, 10) : null;
-          FILTER.year = null;
-          const nextRange =
-            from != null || to != null
-              ? { from: Number.isFinite(from) ? from : null, to: Number.isFinite(to) ? to : null, label: null, source: "manual" }
-              : FILTER.yearRange && FILTER.yearRange.source === "plate"
-              ? FILTER.yearRange
-              : null;
-          if (nextRange) {
-            nextRange.label = nextRange.label || formatYearRangeLabel(nextRange);
-          }
-          FILTER.yearRange = nextRange;
-          if (yearLabel) {
-            setYearFields(yearLabel, FILTER.yearRange, {
-              from: yearMin,
-              to: yearMax,
-            });
-          }
-          renderCards();
-        };
-        if (yearFromInput) yearFromInput.addEventListener("input", updateRange);
-        if (yearToInput) yearToInput.addEventListener("input", updateRange);
-      }
+      yearInput.addEventListener("input", (e) => {
+        const v = +e.target.value || yearMin;
+        FILTER.year = v;
+        FILTER.yearRange = null;
+        if (yearFromInput) yearFromInput.value = "";
+        if (yearToInput) yearToInput.value = "";
+        renderCards();
+      });
+    }
+    if (yearFromInput || yearToInput) {
+      const updateRange = () => {
+        const from = yearFromInput && yearFromInput.value ? parseInt(yearFromInput.value, 10) : null;
+        const to = yearToInput && yearToInput.value ? parseInt(yearToInput.value, 10) : null;
+        FILTER.year = null;
+        const nextRange =
+          from != null || to != null
+            ? { from: Number.isFinite(from) ? from : null, to: Number.isFinite(to) ? to : null, label: null, source: "manual" }
+            : FILTER.yearRange && FILTER.yearRange.source === "plate"
+            ? FILTER.yearRange
+            : null;
+        if (nextRange) {
+          nextRange.label = nextRange.label || formatYearRangeLabel(nextRange);
+        }
+        FILTER.yearRange = nextRange;
+        renderCards();
+      };
+      if (yearFromInput) yearFromInput.addEventListener("input", updateRange);
+      if (yearToInput) yearToInput.addEventListener("input", updateRange);
+    }
 
       const modeWrap = document.getElementById("mode-chips");
       if (modeWrap) {
@@ -7071,10 +7031,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const showAppr = apprSet.size > 1;
     const showEngine = hasEngine;
 
-    const yearFieldValues = resolveYearFieldValues(
-      plateYearRange || FILTER.yearRange,
-      { from: yearMin, to: yearMax }
-    );
     const yearExtraInputs = `
       <div class="range-row" style="gap:8px; align-items:center;">
         <input type="number" id="nr-year-from" placeholder="van" style="width:90px;padding:6px 8px;">
@@ -7085,10 +7041,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (showYear) {
       filters.push(
         renderYearFilterRow({
-          id: "nr-year-label",
           label: "Bouwjaar",
-          fromText: yearFieldValues.from,
-          toText: yearFieldValues.to,
           min: yearMin,
           max: yearMax,
           value: 0,
@@ -7170,7 +7123,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       grid ? grid.querySelectorAll(".card.product") : []
     );
     const yearSlider = document.getElementById("nr-year-slider");
-    const yearLabel = document.getElementById("nr-year-label");
     const yearFrom = document.getElementById("nr-year-from");
     const yearTo = document.getElementById("nr-year-to");
     const engineInput = document.getElementById("nr-engine");
@@ -7181,10 +7133,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       document.querySelectorAll(".nr-appr")
     );
     const countEl = document.getElementById("nr-count");
-
-    if (yearLabel) {
-      setYearFields(yearLabel, FILTER.yearRange, { from: yearMin, to: yearMax });
-    }
 
     if (plateYearRange) {
       const from = plateYearRange.from ?? plateYearRange.to;
@@ -7198,21 +7146,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       yearSlider.min = yearMin;
       yearSlider.max = yearMax;
       yearSlider.value = 0;
-      if (yearLabel) {
-        setYearFields(yearLabel, null, { from: yearMin, to: yearMax });
-      }
       yearSlider.addEventListener("input", () => {
         const v = parseInt(yearSlider.value, 10);
-        if (!Number.isFinite(v) || v === 0) {
-          if (yearLabel) {
-            setYearFields(yearLabel, null, { from: yearMin, to: yearMax });
-          }
-        } else if (yearLabel) setYearFields(yearLabel, { from: v, to: v });
+        if (!Number.isFinite(v) || v === 0) return;
       });
-    }
-
-    if (plateYearRange && yearLabel) {
-      setYearFields(yearLabel, plateYearRange, { from: yearMin, to: yearMax });
     }
 
     function num(v) {
@@ -7270,23 +7207,20 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     const applyBtn = document.getElementById("nr-apply");
-    const resetBtn = document.getElementById("nr-reset");
-    if (applyBtn) applyBtn.addEventListener("click", apply);
+  const resetBtn = document.getElementById("nr-reset");
+  if (applyBtn) applyBtn.addEventListener("click", apply);
   if (resetBtn)
     resetBtn.addEventListener("click", () => {
       if (yearSlider && yearsAvail.length) {
         yearSlider.value = 0;
-        if (yearLabel) {
-          setYearFields(yearLabel, null, { from: yearMin, to: yearMax });
-        }
-        }
-        if (yearFrom) yearFrom.value = "";
-        if (yearTo) yearTo.value = "";
-        if (engineInput) engineInput.value = "";
-        posBoxes.forEach((b) => (b.checked = false));
-        apprBoxes.forEach((b) => (b.checked = false));
-        apply();
-      });
+      }
+      if (yearFrom) yearFrom.value = "";
+      if (yearTo) yearTo.value = "";
+      if (engineInput) engineInput.value = "";
+      posBoxes.forEach((b) => (b.checked = false));
+      apprBoxes.forEach((b) => (b.checked = false));
+      apply();
+    });
 
     apply();
   }
