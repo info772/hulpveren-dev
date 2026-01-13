@@ -2310,3 +2310,21 @@ body.nav-open .hv2-burger{
     padding: 8px 12px;
   }
 }
+
+
+/* Jump to first set (mobile) */
+.jump-row {
+  display: none;
+  margin: 10px 0 6px;
+}
+
+.jump-first-set {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .jump-row {
+    display: block;
+  }
+}

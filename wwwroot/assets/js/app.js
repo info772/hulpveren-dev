@@ -488,6 +488,67 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     ensureAppContainer();
   }
 
+  const ensureJumpButton = (root) => {
+    const container = root || document;
+    if (!container) return;
+    const crumbs = container.querySelector(".crumbs");
+    if (!crumbs) return;
+    if (container.querySelector(".jump-row")) return;
+    const grid =
+      container.querySelector("#model-grid") ||
+      container.querySelector("#nr-grid") ||
+      container.querySelector("#ls-grid") ||
+      container.querySelector(".grid[data-set-list]");
+    if (!grid) return;
+
+    const row = document.createElement("div");
+    row.className = "jump-row";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn btn-ghost jump-first-set";
+    btn.setAttribute("data-jump-first-set", grid.id || "model-grid");
+    btn.textContent = "Naar eerste set";
+    row.appendChild(btn);
+    crumbs.insertAdjacentElement("afterend", row);
+  };
+
+  function initJumpToFirstSet() {
+    if (!isAppRoute) return;
+    if (document.body && document.body.dataset.jumpFirstSetBound === "1") return;
+    if (document.body) document.body.dataset.jumpFirstSetBound = "1";
+
+    document.addEventListener("click", (event) => {
+      const btn = event.target.closest("[data-jump-first-set]");
+      if (!btn) return;
+      const gridId = btn.getAttribute("data-jump-first-set");
+      const grid =
+        (gridId && document.getElementById(gridId)) ||
+        document.querySelector("#model-grid") ||
+        document.querySelector("#nr-grid") ||
+        document.querySelector("#ls-grid") ||
+        document.querySelector(".grid[data-set-list]");
+      if (!grid) return;
+      const card = grid.querySelector(".card.product");
+      if (!card) return;
+      card.scrollIntoView({ behavior: "smooth", block: "start" });
+      const header =
+        document.querySelector("#site-header .header-inner") ||
+        document.querySelector("#site-header");
+      if (header) {
+        const offset = Math.round(header.getBoundingClientRect().height) + 12;
+        setTimeout(() => window.scrollBy(0, -offset), 200);
+      }
+    });
+
+    const target = app || ensureAppContainer();
+    if (target && !target.dataset.jumpObserver) {
+      target.dataset.jumpObserver = "1";
+      const observer = new MutationObserver(() => ensureJumpButton(target));
+      observer.observe(target, { childList: true, subtree: true });
+    }
+    ensureJumpButton(target || document);
+  }
+
   const hasApp = !!(app && isAppRoute);
 
   // Afbeeldingsbronnen (nieuwe site: lokale map)
@@ -717,6 +778,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     scheduleMobileMegaScroll();
     bindHeaderLeaveClose();
     ensureCanonicalOg();
+    initJumpToFirstSet();
   };
 
   if (document.readyState === "loading") {
