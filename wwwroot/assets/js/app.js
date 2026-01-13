@@ -4159,7 +4159,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     )}">
           <div class="img" id="${esc(imgId)}_wrap">
             <img id="${esc(imgId)}" alt="${esc(sku)}" loading="lazy" decoding="async">
-            ${badge ? `<div class="badge">${badge}</div>` : ``}
+            ${badge ? `<div class="badge price">${badge}</div>` : ``}
           </div>
 
           <div class="body">
