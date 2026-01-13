@@ -1148,39 +1148,50 @@ margin-bottom: 16px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); transition: trans
 
 .filters .grp.range input[type="range"] { flex: 1; margin: 2px 0 0; } 
 
-/* NR/LS filters alignment (match HV layout) */
-#nr-filters,
-.filters.ls-filters {
-  display: grid !important;
-  gap: 18px !important;
+/* Shared filters layout for HV/NR/LS */
+.filters-grid {
+  display: grid;
+  gap: 18px;
   align-items: start;
-  margin: 18px 0 !important;
+  margin: 18px 0;
 }
 
+/* Desktop: 2 kolommen (zoals HV) */
 @media (min-width: 901px) {
-  #nr-filters,
-  .filters.ls-filters {
-    grid-template-columns: 1fr 220px;
-  }
-  #nr-filters > .grp,
-  .filters.ls-filters > .grp {
-    grid-column: 1;
-  }
-  #nr-filters > .grp:last-child,
-  .filters.ls-filters > .grp:last-child {
-    grid-column: 2;
+  .filters-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
+/* Mobile: onder elkaar */
 @media (max-width: 900px) {
-  #nr-filters,
-  .filters.ls-filters {
+  .filters-grid {
     grid-template-columns: 1fr;
   }
-  #nr-filters > .grp,
-  .filters.ls-filters > .grp {
-    grid-column: 1;
-  }
+}
+
+/* Cards consistent */
+.filter-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.year-fields {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.year-pill {
+  min-width: 78px;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: #dfe8ff;
+  font-size: 12px;
 }
 
 .grp .muted { color: var(--muted); font-size: 14px; } 
