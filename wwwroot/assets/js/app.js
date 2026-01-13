@@ -4304,7 +4304,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       enginesFromKitAndNotes(k, f).filter((x) => x && x !== "-").join(", ") ||
       "-";
     const engineLabel =
-      engineLabelRaw && engineLabelRaw !== "-" ? engineLabelRaw : "Allemaal";
+      engineLabelRaw && engineLabelRaw !== "-" && engineLabelRaw !== "—"
+        ? engineLabelRaw
+        : "Allemaal";
     const imgSrc = "/assets/img/HV-kits/LS-4.jpg";
     const contactSubject = makeSlug && modelSlug
       ? `ls-${makeSlug}-${modelSlug}`
@@ -6769,7 +6771,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   function enginesText(kit, fitment) {
     const arr = enginesFromKitAndNotes(kit, fitment);
-    return (arr || []).filter(Boolean).join(", ");
+    return (arr || [])
+      .map((v) => String(v || "").trim())
+      .filter((v) => v && v !== "-" && v !== "—")
+      .join(", ");
   }
 
   function priceLabel(val) {
