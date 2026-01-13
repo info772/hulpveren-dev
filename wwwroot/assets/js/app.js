@@ -6912,7 +6912,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (val == null || val === "") return "Prijs op aanvraag";
     const num = Number(val);
     if (!Number.isFinite(num)) return "Prijs op aanvraag";
-    return `&euro; ${Math.round(num)}`;
+    return `€ ${Math.round(num)}`;
   }
 
   function approvalClean(val) {
