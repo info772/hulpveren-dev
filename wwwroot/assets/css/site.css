@@ -996,16 +996,17 @@ body.nav-open .plate-search,
   .fitment-status{ flex-direction: column; align-items: flex-start; }
 }
 
+/* Vehicle card */
+.veh-card { border-radius: 16px; overflow: hidden; }
+.veh-head { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap: wrap; }
+.veh-head .eyebrow { margin: 0; }
+.veh-title { margin: 0; }
+.veh-toggle { width: 100%; max-width: 340px; }
+
 @media (max-width: 900px){
-  .plate-context:not(.is-expanded) .meta .k:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]),
-  .plate-context:not(.is-expanded) .meta .v:not([data-plate-key="Kenteken"]):not([data-plate-key="Auto"]){
-    display: none;
-  }
-  .plate-context.is-expanded .meta .k[data-plate-key],
-  .plate-context.is-expanded .meta .v[data-plate-key]{
-    display: block;
-  }
-  .plate-context__toggle{
+  .veh-body { display: none; }
+  .veh-card.veh-expanded .veh-body { display: block; }
+  .veh-toggle{
     display: inline-flex;
     align-self: flex-start;
     margin-top: 8px;
@@ -1017,7 +1018,7 @@ body.nav-open .plate-search,
     font-size: 0.85rem;
     cursor: pointer;
   }
-  .plate-context__toggle:hover{
+  .veh-toggle:hover{
     background: rgba(255,255,255,0.06);
   }
   #site-header .nav-list{
@@ -1037,6 +1038,11 @@ body.nav-open .plate-search,
     overflow-wrap: anywhere;
     color: #f6f8ff;
   }
+}
+
+@media (min-width: 901px){
+  .veh-body { display: block !important; }
+  .veh-toggle { display: none !important; }
 }
 
 @media (max-width: 1023px){
@@ -1141,6 +1147,41 @@ margin-bottom: 16px; box-shadow: 0 16px 40px rgba(0,0,0,0.35); transition: trans
 .filters .grp.range .range-row { display: flex; align-items: center; gap: 10px; } 
 
 .filters .grp.range input[type="range"] { flex: 1; margin: 2px 0 0; } 
+
+/* NR/LS filters alignment (match HV layout) */
+#nr-filters,
+.filters.ls-filters {
+  display: grid !important;
+  gap: 18px !important;
+  align-items: start;
+  margin: 18px 0 !important;
+}
+
+@media (min-width: 901px) {
+  #nr-filters,
+  .filters.ls-filters {
+    grid-template-columns: 1fr 220px;
+  }
+  #nr-filters > .grp,
+  .filters.ls-filters > .grp {
+    grid-column: 1;
+  }
+  #nr-filters > .grp:last-child,
+  .filters.ls-filters > .grp:last-child {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  #nr-filters,
+  .filters.ls-filters {
+    grid-template-columns: 1fr;
+  }
+  #nr-filters > .grp,
+  .filters.ls-filters > .grp {
+    grid-column: 1;
+  }
+}
 
 .grp .muted { color: var(--muted); font-size: 14px; } 
 

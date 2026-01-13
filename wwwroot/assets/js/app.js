@@ -1763,41 +1763,52 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       );
       if (!rows.length) return "";
       return `
-        <div class="card product plate-context" data-vehicle-info-card>
-          <div class="body">
-            <div class="eyebrow">Voertuig</div>
-            <div class="meta">
-              ${rows.join("")}
-            </div>
-            <button class="plate-context__toggle" type="button" data-plate-toggle aria-expanded="false">
+        <section class="card product plate-context veh-card" data-veh-card data-vehicle-info-card>
+          <div class="veh-head">
+            <h2 class="veh-title eyebrow">VOERTUIG</h2>
+            <button type="button"
+                    class="veh-toggle"
+                    data-veh-toggle
+                    aria-expanded="false">
               Meer voertuigdetails
             </button>
           </div>
-        </div>
+          <div class="veh-body body" data-veh-body>
+            <div class="meta">
+              ${rows.join("")}
+            </div>
+          </div>
+        </section>
       `;
     };
 
     const insertPlateInfoBlock = (context) => {
       const html = buildPlateInfoHtml(context);
       if (!html || document.querySelector(".plate-context")) return;
+      let inserted = false;
       const filtersWrap = document.querySelector(".filters-wrap");
       if (filtersWrap) {
         filtersWrap.insertAdjacentHTML("beforebegin", html);
-        return;
+        inserted = true;
       }
-      const crumbs =
-        document.querySelector(".site-breadcrumbs") ||
-        document.querySelector(".crumbs") ||
-        document.querySelector(".breadcrumbs");
-      if (crumbs) {
-        crumbs.insertAdjacentHTML("afterend", html);
-        return;
+      if (!inserted) {
+        const crumbs =
+          document.querySelector(".site-breadcrumbs") ||
+          document.querySelector(".crumbs") ||
+          document.querySelector(".breadcrumbs");
+        if (crumbs) {
+          crumbs.insertAdjacentHTML("afterend", html);
+          inserted = true;
+        }
       }
-      const mainWrap = document.querySelector("main .wrap");
-      if (mainWrap) {
-        mainWrap.insertAdjacentHTML("afterbegin", html);
+      if (!inserted) {
+        const mainWrap = document.querySelector("main .wrap");
+        if (mainWrap) {
+          mainWrap.insertAdjacentHTML("afterbegin", html);
+          inserted = true;
+        }
       }
-      bindPlateContextToggle();
+      if (inserted) initVehicleDetailsToggle(document);
     };
 
     const renderVehicleInfoCard = () => {
@@ -1808,12 +1819,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const card = document.querySelector("[data-vehicle-info-card]");
       if (card) {
         card.outerHTML = html;
-        bindPlateContextToggle();
+        initVehicleDetailsToggle(document);
         return;
       }
       const filtersWrap = document.querySelector(".filters-wrap");
       if (filtersWrap) {
         filtersWrap.insertAdjacentHTML("beforebegin", html);
+        initVehicleDetailsToggle(document);
         return;
       }
       const crumbs =
@@ -1822,53 +1834,58 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         document.querySelector(".breadcrumbs");
       if (crumbs) {
         crumbs.insertAdjacentHTML("afterend", html);
+        initVehicleDetailsToggle(document);
         return;
       }
       const mainWrap = document.querySelector("main .wrap");
       if (mainWrap) {
         mainWrap.insertAdjacentHTML("afterbegin", html);
       }
-      bindPlateContextToggle();
+      initVehicleDetailsToggle(document);
     };
 
-    const bindPlateContextToggle = () => {
-      const card = document.querySelector(".plate-context");
-      if (!card) return;
-      const toggle = card.querySelector("[data-plate-toggle]");
-      if (!toggle) return;
+    const initVehicleDetailsToggle = (root = document) => {
+      const cards = root.querySelectorAll("[data-veh-card]");
+      cards.forEach((card) => {
+        const btn = card.querySelector("[data-veh-toggle]");
+        const body = card.querySelector("[data-veh-body]");
+        if (!btn || !body) return;
 
-      const mq = window.matchMedia("(max-width: 900px)");
-      const apply = () => {
-        if (mq.matches) {
-          card.classList.remove("is-expanded");
-          toggle.hidden = false;
-          toggle.setAttribute("aria-expanded", "false");
-          toggle.textContent = "Meer voertuigdetails";
-        } else {
-          card.classList.add("is-expanded");
-          toggle.hidden = true;
-          toggle.setAttribute("aria-expanded", "true");
+        const mql = window.matchMedia("(min-width: 901px)");
+
+        const applyMode = () => {
+          if (mql.matches) {
+            card.classList.add("veh-expanded");
+            btn.setAttribute("aria-expanded", "true");
+            btn.style.display = "none";
+          } else {
+            btn.style.display = "";
+            if (!card.classList.contains("veh-expanded")) {
+              btn.setAttribute("aria-expanded", "false");
+            } else {
+              btn.setAttribute("aria-expanded", "true");
+            }
+          }
+        };
+
+        if (btn.dataset.vehToggleBound !== "1") {
+          btn.dataset.vehToggleBound = "1";
+          btn.addEventListener("click", () => {
+            if (mql.matches) return;
+            const nowOpen = !card.classList.contains("veh-expanded");
+            card.classList.toggle("veh-expanded", nowOpen);
+            btn.setAttribute("aria-expanded", nowOpen ? "true" : "false");
+          });
         }
-      };
 
-      if (toggle.dataset.plateToggleBound !== "1") {
-        toggle.dataset.plateToggleBound = "1";
-        toggle.addEventListener("click", () => {
-          const expanded = card.classList.toggle("is-expanded");
-          toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
-          toggle.textContent = expanded
-            ? "Minder voertuigdetails"
-            : "Meer voertuigdetails";
-        });
-      }
+        if (card.dataset.vehToggleMqBound !== "1") {
+          card.dataset.vehToggleMqBound = "1";
+          if (mql.addEventListener) mql.addEventListener("change", applyMode);
+          else if (mql.addListener) mql.addListener(applyMode);
+        }
 
-      if (toggle.dataset.plateToggleMqBound !== "1") {
-        toggle.dataset.plateToggleMqBound = "1";
-        if (mq.addEventListener) mq.addEventListener("change", apply);
-        else if (mq.addListener) mq.addListener(apply);
-      }
-
-      apply();
+        applyMode();
+      });
     };
 
     const applyPlateContextToStaticLs = (context) => {
@@ -5069,6 +5086,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         ${plateInfoHtml}
         <p class="note">Geen sets gevonden voor dit model.</p>
       `);
+      initVehicleDetailsToggle(app);
       return;
     }
 
@@ -5254,6 +5272,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
         <div id="model-grid" class="grid" data-set-list></div>
       `);
+    initVehicleDetailsToggle(app);
     const yearLabelEl = document.getElementById("flt-year-label");
     if (yearLabelEl && FILTER.yearRange) {
       yearLabelEl.textContent =
@@ -5794,6 +5813,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
             <a class="btn btn-ghost" href="${base}">Kies handmatig</a>
           </div>
         `);
+        initVehicleDetailsToggle(app);
         renderPlateDebug({
           container: app,
           vehicle,
@@ -6086,6 +6106,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         </div>
         <div id="model-grid" class="grid" data-set-list></div>
       `);
+      initVehicleDetailsToggle(app);
 
       const gridEl = document.getElementById("model-grid");
       const countEl = document.getElementById("kit-count");
@@ -6499,6 +6520,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       ${filtersBlock}
       <div id="model-grid" class="grid" data-set-list></div>
     `);
+    initVehicleDetailsToggle(app);
 
     if (plateContext && plateContext.yearRange && plateContext.yearRange.label) {
       const yearLabel = document.getElementById("flt-year-label");
@@ -7015,6 +7037,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         ${cardsBlock}
       </div>
     `);
+      initVehicleDetailsToggle(app);
 
     const grid = document.getElementById("nr-grid");
     const cards = Array.prototype.slice.call(
