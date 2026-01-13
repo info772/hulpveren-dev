@@ -2066,6 +2066,25 @@ body.nav-open .hv2-burger{
   }
 }
 
+@media (min-width: 901px) {
+  .mnav-toggle,
+  .hv2-nav-toggle,
+  .nav-toggle,
+  .drawer-toggle,
+  .mnav-chevron,
+  .hv2-chevron,
+  .nav-toggle-cta,
+  .hv-nav-toggle{
+    display: none !important;
+  }
+  .hv2-nav a::before,
+  .hv2-nav a::after,
+  .hv2-nav li::before,
+  .hv2-nav li::after{
+    content: none !important;
+  }
+}
+
 @media (max-width: 900px){
   .crumbs { margin-bottom: 10px !important; }
   .crumbs + * { margin-top: 0 !important; }

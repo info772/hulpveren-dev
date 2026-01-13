@@ -122,7 +122,7 @@
   };
 
   const isMobileNav = () =>
-    window.matchMedia("(max-width: 1023px)").matches;
+    window.matchMedia("(max-width: 900px)").matches;
 
   const setNavState = (header, toggle, overlay, drawer, open) => {
     const mobile = isMobileNav();
@@ -514,7 +514,7 @@
     );
     if (!items.length) return;
 
-    const mqDesktop = window.matchMedia("(min-width: 1024px)");
+    const mqDesktop = window.matchMedia("(min-width: 901px)");
     const pointerFine = window.matchMedia("(hover:hover)").matches;
     const triggerMap = new Map();
     const panelMap = new Map();
@@ -610,15 +610,8 @@
       }
 
       trig.addEventListener("click", (evt) => {
+        if (!isMobileNav()) return;
         evt.preventDefault();
-        if (onDesktop()) {
-          if (item.classList.contains("is-open")) {
-            closeItem(item);
-          } else {
-            openItem(item);
-          }
-          return;
-        }
 
         // mobile accordion
         const isOpen = !panel.hidden;
