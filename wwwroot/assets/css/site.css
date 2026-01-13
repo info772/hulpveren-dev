@@ -1988,16 +1988,20 @@ body.nav-open .hv2-burger{
   .mnav-item{
     position: relative;
     width: 100%;
+    min-height: 52px;
   }
   .mnav-link{
-    display: block;
-    padding: 14px 52px 14px 16px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    line-height: 1;
+    padding: 0 56px 0 16px;
     border-radius: 14px;
   }
   .mnav-toggle{
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: 8px;
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
@@ -2030,6 +2034,14 @@ body.nav-open .hv2-burger{
   }
   .mnav-sub li{
     background: none !important;
+  }
+  .mnav-item::before,
+  .mnav-item::after,
+  .mnav-link::before,
+  .mnav-link::after,
+  .mnav-toggle::before,
+  .mnav-toggle::after{
+    content: none !important;
   }
 
   /* Drawer scroll only; prevent submenu stretch/inner scroll */
