@@ -2624,6 +2624,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   /* ================== Ondersteuning: Leeg & beladen / Continue beladen ================== */
 
+  function hasLpg(f, k) {
+    const base = Array.isArray(k?.powertrains_allowed)
+      ? k.powertrains_allowed
+      : [];
+    if (base.some((v) => String(v || "").toLowerCase() === "lpg")) return true;
+    const toks = tokenizeMeta(f?.notes, f?.remark);
+    return toks.some((t) => /\blpg\b/i.test(String(t || "")));
+  }
+
   function supportModeFromFit(f) {
     const raw = [f?.notes, f?.remark].filter(Boolean).join(" ");
     const blob = raw.toLowerCase();
@@ -2801,7 +2810,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   function enginesFromKitAndNotes(kit, fitment) {
     const baseArr = Array.isArray(kit?.powertrains_allowed)
-      ? kit.powertrains_allowed.filter(Boolean)
+      ? kit.powertrains_allowed
+          .filter(Boolean)
+          .filter((v) => String(v || "").toLowerCase() !== "lpg")
       : [];
     const baseSet = new Set(baseArr);
 
@@ -4091,6 +4102,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .forEach((txt) =>
         chips.push(`<span class="chip small danger">${esc(txt)}</span>`)
       );
+    if (hasLpg(f, k)) {
+      chips.push(`<span class="chip small support">Continue belading (LPG)</span>`);
+    }
 
     const engines =
       Array.isArray(k.powertrains_allowed) && k.powertrains_allowed.length
@@ -4303,9 +4317,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       (Array.isArray(f?.engines) ? f.engines.filter(Boolean).join(", ") : "") ||
       enginesFromKitAndNotes(k, f).filter((x) => x && x !== "-").join(", ") ||
       "-";
+    const engineLabelClean = stripLpgLabel(engineLabelRaw);
     const engineLabel =
-      engineLabelRaw && engineLabelRaw !== "-" && engineLabelRaw !== "—"
-        ? engineLabelRaw
+      engineLabelClean && engineLabelClean !== "-" && engineLabelClean !== "—"
+        ? engineLabelClean
         : "Allemaal";
     const imgSrc = "/assets/img/HV-kits/LS-4.jpg";
     const contactSubject = makeSlug && modelSlug
@@ -6775,6 +6790,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .map((v) => String(v || "").trim())
       .filter((v) => v && v !== "-" && v !== "—")
       .join(", ");
+  }
+
+  function stripLpgLabel(value) {
+    const parts = String(value || "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .filter((s) => s.toLowerCase() !== "lpg");
+    return parts.join(", ");
   }
 
   function priceLabel(val) {
