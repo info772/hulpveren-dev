@@ -506,12 +506,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     [
       {
         selector:
-          '.nav-item-mega[data-family="nr"] .nav-toggle-cta, .hv-nav-item-mega[data-family="nr"] .hv-nav-toggle',
+          '.nav-item-mega[data-family="nr"] a.nav-link, .hv-nav-item-mega[data-family="nr"] a.nav-link',
         label: "MAD Luchtvering",
       },
       {
         selector:
-          '.nav-item-mega[data-family="ls"] .nav-toggle-cta, .hv-nav-item-mega[data-family="ls"] .hv-nav-toggle',
+          '.nav-item-mega[data-family="ls"] a.nav-link, .hv-nav-item-mega[data-family="ls"] a.nav-link',
         label: "MAD Verlagingsveren",
       },
     ].forEach(({ selector, label }) => {
@@ -519,6 +519,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         el.textContent = label;
       });
     });
+
+    const hvLink = document.querySelector(
+      '.nav-item-mega[data-family="hv"] a.nav-link, .hv-nav-item-mega[data-family="hv"] a.nav-link'
+    );
+    if (hvLink) {
+      if (!hvLink.textContent.trim()) hvLink.textContent = "MAD hulpveren";
+      if (!hvLink.getAttribute("href")) hvLink.setAttribute("href", "/hulpveren");
+    }
   };
 
   const bindMobileMegaScroll = () => {
