@@ -524,6 +524,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       '.nav-item-mega[data-family="hv"] a.nav-link, .hv-nav-item-mega[data-family="hv"] a.nav-link'
     );
     if (hvLink) {
+      hvLink.classList.add("nav-link", "mnav-link");
       if (!hvLink.textContent.trim()) hvLink.textContent = "MAD hulpveren";
       if (!hvLink.getAttribute("href")) hvLink.setAttribute("href", "/hulpveren");
     }
