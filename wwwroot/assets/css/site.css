@@ -1931,6 +1931,29 @@ body.nav-open .hv2-burger{
 }
 
 @media (max-width: 900px){
+  /* Drawer scroll only; prevent submenu stretch/inner scroll */
+  #site-header .nav-drawer{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  #site-header .nav-drawer .mega-panel,
+  #site-header .nav-drawer .hv-mega-panel,
+  #site-header .nav-drawer .mega-inner,
+  #site-header .nav-drawer .mega-col,
+  #site-header .nav-drawer .mega-list{
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+  #site-header .nav-drawer .mega-list li{
+    background: none !important;
+  }
+}
+
+@media (max-width: 900px){
   .crumbs { margin-bottom: 10px !important; }
   .crumbs + * { margin-top: 0 !important; }
 }
