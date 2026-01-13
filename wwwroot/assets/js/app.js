@@ -777,6 +777,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       return p || "/";
     };
 
+    const stripKentekenSuffix = (url) => {
+      const value = String(url || "");
+      if (!value) return "";
+      return value
+        .replace(/\/kt_[A-Z0-9-]+\/?$/i, "/")
+        .replace(/\/[^\/]+\/kt_[A-Z0-9-]+\/?$/i, "/")
+        .replace(/\/+$/, "/");
+    };
+
     const normalizePlateInput = (value) =>
       String(value || "")
         .trim()
@@ -4105,6 +4114,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     } = options;
     const sku = k?.sku || "";
     const skuSlug = (sku || "").toLowerCase();
+    const kitHref = stripKentekenSuffix(`/hulpveren/${esc(skuSlug)}/`);
     const price = k?.pricing_nl?.total_inc_vat_from_eur;
     const badgeText = priceLabel(price);
     const badge =
@@ -4217,7 +4227,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
             </div>
 
             <div class="cta-row">
-              <a class="btn ghost" href="/hulpveren/${esc(skuSlug)}/">Bekijk set</a>
+              <a class="btn ghost" href="${kitHref}">Bekijk set</a>
 
               <button
                 class="btn"
@@ -4254,6 +4264,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       imageCandidatesForSku(k?.sku)?.[0] || sdFallbackForKit(k) || "/assets/img/HV-kits/HV-0.jpg";
     const sku = k?.sku || "";
     const skuLower = sku.toLowerCase();
+    const kitHref = stripKentekenSuffix(`/luchtvering/${esc(skuLower)}/`);
     const fitmentRangeLabel = formatAldocRangeLabel(
       parseAldocDateValue(f?.year_from),
       parseAldocDateValue(f?.year_to)
@@ -4303,9 +4314,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
               <span class="chip price">${esc(price)}</span>
             </div>
             <div class="cta-row">
-              <a class="btn btn-ghost" href="/luchtvering/${esc(
-                skuLower
-              )}/">Bekijk set</a>
+              <a class="btn btn-ghost" href="${kitHref}">Bekijk set</a>
               <a class="btn" href="/contact?onderwerp=${esc(
                 contactSubject
               )}">Plan mijn set</a>
@@ -4324,6 +4333,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const price = priceLabel(k?.pricing_nl?.total_inc_vat_from_eur);
     const sku = k?.sku || "";
     const skuLower = sku.toLowerCase();
+    const kitHref = stripKentekenSuffix(`/verlagingsveren/${esc(skuLower)}/`);
     const dropFront = k?.suspension_delta_mm?.front_mm;
     const dropRear = k?.suspension_delta_mm?.rear_mm;
     let dropLabel = "-";
@@ -4390,9 +4400,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
               <span class="chip price">${esc(price)}</span>
             </div>
             <div class="cta-row">
-              <a class="btn btn-ghost" href="/verlagingsveren/${esc(
-                skuLower
-              )}/">Bekijk set</a>
+              <a class="btn btn-ghost" href="${kitHref}">Bekijk set</a>
               <a class="btn" href="/contact?onderwerp=${esc(
                 contactSubject
               )}">Plan mijn set</a>
