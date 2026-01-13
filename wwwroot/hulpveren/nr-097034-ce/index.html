@@ -279,6 +279,7 @@
   function dataUrlForFamily(family) {
     const f = String(family || '').toUpperCase();
     if (f === 'NR') return '/data/nr-kits.json';
+    if (f === 'LS') return '/data/ls-kits.json';
     return '/data/hv-kits.json';
   }
 
