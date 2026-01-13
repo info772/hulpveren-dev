@@ -2195,3 +2195,118 @@ body.nav-open .hv2-burger{
     pointer-events: auto;
   }
 }
+
+/* Plate summary (kenteken-ovaal) */
+.kt-summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 999px;
+  line-height: 1.35;
+}
+
+.kt-summary .kt-left {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 12px;
+  align-items: center;
+}
+
+.kt-summary .kt-label {
+  opacity: 0.85;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.kt-summary .kt-value {
+  min-width: 0;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.kt-summary .kt-lines {
+  grid-column: 2 / -1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.kt-summary .kt-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.kt-summary .kt-right {
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+  text-align: right;
+}
+
+.kt-summary .kt-note {
+  opacity: 0.75;
+  font-size: 13px;
+  line-height: 1.25;
+  max-width: 220px;
+}
+
+.kt-summary .platepill__clear {
+  margin-left: 0;
+  padding: 6px 12px;
+  border-radius: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .kt-summary {
+    grid-template-columns: 1fr;
+    border-radius: 18px;
+    padding: 14px;
+  }
+
+  .kt-summary .kt-left {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    align-items: start;
+  }
+
+  .kt-summary .kt-lines {
+    grid-column: auto;
+  }
+
+  .kt-summary .kt-right {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .kt-summary .kt-note {
+    max-width: none;
+  }
+
+  .kt-summary .kt-chip {
+    max-width: 100%;
+  }
+
+  .kt-summary .platepill__clear {
+    padding: 8px 12px;
+  }
+}

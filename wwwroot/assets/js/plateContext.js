@@ -597,23 +597,53 @@
       document.querySelector(".plate-input");
     if (!pill) return;
     const row = pill.closest("[data-plate-pill-row]");
-    const pillText = pill.querySelector("[data-plate-pill-text]");
-    let note = pill.querySelector(".plate-year-note");
+    const plateValueEl = pill.querySelector("[data-plate-pill-plate]");
+    const makeEl = pill.querySelector("[data-plate-pill-make]");
+    const modelEl = pill.querySelector("[data-plate-pill-model]");
+    const yearEl = pill.querySelector("[data-plate-pill-year]");
+    let note =
+      pill.querySelector("[data-plate-pill-note]") ||
+      pill.querySelector(".plate-year-note");
     if (!note) {
-      note = document.createElement("small");
-      note.className = "plate-year-note";
-      pill.appendChild(note);
+      note = document.createElement("div");
+      note.className = "kt-note plate-year-note";
+      note.setAttribute("data-plate-pill-note", "1");
+      const right = pill.querySelector(".kt-right");
+      if (right) right.appendChild(note);
+      else pill.appendChild(note);
     }
+    const setChip = (el, value) => {
+      if (!el) return;
+      const text = value ? String(value).trim() : "";
+      el.textContent = text;
+      el.hidden = !text;
+    };
     if (!ctx || !ctx.plate) {
       pill.hidden = true;
       if (row) row.hidden = true;
-      if (pillText) pillText.textContent = "";
+      if (plateValueEl) plateValueEl.textContent = "";
+      setChip(makeEl, "");
+      setChip(modelEl, "");
+      setChip(yearEl, "");
       note.textContent = "";
+      note.hidden = true;
       return;
     }
     pill.hidden = false;
     if (row) row.hidden = false;
-    if (pillText) pillText.textContent = buildVehicleSummary(ctx);
+    if (plateValueEl) {
+      plateValueEl.textContent = ctx.plate || ctx.plateMasked || "";
+    }
+    const make = ctx?.vehicle?.make || "";
+    const model = ctx?.vehicle?.modelLabel || ctx?.vehicle?.model || "";
+    const yearLabel =
+      ctx?.vehicle?.rangeLabel ||
+      ctx?.yearRange?.label ||
+      formatRangeLabel(getContextRange(ctx)) ||
+      "";
+    setChip(makeEl, make);
+    setChip(modelEl, model);
+    setChip(yearEl, yearLabel);
     const yMin = ctx?.vehicle?.yearMin ?? ctx?.vehicle?.estimatedYearMin;
     const yMax = ctx?.vehicle?.yearMax ?? ctx?.vehicle?.estimatedYearMax;
     const basisRaw = ctx?.vehicle?.yearSource || ctx?.vehicle?.estimatedYearFrom;
@@ -626,10 +656,12 @@
     if (yMin != null || yMax != null) {
       const minTxt = yMin != null ? String(yMin) : "";
       const maxTxt = yMax != null ? String(yMax) : "";
-      const dash = minTxt && maxTxt ? "–" : "";
+      const dash = minTxt && maxTxt ? " - " : "";
       note.textContent = `Bouwjaar-inschatting: ${minTxt}${dash}${maxTxt} (op basis van ${basis})`;
+      note.hidden = false;
     } else {
       note.textContent = "";
+      note.hidden = true;
     }
     if (input && !input.value) {
       input.value = ctx.plate;
@@ -637,10 +669,20 @@
   };
 
   const buildPlatePillMarkup = () => `
-    <div class="platepill" data-plate-pill hidden>
-      <span class="platepill__label">Kenteken:</span>
-      <span class="platepill__text" data-plate-pill-text></span>
-      <button type="button" class="platepill__clear" data-plate-clear>Annuleer</button>
+    <div class="platepill kt-summary" data-plate-pill hidden>
+      <div class="kt-left">
+        <div class="kt-label">Kenteken:</div>
+        <div class="kt-value" data-plate-pill-plate></div>
+        <div class="kt-lines">
+          <span class="kt-chip" data-plate-pill-make hidden></span>
+          <span class="kt-chip" data-plate-pill-model hidden></span>
+          <span class="kt-chip" data-plate-pill-year hidden></span>
+        </div>
+      </div>
+      <div class="kt-right">
+        <button type="button" class="platepill__clear" data-plate-clear>Annuleer</button>
+        <div class="kt-note plate-year-note" data-plate-pill-note hidden></div>
+      </div>
     </div>
   `;
 
