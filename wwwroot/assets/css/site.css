@@ -963,10 +963,12 @@ body.nav-open .plate-search,
   min-height: 64px;
 }
 
+.hv2-header.is-scrolled .brand-logo,
 .hv2-header.is-scrolled .hv2-logo{
   height: var(--hv2-logo-h-scrolled);
   max-height: var(--hv2-logo-h-scrolled);
 }
+
 @media (max-width: 1024px){
   .site-header.hv-header .plate-search{
     width: 100%;
