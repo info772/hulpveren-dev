@@ -7240,8 +7240,31 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
 
   yearSlider.addEventListener("input", () => {
-    const v = parseInt(yearSlider.value, 10);
-    if (!Number.isFinite(v) || v === 0) return;
+  const v = parseInt(yearSlider.value, 10);
+  if (!Number.isFinite(v)) return;
+
+  // Update "Bouwjaar: XXXX" next to label (only when plate is active)
+  const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
+  const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
+
+  let hasPlate = false;
+  try {
+    const ctx = JSON.parse(localStorage.getItem("plateContext") || "null");
+    hasPlate = !!(ctx && ctx.plate);
+  } catch (_) {}
+
+  if (pickedEl) {
+    if (hasPlate) {
+      pickedEl.hidden = false;
+      pickedEl.textContent = `: ${v}`;
+    } else {
+      pickedEl.hidden = true;
+      pickedEl.textContent = "";
+    }
+  }
+
+  // ...laat hieronder jullie bestaande code staan die sets/filters update...
+
 
     // Alleen tonen als er een kenteken actief is
     const ctx = window.__plateContext || window.plateContext || null; // pak wat er bestaat
