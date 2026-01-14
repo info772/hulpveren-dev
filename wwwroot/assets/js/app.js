@@ -5139,7 +5139,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return `
       <section class="filter-card grp fy">
         <div class="fy-left">
-          <div class="fy-label">${esc(safeLabel)}</div>
+          <div class="fy-label">
+  <div class="fy-label">
+  ${esc(safeLabel)}<span class="fy-picked" data-fy-picked hidden></span>
+</div>
+
+
           <input
             class="fy-range"
             type="range"
@@ -7225,14 +7230,37 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (yearSlider && yearsAvail.length) {
-      yearSlider.min = yearMin;
-      yearSlider.max = yearMax;
-      yearSlider.value = 0;
-      yearSlider.addEventListener("input", () => {
-        const v = parseInt(yearSlider.value, 10);
-        if (!Number.isFinite(v) || v === 0) return;
-      });
+  yearSlider.min = yearMin;
+  yearSlider.max = yearMax;
+
+  // 0 = "geen keuze" (laat label leeg)
+  yearSlider.value = 0;
+
+  const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
+  const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
+
+  yearSlider.addEventListener("input", () => {
+    const v = parseInt(yearSlider.value, 10);
+    if (!Number.isFinite(v) || v === 0) return;
+
+    // Alleen tonen als er een kenteken actief is
+    const ctx = window.__plateContext || window.plateContext || null; // pak wat er bestaat
+    const hasPlate = !!(ctx && ctx.plate);
+
+    if (pickedEl) {
+      if (hasPlate) {
+        pickedEl.hidden = false;
+        pickedEl.textContent = `: ${v}`;
+      } else {
+        pickedEl.hidden = true;
+        pickedEl.textContent = "";
+      }
     }
+
+    // hier komt waarschijnlijk ook jouw filter-apply logica (als die er al is)
+  });
+}
+
 
     function num(v) {
       const n = parseInt(v, 10);
