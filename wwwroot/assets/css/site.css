@@ -2431,34 +2431,54 @@ body.nav-open .hv2-burger{
 }
 
 @media (max-width: 1023px){
-  /* Logo never shrink */
-  #site-header .hv2-header .brand{
-    flex: 0 0 auto;
-  }
-  #site-header .hv2-header .brand-logo{
-    flex: 0 0 auto;
-    max-width: none;
+  /* Force a 3-column header with a capped plate width */
+  #site-header .hv2-header .hv2-inner.header-inner{
+    display: grid;
+    grid-template-columns: auto minmax(0, 220px) auto; /* logo | plate | menu */
+    align-items: center;
+    gap: 8px;
   }
 
-  /* Plate gets a sensible max width so it doesn't steal from logo */
+  /* Plate must not exceed its column */
+  #site-header .hv2-header .header-center{
+    display: block !important;
+    min-width: 0;
+    overflow: hidden;
+  }
+
   #site-header .hv2-header .plate-search{
-    max-width: 260px;
-    justify-self: center;
+    width: 100%;
+    max-width: 220px;
+    min-width: 0;
   }
 
-  /* Make plate a bit more compact */
+  #site-header .hv2-header .plate-ui{
+    width: 100%;
+    max-width: 220px;
+  }
+
+  /* Make plate contents fit */
   #site-header .hv2-header .plate-input{
-    font-size: 14px;
-    letter-spacing: .10em;
-    padding: 0 8px;
+    font-size: 13px;
+    letter-spacing: .09em;
+    padding: 0 6px;
   }
   #site-header .hv2-header .plate-eu{
-    flex: 0 0 40px;
-    width: 40px;
+    flex: 0 0 36px;
+    width: 36px;
   }
   #site-header .hv2-header .plate-button{
-    min-width: 32px;
-    padding: 0 8px;
+    min-width: 30px;
+    padding: 0 6px;
+  }
+
+  /* Keep menu always visible */
+  #site-header .hv2-header .header-right{
+    justify-content: flex-end;
+    min-width: 0;
+  }
+  #site-header .hv2-header .hv2-burger{
+    display: inline-flex !important;
+    flex: 0 0 auto;
   }
 }
-
