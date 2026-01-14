@@ -2377,6 +2377,8 @@ body.nav-open .hv2-burger{
   height: calc(var(--logo-h-base) - (var(--logo-h-base) - var(--logo-h-compact)) * var(--header-shrink)) !important;
   padding: calc(var(--logo-pad-base) - (var(--logo-pad-base) - var(--logo-pad-compact)) * var(--header-shrink)) !important;
   border-radius: calc(var(--logo-radius-base) - (var(--logo-radius-base) - var(--logo-radius-compact)) * var(--header-shrink)) !important;
-  transition: height .18s ease, padding .18s ease, border-radius .18s ease;
+  transition: height .32s cubic-bezier(.22,1,.36,1),
+            padding .32s cubic-bezier(.22,1,.36,1),
+            border-radius .32s cubic-bezier(.22,1,.36,1);
   width: auto;
 }
