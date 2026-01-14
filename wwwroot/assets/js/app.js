@@ -7247,12 +7247,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
   const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
 
-  let _hasPlateCtx = false;
-try {
-  const _ctx = JSON.parse(localStorage.getItem("plateContext") || "null");
-  _hasPlateCtx = !!(_ctx && _ctx.plate);
-} catch (_) {}
-
+  let hasPlate = false;
+  try {
+    const ctx = JSON.parse(localStorage.getItem("plateContext") || "null");
+    hasPlate = !!(ctx && ctx.plate);
+  } catch (_) {}
 
   if (pickedEl) {
     if (hasPlate) {
@@ -7265,6 +7264,11 @@ try {
   }
 
   // ...laat hieronder jullie bestaande code staan die sets/filters update...
+
+
+    // Alleen tonen als er een kenteken actief is
+    const ctx = window.__plateContext || window.plateContext || null; // pak wat er bestaat
+    const hasPlate = !!(ctx && ctx.plate);
 
 
     // hier komt waarschijnlijk ook jouw filter-apply logica (als die er al is)
