@@ -7233,27 +7233,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   yearSlider.min = yearMin;
   yearSlider.max = yearMax;
 
-  // 0 = "geen keuze" (laat label leeg)
-  yearSlider.value = 0;
-
   const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
   const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
 
-  yearSlider.addEventListener("input", () => {
-  const v = parseInt(yearSlider.value, 10);
-  if (!Number.isFinite(v)) return;
+  const updatePicked = () => {
+    const v = parseInt(yearSlider.value, 10);
+    if (!Number.isFinite(v) || !pickedEl) return;
 
-  // Update "Bouwjaar: XXXX" next to label (only when plate is active)
-  const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
-  const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
+    let hasPlate = false;
+    try {
+      const ctx = JSON.parse(localStorage.getItem("plateContext") || "null");
+      hasPlate = !!(ctx && ctx.plate);
+    } catch (_) {}
 
-  let hasPlate = false;
-  try {
-    const ctx = JSON.parse(localStorage.getItem("plateContext") || "null");
-    hasPlate = !!(ctx && ctx.plate);
-  } catch (_) {}
-
-  if (pickedEl) {
     if (hasPlate) {
       pickedEl.hidden = false;
       pickedEl.textContent = `: ${v}`;
@@ -7261,19 +7253,20 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       pickedEl.hidden = true;
       pickedEl.textContent = "";
     }
+  };
+
+  yearSlider.addEventListener("input", updatePicked);
+
+  // zet de juiste startwaarde en sync label
+  // (plateYearRange => geen "Bouwjaar: xxxx" nodig, want range wordt al getoond)
+  if (plateYearRange) {
+    yearSlider.value = String(yearMin); // maakt niet uit, picked blijft hidden door hasPlate+range gedrag
+  } else {
+    yearSlider.value = String(yearMin);
   }
-
-  // ...laat hieronder jullie bestaande code staan die sets/filters update...
-
-
-    // Alleen tonen als er een kenteken actief is
-    const ctx = window.__plateContext || window.plateContext || null; // pak wat er bestaat
-    const hasPlate = !!(ctx && ctx.plate);
-
-
-    // hier komt waarschijnlijk ook jouw filter-apply logica (als die er al is)
-  });
+  updatePicked();
 }
+
 
 
     function num(v) {
