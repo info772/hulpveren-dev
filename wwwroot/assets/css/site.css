@@ -963,11 +963,15 @@ body.nav-open .plate-search,
   min-height: 64px;
 }
 
-.hv2-header.is-scrolled .brand-logo,
-.hv2-header.is-scrolled .hv2-logo{
-  height: var(--hv2-logo-h-scrolled);
-  max-height: var(--hv2-logo-h-scrolled);
+/* Scroll shrink driven by the calc() on .brand-logo */
+.hv2-header { --header-shrink: 0; }
+.hv2-header.is-scrolled { --header-shrink: 1; }
+
+/* Smooth animation */
+.hv2-header .brand-logo{
+  transition: height .18s ease, padding .18s ease, border-radius .18s ease;
 }
+
 
 @media (max-width: 1024px){
   .site-header.hv-header .plate-search{
@@ -1467,8 +1471,8 @@ outline: 1px solid var(--accent); }
   --header-pad-x-compact: 28px;
   --header-gap-base: 18px;
   --header-gap-compact: 14px;
-  --logo-h-base: 98px;
-  --logo-h-compact: 64px;
+  --logo-h-base: 72px;
+  --logo-h-compact: 52px;
   --logo-pad-base: 14px;
   --logo-pad-compact: 10px;
   --logo-radius-base: 21px;
