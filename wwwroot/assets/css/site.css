@@ -2430,3 +2430,35 @@ body.nav-open .hv2-burger{
   }
 }
 
+@media (max-width: 1023px){
+  /* Logo never shrink */
+  #site-header .hv2-header .brand{
+    flex: 0 0 auto;
+  }
+  #site-header .hv2-header .brand-logo{
+    flex: 0 0 auto;
+    max-width: none;
+  }
+
+  /* Plate gets a sensible max width so it doesn't steal from logo */
+  #site-header .hv2-header .plate-search{
+    max-width: 260px;
+    justify-self: center;
+  }
+
+  /* Make plate a bit more compact */
+  #site-header .hv2-header .plate-input{
+    font-size: 14px;
+    letter-spacing: .10em;
+    padding: 0 8px;
+  }
+  #site-header .hv2-header .plate-eu{
+    flex: 0 0 40px;
+    width: 40px;
+  }
+  #site-header .hv2-header .plate-button{
+    min-width: 32px;
+    padding: 0 8px;
+  }
+}
+
