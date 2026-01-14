@@ -666,7 +666,7 @@
       requestAnimationFrame(() => {
         const scrolled = window.scrollY > 20;
         if (lastState !== scrolled) {
-          header.classList.toggle("is-stuck", scrolled);
+          header.classList.toggle("is-scrolled", scrolled);
           syncHeaderHeight();
           lastState = scrolled;
         }
