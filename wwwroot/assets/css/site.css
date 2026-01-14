@@ -1474,6 +1474,14 @@ outline: 1px solid var(--accent); }
   --logo-radius-base: 21px;
   --logo-radius-compact: 16px;
 }
+/* Ensure shrink var works on hv2 header */
+.hv2-header { --header-shrink: 0; }
+.hv2-header.is-scrolled { --header-shrink: 1; }
+
+/* Smooth the change */
+.hv2-header .brand-logo{
+  transition: height .18s ease, padding .18s ease, border-radius .18s ease;
+}
 
 .nav-shell{
   padding:
