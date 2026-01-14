@@ -1063,10 +1063,12 @@
     target.innerHTML = `
       <span class="fitment-status__label">${label}</span>
       <a class="btn btn-ghost" href="${PLATE_PATH}${ctx.plate}">Bekijk passende sets</a>
-    `;
+    `; 
   };
 
   const applyPlateToContent = (ctx) => {
+  return; // bovenste kenteken/voertuig-weergave vervangt deze onderste CTA-balk
+
     const main = document.querySelector("main");
     if (!main) return;
     const existing = main.querySelector(".plate-cta");
