@@ -286,12 +286,15 @@ transform: translateY(8px) !important; } @media (max-width: 1100px) {
     text-decoration: none;
   }
   #site-header .hv2-header .brand-logo{
-    height: 64px;
-    width: auto;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.06);
-    padding: 10px 14px;
-  }
+  width: auto;
+  background: rgba(255,255,255,0.06);
+
+  /* allow global calc() to drive these */
+  height: auto;
+  padding: 0;
+  border-radius: 0;
+}
+
   .hv2-drawer-close{
     position: absolute;
     top: 12px;
@@ -1459,6 +1462,25 @@ outline: 1px solid var(--accent); }
   cursor: pointer;
 }
 
+/* Header scroll shrink + transparante balk */
+.site-header{
+  background: rgba(5, 7, 15, 0.35);
+  backdrop-filter: blur(12px) saturate(1.1);
+  transition: background-color .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+  --header-shrink: 0;
+  --header-pad-y-base: 16px;
+  --header-pad-y-compact: 8px;
+  --header-pad-x-base: 28px;
+  --header-pad-x-compact: 28px;
+  --header-gap-base: 18px;
+  --header-gap-compact: 14px;
+  --logo-h-base: 72px;
+  --logo-h-compact: 52px;
+  --logo-pad-base: 14px;
+  --logo-pad-compact: 10px;
+  --logo-radius-base: 21px;
+  --logo-radius-compact: 16px;
+}
 
 /* hv2 header uses the same shrink variables as legacy site-header */
 .hv2-header{
