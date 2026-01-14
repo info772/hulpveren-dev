@@ -2383,4 +2383,30 @@ body.nav-open .hv2-burger{
   width: auto;
 }
 
+/* Jump to first set (mobile) – make it pop */
+.jump-first-set{
+  border: 2px solid var(--accent) !important;
+  color: var(--accent) !important;
+  background: transparent !important;
+  box-shadow: 0 10px 24px rgba(250,184,25,0.20);
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+.jump-first-set:hover{
+  background: rgba(250,184,25,0.10) !important;
+}
+
+.jump-first-set:active{
+  transform: translateY(1px);
+}
+
+.jump-first-set span[aria-hidden="true"]{
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+
 

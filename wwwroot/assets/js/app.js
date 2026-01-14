@@ -507,7 +507,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     btn.type = "button";
     btn.className = "btn btn-ghost jump-first-set";
     btn.setAttribute("data-jump-first-set", grid.id || "model-grid");
-    btn.textContent = "Naar eerste set";
+    btn.innerHTML = 'Direct naar sets <span aria-hidden="true">▾</span>';
     row.appendChild(btn);
     crumbs.insertAdjacentElement("afterend", row);
   };
