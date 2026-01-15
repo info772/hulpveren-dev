@@ -5990,7 +5990,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           <div class="cta-row">
             <a class="btn btn-ghost" href="${base}">Kies handmatig</a>
           </div>
-        `);
+        `);		
         initVehicleDetailsToggle(app);
         renderPlateDebug({
           container: app,
@@ -6101,6 +6101,24 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       aldocSets.lsSkus.length;
 	  
 	      if (!hasAldocSets) {
+			      // vergeet kenteken (context + url), anders blijven links 'kt_' meenemen
+      try {
+        if (window.HVPlateContext && typeof window.HVPlateContext.clearPlateContext === "function") {
+          window.HVPlateContext.clearPlateContext();
+        }
+      } catch (_) {}
+
+      try {
+        const url = new URL(window.location.href);
+        const parts = url.pathname.split("/").filter(Boolean);
+        const last = parts[parts.length - 1] || "";
+        if (/^kt_[a-z0-9]+$/i.test(last)) {
+          parts.pop();
+          url.pathname = "/" + (parts.length ? parts.join("/") + "/" : "");
+          window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+        }
+      } catch (_) {}
+  
       app.innerHTML = wrap(`
         <div class="crumbs">
           <a href="${base}">${productTitle}</a> >
