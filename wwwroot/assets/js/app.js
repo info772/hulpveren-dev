@@ -6099,6 +6099,25 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       aldocSets.hvSkus.length ||
       aldocSets.nrSkus.length ||
       aldocSets.lsSkus.length;
+	  
+	      if (!hasAldocSets) {
+      app.innerHTML = wrap(`
+        <div class="crumbs">
+          <a href="${base}">${productTitle}</a> >
+          Kenteken
+        </div>
+        <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
+        <p class="note">
+          We hebben geen producten gevonden voor dit kenteken. Je kunt hieronder handmatig zoeken op merk en model.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="${base}">Kies merk en model</a>
+          <a class="btn btn-ghost" href="${plateSearchHref}">Opnieuw zoeken</a>
+        </div>
+      `);
+      return;
+    }
+
 
     if (family !== "hv" && !hasAldocSets) {
       const targetModelSlug =
@@ -6418,7 +6437,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       return;
     }
 
-    console.warn("Aldoc: geen MAD-setnummers gevonden voor kenteken", {
+    console.warn("Geen MAD-setnummers gevonden voor kenteken", {
       plate: plateNormalized,
       totalItems: aldocSets.totalItems,
       matchedItems: aldocSets.matchedItems,
