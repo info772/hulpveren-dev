@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+
+  <title>MAD hulpveren set | Hulpveren.shop</title>
+  <meta name="description" content="Productspecifieke pagina voor een MAD hulpveren set. Inclusief montage-informatie en modelkoppelingen." />
+  <link id="link-canonical" rel="canonical" href="https://www.hulpveren.shop/hulpveren/" />
+
+  <meta property="og:type" content="product" />
+  <meta id="og-title" property="og:title" content="MAD hulpveren set" />
+  <meta id="og-description" property="og:description" content="MAD hulpveren set met montage en koppeling naar alle passende modellen." />
+  <meta id="og-url" property="og:url" content="https://www.hulpveren.shop/hulpveren/" />
+  <meta id="og-image" property="og:image" content="https://www.hulpveren.shop/assets/img/HV%20kits/MAD-Auxiliary-springs-5-system-rear-default.jpg" />
+
+  <link rel="icon" href="/img/branding/APR-Favicon.png" type="image/png" sizes="any" />
+  <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260105_223000" />
+  <link rel="stylesheet" href="/assets/css/seo.css?v=20260108_1" />
+  <script defer src="/assets/js/header.js?v=20260105_223000"></script>
+<script defer src="/assets/js/app.js?v=20251212c"></script>
+
+  <style>
+    .fitment-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .fitment-list li { display: grid; gap: 4px; }
+    .fitment-list a { color: #d7e7ff; font-weight: 700; }
+    .fitment-list small { color: var(--muted); }
+    .spec-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .spec-grid dl { margin: 0; }
+    .spec-grid dt { font-weight: 700; color: #f6f8ff; }
+    .spec-grid dd { margin: 2px 0 10px; color: var(--muted); }
+    .note-box { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; color: var(--muted); }
+      .seo-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .seo-list li { display: block; }
+    .seo-list li::before { content: "- "; color: var(--muted); }
+    .seo-steps { margin: 0; padding-left: 18px; color: var(--muted); }
+    .seo-steps li { margin-bottom: 6px; }
+  </style>
+</head>
+<body class="page-hulpveren">
+<div id="site-header"></div>
+<script>
+(() => {
+  const header = document.currentScript.previousElementSibling;
+  const menuToggle = header?.querySelector('[data-nav-toggle]');
+  const nav = header?.querySelector('.nav');
+  const MEGA_CACHE = {};
+
+  const toggles = [...header?.querySelectorAll('.nav-item-mega') || []];
+  toggles.forEach((node) => {
+    const btn = node.querySelector('.nav-toggle-cta');
+    const panel = node.querySelector('.mega-panel');
+    if (!btn || !panel) return;
+
+    const family = node.getAttribute('data-family');
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      toggles.forEach((t) => {
+        const b = t.querySelector('.nav-toggle-cta');
+        const p = t.querySelector('.mega-panel');
+        if (!b || !p) return;
+        if (t === node && !open) {
+          b.setAttribute('aria-expanded', 'true');
+          p.classList.add('is-open');
+        } else {
+          b.setAttribute('aria-expanded', 'false');
+          p.classList.remove('is-open');
+        }
+      });
+
+      if (!open) {
+        loadMega(family);
+      }
+    });
+
+    node.addEventListener('mouseenter', () => {
+      btn.setAttribute('aria-expanded', 'true');
+      panel.classList.add('is-open');
+      loadMega(family);
+    });
+    node.addEventListener('mouseleave', () => {
+      btn.setAttribute('aria-expanded', 'false');
+      panel.classList.remove('is-open');
+    });
+  });
+
+  function loadMega(family) {
+    if (!family || MEGA_CACHE[family]) return;
+    MEGA_CACHE[family] = true;
+
+    fetch(`/data/makes-${family}.json`)
+      .then((res) => res.json())
+      .then((makes) => {
+        const brandsEl = document.getElementById(`hv-mega-brands-${family}`);
+        const modelsEl = document.getElementById(`hv-mega-models-${family}`);
+        const titleEl = document.getElementById(`hv-mega-model-title-${family}`);
+        if (!brandsEl || !modelsEl || !titleEl) return;
+
+        brandsEl.innerHTML = '';
+        Object.entries(makes).forEach(([slug, { label }]) => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = `/hulpveren/${slug}/`;
+          a.textContent = label;
+          a.addEventListener('mouseenter', () => loadModels(slug, makes, modelsEl, titleEl));
+          li.appendChild(a);
+          brandsEl.appendChild(li);
+        });
+      })
+      .catch(console.error);
+  }
+
+  function loadModels(makeSlug, makes, modelsEl, titleEl) {
+    const make = makes[makeSlug];
+    if (!make || !make.models) return;
+
+    titleEl.textContent = `Modellen ${make.label}`;
+    modelsEl.innerHTML = '';
+    Object.entries(make.models).forEach(([slug, label]) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `/hulpveren/${makeSlug}/${slug}/`;
+      a.textContent = label;
+      li.appendChild(a);
+      modelsEl.appendChild(li);
+    });
+  }
+
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) nav.scrollTop = 0;
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!nav || nav.contains(e.target) || e.target === nav || nav.classList.contains('is-open') === false) return;
+    const open = nav.classList.contains('is-open');
+    if (open) {
+      nav.classList.remove('is-open');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>
+
+<main class="page-main" role="main">
+  <div id="sku-status" class="note">Laden...</div>
+  <div id="sku-content" hidden>
+    <section id="sku-hero"></section>
+    <section id="sku-fitments"></section>
+    <section id="sku-specs"></section>
+    <section id="sku-seo"></section>
+    <section id="sku-cta"></section>
+  </div>
+</main>
+
+<script>
+(() => {
+  const statusEl = document.getElementById('sku-status');
+  const contentEl = document.getElementById('sku-content');
+  const heroEl = document.getElementById('sku-hero');
+  const fitmentsEl = document.getElementById('sku-fitments');
+  const specsEl = document.getElementById('sku-specs');
+  const seoEl = document.getElementById('sku-seo');
+  const ctaEl = document.getElementById('sku-cta');
+
+  const meta = {
+    title: document.querySelector('title'),
+    desc: document.querySelector('meta[name="description"]'),
+    linkCanonical: document.getElementById('link-canonical'),
+    ogTitle: document.getElementById('og-title'),
+    ogDesc: document.getElementById('og-description'),
+    ogUrl: document.getElementById('og-url'),
+    ogImage: document.getElementById('og-image'),
+  };
+
+  const slugify = (s) => String(s || '')
+    .trim()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/#/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+  const esc = (s) => String(s || '').replace(/[&<>]/g, (m) => {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    return '&gt;';
+  });
+
+  const joinHuman = (items) => {
+    if (!items || !items.length) return '';
+    if (items.length === 1) return items[0];
+    if (items.length === 2) return `${items[0]} en ${items[1]}`;
+    return `${items.slice(0, -1).join(', ')} en ${items[items.length - 1]}`;
+  };
+
+  function parseSku() {
+    const parts = location.pathname.split('/').filter(Boolean);
+    let cand = parts.pop();
+    if (!cand) cand = parts.pop();
+    if (!cand) {
+      const p = new URLSearchParams(location.search);
+      cand = p.get('sku') || '';
+    }
+    return cand ? cand.toUpperCase() : null;
+  }
+
+  function detectFamily(sku) {
+    const prefix = String(sku || '').toUpperCase().split('-')[0];
+    return prefix || 'HV';
+  }
+
+  function familyLabel(family) {
+    const f = String(family || '').toUpperCase();
+    if (f === 'NR') return 'Luchtvering';
+    if (f === 'LS') return 'Verlagingsveren';
+    return 'Hulpveren';
+  }
+
+  function detectKitType(kit, sku) {
+    const code = String(kit?.family_code || kit?.family_label || '').toUpperCase();
+    const kind = String(kit?.kind_of_kit_nl || kit?.kind_of_kit || '').toLowerCase();
+    const skuUp = String(sku || kit?.sku || '').toUpperCase();
+    if (code.includes('NR') || skuUp.startsWith('NR') || kind.includes('lucht') || kind.includes('air')) return 'air';
+    if (code.includes('LS') || skuUp.startsWith('LS') || kind.includes('verlag') || kind.includes('lower')) return 'lowering';
+    return 'helper';
+  }
+
+  function kitLabelNl(kitType) {
+    if (kitType === 'air') return 'Luchtvering';
+    if (kitType === 'lowering') return 'Verlagingsveren';
+    return 'Hulpveren';
+  }
+
+  function kitBasePath(kitType) {
+    if (kitType === 'air') return '/luchtvering';
+    if (kitType === 'lowering') return '/verlagingsveren';
+    return '/hulpveren';
+  }
+
+  function positionKey(pos) {
+    const p = String(pos || '').toLowerCase();
+    if (p.includes('front')) return 'front';
+    if (p.includes('rear')) return 'rear';
+    if (p.includes('both') || p.includes('front & rear') || p.includes('front/rear')) return 'both';
+    return '';
+  }
+
+  function axleLabelNl(pos) {
+    const key = positionKey(pos);
+    if (key === 'front') return 'Vooras';
+    if (key === 'rear') return 'Achteras';
+    if (key === 'both') return 'Voor- en achteras';
+    return 'As';
+  }
+
+  function yearRangeFromFitments(fitments) {
+    const years = [];
+    (fitments || []).forEach((f) => {
+      const y1 = String(f?.year_from || '').match(/\d{4}/);
+      const y2 = String(f?.year_to || '').match(/\d{4}/);
+      if (y1) years.push(Number(y1[0]));
+      if (y2) years.push(Number(y2[0]));
+    });
+    if (!years.length) return '';
+    const min = Math.min(...years);
+    const max = Math.max(...years);
+    if (!isFinite(min) || !isFinite(max)) return '';
+    return min === max ? String(min) : `${min} t/m ${max}`;
+  }
+
+  function dataUrlForFamily(family) {
+    const f = String(family || '').toUpperCase();
+    if (f === 'NR') return '/data/nr-kits.json';
+    if (f === 'LS') return '/data/ls-kits.json';
+    return '/data/hv-kits.json';
+  }
+
+  function setStatus(msg, isError) {
+    if (statusEl) {
+      statusEl.textContent = msg;
+      statusEl.style.color = isError ? '#ffb3b3' : '';
+    }
+  }
+
+  function fmtPrice(kit) {
+    const p = kit?.pricing_nl?.total_inc_vat_from_eur;
+    return typeof p === 'number' ? `${p.toFixed(0)}` : 'Op aanvraag';
+  }
+
+  function imageUrl(kit) {
+    const name = (kit?.images && kit.images[0]) || 'MAD-Auxiliary-springs-5-system-rear-default';
+    return `/assets/img/HV kits/${name}.jpg`;
+  }
+
+  function groupFitments(kit) {
+    const grouped = new Map();
+    (kit?.fitments || []).forEach((f) => {
+      const make = String(f.make || '').trim();
+      const model = String(f.model || '').trim();
+      if (!make || !model) return;
+      const makeSlug = slugify(make);
+      const modelSlug = slugify(model);
+      if (!makeSlug || !modelSlug) return;
+      const entry = {
+        model,
+        modelSlug,
+        platform: (f.platform_codes || []).join(', '),
+        remark: f.remark || '',
+        years: [f.year_from, f.year_to].filter(Boolean).join(' t/m '),
+      };
+      if (!grouped.has(make)) grouped.set(make, { makeSlug, models: [] });
+      grouped.get(make).models.push(entry);
+    });
+    return grouped;
+  }
+
+  function updateMeta(kit, sku, grouped, kitType) {
+    const makes = [...grouped.keys()];
+    const primaryMakes = makes.slice(0, 3).join(', ');
+    const labelLower = kitLabelNl(kitType).toLowerCase();
+    const title = `${kit.sku} ${kitLabelNl(kitType)} - MAD set met montage | Hulpveren.shop`;
+    const desc = `${kit.sku} ${labelLower} - MAD set met montage`;
+    const url = `https://www.hulpveren.shop${location.pathname}`;
+    const imgPath = imageUrl(kit);
+    const img = imgPath.startsWith('http') ? imgPath : `https://www.hulpveren.shop${imgPath}`;
+
+    if (meta.title) meta.title.textContent = title;
+    if (meta.desc) meta.desc.setAttribute('content', desc);
+    if (meta.linkCanonical) meta.linkCanonical.setAttribute('href', url);
+    if (meta.ogTitle) meta.ogTitle.setAttribute('content', title);
+    if (meta.ogDesc) meta.ogDesc.setAttribute('content', desc);
+    if (meta.ogUrl) meta.ogUrl.setAttribute('content', url);
+    if (meta.ogImage) meta.ogImage.setAttribute('content', img);
+  }
+
+  function renderHero(kit, sku, kitType) {
+    const price = fmtPrice(kit);
+    const label = kitLabelNl(kitType);
+    const labelLower = label.toLowerCase();
+    const drive = kit.drivetrain_allowed && kit.drivetrain_allowed.length
+      ? kit.drivetrain_allowed.join(', ')
+      : 'Geschikt voor 2WD en 4WD varianten';
+    const fuels = (kit.powertrains_allowed || []).join(', ');
+    const posLabel = kit.position ? axleLabelNl(kit.position) : 'Aspositie';
+    heroEl.innerHTML = `
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <p class="eyebrow">MAD ${labelLower}</p>
+          <h1>${kit.sku} ${kit.kind_of_kit_nl || label}</h1>
+          <p class="lead">Dynamisch opgebouwd op basis van setdata. Inclusief prijsindicatie, montage-informatie en links naar alle passende modellen.</p>
+          <div class="hero-actions">
+            <a class="btn" href="tel:+31165856568">Plan montage</a>
+            <a class="btn btn-ghost" href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">Vraag via WhatsApp</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><strong>${price}</strong><span>Incl. Montage & BTW</span></div>
+            <div class="hero-stat"><strong>${posLabel}</strong><span>${label}</span></div>
+            <div class="hero-stat"><strong>${kit.approval || 'TUV'}</strong><span>Setdocumenten beschikbaar</span></div>
+          </div>
+          <div class="pillrow" style="margin-top:14px;">
+            <span class="pill">SKU: ${kit.sku}</span>
+            <span class="pill">Positie: ${posLabel}</span>
+            <span class="pill">${drive}</span>
+            ${fuels ? `<span class="pill">Brandstof: ${fuels}</span>` : ''}
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="card product">
+            <div class="img">
+              <img src="${imageUrl(kit)}" alt="MAD ${kit.sku} ${labelLower} set" loading="lazy" decoding="async" />
+              <span class="badge">${posLabel}</span>
+            </div>
+            <div class="body">
+              <div class="sku">${kit.sku}</div>
+              <div class="meta">
+                <div class="k">Goedkeuring</div><div>${kit.approval || 'TUV'}</div>
+                <div class="k">Type</div><div>${kit.kind_of_kit_nl || kit.kind_of_kit || label}</div>
+                <div class="k">Prijsindicatie</div><div>${price}</div>
+                <div class="k">Afmetingen</div><div>${kit.dimensions || 'n.v.t.'}</div>
+                <div class="k">Gewicht</div><div>${kit.weight || 'n.v.t.'}</div>
+              </div>
+              <div class="chips">
+                <span class="chip support">Incl. 2WD &amp; 4WD</span>
+                <span class="chip support">Montage in Roosendaal</span>
+                <span class="chip">${posLabel}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  function renderFitments(grouped, kitType) {
+    if (!fitmentsEl) return;
+    const basePath = kitBasePath(kitType);
+    if (!grouped.size) {
+      fitmentsEl.innerHTML = `
+        <div class="wrap">
+          <h2>Toepassing</h2>
+          <p>Er zijn geen specifieke fitments gevonden voor deze set. Neem contact op voor controle op kenteken.</p>
+        </div>`;
+      return;
+    }
+    const cards = [...grouped.entries()].map(([make, data]) => {
+      const items = data.models
+        .slice()
+        .sort((a, b) => a.model.localeCompare(b.model))
+        .map((m) => {
+          const href = basePath && data.makeSlug && m.modelSlug
+            ? `${basePath}/${data.makeSlug}/${m.modelSlug}/`
+            : '';
+          return `
+        <li>
+          ${href ? `<a href="${href}">${esc(m.model)}${m.platform ? ` (${esc(m.platform)})` : ''}</a>` : `${esc(m.model)}${m.platform ? ` (${esc(m.platform)})` : ''}`}
+          <small>${esc(m.years || '')}${m.remark ? ` - ${esc(m.remark)}` : ''}</small>
+        </li>`;
+        }).join('');
+      return `
+        <div class="card">
+          <div class="t">${esc(make)}</div>
+          <ul class="fitment-list">${items}</ul>
+        </div>`;
+    }).join('');
+
+    fitmentsEl.innerHTML = `
+      <div class="wrap">
+        <h2>Toepassing</h2>
+        <p>Gebruik de links per merk/model om direct naar de modelpagina te gaan en het juiste bouwjaar of uitvoering te kiezen.</p>
+        <div class="grid">${cards}</div>
+      </div>`;
+  }
+
+  function benefitsForType(kitType) {
+    if (kitType === 'air') {
+      return [
+        'Regelbare rijhoogte bij wisselende belading',
+        'Houdt de auto vlak met caravan of zware lading',
+        'Meer comfort door afstelbare druk',
+        'Stabieler bij hoge snelheid en zijwind',
+        'Afstelbaar met ventielen of compressor',
+        'Luchtleidingen en koppelingen periodiek controleren',
+      ];
+    }
+    if (kitType === 'lowering') {
+      return [
+        'Lagere rijhoogte en strakkere uitstraling',
+        'Minder overhellen in bochten',
+        'Directer stuurgevoel en meer feedback',
+        'Meer stabiliteit bij hogere snelheid',
+        'Uitlijnen na montage aanbevolen',
+      ];
+    }
+    return [
+      'Minder doorzakken bij belading of trekhaak',
+      'Stabieler met caravan, aanhanger of zware lading',
+      'Houdt rijhoogte en koplampstand beter op niveau',
+      'Rustiger weggedrag en minder overhellen',
+      'Meer controle bij remmen en bochten',
+      'Geen compressor of luchtleidingen; onderhoudsarm',
+      'Eenvoudige montage en geen afstelling nodig',
+    ];
+  }
+
+  function installStepsNl(position, kitType) {
+    const posKey = positionKey(position);
+    if (kitType === 'air') {
+      return [
+        'Zet het voertuig veilig op bokken en borg de wielen.',
+        'Monteer luchtbalgen en steunen volgens handleiding.',
+        'Leg luchtleidingen netjes weg en bescherm tegen hitte en wrijving.',
+        'Monteer ventielen of compressor, controleer op lekkage en stel druk af.',
+      ];
+    }
+    if (kitType === 'lowering') {
+      return [
+        'Zet het voertuig veilig op bokken en demonteer de veerpoten.',
+        'Gebruik een veercompressor en monteer de verlagingsveren.',
+        'Controleer bumpstops en montagepunten.',
+        'Monteer alles op rijhoogte en laat uitlijnen.',
+      ];
+    }
+    if (posKey === 'front') {
+      return [
+        'Zet het voertuig veilig op bokken en borg de wielen.',
+        'Demonteer de veerpoten volgens werkplaatshandboek (veerpanner nodig).',
+        'Monteer de hulpveren volgens handleiding.',
+        'Draai alles vast op rijhoogte en laat uitlijnen indien nodig.',
+      ];
+    }
+    if (posKey === 'both') {
+      return [
+        'Zet het voertuig veilig op bokken en borg de wielen.',
+        'Demonteer de veren of veerpoten volgens handleiding.',
+        'Monteer de hulpveren op voor- en achteras.',
+        'Monteer alles op rijhoogte, proefrit en nacontrole.',
+      ];
+    }
+    return [
+      'Zet het voertuig veilig op bokken en borg de wielen.',
+      'Maak de onderste schokdemperbouten los om de as te laten zakken.',
+      'Plaats de hulpveren volgens handleiding.',
+      'Monteer alles op rijhoogte, proefrit en nacontrole.',
+    ];
+  }
+
+  function renderSpecs(kit, kitType) {
+    const drive = kit.drivetrain_allowed && kit.drivetrain_allowed.length
+      ? kit.drivetrain_allowed.join(', ')
+      : '2WD en 4WD beide toegestaan';
+    const fuels = (kit.powertrains_allowed || []).join(', ');
+    const label = kitLabelNl(kitType);
+    const posLabel = kit.position ? axleLabelNl(kit.position) : 'n.v.t.';
+    const whyItems = benefitsForType(kitType).slice(0, 4).map((item) => `<li>${esc(item)}</li>`).join('');
+    const note = kitType === 'air'
+      ? 'Tip: Controleer luchtleidingen en druk na de eerste rit.'
+      : kitType === 'lowering'
+        ? 'Tip: Laat na montage uitlijnen voor optimale bandenslijtage.'
+        : 'Tip: Controleer altijd aslast en uitvoering (bijv. multilink/variant). Wij checken dit direct op kenteken.';
+
+    specsEl.innerHTML = `
+      <div class="wrap spec-grid">
+        <div class="card">
+          <div class="t">Technische details</div>
+          <dl>
+            <dt>Type</dt><dd>${kit.kind_of_kit_nl || kit.kind_of_kit || label}</dd>
+            <dt>SKU</dt><dd>${kit.sku}</dd>
+            <dt>Positie</dt><dd>${posLabel}</dd>
+            <dt>Goedkeuring</dt><dd>${kit.approval || 'TUV'}</dd>
+            <dt>Afmetingen</dt><dd>${kit.dimensions || 'n.v.t.'}</dd>
+            <dt>Gewicht</dt><dd>${kit.weight || 'n.v.t.'}</dd>
+            <dt>Brandstoffen</dt><dd>${fuels || 'n.v.t.'}</dd>
+            <dt>Drivetrain</dt><dd>${drive}</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <div class="t">Montage &amp; prijs</div>
+          <dl>
+            <dt>Prijsindicatie</dt><dd>${fmtPrice(kit)} Incl. Montage & BTW</dd>
+            <dt>Montagetijd</dt><dd>Ca. 30 minuten (richtlijn)</dd>
+            <dt>Werkplaats</dt><dd>Auto Parts Roosendaal, Westelijke Havendijk 17c</dd>
+            <dt>Inclusief</dt><dd>Set, montagehardware, TUV-documentatie</dd>
+            <dt>Advies</dt><dd>Bel of app voor bevestiging op jouw uitvoering (bouwjaar, motor, aslast)</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <div class="t">Waarom deze set</div>
+          <ul class="fitment-list">
+            ${whyItems}
+          </ul>
+          <div class="note-box">${esc(note)}</div>
+        </div>
+      </div>`;
+  }
+
+  function renderSeo(kit, grouped, kitType) {
+    if (!seoEl) return;
+    const label = kitLabelNl(kitType);
+    const labelLower = label.toLowerCase();
+    const basePath = kitBasePath(kitType);
+    const axleLabel = axleLabelNl(kit.position);
+    const axleLower = axleLabel.toLowerCase();
+    const benefits = benefitsForType(kitType).slice(0, 6);
+    const steps = installStepsNl(kit.position, kitType);
+    const years = yearRangeFromFitments(kit.fitments);
+    const approval = kit.approval || '';
+    const price = fmtPrice(kit);
+    const supportLine = kitType === 'air'
+      ? 'Regelbare ondersteuning voor wisselende belading.'
+      : kitType === 'lowering'
+        ? 'Lagere rijhoogte en strakker weggedrag.'
+        : 'Extra ondersteuning bij belading zonder harde rit wanneer leeg.';
+    const makeLinks = [...grouped.entries()].map(([make, data]) => {
+      const href = basePath && data.makeSlug ? `${basePath}/${data.makeSlug}/` : '';
+      return href ? `<a href="${href}">${esc(make)}</a>` : esc(make);
+    });
+    const makeLine = makeLinks.length ? `Merken: ${joinHuman(makeLinks)}.` : '';
+    const yearsLine = years ? `Bouwjaren: ${years}.` : '';
+    const approvalLine = approval ? `Goedkeuring: ${esc(approval)}.` : '';
+    const priceLine = price ? `Prijsindicatie: ${price} Incl. Montage & BTW.` : '';
+    const modelHint = makeLinks.length ? "Bekijk de modelpagina's voor exacte uitvoeringen en bouwjaren." : '';
+    const intro = [
+      `MAD ${labelLower} set ${kit.sku} voor de ${axleLower}. ${supportLine}`,
+      makeLine,
+      yearsLine,
+      approvalLine,
+      priceLine,
+      modelHint,
+    ].filter(Boolean).join(' ');
+    const benefitItems = benefits.map((item) => `<li>${esc(item)}</li>`).join('');
+    const stepItems = steps.map((step) => `<li>${esc(step)}</li>`).join('');
+    const note = kitType === 'air'
+      ? 'Controleer de druk na de eerste rit en daarna periodiek.'
+      : kitType === 'lowering'
+        ? 'Laat na montage uitlijnen voor optimale bandenslijtage.'
+        : 'Controleer na montage de bevestigingen en maak een proefrit.';
+
+    seoEl.innerHTML = `
+      <div class="wrap">
+        <div class="grid">
+          <div class="card">
+            <div class="t">Wat je merkt</div>
+            <ul class="seo-list">${benefitItems}</ul>
+          </div>
+          <div class="card">
+            <div class="t">Montage-overzicht</div>
+            <ol class="seo-steps">${stepItems}</ol>
+            <div class="note-box">${esc(note)}</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <div class="t">Over deze set</div>
+          <p class="s">${intro}</p>
+        </div>
+      </div>`;
+  }
+
+  function renderCta() {
+    ctaEl.innerHTML = `
+      <div class="wrap">
+        <div class="card">
+          <div class="t">Hulp nodig?</div>
+          <p class="s">Mail je kenteken of VIN, dan controleren we direct de juiste set, aslast en beschikbare montagetijden.</p>
+          <div class="cta-row">
+            <a class="btn" href="tel:+31165856568">Bel 0165 856568</a>
+            <a class="btn btn-ghost" href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">WhatsApp direct</a>
+            <a class="btn btn-ghost" href="mailto:info@auto-parts-roosendaal.nl">Mail ons</a>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  async function run() {
+    const sku = parseSku();
+    if (!sku) {
+      setStatus('Geen SKU gevonden in de URL.', true);
+      return;
+    }
+
+    const family = detectFamily(sku);
+    const dataUrl = dataUrlForFamily(family);
+    const baseLabel = familyLabel(family);
+    const baseLabelLower = baseLabel.toLowerCase();
+    const pageUrl = `${location.origin}${location.pathname}`;
+    const baseTitle = `${sku} ${baseLabel} - MAD set met montage | Hulpveren.shop`;
+    const baseDesc = `${sku} ${baseLabelLower} - MAD set met montage`;
+    if (meta.title) meta.title.textContent = baseTitle;
+    if (meta.desc) meta.desc.setAttribute('content', baseDesc);
+    if (meta.linkCanonical) meta.linkCanonical.setAttribute('href', pageUrl);
+    if (meta.ogTitle) meta.ogTitle.setAttribute('content', baseTitle);
+    if (meta.ogDesc) meta.ogDesc.setAttribute('content', baseDesc);
+    if (meta.ogUrl) meta.ogUrl.setAttribute('content', pageUrl);
+
+    setStatus(`Laden van set ${sku}...`);
+    const res = await fetch(dataUrl, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Kan ${dataUrl} niet laden (${res.status}).`);
+    const data = await res.json();
+    const kits = Array.isArray(data) ? data : data.kits || [];
+    const kit = kits.find((k) => String(k.sku || '').toUpperCase() === sku);
+
+    if (!kit) {
+      setStatus(`Geen set gevonden voor SKU ${sku}.`, true);
+      return;
+    }
+
+    const kitType = detectKitType(kit, sku);
+    const grouped = groupFitments(kit);
+    updateMeta(kit, sku, grouped, kitType);
+    renderHero(kit, sku, kitType);
+    renderFitments(grouped, kitType);
+    renderSpecs(kit, kitType);
+    renderSeo(kit, grouped, kitType);
+    renderCta();
+
+    if (contentEl) contentEl.hidden = false;
+    if (statusEl) statusEl.hidden = true;
+  }
+
+  run().catch((err) => setStatus(err.message || String(err), true));
+})();
+</script>
+
+<footer class="site-footer">
+  <div class="footer-shell">
+    <section class="footer-block">
+      <p class="eyebrow">Hulpveren.shop</p>
+      <h2>Veilig rijden met de juiste set</h2>
+      <p>Wij bouwen dagelijks MAD hulpveren, luchtvering en verlagingsveren in. Altijd inclusief montage, uitlijning en eerlijk advies.</p>
+      <div class="footer-cta">
+        <a class="btn" href="/hulpveren">Bekijk hulpveren</a>
+        <a class="btn btn-ghost" href="/montage">Plan montage</a>
+      </div>
+      <ul class="footer-list">
+        <li>Gecertificeerde monteurs</li>
+        <li>Persoonlijk advies per kenteken</li>
+        <li>Snelle beschikbaarheid uit voorraad</li>
+      </ul>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Kies je merk</p>
+      <div id="hv-footer-brands" class="taglist" aria-live="polite"></div>
+      <a class="footer-link" href="/hulpveren">Alle merken</a>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Populaire modellen</p>
+      <p id="hv-footer-models-label" class="footer-muted">We tonen modellen die passen bij de huidige pagina.</p>
+      <div id="hv-footer-models" class="taglist" aria-labelledby="hv-footer-models-label"></div>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Contact</p>
+      <ul class="footer-list">
+        <li><strong>Auto Parts Roosendaal</strong></li>
+        <li>Westelijke Havendijk 17c</li>
+        <li>4703 RA Roosendaal</li>
+        <li>Bel: <a href="tel:+31165856568">0165 856568</a></li>
+        <li>WhatsApp: <a href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">Direct advies</a></li>
+        <li>Mail: <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a></li>
+        <li>Ma-Vr 10:00-18:00</li>
+        <li>Za 10:00-12:00</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <span id="hv-footer-year"></span> Hulpveren.shop - MAD specialist sinds 2008</p>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/algemene-voorwaarden">Algemene voorwaarden</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
+
+
+
+
+
+
+
