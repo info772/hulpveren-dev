@@ -6699,8 +6699,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         <span><span id="kit-count">0</span> sets</span>
         <span id="filter-summary" class="muted"></span>
       </div>
-      ${plateInfoHtml}
       ${filtersBlock}
+      ${plateInfoHtml}
+
       <div id="model-grid" class="grid" data-set-list></div>
     `);
     initVehicleDetailsToggle(app);
