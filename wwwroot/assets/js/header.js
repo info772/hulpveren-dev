@@ -167,34 +167,54 @@
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "");
 
+  const getPlateContext = () =>
+    (window.HVPlateContext &&
+      typeof window.HVPlateContext.getPlateContext === "function" &&
+      window.HVPlateContext.getPlateContext()) ||
+    window.hv_plate_context ||
+    null;
+
   const plateGroupUrl = (group, plate) => {
-  const p = normalizePlate(plate);
-  if (!p) return "/";
-  const slug = `kt_${p.toLowerCase()}`;
+    const p = normalizePlate(plate);
+    if (!p) return "/";
+    const slug = `kt_${p.toLowerCase()}`;
 
-  // probeer make/model uit de huidige URL te halen (als we al op /<family>/<make>/<model>/... zitten)
-  const parts = window.location.pathname.split("/").filter(Boolean);
+    // probeer make/model uit de huidige URL te halen (als we al op /<family>/<make>/<model>/... zitten)
+    const parts = window.location.pathname.split("/").filter(Boolean);
 
-  // zoek de family in de url
-  const families = ["hulpveren", "luchtvering", "verlagingsveren"];
-  const famIndex = parts.findIndex((x) => families.includes(x));
+    // zoek de family in de url
+    const families = ["hulpveren", "luchtvering", "verlagingsveren"];
+    const famIndex = parts.findIndex((x) => families.includes(x));
 
-  // standaard targets per knop
-  const base =
-    group === "air" ? "/luchtvering" :
-    group === "ls"  ? "/verlagingsveren" :
-                      "/hulpveren";
+    // standaard targets per knop
+    const base =
+      group === "air" ? "/luchtvering" :
+      group === "ls"  ? "/verlagingsveren" :
+                        "/hulpveren";
 
-  // als we make+model hebben: voeg toe
-  if (famIndex >= 0) {
-    const make = parts[famIndex + 1] || "";
-    const model = parts[famIndex + 2] || "";
-    if (make && model) return `${base}/${make}/${model}/${slug}/`;
-  }
+    // als we make+model hebben: voeg toe
+    if (famIndex >= 0) {
+      const make = parts[famIndex + 1] || "";
+      const model = parts[famIndex + 2] || "";
+      if (make && model) return `${base}/${make}/${model}/${slug}/`;
+    }
 
-  // fallback (geen context)
-  return `${base}/${slug}/`;
-};
+    const ctx = getPlateContext();
+    const ctxMake = slugify(
+      (ctx && ctx.route && ctx.route.makeSlug) ||
+        (ctx && ctx.vehicle && (ctx.vehicle.makeSlug || ctx.vehicle.make || ctx.vehicle.makename)) ||
+        ""
+    );
+    const ctxModel = slugify(
+      (ctx && ctx.route && ctx.route.modelSlug) ||
+        (ctx && ctx.vehicle && (ctx.vehicle.modelSlug || ctx.vehicle.modelLabel || ctx.vehicle.model || ctx.vehicle.modelname)) ||
+        ""
+    );
+    if (ctxMake && ctxModel) return `${base}/${ctxMake}/${ctxModel}/${slug}/`;
+
+    // fallback (geen context)
+    return `${base}/${slug}/`;
+  };
 
 
   const openPlateGroupOverlay = (plate) => {
