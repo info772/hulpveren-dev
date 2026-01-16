@@ -856,6 +856,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .filter((t) => t.length >= 2);
   }
 
+  function motorTokenKey(token) {
+    return String(token || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  }
+
   function motorMatches(filterValue, kitMotorText) {
     const q = normalizeMotorText(filterValue);
     if (!q) return true;
@@ -866,9 +870,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (!want.length) return true;
 
     const have = motorTokens(kitText);
+    const wantKeys = want.map(motorTokenKey).filter(Boolean);
+    const haveKeys = have.map(motorTokenKey).filter(Boolean);
 
     return want.some((token) =>
       have.some((h) => h.includes(token) || token.includes(h))
+    ) || wantKeys.some((tokenKey) =>
+      haveKeys.some((hKey) => hKey.includes(tokenKey) || tokenKey.includes(hKey))
     );
   }
 
