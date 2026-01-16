@@ -859,11 +859,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function motorMatches(filterValue, kitMotorText) {
     const q = normalizeMotorText(filterValue);
     if (!q) return true;
+    const kitText = normalizeMotorText(kitMotorText);
+    if (!kitText) return true;
 
     const want = motorTokens(q);
     if (!want.length) return true;
 
-    const have = motorTokens(kitMotorText);
+    const have = motorTokens(kitText);
 
     return want.some((token) =>
       have.some((h) => h.includes(token) || token.includes(h))
@@ -4482,16 +4484,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const sku = k?.sku || "";
     const skuLower = sku.toLowerCase();
     const kitHref = stripKentekenSuffix(`/verlagingsveren/${esc(skuLower)}/`);
-    const dropFront = k?.suspension_delta_mm?.front_mm;
-    const dropRear = k?.suspension_delta_mm?.rear_mm;
-    let dropLabel = "-";
-    if (dropFront && dropRear) {
-      dropLabel = `Voor: ${dropFront} mm &middot; Achter: ${dropRear} mm`;
-    } else if (dropFront) {
-      dropLabel = `Voor: ${dropFront} mm`;
-    } else if (dropRear) {
-      dropLabel = `Achter: ${dropRear} mm`;
-    }
+    const dropInfo = dropInfoFromKit(k);
+    const dropLabel = dropInfo.label || "-";
     const setLabel =
       posKey === "both" ? "4 veren (voor+achter)" : "2 veren";
     const engineLabelRaw =
@@ -4532,7 +4526,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           fitmentRangeLabel || ""
         )}" data-fitment-make="${esc(fitmentMake || "")}" data-fitment-model="${esc(
           fitmentModel || ""
-        )}" data-engine="${esc(normalizeMotorText(engineFilterText))}">
+        )}" data-engine="${esc(normalizeMotorText(engineFilterText))}" data-drop="${esc(
+          dropInfo.key || ""
+        )}">
           <div class="img">
             <img src="${esc(imgSrc)}" alt="Verlagingsveren ${esc(
       makeLabel
@@ -7137,6 +7133,24 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return `<div class="k">${esc(label)}</div><div class="v">${esc(val)}</div>`;
   }
 
+  function dropInfoFromKit(kit) {
+    const dropFront = kit?.suspension_delta_mm?.front_mm;
+    const dropRear = kit?.suspension_delta_mm?.rear_mm;
+    if (dropFront && dropRear) {
+      return {
+        key: `front:${dropFront}|rear:${dropRear}`,
+        label: `Voor: ${dropFront} mm &middot; Achter: ${dropRear} mm`,
+      };
+    }
+    if (dropFront) {
+      return { key: `front:${dropFront}`, label: `Voor: ${dropFront} mm` };
+    }
+    if (dropRear) {
+      return { key: `rear:${dropRear}`, label: `Achter: ${dropRear} mm` };
+    }
+    return { key: "", label: "-" };
+  }
+
   function renderNrModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp) return;
     suppressHomeSectionsForApp();
@@ -7220,6 +7234,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const years = [];
     const posSet = new Set();
     const apprSet = new Set();
+    const engineOptions = new Map();
+    const dropOptions = new Map();
     let hasEngine = false;
 
     pairs.forEach(({ k, f }) => {
@@ -7233,6 +7249,20 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (appr) apprSet.add(appr);
       const engine = enginesText(k, f);
       if (engine) hasEngine = true;
+      if (family === "ls") {
+        const engineList = enginesFromKitAndNotes(k, f)
+          .map((v) => String(v || "").trim())
+          .filter((v) => v && v !== "-" && v !== "—" && v.toLowerCase() !== "lpg");
+        engineList.forEach((label) => {
+          const value = normalizeMotorText(label);
+          if (!value) return;
+          if (!engineOptions.has(value)) engineOptions.set(value, label);
+        });
+        const drop = dropInfoFromKit(k);
+        if (drop.key && drop.label && !dropOptions.has(drop.key)) {
+          dropOptions.set(drop.key, drop.label);
+        }
+      }
     });
 
     const cardsBlock = pairs
@@ -7249,7 +7279,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const showYear = yearsAvail.length > 0 && yearMin <= yearMax;
     const showPos = posSet.size > 1;
     const showAppr = apprSet.size > 1;
-    const showEngine = hasEngine;
+    const showEngine = family === "ls" ? engineOptions.size > 0 : hasEngine;
+    const showDrop = family === "ls" && dropOptions.size > 1;
 
     const yearExtraInputs = `
       <div class="range-row" style="gap:8px; align-items:center;">
@@ -7301,10 +7332,43 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         </section>`);
     }
     if (showEngine) {
+      if (family === "ls") {
+        const engineItems = Array.from(engineOptions.entries()).sort((a, b) =>
+          a[1].localeCompare(b[1], "nl")
+        );
+        const optionsHtml = engineItems
+          .map(([value, label]) => `<option value="${esc(value)}">${label}</option>`)
+          .join("");
+        filters.push(`
+          <section class="filter-card grp actions" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+            <span class="muted">Motor</span>
+            <select id="${family}-engine" style="width:220px;padding:6px 8px;">
+              <option value="">Alle motoren</option>
+              ${optionsHtml}
+            </select>
+          </section>`);
+      } else {
+        filters.push(`
+          <section class="filter-card grp actions" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+            <span class="muted">Motor</span>
+            <input type="text" id="${family}-engine" placeholder="bijv. 1.5 TSI, diesel, 85kW" style="width:180px;padding:6px 8px;">
+          </section>`);
+      }
+    }
+    if (showDrop) {
+      const dropItems = Array.from(dropOptions.entries()).sort((a, b) =>
+        a[1].localeCompare(b[1], "nl")
+      );
+      const optionsHtml = dropItems
+        .map(([value, label]) => `<option value="${esc(value)}">${label}</option>`)
+        .join("");
       filters.push(`
         <section class="filter-card grp actions" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
-          <span class="muted">Motor</span>
-          <input type="text" id="${family}-engine" placeholder="bijv. 1.5 TSI, diesel, 85kW" style="width:180px;padding:6px 8px;">
+          <span class="muted">Verlaging</span>
+          <select id="${family}-drop" style="width:220px;padding:6px 8px;">
+            <option value="">Alle verlagingen</option>
+            ${optionsHtml}
+          </select>
         </section>`);
     }
     if (filters.length) {
@@ -7346,6 +7410,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const yearFrom = document.getElementById("nr-year-from");
     const yearTo = document.getElementById("nr-year-to");
     const engineInput = document.getElementById(`${family}-engine`);
+    const dropSelect = document.getElementById(`${family}-drop`);
     const posBoxes = Array.prototype.slice.call(
       document.querySelectorAll(".nr-pos")
     );
@@ -7405,14 +7470,18 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       updatePicked();
     }
 
-    if (engineInput && vehicleActive) {
+    if (engineInput && vehicleActive && engineInput.tagName === "SELECT") {
       const plateVehicle =
         (resolvedPlateContext && resolvedPlateContext.vehicle) ||
         (activeCtx && activeCtx.vehicle) ||
         null;
       const engineFilter = buildEngineFilterFromVehicle(plateVehicle);
       if (engineFilter && !String(engineInput.value || "").trim()) {
-        engineInput.value = engineFilter;
+        const target = normalizeMotorText(engineFilter);
+        const found = Array.from(engineInput.options || []).find((opt) =>
+          motorMatches(target, opt.value)
+        );
+        if (found) engineInput.value = found.value;
       }
     }
 
@@ -7433,6 +7502,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const cardPos = (card.dataset.pos || "").toLowerCase();
       const cardAppr = (card.dataset.approval || "").toLowerCase();
       const cardEngine = card.dataset.engine || "";
+      const dropKey = dropSelect ? dropSelect.value : "";
       const posSel = posBoxes
         .filter((b) => b.checked)
         .map((b) => b.value.toLowerCase());
@@ -7447,7 +7517,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         if (cy2 !== null && ys > cy2) return false;
       }
       if (family === "ls") {
-        if (!motorMatches(engRaw, cardEngine)) return false;
+        if (engRaw && !motorMatches(engRaw, cardEngine)) return false;
+        if (dropKey && String(card.dataset.drop || "") !== dropKey) return false;
       } else if (eng) {
         if (!cardEngine || cardEngine.toLowerCase().indexOf(eng) === -1) return false;
       }
@@ -7484,6 +7555,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (yearFrom) yearFrom.value = "";
       if (yearTo) yearTo.value = "";
       if (engineInput) engineInput.value = "";
+      if (dropSelect) dropSelect.value = "";
       posBoxes.forEach((b) => (b.checked = false));
       apprBoxes.forEach((b) => (b.checked = false));
       apply();
