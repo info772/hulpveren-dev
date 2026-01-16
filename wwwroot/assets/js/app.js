@@ -7169,6 +7169,21 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return `${num}${suffix}`;
   }
 
+  function extractEngineChoices(text) {
+    const raw = String(text || "").trim();
+    if (!raw) return [];
+    const regex = /(\d+(?:[.,]\d+)?)\s*([A-Za-z]{2,6})/g;
+    const out = [];
+    let match;
+    while ((match = regex.exec(raw))) {
+      const num = match[1] || "";
+      const type = match[2] || "";
+      const token = `${num} ${type}`.trim();
+      if (token) out.push(token);
+    }
+    return out;
+  }
+
   function renderNrModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp) return;
     suppressHomeSectionsForApp();
@@ -7298,10 +7313,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         const engineList = enginesFromKitAndNotes(k, f)
           .map((v) => String(v || "").trim())
           .filter((v) => v && v !== "-" && v !== "—" && v.toLowerCase() !== "lpg");
+        const engineLabelRaw =
+          f?.engine_raw ||
+          (Array.isArray(f?.engines) ? f.engines.filter(Boolean).join(", ") : "") ||
+          engineList.join(", ");
+        const choiceTokens = new Set();
+        extractEngineChoices(engineLabelRaw).forEach((token) => choiceTokens.add(token));
         engineList.forEach((label) => {
-          const value = normalizeMotorText(label);
+          extractEngineChoices(label).forEach((token) => choiceTokens.add(token));
+        });
+        choiceTokens.forEach((token) => {
+          const value = normalizeMotorText(token);
           if (!value) return;
-          const formatted = formatEngineLabel(value) || label;
+          const formatted = formatEngineLabel(value) || token;
           if (!engineOptions.has(value)) engineOptions.set(value, formatted);
         });
         const drop = dropInfoFromKit(k);
