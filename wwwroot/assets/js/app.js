@@ -4,6 +4,29 @@
 (() => {
   "use strict";
 
+  function normalizePath(p) {
+    p = (p || location.pathname || "/");
+    p = p.replace(/\/+$/, "/");
+    return p.endsWith("/") ? p : p + "/";
+  }
+
+  function isLegacyRoute() {
+    const p = normalizePath(location.pathname);
+    return (
+      p.startsWith("/hulpveren/") ||
+      p.startsWith("/luchtvering/") ||
+      p.startsWith("/verlagingsveren/")
+    );
+  }
+
+  function hasSpaRoot() {
+    return !!document.querySelector("#app, #spa-root, [data-spa-root]");
+  }
+
+  window.__SPA_DISABLED__ = isLegacyRoute();
+
+  if (window.__SPA_DISABLED__) return;
+
 // === SEO module (optional) ===
 let SeoContent = null;
 let SeoContentPromise = null;
