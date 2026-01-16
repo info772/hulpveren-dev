@@ -7207,7 +7207,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
     if (showEngine) {
       filters.push(`
-        <section class="filter-card grp" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+        <section class="filter-card grp actions" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
           <span class="muted">Motor</span>
           <input type="text" id="nr-engine" placeholder="bijv. diesel, hybrid, 2.0" style="width:180px;padding:6px 8px;">
         </section>`);

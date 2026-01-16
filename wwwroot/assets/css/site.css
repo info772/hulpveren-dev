@@ -2408,5 +2408,78 @@ body.nav-open .hv2-burger{
   line-height: 1;
 }
 
+/* -----------------------------
+   Filters layout (NR/LS/HV)
+------------------------------ */
+
+.filters-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+/* Zorg dat filter cards netjes dezelfde "hoogte feel" hebben */
+.filters-grid .filter-card{
+  width: 100%;
+}
+
+/* Bouwjaar blok: slider + inputs beter verdeeld */
+.filters-grid .filter-card.grp.fy{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Range-row (van/tot) altijd naast elkaar */
+.filters-grid .range-row{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px !important;
+}
+
+/* Checkbox groepen (As, Goedkeuring etc.) laten wrappen */
+.filters-grid .filter-card.grp label{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 10px;
+}
+
+/* Actieknoppen/Resultaten: alles op 1 rij, wrap als nodig */
+.filters-grid .filter-card.grp.actions,
+.filters-grid #nr-filters .filter-card.grp:last-child,
+.filters-grid #ls-filters .filter-card.grp:last-child{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Resultaten label iets rustiger */
+.filters-grid .muted{
+  white-space: nowrap;
+}
+
+/* Motor input: volle breedte binnen kaart */
+.filters-grid input[type="text"],
+.filters-grid input[type="number"]{
+  width: 100%;
+}
+
+/* Mobiel: 1 kolom */
+@media (max-width: 900px){
+  .filters-grid{
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .filters-grid .range-row{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 
 
