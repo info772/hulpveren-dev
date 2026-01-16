@@ -7490,10 +7490,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const countEl = document.getElementById("nr-count");
 
     if (plateYearRange) {
-      const from = plateYearRange.from ?? plateYearRange.to;
-      const to = plateYearRange.to ?? plateYearRange.from;
-      if (yearFrom && from != null) yearFrom.value = String(from);
-      if (yearTo && to != null) yearTo.value = String(to);
+      setYearInputs(yearFrom, yearTo, plateYearRange);
       if (yearSlider) yearSlider.value = 0;
     }
 
