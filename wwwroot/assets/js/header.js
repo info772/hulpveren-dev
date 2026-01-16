@@ -167,11 +167,24 @@
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "");
 
+  const loadStoredPlateContext = () => {
+    try {
+      const raw =
+        sessionStorage.getItem("hv_plate_context") ||
+        localStorage.getItem("hv_plate_context");
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (_) {
+      return null;
+    }
+  };
+
   const getPlateContext = () =>
     (window.HVPlateContext &&
       typeof window.HVPlateContext.getPlateContext === "function" &&
       window.HVPlateContext.getPlateContext()) ||
     window.hv_plate_context ||
+    loadStoredPlateContext() ||
     null;
 
   const plateGroupUrl = (group, plate) => {
