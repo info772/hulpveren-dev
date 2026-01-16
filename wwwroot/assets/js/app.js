@@ -7763,6 +7763,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     let family = CURRENT_FAMILY;
     let base = CURRENT_BASE;
 
+    if (hasApp && family === "ls") {
+      const staticFilters = document.querySelector(".filters-wrap");
+      if (staticFilters) staticFilters.remove();
+      const staticGrid = document.getElementById("ls-grid");
+      if (staticGrid) staticGrid.remove();
+    }
+
     if (family === "nr") {
       const nrMakes = await fetchNrLsMakes("/data/nr-brand-pages.json", "/data/nr-model-pages.json");
       kits = await fetchNrKits();
