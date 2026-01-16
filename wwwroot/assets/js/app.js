@@ -832,6 +832,36 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
+  function normalizeMotorText(str) {
+    if (!str) return "";
+    return String(str)
+      .toLowerCase()
+      .replace(/,/g, ".")
+      .replace(/\s+/g, " ")
+      .replace(/[^a-z0-9.\s]/g, "")
+      .trim();
+  }
+
+  function motorTokens(str) {
+    return normalizeMotorText(str)
+      .split(" ")
+      .filter((t) => t.length >= 2);
+  }
+
+  function motorMatches(filterValue, kitMotorText) {
+    const q = normalizeMotorText(filterValue);
+    if (!q) return true;
+
+    const want = motorTokens(q);
+    if (!want.length) return true;
+
+    const have = motorTokens(kitMotorText);
+
+    return want.some((token) =>
+      have.some((h) => h.includes(token) || token.includes(h))
+    );
+  }
+
     const normalizeForRoute = (p) => {
       p = (p || "/").split(/[?#]/)[0];
       p = p.replace(/\/{2,}/g, "/");
@@ -4415,9 +4445,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       "-";
     const engineLabelClean = stripLpgLabel(engineLabelRaw);
     const engineLabel =
-      engineLabelClean && engineLabelClean !== "-" && engineLabelClean !== "—"
+      engineLabelClean && engineLabelClean !== "-" && engineLabelClean !== "-"
         ? engineLabelClean
         : "Allemaal";
+    const engineFilterText = enginesText(k, f);
     const imgSrc = "/assets/img/HV-kits/LS-4.jpg";
     const contactSubject = makeSlug && modelSlug
       ? `ls-${makeSlug}-${modelSlug}`
@@ -4445,7 +4476,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           fitmentRangeLabel || ""
         )}" data-fitment-make="${esc(fitmentMake || "")}" data-fitment-model="${esc(
           fitmentModel || ""
-        )}">
+        )}" data-engine="${esc(normalizeMotorText(engineFilterText))}">
           <div class="img">
             <img src="${esc(imgSrc)}" alt="Verlagingsveren ${esc(
       makeLabel
@@ -7328,12 +7359,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const yt = num(yearTo && yearTo.value);
       let ys = num(yearSlider && yearSlider.value);
       if (ys === 0) ys = null;
-      const eng = (engineInput && engineInput.value || "").toLowerCase().trim();
+      const engRaw = engineInput ? engineInput.value : "";
+      const eng = String(engRaw || "").toLowerCase().trim();
       const cy1 = num(card.dataset.yearFrom);
       const cy2 = num(card.dataset.yearTo);
       const cardPos = (card.dataset.pos || "").toLowerCase();
       const cardAppr = (card.dataset.approval || "").toLowerCase();
-      const cardEngine = (card.dataset.engine || "").toLowerCase();
+      const cardEngine = card.dataset.engine || "";
       const posSel = posBoxes
         .filter((b) => b.checked)
         .map((b) => b.value.toLowerCase());
@@ -7347,8 +7379,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         if (cy1 !== null && ys < cy1) return false;
         if (cy2 !== null && ys > cy2) return false;
       }
-      if (eng) {
-        if (!cardEngine || cardEngine.indexOf(eng) === -1) return false;
+      if (family === "ls") {
+        if (!motorMatches(engRaw, cardEngine)) return false;
+      } else if (eng) {
+        if (!cardEngine || cardEngine.toLowerCase().indexOf(eng) === -1) return false;
       }
       if (posSel.length && posSel.indexOf(cardPos) === -1) return false;
       if (apprSel.length && apprSel.indexOf(cardAppr) === -1) return false;
