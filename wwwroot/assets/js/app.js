@@ -1250,7 +1250,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
       items.forEach((item) => {
         const brandCode = findNumericByKey(item, ALDOC_BRAND_KEY_SET);
-        if (brandCode !== ALDOC_CODES.brand) return;
+        if (brandCode != null && brandCode !== ALDOC_CODES.brand) return;
         matchedItems += 1;
 
         const info = extractSkuFromItem(item);
