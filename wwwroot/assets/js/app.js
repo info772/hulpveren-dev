@@ -7467,7 +7467,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (countEl) countEl.textContent = String(visible);
       if (initialApply) {
         initialApply = false;
-        if (!visible && vehicleActive) {
+        if (!visible && vehicleActive && !isPlateRoutePath(location.pathname)) {
           window.location.href = `${base}/${makeSlug}/`;
         }
       }
