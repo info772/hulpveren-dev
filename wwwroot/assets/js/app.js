@@ -2059,7 +2059,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (!context || !context.yearRange) return;
       const grid = document.getElementById("ls-grid");
       if (!grid) return;
-      if (!grid.children.length && context.plate) {
+      if (!grid.children.length && context.plate && !isPlateRoutePath(location.pathname)) {
         const parts = normalizeForRoute(location.pathname).split("/").filter(Boolean);
         const makeSlug = parts[1] || "";
         const target = makeSlug ? `${LS_BASE}/${makeSlug}/` : `${LS_BASE}/`;
