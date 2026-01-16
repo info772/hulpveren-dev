@@ -7203,8 +7203,17 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const useActivePlate = isPlateRoutePath(location.pathname);
     const plateContext = buildPlateContext({ base, makeSlug, modelSlug });
     const activeCtx = getActivePlateContext();
+    const platePathInfo = useActivePlate ? getPlatePathInfo(location.pathname, base) : null;
+    const activePlateSlug = activeCtx && activeCtx.plate ? plateSlug(activeCtx.plate) : "";
+    const pathPlateSlug = platePathInfo && platePathInfo.plateSlug ? platePathInfo.plateSlug : "";
+    const activeCtxMatches = Boolean(
+      activeCtx &&
+      activePlateSlug &&
+      pathPlateSlug &&
+      activePlateSlug === pathPlateSlug
+    );
     const resolvedPlateContext =
-      plateContext || (useActivePlate ? activeCtx : null);
+      plateContext || (useActivePlate && activeCtxMatches ? activeCtx : null);
     const resolvedMake =
       makeSlug ||
       resolvedPlateContext?.route?.makeSlug ||
@@ -7227,10 +7236,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const useModel = resolvedModel || modelSlug;
     const plateInfoHtml = buildPlateInfoHtml(resolvedPlateContext);
     const plateYearRange =
-      (resolvedPlateContext && resolvedPlateContext.yearRange) ||
-      (useActivePlate ? activeCtx?.yearRange : null) ||
-      null;
-    const vehicleActive = Boolean(useActivePlate && activeCtx && activeCtx.plate);
+      (resolvedPlateContext && resolvedPlateContext.yearRange) || null;
+    const vehicleActive = Boolean(
+      useActivePlate && resolvedPlateContext && resolvedPlateContext.plate
+    );
 
     const ensurePlateUrlForNrLs = () => {
       if (!useActivePlate) return;
@@ -7547,9 +7556,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     if (engineInput && vehicleActive && engineInput.tagName === "SELECT") {
       const plateVehicle =
-        (resolvedPlateContext && resolvedPlateContext.vehicle) ||
-        (activeCtx && activeCtx.vehicle) ||
-        null;
+        (resolvedPlateContext && resolvedPlateContext.vehicle) || null;
       const engineFilter = buildEngineFilterFromVehicle(plateVehicle);
       if (engineFilter && !String(engineInput.value || "").trim()) {
         const target = normalizeMotorText(engineFilter);
