@@ -7834,7 +7834,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (family === "ls") {
-      if (route.kind === "plate") return renderPlateModel(kits, makes, route);
+      if (route.kind === "plate") return renderNrModel(kits, makes, route.make, route.model);
       if (route.kind === "model") return renderNrModel(kits, makes, route.make, route.model);
       return;
     }
