@@ -840,12 +840,29 @@
           : path.startsWith("/verlagingsveren/")
             ? "verlagingsveren"
             : "";
+      const parts = String(window.location.pathname || "")
+        .split("/")
+        .filter(Boolean);
+      const family = parts[0] || "";
+      const isPlateSegment = (value) => /^kt_[a-z0-9]+$/i.test(String(value || ""));
+      const makePart = parts[1] && !isPlateSegment(parts[1]) ? parts[1] : "";
+      const modelPart = parts[2] && !isPlateSegment(parts[2]) ? parts[2] : "";
+      const route =
+        family === "hulpveren" ||
+        family === "luchtvering" ||
+        family === "verlagingsveren"
+          ? {
+              makeSlug: slugify(makePart),
+              modelSlug: slugify(modelPart),
+            }
+          : null;
       const ctx = {
         plate: normalized,
         vehicle: null,
         range: null,
         yearRange: null,
         intentType,
+        route,
         updatedAt: Date.now(),
       };
       if (typeof window.openPlateGroupOverlay === "function") {

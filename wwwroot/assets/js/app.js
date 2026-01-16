@@ -252,11 +252,18 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const existingMake = parts[1] || "";
     const existingModel = parts[2] || "";
 
+    const pathParts = String(window.location.pathname || "")
+      .split("/")
+      .filter(Boolean);
+    const isPlateSegment = (value) => /^kt_[a-z0-9]+$/i.test(String(value || ""));
+    const currentMake = pathParts[1] && !isPlateSegment(pathParts[1]) ? pathParts[1] : "";
+    const currentModel = pathParts[2] && !isPlateSegment(pathParts[2]) ? pathParts[2] : "";
     const makeSlug =
       slugify(
         existingMake ||
           (ctx.route && ctx.route.makeSlug) ||
           (ctx.vehicle && (ctx.vehicle.make || ctx.vehicle.makename)) ||
+          currentMake ||
           ""
       ) || "";
     const modelSlug =
@@ -264,6 +271,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         existingModel ||
           (ctx.route && ctx.route.modelSlug) ||
           (ctx.vehicle && (ctx.vehicle.model || ctx.vehicle.modelLabel || ctx.vehicle.modelname)) ||
+          currentModel ||
           ""
       ) || "";
 
