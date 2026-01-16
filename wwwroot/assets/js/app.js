@@ -7287,7 +7287,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const yearSlider = document.getElementById("nr-year-slider");
     const yearFrom = document.getElementById("nr-year-from");
     const yearTo = document.getElementById("nr-year-to");
-    const engineInput = document.getElementById("nr-engine");
+    const engineInput = document.getElementById(`${family}-engine`);
     const posBoxes = Array.prototype.slice.call(
       document.querySelectorAll(".nr-pos")
     );
