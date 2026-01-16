@@ -300,7 +300,36 @@
       typeof window.HVPlateContext.setPlateContextFromVehicle === "function"
     ) {
       window.HVPlateContext.setPlateContextFromVehicle(plate, vehicle, options);
+      return;
     }
+    const normalized = normalizePlate(plate);
+    if (!normalized) return;
+    const make = (vehicle && (vehicle.make || vehicle.makename)) || "";
+    const model =
+      (vehicle &&
+        (vehicle.model || vehicle.modelLabel || vehicle.modelname)) ||
+      "";
+    const makeSlug = slugify(make);
+    const modelSlug = slugify(model);
+    const ctx = {
+      plate: normalized,
+      vehicle: {
+        make,
+        model,
+        modelLabel: model,
+        makeSlug,
+        modelSlug,
+      },
+      route: { makeSlug, modelSlug },
+      intentType: options.intentType || "",
+      updatedAt: Date.now(),
+    };
+    window.hv_plate_context = ctx;
+    try {
+      sessionStorage.setItem("hv_plate_context", JSON.stringify(ctx));
+      localStorage.setItem("hv_plate_context", JSON.stringify(ctx));
+      localStorage.setItem("hv_plate", normalized);
+    } catch (_) {}
   }
 
   function persistSelection(plate, vehicle, options = {}) {
