@@ -7191,6 +7191,33 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       null;
     const vehicleActive = Boolean(useActivePlate && activeCtx && activeCtx.plate);
 
+    const ensurePlateUrlForNrLs = () => {
+      if (!useActivePlate) return;
+      const plateValue =
+        (activeCtx && activeCtx.plate) ||
+        (resolvedPlateContext && resolvedPlateContext.plate) ||
+        "";
+      const platePart = plateSlug(plateValue);
+      if (!platePart || !useMake || !useModel) return;
+      const basePath = String(base || "").replace(/^\/+/, "");
+      const nextPath =
+        "/" +
+        [basePath, useMake, useModel, `${PLATE_PREFIX}${platePart}`]
+          .filter(Boolean)
+          .join("/") +
+        "/";
+      const current = normalizeForRoute(location.pathname).toLowerCase();
+      const wanted = normalizeForRoute(nextPath).toLowerCase();
+      if (current === wanted) return;
+      window.history.replaceState(
+        null,
+        "",
+        nextPath + window.location.search + window.location.hash
+      );
+    };
+
+    ensurePlateUrlForNrLs();
+
     FILTER.year = null;
     const plateLabel =
       plateYearRange && plateYearRange.label
