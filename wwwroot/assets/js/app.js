@@ -7268,39 +7268,43 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (yearSlider && yearsAvail.length) {
-  yearSlider.min = yearMin;
-  yearSlider.max = yearMax;
+      yearSlider.min = yearMin;
+      yearSlider.max = yearMax;
 
-  const updatePicked = () => {
-    const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
-    const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
+      const updatePicked = () => {
+        const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
+        const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
+        if (!pickedEl) return;
 
-    if (pickedEl) {
-      // Als er een kenteken-range is: niets tonen in de cirkel
-      if (plateYearRange && (plateYearRange.from != null || plateYearRange.to != null)) {
-        pickedEl.textContent = "";
-        pickedEl.hidden = true;
-      } else {
-        const v = parseInt(yearSlider.value, 10);
-        if (Number.isFinite(v)) {
-          pickedEl.hidden = false;
-          pickedEl.textContent = String(v);
+        // kenteken-range actief? dan niets tonen (rode cirkel leeg)
+        const hasPlateRange =
+          typeof plateYearRange !== "undefined" &&
+          plateYearRange &&
+          (plateYearRange.from != null || plateYearRange.to != null);
+
+        if (hasPlateRange) {
+          pickedEl.hidden = true;
+          pickedEl.textContent = "";
+          return;
         }
-      }
+
+        const v = parseInt(yearSlider.value, 10);
+        if (!Number.isFinite(v) || v <= 0) {
+          pickedEl.hidden = true;
+          pickedEl.textContent = "";
+          return;
+        }
+
+        pickedEl.hidden = false;
+        pickedEl.textContent = String(v);
+      };
+
+      yearSlider.addEventListener("input", updatePicked);
+
+      // init
+      yearSlider.value = String(yearMin);
+      updatePicked();
     }
-  };
-
-  yearSlider.addEventListener("input", updatePicked);
-
-  // zet de juiste startwaarde en sync label
-  // (plateYearRange => geen "Bouwjaar: xxxx" nodig, want range wordt al getoond)
-  if (plateYearRange) {
-    yearSlider.value = String(yearMin); // maakt niet uit, picked blijft hidden door hasPlate+range gedrag
-  } else {
-    yearSlider.value = String(yearMin);
-  }
-  updatePicked();
-}
 
 
 
