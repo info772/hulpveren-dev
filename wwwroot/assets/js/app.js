@@ -6096,43 +6096,22 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       window.hvSetBaseFromAldoc(base, data || v);
     }
     const hasAldocSets =
-  aldocSets.hvSkus.length ||
-  aldocSets.nrSkus.length ||
-  aldocSets.lsSkus.length;
+      aldocSets.hvSkus.length ||
+      aldocSets.nrSkus.length ||
+      aldocSets.lsSkus.length;
 
-if (!hasAldocSets) {
-  // 1) Laat de melding zien, maar:
-  // - wis NIET de HVPlateContext (anders raak je state kwijt op plekken waar je dat nog nodig hebt)
-  // - strip wél kt_ uit de URL zodat links niet blijven "plakken" op /kt_
-  try {
-    const url = new URL(window.location.href);
-    const parts = url.pathname.split("/").filter(Boolean);
-    const last = parts[parts.length - 1] || "";
-    if (/^kt_[a-z0-9]+$/i.test(last)) {
-      parts.pop();
-      url.pathname = "/" + (parts.length ? parts.join("/") + "/" : "");
-      window.history.replaceState(null, "", url.pathname + url.search + url.hash);
-    }
-  } catch (_) {}
-
-  app.innerHTML = wrap(`
-    <div class="crumbs">
-      <a href="${base}">${productTitle}</a> >
-      Kenteken
-    </div>
-    <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
-    <p class="note">
-      We hebben geen producten gevonden voor dit kenteken. Je kunt hieronder handmatig zoeken op merk en model.
-    </p>
-    <div class="cta-row">
-      <a class="btn" href="${base}">Kies merk en model</a>
-      <a class="btn btn-ghost" href="${plateSearchHref}">Opnieuw zoeken</a>
-    </div>
-  `);
-  return;
-}
-
-
+    const stripPlateFromUrl = () => {
+      try {
+        const url = new URL(window.location.href);
+        const parts = url.pathname.split("/").filter(Boolean);
+        const last = parts[parts.length - 1] || "";
+        if (/^kt_[a-z0-9]+$/i.test(last)) {
+          parts.pop();
+          url.pathname = "/" + (parts.length ? parts.join("/") + "/" : "");
+          window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+        }
+      } catch (_) {}
+    };
 
 
     if (family !== "hv" && !hasAldocSets) {
@@ -6472,6 +6451,7 @@ if (!hasAldocSets) {
 
     let modelFallback = false;
     if (!allPairs.length && isRdwBasic) {
+      stripPlateFromUrl();
       app.innerHTML = wrap(`
         <div class="crumbs">
           <a href="${BASE}">Hulpveren</a> >
@@ -6525,6 +6505,7 @@ if (!hasAldocSets) {
     });
 
     if (!allPairs.length) {
+      stripPlateFromUrl();
       app.innerHTML = wrap(`
         <div class="crumbs">
           <a href="${BASE}">Hulpveren</a> >
