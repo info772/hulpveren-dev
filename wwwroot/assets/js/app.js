@@ -5525,6 +5525,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         }
         yearInput.addEventListener("input", (e) => {
           const v = +e.target.value || yearMin;
+          const card = yearInput.closest(".fy") || yearInput.closest(".filter-card");
+          const pickedEl = card ? card.querySelector("[data-fy-picked]") : null;
+          if (pickedEl) {
+            pickedEl.hidden = false;
+            pickedEl.textContent = String(v);
+          }
           FILTER.year = v;
           FILTER.yearRange = null;
           if (yearFromInput) yearFromInput.value = "";
