@@ -870,6 +870,55 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     );
   }
 
+  function normalizeEngineToken(value) {
+    return String(value || "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function extractEngineToken(value) {
+    const text = normalizeEngineToken(value).toUpperCase();
+    if (!text) return "";
+    const match = text.match(/(\d(?:[.,]\d)?)\s*([A-Z]{2,6})/);
+    if (match) {
+      return `${match[1].replace(",", ".")} ${match[2]}`.trim();
+    }
+    return "";
+  }
+
+  function engineLitersFromContents(value) {
+    const cc = Number(value);
+    if (!Number.isFinite(cc) || cc <= 0) return "";
+    const liters = Math.round((cc / 1000) * 10) / 10;
+    if (!Number.isFinite(liters) || liters <= 0) return "";
+    return String(liters).replace(/\.0$/, "");
+  }
+
+  function buildEngineFilterFromVehicle(vehicle) {
+    if (!vehicle) return "";
+    const engineType = normalizeEngineToken(
+      vehicle.engineType || vehicle.engine_type || vehicle.motorType || vehicle.motor_type
+    ).toUpperCase();
+    const typeText = normalizeEngineToken(vehicle.type || vehicle.typename || "");
+    const typeRemark = normalizeEngineToken(
+      vehicle.typeRemark || vehicle.type_remark || vehicle.modelRemark || vehicle.model_remark
+    );
+    const liters = engineLitersFromContents(vehicle.engineContents);
+    const tokenFromType = extractEngineToken(typeText) || extractEngineToken(typeRemark);
+
+    if (engineType) {
+      if (/\d/.test(engineType)) return engineType;
+      if (liters) return `${liters} ${engineType}`.trim();
+      if (tokenFromType && tokenFromType.includes(engineType)) return tokenFromType;
+      if (tokenFromType) return `${tokenFromType} ${engineType}`.trim();
+      return engineType;
+    }
+
+    if (tokenFromType) return tokenFromType;
+    if (liters) return liters;
+    return "";
+  }
+
     const normalizeForRoute = (p) => {
       p = (p || "/").split(/[?#]/)[0];
       p = p.replace(/\/{2,}/g, "/");
@@ -7356,7 +7405,16 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       updatePicked();
     }
 
-
+    if (engineInput && vehicleActive) {
+      const plateVehicle =
+        (resolvedPlateContext && resolvedPlateContext.vehicle) ||
+        (activeCtx && activeCtx.vehicle) ||
+        null;
+      const engineFilter = buildEngineFilterFromVehicle(plateVehicle);
+      if (engineFilter && !String(engineInput.value || "").trim()) {
+        engineInput.value = engineFilter;
+      }
+    }
 
     function num(v) {
       const n = parseInt(v, 10);
