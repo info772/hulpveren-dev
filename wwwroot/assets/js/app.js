@@ -7540,8 +7540,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     updatePicked();
   });
 
-      // init
-      yearSlider.value = String(yearMin);
+      // init (geen single-year filter actief)
+      yearSlider.value = "0";
       updatePicked();
     }
 
