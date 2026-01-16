@@ -7584,8 +7584,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         if (cy2 !== null && ys > cy2) return false;
       }
       if (family === "ls") {
-        if (engRaw && !cardEngine) return false;
-        if (engRaw && !motorMatches(engRaw, cardEngine)) return false;
+        if (engRaw && cardEngine && !motorMatches(engRaw, cardEngine)) return false;
         if (dropKey && String(card.dataset.drop || "") !== dropKey) return false;
       } else if (eng) {
         if (!cardEngine || cardEngine.toLowerCase().indexOf(eng) === -1) return false;
