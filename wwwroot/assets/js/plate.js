@@ -77,8 +77,23 @@
 
   function computeMakeModelSlug(vehicle) {
     if (!vehicle) return { make: "", model: "" };
-    const make = slugify(vehicle.make || vehicle.makename || "");
-    let baseModel = (vehicle.modelname || vehicle.model || "").toString().trim();
+    const makeRaw =
+      vehicle.make ||
+      vehicle.makename ||
+      vehicle.merk ||
+      vehicle.brand ||
+      vehicle.brandname ||
+      vehicle.merknaam ||
+      "";
+    const make = slugify(makeRaw);
+    let baseModel = (vehicle.modelname ||
+      vehicle.model ||
+      vehicle.modelnaam ||
+      vehicle.type ||
+      vehicle.typename ||
+      "")
+      .toString()
+      .trim();
     const extra = (vehicle.typename || vehicle.type || vehicle.type_remark || "")
       .toString()
       .trim();

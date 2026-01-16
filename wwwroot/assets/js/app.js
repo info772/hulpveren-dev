@@ -2063,11 +2063,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (!parts.length) return null;
     const plateMatch = findPlateSegment(parts);
     if (!plateMatch) return null;
-    const make = parts[0] || "";
+    const make = plateMatch.index >= 1 ? parts[0] || "" : "";
     const model =
       plateMatch.index >= 2 ? parts[1] || "" : ""; // model alleen als er een extra segment vóór kt_ zit
-    const variant =
-      plateMatch.index >= 3 ? parts[2] || "" : "";
+    const variant = plateMatch.index >= 3 ? parts[2] || "" : "";
     return {
       make,
       model,
@@ -6153,8 +6152,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const ensurePlateUrl = (makeSlugValue, modelSlugValue) => {
       const platePart = plateSlug(plateNormalized);
       if (!platePart || !makeSlugValue || !modelSlugValue) return;
-      const cleanPath = normalizeForRoute(window.location.pathname).toLowerCase();
-      if (cleanPath.includes("/kt_")) return;
+      const currentRoute = parsePlateRoute(window.location.pathname, base);
+      const needsUpgrade =
+        !currentRoute || !currentRoute.make || !currentRoute.model;
+      if (!needsUpgrade) return;
       const basePath = String(base || "").replace(/^\/+/, "");
       const nextPath =
         "/" +

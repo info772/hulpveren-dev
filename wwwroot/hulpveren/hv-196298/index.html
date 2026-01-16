@@ -355,7 +355,7 @@
       <div class="wrap">
         <div class="hero-card">
           <p class="eyebrow">MAD ${labelLower}</p>
-          <h1>${kit.sku} ${kit.kind_of_kit_nl || label}</h1>
+          <h1>${kit.sku} ${kitType === 'air' ? label : (kit.kind_of_kit_nl || kit.kind_of_kit || label)}</h1>
           <p class="lead">Dynamisch opgebouwd op basis van setdata. Inclusief prijsindicatie, montage-informatie en links naar alle passende modellen.</p>
           <div class="hero-actions">
             <a class="btn" href="tel:+31165856568">Plan montage</a>
