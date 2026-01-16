@@ -7151,6 +7151,20 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return { key: "", label: "-" };
   }
 
+  function formatEngineLabel(value) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+    const match = text.match(/(\d+(?:[.,]\d+)?)\s*([a-z]+)$/i);
+    if (!match) return text;
+    const num = match[1].replace(",", ".");
+    const suffixRaw = match[2].toUpperCase();
+    let suffix = suffixRaw;
+    if (suffixRaw.length >= 2 && suffixRaw.endsWith("I")) {
+      suffix = suffixRaw.slice(0, -1) + "i";
+    }
+    return `${num}${suffix}`;
+  }
+
   function renderNrModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp) return;
     suppressHomeSectionsForApp();
@@ -7283,7 +7297,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         engineList.forEach((label) => {
           const value = normalizeMotorText(label);
           if (!value) return;
-          if (!engineOptions.has(value)) engineOptions.set(value, label);
+          const formatted = formatEngineLabel(value) || label;
+          if (!engineOptions.has(value)) engineOptions.set(value, formatted);
         });
         const drop = dropInfoFromKit(k);
         if (drop.key && drop.label && !dropOptions.has(drop.key)) {
