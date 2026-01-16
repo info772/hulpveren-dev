@@ -7511,15 +7511,21 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (yearSlider) yearSlider.value = 0;
     }
 
+    let yearSliderTouched = false;
     if (yearSlider && yearsAvail.length) {
       yearSlider.min = yearMin;
       yearSlider.max = yearMax;
 
-  let yearSliderTouched = false;
   const updatePicked = () => {
     const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
     const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
     if (!pickedEl) return;
+
+    if (!yearSliderTouched) {
+      pickedEl.hidden = true;
+      pickedEl.textContent = "";
+      return;
+    }
 
     // kenteken-range actief? dan niets tonen (rode cirkel leeg)
         const hasPlateRange =
@@ -7550,7 +7556,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   });
 
       // init (geen single-year filter actief)
-      yearSlider.value = "0";
+      yearSlider.value = String(yearMin);
       updatePicked();
     }
 
@@ -7576,6 +7582,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const yf = num(yearFrom && yearFrom.value);
       const yt = num(yearTo && yearTo.value);
       let ys = num(yearSlider && yearSlider.value);
+      if (!yearSliderTouched) ys = null;
       if (ys === 0) ys = null;
       const engRaw = engineInput ? engineInput.value : "";
       const eng = String(engRaw || "").toLowerCase().trim();
@@ -7635,10 +7642,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   if (dropSelect) {
     dropSelect.addEventListener("change", apply);
   }
-  if (resetBtn)
+    if (resetBtn)
     resetBtn.addEventListener("click", () => {
       if (yearSlider && yearsAvail.length) {
-        yearSlider.value = 0;
+        yearSliderTouched = false;
+        yearSlider.value = String(yearMin);
       }
       if (yearFrom) yearFrom.value = "";
       if (yearTo) yearTo.value = "";
@@ -7646,6 +7654,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (dropSelect) dropSelect.value = "";
       posBoxes.forEach((b) => (b.checked = false));
       apprBoxes.forEach((b) => (b.checked = false));
+      if (yearSlider && yearsAvail.length) {
+        const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
+        const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
+        if (pickedEl) {
+          pickedEl.hidden = true;
+          pickedEl.textContent = "";
+        }
+      }
       apply();
     });
 
