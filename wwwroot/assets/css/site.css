@@ -2481,5 +2481,61 @@ body.nav-open .hv2-burger{
   }
 }
 
+/* Filters: compacte cards met gelijke hoogte */
+.filters-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+  align-items:stretch;
+}
+
+.filters-grid .filter-card{
+  min-height: 92px;           /* gelijke hoogte */
+  padding: 10px 12px;
+}
+
+/* Bouwjaar: label + slider + values in 1 rij */
+.filters-grid .filter-card.grp.fy .fy-left{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.filters-grid .filter-card.grp.fy .fy-label{
+  font-weight:700;
+  font-size:14px;
+  white-space:nowrap;
+}
+
+/* Zet de "range" (2024 2024 / of label) naast slider */
+.filters-grid .filter-card.grp.fy .fy-range{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0;
+}
+
+/* Slider rij compacter */
+.filters-grid .filter-card.grp.fy input[type="range"]{
+  width: 180px;
+  max-width: 40vw;
+}
+
+/* De van/tot velden onder de slider UIT voor compacte variant (alleen als je dat wil) */
+.filters-grid .filter-card.grp.fy .range-row{
+  display:none;
+}
+
+/* Mobiel: 1 kolom */
+@media (max-width: 900px){
+  .filters-grid{ grid-template-columns: 1fr; }
+  .filters-grid .filter-card{ min-height: 88px; }
+  .filters-grid .filter-card.grp.fy input[type="range"]{
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 
 
