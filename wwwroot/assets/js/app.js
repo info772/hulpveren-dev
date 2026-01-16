@@ -7544,6 +7544,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         if (cy2 !== null && ys > cy2) return false;
       }
       if (family === "ls") {
+        if (engRaw && !cardEngine) return false;
         if (engRaw && !motorMatches(engRaw, cardEngine)) return false;
         if (dropKey && String(card.dataset.drop || "") !== dropKey) return false;
       } else if (eng) {
@@ -7574,6 +7575,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const applyBtn = document.getElementById("nr-apply");
   const resetBtn = document.getElementById("nr-reset");
   if (applyBtn) applyBtn.addEventListener("click", apply);
+  if (engineInput && engineInput.tagName === "SELECT") {
+    engineInput.addEventListener("change", apply);
+  }
+  if (dropSelect) {
+    dropSelect.addEventListener("change", apply);
+  }
   if (resetBtn)
     resetBtn.addEventListener("click", () => {
       if (yearSlider && yearsAvail.length) {
