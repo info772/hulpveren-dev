@@ -5529,7 +5529,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           const pickedEl = card ? card.querySelector("[data-fy-picked]") : null;
           if (pickedEl) {
             pickedEl.hidden = false;
-            pickedEl.textContent = String(v);
+            pickedEl.textContent = ` ${v}`;
           }
           FILTER.year = v;
           FILTER.yearRange = null;
@@ -7277,22 +7277,23 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       yearSlider.min = yearMin;
       yearSlider.max = yearMax;
 
-      const updatePicked = () => {
-        const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
-        const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
-        if (!pickedEl) return;
+  let yearSliderTouched = false;
+  const updatePicked = () => {
+    const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
+    const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
+    if (!pickedEl) return;
 
-        // kenteken-range actief? dan niets tonen (rode cirkel leeg)
+    // kenteken-range actief? dan niets tonen (rode cirkel leeg)
         const hasPlateRange =
           typeof plateYearRange !== "undefined" &&
           plateYearRange &&
           (plateYearRange.from != null || plateYearRange.to != null);
 
-        if (hasPlateRange) {
-          pickedEl.hidden = true;
-          pickedEl.textContent = "";
-          return;
-        }
+    if (hasPlateRange && !yearSliderTouched) {
+      pickedEl.hidden = true;
+      pickedEl.textContent = "";
+      return;
+    }
 
         const v = parseInt(yearSlider.value, 10);
         if (!Number.isFinite(v) || v <= 0) {
@@ -7301,11 +7302,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           return;
         }
 
-        pickedEl.hidden = false;
-        pickedEl.textContent = String(v);
-      };
+    pickedEl.hidden = false;
+    pickedEl.textContent = ` ${v}`;
+  };
 
-      yearSlider.addEventListener("input", updatePicked);
+  yearSlider.addEventListener("input", () => {
+    yearSliderTouched = true;
+    updatePicked();
+  });
 
       // init
       yearSlider.value = String(yearMin);
