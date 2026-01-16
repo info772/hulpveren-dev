@@ -1,6 +1,26 @@
 // /assets/js/header.js
 (() => {
   "use strict";
+  const normalizePath = (value) => {
+    const path = String(value || location.pathname || "/");
+    const trimmed = path.replace(/\/+$/, "/");
+    return trimmed.endsWith("/") ? trimmed : `${trimmed}/`;
+  };
+
+  const isLegacyRoute = () => {
+    const p = normalizePath(location.pathname);
+    return (
+      p.startsWith("/hulpveren/") ||
+      p.startsWith("/luchtvering/") ||
+      p.startsWith("/verlagingsveren/")
+    );
+  };
+
+  if (window.__SPA_DISABLED__ || isLegacyRoute()) {
+    window.__SPA_DISABLED__ = true;
+    return;
+  }
+
   if (document.querySelector("script[src*=\"/partials/header.js\"]")) return;
 
   // JS hooks (markup must align):
