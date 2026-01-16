@@ -7271,25 +7271,22 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   yearSlider.min = yearMin;
   yearSlider.max = yearMax;
 
-  const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
-  const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
-
   const updatePicked = () => {
-    const v = parseInt(yearSlider.value, 10);
-    if (!Number.isFinite(v) || !pickedEl) return;
+    const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
+    const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
 
-    let hasPlate = false;
-    try {
-      const ctx = JSON.parse(localStorage.getItem("plateContext") || "null");
-      hasPlate = !!(ctx && ctx.plate);
-    } catch (_) {}
-
-    if (hasPlate) {
-      pickedEl.hidden = false;
-      pickedEl.textContent = `: ${v}`;
-    } else {
-      pickedEl.hidden = true;
-      pickedEl.textContent = "";
+    if (pickedEl) {
+      // Als er een kenteken-range is: niets tonen in de cirkel
+      if (plateYearRange && (plateYearRange.from != null || plateYearRange.to != null)) {
+        pickedEl.textContent = "";
+        pickedEl.hidden = true;
+      } else {
+        const v = parseInt(yearSlider.value, 10);
+        if (Number.isFinite(v)) {
+          pickedEl.hidden = false;
+          pickedEl.textContent = String(v);
+        }
+      }
     }
   };
 
