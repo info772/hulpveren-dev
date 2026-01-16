@@ -4476,6 +4476,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function buildLsCard(pair, idx, options) {
     const { k, f } = pair;
     const { makeLabel, modelLabel, makeSlug, modelSlug } = options;
+    const y1 = yearToNum(f.year_from);
+    const y2 = yearToNum(f.year_to);
     const posKey = positionKey(k);
     const posText = positionNL(posKey);
     const yearLabel = yearsNL(f);
@@ -4522,7 +4524,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .join("");
 
     return `
-        <article class="card product" data-fitment-range="${esc(
+        <article class="card product" data-year-from="${y1 ?? ""}" data-year-to="${
+      y2 ?? ""
+    }" data-fitment-range="${esc(
           fitmentRangeLabel || ""
         )}" data-fitment-make="${esc(fitmentMake || "")}" data-fitment-model="${esc(
           fitmentModel || ""
