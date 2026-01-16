@@ -6113,6 +6113,25 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       } catch (_) {}
     };
 
+    const ensurePlateUrl = (makeSlugValue, modelSlugValue) => {
+      const platePart = plateSlug(plateNormalized);
+      if (!platePart || !makeSlugValue || !modelSlugValue) return;
+      const cleanPath = normalizeForRoute(window.location.pathname).toLowerCase();
+      if (cleanPath.includes("/kt_")) return;
+      const basePath = String(base || "").replace(/^\/+/, "");
+      const nextPath =
+        "/" +
+        [basePath, makeSlugValue, modelSlugValue, `${PLATE_PREFIX}${platePart}`]
+          .filter(Boolean)
+          .join("/") +
+        "/";
+      window.history.replaceState(
+        null,
+        "",
+        nextPath + window.location.search + window.location.hash
+      );
+    };
+
 
     if (family !== "hv" && !hasAldocSets) {
       const targetModelSlug =
@@ -6247,6 +6266,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         showDriveMeta: driveItems.length > 1,
         showRearMeta: hasSRW && hasDRW,
       };
+      ensurePlateUrl(makeSlugForCards, modelSlugForCards);
 
       const crumbsParts = [`<a href="${base}">${productTitle}</a>`];
       if (makeSlugForCards) {
@@ -6705,6 +6725,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       );
     }
     crumbsParts.push("Kenteken");
+    ensurePlateUrl(makeSlug, effectiveModelSlug);
 
     app.innerHTML = wrap(`
       <div class="crumbs">${crumbsParts.join(" > ")}</div>
