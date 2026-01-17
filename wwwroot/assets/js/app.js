@@ -4656,17 +4656,38 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const setLabel =
       posKey === "both" ? "4 veren (voor+achter)" : "2 veren";
     const engineListFromNotes = extractEngineListFromFitment(f);
+    const kitEngineList = Array.isArray(k?.powertrains_allowed)
+      ? k.powertrains_allowed
+          .filter(Boolean)
+          .filter((v) => String(v || "").toLowerCase() !== "lpg")
+      : [];
+    const kitEngineText = kitEngineList.join(", ");
+    const kitEngineDisplay = cleanEngineLabelForDisplay(stripLpgLabel(kitEngineText));
+    const notesEngineText = engineListFromNotes.join(", ");
+    const notesEngineDisplay = cleanEngineLabelForDisplay(stripLpgLabel(notesEngineText));
     const engineLabelRaw =
-      (engineListFromNotes.length ? engineListFromNotes.join(", ") : "") ||
-      f?.engine_raw ||
-      (Array.isArray(f?.engines) ? f.engines.filter(Boolean).join(", ") : "") ||
-      enginesFromKitAndNotes(k, f).filter((x) => x && x !== "-").join(", ") ||
-      "-";
+      kitEngineDisplay
+        ? kitEngineText
+        : notesEngineDisplay
+          ? notesEngineText
+          : f?.engine_raw ||
+            (Array.isArray(f?.engines) ? f.engines.filter(Boolean).join(", ") : "") ||
+            enginesFromKitAndNotes(k, f).filter((x) => x && x !== "-").join(", ") ||
+            "-";
     const engineLabelClean = stripLpgLabel(engineLabelRaw);
     const engineLabelDisplay = cleanEngineLabelForDisplay(engineLabelClean);
     const engineLabel = engineLabelDisplay ? engineLabelDisplay : "Allemaal";
+    const notesEngineTokens = notesEngineDisplay
+      ? notesEngineDisplay
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean)
+      : [];
+    const engineFilterPrimary = kitEngineDisplay
+      ? kitEngineList
+      : notesEngineTokens;
     const engineFilterText = mergeEngineLabels(
-      engineListFromNotes,
+      engineFilterPrimary,
       enginesText(k, f)
     );
     const imgSrc = "/assets/img/HV-kits/LS-4.jpg";
