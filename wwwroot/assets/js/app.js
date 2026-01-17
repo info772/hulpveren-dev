@@ -856,19 +856,41 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (!norm) return [];
     const raw = norm.split(" ").filter((t) => t.length >= 2);
     const out = new Set();
+    const alias = {
+      tdi: ["diesel"],
+      tdl: ["diesel"],
+      td: ["diesel"],
+      tddi: ["diesel"],
+      hdi: ["diesel"],
+      jtd: ["diesel"],
+      cdti: ["diesel"],
+      dci: ["diesel"],
+      crdi: ["diesel"],
+      d4d: ["diesel"],
+      tsi: ["benzine"],
+      tfsi: ["benzine"],
+      fsi: ["benzine"],
+      gti: ["benzine"],
+      mpi: ["benzine"],
+      petrol: ["benzine"],
+      gasoline: ["benzine"],
+    };
 
     raw.forEach((t) => {
       out.add(t);
+      if (alias[t]) alias[t].forEach((a) => out.add(a));
       const m = t.match(/^([0-9.]+)([a-z]+)$/);
       if (m) {
         out.add(m[1]);
         out.add(m[2]);
+        if (alias[m[2]]) alias[m[2]].forEach((a) => out.add(a));
         return;
       }
       const m2 = t.match(/^([a-z]+)([0-9.]+)$/);
       if (m2) {
         out.add(m2[1]);
         out.add(m2[2]);
+        if (alias[m2[1]]) alias[m2[1]].forEach((a) => out.add(a));
       }
     });
 
