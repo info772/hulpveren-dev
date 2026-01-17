@@ -97,6 +97,7 @@
 
   function dispatchPlateContextUpdated(reason) {
     try {
+      const ctx = loadPlateContext() || window.hv_plate_context || { plate: "", vehicle: {} };
       window.dispatchEvent(
         new CustomEvent("hv:plateContextUpdated", {
           detail: {
@@ -104,6 +105,11 @@
             plate: window.hv_plate_context?.plate || "",
             ts: Date.now(),
           },
+        })
+      );
+      window.dispatchEvent(
+        new CustomEvent("hv:plate_context_updated", {
+          detail: { source: reason || "unknown", ctx },
         })
       );
     } catch (_) {}
