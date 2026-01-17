@@ -840,6 +840,7 @@
           : path.startsWith("/verlagingsveren/")
             ? "verlagingsveren"
             : "";
+<<<<<<< HEAD
       const prevCtx = loadPlateContext() || window.hv_plate_context || {};
       const prevPlate = normalizePlate(prevCtx?.plate || "");
       const hasVehicle =
@@ -857,12 +858,31 @@
       const shouldForceRedirect =
         (hasVehicle || hasManualSelection || hasPlateInUrl || prevPlate) &&
         (!prevPlate || prevPlate !== normalized);
+=======
+      const parts = String(window.location.pathname || "")
+        .split("/")
+        .filter(Boolean);
+      const family = parts[0] || "";
+      const isPlateSegment = (value) => /^kt_[a-z0-9]+$/i.test(String(value || ""));
+      const makePart = parts[1] && !isPlateSegment(parts[1]) ? parts[1] : "";
+      const modelPart = parts[2] && !isPlateSegment(parts[2]) ? parts[2] : "";
+      const route =
+        family === "hulpveren" ||
+        family === "luchtvering" ||
+        family === "verlagingsveren"
+          ? {
+              makeSlug: slugify(makePart),
+              modelSlug: slugify(modelPart),
+            }
+          : null;
+>>>>>>> cf9fe37d9acd492fa6fd67ac7b79734b2444c11b
       const ctx = {
         plate: normalized,
         vehicle: {},
         range: null,
         yearRange: null,
         intentType,
+        route,
         updatedAt: Date.now(),
       };
       window.hv_plate_context = ctx;

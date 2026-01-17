@@ -252,11 +252,18 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const existingMake = parts[1] || "";
     const existingModel = parts[2] || "";
 
+    const pathParts = String(window.location.pathname || "")
+      .split("/")
+      .filter(Boolean);
+    const isPlateSegment = (value) => /^kt_[a-z0-9]+$/i.test(String(value || ""));
+    const currentMake = pathParts[1] && !isPlateSegment(pathParts[1]) ? pathParts[1] : "";
+    const currentModel = pathParts[2] && !isPlateSegment(pathParts[2]) ? pathParts[2] : "";
     const makeSlug =
       slugify(
         existingMake ||
           (ctx.route && ctx.route.makeSlug) ||
           (ctx.vehicle && (ctx.vehicle.make || ctx.vehicle.makename)) ||
+          currentMake ||
           ""
       ) || "";
     const modelSlug =
@@ -264,6 +271,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         existingModel ||
           (ctx.route && ctx.route.modelSlug) ||
           (ctx.vehicle && (ctx.vehicle.model || ctx.vehicle.modelLabel || ctx.vehicle.modelname)) ||
+          currentModel ||
           ""
       ) || "";
 
@@ -880,18 +888,77 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return Array.from(out).filter((t) => t.length >= 2);
   }
 
+  function motorTokenKey(token) {
+    return String(token || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  }
+
   function motorMatches(filterValue, kitMotorText) {
     const q = normalizeMotorText(filterValue);
     if (!q) return true;
+    const kitText = normalizeMotorText(kitMotorText);
+    if (!kitText) return true;
 
     const want = motorTokens(q);
     if (!want.length) return true;
 
-    const have = motorTokens(kitMotorText);
+    const have = motorTokens(kitText);
+    const wantKeys = want.map(motorTokenKey).filter(Boolean);
+    const haveKeys = have.map(motorTokenKey).filter(Boolean);
 
     return want.some((token) =>
       have.some((h) => h.includes(token) || token.includes(h))
+    ) || wantKeys.some((tokenKey) =>
+      haveKeys.some((hKey) => hKey.includes(tokenKey) || tokenKey.includes(hKey))
     );
+  }
+
+  function normalizeEngineToken(value) {
+    return String(value || "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function extractEngineToken(value) {
+    const text = normalizeEngineToken(value).toUpperCase();
+    if (!text) return "";
+    const match = text.match(/(\d(?:[.,]\d)?)\s*([A-Z]{2,6})/);
+    if (match) {
+      return `${match[1].replace(",", ".")} ${match[2]}`.trim();
+    }
+    return "";
+  }
+
+  function engineLitersFromContents(value) {
+    const cc = Number(value);
+    if (!Number.isFinite(cc) || cc <= 0) return "";
+    const liters = Math.round((cc / 1000) * 10) / 10;
+    if (!Number.isFinite(liters) || liters <= 0) return "";
+    return String(liters).replace(/\.0$/, "");
+  }
+
+  function buildEngineFilterFromVehicle(vehicle) {
+    if (!vehicle) return "";
+    const engineType = normalizeEngineToken(
+      vehicle.engineType || vehicle.engine_type || vehicle.motorType || vehicle.motor_type
+    ).toUpperCase();
+    const typeText = normalizeEngineToken(vehicle.type || vehicle.typename || "");
+    const typeRemark = normalizeEngineToken(
+      vehicle.typeRemark || vehicle.type_remark || vehicle.modelRemark || vehicle.model_remark
+    );
+    const liters = engineLitersFromContents(vehicle.engineContents);
+    const tokenFromType = extractEngineToken(typeText) || extractEngineToken(typeRemark);
+
+    if (engineType) {
+      if (/\d/.test(engineType)) return engineType;
+      if (liters) return `${liters} ${engineType}`.trim();
+      if (tokenFromType && tokenFromType.includes(engineType)) return tokenFromType;
+      if (tokenFromType) return `${tokenFromType} ${engineType}`.trim();
+      return engineType;
+    }
+
+    if (tokenFromType) return tokenFromType;
+    if (liters) return liters;
+    return "";
   }
 
     const normalizeForRoute = (p) => {
@@ -2044,7 +2111,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (!context || !context.yearRange) return;
       const grid = document.getElementById("ls-grid");
       if (!grid) return;
-      if (!grid.children.length && context.plate) {
+      if (!grid.children.length && context.plate && !isPlateRoutePath(location.pathname)) {
         const parts = normalizeForRoute(location.pathname).split("/").filter(Boolean);
         const makeSlug = parts[1] || "";
         const target = makeSlug ? `${LS_BASE}/${makeSlug}/` : `${LS_BASE}/`;
@@ -2105,11 +2172,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (!parts.length) return null;
     const plateMatch = findPlateSegment(parts);
     if (!plateMatch) return null;
-    const make = parts[0] || "";
+    const make = plateMatch.index >= 1 ? parts[0] || "" : "";
     const model =
       plateMatch.index >= 2 ? parts[1] || "" : ""; // model alleen als er een extra segment vóór kt_ zit
-    const variant =
-      plateMatch.index >= 3 ? parts[2] || "" : "";
+    const variant = plateMatch.index >= 3 ? parts[2] || "" : "";
     return {
       make,
       model,
@@ -4514,6 +4580,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function buildLsCard(pair, idx, options) {
     const { k, f } = pair;
     const { makeLabel, modelLabel, makeSlug, modelSlug } = options;
+    const y1 = yearToNum(f.year_from);
+    const y2 = yearToNum(f.year_to);
     const posKey = positionKey(k);
     const posText = positionNL(posKey);
     const yearLabel = yearsNL(f);
@@ -4522,16 +4590,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const sku = k?.sku || "";
     const skuLower = sku.toLowerCase();
     const kitHref = stripKentekenSuffix(`/verlagingsveren/${esc(skuLower)}/`);
-    const dropFront = k?.suspension_delta_mm?.front_mm;
-    const dropRear = k?.suspension_delta_mm?.rear_mm;
-    let dropLabel = "-";
-    if (dropFront && dropRear) {
-      dropLabel = `Voor: ${dropFront} mm &middot; Achter: ${dropRear} mm`;
-    } else if (dropFront) {
-      dropLabel = `Voor: ${dropFront} mm`;
-    } else if (dropRear) {
-      dropLabel = `Achter: ${dropRear} mm`;
-    }
+    const dropInfo = dropInfoFromKit(k);
+    const dropLabel = dropInfo.label || "-";
     const setLabel =
       posKey === "both" ? "4 veren (voor+achter)" : "2 veren";
     const engineListFromNotes = extractEngineListFromFitment(f);
@@ -4573,11 +4633,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .join("");
 
     return `
-        <article class="card product" data-fitment-range="${esc(
+        <article class="card product" data-year-from="${y1 ?? ""}" data-year-to="${
+      y2 ?? ""
+    }" data-fitment-range="${esc(
           fitmentRangeLabel || ""
         )}" data-fitment-make="${esc(fitmentMake || "")}" data-fitment-model="${esc(
           fitmentModel || ""
-        )}" data-engine="${esc(normalizeMotorText(engineFilterText))}">
+        )}" data-engine="${esc(normalizeMotorText(engineFilterText))}" data-drop="${esc(
+          dropInfo.key || ""
+        )}">
           <div class="img">
             <img src="${esc(imgSrc)}" alt="Verlagingsveren ${esc(
       makeLabel
@@ -6254,8 +6318,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const ensurePlateUrl = (makeSlugValue, modelSlugValue) => {
       const platePart = plateSlug(plateNormalized);
       if (!platePart || !makeSlugValue || !modelSlugValue) return;
-      const cleanPath = normalizeForRoute(window.location.pathname).toLowerCase();
-      if (cleanPath.includes("/kt_")) return;
+      const currentRoute = parsePlateRoute(window.location.pathname, base);
+      const needsUpgrade =
+        !currentRoute || !currentRoute.make || !currentRoute.model;
+      if (!needsUpgrade) return;
       const basePath = String(base || "").replace(/^\/+/, "");
       const nextPath =
         "/" +
@@ -7180,6 +7246,53 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return `<div class="k">${esc(label)}</div><div class="v">${esc(val)}</div>`;
   }
 
+  function dropInfoFromKit(kit) {
+    const dropFront = kit?.suspension_delta_mm?.front_mm;
+    const dropRear = kit?.suspension_delta_mm?.rear_mm;
+    if (dropFront && dropRear) {
+      return {
+        key: `front:${dropFront}|rear:${dropRear}`,
+        label: `Voor: ${dropFront} mm &middot; Achter: ${dropRear} mm`,
+      };
+    }
+    if (dropFront) {
+      return { key: `front:${dropFront}`, label: `Voor: ${dropFront} mm` };
+    }
+    if (dropRear) {
+      return { key: `rear:${dropRear}`, label: `Achter: ${dropRear} mm` };
+    }
+    return { key: "", label: "-" };
+  }
+
+  function formatEngineLabel(value) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+    const match = text.match(/(\d+(?:[.,]\d+)?)\s*([a-z]+)$/i);
+    if (!match) return text;
+    const num = match[1].replace(",", ".");
+    const suffixRaw = match[2].toUpperCase();
+    let suffix = suffixRaw;
+    if (suffixRaw.length >= 2 && suffixRaw.endsWith("I")) {
+      suffix = suffixRaw.slice(0, -1) + "i";
+    }
+    return `${num}${suffix}`;
+  }
+
+  function extractEngineChoices(text) {
+    const raw = String(text || "").trim();
+    if (!raw) return [];
+    const regex = /(\d+(?:[.,]\d+)?)\s*([A-Za-z]{2,6})/g;
+    const out = [];
+    let match;
+    while ((match = regex.exec(raw))) {
+      const num = match[1] || "";
+      const type = match[2] || "";
+      const token = `${num} ${type}`.trim();
+      if (token) out.push(token);
+    }
+    return out;
+  }
+
   function renderNrModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp) return;
     suppressHomeSectionsForApp();
@@ -7191,8 +7304,17 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const useActivePlate = isPlateRoutePath(location.pathname);
     const plateContext = buildPlateContext({ base, makeSlug, modelSlug });
     const activeCtx = getActivePlateContext();
+    const platePathInfo = useActivePlate ? getPlatePathInfo(location.pathname, base) : null;
+    const activePlateSlug = activeCtx && activeCtx.plate ? plateSlug(activeCtx.plate) : "";
+    const pathPlateSlug = platePathInfo && platePathInfo.plateSlug ? platePathInfo.plateSlug : "";
+    const activeCtxMatches = Boolean(
+      activeCtx &&
+      activePlateSlug &&
+      pathPlateSlug &&
+      activePlateSlug === pathPlateSlug
+    );
     const resolvedPlateContext =
-      plateContext || (useActivePlate ? activeCtx : null);
+      plateContext || (useActivePlate && activeCtxMatches ? activeCtx : null);
     const resolvedMake =
       makeSlug ||
       resolvedPlateContext?.route?.makeSlug ||
@@ -7215,10 +7337,37 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const useModel = resolvedModel || modelSlug;
     const plateInfoHtml = buildPlateInfoHtml(resolvedPlateContext);
     const plateYearRange =
-      (resolvedPlateContext && resolvedPlateContext.yearRange) ||
-      (useActivePlate ? activeCtx?.yearRange : null) ||
-      null;
-    const vehicleActive = Boolean(useActivePlate && activeCtx && activeCtx.plate);
+      (resolvedPlateContext && resolvedPlateContext.yearRange) || null;
+    const vehicleActive = Boolean(
+      useActivePlate && resolvedPlateContext && resolvedPlateContext.plate
+    );
+
+    const ensurePlateUrlForNrLs = () => {
+      if (!useActivePlate) return;
+      const plateValue =
+        (activeCtx && activeCtx.plate) ||
+        (resolvedPlateContext && resolvedPlateContext.plate) ||
+        "";
+      const platePart = plateSlug(plateValue);
+      if (!platePart || !useMake || !useModel) return;
+      const basePath = String(base || "").replace(/^\/+/, "");
+      const nextPath =
+        "/" +
+        [basePath, useMake, useModel, `${PLATE_PREFIX}${platePart}`]
+          .filter(Boolean)
+          .join("/") +
+        "/";
+      const current = normalizeForRoute(location.pathname).toLowerCase();
+      const wanted = normalizeForRoute(nextPath).toLowerCase();
+      if (current === wanted) return;
+      window.history.replaceState(
+        null,
+        "",
+        nextPath + window.location.search + window.location.hash
+      );
+    };
+
+    ensurePlateUrlForNrLs();
 
     FILTER.year = null;
     const plateLabel =
@@ -7263,6 +7412,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const years = [];
     const posSet = new Set();
     const apprSet = new Set();
+    const engineOptions = new Map();
+    const dropOptions = new Map();
     let hasEngine = false;
 
     pairs.forEach(({ k, f }) => {
@@ -7276,6 +7427,30 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (appr) apprSet.add(appr);
       const engine = enginesText(k, f);
       if (engine) hasEngine = true;
+      if (family === "ls") {
+        const engineList = enginesFromKitAndNotes(k, f)
+          .map((v) => String(v || "").trim())
+          .filter((v) => v && v !== "-" && v !== "—" && v.toLowerCase() !== "lpg");
+        const engineLabelRaw =
+          f?.engine_raw ||
+          (Array.isArray(f?.engines) ? f.engines.filter(Boolean).join(", ") : "") ||
+          engineList.join(", ");
+        const choiceTokens = new Set();
+        extractEngineChoices(engineLabelRaw).forEach((token) => choiceTokens.add(token));
+        engineList.forEach((label) => {
+          extractEngineChoices(label).forEach((token) => choiceTokens.add(token));
+        });
+        choiceTokens.forEach((token) => {
+          const value = normalizeMotorText(token);
+          if (!value) return;
+          const formatted = formatEngineLabel(value) || token;
+          if (!engineOptions.has(value)) engineOptions.set(value, formatted);
+        });
+        const drop = dropInfoFromKit(k);
+        if (drop.key && drop.label && !dropOptions.has(drop.key)) {
+          dropOptions.set(drop.key, drop.label);
+        }
+      }
     });
 
     const cardsBlock = pairs
@@ -7292,7 +7467,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const showYear = yearsAvail.length > 0 && yearMin <= yearMax;
     const showPos = posSet.size > 1;
     const showAppr = apprSet.size > 1;
-    const showEngine = hasEngine;
+    const showEngine = family === "ls" ? engineOptions.size > 0 : hasEngine;
+    const showDrop = family === "ls" && dropOptions.size > 1;
 
     const yearExtraInputs = `
       <div class="range-row" style="gap:8px; align-items:center;">
@@ -7344,10 +7520,43 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         </section>`);
     }
     if (showEngine) {
+      if (family === "ls") {
+        const engineItems = Array.from(engineOptions.entries()).sort((a, b) =>
+          a[1].localeCompare(b[1], "nl")
+        );
+        const optionsHtml = engineItems
+          .map(([value, label]) => `<option value="${esc(value)}">${label}</option>`)
+          .join("");
+        filters.push(`
+          <section class="filter-card grp actions" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+            <span class="muted">Motor</span>
+            <select id="${family}-engine" style="width:220px;padding:6px 8px;">
+              <option value="">Alle motoren</option>
+              ${optionsHtml}
+            </select>
+          </section>`);
+      } else {
+        filters.push(`
+          <section class="filter-card grp actions" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
+            <span class="muted">Motor</span>
+            <input type="text" id="${family}-engine" placeholder="bijv. 1.5 TSI, diesel, 85kW" style="width:180px;padding:6px 8px;">
+          </section>`);
+      }
+    }
+    if (showDrop) {
+      const dropItems = Array.from(dropOptions.entries()).sort((a, b) =>
+        a[1].localeCompare(b[1], "nl")
+      );
+      const optionsHtml = dropItems
+        .map(([value, label]) => `<option value="${esc(value)}">${label}</option>`)
+        .join("");
       filters.push(`
         <section class="filter-card grp actions" style="display:flex;gap:6px;align-items:center;border:1px solid #e4e7ec;padding:8px 10px;border-radius:10px;">
-          <span class="muted">Motor</span>
-          <input type="text" id="${family}-engine" placeholder="bijv. 1.5 TSI, diesel, 85kW" style="width:180px;padding:6px 8px;">
+          <span class="muted">Verlaging</span>
+          <select id="${family}-drop" style="width:220px;padding:6px 8px;">
+            <option value="">Alle verlagingen</option>
+            ${optionsHtml}
+          </select>
         </section>`);
     }
     if (filters.length) {
@@ -7389,6 +7598,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const yearFrom = document.getElementById("nr-year-from");
     const yearTo = document.getElementById("nr-year-to");
     const engineInput = document.getElementById(`${family}-engine`);
+    const dropSelect = document.getElementById(`${family}-drop`);
     const posBoxes = Array.prototype.slice.call(
       document.querySelectorAll(".nr-pos")
     );
@@ -7398,27 +7608,33 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const countEl = document.getElementById("nr-count");
 
     if (plateYearRange) {
-      const from = plateYearRange.from ?? plateYearRange.to;
-      const to = plateYearRange.to ?? plateYearRange.from;
-      if (yearFrom && from != null) yearFrom.value = String(from);
-      if (yearTo && to != null) yearTo.value = String(to);
+      setYearInputs(yearFrom, yearTo, plateYearRange);
       if (yearSlider) yearSlider.value = 0;
     }
 
+<<<<<<< HEAD
     if (family === "ls" && engineInput && !engineInput.value) {
       const plateEngine = buildPlateEngineFilter(resolvedPlateContext);
       if (plateEngine) engineInput.value = plateEngine;
     }
 
+=======
+    let yearSliderTouched = false;
+>>>>>>> cf9fe37d9acd492fa6fd67ac7b79734b2444c11b
     if (yearSlider && yearsAvail.length) {
       yearSlider.min = yearMin;
       yearSlider.max = yearMax;
 
-  let yearSliderTouched = false;
   const updatePicked = () => {
     const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
     const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
     if (!pickedEl) return;
+
+    if (!yearSliderTouched) {
+      pickedEl.hidden = true;
+      pickedEl.textContent = "";
+      return;
+    }
 
     // kenteken-range actief? dan niets tonen (rode cirkel leeg)
         const hasPlateRange =
@@ -7448,12 +7664,23 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     updatePicked();
   });
 
-      // init
+      // init (geen single-year filter actief)
       yearSlider.value = String(yearMin);
       updatePicked();
     }
 
-
+    if (engineInput && vehicleActive && engineInput.tagName === "SELECT") {
+      const plateVehicle =
+        (resolvedPlateContext && resolvedPlateContext.vehicle) || null;
+      const engineFilter = buildEngineFilterFromVehicle(plateVehicle);
+      if (engineFilter && !String(engineInput.value || "").trim()) {
+        const target = normalizeMotorText(engineFilter);
+        const found = Array.from(engineInput.options || []).find((opt) =>
+          motorMatches(target, opt.value)
+        );
+        if (found) engineInput.value = found.value;
+      }
+    }
 
     function num(v) {
       const n = parseInt(v, 10);
@@ -7464,6 +7691,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const yf = num(yearFrom && yearFrom.value);
       const yt = num(yearTo && yearTo.value);
       let ys = num(yearSlider && yearSlider.value);
+      if (!yearSliderTouched) ys = null;
       if (ys === 0) ys = null;
       const engRaw = engineInput ? engineInput.value : "";
       const eng = String(engRaw || "").toLowerCase().trim();
@@ -7472,6 +7700,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const cardPos = (card.dataset.pos || "").toLowerCase();
       const cardAppr = (card.dataset.approval || "").toLowerCase();
       const cardEngine = card.dataset.engine || "";
+      const dropKey = dropSelect ? dropSelect.value : "";
       const posSel = posBoxes
         .filter((b) => b.checked)
         .map((b) => b.value.toLowerCase());
@@ -7486,7 +7715,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         if (cy2 !== null && ys > cy2) return false;
       }
       if (family === "ls") {
-        if (!motorMatches(engRaw, cardEngine)) return false;
+        if (engRaw && cardEngine && !motorMatches(engRaw, cardEngine)) return false;
+        if (dropKey && String(card.dataset.drop || "") !== dropKey) return false;
       } else if (eng) {
         if (!cardEngine || cardEngine.toLowerCase().indexOf(eng) === -1) return false;
       }
@@ -7506,7 +7736,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (countEl) countEl.textContent = String(visible);
       if (initialApply) {
         initialApply = false;
-        if (!visible && vehicleActive) {
+        if (!visible && vehicleActive && !isPlateRoutePath(location.pathname)) {
           window.location.href = `${base}/${makeSlug}/`;
         }
       }
@@ -7515,16 +7745,32 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const applyBtn = document.getElementById("nr-apply");
   const resetBtn = document.getElementById("nr-reset");
   if (applyBtn) applyBtn.addEventListener("click", apply);
-  if (resetBtn)
+  if (engineInput && engineInput.tagName === "SELECT") {
+    engineInput.addEventListener("change", apply);
+  }
+  if (dropSelect) {
+    dropSelect.addEventListener("change", apply);
+  }
+    if (resetBtn)
     resetBtn.addEventListener("click", () => {
       if (yearSlider && yearsAvail.length) {
-        yearSlider.value = 0;
+        yearSliderTouched = false;
+        yearSlider.value = String(yearMin);
       }
       if (yearFrom) yearFrom.value = "";
       if (yearTo) yearTo.value = "";
       if (engineInput) engineInput.value = "";
+      if (dropSelect) dropSelect.value = "";
       posBoxes.forEach((b) => (b.checked = false));
       apprBoxes.forEach((b) => (b.checked = false));
+      if (yearSlider && yearsAvail.length) {
+        const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
+        const pickedEl = fyCard ? fyCard.querySelector("[data-fy-picked]") : null;
+        if (pickedEl) {
+          pickedEl.hidden = true;
+          pickedEl.textContent = "";
+        }
+      }
       apply();
     });
 
@@ -7743,6 +7989,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     let family = CURRENT_FAMILY;
     let base = CURRENT_BASE;
 
+    if (hasApp && family === "ls") {
+      const staticFilters = document.querySelector(".filters-wrap");
+      if (staticFilters) staticFilters.remove();
+      const staticGrid = document.getElementById("ls-grid");
+      if (staticGrid) staticGrid.remove();
+    }
+
     if (family === "nr") {
       const nrMakes = await fetchNrLsMakes("/data/nr-brand-pages.json", "/data/nr-model-pages.json");
       kits = await fetchNrKits();
@@ -7807,7 +8060,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (family === "ls") {
-      if (route.kind === "plate") return renderPlateModel(kits, makes, route);
+      if (route.kind === "plate") return renderNrModel(kits, makes, route.make, route.model);
       if (route.kind === "model") return renderNrModel(kits, makes, route.make, route.model);
       return;
     }
