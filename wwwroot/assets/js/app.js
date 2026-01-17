@@ -836,16 +836,48 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (!str) return "";
     return String(str)
       .toLowerCase()
-      .replace(/,/g, ".")
+      .replace(/(\d),(\d)/g, "$1.$2")
+      .replace(/[,\\/|]+/g, " ")
+      .replace(/[^a-z0-9.\s]/g, " ")
       .replace(/\s+/g, " ")
-      .replace(/[^a-z0-9.\s]/g, "")
       .trim();
   }
 
   function motorTokens(str) {
-    return normalizeMotorText(str)
-      .split(" ")
-      .filter((t) => t.length >= 2);
+    const norm = normalizeMotorText(str);
+    if (!norm) return [];
+    const raw = norm.split(" ").filter((t) => t.length >= 2);
+    const out = new Set();
+
+    raw.forEach((t) => {
+      out.add(t);
+      const m = t.match(/^([0-9.]+)([a-z]+)$/);
+      if (m) {
+        out.add(m[1]);
+        out.add(m[2]);
+        return;
+      }
+      const m2 = t.match(/^([a-z]+)([0-9.]+)$/);
+      if (m2) {
+        out.add(m2[1]);
+        out.add(m2[2]);
+      }
+    });
+
+    Array.from(out).forEach((t) => {
+      if (!/[0-9]/.test(t)) return;
+      const num = parseFloat(t);
+      if (!Number.isFinite(num)) return;
+      if (t.includes(".") && num > 0 && num < 10) {
+        const cc = Math.round(num * 1000);
+        if (cc) out.add(String(cc));
+      } else if (!t.includes(".") && num >= 100 && num <= 10000) {
+        const liters = Math.round((num / 1000) * 10) / 10;
+        if (liters) out.add(liters.toFixed(1));
+      }
+    });
+
+    return Array.from(out).filter((t) => t.length >= 2);
   }
 
   function motorMatches(filterValue, kitMotorText) {
@@ -1751,7 +1783,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       return `${num} ${unit}`;
     };
 
-    const buildPlateContext = ({ base, makeSlug, modelSlug }) => {
+  const buildPlateContext = ({ base, makeSlug, modelSlug }) => {
       const info = getPlatePathInfo(location.pathname, base);
       if (!info) return null;
       if (makeSlug && info.makeSlug !== String(makeSlug).toLowerCase()) return null;
@@ -1813,6 +1845,16 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         uitvoering,
         motorCode,
       };
+    };
+
+    const buildPlateEngineFilter = (context) => {
+      if (!context || !context.vehicle) return "";
+      const vehicle = context.vehicle || {};
+      const parts = [];
+      if (vehicle.engineContents) parts.push(String(vehicle.engineContents));
+      const code = extractEngineCodes(vehicle) || context.motorCode;
+      if (code) parts.push(String(code));
+      return parts.join(" ").trim();
     };
 
     const buildPlateInfoHtml = (context) => {
@@ -2933,6 +2975,60 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       allowLabels: toLabels([...allow]),
       denyLabels: toLabels([...deny]),
     };
+  }
+
+  function cleanEngineLabelToken(value) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+    const cleaned = text.replace(/[()]/g, "").trim();
+    if (/^all(\s+engine\s+types|\s+engines)?$/i.test(cleaned)) return "";
+    return cleaned;
+  }
+
+  function extractEngineListFromFitment(f) {
+    const toks = tokenizeMeta(f?.notes, f?.remark);
+    if (!toks.length) return [];
+    const out = [];
+    let inEngine = false;
+    toks.forEach((raw) => {
+      const t = String(raw || "").trim();
+      if (!t) return;
+      const m = t.match(/^\s*(engine|motor)\s*:\s*(.+)$/i);
+      if (m) {
+        inEngine = true;
+        if (m[2]) out.push(m[2]);
+        return;
+      }
+      if (!inEngine) return;
+      if (/^[a-z][a-z0-9\s]*:/i.test(t)) {
+        inEngine = false;
+        return;
+      }
+      out.push(t);
+    });
+    return out
+      .map((val) => cleanEngineLabelToken(val))
+      .filter(Boolean);
+  }
+
+  function mergeEngineLabels(primary, fallbackText) {
+    const out = [];
+    const seen = new Set();
+    const push = (val) => {
+      const text = String(val || "").trim();
+      if (!text) return;
+      const key = text.toLowerCase();
+      if (seen.has(key)) return;
+      seen.add(key);
+      out.push(text);
+    };
+    (primary || []).forEach(push);
+    String(fallbackText || "")
+      .split(",")
+      .map((t) => t.trim())
+      .filter(Boolean)
+      .forEach(push);
+    return out.join(", ");
   }
 
   function enginesFromKitAndNotes(kit, fitment) {
@@ -4438,7 +4534,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
     const setLabel =
       posKey === "both" ? "4 veren (voor+achter)" : "2 veren";
+    const engineListFromNotes = extractEngineListFromFitment(f);
     const engineLabelRaw =
+      (engineListFromNotes.length ? engineListFromNotes.join(", ") : "") ||
       f?.engine_raw ||
       (Array.isArray(f?.engines) ? f.engines.filter(Boolean).join(", ") : "") ||
       enginesFromKitAndNotes(k, f).filter((x) => x && x !== "-").join(", ") ||
@@ -4448,7 +4546,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       engineLabelClean && engineLabelClean !== "-" && engineLabelClean !== "-"
         ? engineLabelClean
         : "Allemaal";
-    const engineFilterText = enginesText(k, f);
+    const engineFilterText = mergeEngineLabels(
+      engineListFromNotes,
+      enginesText(k, f)
+    );
     const imgSrc = "/assets/img/HV-kits/LS-4.jpg";
     const contactSubject = makeSlug && modelSlug
       ? `ls-${makeSlug}-${modelSlug}`
@@ -7302,6 +7403,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (yearFrom && from != null) yearFrom.value = String(from);
       if (yearTo && to != null) yearTo.value = String(to);
       if (yearSlider) yearSlider.value = 0;
+    }
+
+    if (family === "ls" && engineInput && !engineInput.value) {
+      const plateEngine = buildPlateEngineFilter(resolvedPlateContext);
+      if (plateEngine) engineInput.value = plateEngine;
     }
 
     if (yearSlider && yearsAvail.length) {

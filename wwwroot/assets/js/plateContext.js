@@ -840,26 +840,41 @@
           : path.startsWith("/verlagingsveren/")
             ? "verlagingsveren"
             : "";
+      const prevCtx = loadPlateContext() || window.hv_plate_context || {};
+      const prevPlate = normalizePlate(prevCtx?.plate || "");
+      const hasVehicle =
+        prevCtx &&
+        prevCtx.vehicle &&
+        (prevCtx.vehicle.make ||
+          prevCtx.vehicle.model ||
+          prevCtx.vehicle.modelLabel ||
+          prevCtx.vehicle.makeSlug ||
+          prevCtx.vehicle.modelSlug);
+      const hasManualSelection =
+        /^\/(hulpveren|luchtvering|verlagingsveren)\/[^\/]+\/[^\/]+\/?$/i.test(path) &&
+        !/\/kt_[a-z0-9]+\/?$/i.test(path);
+      const hasPlateInUrl = /\/kt_[a-z0-9]+\/?$/i.test(path);
+      const shouldForceRedirect =
+        (hasVehicle || hasManualSelection || hasPlateInUrl || prevPlate) &&
+        (!prevPlate || prevPlate !== normalized);
       const ctx = {
         plate: normalized,
-        vehicle: null,
+        vehicle: {},
         range: null,
         yearRange: null,
         intentType,
         updatedAt: Date.now(),
       };
-      if (typeof window.openPlateGroupOverlay === "function") {
-        window.__hvPlateOverlayPrevCtx = loadPlateContext();
-        savePlateContext(ctx);
-        renderPlatePill(ctx);
-        dispatchPlateEvent(ctx);
+      window.hv_plate_context = ctx;
+      savePlateContext(ctx);
+      renderPlatePill(ctx);
+      dispatchPlateEvent(ctx);
+      if (typeof window.openPlateGroupOverlay === "function" && !shouldForceRedirect) {
+        window.__hvPlateOverlayPrevCtx = prevCtx;
         setPlateBarState(bar, statusEl, "success", "Kies productgroep.");
         window.openPlateGroupOverlay(normalized);
         return;
       }
-      savePlateContext(ctx);
-      renderPlatePill(ctx);
-      dispatchPlateEvent(ctx);
       const encoded = encodeURIComponent(normalized);
       const targetBase = PLATE_PATH.endsWith("/") ? PLATE_PATH : `${PLATE_PATH}/`;
       const target = intentType
