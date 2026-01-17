@@ -1367,6 +1367,27 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     };
 
     const extractAldocSets = (payload) => {
+      // --- DEBUG: inspect proxyv7 payload shape for plate flow ---
+      try {
+        const t =
+          payload == null ? "null" : Array.isArray(payload) ? "array" : typeof payload;
+
+        const topKeys =
+          payload && typeof payload === "object" ? Object.keys(payload).slice(0, 80) : [];
+
+        let sample = "";
+        if (payload && typeof payload === "object") {
+          // small safe preview
+          sample = JSON.stringify(payload).slice(0, 800);
+        } else {
+          sample = String(payload).slice(0, 800);
+        }
+
+        debugLog("plate:aldoc_payload:meta", { type: t, topKeys, sample });
+      } catch (e) {
+        debugLog("plate:aldoc_payload:meta_error", { message: String(e?.message || e) });
+      }
+      // --- END DEBUG ---
       const items = collectAldocItems(payload);
       const hv = new Set();
       const nr = new Set();
