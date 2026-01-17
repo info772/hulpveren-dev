@@ -14,10 +14,23 @@
   // Aanpassen aan het juiste pad/endpoint zodra bekend
   const KENTEKEN_ENDPOINT = (plate) =>
     `${PROXY_BASE}/PartServices/${encodeURIComponent(plate)}`;
+  // NEW: proxyv7 endpoint dat SKUs/sets teruggeeft voor deze plate + intent
+  // Pas dit pad aan naar jouw echte proxy route als hij anders heet.
+  const KENTEKEN_SETS_ENDPOINT = (plate, intentType) =>
+    `${PROXY_BASE}/v7/sets?plate=${encodeURIComponent(plate)}&intent=${encodeURIComponent(
+      intentType || ""
+    )}`;
 
   const DATA_HV = "/data/hv-kits.json";
   const DATA_NR = "/data/nr-kits.json";
   const DATA_LS = "/data/ls-kits.json";
+  function inferIntentTypeFromPath() {
+    const p = String(location.pathname || "").toLowerCase();
+    if (p.startsWith("/verlagingsveren")) return "ls";
+    if (p.startsWith("/luchtvering")) return "nr";
+    if (p.startsWith("/hulpveren")) return "hv";
+    return "hv";
+  }
 
   const slugify = (s) =>
     String(s || "")
@@ -53,40 +66,63 @@
     }
   }
 
-  function matchSets(vehicle, datasets) {
-    const make = slugify(vehicle.make);
-    const model = slugify(vehicle.model);
-    if (!make || !model) return [];
+  function indexKitsBySku(list) {
+    const map = new Map();
+    (list || []).forEach((kit) => {
+      const sku = String(kit?.sku || "").trim().toUpperCase();
+      if (!sku) return;
+      map.set(sku, kit);
+    });
+    return map;
+  }
+
+  function pickFamilyData(intentType, datasets) {
+    if (intentType === "ls") return { basePath: "/verlagingsveren", data: datasets.ls };
+    if (intentType === "nr") return { basePath: "/luchtvering", data: datasets.nr };
+    return { basePath: "/hulpveren", data: datasets.hv };
+  }
+
+  function matchSetsBySku(intentType, skuList, datasets) {
+    const { basePath, data } = pickFamilyData(intentType, datasets);
+    const kitMap = indexKitsBySku(data?.kits || []);
 
     const matches = [];
-    const { hv, nr, ls } = datasets;
-    const add = (family, sku, title, url) =>
-      matches.push({
-        family,
-        sku,
-        title,
-        url,
-      });
+    for (const s of skuList || []) {
+      const sku = String(s || "").trim().toUpperCase();
+      const kit = kitMap.get(sku);
+      if (!kit) continue;
 
-    function scan(list, basePath) {
-      (list || []).forEach((kit) => {
-        (kit.fitments || []).forEach((f) => {
-          if (slugify(f.make) === make && slugify(f.model) === model) {
-            add(
-              basePath,
-              kit.sku,
-              `${f.make} ${f.model} (${kit.sku})`,
-              `${basePath}/${kit.sku.toLowerCase()}/`
-            );
-          }
-        });
+      matches.push({
+        family: basePath,
+        sku,
+        title: `${sku}`,
+        url: `${basePath}/${sku.toLowerCase()}/`,
       });
     }
-
-    scan(hv?.kits || [], "/hulpveren");
-    scan(nr?.kits || [], "/luchtvering");
-    scan(ls?.kits || [], "/verlagingsveren");
     return matches;
+  }
+
+  function extractSkusFromProxy(raw, intentType) {
+    const out = new Set();
+
+    const add = (v) => {
+      const sku = String(v || "").trim();
+      if (sku) out.add(sku.toUpperCase());
+    };
+
+    (raw?.skus || raw?.kits || raw?.items || raw?.results || []).forEach((x) => {
+      if (typeof x === "string") add(x);
+      else add(x?.sku || x?.SKU || x?.code);
+    });
+
+    const key =
+      intentType === "ls" ? "lsSkus" : intentType === "nr" ? "nrSkus" : "hvSkus";
+
+    (raw?.[key] || raw?.sets?.[key] || raw?.aldocSets?.[key] || []).forEach(add);
+
+    (raw?.matches || raw?.matchedItems || []).forEach((x) => add(x?.sku || x));
+
+    return Array.from(out);
   }
 
   function renderMatches(vehicle, matches) {
@@ -120,6 +156,7 @@
 
   FORM.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const plateRaw = (INPUT?.value || "").replace(/[^A-Za-z0-9]/g, "");
     if (!plateRaw) {
       setStatus("Voer een geldig kenteken in.", true);
@@ -128,12 +165,24 @@
     setStatus("Bezig met opzoeken…");
     RESULTS.innerHTML = "";
 
+    const intentType = inferIntentTypeFromPath();
+
     // Fetch vehicle info via proxy
     const vehicle = await fetchJson(KENTEKEN_ENDPOINT(plateRaw), null);
     if (!vehicle || !vehicle.make || !vehicle.model) {
       setStatus("Geen voertuig gevonden. Controleer het kenteken.", true);
       return;
     }
+
+    const rawSets = await fetchJson(
+      KENTEKEN_SETS_ENDPOINT(plateRaw, intentType),
+      null
+    );
+
+    console.log("Debug (kenteken)", "\nKeys:", Object.keys(rawSets || {}));
+    console.log("Debug (kenteken) raw sample:", rawSets);
+
+    const skus = extractSkusFromProxy(rawSets, intentType);
 
     // Load datasets
     const [hv, nr, ls] = await Promise.all([
@@ -142,8 +191,20 @@
       fetchJson(DATA_LS, {}),
     ]);
 
-    const matches = matchSets(vehicle, { hv, nr, ls });
+    const matches = matchSetsBySku(intentType, skus, { hv, nr, ls });
     renderMatches(vehicle, matches);
+
+    if (!matches.length) {
+      setStatus(
+        `Geen set gevonden op kenteken (${vehicle.make} ${vehicle.model}). Toon merk/model selectie.`,
+        true
+      );
+      const makeSlug = slugify(vehicle.make);
+      const modelSlug = slugify(vehicle.model.split("(")[0]);
+      // location.href = `/${intentType === "ls" ? "verlagingsveren" : intentType === "nr" ? "luchtvering" : "hulpveren"}/${makeSlug}/${modelSlug}/`;
+      return;
+    }
+
     setStatus(`Gevonden: ${vehicle.make} ${vehicle.model}`);
   });
 })();
