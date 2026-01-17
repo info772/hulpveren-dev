@@ -5320,6 +5320,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return false;
   }
 
+  function isPlateActive(base = CURRENT_BASE || BASE) {
+    const ctx = getPlateContext();
+    const ctxPlate = ctx && ctx.plate ? normalizePlateInput(ctx.plate) : "";
+    if (ctxPlate) return true;
+    try {
+      const params = new URLSearchParams(window.location.search || "");
+      const kt = normalizePlateInput(params.get("kt") || "");
+      if (kt) return true;
+    } catch (_) {}
+    if (isPlateRoutePath(location.pathname)) return true;
+    return hasPlateToken(location.pathname, base);
+  }
+
   function suppressHomeSectionsOnPlate() {
     const main = document.querySelector("main");
     if (!main) return;
@@ -6381,6 +6394,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       aldocSets.hvSkus.length ||
       aldocSets.nrSkus.length ||
       aldocSets.lsSkus.length;
+    const plateActive = isPlateActive(base);
+    const modelSlugForCards = resolvedModelSlug || vehicleModelSlug || routeModelSlug;
+    const makeSlugForCards = makeSlug || routeMakeSlug;
 
     const stripPlateFromUrl = () => {
       try {
@@ -6416,8 +6432,216 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       );
     };
 
+    const buildPairsFromSkus = (skus, kitMap) => {
+      const pairs = [];
+      const missing = [];
+      skus.forEach((sku) => {
+        const kit = kitMap.get(sku);
+        if (!kit) {
+          missing.push(sku);
+          return;
+        }
+        const fitment = pickFitmentForKit(kit, makeSlugForCards, modelSlugForCards);
+        pairs.push({ k: kit, f: fitment });
+      });
+      return { pairs, missing };
+    };
 
-    if (family !== "hv" && !hasAldocSets) {
+    const sortPairsByPrice = (pairs) =>
+      pairs.slice().sort((a, b) => {
+        const pa = a.k?.pricing_nl?.total_inc_vat_from_eur;
+        const pb = b.k?.pricing_nl?.total_inc_vat_from_eur;
+        const na = Number.isFinite(+pa) ? +pa : 1e12;
+        const nb = Number.isFinite(+pb) ? +pb : 1e12;
+        if (na !== nb) return na - nb;
+        return String(a.k?.sku || "").localeCompare(String(b.k?.sku || ""));
+      });
+
+    const familyAldocSkus =
+      family === "nr"
+        ? aldocSets.nrSkus
+        : family === "ls"
+          ? aldocSets.lsSkus
+          : aldocSets.hvSkus;
+
+    if (plateActive) {
+      if (!familyAldocSkus.length) {
+        app.innerHTML = wrap(`
+          <div class="crumbs">
+            <a href="${base}">${productTitle}</a> >
+            Kenteken
+          </div>
+          <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
+          ${summaryLine}
+          ${plateInfoHtml}
+          <p class="note">Geen sets gevonden voor dit kenteken in Aldoc.</p>
+          <div class="cta-row">
+            <a class="btn btn-ghost" href="${plateSearchHref}">Opnieuw zoeken</a>
+            <a class="btn" href="${base}">Kies merk en model</a>
+          </div>
+        `);
+        initVehicleDetailsToggle(app);
+        renderPlateDebug({
+          container: app,
+          vehicle,
+          allPairs: [],
+          filtered: [],
+          meta: {
+            makeSlug,
+            modelSlug: modelSlugForCards || null,
+            source,
+            vehicleYM,
+            vehicleRange,
+            platformCodes,
+            caddyGeneration,
+            plate: plateNormalized,
+          },
+        });
+        return;
+      }
+
+      const kitMap = buildKitMap(kits || []);
+      const pairs = buildPairsFromSkus(familyAldocSkus, kitMap);
+      const pairsSorted = sortPairsByPrice(pairs.pairs);
+      const familyLabel =
+        family === "nr" ? "luchtvering" : family === "ls" ? "verlagingsveren" : "hulpveren";
+
+      let blocks = [];
+      if (family === "hv") {
+        const driveAvail = new Set();
+        let hasSRW = false;
+        let hasDRW = false;
+        pairsSorted.forEach(({ k, f }) => {
+          const dPol = drivePolicyFromFit(f, k);
+          (dPol.allowLabels || []).forEach((lbl) => driveAvail.add(lbl));
+          const pStrict = rearWheelsPolicyFrom(f, k, true);
+          if (pStrict.allow.has("drw")) hasDRW = true;
+          const pLax = rearWheelsPolicyFrom(f, k, false);
+          if (pLax.allow.has("srw")) hasSRW = true;
+        });
+        const driveItems = driveChipItems(
+          driveAvail,
+          makeSlugForCards,
+          modelSlugForCards
+        );
+        const cardOptions = {
+          makeLabel,
+          modelLabel,
+          makeSlug: makeSlugForCards,
+          modelSlug: modelSlugForCards,
+          showDriveMeta: driveItems.length > 1,
+          showRearMeta: hasSRW && hasDRW,
+        };
+        blocks = [
+          ...pairsSorted.map((pair, idx) => buildModelCard(pair, idx, cardOptions)),
+          ...pairs.missing.map((sku) =>
+            buildGenericSkuCard({
+              sku,
+              familyLabel,
+              makeLabel,
+              modelLabel,
+            })
+          ),
+        ];
+      } else if (family === "nr") {
+        blocks = [
+          ...pairsSorted.map((pair, idx) =>
+            buildNrCard(pair, idx, {
+              makeLabel,
+              modelLabel,
+              makeSlug: makeSlugForCards,
+              modelSlug: modelSlugForCards,
+            })
+          ),
+          ...pairs.missing.map((sku) =>
+            buildGenericSkuCard({
+              sku,
+              familyLabel,
+              makeLabel,
+              modelLabel,
+            })
+          ),
+        ];
+      } else {
+        blocks = [
+          ...pairsSorted.map((pair, idx) =>
+            buildLsCard(pair, idx, {
+              makeLabel,
+              modelLabel,
+              makeSlug: makeSlugForCards,
+              modelSlug: modelSlugForCards,
+            })
+          ),
+          ...pairs.missing.map((sku) =>
+            buildGenericSkuCard({
+              sku,
+              familyLabel,
+              makeLabel,
+              modelLabel,
+            })
+          ),
+        ];
+      }
+
+      ensurePlateUrl(makeSlugForCards, modelSlugForCards);
+      const crumbsParts = [`<a href="${base}">${productTitle}</a>`];
+      if (makeSlugForCards) {
+        crumbsParts.push(
+          `<a href="${base}/${esc(makeSlugForCards)}">${esc(makeLabel)}</a>`
+        );
+      }
+      if (modelSlugForCards) {
+        crumbsParts.push(
+          `<a href="${base}/${esc(makeSlugForCards)}/${esc(
+            modelSlugForCards
+          )}">${esc(modelLabel)}</a>`
+        );
+      }
+      crumbsParts.push("Kenteken");
+
+      const count = blocks.length;
+      const summaryText = `gevonden: ${count} sets`;
+      const cardsHtml = count
+        ? blocks.join("")
+        : `<p class="note">Geen sets gevonden voor dit kenteken in Aldoc.</p>`;
+
+      app.innerHTML = wrap(`
+        <div class="crumbs">${crumbsParts.join(" > ")}</div>
+        <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
+        ${summaryLine}
+        <div class="set-meta">
+          <span><span id="kit-count">${count}</span> sets</span>
+          <span id="filter-summary" class="muted">${esc(summaryText)}</span>
+        </div>
+        ${plateInfoHtml}
+        <div id="model-grid" class="grid" data-set-list>${cardsHtml}</div>
+      `);
+      initVehicleDetailsToggle(app);
+      if (family === "hv") {
+        initImagesForGrid();
+        bindLeadButtons();
+      }
+      renderPlateDebug({
+        container: app,
+        vehicle,
+        allPairs: pairs.pairs,
+        filtered: pairs.pairs,
+        meta: {
+          makeSlug: makeSlugForCards,
+          modelSlug: modelSlugForCards || null,
+          source,
+          vehicleYM,
+          vehicleRange,
+          platformCodes,
+          caddyGeneration,
+          plate: plateNormalized,
+        },
+      });
+      return;
+    }
+
+
+    if (!plateActive && family !== "hv" && !hasAldocSets) {
       const targetModelSlug =
         resolvedModelSlug || vehicleModelSlug || routeModelSlug || "";
       if (!makeSlug || !targetModelSlug) {
@@ -6440,34 +6664,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (hasAldocSets) {
-      const modelSlugForCards = resolvedModelSlug || vehicleModelSlug || routeModelSlug;
-      const makeSlugForCards = makeSlug || routeMakeSlug;
-
-      const buildPairsFromSkus = (skus, kitMap) => {
-        const pairs = [];
-        const missing = [];
-        skus.forEach((sku) => {
-          const kit = kitMap.get(sku);
-          if (!kit) {
-            missing.push(sku);
-            return;
-          }
-          const fitment = pickFitmentForKit(kit, makeSlugForCards, modelSlugForCards);
-          pairs.push({ k: kit, f: fitment });
-        });
-        return { pairs, missing };
-      };
-
-      const sortPairsByPrice = (pairs) =>
-        pairs.slice().sort((a, b) => {
-          const pa = a.k?.pricing_nl?.total_inc_vat_from_eur;
-          const pb = b.k?.pricing_nl?.total_inc_vat_from_eur;
-          const na = Number.isFinite(+pa) ? +pa : 1e12;
-          const nb = Number.isFinite(+pb) ? +pb : 1e12;
-          if (na !== nb) return na - nb;
-          return String(a.k?.sku || "").localeCompare(String(b.k?.sku || ""));
-        });
-
       const hvKitMap = buildKitMap(kits || []);
       const hvPairs = buildPairsFromSkus(aldocSets.hvSkus, hvKitMap);
       const hvPairsFiltered = hvPairs.pairs.filter((pair) =>
@@ -8139,7 +8335,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
 
     if (family === "ls") {
-      if (route.kind === "plate") return renderNrModel(kits, makes, route.make, route.model);
+      if (route.kind === "plate") return renderPlateModel(kits, makes, route);
       if (route.kind === "model") return renderNrModel(kits, makes, route.make, route.model);
       return;
     }

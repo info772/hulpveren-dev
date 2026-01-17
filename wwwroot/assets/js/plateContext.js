@@ -218,6 +218,21 @@
     return "/" + parts.join("/") + "/";
   }
 
+  function stripPlateFromUrl(rawUrl) {
+    try {
+      const url = new URL(rawUrl, window.location.origin);
+      url.pathname = stripStateSegments(url.pathname);
+      const params = url.searchParams;
+      params.delete("kt");
+      params.delete("type");
+      const query = params.toString();
+      url.search = query ? `?${query}` : "";
+      return url.pathname + url.search + url.hash;
+    } catch (_) {
+      return stripStateSegments(window.location.pathname);
+    }
+  }
+
   function buildPlateKtUrl({ plateRaw, ktRaw }) {
     const plate = normalizePlate(plateRaw);
     const kt = normalizeKt(ktRaw);
@@ -568,6 +583,8 @@
       sessionStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem("hv_plate");
+      window.hv_plate_context = null;
+      window.__hvPlateOverlayPrevCtx = null;
     } catch {
       return;
     }
@@ -746,7 +763,7 @@
       clearBtn.dataset.plateClearBound = "1";
       clearBtn.addEventListener("click", () => {
         clearPlateContext();
-        window.location.href = stripStateSegments(window.location.pathname);
+        window.location.href = stripPlateFromUrl(window.location.href);
       });
     }
     const ctx = loadPlateContext();
@@ -949,7 +966,10 @@
       <span class="plate-filter-chip__text">Gefilterd op kenteken: ${text}</span>
       <button type="button" class="plate-filter-chip__clear" aria-label="Wis kenteken">Wis</button>
     `;
-    chip.querySelector("button").addEventListener("click", () => clearPlateContext());
+    chip.querySelector("button").addEventListener("click", () => {
+      clearPlateContext();
+      window.location.href = stripPlateFromUrl(window.location.href);
+    });
     container.insertAdjacentElement("beforebegin", chip);
     return chip;
   };
