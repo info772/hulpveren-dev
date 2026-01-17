@@ -851,6 +851,45 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       .trim();
   }
 
+  function cleanEngineLabelForDisplay(raw) {
+    const s = String(raw || "").trim();
+    if (!s) return "";
+
+    const parts = s
+      .replace(/\s+/g, " ")
+      .split(",")
+      .map((x) => x.trim())
+      .filter(Boolean);
+
+    const dropToken = (t) => {
+      const v = String(t || "").trim();
+      if (!v) return true;
+      if (/^motor$/i.test(v)) return true;
+      if (/^benzine$/i.test(v)) return true;
+      if (/^diesel$/i.test(v)) return true;
+      if (/^hybride$/i.test(v)) return true;
+      if (/^elektrisch$/i.test(v)) return true;
+      if (/^cargo$/i.test(v)) return true;
+      if (/^maxi$/i.test(v)) return true;
+      if (/^incl\.?\s*maxi$/i.test(v)) return true;
+      if (/^incl\.?$/i.test(v)) return true;
+      if (/^motor\s+(benzine|diesel|hybride|elektrisch)$/i.test(v)) return true;
+      return false;
+    };
+
+    const kept = parts
+      .map((p) => p.replace(/^motor\s+/i, "").trim())
+      .filter((p) => !dropToken(p));
+
+    const kept2 = kept.filter((p) => {
+      if (/\d/.test(p)) return true;
+      if (/\b(TSI|TDI|HDI|CDI|DCI|JTD|TFSI|ECOTEC|BOOST|EV)\b/i.test(p)) return true;
+      return false;
+    });
+
+    return kept2.join(", ").trim();
+  }
+
   function motorTokens(str) {
     const norm = normalizeMotorText(str);
     if (!norm) return [];
@@ -4624,10 +4663,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       enginesFromKitAndNotes(k, f).filter((x) => x && x !== "-").join(", ") ||
       "-";
     const engineLabelClean = stripLpgLabel(engineLabelRaw);
-    const engineLabel =
-      engineLabelClean && engineLabelClean !== "-" && engineLabelClean !== "-"
-        ? engineLabelClean
-        : "Allemaal";
+    const engineLabelDisplay = cleanEngineLabelForDisplay(engineLabelClean);
+    const engineLabel = engineLabelDisplay ? engineLabelDisplay : "Allemaal";
     const engineFilterText = mergeEngineLabels(
       engineListFromNotes,
       enginesText(k, f)
