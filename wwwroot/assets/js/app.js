@@ -7634,18 +7634,17 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (yearSlider) yearSlider.value = 0;
     }
 
-<<<<<<< HEAD
     if (family === "ls" && engineInput && !engineInput.value) {
       const plateEngine = buildPlateEngineFilter(resolvedPlateContext);
       if (plateEngine) engineInput.value = plateEngine;
     }
 
-=======
     let yearSliderTouched = false;
->>>>>>> cf9fe37d9acd492fa6fd67ac7b79734b2444c11b
+
     if (yearSlider && yearsAvail.length) {
       yearSlider.min = yearMin;
       yearSlider.max = yearMax;
+
 
   const updatePicked = () => {
     const fyCard = yearSlider.closest(".fy") || yearSlider.closest(".filter-card");
