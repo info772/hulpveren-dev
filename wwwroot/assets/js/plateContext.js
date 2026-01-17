@@ -840,7 +840,6 @@
           : path.startsWith("/verlagingsveren/")
             ? "verlagingsveren"
             : "";
-<<<<<<< HEAD
       const prevCtx = loadPlateContext() || window.hv_plate_context || {};
       const prevPlate = normalizePlate(prevCtx?.plate || "");
       const hasVehicle =
@@ -851,14 +850,16 @@
           prevCtx.vehicle.modelLabel ||
           prevCtx.vehicle.makeSlug ||
           prevCtx.vehicle.modelSlug);
+
       const hasManualSelection =
         /^\/(hulpveren|luchtvering|verlagingsveren)\/[^\/]+\/[^\/]+\/?$/i.test(path) &&
         !/\/kt_[a-z0-9]+\/?$/i.test(path);
       const hasPlateInUrl = /\/kt_[a-z0-9]+\/?$/i.test(path);
+
       const shouldForceRedirect =
         (hasVehicle || hasManualSelection || hasPlateInUrl || prevPlate) &&
         (!prevPlate || prevPlate !== normalized);
-=======
+
       const parts = String(window.location.pathname || "")
         .split("/")
         .filter(Boolean);
@@ -875,7 +876,7 @@
               modelSlug: slugify(modelPart),
             }
           : null;
->>>>>>> cf9fe37d9acd492fa6fd67ac7b79734b2444c11b
+
       const ctx = {
         plate: normalized,
         vehicle: {},
