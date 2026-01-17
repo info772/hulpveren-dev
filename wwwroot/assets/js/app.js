@@ -1379,6 +1379,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         const productCode = findNumericByKey(item, ALDOC_PRODUCT_KEY_SET);
         const brandCode = findNumericByKey(item, ALDOC_BRAND_KEY_SET);
         const text = itemText(item).toLowerCase();
+        const inferFamily = (txt) => {
+          if (/\b(nr[- ]?\d+)\b/.test(txt) || /luchtvering|air\s*suspension/.test(txt))
+            return "nr";
+          if (/\b(ls[- ]?\d+)\b/.test(txt) || /verlagingsveren|lowering/.test(txt))
+            return "ls";
+          if (/\b(hv[- ]?\d+)\b/.test(txt) || /hulpveren|auxiliary/.test(txt))
+            return "hv";
+          return "";
+        };
         const isLowering = /verlagingsveren|lowering/.test(text);
         const isHulpveren = /hulpveren|auxiliary/.test(text);
         const isLuchtvering = /luchtvering|air\s*suspension/.test(text);
@@ -1403,11 +1412,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
         let sku = info.sku;
         if (!sku && info.digits) {
-          if (productCode === ALDOC_CODES.hv) sku = `HV-${info.digits}`;
-          else if (productCode === ALDOC_CODES.nr) sku = `NR-${info.digits}`;
-          else if (isLowering) sku = `LS-${info.digits}`;
-          else if (isHulpveren) sku = `HV-${info.digits}`;
-          else if (isLuchtvering) sku = `NR-${info.digits}`;
+          const familyHint = inferFamily(text);
+          if (familyHint === "nr") sku = `NR-${info.digits}`;
+          else if (familyHint === "ls") sku = `LS-${info.digits}`;
+          else if (familyHint === "hv") sku = `HV-${info.digits}`;
+          else if (productCode === ALDOC_CODES.hv || productCode === ALDOC_CODES.nr) {
+            sku = `HV-${info.digits}`;
+          } else if (isLowering) {
+            sku = `LS-${info.digits}`;
+          } else if (isLuchtvering) {
+            sku = `NR-${info.digits}`;
+          } else if (isHulpveren) {
+            sku = `HV-${info.digits}`;
+          }
         }
 
         if (!sku) return;
