@@ -45,12 +45,24 @@ async function fetchWithTimeout(url, options, timeoutMs, retries) {
   }
 }
 
-async function requestText(path) {
+async function requestText(path, opts = {}) {
   const url = buildUrl(path);
   const start = Date.now();
   let res;
+  const headers = Object.assign(
+    {
+      "user-agent": "Mozilla/5.0",
+      accept: "*/*",
+    },
+    opts.headers || {}
+  );
   try {
-    res = await fetchWithTimeout(url, { method: "GET" }, DEFAULT_TIMEOUT_MS, 1);
+    res = await fetchWithTimeout(
+      url,
+      { method: "GET", headers },
+      DEFAULT_TIMEOUT_MS,
+      1
+    );
   } catch (err) {
     err.upstreamMs = Date.now() - start;
     err.code = err.name === "AbortError" ? "UPSTREAM_TIMEOUT" : "UPSTREAM_NETWORK";
@@ -59,11 +71,17 @@ async function requestText(path) {
 
   const text = await res.text();
   const upstreamMs = Date.now() - start;
-  if (!res.ok) {
+  if (!res.ok && !opts.allowNonOk) {
     throw new UpstreamError(`Upstream status ${res.status}`, res.status, upstreamMs);
   }
 
-  return { text, upstreamMs };
+  return {
+    text,
+    upstreamMs,
+    status: res.status,
+    contentType: res.headers.get("content-type") || "",
+    url,
+  };
 }
 
 function toInt(value) {
@@ -182,5 +200,6 @@ module.exports = {
   getTypesByLicenseplateNL,
   getMenu,
   getMenuParts,
+  requestText,
   UpstreamError,
 };

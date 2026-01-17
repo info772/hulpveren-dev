@@ -34,6 +34,7 @@ const apiRedirectsRoutes = require("./routes/apiRedirects");
 const apiGemonteerdRoutes = require("./routes/apiGemonteerd");
 const rdwRoutes = require("./routes/rdw");
 const apiRdwRoutes = require("./routes/apiRdw");
+const aldocProxyRoute = require("./routes/aldocProxy");
 const adminRoutes = require("./routes/admin");
 const adminApiRoutes = require("./routes/adminApi");
 const deployRoutes = require("./routes/deploy");
@@ -113,6 +114,7 @@ function createApp() {
 
   app.use("/api/plate", rateLimit({ windowMs: 60 * 1000, max: 30 }));
   app.use("/api/plate", plateRoutes);
+  app.use("/aldoc-proxy", aldocProxyRoute);
   app.get(["/kenteken", "/kenteken/"], (req, res) => {
     const kt = String(req.query.kt || "")
       .toUpperCase()
