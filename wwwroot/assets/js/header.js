@@ -16,10 +16,8 @@
     );
   };
 
-  if (window.__SPA_DISABLED__ || isLegacyRoute()) {
-    window.__SPA_DISABLED__ = true;
-    return;
-  }
+  const LEGACY_ROUTE = isLegacyRoute();
+  const LEGACY_PARTIAL_URL = "/partials/header-legacy.html";
 
   if (document.querySelector("script[src*=\"/partials/header.js\"]")) return;
 
@@ -28,8 +26,13 @@
   // - Mobile close: any link in .hv2-nav, body gets .nav-open when drawer open
   // - Mega menu: items use .nav-item-mega/.hv-nav-item-mega, trigger .mnav-toggle/.nav-toggle-cta/.hv-nav-toggle, panel .mega-panel/.hv-mega-panel, open class "is-open"
 
-  if (window.__HV_HEADER_V2_LOADED__) return;
-  window.__HV_HEADER_V2_LOADED__ = true;
+  if (LEGACY_ROUTE) {
+    if (window.__HV_HEADER_LEGACY_LOADED__) return;
+    window.__HV_HEADER_LEGACY_LOADED__ = true;
+  } else {
+    if (window.__HV_HEADER_V2_LOADED__) return;
+    window.__HV_HEADER_V2_LOADED__ = true;
+  }
 
   const PARTIAL_URL = "/partials/header-v2.html";
   const BUILD_ID_URL = "/assets/build-id.txt";
@@ -860,13 +863,120 @@
     document.querySelectorAll(".breadcrumbs, .crumbs").forEach((el) => el.remove());
   };
 
+  const bindLegacyHeader = (mountEl) => {
+    if (!mountEl || mountEl.dataset.legacyBound === "1") return;
+    mountEl.dataset.legacyBound = "1";
+    const menuToggle = mountEl.querySelector('[data-nav-toggle]');
+    const nav = mountEl.querySelector(".nav");
+    const MEGA_CACHE = {};
+
+    const toggles = Array.from(mountEl.querySelectorAll(".nav-item-mega"));
+    toggles.forEach((node) => {
+      const btn = node.querySelector(".nav-toggle-cta");
+      const panel = node.querySelector(".mega-panel");
+      if (!btn || !panel) return;
+
+      const family = node.getAttribute("data-family");
+      btn.addEventListener("click", () => {
+        const open = btn.getAttribute("aria-expanded") === "true";
+        toggles.forEach((t) => {
+          const b = t.querySelector(".nav-toggle-cta");
+          const p = t.querySelector(".mega-panel");
+          if (!b || !p) return;
+          if (t === node && !open) {
+            b.setAttribute("aria-expanded", "true");
+            p.classList.add("is-open");
+          } else {
+            b.setAttribute("aria-expanded", "false");
+            p.classList.remove("is-open");
+          }
+        });
+
+        if (!open) {
+          loadMega(family);
+        }
+      });
+
+      node.addEventListener("mouseenter", () => {
+        btn.setAttribute("aria-expanded", "true");
+        panel.classList.add("is-open");
+        loadMega(family);
+      });
+      node.addEventListener("mouseleave", () => {
+        btn.setAttribute("aria-expanded", "false");
+        panel.classList.remove("is-open");
+      });
+    });
+
+    const loadMega = (family) => {
+      if (!family || MEGA_CACHE[family]) return;
+      MEGA_CACHE[family] = true;
+
+      fetch(`/data/makes-${family}.json`)
+        .then((res) => res.json())
+        .then((makes) => {
+          const brandsEl = document.getElementById(`hv-mega-brands-${family}`);
+          const modelsEl = document.getElementById(`hv-mega-models-${family}`);
+          const titleEl = document.getElementById(`hv-mega-model-title-${family}`);
+          if (!brandsEl || !modelsEl || !titleEl) return;
+
+          brandsEl.innerHTML = "";
+          Object.entries(makes).forEach(([slug, { label }]) => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = `/hulpveren/${slug}/`;
+            a.textContent = label;
+            a.addEventListener("mouseenter", () =>
+              loadModels(slug, makes, modelsEl, titleEl)
+            );
+            li.appendChild(a);
+            brandsEl.appendChild(li);
+          });
+        })
+        .catch(console.error);
+    };
+
+    const loadModels = (makeSlug, makes, modelsEl, titleEl) => {
+      const make = makes[makeSlug];
+      if (!make || !make.models) return;
+
+      titleEl.textContent = `Modellen ${make.label}`;
+      modelsEl.innerHTML = "";
+      Object.entries(make.models).forEach(([slug, label]) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `/hulpveren/${makeSlug}/${slug}/`;
+        a.textContent = label;
+        li.appendChild(a);
+        modelsEl.appendChild(li);
+      });
+    };
+
+    if (menuToggle && nav) {
+      menuToggle.addEventListener("click", () => {
+        const open = nav.classList.toggle("is-open");
+        menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) nav.scrollTop = 0;
+      });
+    }
+
+    document.addEventListener("click", (e) => {
+      if (!nav || nav.contains(e.target) || e.target === nav || !nav.classList.contains("is-open")) {
+        return;
+      }
+      nav.classList.remove("is-open");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    });
+  };
+
   const mount = async () => {
     const target = getMountTarget();
     let mountEl = target.mountEl || target.legacy || null;
     let html = null;
+    const partialUrl = LEGACY_ROUTE ? LEGACY_PARTIAL_URL : PARTIAL_URL;
 
     try {
-      const res = await fetch(PARTIAL_URL, { cache: "no-cache" });
+      const res = await fetch(partialUrl, { cache: "no-cache" });
       if (res.ok) {
         html = await res.text();
       }
@@ -877,21 +987,28 @@
     if (html) {
       mountEl = target.mountEl || createMountEl(target.legacy);
       mountEl.innerHTML = html;
-      mountEl.dataset.hv2Mounted = "1";
-
-      ensureDrawerClosedOnMount(mountEl);
-      bindNav(mountEl);
-      bindMegaMenus(mountEl);
-      mountMakesWhenReady();
-      bindHeaderScroll(mountEl);
-      initPlateGroupOverlay();
+      if (LEGACY_ROUTE) {
+        bindLegacyHeader(mountEl);
+      } else {
+        mountEl.dataset.hv2Mounted = "1";
+        ensureDrawerClosedOnMount(mountEl);
+        bindNav(mountEl);
+        bindMegaMenus(mountEl);
+        mountMakesWhenReady();
+        bindHeaderScroll(mountEl);
+        initPlateGroupOverlay();
+      }
     }
 
-    injectBreadcrumbs(mountEl);
+    if (!LEGACY_ROUTE) {
+      injectBreadcrumbs(mountEl);
+    }
   };
 
   const init = () => {
-    ensureBuildId();
+    if (!LEGACY_ROUTE) {
+      ensureBuildId();
+    }
     mount();
   };
 

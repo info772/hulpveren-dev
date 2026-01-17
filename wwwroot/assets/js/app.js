@@ -23,9 +23,17 @@
     return !!document.querySelector("#app, #spa-root, [data-spa-root]");
   }
 
-  window.__SPA_DISABLED__ = isLegacyRoute();
+  const LEGACY_ROUTE = isLegacyRoute();
+  const HAS_STATIC_NR_GRID = !!document.getElementById("nr-sets-grid");
+  const HAS_STATIC_LS_GRID = !!document.getElementById("ls-grid");
+  const HAS_STATIC_FILTERS = !!document.querySelector(".filters-wrap");
+  const HAS_STATIC_HERO = !!document.querySelector("main .hero");
+  const LEGACY_STATIC_PAGE =
+    LEGACY_ROUTE && (HAS_STATIC_NR_GRID || HAS_STATIC_LS_GRID || HAS_STATIC_FILTERS);
 
-  if (window.__SPA_DISABLED__) return;
+  window.__SPA_DISABLED__ = LEGACY_STATIC_PAGE;
+  window.__LEGACY_STATIC_PAGE__ = LEGACY_STATIC_PAGE;
+  window.__LEGACY_HERO_PAGE__ = LEGACY_ROUTE && HAS_STATIC_HERO;
 
 // === SEO module (optional) ===
 let SeoContent = null;
@@ -78,6 +86,7 @@ const ensureSeoContent = () => {
 
 const shouldAutoLoadSeo = () => {
   if (typeof window === "undefined" || typeof document === "undefined") return false;
+  if (window.__SPA_DISABLED__) return false;
   const path = location.pathname || "";
   return /\/(hulpveren|luchtvering|verlagingsveren)(\/|$)/i.test(path);
 };
@@ -503,6 +512,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   })();
 
   const ensureAppContainer = () => {
+    if (window.__SPA_DISABLED__) return null;
     if (app || !isAppRoute) return app;
     const main = document.querySelector("main") || document.body;
     if (!main) return null;
@@ -571,7 +581,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       }
     });
 
-    const target = app || ensureAppContainer();
+    const target = window.__SPA_DISABLED__ ? app : app || ensureAppContainer();
     if (target && !target.dataset.jumpObserver) {
       target.dataset.jumpObserver = "1";
       const observer = new MutationObserver(() => ensureJumpButton(target));
@@ -2260,6 +2270,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   function adjustSetPageH1() {
+    if (window.__LEGACY_HERO_PAGE__) return;
     const path = (location.pathname || "").toLowerCase();
     let family = null;
     if (/\/verlagingsveren\/ls-\d+/.test(path)) family = "ls";
@@ -2751,6 +2762,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const heroLeadEl = document.querySelector(".hero .lead");
 
   function updateHero(makeLabel, modelLabel) {
+    if (window.__LEGACY_HERO_PAGE__) return;
     if (heroTitleEl) {
       heroTitleEl.textContent = modelLabel
         ? `${makeLabel} ${modelLabel} hulpveren`
@@ -5147,6 +5159,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   function applyPlateLayout() {
+    if (window.__SPA_DISABLED__ || window.__LEGACY_HERO_PAGE__) return;
     if (document.body) document.body.classList.add("plate-route");
     const hero = document.querySelector(".hero");
     if (hero) hero.setAttribute("data-plate-hidden", "1");
@@ -5163,6 +5176,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   function suppressHomeSectionsOnPlate() {
+    if (window.__SPA_DISABLED__ || window.__LEGACY_HERO_PAGE__) return;
     const main = document.querySelector("main");
     if (!main) return;
     main.querySelectorAll("section").forEach((section) => {
@@ -5173,6 +5187,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   function suppressHomeSectionsForApp() {
+    if (window.__SPA_DISABLED__ || window.__LEGACY_HERO_PAGE__) return;
     const main = document.querySelector("main");
     if (!main) return;
     main.querySelectorAll("section").forEach((section) => {
@@ -5529,14 +5544,24 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       modelSlug,
     });
 
-    app.innerHTML = wrap(`
+    const hasStaticCrumbs = !!document.querySelector(".crumbs");
+    const crumbsBlock = hasStaticCrumbs
+      ? ""
+      : `
       <div class="crumbs">
         <a href="${BASE}">Hulpveren</a> >
         <a href="${BASE}/${esc(makeSlug)}">${esc(makeLabel)}</a> >
         ${esc(modelLabel)}
       </div>
+    `;
+    const titleBlock = window.__LEGACY_HERO_PAGE__
+      ? ""
+      : `<h1>${esc(makeLabel)} ${esc(modelLabel)} hulpveren</h1>`;
 
-      <h1>${esc(makeLabel)} ${esc(modelLabel)} hulpveren</h1>
+    app.innerHTML = wrap(`
+      ${crumbsBlock}
+
+      ${titleBlock}
 
       <div class="set-meta">
         <span><span id="kit-count">0</span> sets</span>
@@ -7496,13 +7521,23 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     const seoHtml = hvSeoRenderModel(pairs, { makeLabel, modelLabel, makeSlug, modelSlug });
 
-      app.innerHTML = wrap(`
-        <div class="crumbs">
-          <a href="${base}">${productTitle}</a> >
-          <a href="${base}/${esc(makeSlug)}">${esc(makeLabel)}</a> >
-          ${esc(modelLabel)}
+    const hasStaticCrumbs = !!document.querySelector(".crumbs");
+    const crumbsBlock = hasStaticCrumbs
+      ? ""
+      : `
+      <div class="crumbs">
+        <a href="${base}">${productTitle}</a> >
+        <a href="${base}/${esc(makeSlug)}">${esc(makeLabel)}</a> >
+        ${esc(modelLabel)}
       </div>
-      <h1>${esc(makeLabel)} ${esc(modelLabel)} ${esc(productLabel)}</h1>
+    `;
+    const titleBlock = window.__LEGACY_HERO_PAGE__
+      ? ""
+      : `<h1>${esc(makeLabel)} ${esc(modelLabel)} ${esc(productLabel)}</h1>`;
+
+      app.innerHTML = wrap(`
+      ${crumbsBlock}
+      ${titleBlock}
       ${plateInfoHtml}
       ${seoHtml || ""}
       ${filtersBlock}
@@ -7809,7 +7844,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     let family = CURRENT_FAMILY;
     let base = CURRENT_BASE;
 
-    if (hasApp && family === "ls") {
+    if (hasApp && family === "ls" && !window.__SPA_DISABLED__) {
       const staticFilters = document.querySelector(".filters-wrap");
       if (staticFilters) staticFilters.remove();
       const staticGrid = document.getElementById("ls-grid");
