@@ -836,7 +836,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (!str) return "";
     return String(str)
       .toLowerCase()
-      .replace(/(\d),(\d)/g, "$1.$2")
+      .replace(/(\d)\s*,\s*(\d)/g, "$1.$2")
       .replace(/[,\\/|]+/g, " ")
       .replace(/[^a-z0-9.\s]/g, " ")
       .replace(/\s+/g, " ")
@@ -7529,6 +7529,100 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     });
 
     apply();
+  }
+
+  function initStaticLsFilters() {
+    const grid = document.getElementById("ls-grid");
+    if (!grid) return;
+
+    const cards = Array.prototype.slice.call(
+      grid.querySelectorAll(".card.product")
+    );
+    if (!cards.length) return;
+
+    const yearFrom = document.getElementById("ls-year-from");
+    const yearTo = document.getElementById("ls-year-to");
+    const yearSlider = document.getElementById("ls-year-slider");
+    const dropFront = document.getElementById("ls-drop-front");
+    const dropRear = document.getElementById("ls-drop-rear");
+    const engineInput = document.getElementById("ls-engine");
+    const posBoxes = Array.prototype.slice.call(
+      document.querySelectorAll(".ls-pos")
+    );
+    const countEl = document.getElementById("ls-count");
+
+    const num = (v) => {
+      const n = parseInt(v, 10);
+      return Number.isFinite(n) ? n : null;
+    };
+
+    const match = (card) => {
+      const yf = num(yearFrom && yearFrom.value);
+      const yt = num(yearTo && yearTo.value);
+      let ys = num(yearSlider && yearSlider.value);
+      if (ys === 0) ys = null;
+      const df = num(dropFront && dropFront.value);
+      const dr = num(dropRear && dropRear.value);
+      const engRaw = engineInput ? engineInput.value : "";
+      const cy1 = num(card.dataset.yearFrom);
+      const cy2 = num(card.dataset.yearTo);
+      const cf = num(card.dataset.dropFront);
+      const cr = num(card.dataset.dropRear);
+      const cardEngine = card.dataset.engine || "";
+      const posSel = posBoxes
+        .filter((b) => b.checked)
+        .map((b) => b.value.toLowerCase());
+      const cardPos = (card.dataset.pos || "").toLowerCase();
+
+      if (yf !== null && cy2 !== null && yf > cy2) return false;
+      if (yt !== null && cy1 !== null && yt < cy1) return false;
+      if (ys !== null) {
+        if (cy1 !== null && ys < cy1) return false;
+        if (cy2 !== null && ys > cy2) return false;
+      }
+      if (df !== null) {
+        if (cf === null || cf < df) return false;
+      }
+      if (dr !== null) {
+        if (cr === null || cr < dr) return false;
+      }
+      if (engRaw && !motorMatches(engRaw, cardEngine)) return false;
+      if (posSel.length && posSel.indexOf(cardPos) === -1) return false;
+      return true;
+    };
+
+    const apply = () => {
+      let visible = 0;
+      cards.forEach((c) => {
+        const ok = match(c);
+        c.style.display = ok ? "" : "none";
+        if (ok) visible += 1;
+      });
+      if (countEl) countEl.textContent = String(visible);
+    };
+
+    const applyBtn = document.getElementById("ls-apply");
+    const resetBtn = document.getElementById("ls-reset");
+    if (applyBtn && applyBtn.dataset.lsSmartBound !== "1") {
+      applyBtn.dataset.lsSmartBound = "1";
+      applyBtn.addEventListener("click", apply);
+    }
+    if (resetBtn && resetBtn.dataset.lsSmartBound !== "1") {
+      resetBtn.dataset.lsSmartBound = "1";
+      resetBtn.addEventListener("click", () => setTimeout(apply, 0));
+    }
+    if (engineInput && engineInput.dataset.lsSmartBound !== "1") {
+      engineInput.dataset.lsSmartBound = "1";
+      engineInput.addEventListener("change", apply);
+    }
+
+    apply();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initStaticLsFilters);
+  } else {
+    initStaticLsFilters();
   }
 
 
