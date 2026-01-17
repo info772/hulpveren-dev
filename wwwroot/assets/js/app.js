@@ -1277,14 +1277,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     const extractNumericSku = (value) => {
       if (value == null) return "";
-      const match = String(value || "").match(/\b(\d{4,})\b/);
+      const match = String(value || "").match(/(\d{4,})/);
       return match ? match[1] : "";
     };
 
     const normalizeSkuValue = (value) => {
       const match = String(value || "")
         .toUpperCase()
-        .match(/\b(HV|NR|LS)\s*[- ]?\s*(\d{3,})\b/);
+        .match(/\b(HV|NR|LS)\s*[- ]?\s*(\d{3,})/);
       if (!match) return "";
       return `${match[1]}-${match[2]}`;
     };
@@ -1366,11 +1366,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       return out;
     };
 
-    const isLoweringGroup = (item) => {
-      const text = itemText(item).toLowerCase();
-      return text.includes("verlagingsveren");
-    };
-
     const extractAldocSets = (payload) => {
       const items = collectAldocItems(payload);
       const hv = new Set();
@@ -1379,17 +1374,40 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       let matchedItems = 0;
 
       items.forEach((item) => {
+        const info = extractSkuFromItem(item);
+        const hasExplicitSku = Boolean(info.sku);
+        const productCode = findNumericByKey(item, ALDOC_PRODUCT_KEY_SET);
         const brandCode = findNumericByKey(item, ALDOC_BRAND_KEY_SET);
-        if (brandCode != null && brandCode !== ALDOC_CODES.brand) return;
+        const text = itemText(item).toLowerCase();
+        const isLowering = /verlagingsveren|lowering/.test(text);
+        const isHulpveren = /hulpveren|auxiliary/.test(text);
+        const isLuchtvering = /luchtvering|air\s*suspension/.test(text);
+        const hasMadHint = /\bmad\b/.test(text);
+        const productMatches =
+          productCode === ALDOC_CODES.hv || productCode === ALDOC_CODES.nr;
+
+        if (
+          !hasExplicitSku &&
+          brandCode != null &&
+          brandCode !== ALDOC_CODES.brand &&
+          !productMatches &&
+          !isLowering &&
+          !isHulpveren &&
+          !isLuchtvering &&
+          !hasMadHint
+        ) {
+          return;
+        }
+
         matchedItems += 1;
 
-        const info = extractSkuFromItem(item);
         let sku = info.sku;
         if (!sku && info.digits) {
-          const productCode = findNumericByKey(item, ALDOC_PRODUCT_KEY_SET);
           if (productCode === ALDOC_CODES.hv) sku = `HV-${info.digits}`;
           else if (productCode === ALDOC_CODES.nr) sku = `NR-${info.digits}`;
-          else if (isLoweringGroup(item)) sku = `LS-${info.digits}`;
+          else if (isLowering) sku = `LS-${info.digits}`;
+          else if (isHulpveren) sku = `HV-${info.digits}`;
+          else if (isLuchtvering) sku = `NR-${info.digits}`;
         }
 
         if (!sku) return;
