@@ -2354,6 +2354,33 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     }
   }
 
+  const UNIFIED_FILTERS_URL = "/assets/js/filters/unifiedFilters.js";
+  window.__USE_UNIFIED_FILTERS__ = true;
+
+  function initUnifiedFiltersForPage(pageType) {
+    if (!window.__USE_UNIFIED_FILTERS__) return;
+    const run = () => {
+      if (window.UnifiedFilters && typeof window.UnifiedFilters.init === "function") {
+        window.UnifiedFilters.init(pageType);
+      }
+    };
+    if (window.UnifiedFilters) {
+      run();
+      return;
+    }
+    if (!window.__unifiedFiltersLoading) {
+      window.__unifiedFiltersLoading = new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = UNIFIED_FILTERS_URL;
+        script.defer = true;
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.head.appendChild(script);
+      });
+    }
+    window.__unifiedFiltersLoading.then(run);
+  }
+
   /* ================== Footer: merken + modellen ================== */
 
   function normalizeFooterLayout() {
@@ -4504,6 +4531,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     );
     const fitmentMake = f?.make || makeLabel;
     const fitmentModel = f?.model || modelLabel;
+    const y1 = yearToNum(f.year_from);
+    const y2 = yearToNum(f.year_to);
+    const posKey = positionKey(k);
+    const supportKey = supportKeyOf(f, k);
+    const approvalText = approvalClean(k?.approval);
+    const engineFilterText = enginesText(k, f);
 
     const dPol = drivePolicyFromFit(f, k);
     const driveText = driveLabelsForDisplay(
@@ -4511,6 +4544,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       makeSlug,
       modelSlug
     ).join(", ");
+    const driveKeys = (dPol.allowLabels || []).map((s) => String(s || "").trim()).filter(Boolean);
 
     const rwPol = rearWheelsPolicyFrom(f, k, false);
     let rearText = "";
@@ -4549,7 +4583,15 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       fitmentRangeLabel || ""
     )}" data-fitment-make="${esc(fitmentMake || "")}" data-fitment-model="${esc(
       fitmentModel || ""
-    )}">
+    )}" data-year-from="${y1 ?? ""}" data-year-to="${y2 ?? ""}" data-pos="${esc(
+      posKey || ""
+    )}" data-support="${esc(supportKey || "")}" data-drive="${esc(
+      driveKeys.join(",")
+    )}" data-rear="${esc(
+      Array.from(rwPol.allow || []).join(",")
+    )}" data-approval="${esc(
+      (approvalText || "").toLowerCase()
+    )}" data-engine="${esc(engineFilterText || "")}">
           <div class="img" id="${esc(imgId)}_wrap">
             <img id="${esc(imgId)}" alt="${esc(sku)}" loading="lazy" decoding="async">
             ${badge ? `<div class="badge price">${badge}</div>` : ``}
@@ -4683,6 +4725,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const kitHref = stripKentekenSuffix(`/verlagingsveren/${esc(skuLower)}/`);
     const dropInfo = dropInfoFromKit(k);
     const dropLabel = dropInfo.label || "-";
+    const dropKey = dropInfo.key || "";
+    const dropFrontMatch = dropKey.match(/front:(\d+)/i);
+    const dropRearMatch = dropKey.match(/rear:(\d+)/i);
+    const dropFront = dropFrontMatch ? dropFrontMatch[1] : "";
+    const dropRear = dropRearMatch ? dropRearMatch[1] : "";
     const setLabel =
       posKey === "both" ? "4 veren (voor+achter)" : "2 veren";
     const engineLabelRaw =
@@ -4726,8 +4773,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         )}" data-fitment-make="${esc(fitmentMake || "")}" data-fitment-model="${esc(
           fitmentModel || ""
         )}" data-engine="${esc(normalizeMotorText(engineFilterText))}" data-drop="${esc(
-          dropInfo.key || ""
-        )}">
+          dropKey
+        )}" data-pos="${esc(posKey || "")}" data-approval="${esc(
+          (approvalText || "").toLowerCase()
+        )}" data-drop-front="${esc(dropFront)}" data-drop-rear="${esc(dropRear)}">
           <div class="img">
             <img src="${esc(imgSrc)}" alt="Verlagingsveren ${esc(
       makeLabel
@@ -5759,6 +5808,37 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       showDriveMeta,
       showRearMeta,
     };
+
+    if (window.__USE_UNIFIED_FILTERS__) {
+      const basePairs = allPairs.filter((pair) =>
+        pairMatchesVehicleContext(pair, CURRENT_ROUTE_CTX)
+      );
+      const sorted = basePairs.sort((a, b) => {
+        const pa = a.k?.pricing_nl?.total_inc_vat_from_eur;
+        const pb = b.k?.pricing_nl?.total_inc_vat_from_eur;
+        const na = Number.isFinite(+pa) ? +pa : 1e12;
+        const nb = Number.isFinite(+pb) ? +pb : 1e12;
+        if (na !== nb) return na - nb;
+        return String(a.k?.sku || "").localeCompare(String(b.k?.sku || ""));
+      });
+      const gridEl = document.getElementById("model-grid");
+      const countEl = document.getElementById("kit-count");
+      if (countEl) countEl.textContent = String(sorted.length);
+      if (gridEl) {
+        if (!sorted.length) {
+          const msg = "Voor de gekozen auto zijn geen sets beschikbaar.";
+          gridEl.innerHTML = `<p class="note">${msg}</p>`;
+        } else {
+          gridEl.innerHTML = sorted
+            .map((pair, idx) => buildModelCard(pair, idx, cardOptions))
+            .join("");
+        }
+      }
+      initImagesForGrid();
+      bindLeadButtons();
+      initUnifiedFiltersForPage("hv");
+      return;
+    }
 
     let initialRender = true;
     function renderCards() {
@@ -7727,6 +7807,11 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       </div>
     `);
       initVehicleDetailsToggle(app);
+
+    if (window.__USE_UNIFIED_FILTERS__) {
+      initUnifiedFiltersForPage(family);
+      return;
+    }
 
     const grid = document.getElementById("nr-grid");
     const cards = Array.prototype.slice.call(
