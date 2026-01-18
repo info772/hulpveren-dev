@@ -2356,6 +2356,63 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   /* ================== Footer: merken + modellen ================== */
 
+  function normalizeFooterLayout() {
+    const main = document.querySelector("main");
+    const footers = Array.from(document.querySelectorAll("footer.site-footer"));
+
+    footers.forEach((footer) => {
+      const nested = footer.querySelector("footer.site-footer");
+      if (!nested) return;
+      while (nested.firstChild) footer.insertBefore(nested.firstChild, nested);
+      nested.remove();
+    });
+
+    let footer = document.querySelector("footer.site-footer");
+    const allBlocks = Array.from(document.querySelectorAll("section.footer-block"));
+    const orphanBlocks = allBlocks.filter((b) => !b.closest("footer.site-footer"));
+    const bottom = document.querySelector(".footer-bottom");
+    const orphanBottom = bottom && !bottom.closest("footer.site-footer") ? bottom : null;
+
+    if (!footer && (orphanBlocks.length || orphanBottom)) {
+      footer = document.createElement("footer");
+      footer.className = "site-footer";
+      const shell = document.createElement("div");
+      shell.className = "footer-shell";
+      orphanBlocks.forEach((b) => shell.appendChild(b));
+      footer.appendChild(shell);
+      if (orphanBottom) footer.appendChild(orphanBottom);
+      const target = main && main.parentNode ? main.parentNode : document.body;
+      if (main && main.parentNode) {
+        main.parentNode.insertBefore(footer, main.nextSibling);
+      } else {
+        target.appendChild(footer);
+      }
+      return;
+    }
+
+    if (!footer) return;
+
+    let shell = footer.querySelector(".footer-shell");
+    if (!shell) {
+      shell = document.createElement("div");
+      shell.className = "footer-shell";
+      footer.insertBefore(shell, footer.firstChild);
+    }
+
+    const blocksToMove = allBlocks.filter((b) => !b.closest(".footer-shell"));
+    blocksToMove.forEach((b) => shell.appendChild(b));
+
+    if (bottom && bottom.parentNode !== footer) {
+      footer.appendChild(bottom);
+    }
+
+    if (main && footer.parentNode && footer.parentNode === main.parentNode) {
+      if (footer.previousSibling !== main && footer.nextSibling !== main.nextSibling) {
+        main.parentNode.insertBefore(footer, main.nextSibling);
+      }
+    }
+  }
+
   function initFooter(makes, route, base = BASE, family = "hv") {
     const product = PRODUCT_LABEL[family] || "hulpveren";
     const safeMakes =
@@ -7721,7 +7778,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       return Number.isFinite(n) ? n : null;
     }
 
-    function match(card) {
+    function getFilterState() {
       const yf = num(yearFrom && yearFrom.value);
       const yt = num(yearTo && yearTo.value);
       let ys = num(yearSlider && yearSlider.value);
@@ -7729,11 +7786,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (ys === 0) ys = null;
       const engRaw = engineInput ? engineInput.value : "";
       const eng = String(engRaw || "").toLowerCase().trim();
-      const cy1 = num(card.dataset.yearFrom);
-      const cy2 = num(card.dataset.yearTo);
-      const cardPos = (card.dataset.pos || "").toLowerCase();
-      const cardAppr = (card.dataset.approval || "").toLowerCase();
-      const cardEngine = card.dataset.engine || "";
       const dropKey = dropSelect ? dropSelect.value : "";
       const posSel = posBoxes
         .filter((b) => b.checked)
@@ -7741,12 +7793,24 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const apprSel = apprBoxes
         .filter((b) => b.checked)
         .map((b) => b.value.toLowerCase());
+      return { yf, yt, ys, engRaw, eng, dropKey, posSel, apprSel };
+    }
 
-      if (yf !== null && cy2 !== null && yf > cy2) return false;
-      if (yt !== null && cy1 !== null && yt < cy1) return false;
-      if (ys !== null) {
-        if (cy1 !== null && ys < cy1) return false;
-        if (cy2 !== null && ys > cy2) return false;
+    function match(card, state, opts = {}) {
+      const cy1 = num(card.dataset.yearFrom);
+      const cy2 = num(card.dataset.yearTo);
+      const cardPos = (card.dataset.pos || "").toLowerCase();
+      const cardAppr = (card.dataset.approval || "").toLowerCase();
+      const cardEngine = card.dataset.engine || "";
+      const dropKey = opts.ignoreDrop ? "" : state.dropKey;
+      const engRaw = opts.ignoreEngine ? "" : state.engRaw;
+      const eng = opts.ignoreEngine ? "" : state.eng;
+
+      if (state.yf !== null && cy2 !== null && state.yf > cy2) return false;
+      if (state.yt !== null && cy1 !== null && state.yt < cy1) return false;
+      if (state.ys !== null) {
+        if (cy1 !== null && state.ys < cy1) return false;
+        if (cy2 !== null && state.ys > cy2) return false;
       }
       if (family === "ls") {
         if (engRaw && cardEngine && !motorMatches(engRaw, cardEngine)) return false;
@@ -7754,16 +7818,78 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       } else if (eng) {
         if (!cardEngine || cardEngine.toLowerCase().indexOf(eng) === -1) return false;
       }
-      if (posSel.length && posSel.indexOf(cardPos) === -1) return false;
-      if (apprSel.length && apprSel.indexOf(cardAppr) === -1) return false;
+      if (state.posSel.length && state.posSel.indexOf(cardPos) === -1) return false;
+      if (state.apprSel.length && state.apprSel.indexOf(cardAppr) === -1) return false;
       return true;
     }
 
+    const engineOptionItems =
+      family === "ls" && engineOptions.size ? Array.from(engineOptions.entries()) : [];
+    const dropOptionItems =
+      family === "ls" && dropOptions.size ? Array.from(dropOptions.entries()) : [];
+
+    function updateSelectOptions(selectEl, items, availableSet, placeholder) {
+      if (!selectEl) return false;
+      const current = selectEl.value;
+      const filtered = availableSet
+        ? items.filter(([value]) => availableSet.has(value))
+        : items;
+      const optionsHtml = filtered
+        .map(([value, label]) => `<option value="${esc(value)}">${label}</option>`)
+        .join("");
+      selectEl.innerHTML = `<option value="">${placeholder}</option>${optionsHtml}`;
+      if (current && filtered.some(([value]) => value === current)) {
+        selectEl.value = current;
+        return false;
+      }
+      selectEl.value = "";
+      return Boolean(current);
+    }
+
+    function updateDependentFilters(state) {
+      if (family !== "ls") return false;
+      let changed = false;
+      const cardsNoEngine = cards.filter((c) => match(c, state, { ignoreEngine: true }));
+      const cardsNoDrop = cards.filter((c) => match(c, state, { ignoreDrop: true }));
+
+      if (engineInput && engineInput.tagName === "SELECT" && engineOptionItems.length) {
+        const availableEngines = new Set();
+        engineOptionItems.forEach(([value]) => {
+          for (const c of cardsNoEngine) {
+            const cardEngine = c.dataset.engine || "";
+            if (motorMatches(value, cardEngine)) {
+              availableEngines.add(value);
+              break;
+            }
+          }
+        });
+        changed =
+          updateSelectOptions(engineInput, engineOptionItems, availableEngines, "Alle motoren") ||
+          changed;
+      }
+
+      if (dropSelect && dropOptionItems.length) {
+        const availableDrops = new Set(
+          cardsNoDrop
+            .map((c) => String(c.dataset.drop || ""))
+            .filter(Boolean)
+        );
+        changed =
+          updateSelectOptions(dropSelect, dropOptionItems, availableDrops, "Alle verlagingen") ||
+          changed;
+      }
+      return changed;
+    }
+
     let initialApply = true;
+    let applying = false;
     function apply() {
+      if (applying) return;
+      applying = true;
+      const state = getFilterState();
       let visible = 0;
       cards.forEach((c) => {
-        const ok = match(c);
+        const ok = match(c, state);
         c.style.display = ok ? "" : "none";
         if (ok) visible += 1;
       });
@@ -7774,6 +7900,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           window.location.href = `${base}/${makeSlug}/`;
         }
       }
+      const changed = updateDependentFilters(state);
+      applying = false;
+      if (changed) apply();
     }
 
     const applyBtn = document.getElementById("nr-apply");
@@ -8042,6 +8171,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       applyPlateLayout();
       suppressHomeSectionsOnPlate();
     }
+
+    normalizeFooterLayout();
 
     // Footer mag altijd
     initFooter(makes, route, base, family);
