@@ -9,6 +9,63 @@ $partials  = Join-Path $root "partials"
 
 $headerHtml = Get-Content (Join-Path $partials "header.html") -Raw
 $footerHtml = Get-Content (Join-Path $partials "footer.html") -Raw
+if ([string]::IsNullOrWhiteSpace($footerHtml) -or ($footerHtml -notmatch "<footer")) {
+    $footerHtml = @"
+  <footer class="site-footer">
+  <div class="footer-shell">
+    <section class="footer-block">
+      <p class="eyebrow">Hulpveren.shop</p>
+      <h2>Veilig rijden met de juiste set</h2>
+      <p>Wij bouwen dagelijks MAD hulpveren, luchtvering en verlagingsveren in. Altijd inclusief montage, uitlijning en eerlijk advies.</p>
+      <div class="footer-cta">
+        <a class="btn" href="/hulpveren">Bekijk hulpveren</a>
+        <a class="btn btn-ghost" href="/montage">Plan montage</a>
+      </div>
+      <ul class="footer-list">
+        <li>Gecertificeerde monteurs</li>
+        <li>Persoonlijk advies per kenteken</li>
+        <li>Snelle beschikbaarheid uit voorraad</li>
+      </ul>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Kies je merk</p>
+      <div id="hv-footer-brands" class="taglist" aria-live="polite"></div>
+      <a class="footer-link" href="/hulpveren">Alle merken</a>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Populaire modellen</p>
+      <p id="hv-footer-models-label" class="footer-muted">We tonen modellen die passen bij de huidige pagina.</p>
+      <div id="hv-footer-models" class="taglist" aria-labelledby="hv-footer-models-label"></div>
+    </section>
+
+    <section class="footer-block">
+      <p class="eyebrow">Contact</p>
+      <ul class="footer-list">
+        <li><strong>Auto Parts Roosendaal</strong></li>
+        <li>Westelijke Havendijk 17c</li>
+        <li>4703 RA Roosendaal</li>
+        <li>Bel: <a href="tel:+31165856568">0165 856568</a></li>
+        <li>WhatsApp: <a href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">Direct advies</a></li>
+        <li>Mail: <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a></li>
+        <li>Ma-Vr 10:00-18:00</li>
+        <li>Za 10:00-12:00</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="footer-bottom">
+    <p> <span id="hv-footer-year"></span> Hulpveren.shop  MAD specialist sinds 2008</p>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/algemene-voorwaarden">Algemene voorwaarden</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+"@
+}
 
 # Helpers
 function Read-Json($path){
@@ -84,6 +141,40 @@ function Render-LoopPage {
     return $out
 }
 
+function Ensure-Layout {
+    param(
+        [string]$Html,
+        [string]$Footer
+    )
+    $out = $Html
+    $hasMain = $out -match "<main[^>]*>"
+    $hasMainClose = $out -match "</main>"
+    $hasFooter = $out -match "<footer[^>]*site-footer"
+
+    if (-not $hasFooter) {
+        if ($hasMain -and -not $hasMainClose) {
+            if ($out -match "</body>") {
+                $out = $out -replace "</body>", "</main>`n$Footer`n</body>"
+            } else {
+                $out = $out + "`n</main>`n" + $Footer
+            }
+        } else {
+            if ($out -match "</body>") {
+                $out = $out -replace "</body>", "`n$Footer`n</body>"
+            } else {
+                $out = $out + "`n" + $Footer
+            }
+        }
+        return $out
+    }
+
+    if ($hasMain -and -not $hasMainClose) {
+        $out = $out -replace "(?is)<footer", "</main>`n<footer"
+    }
+
+    return $out
+}
+
 
 # ========== 1) LUCHTVERING – MODEL-PAGINA'S ==========
 
@@ -131,6 +222,7 @@ if (-not (Test-Path $luchtModelTplPath)) {
             }
 
         $html = $html.Replace("{{HEADER}}", $headerHtml).Replace("{{FOOTER}}", $footerHtml)
+        $html = Ensure-Layout -Html $html -Footer $footerHtml
 
         $outDir  = Join-Path $wwwroot ("luchtvering\" + $makeSlug + "\" + $modelSlug)
         $outFile = Join-Path $outDir "index.html"
@@ -179,6 +271,7 @@ if (-not (Test-Path $luchtBrandTplPath)) {
             }
 
         $html = $html.Replace("{{HEADER}}", $headerHtml).Replace("{{FOOTER}}", $footerHtml)
+        $html = Ensure-Layout -Html $html -Footer $footerHtml
 
         $outDir  = Join-Path $wwwroot ("luchtvering\" + $makeSlug)
         $outFile = Join-Path $outDir "index.html"
@@ -236,6 +329,7 @@ if (-not (Test-Path $lsModelTplPath)) {
             }
 
         $html = $html.Replace("{{HEADER}}", $headerHtml).Replace("{{FOOTER}}", $footerHtml)
+        $html = Ensure-Layout -Html $html -Footer $footerHtml
 
         $outDir  = Join-Path $wwwroot ("verlagingsveren\" + $makeSlug + "\" + $modelSlug)
         $outFile = Join-Path $outDir "index.html"
@@ -284,6 +378,7 @@ if (-not (Test-Path $lsBrandTplPath)) {
             }
 
         $html = $html.Replace("{{HEADER}}", $headerHtml).Replace("{{FOOTER}}", $footerHtml)
+        $html = Ensure-Layout -Html $html -Footer $footerHtml
 
         $outDir  = Join-Path $wwwroot ("verlagingsveren\" + $makeSlug)
         $outFile = Join-Path $outDir "index.html"

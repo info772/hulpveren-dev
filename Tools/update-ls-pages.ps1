@@ -332,8 +332,11 @@ foreach ($page in $pages) {
     apply();
   });
   apply();
-})();</script>`n    </section>"
-  $pattern = '(?s)<div class="filters-wrap">.*?<div class="grid" id="ls-grid">.*?</div>.*?</section>'
+})();</script>"
+  # Vervang alleen filters-wrap + ls-grid + inline script (niet de rest van de pagina)
+  $pattern = '(?s)<div class="filters-wrap">.*?<div class="grid"\s+id="ls-grid">.*?</div>\s*<script>.*?</script>'
+
   $newHtml = [regex]::Replace($html, $pattern, $newGrid)
+
   Set-Content -Path $page.FullName -Value $newHtml -Encoding UTF8
 }

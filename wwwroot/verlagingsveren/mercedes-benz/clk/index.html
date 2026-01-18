@@ -285,23 +285,6 @@
   const dropRear=document.getElementById('ls-drop-rear');
   const engineInput=document.getElementById('ls-engine');
   const posBoxes=Array.prototype.slice.call(document.querySelectorAll('.ls-pos'));
-    var posGroup=null;
-    if(posBoxes.length){
-      var node=posBoxes[0];
-      while(node && node!==document){
-        if(node.classList&&node.classList.contains('grp')){ posGroup=node; break; }
-        node=node.parentElement;
-      }
-    }
-    var posAvail={};
-    cards.forEach(function(c){
-      var p=(c.dataset.pos||'').trim();
-      if(p) posAvail[p]=1;
-    });
-    if(posGroup && Object.keys(posAvail).length<2){
-      posGroup.style.display='none';
-      posBoxes.forEach(function(b){ b.checked=false; });
-    }
   const countEl=document.getElementById('ls-count');
   function num(v){var n=parseInt(v,10);return isNaN(n)?null:n;}
   (function initYearSlider(){
@@ -406,6 +389,7 @@
 <script defer src="/assets/js/app.js?v=20251213a"></script>
 </body>
 </html>
+
 
 
 
