@@ -6344,26 +6344,43 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         aldocSets.nrSkus.length ||
         aldocSets.lsSkus.length;
 
-      if (family !== "hv" && !hasAldocSets) {
-        const targetModelSlug =
+      if (!hasAldocSets) {
+        const fallbackMakeSlug = makeSlug || vehicleMakeSlug || routeMakeSlug || "";
+        const fallbackModelSlug =
           resolvedModelSlug || vehicleModelSlug || routeModelSlug || "";
-        if (!makeSlug || !targetModelSlug) {
-          app.innerHTML = wrap(`
-            <div class="crumbs">
-              <a href="${base}">${productTitle}</a> >
-              Kenteken
-            </div>
-            <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
-            <p class="note">We kunnen de uitvoering niet koppelen aan een model. Kies handmatig je merk en model.</p>
-            <div class="cta-row">
-              <a class="btn" href="${base}">Kies merk en model</a>
-              <a class="btn btn-ghost" href="${plateSearchHref}">Opnieuw zoeken</a>
-            </div>
-          `);
+        debugLog("plate:aldoc_json_fallback", {
+          family,
+          makeSlug: fallbackMakeSlug,
+          modelSlug: fallbackModelSlug,
+        });
+        if (family === "hv") {
+          if (fallbackMakeSlug && fallbackModelSlug) {
+            renderModel(kits, makes, fallbackMakeSlug, fallbackModelSlug);
+            return { aldocSets, hasAldocSets, handled: true };
+          }
+          if (fallbackMakeSlug) {
+            renderMake(makes, fallbackMakeSlug);
+            return { aldocSets, hasAldocSets, handled: true };
+          }
+        } else {
+          if (!fallbackMakeSlug) {
+            app.innerHTML = wrap(`
+              <div class="crumbs">
+                <a href="${base}">${productTitle}</a> >
+                Kenteken
+              </div>
+              <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
+              <p class="note">We kunnen de uitvoering niet koppelen aan een model. Kies handmatig je merk en model.</p>
+              <div class="cta-row">
+                <a class="btn" href="${base}">Kies merk en model</a>
+                <a class="btn btn-ghost" href="${plateSearchHref}">Opnieuw zoeken</a>
+              </div>
+            `);
+            return { aldocSets, hasAldocSets, handled: true };
+          }
+          renderNrModel(kits, makes, fallbackMakeSlug, fallbackModelSlug);
           return { aldocSets, hasAldocSets, handled: true };
         }
-        renderNrModel(kits, makes, makeSlug, targetModelSlug);
-        return { aldocSets, hasAldocSets, handled: true };
       }
 
       if (hasAldocSets) {
