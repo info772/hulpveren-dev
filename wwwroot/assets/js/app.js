@@ -2359,6 +2359,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function normalizeFooterLayout() {
     const main = document.querySelector("main");
     const footers = Array.from(document.querySelectorAll("footer.site-footer"));
+    const insertAfterMain = (footerEl) => {
+      const parent = (main && main.parentNode) || document.body || document.documentElement;
+      if (main && main.parentNode) {
+        main.parentNode.insertBefore(footerEl, main.nextSibling);
+      } else if (parent) {
+        parent.appendChild(footerEl);
+      }
+    };
 
     footers.forEach((footer) => {
       const nested = footer.querySelector("footer.site-footer");
@@ -2372,21 +2380,37 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const orphanBlocks = allBlocks.filter((b) => !b.closest("footer.site-footer"));
     const bottom = document.querySelector(".footer-bottom");
     const orphanBottom = bottom && !bottom.closest("footer.site-footer") ? bottom : null;
+    const yearSpan = document.getElementById("hv-footer-year");
+    const orphanYear = yearSpan && !yearSpan.closest("footer.site-footer") ? yearSpan : null;
+    const yearWrap = orphanYear ? orphanYear.closest("p") : null;
+    const orphanLinkBlocks = Array.from(document.querySelectorAll(".footer-links")).filter(
+      (el) => !el.closest("footer.site-footer")
+    );
+    const legalLinksBlocks = orphanLinkBlocks.filter((el) =>
+      el.querySelector('a[href="/privacy"]') ||
+      el.querySelector('a[href="/algemene-voorwaarden"]')
+    );
 
-    if (!footer && (orphanBlocks.length || orphanBottom)) {
+    if (
+      !footer &&
+      (orphanBlocks.length || orphanBottom || yearWrap || legalLinksBlocks.length)
+    ) {
       footer = document.createElement("footer");
       footer.className = "site-footer";
       const shell = document.createElement("div");
       shell.className = "footer-shell";
       orphanBlocks.forEach((b) => shell.appendChild(b));
       footer.appendChild(shell);
-      if (orphanBottom) footer.appendChild(orphanBottom);
-      const target = main && main.parentNode ? main.parentNode : document.body;
-      if (main && main.parentNode) {
-        main.parentNode.insertBefore(footer, main.nextSibling);
-      } else {
-        target.appendChild(footer);
+      if (orphanBottom) {
+        footer.appendChild(orphanBottom);
+      } else if (yearWrap || legalLinksBlocks.length) {
+        const bottomWrap = document.createElement("div");
+        bottomWrap.className = "footer-bottom";
+        if (yearWrap) bottomWrap.appendChild(yearWrap);
+        legalLinksBlocks.forEach((el) => bottomWrap.appendChild(el));
+        footer.appendChild(bottomWrap);
       }
+      insertAfterMain(footer);
       return;
     }
 
@@ -2406,11 +2430,26 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       footer.appendChild(bottom);
     }
 
-    if (main && footer.parentNode && footer.parentNode === main.parentNode) {
-      if (footer.previousSibling !== main && footer.nextSibling !== main.nextSibling) {
-        main.parentNode.insertBefore(footer, main.nextSibling);
+    if (yearWrap && !yearWrap.closest("footer.site-footer")) {
+      let bottomWrap = footer.querySelector(".footer-bottom");
+      if (!bottomWrap) {
+        bottomWrap = document.createElement("div");
+        bottomWrap.className = "footer-bottom";
+        footer.appendChild(bottomWrap);
       }
+      bottomWrap.appendChild(yearWrap);
     }
+    if (legalLinksBlocks.length) {
+      let bottomWrap = footer.querySelector(".footer-bottom");
+      if (!bottomWrap) {
+        bottomWrap = document.createElement("div");
+        bottomWrap.className = "footer-bottom";
+        footer.appendChild(bottomWrap);
+      }
+      legalLinksBlocks.forEach((el) => bottomWrap.appendChild(el));
+    }
+
+    insertAfterMain(footer);
   }
 
   function initFooter(makes, route, base = BASE, family = "hv") {

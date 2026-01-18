@@ -15,13 +15,11 @@
     );
   };
 
-  if (window.__SPA_DISABLED__ || isLegacyRoute()) {
-    window.__SPA_DISABLED__ = true;
-    return;
-  }
-
   const target = document.getElementById("site-footer");
   if (!target) return;
+  if (window.__FOOTER_LOADER_RAN__) return;
+  window.__FOOTER_LOADER_RAN__ = true;
+  if (document.querySelector("footer.site-footer")) return;
 
   const loadFooter = async () => {
     try {
