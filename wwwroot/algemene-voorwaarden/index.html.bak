@@ -385,6 +385,6 @@
 
   <!-- Site scripts (nodig voor header + mega menus) -->
   <script defer src="/assets/js/header.js?v=20251215_1"></script>
-  <script defer src="/assets/js/app.js?v=20251212c"></script>
+  <script defer src="/assets/js/app.js?v=20260119_FINAL"></script>
 </body>
 </html>

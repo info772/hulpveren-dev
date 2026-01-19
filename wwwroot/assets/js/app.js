@@ -1,4 +1,4 @@
-﻿// /assets/js/app.js
+ï»¿// /assets/js/app.js
 
 
 (() => {
@@ -548,12 +548,19 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     btn.type = "button";
     btn.className = "btn btn-ghost jump-first-set";
     btn.setAttribute("data-jump-first-set", grid.id || "model-grid");
-    btn.innerHTML = 'Direct naar sets <span aria-hidden="true">▾</span>';
+    btn.innerHTML = 'Direct naar sets <span aria-hidden="true">â¾</span>';
     row.appendChild(btn);
     crumbs.insertAdjacentElement("afterend", row);
   };
 
   function initJumpToFirstSet() {
+    try {
+      const c = (typeof ctx === "function") ? ctx() : null;
+      if (!c || !c.jumpObserver) return;
+    } catch {
+      return;
+    }
+
     if (!isAppRoute) return;
     if (document.body && document.body.dataset.jumpFirstSetBound === "1") return;
     if (document.body) document.body.dataset.jumpFirstSetBound = "1";
@@ -2221,7 +2228,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (!plateMatch) return null;
     const make = plateMatch.index >= 1 ? parts[0] || "" : "";
     const model =
-      plateMatch.index >= 2 ? parts[1] || "" : ""; // model alleen als er een extra segment vóór kt_ zit
+      plateMatch.index >= 2 ? parts[1] || "" : ""; // model alleen als er een extra segment vÃ³Ã³r kt_ zit
     const variant = plateMatch.index >= 3 ? parts[2] || "" : "";
     return {
       make,
@@ -2350,7 +2357,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       base = `${make} ${model} ${familyLabel}`;
     }
     if (!base.toLowerCase().includes(sku.toLowerCase())) {
-      h1.textContent = `${base} – ${sku.toUpperCase()}`;
+      h1.textContent = `${base} â ${sku.toUpperCase()}`;
     }
   }
 
@@ -2487,14 +2494,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     // Jaar onderin footer
     const yearEl = document.getElementById("hv-footer-year");
     if (yearEl) {
-      yearEl.textContent = `© ${new Date().getFullYear()}`;
+      yearEl.textContent = `Â© ${new Date().getFullYear()}`;
     }
 
     const brandsEl = document.getElementById("hv-footer-brands");
     const modelsEl = document.getElementById("hv-footer-models");
     const labelEl = document.getElementById("hv-footer-models-label");
 
-    // Als de footer op deze pagina niet bestaat â†’ klaar
+    // Als de footer op deze pagina niet bestaat Ã¢â â klaar
     if (!brandsEl && !modelsEl && !yearEl) return;
 
     if (IS_SET_PAGE && brandsEl) {
@@ -2544,8 +2551,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     let items = [];
 
-    // 1) Als we op een merk- of modelpagina zitten â†’ toon modellen van dat merk
-    if (route.kind === "make" || route.kind === "model" || route.kind === "plate") {
+    // 1) Als we op een merk- of modelpagina zitten Ã¢â â toon modellen van dat merk
+    if (route.kind === "make" || route.kind === "model" || route.kind === "plate" || (family === "ls" && route.kind === "brands")) {
       const entry = safeMakes.get(route.make);
       if (entry) {
         const models = Array.from(entry.models.entries()).sort((a, b) =>
@@ -2569,7 +2576,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       }
     }
 
-    // 2) Geen merkcontext? â†’ mix van populaire modellen
+    // 2) Geen merkcontext? Ã¢â â mix van populaire modellen
     if (!items.length) {
       const mixed = [];
       brandEntries.forEach(([makeSlug, data]) => {
@@ -2781,7 +2788,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           }
         }
       } else {
-        // Merkpagina: alleen foto’s met merk in bestandsnaam of SKU die bij het merk hoort
+        // Merkpagina: alleen fotoâs met merk in bestandsnaam of SKU die bij het merk hoort
         if (matchesMake || matchesSku) {
           include = true;
           if (matchesSku && skuModelLabel) {
@@ -2987,23 +2994,23 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function approvalNL(a) {
     const key = normalizeApproval(a);
     if (!key) return "-";
-    if (key === "RDW+TUV") return "RDW + TÜV";
-    if (key === "TUV") return "TÜV";
+    if (key === "RDW+TUV") return "RDW + TÃV";
+    if (key === "TUV") return "TÃV";
     return key;
   }
 
   function yearsNL(f) {
     const a = (f?.year_from || "").trim();
     const b = (f?.year_to || "").trim();
-    if (!a && !b) return "—";
-    return b ? `${a} — ${b}` : `${a} —`;
+    if (!a && !b) return "â";
+    return b ? `${a} â ${b}` : `${a} â`;
   }
 
   function platformNL(f) {
     const arr = Array.isArray(f?.platform_codes)
       ? f.platform_codes.filter(Boolean)
       : [];
-    return arr.length ? arr.join(", ") : "—";
+    return arr.length ? arr.join(", ") : "â";
   }
 
   /* ================== Slimme tekst-parser (uit oude site) ================== */
@@ -3080,9 +3087,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function nlSupportFromFit(f, k) {
     const key = supportKeyOf(f, k);
     if (key === "leeg")
-      return "Leeg & beladen — comfortabel onbeladen; extra steun bij lading";
+      return "Leeg & beladen â comfortabel onbeladen; extra steun bij lading";
     if (key === "continue")
-      return "Continue beladen — compenseert constante/permanente belasting";
+      return "Continue beladen â compenseert constante/permanente belasting";
     return "";
   }
 
@@ -3245,7 +3252,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       labels = allow.slice();
     }
 
-    if (!labels.length) return ["—"];
+    if (!labels.length) return ["â"];
 
     labels.sort(
       (a, b) => ENGINE_LABEL_ORDER.indexOf(a) - ENGINE_LABEL_ORDER.indexOf(b)
@@ -3258,7 +3265,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   function splitTags(s) {
     return String(s || "")
-      .split(/[,;•]+/g)
+      .split(/[,;â¢]+/g)
       .map((x) => x.trim())
       .filter(Boolean)
       .slice(0, 10);
@@ -3406,7 +3413,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     toks.forEach((raw) => {
       const s = String(raw || "");
       if (/\bincl\.?\s*(?:4wd|awd|4x4)/i.test(s)) {
-        // "Incl. 4WD" betekent Ã³Ã³k 2WD varianten zijn toegestaan
+        // "Incl. 4WD" betekent ÃÂ³ÃÂ³k 2WD varianten zijn toegestaan
         sawIncl4wd = true;
       }
       if (/\b2\s*wd\b.*\b4\s*wd\b|\b4\s*wd\b.*\b2\s*wd\b/i.test(s)) {
@@ -4188,7 +4195,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           .join(", ")
       );
     }
-    const notice = YEAR_FILTER_NOTICE ? ` — ${YEAR_FILTER_NOTICE}` : "";
+    const notice = YEAR_FILTER_NOTICE ? ` â ${YEAR_FILTER_NOTICE}` : "";
     const el = document.getElementById("filter-summary");
     if (el) el.textContent = parts.join(" | ") + notice;
   }
@@ -4251,7 +4258,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           </div>
           <div class="hv-form-row">
             <label for="lead-phone">Telefoon</label>
-            <input id="lead-phone" name="phone" type="tel" required placeholder="06-…">
+            <input id="lead-phone" name="phone" type="tel" required placeholder="06-â¦">
           </div>
           <div class="hv-form-row">
             <label for="lead-plate">Kenteken</label>
@@ -4260,7 +4267,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           </div>
           <div class="hv-form-row">
             <label for="lead-note">Opmerking (optioneel)</label>
-            <textarea id="lead-note" name="note" rows="4" placeholder="Bijv. gewenste datum/tijd, vaste belading, trekhaak, vragen…"></textarea>
+            <textarea id="lead-note" name="note" rows="4" placeholder="Bijv. gewenste datum/tijd, vaste belading, trekhaak, vragenâ¦"></textarea>
           </div>
           <input type="hidden" id="lead-sku-hidden">
           <input type="hidden" id="lead-auto-hidden">
@@ -4330,7 +4337,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           String(window.LEAD_FORM_MAILTO).trim()) ||
         "info@auto-parts-roosendaal.nl";
 
-      const subj = `Aanvraag MAD hulpveren — ${sku} (${auto})`;
+      const subj = `Aanvraag MAD hulpveren â ${sku} (${auto})`;
       const body =
         `Beste,\n\n` +
         `Ik heb interesse in MAD hulpveren.\n\n` +
@@ -7420,7 +7427,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const arr = enginesFromKitAndNotes(kit, fitment);
     return (arr || [])
       .map((v) => String(v || "").trim())
-      .filter((v) => v && v !== "-" && v !== "—")
+      .filter((v) => v && v !== "-" && v !== "â")
       .join(", ");
   }
 
@@ -7437,7 +7444,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (val == null || val === "") return "Prijs op aanvraag";
     const num = Number(val);
     if (!Number.isFinite(num)) return "Prijs op aanvraag";
-    return `€ ${Math.round(num)}`;
+    return `â¬ ${Math.round(num)}`;
   }
 
   function approvalClean(val) {
@@ -7449,7 +7456,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   function buildMetaRow(label, value) {
     const val =
       value === undefined || value === null || String(value).trim() === ""
-        ? "—"
+        ? "â"
         : String(value);
     return `<div class="k">${esc(label)}</div><div class="v">${esc(val)}</div>`;
   }
@@ -7638,7 +7645,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       if (family === "ls") {
         const engineList = enginesFromKitAndNotes(k, f)
           .map((v) => String(v || "").trim())
-          .filter((v) => v && v !== "-" && v !== "—" && v.toLowerCase() !== "lpg");
+          .filter((v) => v && v !== "-" && v !== "â" && v.toLowerCase() !== "lpg");
         const engineLabelRaw =
           f?.engine_raw ||
           (Array.isArray(f?.engines) ? f.engines.filter(Boolean).join(", ") : "") ||
@@ -8070,7 +8077,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     function parseCompactRange(s) {
       s = String(s || "").trim();
       if (!s) return { from: "", to: "" };
-      s = s.replace("—", "/").replace("-", "-");
+      s = s.replace("â", "/").replace("-", "-");
       const parts = s.split("/");
       if (parts.length < 2) return { from: "", to: "" };
       const a = parts[0].trim();
@@ -8306,6 +8313,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     // Alleen renderen als er een app-container is
     if (!hasApp) return;
+
+    // LS modelpagina’s zijn statisch: geen SPA-overschrijving
+    if (family === "ls") return;
 
     if (family === "hv") {
       if (plateToken && route.kind !== "plate") {

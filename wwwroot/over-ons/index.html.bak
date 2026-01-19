@@ -316,7 +316,7 @@
 
   <!-- Site scripts (nodig voor header + mega menus) -->
   <script defer src="/assets/js/header.js?v=20251215_1"></script>
-  <script defer src="/assets/js/app.js?v=20251212c"></script>
+  <script defer src="/assets/js/app.js?v=20260119_FINAL"></script>
   
   <!-- FOOTER placeholder -->
   <div id="site-footer"></div>
@@ -340,7 +340,7 @@
       s1.defer = true;
 
       const s2 = document.createElement("script");
-      s2.src = "/assets/js/app.js?v=20251212c";
+      s2.src = "/assets/js/app.js?v=20260119_FINAL";
       s2.defer = true;
 
       const s3 = document.createElement("script");

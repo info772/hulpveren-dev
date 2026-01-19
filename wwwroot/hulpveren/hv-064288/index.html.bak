@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
   <link rel="stylesheet" href="/assets/css/site.css?v=20260103" />
   <script defer src="/assets/js/header.js?v=20251215_1"></script>
-<script defer src="/assets/js/app.js?v=20251212c"></script>
+<script defer src="/assets/js/app.js?v=20260119_FINAL"></script>
 
   <style>
     .fitment-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
