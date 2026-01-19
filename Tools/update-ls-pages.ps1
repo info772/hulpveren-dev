@@ -334,7 +334,7 @@ foreach ($page in $pages) {
   apply();
 })();</script>"
   # Vervang alleen filters-wrap + ls-grid + inline script (niet de rest van de pagina)
-  $pattern = '(?s)<div class="filters-wrap">.*?<div class="grid"\s+id="ls-grid">.*?</div>\s*<script>.*?</script>'
+  $pattern = '(?s)<div class="filters-wrap">.*?</div>\s*<div class="grid"\s+id="ls-grid">.*?</div>\s*<script>\(function\(\)\{.*?\}\)\(\);</script>'
 
   $newHtml = [regex]::Replace($html, $pattern, $newGrid)
 
