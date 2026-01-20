@@ -1,7 +1,9 @@
-ï»¿// /assets/js/app.js
+// /assets/js/app.js
 
 
 (() => {
+  if (window.__APR_APPJS_RAN__) return;
+  window.__APR_APPJS_RAN__ = true;
   "use strict";
 
   function normalizePath(p) {
@@ -4542,7 +4544,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const y2 = yearToNum(f.year_to);
     const posKey = positionKey(k);
     const supportKey = supportKeyOf(f, k);
-    const approvalText = approvalClean(k?.approval);
     const engineFilterText = enginesText(k, f);
 
     const dPol = drivePolicyFromFit(f, k);
@@ -4646,7 +4647,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     const y1 = yearToNum(f.year_from);
     const y2 = yearToNum(f.year_to);
     const pos = positionKey(k);
-    const approvalText = approvalClean(k?.approval);
     const engine = enginesText(k, f);
     const engineLabel = engine && engine.trim() ? engine : "Allemaal";
     const yearLabel = yearsNL(f);
