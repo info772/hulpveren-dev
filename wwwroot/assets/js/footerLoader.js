@@ -1,5 +1,7 @@
 (() => {
   "use strict";
+  // Route A: server-rendered header/footer; JS only binds behaviors
+  return;
   const normalizePath = (value) => {
     const path = String(value || location.pathname || "/");
     const trimmed = path.replace(/\/+$/, "/");

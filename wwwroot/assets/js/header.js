@@ -990,37 +990,8 @@
       }
       return;
     }
-    let html = null;
-    const partialUrl = LEGACY_ROUTE ? LEGACY_PARTIAL_URL : PARTIAL_URL;
-
-    try {
-      const res = await fetch(partialUrl, { cache: "no-cache" });
-      if (res.ok) {
-        html = await res.text();
-      }
-    } catch {
-      html = null;
-    }
-
-    if (html) {
-      mountEl = target.mountEl || createMountEl(target.legacy);
-      mountEl.innerHTML = html;
-      if (LEGACY_ROUTE) {
-        bindLegacyHeader(mountEl);
-      } else {
-        mountEl.dataset.hv2Mounted = "1";
-        ensureDrawerClosedOnMount(mountEl);
-        bindNav(mountEl);
-        bindMegaMenus(mountEl);
-        mountMakesWhenReady();
-        bindHeaderScroll(mountEl);
-        initPlateGroupOverlay();
-      }
-    }
-
-    if (!LEGACY_ROUTE) {
-      injectBreadcrumbs(mountEl);
-    }
+    // Route A: server-rendered header/footer; JS only binds behaviors
+    return;
   };
 
   const init = () => {
