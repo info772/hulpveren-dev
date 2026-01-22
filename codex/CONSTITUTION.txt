@@ -1,0 +1,14 @@
+Before applying changes:
+Read and strictly follow /codex/CONSTITUTION.txt
+
+Rules:
+1) Apply changes ONLY in files explicitly listed in the task.
+2) Make the smallest change that fully solves the issue.
+3) Do not refactor unrelated code.
+4) Do not introduce new runtime HTML injection for header/footer (Route A).
+5) After changes: run syntax checks and paste the exact commands + outputs.
+
+Definition of done:
+- No JS fetch+innerHTML injection for header/footer on public pages.
+- Header/footer are server-rendered on all pages.
+- JS only binds behaviors (click handlers, state).
