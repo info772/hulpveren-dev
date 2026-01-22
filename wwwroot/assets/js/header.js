@@ -982,6 +982,8 @@
       } else {
         try { bindNav(root); } catch (_) {}
         try { bindMegaMenus(root); } catch (_) {}
+        // Route A: server-rendered header/footer; JS only binds behaviors
+        mountMakesWhenReady();
         try { bindHeaderScroll(root); } catch (_) {}
         try { initPlateGroupOverlay(); } catch (_) {}
       }
