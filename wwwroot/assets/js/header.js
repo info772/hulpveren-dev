@@ -737,6 +737,54 @@
       }
     });
 
+    // Route A: server-rendered header/footer; JS only binds behaviors
+    const fallbackItems = Array.from(
+      root.querySelectorAll(".nav-item-mega, .hv-nav-item-mega")
+    );
+    fallbackItems.forEach((item) => {
+      const btn = item.querySelector(
+        "button.nav-toggle-cta, button.hv-nav-toggle, .nav-toggle-cta.hv-nav-toggle"
+      );
+      const panel = item.querySelector(".mega-panel, .hv-mega-panel");
+      if (!btn || !panel) return;
+      if (btn.dataset.megaBound === "1") return;
+      btn.dataset.megaBound = "1";
+
+      const closeAll = () => {
+        root
+          .querySelectorAll(".nav-item-mega.is-open, .hv-nav-item-mega.is-open")
+          .forEach((n) => n.classList.remove("is-open"));
+        root
+          .querySelectorAll(".mega-panel.is-open, .hv-mega-panel.is-open")
+          .forEach((p) => p.classList.remove("is-open"));
+      };
+
+      const open = () => {
+        closeAll();
+        item.classList.add("is-open");
+        panel.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+      };
+
+      const close = () => {
+        item.classList.remove("is-open");
+        panel.classList.remove("is-open");
+        btn.setAttribute("aria-expanded", "false");
+      };
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = panel.classList.contains("is-open");
+        if (isOpen) close();
+        else open();
+      });
+
+      item.addEventListener("mouseleave", () => {
+        close();
+      });
+    });
+
     mountEl.dataset.hv2MegaBound = "1";
   };
 
