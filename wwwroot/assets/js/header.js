@@ -972,6 +972,24 @@
   const mount = async () => {
     const target = getMountTarget();
     let mountEl = target.mountEl || target.legacy || null;
+
+    // Route A: if a header already exists in HTML, do NOT fetch/inject header partials
+    const headerExists = !!(document.getElementById("site-header") || document.querySelector(".hv2-header") || document.querySelector("header.site-header"));
+    if (headerExists) {
+      const root = document.getElementById("site-header") || document;
+      if (LEGACY_ROUTE) {
+        try { bindLegacyHeader(root); } catch (_) {}
+      } else {
+        try { bindNav(root); } catch (_) {}
+        try { bindMegaMenus(root); } catch (_) {}
+        try { bindHeaderScroll(root); } catch (_) {}
+        try { initPlateGroupOverlay(); } catch (_) {}
+      }
+      if (!LEGACY_ROUTE) {
+        try { injectBreadcrumbs(root); } catch (_) {}
+      }
+      return;
+    }
     let html = null;
     const partialUrl = LEGACY_ROUTE ? LEGACY_PARTIAL_URL : PARTIAL_URL;
 

@@ -17,6 +17,14 @@
 
   const target = document.getElementById("site-footer");
   if (!target) return;
+
+  // Route A: do not inject footer HTML via JS when server already rendered footer
+  if ((target.innerHTML || "").trim().length > 0) return;
+
+
+  // If this is a HV/NR/LS route, we prefer stable server-rendered footer.
+  if (isLegacyRoute()) return;
+
   if (window.__FOOTER_LOADER_RAN__) return;
   window.__FOOTER_LOADER_RAN__ = true;
   if (document.querySelector("footer.site-footer")) return;
