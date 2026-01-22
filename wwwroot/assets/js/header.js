@@ -584,6 +584,8 @@
     );
     if (!items.length) return;
 
+    // Route A: server-rendered header/footer; JS only binds behaviors
+    const root = mountEl || document;
     const mqDesktop = window.matchMedia("(min-width: 901px)");
     const pointerFine = window.matchMedia("(hover:hover)").matches;
     const triggerMap = new Map();
@@ -615,6 +617,8 @@
       item.classList.remove("is-open");
       if (trig) trig.setAttribute("aria-expanded", "false");
       if (panel) panel.hidden = true;
+      // Route A: server-rendered header/footer; JS only binds behaviors
+      if (panel) panel.classList.remove("is-open");
     };
 
     const closeAll = (except) => {
@@ -634,6 +638,20 @@
       item.classList.add("is-open");
       trig.setAttribute("aria-expanded", "true");
       panel.hidden = false;
+      // Route A: server-rendered header/footer; JS only binds behaviors
+      panel.classList.add("is-open");
+    };
+
+    // Route A: server-rendered header/footer; JS only binds behaviors
+    const openPanelForTrigger = (trigger) => {
+      if (!trigger) return;
+      const item = trigger.closest(".nav-item-mega, .hv-nav-item-mega");
+      const panel = item?.querySelector(".mega-panel, .hv-mega-panel");
+      if (!panel) return;
+      root
+        .querySelectorAll(".mega-panel.is-open, .hv-mega-panel.is-open")
+        .forEach((openPanel) => openPanel.classList.remove("is-open"));
+      panel.classList.add("is-open");
     };
 
     items.forEach((item) => {
@@ -667,6 +685,8 @@
         item.addEventListener("mouseenter", () => {
           if (!onDesktop()) return;
           cancelClose();
+          // Route A: server-rendered header/footer; JS only binds behaviors
+          openPanelForTrigger(trig);
           openItem(item);
         });
         item.addEventListener("mouseleave", () => {
@@ -691,6 +711,8 @@
           panel.classList.add("is-open");
           trig.setAttribute("aria-expanded", "true");
           item.classList.add("is-open");
+          // Route A: server-rendered header/footer; JS only binds behaviors
+          openPanelForTrigger(trig);
         }
       });
 
