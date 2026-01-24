@@ -281,7 +281,6 @@ z-index: 30;
 
 @media (min-width: 1024px){
   .hv2-drawer-close{ display: none; }
-}
 
   #site-header .hv2-header .nav-shell{
     width: 100%;
