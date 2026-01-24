@@ -2537,5 +2537,13 @@ body.nav-open .hv2-burger{
   }
 }
 
+@media (min-width: 1024px){
+  #site-header .nav-drawer{
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
 
 
