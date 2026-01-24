@@ -2322,3 +2322,10 @@ body.plate-route .hero{
     opacity: 1 !important;
   }
 }
+
+/* FINAL OVERRIDE — desktop nav must always be visible */
+@media (min-width: 1024px){
+  html body #site-header header.hv2-header .hv2-nav-layer .nav-drawer{
+    opacity: 1 !important;
+  }
+}
