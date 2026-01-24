@@ -2313,3 +2313,12 @@ body.plate-route .hero{
     max-width: 100%;
   }
 }
+
+/* HARD FIX: desktop drawer must never be transparent */
+@media (min-width: 1024px){
+  #site-header .nav-drawer,
+  #site-header header.hv2-header .nav-drawer,
+  #site-header [data-hv2-drawer]{
+    opacity: 1 !important;
+  }
+}
