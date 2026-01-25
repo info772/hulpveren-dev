@@ -94,3 +94,20 @@
 .is-set-page section:has(#hv-footer-brands) {
   display: none !important;
 }
+
+/* FIX: HV2 desktop nav must stay visible (seo.css loads last, so override here) */
+@media (min-width: 1024px){
+  #site-header header.hv2-header .nav-drawer{
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: static !important;
+    transform: none !important;
+    height: auto !important;
+    width: auto !important;
+  }
+  #site-header header.hv2-header .hv2-nav-layer{
+    pointer-events: auto !important;
+  }
+}

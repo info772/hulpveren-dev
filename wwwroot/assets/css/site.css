@@ -2328,3 +2328,33 @@ body.plate-route .hero{
     opacity: 1 !important;
   }
 }
+
+/* === FIX: HV2 desktop nav must not be hidden by legacy drawer rules === */
+@media (min-width: 1024px){
+  #site-header header.hv2-header .nav-drawer,
+  #site-header header.hv2-header [data-hv2-drawer]{
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: static !important;
+    transform: none !important;
+    height: auto !important;
+    width: auto !important;
+  }
+
+  /* Ensure the container isn't acting like an overlay layer */
+  #site-header header.hv2-header .hv2-nav-layer,
+  #site-header header.hv2-header [data-hv2-layer]{
+    pointer-events: auto !important;
+  }
+
+  /* Overlay should never cover desktop */
+  #site-header header.hv2-header .nav-overlay,
+  #site-header header.hv2-header [data-hv2-overlay]{
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+}
