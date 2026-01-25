@@ -1135,6 +1135,7 @@
     headerRoot?.addEventListener("click", () => {
       enforceDesktopNavVisible();
     }, true);
+    startDesktopNavWatchdog();
   };
 
   // Route A: server-rendered header/footer; JS only binds behaviors
@@ -1173,6 +1174,31 @@
     document.body.classList.remove("nav-open");
     const hdr = document.querySelector("#site-header .hv2-header");
     if(hdr) hdr.classList.remove("hv2-open");
+  }
+
+  function startDesktopNavWatchdog(){
+    if(!mqDesktop.matches) return;
+
+    const drawer = document.querySelector("#site-header .nav-drawer");
+    const hdr = document.querySelector("#site-header .hv2-header");
+    if(!drawer) return;
+
+    enforceDesktopNavVisible();
+
+    const obs = new MutationObserver(() => {
+      if(!mqDesktop.matches) return;
+      const op = getComputedStyle(drawer).opacity;
+      if(op !== "1" || document.body.classList.contains("nav-open") || (hdr && hdr.classList.contains("hv2-open"))){
+        enforceDesktopNavVisible();
+      }
+    });
+
+    obs.observe(drawer, { attributes:true, attributeFilter:["style","class"] });
+    obs.observe(document.body, { attributes:true, attributeFilter:["class"] });
+    if(hdr) obs.observe(hdr, { attributes:true, attributeFilter:["class","style"] });
+
+    mqDesktop.addEventListener?.("change", () => enforceDesktopNavVisible());
+    mqDesktop.addListener?.(() => enforceDesktopNavVisible());
   }
 
   if (document.readyState === "loading") {
