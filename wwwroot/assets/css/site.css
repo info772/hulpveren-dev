@@ -2365,6 +2365,7 @@ body.plate-route .hero{
     inset: auto !important;
     pointer-events: auto !important;
     height: auto !important;
+    z-index: auto !important;
   }
 
   /* Desktop: drawer is ALWAYS visible; never fall back to mobile closed state */
@@ -2377,5 +2378,9 @@ body.plate-route .hero{
     visibility: visible !important;
     display: block !important;
     overflow: visible !important;
+    z-index: auto !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
   }
 }
