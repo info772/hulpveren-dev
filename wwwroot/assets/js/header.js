@@ -1066,10 +1066,39 @@
     return;
   };
 
+  // Route A: server-rendered header/footer; JS only binds behaviors
+  function forceDesktopNavVisible(){
+    try{
+      if(!window.matchMedia || !window.matchMedia("(min-width: 1024px)").matches) return;
+
+      var drawer = document.querySelector("#site-header .nav-drawer, #site-header [data-hv2-drawer]");
+      if(!drawer) return;
+
+      // Hard override any CSS that hides the drawer on desktop
+      drawer.style.setProperty("opacity", "1", "important");
+      drawer.style.setProperty("visibility", "visible", "important");
+      drawer.style.setProperty("pointer-events", "auto", "important");
+      drawer.style.setProperty("display", "block", "important");
+      drawer.style.setProperty("position", "static", "important");
+      drawer.style.setProperty("transform", "none", "important");
+      drawer.style.setProperty("height", "auto", "important");
+      drawer.style.setProperty("width", "auto", "important");
+
+      // Also ensure the nav layer doesn't block interactions
+      var layer = document.querySelector("#site-header .hv2-nav-layer, #site-header [data-hv2-layer]");
+      if(layer){
+        layer.style.setProperty("pointer-events", "auto", "important");
+        layer.style.setProperty("position", "static", "important");
+      }
+    }catch(e){}
+  }
+
   const init = () => {
     if (!LEGACY_ROUTE) {
       ensureBuildId();
     }
+    // Route A: server-rendered header/footer; JS only binds behaviors
+    forceDesktopNavVisible();
     mount();
   };
 
