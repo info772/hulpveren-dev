@@ -1099,8 +1099,27 @@
     }
     // Route A: server-rendered header/footer; JS only binds behaviors
     forceDesktopNavVisible();
+    // Route A: server-rendered header/footer; JS only binds behaviors
+    forceNavDrawerVisible();
     mount();
   };
+
+  // Route A: server-rendered header/footer; JS only binds behaviors
+  function forceNavDrawerVisible(){
+    try{
+      var drawer =
+        document.querySelector("#site-header .nav-drawer") ||
+        document.querySelector("#site-header [data-hv2-drawer]");
+      if(!drawer) return;
+
+      drawer.style.setProperty("opacity", "1", "important");
+      drawer.style.setProperty("visibility", "visible", "important");
+      drawer.style.setProperty("pointer-events", "auto", "important");
+      // do NOT force transform here; mobile open/close uses transform.
+    }catch(e){
+      // no-op
+    }
+  }
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
