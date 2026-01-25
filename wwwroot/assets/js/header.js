@@ -700,6 +700,12 @@
       }
 
       trig.addEventListener("click", (evt) => {
+        const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+        if (isDesktop && trig && trig.matches(".hv-nav-toggle, .nav-toggle-cta")) {
+          evt.preventDefault();
+          evt.stopPropagation();
+          return;
+        }
         if (!isMobileNav()) return;
         evt.preventDefault();
 
@@ -773,6 +779,12 @@
       };
 
       btn.addEventListener("click", (e) => {
+        const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+        if (isDesktop && btn && btn.matches("button.hv-nav-toggle, button.nav-toggle-cta, .nav-toggle-cta.hv-nav-toggle")) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
         e.preventDefault();
         e.stopPropagation();
         const isOpen = panel.classList.contains("is-open");
@@ -1107,10 +1119,18 @@
   // Route A: server-rendered header/footer; JS only binds behaviors
   function forceNavDrawerVisible(){
     try{
+      var isDesktop = window.matchMedia && window.matchMedia("(min-width: 1024px)").matches;
       var drawer =
         document.querySelector("#site-header .nav-drawer") ||
         document.querySelector("#site-header [data-hv2-drawer]");
       if(!drawer) return;
+
+      if (isDesktop) {
+        drawer.style.removeProperty("opacity");
+        drawer.style.removeProperty("visibility");
+        drawer.style.removeProperty("transform");
+        return;
+      }
 
       drawer.style.setProperty("opacity", "1", "important");
       drawer.style.setProperty("visibility", "visible", "important");
