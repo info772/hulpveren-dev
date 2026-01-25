@@ -146,6 +146,7 @@
 
   const isMobileNav = () =>
     window.matchMedia("(max-width: 900px)").matches;
+  const mqDesktop = window.matchMedia("(min-width: 1024px)");
 
   const setNavState = (header, toggle, overlay, drawer, open) => {
     const mobile = isMobileNav();
@@ -523,11 +524,13 @@
     };
 
     const closeNav = () => {
+      if (mqDesktop.matches) return;
       if (!isOpen()) return;
       setNavState(header, toggle, overlay, drawer, false);
       toggleMobileMegaPanels(false);
     };
     const openNav = () => {
+      if (mqDesktop.matches) return;
       if (isOpen()) return;
       setNavState(header, toggle, overlay, drawer, true);
       // Mobile: start collapsed, panels open only after tap.
@@ -539,6 +542,7 @@
 
     if (toggle) {
       toggle.addEventListener("click", (evt) => {
+        if (mqDesktop.matches) return;
         evt.preventDefault();
         if (isOpen()) closeNav();
         else openNav();
@@ -546,18 +550,25 @@
     }
 
     if (overlay) {
-      overlay.addEventListener("click", () => closeNav());
+      overlay.addEventListener("click", () => {
+        if (mqDesktop.matches) return;
+        closeNav();
+      });
     }
 
     if (closeBtn) {
       closeBtn.addEventListener("click", (evt) => {
+        if (mqDesktop.matches) return;
         evt.preventDefault();
         closeNav();
       });
     }
 
     navLinks.forEach((link) => {
-      link.addEventListener("click", () => closeNav());
+      link.addEventListener("click", () => {
+        if (mqDesktop.matches) return;
+        closeNav();
+      });
     });
 
     window.addEventListener("resize", () => {
@@ -1114,6 +1125,16 @@
     // Route A: server-rendered header/footer; JS only binds behaviors
     forceNavDrawerVisible();
     mount();
+    enforceDesktopNavVisible();
+    if (mqDesktop.addEventListener) {
+      mqDesktop.addEventListener("change", enforceDesktopNavVisible);
+    } else if (mqDesktop.addListener) {
+      mqDesktop.addListener(enforceDesktopNavVisible);
+    }
+    const headerRoot = document.getElementById("site-header");
+    headerRoot?.addEventListener("click", () => {
+      enforceDesktopNavVisible();
+    }, true);
   };
 
   // Route A: server-rendered header/footer; JS only binds behaviors
@@ -1139,6 +1160,19 @@
     }catch(e){
       // no-op
     }
+  }
+
+  function enforceDesktopNavVisible(){
+    if(!mqDesktop.matches) return;
+    const drawer = document.querySelector("#site-header .nav-drawer");
+    if(drawer){
+      drawer.style.setProperty("opacity","1","important");
+      drawer.style.setProperty("visibility","visible","important");
+      drawer.style.setProperty("pointer-events","auto","important");
+    }
+    document.body.classList.remove("nav-open");
+    const hdr = document.querySelector("#site-header .hv2-header");
+    if(hdr) hdr.classList.remove("hv2-open");
   }
 
   if (document.readyState === "loading") {
