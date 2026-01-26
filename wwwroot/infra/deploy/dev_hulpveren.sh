@@ -43,9 +43,9 @@ find "$REPO_DIR" -type f -exec chmod 644 {} +
 nginx -t
 systemctl reload "$NGINX_SERVICE"
 
-curl -fsSI -H "Host: $HOST_HEADER" "$BASE_URL/assets/js/header.js?v=$BUILD_ID"
-curl -fsS -H "Host: $HOST_HEADER" "$BASE_URL/assets/js/header.js?v=$BUILD_ID" \
-  | grep -q 'PARTIAL_URL = "/partials/header-v2.html"'
-curl -fsSI -H "Host: $HOST_HEADER" "$BASE_URL/partials/header-v2.html"
+curl -fsSI -H "Host: $HOST_HEADER" "$BASE_URL/assets/js/header-v3.js?v=$BUILD_ID"
+curl -fsS -H "Host: $HOST_HEADER" "$BASE_URL/assets/js/header-v3.js?v=$BUILD_ID" \
+  | grep -q 'data-hv-header="v3"'
+curl -fsSI -H "Host: $HOST_HEADER" "$BASE_URL/partials/header-v3.html"
 
 echo "Deploy complete (build id: $BUILD_ID)."
