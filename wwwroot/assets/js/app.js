@@ -2178,7 +2178,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         return;
       }
       const from = context.yearRange.from ?? context.yearRange.to;
-      const to = context.yearRange.to ?? context.yearRange.from;
+      const to = context.yearRange.to ?? new Date().getFullYear();
       const yearFrom = document.getElementById("ls-year-from");
       const yearTo = document.getElementById("ls-year-to");
       const yearSlider = document.getElementById("ls-year-slider");
@@ -3841,12 +3841,29 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return !(maxY < from || minY > till);
   }
 
+  function resolveFilterYearBounds(range) {
+    if (!range) return { from: null, to: null };
+    const parse = (value) => {
+      if (value == null || value === "") return null;
+      const num = parseInt(String(value), 10);
+      return Number.isFinite(num) ? num : null;
+    };
+    const currentYear = new Date().getFullYear();
+    let from = parse(range.from);
+    let to = parse(range.to);
+    if (from == null && to == null) return { from: null, to: null };
+    if (from == null) from = 1900;
+    if (to == null) to = currentYear;
+    if (to < from) [from, to] = [to, from];
+    return { from, to };
+  }
+
   function filterPairs(allPairs) {
     YEAR_FILTER_NOTICE = "";
     const ctx = CURRENT_ROUTE_CTX || {};
     const driveException = !!ctx.driveException;
     let yearRange = FILTER.yearRange;
-    if (!yearRange) {
+    if (!yearRange && isPlateRoutePath(location.pathname)) {
       const ctxActive = getActivePlateContext && getActivePlateContext();
       const v = ctxActive && ctxActive.vehicle;
       const minY = v?.yearMin || v?.estimatedYearMin || null;
@@ -3874,10 +3891,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
         if (!skipYear) {
           if (FILTER.year != null) {
-            if (FILTER.year < y1 || FILTER.year > y2) return false;
+          if (FILTER.year < y1 || FILTER.year > y2) return false;
           } else if (yearRange && (yearRange.from != null || yearRange.to != null)) {
-            const rangeFrom = yearRange.from ?? yearRange.to;
-            const rangeTo = yearRange.to ?? yearRange.from;
+            const { from: rangeFrom, to: rangeTo } = resolveFilterYearBounds(yearRange);
             if (rangeFrom != null && rangeTo != null) {
               if (!yearOverlap(y1, y2, rangeFrom, rangeTo)) {
                 return false;
@@ -3988,8 +4004,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         reasons.push(`jaar ${FILTER.year} buiten ${y1}-${y2}`);
       }
     } else if (yearRange && (yearRange.from != null || yearRange.to != null)) {
-      const rangeFrom = yearRange.from ?? yearRange.to;
-      const rangeTo = yearRange.to ?? yearRange.from;
+      const { from: rangeFrom, to: rangeTo } = resolveFilterYearBounds(yearRange);
       if (rangeFrom != null && y2 < rangeFrom) {
         reasons.push(`jaar ${rangeFrom}-${rangeTo ?? rangeFrom} buiten ${y1}-${y2}`);
       } else if (rangeTo != null && y1 > rangeTo) {
@@ -5712,11 +5727,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       `;
     }
 
+    const usePlatePrefill = isPlateRoutePath(location.pathname);
     FILTER.year = null;
-    const yr =
-      (plateContext && plateContext.yearRange) ||
-      (activeCtx && activeCtx.yearRange) ||
-      null;
+    const yr = usePlatePrefill
+      ? (plateContext && plateContext.yearRange) ||
+        (activeCtx && activeCtx.yearRange) ||
+        null
+      : null;
     const label = yr && yr.label ? yr.label : formatYearRangeLabel(yr);
     FILTER.yearRange = yr
       ? { ...yr, label: label || undefined, source: "plate" }
@@ -5725,10 +5742,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     FILTER.drive.clear();
     FILTER.rear.clear();
     FILTER.pos.clear();
-    const driveKey = driveFilterKeyFromVehicle(
-      (plateContext && plateContext.vehicle) || (activeCtx && activeCtx.vehicle),
-      CURRENT_ROUTE_CTX.driveException
-    );
+    const driveKey = usePlatePrefill
+      ? driveFilterKeyFromVehicle(
+          (plateContext && plateContext.vehicle) || (activeCtx && activeCtx.vehicle),
+          CURRENT_ROUTE_CTX.driveException
+        )
+      : "";
     const driveKeys = new Set(driveItems.map((item) => item.key));
     if (driveKey && driveKeys.has(driveKey)) {
       FILTER.drive.add(driveKey);
