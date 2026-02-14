@@ -838,8 +838,16 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
   setTimeout(applyHeadFixes, 200);
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", adjustSetPageH1, { once: true });
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        adjustModelPageH1();
+        adjustSetPageH1();
+      },
+      { once: true }
+    );
   } else {
+    adjustModelPageH1();
     adjustSetPageH1();
   }
   if (DEBUG) {
@@ -2364,6 +2372,56 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (!base.toLowerCase().includes(sku.toLowerCase())) {
       h1.textContent = `${base} â ${sku.toUpperCase()}`;
     }
+  }
+
+  function adjustModelPageH1() {
+    const path = String(location.pathname || "")
+      .toLowerCase()
+      .replace(/\/+$/, "");
+    const family = path.startsWith("/hulpveren/")
+      ? "hv"
+      : path.startsWith("/luchtvering/")
+        ? "nr"
+        : path.startsWith("/verlagingsveren/")
+          ? "ls"
+          : "";
+    if (!family) return;
+    if (/\/(?:hv|nr|ls)-\d+$/i.test(path)) return;
+
+    const parts = path.split("/").filter(Boolean);
+    if (parts.length < 3) return;
+    const isPlateSegment = (value) => /^kt_[a-z0-9]+$/i.test(String(value || ""));
+    const makeSlug = parts[1] || "";
+    const modelSlug = parts[2] || "";
+    if (!makeSlug || !modelSlug || isPlateSegment(modelSlug)) return;
+
+    const h1 =
+      document.querySelector("main .hero h1") ||
+      document.querySelector("main h1") ||
+      document.querySelector("h1");
+    if (!h1) return;
+
+    const crumbs = Array.from(document.querySelectorAll(".crumbs a"))
+      .map((a) => String(a.textContent || "").trim())
+      .filter(Boolean);
+    const prettify = (slug) =>
+      String(slug || "")
+        .split("-")
+        .filter(Boolean)
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" ");
+
+    const makeLabel = crumbs.length >= 2 ? crumbs[crumbs.length - 2] : prettify(makeSlug);
+    const modelLabel = crumbs.length >= 1 ? crumbs[crumbs.length - 1] : prettify(modelSlug);
+    const prefix =
+      family === "nr"
+        ? "Luchtvering"
+        : family === "ls"
+          ? "Verlagingsveren"
+          : "Hulpveren";
+    const next = `${prefix} ${makeLabel} ${modelLabel}`.trim();
+    if (!next) return;
+    h1.textContent = next;
   }
 
   const UNIFIED_FILTERS_URL = "/assets/js/filters/unifiedFilters.js";
