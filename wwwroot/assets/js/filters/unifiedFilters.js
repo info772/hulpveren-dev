@@ -82,11 +82,22 @@
       const yearSlider = document.getElementById("flt-year");
       const yearFrom = document.getElementById("flt-year-from");
       const yearTo = document.getElementById("flt-year-to");
+      const yearCard =
+        (yearSlider && (yearSlider.closest(".fy") || yearSlider.closest(".filter-card"))) ||
+        null;
+      const pickedEl = yearCard ? yearCard.querySelector("[data-fy-picked]") : null;
+      const hasExactYearSelection = Boolean(
+        pickedEl && !pickedEl.hidden && String(pickedEl.textContent || "").trim()
+      );
       const yearVal = toNum(yearSlider && yearSlider.value);
       state.yearFrom = toNum(yearFrom && yearFrom.value);
       state.yearTo = toNum(yearTo && yearTo.value);
       state.yearExact =
-        state.yearFrom != null || state.yearTo != null ? null : yearVal;
+        state.yearFrom != null || state.yearTo != null
+          ? null
+          : hasExactYearSelection
+            ? yearVal
+            : null;
 
       document.querySelectorAll("#mode-chips .chip[data-on='1']").forEach((chip) => {
         const key = chip.getAttribute("data-key");
