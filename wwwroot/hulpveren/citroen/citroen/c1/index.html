@@ -11,11 +11,287 @@
   <meta property="og:description" content="MAD hulpveren voor Citron C1. Overzicht van passende sets, bouwjaren en opmerkingen."/>
   <meta property="og:url" content="https://dev.hulpveren.shop/hulpveren/citroen/c1"/>
   <link rel="stylesheet" href="/assets/css/site.css"/>
+  <link rel="stylesheet" href="/assets/css/header-v3.css?v=20260125_1" />
   <link rel="stylesheet" href="/assets/css/seo.css?v=20260108_1" />
 </head>
 <body>
   
-<div id="site-header"></div>
+<!-- DEBUG: HEADER-V3-LOCAL-2026-01-25 -->
+
+<header class="hv3-header" data-hv-header="v3" role="banner">
+  <div class="hv3-inner">
+    <div class="hv3-left">
+      <!-- ANCHOR:LOGO_START -->
+      <a class="hv3-brand" href="/" aria-label="Hulpveren.shop">
+        <img
+          class="hv3-brand-logo"
+          src="/img/branding/Logo-wit.png"
+          alt="Hulpveren.shop"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <!-- ANCHOR:LOGO_END -->
+    </div>
+
+    <nav class="hv3-nav hv3-nav--desktop" aria-label="Hoofdmenu">
+      <ul class="hv3-nav-list">
+        <li class="hv3-nav-item"><a class="hv3-nav-link" href="/">Home</a></li>
+        <li class="hv3-nav-item hv3-nav-item--mega" data-family="hv">
+          <a class="hv3-nav-link" href="/hulpveren">MAD hulpveren</a>
+          <button
+            class="hv3-mega-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Submenu openen"
+            aria-controls="hv2-mega-hv"
+            data-hv3-mega-toggle
+          >
+            <span class="hv3-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="hv2-mega-hv" class="hv3-mega" role="menu" aria-label="Merken hulpveren">
+            <div class="hv3-mega-inner">
+              <div class="hv3-mega-col">
+                <h3>Alle merken</h3>
+                <ul id="hv-mega-brands-hv" class="hv3-mega-list" data-hv-brands-list aria-label="Merken hulpveren"></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hv3-nav-item hv3-nav-item--mega" data-family="nr">
+          <a class="hv3-nav-link" href="/luchtvering">MAD Luchtvering</a>
+          <button
+            class="hv3-mega-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Submenu openen"
+            aria-controls="hv2-mega-nr"
+            data-hv3-mega-toggle
+          >
+            <span class="hv3-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="hv2-mega-nr" class="hv3-mega" role="menu" aria-label="Merken luchtvering">
+            <div class="hv3-mega-inner">
+              <div class="hv3-mega-col">
+                <h3>Alle merken</h3>
+                <ul id="hv-mega-brands-nr" class="hv3-mega-list" data-hv-air-list aria-label="Merken luchtvering"></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hv3-nav-item hv3-nav-item--mega" data-family="ls">
+          <a class="hv3-nav-link" href="/verlagingsveren">MAD Verlagingsveren</a>
+          <button
+            class="hv3-mega-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Submenu openen"
+            aria-controls="hv2-mega-ls"
+            data-hv3-mega-toggle
+          >
+            <span class="hv3-chevron" aria-hidden="true"></span>
+          </button>
+          <div id="hv2-mega-ls" class="hv3-mega" role="menu" aria-label="Merken verlagingsveren">
+            <div class="hv3-mega-inner">
+              <div class="hv3-mega-col">
+                <h3>Alle merken</h3>
+                <ul id="hv-mega-brands-ls" class="hv3-mega-list" data-hv-lowering-list aria-label="Merken verlagingsveren"></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/montage">Montage</a></li>
+        <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/blog">Blog</a></li>
+        <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/over-ons/#ervaring">Over ons</a></li>
+        <li class="hv3-nav-item"><a class="hv3-nav-link" href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="hv3-right">
+      <div class="hv3-actions" aria-label="Header acties">
+        <!-- ANCHOR:PLATESEARCH_PROTECTED_START -->
+        <div class="hv3-plate">
+          <div class="plate-search" role="search">
+            <div class="plate-ui">
+              <div class="plate-eu">NL</div>
+              <input class="plate-input" type="text" inputmode="latin" autocomplete="off" placeholder="5VLL95" aria-label="Kenteken" />
+              <button class="plate-button" type="button">Zoek</button>
+            </div>
+          </div>
+        </div>
+        <!-- ANCHOR:PLATESEARCH_PROTECTED_END -->
+
+        <div class="hv3-cta-group" aria-label="Contact acties">
+          <div class="hv3-contact-stack">
+            <a
+              class="hv3-btn hv3-btn-ghost hv3-contact-btn"
+              data-native-nav="1"
+              data-setting-link="phoneTel"
+              href="tel:+31165856568"
+              aria-label="Bel ons"
+            >
+              <span class="hv3-btn-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path d="M6.6 3.2c.4-.4 1.1-.4 1.5 0l2.2 2.2c.4.4.4 1.1 0 1.5l-1.4 1.4a14.5 14.5 0 0 0 6.7 6.7l1.4-1.4c.4-.4 1.1-.4 1.5 0l2.2 2.2c.4.4.4 1.1 0 1.5l-1.5 1.5c-1 .9-2.4 1.2-3.6.5-2.7-1.5-5.5-4-8.1-6.6-2.6-2.6-5.1-5.4-6.6-8.1-.7-1.2-.4-2.6.5-3.6l1.5-1.5z" />
+                </svg>
+              </span>
+              <span class="hv3-btn-label">Bel</span>
+              <span class="hv3-btn-sub" data-setting="phone">0165 856568</span>
+            </a>
+            <a
+              class="hv3-btn hv3-btn-ghost hv3-contact-btn"
+              data-native-nav="1"
+              data-setting-link="whatsappUrl"
+              href="https://wa.me/311651320219"
+              aria-label="WhatsApp"
+            >
+              <span class="hv3-btn-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" />
+                </svg>
+              </span>
+              <span class="hv3-btn-label">WhatsApp</span>
+            </a>
+          </div>
+          <a class="hv3-btn hv3-btn-primary" data-native-nav="1" href="/montage/">
+            Plan montage
+          </a>
+        </div>
+      </div>
+
+      <button
+        class="hv3-burger"
+        type="button"
+        data-hv3-toggle
+        aria-expanded="false"
+        aria-controls="hv3-drawer"
+        aria-label="Open menu"
+      >
+        Menu
+      </button>
+    </div>
+  </div>
+
+  <div class="hv3-mobile-layer" data-hv3-layer>
+    <div class="hv3-overlay" data-hv3-overlay aria-hidden="true"></div>
+    <div class="hv3-drawer" id="hv3-drawer" data-hv3-drawer aria-hidden="true">
+      <button class="hv3-drawer-close" type="button" aria-label="Menu sluiten" data-hv3-close>
+        <span aria-hidden="true"></span>
+      </button>
+      <nav class="hv3-nav hv3-nav--mobile" aria-label="Hoofdmenu mobiel">
+        <ul class="hv3-nav-list">
+          <li class="hv3-nav-item"><a class="hv3-nav-link" href="/">Home</a></li>
+          <li class="hv3-nav-item hv3-nav-item--mega" data-family="hv">
+            <a class="hv3-nav-link" href="/hulpveren">MAD hulpveren</a>
+            <button
+              class="hv3-mega-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-label="Submenu openen"
+              aria-controls="hv3-mega-hv-mobile"
+              data-hv3-mega-toggle
+            >
+              <span class="hv3-chevron" aria-hidden="true"></span>
+            </button>
+            <div id="hv3-mega-hv-mobile" class="hv3-mega" role="menu" aria-label="Merken hulpveren">
+              <div class="hv3-mega-inner">
+                <div class="hv3-mega-col">
+                  <h3>Alle merken</h3>
+                  <ul class="hv3-mega-list" data-hv-brands-list aria-label="Merken hulpveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="hv3-nav-item hv3-nav-item--mega" data-family="nr">
+            <a class="hv3-nav-link" href="/luchtvering">MAD Luchtvering</a>
+            <button
+              class="hv3-mega-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-label="Submenu openen"
+              aria-controls="hv3-mega-nr-mobile"
+              data-hv3-mega-toggle
+            >
+              <span class="hv3-chevron" aria-hidden="true"></span>
+            </button>
+            <div id="hv3-mega-nr-mobile" class="hv3-mega" role="menu" aria-label="Merken luchtvering">
+              <div class="hv3-mega-inner">
+                <div class="hv3-mega-col">
+                  <h3>Alle merken</h3>
+                  <ul class="hv3-mega-list" data-hv-air-list aria-label="Merken luchtvering"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="hv3-nav-item hv3-nav-item--mega" data-family="ls">
+            <a class="hv3-nav-link" href="/verlagingsveren">MAD Verlagingsveren</a>
+            <button
+              class="hv3-mega-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-label="Submenu openen"
+              aria-controls="hv3-mega-ls-mobile"
+              data-hv3-mega-toggle
+            >
+              <span class="hv3-chevron" aria-hidden="true"></span>
+            </button>
+            <div id="hv3-mega-ls-mobile" class="hv3-mega" role="menu" aria-label="Merken verlagingsveren">
+              <div class="hv3-mega-inner">
+                <div class="hv3-mega-col">
+                  <h3>Alle merken</h3>
+                  <ul class="hv3-mega-list" data-hv-lowering-list aria-label="Merken verlagingsveren"></ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/montage">Montage</a></li>
+          <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/blog">Blog</a></li>
+          <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/over-ons/#ervaring">Over ons</a></li>
+          <li class="hv3-nav-item"><a class="hv3-nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- Plate Product Group Overlay -->
+<div id="plate-group-overlay" class="pgo" aria-hidden="true">
+  <div class="pgo-backdrop" data-pgo-close></div>
+
+  <div class="pgo-dialog" role="dialog" aria-modal="true" aria-labelledby="pgo-title">
+    <button class="pgo-close" type="button" aria-label="Sluiten" data-pgo-close>&times;</button>
+
+    <div class="pgo-header">
+      <div class="pgo-kicker">Kentekencheck</div>
+      <h2 id="pgo-title" class="pgo-title">Kies je productgroep</h2>
+      <div class="pgo-sub">
+        Kenteken: <strong id="pgo-plate"></strong>
+      </div>
+    </div>
+
+    <div class="pgo-grid">
+      <button class="pgo-card" type="button" data-pgo-go="hv">
+        <div class="pgo-card-title">MAD Hulpveren</div>
+        <div class="pgo-card-sub">Meer stabiliteit en minder doorzakken</div>
+      </button>
+
+      <button class="pgo-card" type="button" data-pgo-go="air">
+        <div class="pgo-card-title">MAD Luchtvering</div>
+        <div class="pgo-card-sub">Instelbaar comfort en hoogte</div>
+      </button>
+
+      <button class="pgo-card" type="button" data-pgo-go="ls">
+        <div class="pgo-card-title">MAD Verlagingsveren</div>
+        <div class="pgo-card-sub">Strakker rijgedrag en lagere stance</div>
+      </button>
+    </div>
+
+    <div class="pgo-footer">
+      <button class="pgo-secondary" type="button" data-pgo-close>Annuleer</button>
+    </div>
+  </div>
+</div>
+
 <main class="app" role="main">
     <div class="wrap">
       <div id="app"></div>
@@ -30,6 +306,7 @@
 
   <!-- E?n keer laden, onderaan (geen trailing slashes in links) -->
   <script src="/assets/js/app.js"></script>
+<script defer src="/assets/js/header-v3.js?v=20260125_1"></script>
 </body>
 </html>
 

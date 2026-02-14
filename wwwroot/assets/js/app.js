@@ -1981,7 +1981,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     };
 
     const buildPlateInfoHtml = (context) => {
-      if (!context || !context.vehicle) return "";
+      const plateValue = String(context?.plate || "").trim();
+      if (!plateValue || !context || !context.vehicle) return "";
       const vehicle = context.vehicle || {};
       const rows = [];
       const buildPlateRow = (label, value) => `
@@ -2023,7 +2024,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const engineContents = cleanNumber(vehicle.engineContents);
       const weightEmpty = cleanNumber(vehicle.weightEmpty);
       const maxWeight = cleanNumber(vehicle.maxWeight);
-      addRow("Kenteken", context.plate || context.plateMasked || "");
+      addRow("Kenteken", plateValue || context.plateMasked || "");
       addRow("Auto", context.autoLabel || "");
       addRow("Uitvoering", uitvoeringText);
       addRow("Voertuigsoort", voertuigsoortText);
@@ -2088,10 +2089,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
     const renderVehicleInfoCard = () => {
       const context = window.hv_plate_context || null;
-      if (!context) return;
       const html = buildPlateInfoHtml(context);
-      if (!html) return;
       const card = document.querySelector("[data-vehicle-info-card]");
+      if (!html) {
+        if (card) card.remove();
+        return;
+      }
       if (card) {
         card.outerHTML = html;
         initVehicleDetailsToggle(document);
@@ -2950,11 +2953,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const heroLeadEl = document.querySelector(".hero .lead");
 
   function updateHero(makeLabel, modelLabel) {
-    if (window.__LEGACY_HERO_PAGE__) return;
     if (heroTitleEl) {
       heroTitleEl.textContent = modelLabel
-        ? `${makeLabel} ${modelLabel} hulpveren`
-        : `${makeLabel} hulpveren`;
+        ? `Hulpveren ${makeLabel} ${modelLabel}`
+        : `Hulpveren ${makeLabel}`;
     }
     if (heroLeadEl) {
       heroLeadEl.textContent = modelLabel
@@ -5583,7 +5585,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           <a href="${BASE}/${esc(makeSlug)}">${esc(makeLabel)}</a> >
           ${esc(modelLabel)}
         </div>
-        <h1>${esc(makeLabel)} ${esc(modelLabel)} hulpveren</h1>
+        <h1>Hulpveren ${esc(makeLabel)} ${esc(modelLabel)}</h1>
         ${plateInfoHtml}
         <p class="note">Geen sets gevonden voor dit model.</p>
       `);
@@ -5764,7 +5766,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     `;
     const titleBlock = window.__LEGACY_HERO_PAGE__
       ? ""
-      : `<h1>${esc(makeLabel)} ${esc(modelLabel)} hulpveren</h1>`;
+      : `<h1>Hulpveren ${esc(makeLabel)} ${esc(modelLabel)}</h1>`;
 
     app.innerHTML = wrap(`
       ${crumbsBlock}
