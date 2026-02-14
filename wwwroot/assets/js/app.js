@@ -3646,6 +3646,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   const RANGE_EMPTY_LOGGED = new Set();
 
   window.addEventListener("hv:vehicleYearRange", (e) => {
+    if (!isPlateRoutePath(location.pathname)) return;
     const detail = e?.detail || {};
     const yearMin = detail.yearMin ?? null;
     const yearMax = detail.yearMax ?? null;
