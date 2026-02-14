@@ -5,6 +5,11 @@
   if (window.__APR_APPJS_RAN__) return;
   window.__APR_APPJS_RAN__ = true;
   "use strict";
+  const APP_BUILD_STAMP = "hv-debug-2026-02-14-01";
+  window.__HV_APP_BUILD_STAMP__ = APP_BUILD_STAMP;
+  if (window.console && typeof window.console.info === "function") {
+    window.console.info("[hv] app.js build:", APP_BUILD_STAMP);
+  }
 
   function normalizePath(p) {
     p = (p || location.pathname || "/");

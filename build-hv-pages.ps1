@@ -4,6 +4,7 @@
 # - wwwroot/hulpveren/index.html als HTML-template
 
 $ErrorActionPreference = "Stop"
+$buildStamp = "hv-debug-2026-02-14-01"
 
 $root    = Split-Path -Parent $PSCommandPath
 $wwwroot = Join-Path $root "wwwroot"
@@ -108,6 +109,32 @@ function Update-HeadMeta {
     )
 
     return $out
+}
+
+function Upsert-BuildStampMeta {
+    param(
+        [string]$Html,
+        [string]$Stamp
+    )
+    if ([string]::IsNullOrWhiteSpace($Html)) { return $Html }
+    if ([string]::IsNullOrWhiteSpace($Stamp)) { return $Html }
+
+    $sEsc = $Stamp.Replace("&","&amp;").Replace("<","&lt;").Replace(">","&gt;").Replace('"','&quot;')
+    $opts = [System.Text.RegularExpressions.RegexOptions]::IgnoreCase
+
+    $metaTag = "<meta name=`"x-build-stamp`" content=`"$sEsc`" />"
+    if ([regex]::IsMatch($Html, '<meta\s+name="x-build-stamp"\s+content="[^"]*"\s*/?>', $opts)) {
+        return [regex]::Replace(
+            $Html,
+            '<meta\s+name="x-build-stamp"\s+content="[^"]*"\s*/?>',
+            $metaTag,
+            $opts
+        )
+    }
+    if ($Html -match '</head>') {
+        return $Html -replace '</head>', "  $metaTag`n</head>"
+    }
+    return $Html
 }
 
 function Update-H1 {
@@ -280,6 +307,7 @@ foreach ($m in $sortedMakes) {
     $canon = "$siteBase/hulpveren/$makeSlug"
 
     $html = Update-HeadMeta -Html $baseHtml -Title $title -Description $desc -Canonical $canon
+    $html = Upsert-BuildStampMeta -Html $html -Stamp $buildStamp
     $html = Update-H1 -Html $html -H1 "Hulpveren $makeLabelH1"
 
     $outRel = "hulpveren\$makeSlug\index.html"
@@ -311,6 +339,7 @@ foreach ($m in $sortedMakes) {
         $canon = "$siteBase/hulpveren/$makeSlug/$modelSlug"
 
         $html = Update-HeadMeta -Html $baseHtml -Title $title -Description $desc -Canonical $canon
+        $html = Upsert-BuildStampMeta -Html $html -Stamp $buildStamp
         $html = Update-H1 -Html $html -H1 "Hulpveren $makeLabelH1 $modelLabelH1"
 
         $outRel = "hulpveren\$makeSlug\$modelSlug\index.html"
