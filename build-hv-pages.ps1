@@ -178,6 +178,16 @@ function Normalize-LabelForH1 {
     return ($normalized -join ' ').Trim()
 }
 
+function Build-H1FromSlugs {
+    param(
+        [string]$MakeSlug,
+        [string]$ModelSlug
+    )
+    $makeLabel = Normalize-LabelForH1 ($MakeSlug -replace "-", " ")
+    $modelLabel = Normalize-LabelForH1 ($ModelSlug -replace "-", " ")
+    return "Hulpveren $makeLabel $modelLabel".Trim()
+}
+
 function Ensure-Dir {
     param([string]$Path)
     $dir = Split-Path $Path -Parent
@@ -310,6 +320,33 @@ foreach ($m in $sortedMakes) {
         $html | Out-File -FilePath $outAbs -Encoding UTF8
 
         Write-Host "HV modelpagina geschreven: $outRel" -ForegroundColor Yellow
+    }
+}
+
+# === 6. Post-process: forceer H1 op ALLE bestaande modelpagina's ===
+$allModelPages = Get-ChildItem -Path (Join-Path $wwwroot "hulpveren") -Directory -ErrorAction SilentlyContinue |
+    Where-Object { $_.Name -notmatch '^hv-\d+$' } |
+    ForEach-Object {
+        $makeDir = $_
+        Get-ChildItem -Path $makeDir.FullName -Directory -ErrorAction SilentlyContinue | ForEach-Object {
+            $modelDir = $_
+            $indexPath = Join-Path $modelDir.FullName "index.html"
+            if (Test-Path $indexPath) {
+                [pscustomobject]@{
+                    Path     = $indexPath
+                    MakeSlug = $makeDir.Name
+                    ModelSlug= $modelDir.Name
+                }
+            }
+        }
+    }
+
+foreach ($page in $allModelPages) {
+    $html = Get-Content $page.Path -Raw
+    $targetH1 = Build-H1FromSlugs -MakeSlug $page.MakeSlug -ModelSlug $page.ModelSlug
+    $updated = Update-H1 -Html $html -H1 $targetH1
+    if ($updated -ne $html) {
+        $updated | Out-File -FilePath $page.Path -Encoding UTF8
     }
 }
 
