@@ -2435,15 +2435,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     setTimeout(adjustModelPageH1, 200);
     setTimeout(adjustModelPageH1, 800);
     setTimeout(adjustModelPageH1, 2000);
-
-    const hero = document.querySelector("main .hero");
-    if (!hero || hero.dataset.h1ObserverBound === "1") return;
-    hero.dataset.h1ObserverBound = "1";
-    const obs = new MutationObserver(() => {
-      adjustModelPageH1();
-    });
-    obs.observe(hero, { childList: true, subtree: true, characterData: true });
-    setTimeout(() => obs.disconnect(), 10000);
   }
 
   const UNIFIED_FILTERS_URL = "/assets/js/filters/unifiedFilters.js";
