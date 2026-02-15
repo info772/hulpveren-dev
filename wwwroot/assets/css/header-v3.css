@@ -128,6 +128,17 @@
   gap: 6px;
 }
 
+@media (min-width: 1024px) {
+  .hv3-nav--desktop .hv3-nav-item--mega > .hv3-mega {
+    min-width: 720px;
+  }
+
+  .hv3-nav--desktop .hv3-nav-item--mega .hv3-mega-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 10px;
+  }
+}
+
 .hv3-mega-list a,
 .hv3-mega-list span {
   display: block;
