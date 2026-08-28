@@ -233,7 +233,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     nr: 5147,
   };
   const CONTACT_PHONE = "tel:+31165856568";
-  const WHATSAPP_URL = "https://wa.me/311651320219";
+  const WHATSAPP_URL = "https://wa.me/31651320219";
   const MONTAGE_URL = "/montage";
   const MODEL_SLUG_CACHE = new Map();
   const MODEL_INDEX_CACHE = new Map();
@@ -5392,6 +5392,27 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return label;
   }
 
+  function buildRdwVehicleSelectionNotice(vehicle, makeLabel, modelLabel) {
+    if (!vehicle) return "";
+    const make = makeLabel || vehicle.make || vehicle.makename || "";
+    const model = modelLabel || vehicle.model || vehicle.modelname || "";
+    const year = getVehicleYear(vehicle) || vehicle.year || "";
+    const vehicleText = [make, model].filter(Boolean).join(" ").trim();
+    if (!vehicleText || !year) return "";
+    return `
+      <section class="card product rdw-fallback-notice" data-rdw-fallback-notice>
+        <div class="body">
+          <h2>Selectie op voertuiggegevens</h2>
+          <p class="note">We hebben uw voertuig herkend als ${esc(
+            vehicleText
+          )}, bouwjaar ${esc(
+            year
+          )}. Voor deze uitvoering is geen exacte kentekenkoppeling beschikbaar. Daarom tonen we de oplossingen die bij dit model en bouwjaar horen. Controleer bij iedere set de voertuigvoorwaarden en toepassing.</p>
+        </div>
+      </section>
+    `;
+  }
+
   function applyPlateMeta({ title, description, robots }) {
     if (title) document.title = title;
 
@@ -6394,10 +6415,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
             Kenteken
           </div>
           <h1>${productTitle} op kenteken: ${esc(plateDisplay)}</h1>
-          <p class="note">We hebben alleen basisgegevens gevonden. Kies handmatig je merk en model.</p>
+          <p class="note">We hebben het voertuig bij RDW herkend, maar kunnen hieruit geen betrouwbare merk- en modelselectie bepalen. Kies handmatig of neem contact op voor controle.</p>
           <div class="cta-row">
             <a class="btn" href="${base}">Kies merk en model</a>
-            <a class="btn btn-ghost" href="${plateSearchHref}">Opnieuw zoeken</a>
+            <a class="btn btn-ghost" href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </div>
         `);
         renderPlateDebug({
@@ -6621,6 +6642,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         aldocSets.lsSkus.length;
 
       if (!hasAldocSets) {
+        if (isRdwBasic) {
+          debugLog("plate:aldoc_empty_rdw_model_fallback", {
+            family,
+            makeSlug,
+            modelSlug: resolvedModelSlug || vehicleModelSlug || routeModelSlug || "",
+          });
+          return { aldocSets, hasAldocSets, handled: false };
+        }
         const fallbackMakeSlug = makeSlug || vehicleMakeSlug || routeMakeSlug || "";
         const fallbackModelSlug =
           resolvedModelSlug || vehicleModelSlug || routeModelSlug || "";
@@ -6990,10 +7019,10 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
           Kenteken
         </div>
         <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
-        <p class="note">Geen passende sets gevonden op basis van RDW-gegevens. Kies handmatig je model.</p>
+        <p class="note">We hebben het voertuig bij RDW herkend, maar kunnen geen bruikbare handmatige voertuigselectie bepalen. Neem contact op voor controle of kies handmatig je model.</p>
         <div class="cta-row">
           <a class="btn" href="/hulpveren">Kies merk en model</a>
-          <a class="btn btn-ghost" href="/">Opnieuw zoeken</a>
+          <a class="btn btn-ghost" href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       `);
       renderPlateDebug({
@@ -7056,6 +7085,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       ? `<p class="note">Gevonden sets voor ${esc(
           makeLabel
         )}. Controleer het model/uitvoering.</p>`
+      : "";
+    const rdwFallbackNotice = isRdwBasic
+      ? buildRdwVehicleSelectionNotice(vehicle, makeLabel, modelLabel)
       : "";
 
     const contextModelSlug = effectiveModelSlug || modelSlugForContext || routeModelSlug;
@@ -7244,6 +7276,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       <h1>Hulpveren op kenteken: ${esc(plateDisplay)}</h1>
       ${summaryLine}
       ${fallbackNote}
+      ${rdwFallbackNotice}
       <div class="set-meta">
         <span><span id="kit-count">0</span> sets</span>
         <span id="filter-summary" class="muted"></span>
