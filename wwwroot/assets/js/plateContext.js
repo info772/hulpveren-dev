@@ -1160,6 +1160,8 @@
     if (!normalized) return null;
     const previous = loadPlateContext();
     const intentType = options.intentType || (previous && previous.intentType) || "";
+    const source = options.source || vehicle?.source || vehicle?.baseSource || vehicle?.base_source || "";
+    const confidence = options.confidence || vehicle?.confidence || "";
     let route = options.route || (previous && previous.route) || null;
     let yearRange = options.yearRange || null;
 
@@ -1245,6 +1247,8 @@
       plate: normalized,
       vehicle: mergedVehicle,
       vehicleRaw,
+      source: source || "",
+      confidence: confidence || "",
       range,
       yearRange,
       intentType,

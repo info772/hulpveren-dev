@@ -1021,7 +1021,11 @@ if (type) location.href = `/${type}/${make}/`;
 
     const proceed = () => {
       const makeSlug = make;
-      persistSelection(plate, vehicle, { intentType });
+      persistSelection(plate, vehicle, {
+        confidence: data && data.confidence,
+        intentType,
+        source: data && data.source,
+      });
       setRouteSlugsFromVehicle(vehicle);
 
       const path = String(location.pathname || "").toLowerCase();

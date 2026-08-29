@@ -9,301 +9,89 @@
     content="Kies op basis van je kenteken of je hulpveren, luchtvering of verlagingsveren wilt bekijken."
   />
   <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://www.hulpveren.shop/kenteken/" />
+  <link rel="canonical" href="https://dev.hulpveren.shop/kenteken/" />
+  <meta property="og:url" content="https://dev.hulpveren.shop/kenteken/" />
 
   <link rel="icon" href="/img/branding/APR-Favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/img/branding/APR-Favicon.png" />
-
-  <link rel="stylesheet" href="/assets/css/site.css" />
-  <link rel="stylesheet" href="/assets/css/header-v3.css?v=20260125_1" />
-  <link rel="stylesheet" href="/assets/css/seo.css?v=20260108_1" />
-  <link rel="stylesheet" href="/assets/css/plate.css" />
+<link rel="stylesheet" href="/assets/css/style.bundle.css?v=20260605175223">
+  <link rel="stylesheet" href="/assets/css/search-suggest.css?v=20260622-platepreview">
+  <link rel="stylesheet" href="/assets/css/plate.css?v=20260421-1" />
 </head>
 
-<body>
-  <!-- Fix Summary:
-   * Broken: /kenteken/?kt= showed no tiles when plate context was missing.
-   * Change: Bind tiles to HVPlateContext + show default product group choices.
-   * Test: Open /kenteken/?kt=13GTRG and confirm tiles appear without manual input.
-   -->
-  <!-- DEBUG: HEADER-V3-LOCAL-2026-01-25 -->
+<body class="site-layout">
 
-<header class="hv3-header" data-hv-header="v3" role="banner">
-  <div class="hv3-inner">
-    <div class="hv3-left">
-      <!-- ANCHOR:LOGO_START -->
-      <a class="hv3-brand" href="/" aria-label="Hulpveren.shop">
-        <img
-          class="hv3-brand-logo"
-          src="/img/branding/Logo-wit.png"
-          alt="Hulpveren.shop"
-          loading="lazy"
-          decoding="async"
-        />
-      </a>
-      <!-- ANCHOR:LOGO_END -->
-    </div>
+  <header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-logo" href="/" aria-label="Hulpveren.shop">
+      <span class="site-logo__mark">H</span>
+      <span class="site-logo__text">Hulpveren.shop</span>
+    </a>
 
-    <nav class="hv3-nav hv3-nav--desktop" aria-label="Hoofdmenu">
-      <ul class="hv3-nav-list">
-        <li class="hv3-nav-item"><a class="hv3-nav-link" href="/">Home</a></li>
-        <li class="hv3-nav-item hv3-nav-item--mega" data-family="hv">
-          <a class="hv3-nav-link" href="/hulpveren">MAD hulpveren</a>
-          <button
-            class="hv3-mega-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-label="Submenu openen"
-            aria-controls="hv2-mega-hv"
-            data-hv3-mega-toggle
-          >
-            <span class="hv3-chevron" aria-hidden="true"></span>
-          </button>
-          <div id="hv2-mega-hv" class="hv3-mega" role="menu" aria-label="Merken hulpveren">
-            <div class="hv3-mega-inner">
-              <div class="hv3-mega-col">
-                <h3>Alle merken</h3>
-                <ul id="hv-mega-brands-hv" class="hv3-mega-list" data-hv-brands-list aria-label="Merken hulpveren"></ul>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="hv3-nav-item hv3-nav-item--mega" data-family="nr">
-          <a class="hv3-nav-link" href="/luchtvering">MAD Luchtvering</a>
-          <button
-            class="hv3-mega-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-label="Submenu openen"
-            aria-controls="hv2-mega-nr"
-            data-hv3-mega-toggle
-          >
-            <span class="hv3-chevron" aria-hidden="true"></span>
-          </button>
-          <div id="hv2-mega-nr" class="hv3-mega" role="menu" aria-label="Merken luchtvering">
-            <div class="hv3-mega-inner">
-              <div class="hv3-mega-col">
-                <h3>Alle merken</h3>
-                <ul id="hv-mega-brands-nr" class="hv3-mega-list" data-hv-air-list aria-label="Merken luchtvering"></ul>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="hv3-nav-item hv3-nav-item--mega" data-family="ls">
-          <a class="hv3-nav-link" href="/verlagingsveren">MAD Verlagingsveren</a>
-          <button
-            class="hv3-mega-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-label="Submenu openen"
-            aria-controls="hv2-mega-ls"
-            data-hv3-mega-toggle
-          >
-            <span class="hv3-chevron" aria-hidden="true"></span>
-          </button>
-          <div id="hv2-mega-ls" class="hv3-mega" role="menu" aria-label="Merken verlagingsveren">
-            <div class="hv3-mega-inner">
-              <div class="hv3-mega-col">
-                <h3>Alle merken</h3>
-                <ul id="hv-mega-brands-ls" class="hv3-mega-list" data-hv-lowering-list aria-label="Merken verlagingsveren"></ul>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/montage">Montage</a></li>
-        <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/blog">Blog</a></li>
-        <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/over-ons/#ervaring">Over ons</a></li>
-        <li class="hv3-nav-item"><a class="hv3-nav-link" href="/contact">Contact</a></li>
-      </ul>
+    <input class="site-nav__checkbox" type="checkbox" id="site-nav-toggle" aria-label="Menu openen">
+    <label class="site-nav__hamburger" for="site-nav-toggle" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav class="site-nav site-nav__primary" aria-label="Hoofdnavigatie">
+      <details class="site-nav__group site-nav__dropdown">
+        <summary class="site-nav__toggle">Productgroepen</summary>
+        <div class="site-nav__menu">
+          <a href="/hulpveren/">Hulpveren</a>
+          <a href="/luchtvering/">Luchtvering</a>
+          <a href="/verlagingsveren/">Verlagingsveren</a>
+        </div>
+      </details>
+
+      <details class="site-nav__group site-nav__dropdown">
+        <summary class="site-nav__toggle">Toepassingen</summary>
+        <div class="site-nav__menu">
+          <a href="/luchtvering/camper/">Luchtvering camper</a>
+          <a href="/hulpveren/camper/">Hulpveren camper</a>
+          <a href="/hulpveren/caravan/">Hulpveren caravan</a>
+          <a href="/hulpveren/fietsendrager/">Hulpveren fietsendrager</a>
+          <a href="/bedrijfswagen/">Bedrijfswagen</a>
+        </div>
+      </details>
+
+      <a href="/montage/">Montage</a>
+      <a href="/blog/">Blog</a>
+      <a href="/faq/">FAQ</a>
     </nav>
 
-    <div class="hv3-right">
-      <div class="hv3-actions" aria-label="Header acties">
-        <!-- ANCHOR:PLATESEARCH_PROTECTED_START -->
-        <div class="hv3-plate">
-          <div class="plate-search" role="search">
-            <div class="plate-ui">
-              <div class="plate-eu">NL</div>
-              <input class="plate-input" type="text" inputmode="latin" autocomplete="off" placeholder="5VLL95" aria-label="Kenteken" />
-              <button class="plate-button" type="button">Zoek</button>
-            </div>
-          </div>
-        </div>
-        <!-- ANCHOR:PLATESEARCH_PROTECTED_END -->
-
-        <div class="hv3-cta-group" aria-label="Contact acties">
-          <div class="hv3-contact-stack">
-            <a
-              class="hv3-btn hv3-btn-ghost hv3-contact-btn"
-              data-native-nav="1"
-              data-setting-link="phoneTel"
-              href="tel:+31165856568"
-              aria-label="Bel ons"
-            >
-              <span class="hv3-btn-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-                  <path d="M6.6 3.2c.4-.4 1.1-.4 1.5 0l2.2 2.2c.4.4.4 1.1 0 1.5l-1.4 1.4a14.5 14.5 0 0 0 6.7 6.7l1.4-1.4c.4-.4 1.1-.4 1.5 0l2.2 2.2c.4.4.4 1.1 0 1.5l-1.5 1.5c-1 .9-2.4 1.2-3.6.5-2.7-1.5-5.5-4-8.1-6.6-2.6-2.6-5.1-5.4-6.6-8.1-.7-1.2-.4-2.6.5-3.6l1.5-1.5z" />
-                </svg>
-              </span>
-              <span class="hv3-btn-label">Bel</span>
-              <span class="hv3-btn-sub" data-setting="phone">0165 856568</span>
-            </a>
-            <a
-              class="hv3-btn hv3-btn-ghost hv3-contact-btn"
-              data-native-nav="1"
-              data-setting-link="whatsappUrl"
-              href="https://wa.me/311651320219"
-              aria-label="WhatsApp"
-            >
-              <span class="hv3-btn-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-                  <path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" />
-                </svg>
-              </span>
-              <span class="hv3-btn-label">WhatsApp</span>
-            </a>
-          </div>
-        </div>
+    <div class="site-header__actions">
+    <form class="site-search" data-site-search role="search" autocomplete="off">
+      <label class="site-search__label" for="site-search-input">Zoeken op kenteken, merk, model of artikelnummer</label>
+      <div class="site-search__box">
+        <input
+          class="site-search__input"
+          id="site-search-input"
+          name="q"
+          type="search"
+          placeholder="Kenteken, merk, model, artikelnummer"
+          aria-label="Zoek op kenteken, merk, model of artikelnummer"
+          aria-autocomplete="list"
+          aria-expanded="false"
+          aria-controls="site-search-results"
+        >
+        <button class="site-search__button" type="submit" aria-label="Zoeken">Zoek</button>
       </div>
+      <div class="site-search__results" id="site-search-results" role="listbox" hidden></div>
+    </form>
 
-      <button
-        class="hv3-burger"
-        type="button"
-        data-hv3-toggle
-        aria-expanded="false"
-        aria-controls="hv3-drawer"
-        aria-label="Open menu"
-      >
-        Menu
-      </button>
-    </div>
-  </div>
-
-  <div class="hv3-mobile-layer" data-hv3-layer>
-    <div class="hv3-overlay" data-hv3-overlay aria-hidden="true"></div>
-    <div class="hv3-drawer" id="hv3-drawer" data-hv3-drawer aria-hidden="true">
-      <button class="hv3-drawer-close" type="button" aria-label="Menu sluiten" data-hv3-close>
-        <span aria-hidden="true"></span>
-      </button>
-      <nav class="hv3-nav hv3-nav--mobile" aria-label="Hoofdmenu mobiel">
-        <ul class="hv3-nav-list">
-          <li class="hv3-nav-item"><a class="hv3-nav-link" href="/">Home</a></li>
-          <li class="hv3-nav-item hv3-nav-item--mega" data-family="hv">
-            <a class="hv3-nav-link" href="/hulpveren">MAD hulpveren</a>
-            <button
-              class="hv3-mega-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-label="Submenu openen"
-              aria-controls="hv3-mega-hv-mobile"
-              data-hv3-mega-toggle
-            >
-              <span class="hv3-chevron" aria-hidden="true"></span>
-            </button>
-            <div id="hv3-mega-hv-mobile" class="hv3-mega" role="menu" aria-label="Merken hulpveren">
-              <div class="hv3-mega-inner">
-                <div class="hv3-mega-col">
-                  <h3>Alle merken</h3>
-                  <ul class="hv3-mega-list" data-hv-brands-list aria-label="Merken hulpveren"></ul>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="hv3-nav-item hv3-nav-item--mega" data-family="nr">
-            <a class="hv3-nav-link" href="/luchtvering">MAD Luchtvering</a>
-            <button
-              class="hv3-mega-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-label="Submenu openen"
-              aria-controls="hv3-mega-nr-mobile"
-              data-hv3-mega-toggle
-            >
-              <span class="hv3-chevron" aria-hidden="true"></span>
-            </button>
-            <div id="hv3-mega-nr-mobile" class="hv3-mega" role="menu" aria-label="Merken luchtvering">
-              <div class="hv3-mega-inner">
-                <div class="hv3-mega-col">
-                  <h3>Alle merken</h3>
-                  <ul class="hv3-mega-list" data-hv-air-list aria-label="Merken luchtvering"></ul>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="hv3-nav-item hv3-nav-item--mega" data-family="ls">
-            <a class="hv3-nav-link" href="/verlagingsveren">MAD Verlagingsveren</a>
-            <button
-              class="hv3-mega-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-label="Submenu openen"
-              aria-controls="hv3-mega-ls-mobile"
-              data-hv3-mega-toggle
-            >
-              <span class="hv3-chevron" aria-hidden="true"></span>
-            </button>
-            <div id="hv3-mega-ls-mobile" class="hv3-mega" role="menu" aria-label="Merken verlagingsveren">
-              <div class="hv3-mega-inner">
-                <div class="hv3-mega-col">
-                  <h3>Alle merken</h3>
-                  <ul class="hv3-mega-list" data-hv-lowering-list aria-label="Merken verlagingsveren"></ul>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/montage">Montage</a></li>
-          <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/blog">Blog</a></li>
-          <li class="hv3-nav-item"><a class="hv3-nav-link hv3-nav-link--utility" href="/over-ons/#ervaring">Over ons</a></li>
-          <li class="hv3-nav-item"><a class="hv3-nav-link" href="/contact">Contact</a></li>
-        </ul>
-      </nav>
+    <a class="site-nav__cta" href="/contact/">Contact / offerte</a>
     </div>
   </div>
 </header>
 
-<!-- Plate Product Group Overlay -->
-<div id="plate-group-overlay" class="pgo" aria-hidden="true">
-  <div class="pgo-backdrop" data-pgo-close></div>
-
-  <div class="pgo-dialog" role="dialog" aria-modal="true" aria-labelledby="pgo-title">
-    <button class="pgo-close" type="button" aria-label="Sluiten" data-pgo-close>&times;</button>
-
-    <div class="pgo-header">
-      <div class="pgo-kicker">Kentekencheck</div>
-      <h2 id="pgo-title" class="pgo-title">Kies je productgroep</h2>
-      <div class="pgo-sub">
-        Kenteken: <strong id="pgo-plate"></strong>
-      </div>
-    </div>
-
-    <div class="pgo-grid">
-      <button class="pgo-card" type="button" data-pgo-go="hv">
-        <div class="pgo-card-title">MAD Hulpveren</div>
-        <div class="pgo-card-sub">Meer stabiliteit en minder doorzakken</div>
-      </button>
-
-      <button class="pgo-card" type="button" data-pgo-go="air">
-        <div class="pgo-card-title">MAD Luchtvering</div>
-        <div class="pgo-card-sub">Instelbaar comfort en hoogte</div>
-      </button>
-
-      <button class="pgo-card" type="button" data-pgo-go="ls">
-        <div class="pgo-card-title">MAD Verlagingsveren</div>
-        <div class="pgo-card-sub">Strakker rijgedrag en lagere stance</div>
-      </button>
-    </div>
-
-    <div class="pgo-footer">
-      <button class="pgo-secondary" type="button" data-pgo-close>Annuleer</button>
-    </div>
-  </div>
-</div>
-
-<main>
+  <main class="site-main">
+    <div class="site-main__inner">
     <section class="wrap">
       <div class="section-header">
         <p class="eyebrow">Kentekencheck</p>
-        <h1>Kies je productgroep</h1>
+        <h1>Waarvoor zoekt u een oplossing?</h1>
         <p id="kenteken-vehicle" class="lead"></p>
         <p id="kenteken-status" class="muted"></p>
       </div>
@@ -312,8 +100,8 @@
         <article class="card product">
           <div class="body">
             <span class="eyebrow">MAD hulpveren</span>
-            <h2>Hulpveren</h2>
-            <p>Bekijk de beschikbare hulpveren die passen bij jouw voertuig.</p>
+            <h2>Mijn voertuig zakt door</h2>
+            <p>Voor extra ondersteuning bij belading, caravan, camper, bedrijfswagen of fietsendrager.</p>
             <div class="cta-row">
               <a id="kenteken-link-hv" class="btn" href="#">Bekijk hulpveren</a>
             </div>
@@ -322,8 +110,8 @@
         <article class="card product">
           <div class="body">
             <span class="eyebrow">MAD luchtvering</span>
-            <h2>Luchtvering</h2>
-            <p>Bekijk de beschikbare luchtvering en hulpluchtvering sets.</p>
+            <h2>Ik wil verstelbare ondersteuning</h2>
+            <p>Voor wisselende belading, rijhoogte corrigeren en meer controle over comfort en ondersteuning.</p>
             <div class="cta-row">
               <a id="kenteken-link-nr" class="btn" href="#">Bekijk luchtvering</a>
             </div>
@@ -332,8 +120,8 @@
         <article class="card product">
           <div class="body">
             <span class="eyebrow">MAD verlagingsveren</span>
-            <h2>Verlagingsveren</h2>
-            <p>Bekijk de verlagingsveren die passen bij jouw uitvoering.</p>
+            <h2>Ik wil mijn voertuig verlagen</h2>
+            <p>Voor een lagere rijhoogte, sportiever uiterlijk en strakker weggedrag.</p>
             <div class="cta-row">
               <a id="kenteken-link-ls" class="btn" href="#">Bekijk verlagingsveren</a>
             </div>
@@ -342,72 +130,56 @@
       </div>
     </section>
 
-    <section class="wrap">
-      <div class="section-header">
-        <p class="eyebrow">Opnieuw zoeken</p>
-        <h2>Voer je kenteken opnieuw in</h2>
-        <p class="muted">Hoofdletters en leestekens maken niet uit.</p>
+    <!-- Kenteken opnieuw zoeken verwijderd: zoeken gebeurt via de header. -->
       </div>
-      <div id="kenteken"></div>
-    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-shell">
-      <section class="footer-block">
-        <p class="eyebrow">Hulpveren.shop</p>
-        <h2>Veilig rijden met de juiste set</h2>
-        <p>Wij bouwen dagelijks MAD hulpveren, luchtvering en verlagingsveren in. Altijd inclusief montage, uitlijning en eerlijk advies.</p>
-        <div class="footer-cta">
-          <a class="btn" href="/hulpveren">Bekijk hulpveren</a>
-          <a class="btn btn-ghost" href="/montage">Plan montage</a>
-        </div>
-        <ul class="footer-list">
-          <li>Gecertificeerde monteurs</li>
-          <li>Persoonlijk advies per kenteken</li>
-          <li>Snelle beschikbaarheid uit voorraad</li>
-        </ul>
-      </section>
-
-      <section class="footer-block">
-        <p class="eyebrow">Kies je merk</p>
-        <div id="hv-footer-brands" class="taglist" aria-live="polite"></div>
-        <a class="footer-link" href="/hulpveren">Alle merken</a>
-      </section>
-
-      <section class="footer-block">
-        <p class="eyebrow">Populaire modellen</p>
-        <p id="hv-footer-models-label" class="footer-muted">We tonen modellen die passen bij de huidige pagina.</p>
-        <div id="hv-footer-models" class="taglist" aria-labelledby="hv-footer-models-label"></div>
-      </section>
-
-      <section class="footer-block">
-        <p class="eyebrow">Contact</p>
-        <ul class="footer-list">
-          <li><strong>Auto Parts Roosendaal</strong></li>
-          <li>Westelijke Havendijk 17c</li>
-          <li>4703 RA Roosendaal</li>
-          <li>Bel: <a href="tel:+31165856568">0165 856568</a></li>
-          <li>WhatsApp: <a href="https://wa.me/31651320219" target="_blank" rel="noopener noreferrer">Direct advies</a></li>
-          <li>Mail: <a href="mailto:info@auto-parts-roosendaal.nl">info@auto-parts-roosendaal.nl</a></li>
-          <li>Ma-Vr 10:00-18:00</li>
-          <li>Za 10:00-12:00</li>
-        </ul>
-      </section>
+  <hr>
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <p><strong>Hulpveren.shop</strong></p>
+      <p>Professionele montage van hulpveren, luchtvering en verlagingsveren in Roosendaal.</p>
     </div>
 
-    <div class="footer-bottom">
-      <p> <span id="hv-footer-year"></span> Hulpveren.shop MAD specialist sinds 2008</p>
-      <div class="footer-links">
-        <a href="/privacy">Privacy</a>
-        <a href="/algemene-voorwaarden">Algemene voorwaarden</a>
-        <a href="/contact">Contact</a>
-      </div>
-    </div>
-  </footer>
+    <nav class="site-footer__nav" aria-label="Footer producten">
+      <p><strong>Producten</strong></p>
+      <a href="/hulpveren/">Hulpveren</a>
+      <a href="/luchtvering/">Luchtvering</a>
+      <a href="/verlagingsveren/">Verlagingsveren</a>
+      <a href="/platform/">Platformen</a>
+    </nav>
 
-  <script defer src="/assets/js/header-v3.js?v=20260125_1"></script>
-  <script defer src="/assets/js/app.js?v=20260119_FINAL"></script>
+    <nav class="site-footer__nav" aria-label="Footer service">
+      <p><strong>Service</strong></p>
+      <a href="/montage/">Montage</a>
+      <a href="/contact/">Contact</a>
+      <a href="/onze-ervaring/">Onze ervaring</a>
+      <a href="/blog/">Blog</a>
+    </nav>
+
+    <nav class="site-footer__nav" aria-label="Footer informatie">
+      <p><strong>Informatie</strong></p>
+      <a href="/kenteken/">Kenteken</a>
+      <a href="/over-ons/">Over ons</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/algemene-voorwaarden/">Algemene voorwaarden</a>
+    </nav>
+
+    <div class="site-footer__contact">
+      <p><strong>Contact</strong></p>
+      <p><a href="tel:+31165856568">+31 165 856 568</a></p>
+      <p>Westelijke Havendijk 17c</p>
+      <p>4703 RA Roosendaal</p>
+    </div>
+
+    <div class="site-footer__meta">
+      <p>&copy; 2026 Hulpveren.shop</p>
+    </div>
+  </div>
+</footer>
+<script defer src="/assets/js/app.js?v=20260425_1"></script>
+<script src="/assets/js/search-suggest.js?v=20260622-platepreview"></script>
   <script src="/assets/js/plate.js"></script>
   <script>
     (function () {
@@ -434,6 +206,23 @@
           .trim()
           .toUpperCase()
           .replace(/[^A-Z0-9]/g, "");
+
+      const formatPlateDisplay = (value) => {
+        const p = normalizePlate(value);
+        let out = "";
+
+        for (let i = 0; i < p.length; i++) {
+          const current = p.charAt(i);
+          const previous = i > 0 ? p.charAt(i - 1) : "";
+          const currentIsDigit = /[0-9]/.test(current);
+          const previousIsDigit = /[0-9]/.test(previous);
+
+          if (i > 0 && currentIsDigit !== previousIsDigit) out += "-";
+          out += current;
+        }
+
+        return out || String(value || "").toUpperCase();
+      };
 
       const setStatus = (message) => {
         if (!statusEl) return;
@@ -462,6 +251,11 @@
       };
 
       const updateTiles = (context, options = {}) => {
+        if (window.HVKentekenRdwPreviewActive) {
+          if (tilesEl) tilesEl.style.display = "";
+          return;
+        }
+
         const ctx = context || null;
         const vehicle = ctx && ctx.vehicle ? ctx.vehicle : null;
         const plateRaw = ctx && ctx.plate ? ctx.plate : "";
@@ -487,8 +281,8 @@
         const label = [make, model].filter(Boolean).join(" ");
         if (vehicleEl) {
           vehicleEl.textContent = label
-            ? `Gevonden voertuig: ${label} (${plate})`
-            : `Gevonden voertuig: ${plate}`;
+            ? `Gevonden voertuig: ${label} (${formatPlateDisplay(plate)})`
+            : `Gevonden voertuig: ${formatPlateDisplay(plate)}`;
         }
         setStatus("Kies hieronder wat je wilt bekijken.");
         if (tilesEl) tilesEl.style.display = "";
@@ -547,6 +341,455 @@
         boot();
       }
     })();
+  </script>
+
+<script>
+(function () {
+  function normalizePlate(value) {
+    return String(value || "")
+      .trim()
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, "");
+  }
+
+  function formatPlateDisplay(value) {
+    const p = normalizePlate(value);
+    let out = "";
+
+    for (let i = 0; i < p.length; i++) {
+      const current = p.charAt(i);
+      const previous = i > 0 ? p.charAt(i - 1) : "";
+      const currentIsDigit = /[0-9]/.test(current);
+      const previousIsDigit = /[0-9]/.test(previous);
+
+      if (i > 0 && currentIsDigit !== previousIsDigit) out += "-";
+      out += current;
+    }
+
+    return out || String(value || "").toUpperCase();
+  }
+
+  function slugify(value) {
+    return String(value || "")
+      .trim()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/&/g, " and ")
+      .replace(/#/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function getUrlPlate() {
+    const params = new URLSearchParams(location.search || "");
+    const kt = params.get("kt");
+    if (kt) return normalizePlate(kt);
+
+    const match = (location.pathname || "").match(/^\/kenteken\/([^/]+)\/?$/i);
+    return match ? normalizePlate(match[1]) : "";
+  }
+
+  function prettyText(value) {
+    const raw = String(value || "").trim();
+    const normalized = raw.toLowerCase();
+
+    if (!raw) return "";
+    if (
+      normalized === "niet geregistreerd" ||
+      normalized === "niet bekend" ||
+      normalized === "onbekend" ||
+      normalized === "n.v.t." ||
+      normalized === "nvt" ||
+      normalized === "-"
+    ) {
+      return "";
+    }
+
+    return raw
+      .toLowerCase()
+      .replace(/\b[a-z]/g, function (m) { return m.toUpperCase(); });
+  }
+
+  function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value || "";
+  }
+
+  function setTilesVisible(visible) {
+    const el = document.getElementById("kenteken-tiles");
+    if (el) el.style.display = visible ? "" : "none";
+  }
+
+  function setLink(id, type, makeSlug, plate) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const base = makeSlug ? "/" + type + "/" + makeSlug + "/" : "/" + type + "/";
+    const url = new URL(base, location.origin);
+    if (plate) url.searchParams.set("kt", plate);
+    el.href = url.pathname + url.search;
+  }
+
+  function urlWithPlate(path, plate) {
+    const url = new URL(path || "/", location.origin);
+    if (plate) url.searchParams.set("kt", plate);
+    return url.pathname + url.search;
+  }
+
+  function modelSlugVariants(modelSlug) {
+    const base = slugify(modelSlug);
+    if (!base) return [];
+
+    const out = [base];
+    const compact = base.replace(/--+/g, "-");
+    if (compact && !out.includes(compact)) out.push(compact);
+
+    const doubleDash = base.replace(/-+/g, "--");
+    if (doubleDash && !out.includes(doubleDash)) out.push(doubleDash);
+
+    return out;
+  }
+
+  async function routeExists(path) {
+    if (!path || !window.fetch) return false;
+
+    try {
+      const head = await fetch(path, { method: "HEAD", cache: "no-store" });
+      if (head && head.ok) return true;
+      if (head && head.status && head.status !== 405) return false;
+    } catch (err) {}
+
+    try {
+      const get = await fetch(path, { method: "GET", cache: "no-store" });
+      return !!(get && get.ok);
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async function fallbackProductUrl(type, makeSlug, modelSlug, plate) {
+    const cleanMake = slugify(makeSlug);
+    if (!cleanMake) return urlWithPlate("/" + type + "/", plate);
+
+    for (const candidate of modelSlugVariants(modelSlug)) {
+      const modelPath = "/" + type + "/" + cleanMake + "/" + candidate + "/";
+      if (await routeExists(modelPath)) return urlWithPlate(modelPath, plate);
+    }
+
+    const makePath = "/" + type + "/" + cleanMake + "/";
+    if (await routeExists(makePath)) return urlWithPlate(makePath, plate);
+
+    return urlWithPlate("/" + type + "/", plate);
+  }
+
+  function setCardVisible(linkId, visible) {
+    const link = document.getElementById(linkId);
+    const card = link ? link.closest("article.card") : null;
+    if (card) card.style.display = visible ? "" : "none";
+  }
+
+  function vehicleModelTextFromSolutions(data, rdwVehicle) {
+    const v = data && data.vehicle ? data.vehicle : {};
+    const parts = [
+      v.make || (rdwVehicle && rdwVehicle.make),
+      v.model,
+      v.type
+    ].filter(Boolean);
+
+    return parts.join(" ");
+  }
+
+  function solutionUrl(type, data, rdwVehicle, plate) {
+    const solution = data && data.solutions && data.solutions[type] ? data.solutions[type] : null;
+
+    if (solution && solution.url) {
+      return solution.url;
+    }
+
+    const v = data && data.vehicle ? data.vehicle : {};
+    const makeSlug = slugify(v.make || (rdwVehicle && rdwVehicle.make) || "");
+    const modelText = [
+      v.model,
+      v.type,
+      rdwVehicle && rdwVehicle.model,
+      rdwVehicle && rdwVehicle.tradeName
+    ].filter(Boolean).join(" ").toLowerCase();
+
+    let path = "/" + type + "/";
+
+    if (makeSlug === "iveco" && modelText.includes("daily")) {
+      if (type === "hulpveren") {
+        path = "/hulpveren/iveco/daily-l-s/";
+      } else if (type === "luchtvering") {
+        path = "/luchtvering/iveco/daily-c/";
+      }
+    } else if (makeSlug) {
+      path = "/" + type + "/" + makeSlug + "/";
+    }
+
+    const url = new URL(path, location.origin);
+    if (plate) url.searchParams.set("kt", plate);
+    return url.pathname + url.search;
+  }
+
+  function showSolutionCard(id, visible, href) {
+    const link = document.getElementById(id);
+    if (link && href) link.href = href;
+    setCardVisible(id, !!visible);
+  }
+
+  function hasRdwVehicle(vehicle) {
+    if (!vehicle || typeof vehicle !== "object") return false;
+    return !!(vehicle.make || vehicle.merk || vehicle.model || vehicle.tradeName || vehicle.handelsbenaming);
+  }
+
+  function rdwFallbackStatusBase(vehicle) {
+    const details = [
+      prettyText(vehicle && (vehicle.vehicleType || vehicle.voertuigsoort || "")),
+      prettyText(vehicle && (vehicle.bodyType || vehicle.inrichting || "")),
+      vehicle && vehicle.year ? "bouwjaar " + vehicle.year : "",
+      vehicle && vehicle.maxMass ? vehicle.maxMass + " kg max. massa" : ""
+    ].filter(Boolean).join(" • ");
+
+    return details ? details + ". " : "";
+  }
+
+  async function applyRdwFallbackLinks(plate, rdwVehicle) {
+    const vehicle = rdwVehicle || window.HVKentekenRdwVehicle || null;
+    const status = document.getElementById("kenteken-status");
+
+    if (!hasRdwVehicle(vehicle)) {
+      if (status) {
+        status.textContent = "Geen exacte kentekenkoppeling beschikbaar. Kies handmatig een productgroep.";
+      }
+      setLink("kenteken-link-hv", "hulpveren", "", plate);
+      setLink("kenteken-link-nr", "luchtvering", "", plate);
+      setLink("kenteken-link-ls", "verlagingsveren", "", plate);
+      showSolutionCard("kenteken-link-hv", true, "");
+      showSolutionCard("kenteken-link-nr", true, "");
+      showSolutionCard("kenteken-link-ls", true, "");
+      setTilesVisible(true);
+      return;
+    }
+
+    const makeSlug = slugify(vehicle.make || vehicle.merk || "");
+    const modelSlug = slugify(vehicle.model || vehicle.tradeName || vehicle.handelsbenaming || "");
+
+    if (status) {
+      status.textContent =
+        rdwFallbackStatusBase(vehicle) +
+        "Voor dit voertuig is geen exacte kentekenkoppeling beschikbaar. We tonen daarom de beschikbare productgroepen op basis van merk, model en bouwjaar.";
+    }
+
+    showSolutionCard("kenteken-link-hv", true, await fallbackProductUrl("hulpveren", makeSlug, modelSlug, plate));
+    showSolutionCard("kenteken-link-nr", true, await fallbackProductUrl("luchtvering", makeSlug, modelSlug, plate));
+    showSolutionCard("kenteken-link-ls", true, await fallbackProductUrl("verlagingsveren", makeSlug, modelSlug, plate));
+    setTilesVisible(true);
+  }
+
+  function startAldocLinksOnce(plate, vehicle) {
+    if (vehicle) window.HVKentekenRdwVehicle = vehicle;
+    if (window.HVKentekenAldocStarted) return;
+    window.HVKentekenAldocStarted = true;
+    applyAldocLinks(plate, vehicle || null);
+  }
+
+  async function applyAldocLinks(plate, rdwVehicle) {
+    const currentStatus = document.getElementById("kenteken-status");
+    if (currentStatus) {
+      const base = currentStatus.textContent ? currentStatus.textContent.split(" Beschikbare oplossingen")[0].split(" Beschikbaar:")[0] : "";
+      currentStatus.textContent = base + " Beschikbare oplossingen controleren...";
+    }
+
+    showSolutionCard("kenteken-link-hv", false, "");
+    showSolutionCard("kenteken-link-nr", false, "");
+    showSolutionCard("kenteken-link-ls", false, "");
+
+    try {
+      const res = await fetch("/api/plate/solutions/" + encodeURIComponent(plate.toLowerCase()), {
+        headers: { "Accept": "application/json" },
+        cache: "no-store"
+      });
+
+      if (!res.ok) throw new Error("solutions_failed");
+
+      const data = await res.json();
+      const solutions = data && data.solutions ? data.solutions : {};
+
+      const available = [];
+
+      if (solutions.hulpveren && solutions.hulpveren.available) {
+        showSolutionCard("kenteken-link-hv", true, solutionUrl("hulpveren", data, rdwVehicle, plate));
+        available.push("Hulpveren");
+      }
+
+      if (solutions.luchtvering && solutions.luchtvering.available) {
+        showSolutionCard("kenteken-link-nr", true, solutionUrl("luchtvering", data, rdwVehicle, plate));
+        available.push("Luchtvering");
+      }
+
+      if (solutions.verlagingsveren && solutions.verlagingsveren.available) {
+        showSolutionCard("kenteken-link-ls", true, solutionUrl("verlagingsveren", data, rdwVehicle, plate));
+        available.push("Verlagingsveren");
+      }
+
+      window.HVKentekenAldocCompleted = true;
+      window.HVKentekenAldocHadAvailable = available.length > 0;
+
+      if (currentStatus) {
+        const base = currentStatus.textContent ? currentStatus.textContent.split(" Beschikbare oplossingen")[0].split(" Beschikbaar:")[0] : "";
+        if (available.length) {
+          currentStatus.textContent = base + " Beschikbare oplossingen: " + available.join(", ") + ".";
+        }
+      }
+
+      if (!available.length) {
+        await applyRdwFallbackLinks(plate, rdwVehicle || window.HVKentekenRdwVehicle || null);
+      }
+    } catch (err) {
+      window.HVKentekenAldocCompleted = true;
+      window.HVKentekenAldocHadAvailable = false;
+
+      await applyRdwFallbackLinks(plate, rdwVehicle || window.HVKentekenRdwVehicle || null);
+    }
+  }
+
+
+  function renderVehicle(plate, vehicle) {
+    const makeRaw = vehicle.make || vehicle.merk || "";
+    const modelRaw = vehicle.model || vehicle.tradeName || vehicle.handelsbenaming || "";
+    const make = prettyText(makeRaw);
+    const model = prettyText(modelRaw);
+    const title = [make, model].filter(Boolean).join(" ");
+
+    const details = [
+      prettyText(vehicle.vehicleType || vehicle.voertuigsoort || ""),
+      prettyText(vehicle.bodyType || vehicle.inrichting || ""),
+      vehicle.year ? "bouwjaar " + vehicle.year : "",
+      vehicle.maxMass ? vehicle.maxMass + " kg max. massa" : ""
+    ].filter(Boolean).join(" • ");
+
+    window.HVKentekenRdwPreviewActive = true;
+    window.HVKentekenRdwVehicle = vehicle;
+
+    setText("kenteken-vehicle", title ? "Gevonden voertuig: " + title + " (" + formatPlateDisplay(plate) + ")" : "Gevonden kenteken: " + formatPlateDisplay(plate));
+    if (window.HVKentekenAldocCompleted && window.HVKentekenAldocHadAvailable) {
+      setTilesVisible(true);
+      return;
+    }
+
+    setText("kenteken-status", details ? details + ". Kies hieronder wat je wilt bekijken." : "Kies hieronder wat je wilt bekijken.");
+
+    const makeSlug = slugify(makeRaw);
+    setLink("kenteken-link-hv", "hulpveren", makeSlug, plate);
+    setLink("kenteken-link-nr", "luchtvering", makeSlug, plate);
+    setLink("kenteken-link-ls", "verlagingsveren", makeSlug, plate);
+
+    setCardVisible("kenteken-link-hv", false);
+    setCardVisible("kenteken-link-nr", false);
+    setCardVisible("kenteken-link-ls", false);
+
+    setTilesVisible(true);
+    if (window.HVKentekenAldocCompleted && !window.HVKentekenAldocHadAvailable) {
+      applyRdwFallbackLinks(plate, vehicle);
+      return;
+    }
+    startAldocLinksOnce(plate, vehicle);
+  }
+
+  async function initRdwKentekenPage() {
+    const plate = getUrlPlate();
+
+    if (!plate) {
+      setText("kenteken-vehicle", "");
+      setText("kenteken-status", "Voer een kenteken in of kies direct een productgroep.");
+      setTilesVisible(true);
+      return;
+    }
+
+    setText("kenteken-vehicle", "Kenteken: " + formatPlateDisplay(plate));
+    setText("kenteken-status", "Voertuiggegevens en beschikbare oplossingen ophalen...");
+    setTilesVisible(true);
+    startAldocLinksOnce(plate, null);
+
+    try {
+      const res = await fetch("/api/plate/preview/" + encodeURIComponent(plate.toLowerCase()), {
+        headers: { "Accept": "application/json" },
+        cache: "no-store"
+      });
+
+      if (!res.ok) throw new Error("not_found");
+
+      const data = await res.json();
+      if (!data || !data.ok || !data.vehicle) throw new Error("invalid_response");
+
+      try {
+        sessionStorage.setItem("hv_plate_context", JSON.stringify({
+          plate: plate,
+          vehicle: data.vehicle,
+          source: "rdw_preview",
+          updatedAt: Date.now()
+        }));
+      } catch (err) {}
+
+      renderVehicle(plate, data.vehicle);
+    } catch (err) {
+      setText("kenteken-vehicle", "Kenteken: " + formatPlateDisplay(plate));
+      setText("kenteken-status", "Kenteken niet gevonden. Controleer het kenteken of vraag advies aan.");
+      window.HVKentekenRdwPreviewActive = true;
+      setTilesVisible(true);
+
+      setLink("kenteken-link-hv", "hulpveren", "", plate);
+      setLink("kenteken-link-nr", "luchtvering", "", plate);
+      setLink("kenteken-link-ls", "verlagingsveren", "", plate);
+      showSolutionCard("kenteken-link-hv", true, "");
+      showSolutionCard("kenteken-link-nr", true, "");
+      showSolutionCard("kenteken-link-ls", true, "");
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initRdwKentekenPage);
+  } else {
+    initRdwKentekenPage();
+  }
+
+  window.HVKentekenRdwPreview = {
+    applyAldocLinks,
+    applyRdwFallbackLinks,
+    fallbackProductUrl,
+    renderVehicle
+  };
+})();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropdowns = Array.from(document.querySelectorAll('.site-nav__dropdown'));
+
+      function closeAll(except) {
+        dropdowns.forEach(function (dropdown) {
+          if (dropdown !== except) dropdown.open = false;
+        });
+      }
+
+      dropdowns.forEach(function (dropdown) {
+        dropdown.addEventListener('toggle', function () {
+          if (!dropdown.open) return;
+          closeAll(dropdown);
+        });
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.target.closest('.site-nav__dropdown')) return;
+        closeAll(null);
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeAll(null);
+      });
+    });
   </script>
 </body>
 </html>
