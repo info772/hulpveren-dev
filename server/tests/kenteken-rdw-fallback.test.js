@@ -14,7 +14,36 @@ function extractRdwPreviewScript() {
   return match[1];
 }
 
-function createHarness({ existingRoutes = [], solutionsResponse, solutionsOk = true } = {}) {
+const movanoFitments = {
+  kits: [
+    {
+      fitments: [
+        {
+          platform_codes: ["A (X70)"],
+          year_from: "07-1998",
+          year_to: "05-2010",
+        },
+        {
+          platform_codes: ["B (X62)"],
+          year_from: "05-2010",
+          year_to: "07-2021",
+        },
+        {
+          platform_codes: ["C (U9)"],
+          year_from: "07-2021",
+          year_to: "",
+        },
+      ],
+    },
+  ],
+};
+
+function createHarness({
+  existingRoutes = [],
+  fitmentResponses = {},
+  solutionsResponse,
+  solutionsOk = true,
+} = {}) {
   const elements = new Map();
   const cards = new Map();
   const element = (id) => {
@@ -52,6 +81,13 @@ function createHarness({ existingRoutes = [], solutionsResponse, solutionsOk = t
           ok: solutionsOk,
           status: solutionsOk ? 200 : 500,
           json: async () => solutionsResponse || { solutions: {} },
+        };
+      }
+      if (Object.prototype.hasOwnProperty.call(fitmentResponses, key)) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => fitmentResponses[key],
         };
       }
       return {
@@ -127,13 +163,17 @@ test("current kenteken flow preserves Aldoc success when RDW preview finishes la
   assert.match(elements.get("kenteken-vehicle").textContent, /Opel Movano/);
 });
 
-test("current kenteken flow maps RDW Opel Movano plus empty Aldoc to model route with kt", async () => {
+test("current kenteken flow uses unique Movano generation only when the product route exists", async () => {
   const { cards, elements, sandbox } = createHarness({
     existingRoutes: [
       "/hulpveren/opel/movano/",
+      "/hulpveren/opel/movano/movano-b/",
       "/luchtvering/opel/movano/",
       "/verlagingsveren/opel/",
     ],
+    fitmentResponses: {
+      "/data/fitments/opel/movano.json": movanoFitments,
+    },
     solutionsResponse: { solutions: {} },
   });
 
@@ -146,10 +186,99 @@ test("current kenteken flow maps RDW Opel Movano plus empty Aldoc to model route
   assert.equal(cards.get("kenteken-link-hv").style.display, "");
   assert.equal(cards.get("kenteken-link-nr").style.display, "");
   assert.equal(cards.get("kenteken-link-ls").style.display, "");
-  assert.equal(elements.get("kenteken-link-hv").href, "/hulpveren/opel/movano/?kt=S153XL");
+  assert.equal(elements.get("kenteken-link-hv").href, "/hulpveren/opel/movano/movano-b/?kt=S153XL");
   assert.equal(elements.get("kenteken-link-nr").href, "/luchtvering/opel/movano/?kt=S153XL");
   assert.equal(elements.get("kenteken-link-ls").href, "/verlagingsveren/opel/?kt=S153XL");
   assert.match(elements.get("kenteken-status").textContent, /geen exacte kentekenkoppeling beschikbaar/);
+});
+
+async function renderMovanoFallbackForYear(year) {
+  const { elements, sandbox } = createHarness({
+    existingRoutes: ["/hulpveren/opel/movano/", "/hulpveren/opel/movano/movano-b/"],
+    fitmentResponses: {
+      "/data/fitments/opel/movano.json": movanoFitments,
+    },
+    solutionsResponse: { solutions: {} },
+  });
+
+  await sandbox.HVKentekenRdwPreview.applyAldocLinks("S153XL", {
+    make: "Opel",
+    model: "Movano",
+    year,
+  });
+
+  return elements.get("kenteken-link-hv").href;
+}
+
+test("current kenteken flow auto-selects unique Movano generation for RDW year 2012", async () => {
+  assert.equal(
+    await renderMovanoFallbackForYear(2012),
+    "/hulpveren/opel/movano/movano-b/?kt=S153XL"
+  );
+});
+
+test("current kenteken flow keeps model route when unique generation route does not exist", async () => {
+  const { elements, sandbox } = createHarness({
+    existingRoutes: ["/hulpveren/opel/movano/"],
+    fitmentResponses: {
+      "/data/fitments/opel/movano.json": movanoFitments,
+    },
+    solutionsResponse: { solutions: {} },
+  });
+
+  await sandbox.HVKentekenRdwPreview.applyAldocLinks("S153XL", {
+    make: "Opel",
+    model: "Movano",
+    year: 2012,
+  });
+
+  assert.equal(elements.get("kenteken-link-hv").href, "/hulpveren/opel/movano/?kt=S153XL");
+});
+
+test("current kenteken flow does not auto-select Movano generation for overlapping RDW year 2010", async () => {
+  assert.equal(
+    await renderMovanoFallbackForYear(2010),
+    "/hulpveren/opel/movano/?kt=S153XL"
+  );
+});
+
+test("current kenteken flow does not auto-select Movano generation for overlapping RDW year 2021", async () => {
+  assert.equal(
+    await renderMovanoFallbackForYear(2021),
+    "/hulpveren/opel/movano/?kt=S153XL"
+  );
+});
+
+test("current kenteken flow does not auto-select generation when RDW year is outside all ranges", async () => {
+  assert.equal(
+    await renderMovanoFallbackForYear(1990),
+    "/hulpveren/opel/movano/?kt=S153XL"
+  );
+});
+
+test("current kenteken flow does not auto-select generation when RDW year is missing", async () => {
+  assert.equal(
+    await renderMovanoFallbackForYear(undefined),
+    "/hulpveren/opel/movano/?kt=S153XL"
+  );
+});
+
+test("current kenteken flow ignores yearMin for automatic generation selection", async () => {
+  const { elements, sandbox } = createHarness({
+    existingRoutes: ["/hulpveren/opel/movano/", "/hulpveren/opel/movano/movano-b/"],
+    fitmentResponses: {
+      "/data/fitments/opel/movano.json": movanoFitments,
+    },
+    solutionsResponse: { solutions: {} },
+  });
+
+  await sandbox.HVKentekenRdwPreview.applyAldocLinks("S153XL", {
+    make: "Opel",
+    model: "Movano",
+    yearMin: 2012,
+  });
+
+  assert.equal(elements.get("kenteken-link-hv").href, "/hulpveren/opel/movano/?kt=S153XL");
 });
 
 test("current kenteken flow safely falls back to make route when RDW model route is unknown", async () => {

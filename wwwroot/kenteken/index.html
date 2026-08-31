@@ -468,13 +468,101 @@
     }
   }
 
-  async function fallbackProductUrl(type, makeSlug, modelSlug, plate) {
+  function yearFromValue(value) {
+    const match = String(value || "").match(/\b(19\d{2}|20\d{2})\b/);
+    if (!match) return null;
+    const year = Number.parseInt(match[1], 10);
+    return Number.isFinite(year) ? year : null;
+  }
+
+  function vehicleYear(vehicle) {
+    if (!vehicle) return null;
+    return (
+      yearFromValue(vehicle.year) ||
+      yearFromValue(vehicle.firstRegistrationDate) ||
+      yearFromValue(vehicle.datum_eerste_toelating) ||
+      yearFromValue(vehicle.registrationDate)
+    );
+  }
+
+  function generationSlug(modelSlug, label) {
+    const cleanModel = slugify(modelSlug);
+    const suffix = slugify(String(label || "").replace(/\([^)]*\)/g, " "));
+    if (!cleanModel || !suffix) return "";
+    return cleanModel + "-" + suffix;
+  }
+
+  async function fetchFitmentGenerations(makeSlug, modelSlug) {
+    if (!makeSlug || !modelSlug || !window.fetch) return [];
+
+    try {
+      const res = await fetch("/data/fitments/" + makeSlug + "/" + modelSlug + ".json", {
+        cache: "force-cache"
+      });
+      if (!res || !res.ok) return [];
+
+      const data = await res.json();
+      const generations = new Map();
+      const currentYear = new Date().getFullYear();
+
+      (data && data.kits ? data.kits : []).forEach(function (kit) {
+        (kit && kit.fitments ? kit.fitments : []).forEach(function (fitment) {
+          const codes = Array.isArray(fitment.platform_codes) ? fitment.platform_codes : [];
+          const from = yearFromValue(fitment.year_from);
+          const to = yearFromValue(fitment.year_to) || currentYear;
+          if (!from || !to) return;
+
+          codes.forEach(function (code) {
+            const label = prettyText(code);
+            const slug = generationSlug(modelSlug, label);
+            if (!slug || !label) return;
+            const existing = generations.get(slug);
+            generations.set(slug, {
+              slug,
+              label,
+              ranges: [
+                ...(existing && existing.ranges ? existing.ranges : []),
+                { from, to }
+              ]
+            });
+          });
+        });
+      });
+
+      return Array.from(generations.values());
+    } catch (err) {
+      return [];
+    }
+  }
+
+  async function uniqueGenerationSlugForYear(makeSlug, modelSlug, year) {
+    const targetYear = Number.parseInt(year, 10);
+    if (!Number.isFinite(targetYear)) return "";
+
+    const generations = await fetchFitmentGenerations(makeSlug, modelSlug);
+    const matches = generations.filter(function (generation) {
+      return (generation.ranges || []).some(function (range) {
+        return targetYear >= range.from && targetYear <= range.to;
+      });
+    });
+
+    return matches.length === 1 ? matches[0].slug : "";
+  }
+
+  async function fallbackProductUrl(type, makeSlug, modelSlug, plate, year) {
     const cleanMake = slugify(makeSlug);
     if (!cleanMake) return urlWithPlate("/" + type + "/", plate);
 
     for (const candidate of modelSlugVariants(modelSlug)) {
       const modelPath = "/" + type + "/" + cleanMake + "/" + candidate + "/";
-      if (await routeExists(modelPath)) return urlWithPlate(modelPath, plate);
+      if (await routeExists(modelPath)) {
+        const generation = await uniqueGenerationSlugForYear(cleanMake, candidate, year);
+        const generationPath = modelPath + generation + "/";
+        if (generation && await routeExists(generationPath)) {
+          return urlWithPlate(generationPath, plate);
+        }
+        return urlWithPlate(modelPath, plate);
+      }
     }
 
     const makePath = "/" + type + "/" + cleanMake + "/";
@@ -575,6 +663,7 @@
 
     const makeSlug = slugify(vehicle.make || vehicle.merk || "");
     const modelSlug = slugify(vehicle.model || vehicle.tradeName || vehicle.handelsbenaming || "");
+    const year = vehicleYear(vehicle);
 
     if (status) {
       status.textContent =
@@ -582,9 +671,9 @@
         "Voor dit voertuig is geen exacte kentekenkoppeling beschikbaar. We tonen daarom de beschikbare productgroepen op basis van merk, model en bouwjaar.";
     }
 
-    showSolutionCard("kenteken-link-hv", true, await fallbackProductUrl("hulpveren", makeSlug, modelSlug, plate));
-    showSolutionCard("kenteken-link-nr", true, await fallbackProductUrl("luchtvering", makeSlug, modelSlug, plate));
-    showSolutionCard("kenteken-link-ls", true, await fallbackProductUrl("verlagingsveren", makeSlug, modelSlug, plate));
+    showSolutionCard("kenteken-link-hv", true, await fallbackProductUrl("hulpveren", makeSlug, modelSlug, plate, year));
+    showSolutionCard("kenteken-link-nr", true, await fallbackProductUrl("luchtvering", makeSlug, modelSlug, plate, year));
+    showSolutionCard("kenteken-link-ls", true, await fallbackProductUrl("verlagingsveren", makeSlug, modelSlug, plate, year));
     setTilesVisible(true);
   }
 
