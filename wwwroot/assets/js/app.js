@@ -459,6 +459,20 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       document.head.appendChild(script);
     });
 
+  let recentVehiclesLoadPromise = null;
+  const ensureRecentVehicles = () => {
+    if (window.HVRecentVehicles) return Promise.resolve(window.HVRecentVehicles);
+    if (!recentVehiclesLoadPromise) {
+      recentVehiclesLoadPromise = loadScriptOnce(
+        "/assets/js/recentVehicles.js?v=20260831-1",
+        "HVRecentVehicles"
+      )
+        .then(() => window.HVRecentVehicles || null)
+        .catch(() => null);
+    }
+    return recentVehiclesLoadPromise;
+  };
+
   const initSiteData = async () => {
     try {
       await loadScriptOnce("/assets/js/apiClient.js", "HVApiClient");
@@ -5637,6 +5651,31 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return best || targetSlug;
   }
 
+  function rememberManualModelVisit(makeLabel, modelLabel) {
+    try {
+      const route = parseRoute(location.pathname, BASE);
+      if (!route || route.kind !== "model") return;
+      if (hasPlateToken(location.pathname, BASE)) return;
+
+      const activeCtx = getActivePlateContext() || getPlateContext();
+      if (activeCtx && activeCtx.plate) return;
+      if (!window.localStorage) return;
+
+      ensureRecentVehicles().then((recent) => {
+        if (!recent || typeof recent.add !== "function") return;
+        try {
+          recent.add(window.localStorage, {
+            plate: "",
+            make: makeLabel,
+            model: modelLabel,
+            year: null,
+            route: normalizePath(location.pathname),
+          });
+        } catch (err) {}
+      });
+    } catch (err) {}
+  }
+
   function renderModel(kits, makes, makeSlug, modelSlug) {
     if (!hasApp || !app) return;
     suppressHomeSectionsForApp();
@@ -5700,6 +5739,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       initVehicleDetailsToggle(app);
       return;
     }
+
+    rememberManualModelVisit(makeLabel, modelLabel);
 
     const { min: yearMin, max: yearMax } = getYearRange(allPairs);
     const showFilters = allPairs.length > 2;

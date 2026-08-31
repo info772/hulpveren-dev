@@ -96,6 +96,17 @@
         <p id="kenteken-status" class="muted"></p>
       </div>
 
+      <div id="kenteken-recent" class="card kenteken-recent" hidden>
+        <div class="body">
+          <div class="kenteken-recent__header">
+            <h2>Recent gezocht</h2>
+            <button id="kenteken-recent-clear" class="btn btn-ghost" type="button">Wis recente voertuigen</button>
+          </div>
+          <p class="muted">Gegevens blijven alleen in deze browser.</p>
+          <div id="kenteken-recent-list" class="kenteken-recent__list"></div>
+        </div>
+      </div>
+
       <div id="kenteken-tiles" class="grid cards-3" style="display: none;">
         <article class="card product">
           <div class="body">
@@ -127,6 +138,17 @@
             </div>
           </div>
         </article>
+      </div>
+
+      <div id="kenteken-manual-fallback" class="card kenteken-manual-fallback" hidden>
+        <div class="body">
+          <h2>Geen passende productgroep gevonden</h2>
+          <p>We kunnen dit voertuig niet automatisch koppelen. Zoek handmatig verder of neem contact op voor advies.</p>
+          <div class="cta-row">
+            <a class="btn" href="/kenteken/">Kenteken zoeken</a>
+            <a class="btn btn-ghost" href="/contact/">Contact</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -180,6 +202,7 @@
 </footer>
 <script defer src="/assets/js/app.js?v=20260425_1"></script>
 <script src="/assets/js/search-suggest.js?v=20260622-platepreview"></script>
+  <script src="/assets/js/recentVehicles.js?v=20260831-1"></script>
   <script src="/assets/js/plate.js"></script>
   <script>
     (function () {
@@ -421,6 +444,11 @@
     if (el) el.style.display = visible ? "" : "none";
   }
 
+  function setManualFallbackVisible(visible) {
+    const el = document.getElementById("kenteken-manual-fallback");
+    if (el) el.hidden = !visible;
+  }
+
   function setLink(id, type, makeSlug, plate) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -435,6 +463,14 @@
     const url = new URL(path || "/", location.origin);
     if (plate) url.searchParams.set("kt", plate);
     return url.pathname + url.search;
+  }
+
+  function routeWithoutQuery(path) {
+    try {
+      return new URL(path || "/", location.origin).pathname;
+    } catch (err) {
+      return String(path || "").split("?")[0].split("#")[0];
+    }
   }
 
   function modelSlugVariants(modelSlug) {
@@ -549,9 +585,12 @@
     return matches.length === 1 ? matches[0].slug : "";
   }
 
-  async function fallbackProductUrl(type, makeSlug, modelSlug, plate, year) {
+  async function fallbackProductResult(type, makeSlug, modelSlug, plate, year, options) {
+    const allowMakeFallback = !!(options && options.allowMakeFallback);
     const cleanMake = slugify(makeSlug);
-    if (!cleanMake) return urlWithPlate("/" + type + "/", plate);
+    if (!cleanMake) {
+      return { visible: true, href: urlWithPlate("/" + type + "/", plate), modelMatched: false };
+    }
 
     for (const candidate of modelSlugVariants(modelSlug)) {
       const modelPath = "/" + type + "/" + cleanMake + "/" + candidate + "/";
@@ -559,16 +598,22 @@
         const generation = await uniqueGenerationSlugForYear(cleanMake, candidate, year);
         const generationPath = modelPath + generation + "/";
         if (generation && await routeExists(generationPath)) {
-          return urlWithPlate(generationPath, plate);
+          return { visible: true, href: urlWithPlate(generationPath, plate), modelMatched: true };
         }
-        return urlWithPlate(modelPath, plate);
+        return { visible: true, href: urlWithPlate(modelPath, plate), modelMatched: true };
       }
     }
 
-    const makePath = "/" + type + "/" + cleanMake + "/";
-    if (await routeExists(makePath)) return urlWithPlate(makePath, plate);
+    if (!allowMakeFallback) {
+      return { visible: false, href: "", modelMatched: false };
+    }
 
-    return urlWithPlate("/" + type + "/", plate);
+    const makePath = "/" + type + "/" + cleanMake + "/";
+    if (await routeExists(makePath)) {
+      return { visible: true, href: urlWithPlate(makePath, plate), modelMatched: false };
+    }
+
+    return { visible: false, href: "", modelMatched: false };
   }
 
   function setCardVisible(linkId, visible) {
@@ -627,6 +672,73 @@
     setCardVisible(id, !!visible);
   }
 
+  function visibleFallbacks(results) {
+    return results.filter(function (result) {
+      return result && result.visible && result.href;
+    });
+  }
+
+  function rememberRecentVehicle(plate, vehicle, href) {
+    if (!window.HVRecentVehicles || !window.localStorage || !vehicle || !href) return;
+    try {
+      window.HVRecentVehicles.add(window.localStorage, {
+        plate: plate,
+        make: prettyText(vehicle.make || vehicle.merk || ""),
+        model: prettyText(vehicle.model || vehicle.tradeName || vehicle.handelsbenaming || ""),
+        year: vehicleYear(vehicle),
+        route: routeWithoutQuery(href),
+      });
+      renderRecentVehicles();
+    } catch (err) {}
+  }
+
+  function recentVehicleHref(item) {
+    const route = item && item.route ? item.route : "/kenteken/";
+    if (item && item.plate) return urlWithPlate(route, item.plate);
+    return route;
+  }
+
+  function recentVehicleLabel(item) {
+    const vehicle = [item.make, item.model].filter(Boolean).join(" ");
+    return [
+      item.plate ? formatPlateDisplay(item.plate) : "",
+      vehicle,
+      item.year || ""
+    ].filter(Boolean).join(" - ");
+  }
+
+  function renderRecentVehicles() {
+    const box = document.getElementById("kenteken-recent");
+    const list = document.getElementById("kenteken-recent-list");
+    const clear = document.getElementById("kenteken-recent-clear");
+    if (!box || !list || !window.HVRecentVehicles || !window.localStorage) return;
+
+    let items = [];
+    try {
+      items = window.HVRecentVehicles.read(window.localStorage);
+    } catch (err) {
+      items = [];
+    }
+
+    box.hidden = items.length === 0;
+    list.innerHTML = "";
+    items.forEach(function (item) {
+      const link = document.createElement("a");
+      link.className = "kenteken-recent__item";
+      link.href = recentVehicleHref(item);
+      link.textContent = recentVehicleLabel(item);
+      list.appendChild(link);
+    });
+
+    if (clear && !clear.dataset.boundRecentVehicles) {
+      clear.dataset.boundRecentVehicles = "1";
+      clear.addEventListener("click", function () {
+        window.HVRecentVehicles.clear(window.localStorage);
+        renderRecentVehicles();
+      });
+    }
+  }
+
   function hasRdwVehicle(vehicle) {
     if (!vehicle || typeof vehicle !== "object") return false;
     return !!(vehicle.make || vehicle.merk || vehicle.model || vehicle.tradeName || vehicle.handelsbenaming);
@@ -646,6 +758,7 @@
   async function applyRdwFallbackLinks(plate, rdwVehicle) {
     const vehicle = rdwVehicle || window.HVKentekenRdwVehicle || null;
     const status = document.getElementById("kenteken-status");
+    setManualFallbackVisible(false);
 
     if (!hasRdwVehicle(vehicle)) {
       if (status) {
@@ -671,10 +784,53 @@
         "Voor dit voertuig is geen exacte kentekenkoppeling beschikbaar. We tonen daarom de beschikbare productgroepen op basis van merk, model en bouwjaar.";
     }
 
-    showSolutionCard("kenteken-link-hv", true, await fallbackProductUrl("hulpveren", makeSlug, modelSlug, plate, year));
-    showSolutionCard("kenteken-link-nr", true, await fallbackProductUrl("luchtvering", makeSlug, modelSlug, plate, year));
-    showSolutionCard("kenteken-link-ls", true, await fallbackProductUrl("verlagingsveren", makeSlug, modelSlug, plate, year));
+    const products = [
+      { id: "kenteken-link-hv", type: "hulpveren" },
+      { id: "kenteken-link-nr", type: "luchtvering" },
+      { id: "kenteken-link-ls", type: "verlagingsveren" }
+    ];
+    let fallbacks = [];
+
+    if (modelSlug) {
+      fallbacks = await Promise.all(products.map(async function (product) {
+        return Object.assign(
+          { id: product.id },
+          await fallbackProductResult(product.type, makeSlug, modelSlug, plate, year, { allowMakeFallback: false })
+        );
+      }));
+    }
+
+    if (!modelSlug || !fallbacks.some(function (result) { return result.modelMatched; })) {
+      fallbacks = await Promise.all(products.map(async function (product) {
+        return Object.assign(
+          { id: product.id },
+          await fallbackProductResult(product.type, makeSlug, modelSlug, plate, year, { allowMakeFallback: true })
+        );
+      }));
+    }
+
+    products.forEach(function (product) {
+      const result = fallbacks.find(function (item) { return item.id === product.id; });
+      showSolutionCard(product.id, !!(result && result.visible), result && result.href);
+    });
+
+    const availableFallbacks = visibleFallbacks(fallbacks);
+    if (availableFallbacks.length) {
+      rememberRecentVehicle(plate, vehicle, availableFallbacks[0].href);
+    } else if (status) {
+      status.textContent =
+        rdwFallbackStatusBase(vehicle) +
+        "We kunnen dit voertuig niet automatisch koppelen. Zoek handmatig verder of neem contact op voor advies.";
+      setManualFallbackVisible(true);
+    }
     setTilesVisible(true);
+  }
+
+  async function fallbackProductUrl(type, makeSlug, modelSlug, plate, year) {
+    const result = await fallbackProductResult(type, makeSlug, modelSlug, plate, year, {
+      allowMakeFallback: true
+    });
+    return result && result.href ? result.href : "";
   }
 
   function startAldocLinksOnce(plate, vehicle) {
@@ -709,17 +865,23 @@
       const available = [];
 
       if (solutions.hulpveren && solutions.hulpveren.available) {
-        showSolutionCard("kenteken-link-hv", true, solutionUrl("hulpveren", data, rdwVehicle, plate));
+        const href = solutionUrl("hulpveren", data, rdwVehicle, plate);
+        showSolutionCard("kenteken-link-hv", true, href);
+        rememberRecentVehicle(plate, data.vehicle || rdwVehicle, href);
         available.push("Hulpveren");
       }
 
       if (solutions.luchtvering && solutions.luchtvering.available) {
-        showSolutionCard("kenteken-link-nr", true, solutionUrl("luchtvering", data, rdwVehicle, plate));
+        const href = solutionUrl("luchtvering", data, rdwVehicle, plate);
+        showSolutionCard("kenteken-link-nr", true, href);
+        if (!available.length) rememberRecentVehicle(plate, data.vehicle || rdwVehicle, href);
         available.push("Luchtvering");
       }
 
       if (solutions.verlagingsveren && solutions.verlagingsveren.available) {
-        showSolutionCard("kenteken-link-ls", true, solutionUrl("verlagingsveren", data, rdwVehicle, plate));
+        const href = solutionUrl("verlagingsveren", data, rdwVehicle, plate);
+        showSolutionCard("kenteken-link-ls", true, href);
+        if (!available.length) rememberRecentVehicle(plate, data.vehicle || rdwVehicle, href);
         available.push("Verlagingsveren");
       }
 
@@ -788,6 +950,7 @@
   }
 
   async function initRdwKentekenPage() {
+    renderRecentVehicles();
     const plate = getUrlPlate();
 
     if (!plate) {

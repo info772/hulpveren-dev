@@ -164,7 +164,7 @@ test("current kenteken flow preserves Aldoc success when RDW preview finishes la
 });
 
 test("current kenteken flow uses unique Movano generation only when the product route exists", async () => {
-  const { cards, elements, sandbox } = createHarness({
+  const { cards, elements, fetchCalls, sandbox } = createHarness({
     existingRoutes: [
       "/hulpveren/opel/movano/",
       "/hulpveren/opel/movano/movano-b/",
@@ -185,10 +185,14 @@ test("current kenteken flow uses unique Movano generation only when the product 
 
   assert.equal(cards.get("kenteken-link-hv").style.display, "");
   assert.equal(cards.get("kenteken-link-nr").style.display, "");
-  assert.equal(cards.get("kenteken-link-ls").style.display, "");
+  assert.equal(cards.get("kenteken-link-ls").style.display, "none");
   assert.equal(elements.get("kenteken-link-hv").href, "/hulpveren/opel/movano/movano-b/?kt=S153XL");
   assert.equal(elements.get("kenteken-link-nr").href, "/luchtvering/opel/movano/?kt=S153XL");
-  assert.equal(elements.get("kenteken-link-ls").href, "/verlagingsveren/opel/?kt=S153XL");
+  assert.notEqual(elements.get("kenteken-link-ls").href, "/verlagingsveren/opel/?kt=S153XL");
+  assert.equal(
+    fetchCalls.some((call) => call.url === "/verlagingsveren/opel/" && call.method === "HEAD"),
+    false
+  );
   assert.match(elements.get("kenteken-status").textContent, /geen exacte kentekenkoppeling beschikbaar/);
 });
 
@@ -298,6 +302,24 @@ test("current kenteken flow safely falls back to make route when RDW model route
   assert.equal(elements.get("kenteken-link-ls").href, "/verlagingsveren/opel/?kt=S153XL");
 });
 
+test("current kenteken flow shows manual fallback when no product group route is available", async () => {
+  const { cards, elements, sandbox } = createHarness({
+    solutionsResponse: { solutions: {} },
+  });
+
+  await sandbox.HVKentekenRdwPreview.applyAldocLinks("S153XL", {
+    make: "Opel",
+    model: "Movano",
+    year: 2020,
+  });
+
+  assert.equal(cards.get("kenteken-link-hv").style.display, "none");
+  assert.equal(cards.get("kenteken-link-nr").style.display, "none");
+  assert.equal(cards.get("kenteken-link-ls").style.display, "none");
+  assert.equal(elements.get("kenteken-manual-fallback").hidden, false);
+  assert.match(elements.get("kenteken-status").textContent, /niet automatisch koppelen/);
+});
+
 test("current kenteken renderVehicle uses RDW fallback when solutions endpoint fails", async () => {
   const { cards, elements, sandbox } = createHarness({
     existingRoutes: ["/hulpveren/opel/movano/", "/luchtvering/opel/movano/"],
@@ -315,7 +337,7 @@ test("current kenteken renderVehicle uses RDW fallback when solutions endpoint f
 
   assert.equal(cards.get("kenteken-link-hv").style.display, "");
   assert.equal(cards.get("kenteken-link-nr").style.display, "");
-  assert.equal(cards.get("kenteken-link-ls").style.display, "");
+  assert.equal(cards.get("kenteken-link-ls").style.display, "none");
   assert.equal(elements.get("kenteken-link-hv").href, "/hulpveren/opel/movano/?kt=S153XL");
   assert.match(elements.get("kenteken-status").textContent, /geen exacte kentekenkoppeling beschikbaar/);
 });
