@@ -96,17 +96,6 @@
         <p id="kenteken-status" class="muted"></p>
       </div>
 
-      <div id="kenteken-recent" class="card kenteken-recent" hidden>
-        <div class="body">
-          <div class="kenteken-recent__header">
-            <h2>Recent gezocht</h2>
-            <button id="kenteken-recent-clear" class="btn btn-ghost" type="button">Wis recente voertuigen</button>
-          </div>
-          <p class="muted">Gegevens blijven alleen in deze browser.</p>
-          <div id="kenteken-recent-list" class="kenteken-recent__list"></div>
-        </div>
-      </div>
-
       <div id="kenteken-tiles" class="grid cards-3" style="display: none;">
         <article class="card product">
           <div class="body">
@@ -446,7 +435,10 @@
 
   function setManualFallbackVisible(visible) {
     const el = document.getElementById("kenteken-manual-fallback");
-    if (el) el.hidden = !visible;
+    if (!el) return;
+    el.hidden = !visible;
+    el.style.display = visible ? "" : "none";
+    el.classList.toggle("is-visible", !!visible);
   }
 
   function setLink(id, type, makeSlug, plate) {
@@ -688,55 +680,7 @@
         year: vehicleYear(vehicle),
         route: routeWithoutQuery(href),
       });
-      renderRecentVehicles();
     } catch (err) {}
-  }
-
-  function recentVehicleHref(item) {
-    const route = item && item.route ? item.route : "/kenteken/";
-    if (item && item.plate) return urlWithPlate(route, item.plate);
-    return route;
-  }
-
-  function recentVehicleLabel(item) {
-    const vehicle = [item.make, item.model].filter(Boolean).join(" ");
-    return [
-      item.plate ? formatPlateDisplay(item.plate) : "",
-      vehicle,
-      item.year || ""
-    ].filter(Boolean).join(" - ");
-  }
-
-  function renderRecentVehicles() {
-    const box = document.getElementById("kenteken-recent");
-    const list = document.getElementById("kenteken-recent-list");
-    const clear = document.getElementById("kenteken-recent-clear");
-    if (!box || !list || !window.HVRecentVehicles || !window.localStorage) return;
-
-    let items = [];
-    try {
-      items = window.HVRecentVehicles.read(window.localStorage);
-    } catch (err) {
-      items = [];
-    }
-
-    box.hidden = items.length === 0;
-    list.innerHTML = "";
-    items.forEach(function (item) {
-      const link = document.createElement("a");
-      link.className = "kenteken-recent__item";
-      link.href = recentVehicleHref(item);
-      link.textContent = recentVehicleLabel(item);
-      list.appendChild(link);
-    });
-
-    if (clear && !clear.dataset.boundRecentVehicles) {
-      clear.dataset.boundRecentVehicles = "1";
-      clear.addEventListener("click", function () {
-        window.HVRecentVehicles.clear(window.localStorage);
-        renderRecentVehicles();
-      });
-    }
   }
 
   function hasRdwVehicle(vehicle) {
@@ -950,7 +894,6 @@
   }
 
   async function initRdwKentekenPage() {
-    renderRecentVehicles();
     const plate = getUrlPlate();
 
     if (!plate) {

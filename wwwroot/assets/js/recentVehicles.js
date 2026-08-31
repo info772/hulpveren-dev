@@ -107,13 +107,24 @@
     const updatedAt = timestamp || now();
     const normalized = normalizeItem(Object.assign({}, item, { updatedAt }), updatedAt);
     if (!normalized) return read(storage, updatedAt);
-    return write(storage, [normalized].concat(read(storage, updatedAt)), updatedAt);
+    const items = write(storage, [normalized].concat(read(storage, updatedAt)), updatedAt);
+    notifyChanged();
+    return items;
   }
 
   function clear(storage) {
     if (!storage || typeof storage.removeItem !== "function") return;
     try {
       storage.removeItem(STORAGE_KEY);
+    } catch (err) {}
+    notifyChanged();
+  }
+
+  function notifyChanged() {
+    try {
+      if (typeof window !== "undefined" && typeof window.dispatchEvent === "function") {
+        window.dispatchEvent(new CustomEvent("hv:recentVehiclesChanged"));
+      }
     } catch (err) {}
   }
 

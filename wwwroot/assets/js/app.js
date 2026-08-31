@@ -473,6 +473,158 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return recentVehiclesLoadPromise;
   };
 
+  function formatRecentVehiclePlate(value) {
+    const plate = normalizePlateInput(value);
+    let out = "";
+    for (let i = 0; i < plate.length; i += 1) {
+      const current = plate.charAt(i);
+      const previous = i > 0 ? plate.charAt(i - 1) : "";
+      const currentIsDigit = /[0-9]/.test(current);
+      const previousIsDigit = /[0-9]/.test(previous);
+      if (i > 0 && currentIsDigit !== previousIsDigit) out += "-";
+      out += current;
+    }
+    return out;
+  }
+
+  function recentVehicleHref(item) {
+    const route = item && item.route ? item.route : "/kenteken/";
+    try {
+      const url = new URL(route, window.location.origin);
+      if (item && item.plate) url.searchParams.set("kt", item.plate);
+      return url.pathname + url.search;
+    } catch (err) {
+      return route;
+    }
+  }
+
+  function recentVehicleLabel(item) {
+    const vehicle = [item && item.make, item && item.model].filter(Boolean).join(" ");
+    return [
+      item && item.plate ? formatRecentVehiclePlate(item.plate) : "",
+      vehicle,
+      item && item.year ? item.year : ""
+    ].filter(Boolean).join(" · ");
+  }
+
+  function recentVehiclesStorage() {
+    try {
+      return window.localStorage || null;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function ensureRecentVehiclesHeaderStyles() {
+    if (document.getElementById("hv-recent-vehicles-style")) return;
+    const style = document.createElement("style");
+    style.id = "hv-recent-vehicles-style";
+    style.textContent = `
+      .hv-recent-vehicles{position:relative}
+      .hv-recent-vehicles__button{background:transparent;border:1px solid rgba(255,255,255,.28);border-radius:8px;color:#eef6ff;cursor:pointer;font:inherit;font-weight:700;padding:.58rem .8rem;white-space:nowrap}
+      .hv-recent-vehicles__button:hover,.hv-recent-vehicles__button:focus{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.52);color:#fff;outline:none}
+      .hv-recent-vehicles__button:focus-visible{box-shadow:0 0 0 3px rgba(56,189,248,.38)}
+      .hv-recent-vehicles__panel{background:#111827;border:1px solid rgba(148,163,184,.32);border-radius:8px;box-shadow:0 18px 45px rgba(2,6,23,.36);color:#f8fafc;display:none;min-width:min(320px,calc(100vw - 24px));padding:10px;position:absolute;right:0;top:calc(100% + 8px);z-index:50}
+      .hv-recent-vehicles.is-open .hv-recent-vehicles__panel{display:block}
+      .hv-recent-vehicles__title{color:#f8fafc;font-weight:800;margin:0 0 8px}
+      .hv-recent-vehicles__list{display:grid;gap:4px}
+      .hv-recent-vehicles__item{border-radius:8px;color:#f8fafc;display:block;font-weight:700;padding:9px 10px;text-decoration:none}
+      .hv-recent-vehicles__item:hover,.hv-recent-vehicles__item:focus{background:rgba(56,189,248,.16);color:#fff;outline:1px solid rgba(125,211,252,.45)}
+      .hv-recent-vehicles__clear{background:transparent;border:0;color:#bae6fd;cursor:pointer;font:inherit;margin-top:8px;padding:8px 0;text-decoration:underline}
+      .hv-recent-vehicles__clear:hover,.hv-recent-vehicles__clear:focus{color:#fff;outline:1px solid rgba(125,211,252,.45);outline-offset:3px}
+      @media (max-width:720px){.hv-recent-vehicles{position:static}.hv-recent-vehicles__panel{left:12px;right:12px;top:auto}}
+    `;
+    document.head.appendChild(style);
+  }
+
+  function initRecentVehiclesHeader() {
+    const actions = document.querySelector(".site-header__actions");
+    if (!actions || actions.dataset.recentVehiclesBound === "1") return;
+    actions.dataset.recentVehiclesBound = "1";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "hv-recent-vehicles";
+    wrapper.hidden = true;
+    wrapper.style.display = "none";
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "hv-recent-vehicles__button";
+    button.setAttribute("aria-expanded", "false");
+    button.textContent = "Mijn voertuigen";
+
+    const panel = document.createElement("div");
+    panel.className = "hv-recent-vehicles__panel";
+    panel.setAttribute("role", "menu");
+    panel.innerHTML = [
+      '<p class="hv-recent-vehicles__title">Mijn voertuigen</p>',
+      '<div class="hv-recent-vehicles__list"></div>',
+      '<button class="hv-recent-vehicles__clear" type="button">Wis recente voertuigen</button>'
+    ].join("");
+
+    wrapper.appendChild(button);
+    wrapper.appendChild(panel);
+    actions.insertBefore(wrapper, actions.firstChild);
+
+    const list = panel.querySelector(".hv-recent-vehicles__list");
+    const clear = panel.querySelector(".hv-recent-vehicles__clear");
+    const close = () => {
+      wrapper.classList.remove("is-open");
+      button.setAttribute("aria-expanded", "false");
+    };
+    const render = () => {
+      ensureRecentVehicles().then((recent) => {
+        const storage = recentVehiclesStorage();
+        if (!recent || !storage || !list) return;
+        let items = [];
+        try {
+          items = recent.read(storage);
+        } catch (err) {
+          items = [];
+        }
+        wrapper.hidden = items.length === 0;
+        wrapper.style.display = items.length ? "" : "none";
+        close();
+        list.innerHTML = "";
+        items.forEach((item) => {
+          const link = document.createElement("a");
+          link.className = "hv-recent-vehicles__item";
+          link.href = recentVehicleHref(item);
+          link.textContent = recentVehicleLabel(item);
+          list.appendChild(link);
+        });
+      }).catch(() => {});
+    };
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (wrapper.hidden) return;
+      const open = !wrapper.classList.contains("is-open");
+      wrapper.classList.toggle("is-open", open);
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    clear.addEventListener("click", () => {
+      ensureRecentVehicles().then((recent) => {
+        const storage = recentVehiclesStorage();
+        if (recent && storage) recent.clear(storage);
+        render();
+      }).catch(() => {});
+    });
+    document.addEventListener("click", (event) => {
+      if (!wrapper.contains(event.target)) close();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+    window.addEventListener("storage", (event) => {
+      if (!event || event.key === "hv_recent_vehicles") render();
+    });
+    window.addEventListener("hv:recentVehiclesChanged", render);
+
+    ensureRecentVehiclesHeaderStyles();
+    render();
+  }
+
   const initSiteData = async () => {
     try {
       await loadScriptOnce("/assets/js/apiClient.js", "HVApiClient");
@@ -515,10 +667,12 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     document.addEventListener("DOMContentLoaded", () => {
       ensurePlateContext();
       initSiteData();
+      initRecentVehiclesHeader();
     });
   } else {
     ensurePlateContext();
     initSiteData();
+    initRecentVehiclesHeader();
   }
 
   // Alleen SPA draaien op /hulpveren, /luchtvering of /verlagingsveren, en alleen als er een echte app-container is
@@ -5659,12 +5813,13 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
       const activeCtx = getActivePlateContext() || getPlateContext();
       if (activeCtx && activeCtx.plate) return;
-      if (!window.localStorage) return;
+      const storage = recentVehiclesStorage();
+      if (!storage) return;
 
       ensureRecentVehicles().then((recent) => {
         if (!recent || typeof recent.add !== "function") return;
         try {
-          recent.add(window.localStorage, {
+          recent.add(storage, {
             plate: "",
             make: makeLabel,
             model: modelLabel,

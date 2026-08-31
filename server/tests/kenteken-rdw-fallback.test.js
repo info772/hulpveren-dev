@@ -52,8 +52,10 @@ function createHarness({
       cards.set(id, card);
       elements.set(id, {
         href: "#",
+        hidden: false,
         style: { display: "none" },
         textContent: "",
+        classList: { toggle() {} },
         closest(selector) {
           return selector === "article.card" ? cards.get(id) : null;
         },
@@ -189,6 +191,8 @@ test("current kenteken flow uses unique Movano generation only when the product 
   assert.equal(elements.get("kenteken-link-hv").href, "/hulpveren/opel/movano/movano-b/?kt=S153XL");
   assert.equal(elements.get("kenteken-link-nr").href, "/luchtvering/opel/movano/?kt=S153XL");
   assert.notEqual(elements.get("kenteken-link-ls").href, "/verlagingsveren/opel/?kt=S153XL");
+  assert.equal(elements.get("kenteken-manual-fallback").hidden, true);
+  assert.equal(elements.get("kenteken-manual-fallback").style.display, "none");
   assert.equal(
     fetchCalls.some((call) => call.url === "/verlagingsveren/opel/" && call.method === "HEAD"),
     false
@@ -317,6 +321,7 @@ test("current kenteken flow shows manual fallback when no product group route is
   assert.equal(cards.get("kenteken-link-nr").style.display, "none");
   assert.equal(cards.get("kenteken-link-ls").style.display, "none");
   assert.equal(elements.get("kenteken-manual-fallback").hidden, false);
+  assert.equal(elements.get("kenteken-manual-fallback").style.display, "");
   assert.match(elements.get("kenteken-status").textContent, /niet automatisch koppelen/);
 });
 

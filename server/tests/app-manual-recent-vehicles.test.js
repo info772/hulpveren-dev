@@ -23,7 +23,7 @@ test("manual model visits store recent vehicle after a renderable model route", 
 
   assert.match(helper, /parseRoute\(location\.pathname,\s*BASE\)/);
   assert.match(helper, /route\.kind !== "model"/);
-  assert.match(helper, /recent\.add\(window\.localStorage,\s*\{/);
+  assert.match(helper, /recent\.add\(storage,\s*\{/);
   assert.match(helper, /plate:\s*""/);
   assert.match(helper, /make:\s*makeLabel/);
   assert.match(helper, /model:\s*modelLabel/);
@@ -56,6 +56,47 @@ test("missing localStorage or failed recentVehicles lazy-load cannot break rende
   assert.match(loader[0], /if \(!recentVehiclesLoadPromise\)/);
   assert.match(loader[0], /\/assets\/js\/recentVehicles\.js\?v=20260831-1/);
   assert.match(loader[0], /\.catch\(\(\) => null\)/);
-  assert.match(helper, /if \(!window\.localStorage\) return/);
+  assert.match(helper, /const storage = recentVehiclesStorage\(\)/);
+  assert.match(helper, /if \(!storage\) return/);
   assert.match(helper, /try \{[\s\S]*\} catch \(err\) \{\}/);
+});
+
+test("recent vehicles are exposed from the current site header", () => {
+  const source = appSource();
+  const helper = helperSource("initRecentVehiclesHeader");
+
+  assert.match(helper, /querySelector\("\.site-header__actions"\)/);
+  assert.match(helper, /textContent = "Mijn voertuigen"/);
+  assert.match(helper, /hv-recent-vehicles__panel/);
+  assert.match(helper, /Wis recente voertuigen/);
+  assert.match(helper, /wrapper\.hidden = items\.length === 0/);
+  assert.match(helper, /wrapper\.style\.display = items\.length \? "" : "none"/);
+  assert.match(helper, /recentVehiclesStorage\(\)/);
+  assert.match(helper, /recent\.read\(storage\)/);
+  assert.match(helper, /recent\.clear\(storage\)/);
+  assert.match(helper, /document\.addEventListener\("click"/);
+  assert.match(helper, /event\.key === "Escape"/);
+  assert.match(source, /initRecentVehiclesHeader\(\)/);
+});
+
+test("recent vehicle header links keep route and add kt only for stored plates", () => {
+  const source = appSource();
+  const hrefHelper = helperSource("recentVehicleHref");
+  const labelHelper = helperSource("recentVehicleLabel");
+
+  assert.match(hrefHelper, /const route = item && item\.route \? item\.route : "\/kenteken\/"/);
+  assert.match(hrefHelper, /url\.searchParams\.set\("kt", item\.plate\)/);
+  assert.match(hrefHelper, /return url\.pathname \+ url\.search/);
+  assert.match(labelHelper, /formatRecentVehiclePlate\(item\.plate\)/);
+  assert.match(labelHelper, /\[item && item\.make, item && item\.model\]/);
+  assert.match(source, /window\.addEventListener\("hv:recentVehiclesChanged", render\)/);
+});
+
+test("kenteken page no longer contains the fixed recent vehicles card", () => {
+  const kentekenPath = path.resolve(__dirname, "../../wwwroot/kenteken/index.html");
+  const html = fs.readFileSync(kentekenPath, "utf8");
+
+  assert.doesNotMatch(html, /id="kenteken-recent"/);
+  assert.doesNotMatch(html, /id="kenteken-recent-list"/);
+  assert.doesNotMatch(html, /id="kenteken-recent-clear"/);
 });
