@@ -530,7 +530,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     if (window.HVPlateContextLoading) return;
     window.HVPlateContextLoading = true;
     const script = document.createElement("script");
-    script.src = "/assets/js/plateContext.js";
+    script.src = "/assets/js/plateContext.js?v=20260901_1";
     script.defer = true;
     script.onload = () => {
       window.HVPlateContextLoading = false;
