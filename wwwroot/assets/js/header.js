@@ -18,19 +18,6 @@
 
   const LEGACY_ROUTE = isLegacyRoute();
   const LEGACY_PARTIAL_URL = "/partials/header-legacy.html";
-  const initRecentVehiclesHeader = () => {
-    if (window.HVRecentVehiclesHeader && typeof window.HVRecentVehiclesHeader.init === "function") {
-      window.HVRecentVehiclesHeader.init();
-      return;
-    }
-    const src = "/assets/js/recentVehiclesHeader.js?v=20260901-1";
-    if (document.querySelector('script[data-src="' + src + '"], script[src*="/assets/js/recentVehiclesHeader.js"]')) return;
-    const script = document.createElement("script");
-    script.src = src;
-    script.defer = true;
-    script.setAttribute("data-src", src);
-    document.head.appendChild(script);
-  };
 
   if (document.querySelector("script[src*=\"/partials/header.js\"]")) return;
 
@@ -1096,7 +1083,6 @@
       if (!LEGACY_ROUTE) {
         try { injectBreadcrumbs(root); } catch (_) {}
       }
-      try { initRecentVehiclesHeader(); } catch (_) {}
       return;
     }
     // Route A: server-rendered header/footer; JS only binds behaviors
