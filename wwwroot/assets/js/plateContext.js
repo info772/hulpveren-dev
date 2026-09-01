@@ -784,8 +784,7 @@
     const target =
       document.querySelector(".hv2-cta") ||
       document.querySelector(".nav-shell") ||
-      document.querySelector(".hv2-header") ||
-      document.querySelector(".site-header");
+      document.querySelector(".hv2-header");
     if (!target) return null;
 
     const wrapper = document.createElement("div");

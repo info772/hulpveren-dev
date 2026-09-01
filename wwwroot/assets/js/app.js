@@ -460,6 +460,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     });
 
   let recentVehiclesLoadPromise = null;
+  let recentVehiclesHeaderObserver = null;
   const ensureRecentVehicles = () => {
     if (window.HVRecentVehicles) return Promise.resolve(window.HVRecentVehicles);
     if (!recentVehiclesLoadPromise) {
@@ -539,7 +540,23 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   function initRecentVehiclesHeader() {
     const actions = document.querySelector(".site-header__actions");
-    if (!actions || actions.dataset.recentVehiclesBound === "1") return;
+    if (!actions) {
+      if (recentVehiclesHeaderObserver || typeof MutationObserver !== "function") return;
+      const observeRoot = document.documentElement || document.body;
+      if (!observeRoot) return;
+      recentVehiclesHeaderObserver = new MutationObserver(() => {
+        if (!document.querySelector(".site-header__actions")) return;
+        recentVehiclesHeaderObserver.disconnect();
+        recentVehiclesHeaderObserver = null;
+        initRecentVehiclesHeader();
+      });
+      recentVehiclesHeaderObserver.observe(observeRoot, {
+        childList: true,
+        subtree: true,
+      });
+      return;
+    }
+    if (actions.dataset.recentVehiclesBound === "1") return;
     actions.dataset.recentVehiclesBound = "1";
 
     const wrapper = document.createElement("div");
@@ -6790,6 +6807,14 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       const platePart = plateSlug(plateNormalized);
       if (!platePart || !makeSlugValue || !modelSlugValue) return;
       const currentRoute = parsePlateRoute(window.location.pathname, base);
+      const currentProductRoute = parseRoute(window.location.pathname, base);
+      if (
+        currentProductRoute &&
+        currentProductRoute.kind === "model" &&
+        !hasPlateToken(window.location.pathname, base)
+      ) {
+        return;
+      }
       const needsUpgrade =
         !currentRoute || !currentRoute.make || !currentRoute.model;
       if (!needsUpgrade) return;
