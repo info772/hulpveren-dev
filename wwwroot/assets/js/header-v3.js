@@ -228,4 +228,20 @@
   };
 
   mountMakes();
+
+  const initRecentVehiclesHeader = () => {
+    if (window.HVRecentVehiclesHeader && typeof window.HVRecentVehiclesHeader.init === "function") {
+      window.HVRecentVehiclesHeader.init();
+      return;
+    }
+    const src = "/assets/js/recentVehiclesHeader.js?v=20260901-1";
+    if (document.querySelector('script[data-src="' + src + '"], script[src*="/assets/js/recentVehiclesHeader.js"]')) return;
+    const script = document.createElement("script");
+    script.src = src;
+    script.defer = true;
+    script.setAttribute("data-src", src);
+    document.head.appendChild(script);
+  };
+
+  initRecentVehiclesHeader();
 })();

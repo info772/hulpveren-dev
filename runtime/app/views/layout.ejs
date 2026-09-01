@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="nl">
+<%
+const c = (typeof company !== 'undefined' && company) ? company : {};
+const companySiteName = c.siteName || 'Hulpveren.shop';
+const companyDescription = c.description || 'Professionele montage van hulpveren, luchtvering en verlagingsveren in Roosendaal.';
+const companyWebsiteUrl = c.websiteUrl || (typeof baseUrl !== 'undefined' ? baseUrl : 'https://www.hulpveren.shop');
+const companyPhoneDisplay = c.phoneDisplay || '+31 165 856 568';
+const companyPhoneTel = c.phoneTel || 'tel:+31165856568';
+const companyAddressLine1 = c.addressLine1 || 'Westelijke Havendijk 17c';
+const companyPostalCode = c.postalCode || '4703 RA';
+const companyLocality = c.locality || 'Roosendaal';
+const companyCountry = c.country || 'NL';
+%>
+<head>
+    <% if (currentPath === '/') { %>
+    <% } %>
+    <link rel="stylesheet" href="/assets/css/style.bundle.css?v=20260605175223">
+    <link rel="stylesheet" href="/assets/css/search-suggest.css?v=20260622-platepreview">
+  <meta charset="UTF-8">
+  <% if (typeof robots !== 'undefined' && robots) { %>
+  <meta name="robots" content="<%= robots %>">
+  <% } %>
+      <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title><%= typeof title !== 'undefined' ? title : 'Hulpveren' %></title>
+  <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Ontdek hoogwaardige hulpveren, luchtvering en verlagingsveren per merk en model.' %>">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'Hulpveren' %>">
+  <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : 'Ontdek hoogwaardige hulpveren, luchtvering en verlagingsveren per merk en model.' %>">
+  <meta property="og:url" content="<%= typeof canonical !== 'undefined' ? canonical : '' %>">
+  <link rel="canonical" href="<%= typeof canonical !== 'undefined' ? canonical : '' %>">
+
+  <% if (typeof breadcrumb !== 'undefined') { %>
+  <script type="application/ld+json">
+  <%- JSON.stringify(breadcrumb, null, 2) %>
+  </script>
+  <% } %>
+
+  <% if (typeof faqSchema !== 'undefined') { %>
+  <script type="application/ld+json">
+  <%- JSON.stringify(faqSchema, null, 2) %>
+  </script>
+  <% } %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": companySiteName,
+  "url": companyWebsiteUrl,
+  "telephone": companyPhoneDisplay,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": companyAddressLine1,
+    "postalCode": companyPostalCode,
+    "addressLocality": companyLocality,
+    "addressCountry": companyCountry
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": companyLocality
+  },
+  "description": companyDescription
+}, null, 2) %>
+</script>
+</head>
+  <body class="site-layout">
+
+  <header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-logo" href="/" aria-label="<%= companySiteName %>">
+      <span class="site-logo__mark">H</span>
+      <span class="site-logo__text"><%= companySiteName %></span>
+    </a>
+
+    <input class="site-nav__checkbox" type="checkbox" id="site-nav-toggle" aria-label="Menu openen">
+    <label class="site-nav__hamburger" for="site-nav-toggle" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav class="site-nav site-nav__primary" aria-label="Hoofdnavigatie">
+      <details class="site-nav__group site-nav__dropdown">
+        <summary class="site-nav__toggle">Productgroepen</summary>
+        <div class="site-nav__menu">
+          <a href="/hulpveren/">Hulpveren</a>
+          <a href="/luchtvering/">Luchtvering</a>
+          <a href="/verlagingsveren/">Verlagingsveren</a>
+        </div>
+      </details>
+
+      <details class="site-nav__group site-nav__dropdown">
+        <summary class="site-nav__toggle">Toepassingen</summary>
+        <div class="site-nav__menu">
+          <a href="/luchtvering/camper/">Luchtvering camper</a>
+          <a href="/hulpveren/camper/">Hulpveren camper</a>
+          <a href="/hulpveren/caravan/">Hulpveren caravan</a>
+          <a href="/hulpveren/fietsendrager/">Hulpveren fietsendrager</a>
+          <a href="/bedrijfswagen/">Bedrijfswagen</a>
+        </div>
+      </details>
+
+      <a href="/montage/">Montage</a>
+      <a href="/blog/">Blog</a>
+      <a href="/faq/">FAQ</a>
+    </nav>
+
+    <div class="site-header__actions">
+    <form class="site-search" data-site-search role="search" autocomplete="off">
+      <label class="site-search__label" for="site-search-input">Zoeken op kenteken, merk, model of artikelnummer</label>
+      <div class="site-search__box">
+        <input
+          class="site-search__input"
+          id="site-search-input"
+          name="q"
+          type="search"
+          placeholder="Kenteken, merk, model, artikelnummer"
+          aria-label="Zoek op kenteken, merk, model of artikelnummer"
+          aria-autocomplete="list"
+          aria-expanded="false"
+          aria-controls="site-search-results"
+        >
+        <button class="site-search__button" type="submit" aria-label="Zoeken">Zoek</button>
+      </div>
+      <div class="site-search__results" id="site-search-results" role="listbox" hidden></div>
+    </form>
+
+
+    <a class="site-nav__cta" href="/contact/">Contact / offerte</a>
+    </div>
+  </div>
+</header>
+
+  <main class="site-main">
+    <div class="site-main__inner">
+
+  <% if (typeof breadcrumb !== 'undefined') { %>
+
+  <!-- Visible breadcrumb -->
+  <% if (breadcrumb && Array.isArray(breadcrumb.itemListElement) && breadcrumb.itemListElement.length) { %>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <% breadcrumb.itemListElement.forEach(function(item, index) { %>
+        <% if (index > 0) { %> &gt; <% } %>
+        <a href="<%= item.item %>"><%= item.name %></a>
+      <% }) %>
+    </nav>
+  <% } %>
+
+  <% } %>
+
+  <%- body %>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <hr>
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <p><strong><%= companySiteName %></strong></p>
+        <p><%= companyDescription %></p>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="Footer producten">
+        <p><strong>Producten</strong></p>
+        <a href="/hulpveren/" <%- currentPath && currentPath.startsWith('/hulpveren/') ? 'aria-current="page"' : '' %>>Hulpveren</a>
+        <a href="/luchtvering/" <%- currentPath && currentPath.startsWith('/luchtvering/') ? 'aria-current="page"' : '' %>>Luchtvering</a>
+        <a href="/verlagingsveren/" <%- currentPath && currentPath.startsWith('/verlagingsveren/') ? 'aria-current="page"' : '' %>>Verlagingsveren</a>
+        <a href="/platform/" <%- currentPath && currentPath.startsWith('/platform/') ? 'aria-current="page"' : '' %>>Platformen</a>
+      </nav>
+
+      <nav class="site-footer__nav" aria-label="Footer service">
+        <p><strong>Service</strong></p>
+        <a href="/montage/">Montage</a>
+        <a href="/contact/">Contact</a>
+        <a href="/onze-ervaring/">Onze ervaring</a>
+        <a href="/blog/" <%- currentPath && currentPath.startsWith('/blog/') ? 'aria-current="page"' : '' %>>Blog</a>
+      </nav>
+
+      <nav class="site-footer__nav" aria-label="Footer informatie">
+        <p><strong>Informatie</strong></p>
+        <a href="/over-ons/">Over ons</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/algemene-voorwaarden/">Algemene voorwaarden</a>
+      </nav>
+
+      <div class="site-footer__contact">
+        <p><strong>Contact</strong></p>
+        <p><a href="<%= companyPhoneTel %>"><%= companyPhoneDisplay %></a></p>
+        <p><%= companyAddressLine1 %></p>
+        <p><%= companyPostalCode %> <%= companyLocality %></p>
+      </div>
+
+      <div class="site-footer__meta">
+        <p>&copy; <%= new Date().getFullYear() %> <%= companySiteName %></p>
+      </div>
+    </div>
+  </footer>
+
+<script>setTimeout(function(){var m=document.querySelector(".success-message");if(m){m.style.transition="opacity 0.5s";m.style.opacity="0";setTimeout(function(){m.remove();},500);}},4000);</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.querySelector(".cta-form form");
+  if (!form) return;
+
+  form.addEventListener("submit", function() {
+    const btn = form.querySelector("button[type='submit']");
+    if (btn) {
+      btn.disabled = true;
+      btn.innerText = "Bezig met verzenden...";
+    }
+  });
+});
+</script>
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropdowns = Array.from(document.querySelectorAll('.site-nav__dropdown'));
+
+      function closeAll(except) {
+        dropdowns.forEach(function (dropdown) {
+          if (dropdown !== except) dropdown.open = false;
+        });
+      }
+
+      dropdowns.forEach(function (dropdown) {
+        dropdown.addEventListener('toggle', function () {
+          if (!dropdown.open) return;
+          closeAll(dropdown);
+        });
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.target.closest('.site-nav__dropdown')) return;
+        closeAll(null);
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeAll(null);
+      });
+    });
+  </script>
+
+
+<script>
+(function() {
+  var header = document.querySelector(".site-header");
+  if (!header) return;
+
+  var threshold = 24;
+  var ticking = false;
+
+  function updateHeaderState() {
+    header.classList.toggle("site-header--scrolled", window.scrollY > threshold);
+    ticking = false;
+  }
+
+  updateHeaderState();
+
+  window.addEventListener("scroll", function() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeaderState);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+</script>
+
+<script src="/assets/js/recentVehiclesHeader.js?v=20260901-1"></script>
+<script src="/assets/js/search-suggest.js?v=20260622-platepreview"></script>
+</body>
+</html>

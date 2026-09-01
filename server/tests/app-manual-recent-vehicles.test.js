@@ -290,6 +290,82 @@ function createPlateContextUrlBuilderHarness({ pathname, search = "" }) {
   return sandbox;
 }
 
+function appClickHandlerSource() {
+  const source = appSource();
+  const start = source.indexOf('  document.addEventListener("click", (evt) => {');
+  assert.notEqual(start, -1, "global product click handler should exist");
+  const end = source.indexOf("\n  });", start);
+  assert.notEqual(end, -1, "global product click handler should close");
+  return source.slice(start, end + "\n  });".length);
+}
+
+function createAppClickHandlerHarness({ pathname, search = "", plate = "S153XL" } = {}) {
+  const listeners = {};
+  const sandbox = {
+    URL,
+    window: null,
+    document: {
+      addEventListener(type, handler) {
+        listeners[type] = handler;
+      },
+    },
+    location: {
+      origin: "https://dev.hulpveren.shop",
+      pathname,
+      search,
+      href: `https://dev.hulpveren.shop${pathname}${search}`,
+    },
+    hv_plate_context: {
+      plate,
+      vehicle: { make: "Opel", model: "Movano" },
+      route: { makeSlug: "opel", modelSlug: "movano" },
+    },
+  };
+  sandbox.window = sandbox;
+
+  const code = `
+    const PLATE_PREFIX = "kt_";
+    const normalizePlateInput = (value) => String(value || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    const slugify = (value) => String(value || "").toLowerCase().trim().replace(/&/g, "en").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    function getPlateContext() {
+      return window.hv_plate_context || {};
+    }
+    function getKtSegment() {
+      const ctx = getPlateContext();
+      const plate = ctx.plate ? normalizePlateInput(ctx.plate).toLowerCase() : "";
+      if (!plate) return "";
+      return \`\${PLATE_PREFIX}\${plate}\`;
+    }
+${appClickHandlerSource()}
+  `;
+  vm.runInNewContext(code, sandbox);
+  assert.equal(typeof listeners.click, "function", "click handler should be registered");
+  return {
+    sandbox,
+    click(href) {
+      const anchor = {
+        href,
+        getAttribute(name) {
+          return name === "href" ? href : null;
+        },
+      };
+      const event = {
+        prevented: false,
+        target: {
+          closest(selector) {
+            return selector === "a" ? anchor : null;
+          },
+        },
+        preventDefault() {
+          this.prevented = true;
+        },
+      };
+      listeners.click(event);
+      return { anchor, event };
+    },
+  };
+}
+
 function helperSource(name) {
   const source = appSource();
   const start = source.indexOf(`function ${name}`);
@@ -354,47 +430,58 @@ test("recent vehicles are exposed from the current site header", () => {
   const source = appSource();
   const helper = helperSource("initRecentVehiclesHeader");
 
-  assert.match(helper, /querySelector\("\.site-header__actions"\)/);
-  assert.match(source, /let recentVehiclesHeaderObserver = null/);
-  assert.match(helper, /new MutationObserver/);
-  assert.match(helper, /recentVehiclesHeaderObserver\.observe\(observeRoot,\s*\{\s*childList:\s*true,\s*subtree:\s*true,\s*\}\)/);
-  assert.match(helper, /textContent = "Mijn voertuigen"/);
-  assert.match(helper, /hv-recent-vehicles__panel/);
-  assert.match(helper, /Wis recente voertuigen/);
-  assert.match(helper, /wrapper\.hidden = items\.length === 0/);
-  assert.match(helper, /wrapper\.style\.display = items\.length \? "" : "none"/);
-  assert.match(helper, /recentVehiclesStorage\(\)/);
-  assert.match(helper, /recent\.read\(storage\)/);
-  assert.match(helper, /recent\.clear\(storage\)/);
-  assert.match(helper, /document\.addEventListener\("click"/);
-  assert.match(helper, /event\.key === "Escape"/);
+  assert.match(source, /let recentVehiclesHeaderLoadPromise = null/);
+  assert.match(helper, /HVRecentVehiclesHeader/);
+  assert.match(helper, /\/assets\/js\/recentVehiclesHeader\.js\?v=20260901-1/);
   assert.match(source, /initRecentVehiclesHeader\(\)/);
 });
 
 test("recent vehicle header links keep route and add kt only for stored plates", () => {
   const source = appSource();
-  const hrefHelper = helperSource("recentVehicleHref");
-  const labelHelper = helperSource("recentVehicleLabel");
 
-  assert.match(hrefHelper, /const route = item && item\.route \? item\.route : "\/kenteken\/"/);
-  assert.match(hrefHelper, /url\.searchParams\.set\("kt", item\.plate\)/);
-  assert.match(hrefHelper, /return url\.pathname \+ url\.search/);
-  assert.match(labelHelper, /formatRecentVehiclePlate\(item\.plate\)/);
-  assert.match(labelHelper, /\[item && item\.make, item && item\.model\]/);
-  assert.match(source, /window\.addEventListener\("hv:recentVehiclesChanged", render\)/);
+  assert.match(source, /\/assets\/js\/recentVehiclesHeader\.js\?v=20260901-1/);
+});
+
+test("global product click handler leaves modern kt query generation links alone", () => {
+  const harness = createAppClickHandlerHarness({
+    pathname: "/kenteken/",
+    search: "?kt=S153XL",
+    plate: "S153XL",
+  });
+  const href = "/hulpveren/opel/movano/movano-b/?kt=S153XL";
+
+  const { anchor, event } = harness.click(href);
+
+  assert.equal(event.prevented, false);
+  assert.equal(anchor.href, href);
+  assert.equal(
+    harness.sandbox.window.location.href,
+    "https://dev.hulpveren.shop/kenteken/?kt=S153XL"
+  );
+  assert.doesNotMatch(harness.sandbox.window.location.href, /kt_s153xl/i);
+});
+
+test("global product click handler keeps legacy kt pathname behavior for links without kt query", () => {
+  const harness = createAppClickHandlerHarness({
+    pathname: "/kenteken/",
+    search: "?kt=S153XL",
+    plate: "S153XL",
+  });
+
+  const { event } = harness.click("/hulpveren/opel/movano/");
+
+  assert.equal(event.prevented, true);
+  assert.equal(
+    harness.sandbox.window.location.href,
+    "https://dev.hulpveren.shop/hulpveren/opel/movano/kt_s153xl/"
+  );
 });
 
 test("recent vehicles header initializes when site header actions arrive late", () => {
   const helper = helperSource("initRecentVehiclesHeader");
 
-  assert.match(helper, /if \(!actions\) \{/);
-  assert.match(helper, /if \(recentVehiclesHeaderObserver \|\| typeof MutationObserver !== "function"\) return/);
-  assert.match(helper, /document\.querySelector\("\.site-header__actions"\)/);
-  assert.match(helper, /recentVehiclesHeaderObserver\.disconnect\(\)/);
-  assert.match(helper, /recentVehiclesHeaderObserver = null/);
-  assert.match(helper, /initRecentVehiclesHeader\(\)/);
-  assert.match(helper, /if \(actions\.dataset\.recentVehiclesBound === "1"\) return/);
-  assert.match(helper, /actions\.dataset\.recentVehiclesBound = "1"/);
+  assert.match(helper, /HVRecentVehiclesHeader\.init\(\)/);
+  assert.match(helper, /loadScriptOnce\(/);
 });
 
 test("kenteken page no longer contains the fixed recent vehicles card", () => {
