@@ -224,10 +224,26 @@
     return "/" + parts.join("/") + "/";
   }
 
+  function isModernProductRoute(pathname) {
+    const parts = String(pathname || "").split("/").filter(Boolean);
+    const family = String(parts[0] || "").toLowerCase();
+    if (!["hulpveren", "luchtvering", "verlagingsveren"].includes(family)) {
+      return false;
+    }
+    if (parts.length < 3) return false;
+    return !parts.some((part) => isKtSegment(part));
+  }
+
   function buildPlateKtUrl({ plateRaw, ktRaw }) {
     const plate = normalizePlate(plateRaw);
     const kt = normalizeKt(ktRaw);
-    const base = stripStateSegments(window.location.pathname);
+    const pathname = window.location.pathname;
+    const base = stripStateSegments(pathname);
+    if (plate && isModernProductRoute(pathname)) {
+      const url = new URL(base, window.location.origin);
+      url.searchParams.set("kt", plate);
+      return url.pathname + url.search;
+    }
     const segments = [];
     if (plate) segments.push(plate);
     if (kt) segments.push(kt);
@@ -692,8 +708,16 @@
     </div>
   `;
 
+  function hasModernSiteHeader() {
+    return !!document.querySelector(".site-header");
+  }
+
   const ensurePlatePillRow = (allowFallback = false) => {
     let row = document.querySelector("[data-plate-pill-row]");
+    if (hasModernSiteHeader()) {
+      if (row) row.remove();
+      return null;
+    }
     const crumbs =
       document.querySelector(".site-breadcrumbs") ||
       document.querySelector(".crumbs") ||

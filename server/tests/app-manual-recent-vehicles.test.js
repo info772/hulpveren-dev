@@ -2,6 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const vm = require("node:vm");
 
 const appJsPath = path.resolve(__dirname, "../../wwwroot/assets/js/app.js");
 const plateContextJsPath = path.resolve(__dirname, "../../wwwroot/assets/js/plateContext.js");
@@ -12,6 +13,281 @@ function appSource() {
 
 function plateContextSource() {
   return fs.readFileSync(plateContextJsPath, "utf8");
+}
+
+function plateContextSourceWithTestHook() {
+  const source = plateContextSource();
+  const marker = "  window.HVPlateContext = {";
+  assert.ok(source.includes(marker), "HVPlateContext export should exist");
+  return source.replace(
+    marker,
+    "  window.__testBuildPlateKtUrl = buildPlateKtUrl;\n" + marker
+  );
+}
+
+function createPlateContextHarness({ pathname, search = "", links = [], modernHeader = false }) {
+  class Element {
+    constructor(tagName) {
+      this.tagName = String(tagName || "").toUpperCase();
+      this.children = [];
+      this.dataset = {};
+      this.attributes = {};
+      this.className = "";
+      this.parentElement = null;
+      this.previousElementSibling = null;
+      this.hidden = false;
+      this.style = {};
+      this.textContent = "";
+      this.innerHTMLValue = "";
+      this.listeners = {};
+    }
+
+    appendChild(child) {
+      child.parentElement = this;
+      child.previousElementSibling = this.children[this.children.length - 1] || null;
+      this.children.push(child);
+      return child;
+    }
+
+    insertAdjacentElement(position, child) {
+      if (position === "afterbegin") {
+        child.parentElement = this;
+        this.children.unshift(child);
+        return child;
+      }
+      if ((position === "afterend" || position === "beforebegin") && this.parentElement) {
+        const siblings = this.parentElement.children;
+        const currentIndex = siblings.indexOf(this);
+        const insertAt = position === "beforebegin" ? currentIndex : currentIndex + 1;
+        child.parentElement = this.parentElement;
+        siblings.splice(insertAt, 0, child);
+        this.parentElement.children.forEach((sibling, index) => {
+          sibling.previousElementSibling = this.parentElement.children[index - 1] || null;
+        });
+        return child;
+      }
+      return this.appendChild(child);
+    }
+
+    setAttribute(name, value) {
+      this.attributes[name] = String(value);
+      if (name === "href") this.href = String(value);
+      if (name === "class") this.className = String(value);
+      if (name.startsWith("data-")) {
+        const key = name
+          .slice(5)
+          .replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+        this.dataset[key] = String(value);
+      }
+    }
+
+    getAttribute(name) {
+      if (name === "href") return this.href || null;
+      return Object.prototype.hasOwnProperty.call(this.attributes, name)
+        ? this.attributes[name]
+        : null;
+    }
+
+    matches(selector) {
+      return selector === "[data-plate-chip]" && this.dataset.plateChip === "1";
+    }
+
+    querySelector() {
+      if (this.innerHTMLValue.includes("<button")) {
+        const button = new Element("button");
+        button.addEventListener = (eventName, handler) => {
+          button.listeners[eventName] = handler;
+        };
+        return button;
+      }
+      return null;
+    }
+
+    querySelectorAll(selector) {
+      if (selector === "a[href]") return this.children.filter((child) => child.href);
+      return [];
+    }
+
+    remove() {
+      if (!this.parentElement) return;
+      this.parentElement.children = this.parentElement.children.filter((child) => child !== this);
+      this.parentElement = null;
+    }
+
+    get classList() {
+      return {
+        add: (...names) => {
+          const current = new Set(this.className.split(/\s+/).filter(Boolean));
+          names.forEach((name) => current.add(name));
+          this.className = Array.from(current).join(" ");
+        },
+        remove: (...names) => {
+          const remove = new Set(names);
+          this.className = this.className
+            .split(/\s+/)
+            .filter((name) => name && !remove.has(name))
+            .join(" ");
+        },
+      };
+    }
+
+    set innerHTML(value) {
+      this.innerHTMLValue = String(value);
+    }
+
+    get innerHTML() {
+      return this.innerHTMLValue;
+    }
+  }
+
+  const findInTree = (root, predicate) => {
+    if (!root) return null;
+    if (predicate(root)) return root;
+    for (const child of root.children || []) {
+      const found = findInTree(child, predicate);
+      if (found) return found;
+    }
+    return null;
+  };
+
+  const list = new Element("div");
+  list.dataset.setList = "1";
+  const header = modernHeader ? new Element("header") : null;
+  if (header) {
+    header.className = "site-header";
+  }
+  links.forEach((href) => {
+    const card = new Element("article");
+    const link = new Element("a");
+    link.href = href;
+    link.setAttribute("href", href);
+    card.appendChild(link);
+    list.appendChild(card);
+  });
+
+  const storage = new Map();
+  const sandbox = {
+    console,
+    CustomEvent: class CustomEvent {
+      constructor(type, options = {}) {
+        this.type = type;
+        this.detail = options.detail;
+      }
+    },
+    Date,
+    URL,
+    dispatchEvent(event) {
+      this.lastEvent = event;
+    },
+    document: {
+      readyState: "loading",
+      body: new Element("body"),
+      head: new Element("head"),
+      documentElement: new Element("html"),
+      addEventListener() {},
+      createElement: (tagName) => new Element(tagName),
+      getElementById() {
+        return null;
+      },
+      querySelector(selector) {
+        if (selector === "[data-set-list]") return list;
+        if (selector === ".site-header") return header;
+        if (selector === "[data-plate-pill-row]") {
+          return findInTree(this.body, (node) => node.dataset.platePillRow === "1");
+        }
+        if (selector === "[data-plate-pill]") {
+          return findInTree(this.body, (node) => node.dataset.platePill === "1");
+        }
+        return null;
+      },
+      querySelectorAll(selector) {
+        if (selector === "[data-set-list]") return [list];
+        return [];
+      },
+    },
+    localStorage: {
+      getItem: (key) => storage.get(key) || null,
+      setItem: (key, value) => storage.set(key, String(value)),
+      removeItem: (key) => storage.delete(key),
+    },
+    location: {
+      origin: "https://dev.hulpveren.shop",
+      pathname,
+      search,
+      href: `https://dev.hulpveren.shop${pathname}${search}`,
+    },
+    sessionStorage: {
+      getItem: (key) => storage.get(`session:${key}`) || null,
+      setItem: (key, value) => storage.set(`session:${key}`, String(value)),
+      removeItem: (key) => storage.delete(`session:${key}`),
+    },
+    setTimeout() {},
+  };
+  if (header) {
+    sandbox.document.body.appendChild(header);
+  }
+  sandbox.window = sandbox;
+  vm.runInNewContext(plateContextSource(), sandbox);
+  return { list, sandbox };
+}
+
+function createPlateContextUrlBuilderHarness({ pathname, search = "" }) {
+  const sandbox = {
+    console,
+    CustomEvent: class CustomEvent {
+      constructor(type, options = {}) {
+        this.type = type;
+        this.detail = options.detail;
+      }
+    },
+    Date,
+    URL,
+    document: {
+      readyState: "loading",
+      addEventListener() {},
+      createElement: () => ({
+        dataset: {},
+        setAttribute() {},
+        appendChild() {},
+        querySelector() {
+          return null;
+        },
+      }),
+      getElementById() {
+        return null;
+      },
+      querySelector() {
+        return null;
+      },
+      querySelectorAll() {
+        return [];
+      },
+    },
+    localStorage: {
+      getItem() {
+        return null;
+      },
+      setItem() {},
+      removeItem() {},
+    },
+    location: {
+      origin: "https://dev.hulpveren.shop",
+      pathname,
+      search,
+      href: `https://dev.hulpveren.shop${pathname}${search}`,
+    },
+    sessionStorage: {
+      getItem() {
+        return null;
+      },
+      setItem() {},
+      removeItem() {},
+    },
+    setTimeout() {},
+  };
+  sandbox.window = sandbox;
+  vm.runInNewContext(plateContextSourceWithTestHook(), sandbox);
+  return sandbox;
 }
 
 function helperSource(name) {
@@ -143,6 +419,75 @@ test("plateContext never injects legacy plate search into the modern site header
   assert.match(helper, /document\.querySelector\("\.hv2-header"\)/);
   assert.doesNotMatch(helper, /document\.querySelector\("\.site-header"\)/);
   assert.match(source, /const buildPlateBarMarkup = \(\) => `\s*<div class="plate-search">/);
+});
+
+test("plateContext keeps modern generation links with query plate unchanged", () => {
+  const href = "/hulpveren/opel/movano/movano-b/?kt=S153XL";
+  const { list, sandbox } = createPlateContextHarness({
+    pathname: "/hulpveren/opel/movano/movano-b/",
+    search: "?kt=S153XL",
+    links: [href],
+  });
+
+  sandbox.HVPlateContext.applyPlateContext({
+    plate: "S153XL",
+    vehicle: { make: "Opel", model: "Movano" },
+  });
+
+  const link = list.children[0].children[0];
+  assert.equal(link.href, href);
+  assert.equal(link.getAttribute("href"), href);
+  assert.notEqual(link.href, "/hulpveren/opel/movano/movano-b/kt_s153xl/?kt=S153XL");
+});
+
+test("plateContext URL builder keeps modern model and generation routes query-style", () => {
+  const modelRoute = createPlateContextUrlBuilderHarness({
+    pathname: "/hulpveren/opel/movano/",
+  });
+  const generationRoute = createPlateContextUrlBuilderHarness({
+    pathname: "/hulpveren/opel/movano/movano-b/",
+  });
+
+  assert.equal(
+    modelRoute.__testBuildPlateKtUrl({ plateRaw: "S153XL", ktRaw: "s153xl" }),
+    "/hulpveren/opel/movano/?kt=S153XL"
+  );
+  assert.equal(
+    generationRoute.__testBuildPlateKtUrl({ plateRaw: "S153XL", ktRaw: "s153xl" }),
+    "/hulpveren/opel/movano/movano-b/?kt=S153XL"
+  );
+});
+
+test("plateContext URL builder keeps real kt pathnames in legacy path flow", () => {
+  const sandbox = createPlateContextUrlBuilderHarness({
+    pathname: "/hulpveren/opel/movano/kt_s153xl/",
+  });
+
+  const url = sandbox.__testBuildPlateKtUrl({
+    plateRaw: "S153XL",
+    ktRaw: "s153xl",
+  });
+
+  assert.equal(url, "/hulpveren/opel/movano/S153XL/kt_s153xl");
+  assert.doesNotMatch(url, /\?kt=/);
+});
+
+test("plateContext does not inject the loose plate pill below a modern site header", () => {
+  const { sandbox } = createPlateContextHarness({
+    pathname: "/hulpveren/opel/movano/movano-b/",
+    search: "?kt=7VSV16",
+    modernHeader: true,
+  });
+
+  sandbox.HVPlateContext.setPlateContextFromVehicle("7VSV16", {
+    make: "VOLKSWAGEN",
+    model: "CADDY",
+  });
+
+  assert.equal(sandbox.document.querySelector("[data-plate-pill-row]"), null);
+  assert.equal(sandbox.hv_plate_context.plate, "7VSV16");
+  assert.equal(sandbox.hv_plate_context.vehicle.make, "VOLKSWAGEN");
+  assert.equal(sandbox.hv_plate_context.vehicle.model, "CADDY");
 });
 
 test("generation route with query plate keeps the generation pathname", () => {
