@@ -1,49 +1,47 @@
-name: Verify production Touran plate fix
+name: Diagnose production routing
 
 on:
   push:
     branches: [ "inspect/prod-layout" ]
 
 jobs:
-  verify:
+  diagnose:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect live Aldoc response
+      - name: Compare nginx and backend routes
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEV_HOST }}
           username: ${{ secrets.DEV_USER }}
           key: ${{ secrets.DEV_SSH_KEY }}
           script_stop: false
-          command_timeout: 5m
+          command_timeout: 3m
           script: |
-            LIVE=/var/www/hulpveren-live-site/public
-            APP="$LIVE/assets/js/app.js"
-            ALDOC=$(mktemp)
-            PLATE=$(mktemp)
+            TMP=$(mktemp)
+            echo "=== NGINX API HEADERS ==="
+            curl --max-time 15 -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -D - -o "$TMP" "https://www.hulpveren.shop/api/plate/L948VT" || true
+            echo "-- body"; head -c 500 "$TMP"; echo
 
-            echo "=== LIVE FILE STATE ==="
-            grep -q 'function getPlateFromQuery' "$APP" && echo QUERY_FIX_PRESENT || echo QUERY_FIX_ABSENT
-            grep -q 'ensureAldocSetsOnKtRoute("renderer-ready")' "$APP" && echo DIRECT_ALDOC_FIX_PRESENT || echo DIRECT_ALDOC_FIX_ABSENT
-            grep -q 'aldocSetsCheckedAt' "$APP" && echo EMPTY_RESULT_GUARD_PRESENT || echo EMPTY_RESULT_GUARD_ABSENT
-            node --check "$APP" && echo LIVE_SYNTAX_OK || echo LIVE_SYNTAX_FAILED
+            echo "=== NGINX ALDOC HEADERS ==="
+            curl --max-time 15 -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -D - -o "$TMP" "https://www.hulpveren.shop/aldoc-proxy/PartServices/L948VT" || true
+            echo "-- body"; head -c 1000 "$TMP"; echo
 
-            echo "=== LIVE HTTP ==="
-            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o /dev/null -w 'PAGE_HTTP=%{http_code}\n' "https://www.hulpveren.shop/hulpveren/volkswagen/touran/touran-1t/?kt=L948VT"
-            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o /dev/null -w 'APP_HTTP=%{http_code}\n' "https://www.hulpveren.shop/assets/js/app.js?v=$(date +%s)"
+            echo "=== BACKEND API 3004 ==="
+            curl --max-time 20 -sS -D - -o "$TMP" -H "Host: www.hulpveren.shop" "http://127.0.0.1:3004/api/plate/L948VT" || true
+            echo "-- body"; head -c 2000 "$TMP"; echo
 
-            echo "=== ALDOC RESPONSE ==="
-            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o "$ALDOC" -w 'ALDOC_HTTP=%{http_code}\n' "https://www.hulpveren.shop/aldoc-proxy/PartServices/L948VT"
-            echo "ALDOC_BYTES=$(wc -c < "$ALDOC")"
-            python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("ALDOC_TYPE="+type(d).__name__); print("ALDOC_TOP_KEYS="+(",".join(d.keys()) if isinstance(d,dict) else "")); print("ALDOC_SAMPLE="+json.dumps(d,ensure_ascii=False)[:5000])' "$ALDOC" || true
-            echo "ALDOC_6DIGIT_TOKENS:"
-            grep -oE '[0-9]{6}' "$ALDOC" | sort -u || true
-            echo "ALDOC_MAD_TOKENS:"
-            grep -oEi '.{0,80}(MAD|hulpveren|auxiliary|1031|204).{0,120}' "$ALDOC" | head -n 40 || true
+            echo "=== BACKEND ALDOC 3004 ==="
+            curl --max-time 20 -sS -D - -o "$TMP" -H "Host: www.hulpveren.shop" "http://127.0.0.1:3004/aldoc-proxy/PartServices/L948VT" || true
+            echo "-- bytes $(wc -c < "$TMP")"
+            echo "-- body"; head -c 5000 "$TMP"; echo
 
-            echo "=== PLATE API ==="
-            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o "$PLATE" -w 'PLATE_API_HTTP=%{http_code}\n' "https://www.hulpveren.shop/api/plate/L948VT"
-            echo "PLATE_BYTES=$(wc -c < "$PLATE")"
-            python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("PLATE_SAMPLE="+json.dumps(d,ensure_ascii=False)[:3000])' "$PLATE" || true
+            echo "=== BACKEND PAGE 3004 ==="
+            curl --max-time 20 -sS -D - -o "$TMP" -H "Host: www.hulpveren.shop" "http://127.0.0.1:3004/hulpveren/volkswagen/touran/touran-1t/?kt=L948VT" || true
+            echo "-- body"; head -c 1000 "$TMP"; echo
 
-            rm -f "$ALDOC" "$PLATE"
+            echo "=== BACKEND SERVICE ==="
+            systemctl status lowland-api.service --no-pager -l 2>/dev/null | head -n 60 || true
+            echo "=== RECENT BACKEND LOG ==="
+            journalctl -u lowland-api.service -n 80 --no-pager 2>/dev/null || true
+
+            rm -f "$TMP"
