@@ -660,7 +660,7 @@ test("main router sends modern query plate URLs through renderPlateModel", () =>
   );
 });
 
-test("direct Aldoc PartServices runs before generic api plate fallback", () => {
+test("plate solutions lookup runs before generic api plate fallback", () => {
   const helper = renderPlateModelInnerSource();
   const exposeAt = helper.indexOf(
     "window.__applyAldocSetsPayloadToPage = applyAldocSetsPayloadToPage;"
@@ -675,10 +675,10 @@ test("direct Aldoc PartServices runs before generic api plate fallback", () => {
   );
 
   assert.ok(exposeAt >= 0, "Aldoc page applier should be exposed");
-  assert.ok(directAt > exposeAt, "direct Aldoc lookup should run after the applier is ready");
+  assert.ok(directAt > exposeAt, "plate solutions lookup should run after the applier is ready");
   assert.ok(
     fallbackAt > directAt,
-    "generic /api/plate payload may only be applied after direct Aldoc lookup"
+    "generic /api/plate payload may only be applied after plate solutions lookup"
   );
 });
 
@@ -710,8 +710,9 @@ test("empty Aldoc set metadata is not treated as an applied SKU result", () => {
   assert.equal(positiveSandbox.__result, true);
 });
 
-test("direct Aldoc ensure supports query plate URLs and waits for page applier readiness", () => {
+test("plate solutions ensure supports query plate URLs and waits for page applier readiness", () => {
   const source = appSource();
+  assert.match(source, /\/api\/plate\/solutions\/\$\{encodeURIComponent\(plate\)\}/);
   const start = source.indexOf("async function ensureAldocSetsOnKtRoute");
   assert.notEqual(start, -1, "ensureAldocSetsOnKtRoute should exist");
   const end = source.indexOf("\n  if (document.readyState", start);
