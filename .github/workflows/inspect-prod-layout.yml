@@ -1,0 +1,41 @@
+name: Inspect production layout
+
+on:
+  push:
+    branches: [ "inspect/prod-layout" ]
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect server read-only
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USER }}
+          key: ${{ secrets.DEV_SSH_KEY }}
+          script_stop: true
+          command_timeout: 5m
+          script: |
+            set -euo pipefail
+            echo "=== HOST ==="
+            hostname
+            echo "=== NGINX HULPVEREN CONFIG ==="
+            nginx -T 2>&1 | grep -n -E 'server_name|root |alias |hulpveren\.shop|proxy_pass' | head -n 500 || true
+            echo "=== VAR WWW ==="
+            find /var/www -maxdepth 3 -type d -print 2>/dev/null | sort | head -n 500
+            echo "=== BUILD IDS ==="
+            find /var/www -maxdepth 5 \( -name build-id.txt -o -name .deploy.txt \) -type f -print 2>/dev/null | while read -r f; do
+              echo "--- $f"
+              cat "$f" || true
+            done
+            echo "=== PROD CANDIDATES ==="
+            for d in /var/www/hulpveren.shop /var/www/www.hulpveren.shop /var/www/hulpveren.shop/public /var/www/www.hulpveren.shop/public; do
+              if [ -e "$d" ]; then
+                echo "--- $d"
+                readlink -f "$d" || true
+                ls -la "$d" | head -n 80 || true
+              fi
+            done
+            echo "=== DEPLOY SCRIPTS ==="
+            find /usr/local/bin /opt /home/ivor -maxdepth 5 -type f \( -iname '*deploy*' -o -iname '*hulpveren*' \) -print 2>/dev/null | sort | head -n 500
