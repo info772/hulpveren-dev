@@ -1,54 +1,105 @@
-name: Inspect production patch compatibility
+name: Deploy production Touran plate fix
 
 on:
   push:
     branches: [ "inspect/prod-layout" ]
 
 jobs:
-  inspect:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Dry-run live app patch
+      - name: Patch live app with rollback protection
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEV_HOST }}
           username: ${{ secrets.DEV_USER }}
           key: ${{ secrets.DEV_SSH_KEY }}
-          script_stop: false
+          script_stop: true
           command_timeout: 5m
           script: |
+            set -euo pipefail
+
             SRC=/home/ivor/deploy-src/repo/hulpveren-dev
-            LIVE=/var/www/hulpveren-live-site/public
+            PROD=/var/www/hulpveren-live-site
+            LIVE="$PROD/public"
+            APP="$LIVE/assets/js/app.js"
             BASE=5d9f6a95ff6a9e9d7f03ad4b5869b841ade30df1
             FIX=41de77474e2eb69342bd49d8aff9c320247a7142
-            TMP=$(mktemp)
-            trap 'rm -f "$TMP"' EXIT
+            PATCH_FILE=$(mktemp)
+            TS=$(date +%Y%m%d_%H%M%S)
+            BACKUP_DIR="$PROD/private_backups/l948vt-fix"
+            BACKUP="$BACKUP_DIR/app.js.before-$TS"
+            trap 'rm -f "$PATCH_FILE"' EXIT
 
-            echo "=== SOURCE STATE ==="
-            git -C "$SRC" rev-parse HEAD 2>&1 || true
-            git -C "$SRC" status -sb 2>&1 || true
-
-            echo "=== HASHES ==="
-            sha256sum "$LIVE/assets/js/app.js" 2>/dev/null || true
-            git -C "$SRC" show "$BASE:wwwroot/assets/js/app.js" | sha256sum || true
-            git -C "$SRC" show "$FIX:wwwroot/assets/js/app.js" | sha256sum || true
-
-            echo "=== PATCH SIZE ==="
-            git -C "$SRC" diff --numstat "$BASE" "$FIX" -- wwwroot/assets/js/app.js || true
-
-            git -C "$SRC" diff --no-ext-diff "$BASE" "$FIX" -- wwwroot/assets/js/app.js \
-              | sed 's#a/wwwroot/assets/js/app.js#a/assets/js/app.js#; s#b/wwwroot/assets/js/app.js#b/assets/js/app.js#' > "$TMP"
-
-            echo "=== DRY RUN EXACT ==="
-            cd "$LIVE"
-            if patch --dry-run --batch --fuzz=0 -p1 < "$TMP"; then
-              echo PATCH_DRY_RUN_OK
-            else
-              echo PATCH_DRY_RUN_FAILED
+            echo "=== PRECHECK ==="
+            test -f "$APP"
+            test "$(git -C "$SRC" rev-parse HEAD)" = "$FIX"
+            if grep -q 'function getPlateFromQuery' "$APP"; then
+              echo "Fix already present; no production change needed."
+              exit 0
             fi
 
-            echo "=== CURRENT LIVE SYNTAX ==="
-            if node --check "$LIVE/assets/js/app.js"; then echo LIVE_SYNTAX_OK; else echo LIVE_SYNTAX_FAILED; fi
+            git -C "$SRC" diff --no-ext-diff "$BASE" "$FIX" -- wwwroot/assets/js/app.js \
+              | sed 's#a/wwwroot/assets/js/app.js#a/assets/js/app.js#; s#b/wwwroot/assets/js/app.js#b/assets/js/app.js#' > "$PATCH_FILE"
 
-            echo "=== RELEVANT LIVE CONTEXT ==="
-            grep -n -E 'hasPlateToken|isPlateRoutePath|aldocSetsApplied|applyAldocSetsPayloadToPage|isKtPlateRoute|alreadyAppliedAldocSets|const route = parseRoute' "$LIVE/assets/js/app.js" 2>/dev/null || true
+            cd "$LIVE"
+            patch --dry-run --batch --fuzz=0 -p1 < "$PATCH_FILE"
+
+            mkdir -p "$BACKUP_DIR"
+            cp -a "$APP" "$BACKUP"
+            echo "BACKUP=$BACKUP"
+
+            rollback() {
+              echo "ROLLBACK: restoring $BACKUP"
+              cp -a "$BACKUP" "$APP"
+              exit 1
+            }
+
+            echo "=== APPLY PATCH ==="
+            if ! patch --batch --fuzz=0 -p1 < "$PATCH_FILE"; then rollback; fi
+            chown --reference="$BACKUP" "$APP" || true
+            chmod --reference="$BACKUP" "$APP" || true
+
+            echo "=== VERIFY FILE ==="
+            if ! node --check "$APP"; then rollback; fi
+            if ! grep -q 'function getPlateFromQuery' "$APP"; then rollback; fi
+            if ! grep -q 'ensureAldocSetsOnKtRoute("renderer-ready")' "$APP"; then rollback; fi
+            if ! grep -q 'aldocSetsCheckedAt' "$APP"; then rollback; fi
+            echo "LIVE_FILE_FIX_OK"
+            sha256sum "$APP"
+            stat -c 'owner=%U group=%G mode=%a size=%s mtime=%y' "$APP"
+
+            echo "=== NGINX ==="
+            nginx -t
+
+            echo "=== SERVED APP ==="
+            CACHE_BUST=$(date +%s)
+            SERVED=$(mktemp)
+            if ! curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -fsS \
+              "https://www.hulpveren.shop/assets/js/app.js?v=$CACHE_BUST" -o "$SERVED"; then
+              rm -f "$SERVED"
+              rollback
+            fi
+            if ! grep -q 'function getPlateFromQuery' "$SERVED"; then
+              rm -f "$SERVED"
+              rollback
+            fi
+            rm -f "$SERVED"
+            echo "SERVED_APP_FIX_OK"
+
+            echo "=== ALDOC L948VT ==="
+            ALDOC=$(mktemp)
+            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -fsS \
+              "https://www.hulpveren.shop/aldoc-proxy/PartServices/L948VT" -o "$ALDOC"
+            grep -oE 'HV-[0-9]+' "$ALDOC" | sort -u || true
+            echo -n "UNIQUE_HV_COUNT="
+            grep -oE 'HV-[0-9]+' "$ALDOC" | sort -u | wc -l
+            rm -f "$ALDOC"
+
+            echo "=== PAGE/API HTTP ==="
+            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o /dev/null -w 'PAGE_HTTP=%{http_code}\n' \
+              "https://www.hulpveren.shop/hulpveren/volkswagen/touran/touran-1t/?kt=L948VT"
+            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o /dev/null -w 'PLATE_API_HTTP=%{http_code}\n' \
+              "https://www.hulpveren.shop/api/plate/L948VT"
+
+            echo "PRODUCTION_PATCH_OK"
