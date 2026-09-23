@@ -605,3 +605,124 @@ test("plain model routes remain model routes and are not treated as plate routes
   assert.match(parsePlateRoute, /if \(!plateMatch\) return null/);
   assert.match(helper, /currentProductRoute\.kind === "model"/);
 });
+
+
+test("modern query plate generation route is promoted to the plate renderer", () => {
+  const queryHelper = helperSource("getPlateFromQuery");
+  const routeHelper = helperSource("applyQueryPlateToRoute");
+  const sandbox = {
+    URLSearchParams,
+    location: {
+      pathname: "/hulpveren/volkswagen/touran/touran-1t/",
+      search: "?kt=L948VT",
+    },
+  };
+  sandbox.normalizePlateInput = (value) =>
+    String(value || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  sandbox.normalizeForRoute = (value) => {
+    const clean = String(value || "").replace(/\/+$/, "");
+    return clean || "/";
+  };
+  sandbox.BASE = "/hulpveren";
+
+  vm.runInNewContext(
+    `${queryHelper}\n${routeHelper}\nthis.__route = applyQueryPlateToRoute(
+      { kind: "model", make: "volkswagen", model: "touran" },
+      location.pathname,
+      location.search,
+      BASE
+    );`,
+    sandbox
+  );
+
+  assert.equal(sandbox.__route.kind, "plate");
+  assert.equal(sandbox.__route.plate, "L948VT");
+  assert.equal(sandbox.__route.make, "volkswagen");
+  assert.equal(sandbox.__route.model, "touran");
+  assert.equal(sandbox.__route.variant, "touran-1t");
+  assert.equal(sandbox.__route.queryPlate, true);
+});
+
+test("main router sends modern query plate URLs through renderPlateModel", () => {
+  const source = appSource();
+
+  assert.match(
+    source,
+    /let route = parseRoute\(location\.pathname, base\);[\s\S]*?route = applyQueryPlateToRoute\([\s\S]*?location\.search,[\s\S]*?base[\s\S]*?\);/
+  );
+  assert.match(
+    source,
+    /const isPlatePath =\s*route\.kind === "plate" \|\| plateToken \|\| isPlateRoutePath\(location\.pathname\)/
+  );
+  assert.match(
+    source,
+    /if \(route\.kind === "plate"\) return renderPlateModel\(kits, makes, route\)/
+  );
+});
+
+test("direct Aldoc PartServices runs before generic api plate fallback", () => {
+  const helper = renderPlateModelInnerSource();
+  const exposeAt = helper.indexOf(
+    "window.__applyAldocSetsPayloadToPage = applyAldocSetsPayloadToPage;"
+  );
+  const directAt = helper.indexOf(
+    'await ensureAldocSetsOnKtRoute("renderer-ready")',
+    exposeAt
+  );
+  const fallbackAt = helper.indexOf(
+    "await applyAldocSetsPayloadToPage(data)",
+    directAt
+  );
+
+  assert.ok(exposeAt >= 0, "Aldoc page applier should be exposed");
+  assert.ok(directAt > exposeAt, "direct Aldoc lookup should run after the applier is ready");
+  assert.ok(
+    fallbackAt > directAt,
+    "generic /api/plate payload may only be applied after direct Aldoc lookup"
+  );
+});
+
+test("empty Aldoc set metadata is not treated as an applied SKU result", () => {
+  const helper = helperSource("alreadyAppliedAldocSets");
+  const emptySandbox = {
+    window: {
+      hv_plate_context: {
+        aldocSetsApplied: Date.now(),
+        aldoc: { vehicleCandidates: [{ make: "VOLKSWAGEN", model: "TOURAN" }] },
+        aldocSets: { hvSkus: [], nrSkus: [], lsSkus: [] },
+      },
+    },
+  };
+  vm.runInNewContext(`${helper}\nthis.__result = alreadyAppliedAldocSets();`, emptySandbox);
+  assert.equal(emptySandbox.__result, false);
+
+  const positiveSandbox = {
+    window: {
+      hv_plate_context: {
+        aldocSets: { hvSkus: ["HV-199515"], nrSkus: [], lsSkus: [] },
+      },
+    },
+  };
+  vm.runInNewContext(
+    `${helper}\nthis.__result = alreadyAppliedAldocSets();`,
+    positiveSandbox
+  );
+  assert.equal(positiveSandbox.__result, true);
+});
+
+test("direct Aldoc ensure supports query plate URLs and waits for page applier readiness", () => {
+  const source = appSource();
+  const start = source.indexOf("async function ensureAldocSetsOnKtRoute");
+  assert.notEqual(start, -1, "ensureAldocSetsOnKtRoute should exist");
+  const end = source.indexOf("\n  if (document.readyState", start);
+  const helper = source.slice(start, end === -1 ? undefined : end);
+
+  assert.match(helper, /if \(!isKtPlateRoute\(location\.pathname\)\) return false/);
+  assert.match(
+    helper,
+    /typeof window\.__applyAldocSetsPayloadToPage !== "function"\) return false/
+  );
+  assert.match(helper, /window\.__ktEnsurePromises = window\.__ktEnsurePromises \|\| \{\}/);
+  assert.match(helper, /return await window\.__ktEnsurePromises\[key\]/);
+  assert.match(source, /Boolean\(getPlateFromQuery\(location\.search\)\)/);
+});
