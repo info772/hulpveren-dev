@@ -8,59 +8,66 @@ jobs:
   inspect:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect production source read-only
+      - name: Inspect production deployment read-only
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEV_HOST }}
           username: ${{ secrets.DEV_USER }}
           key: ${{ secrets.DEV_SSH_KEY }}
-          script_stop: true
+          script_stop: false
           command_timeout: 5m
           script: |
-            set -u
             PROD=/var/www/hulpveren-live-site
             echo "=== PROD ROOT ==="
-            readlink -f "$PROD" || true
-            ls -la "$PROD" || true
+            test -d "$PROD/.git" && echo HAS_GIT_DIR || echo NO_GIT_DIR
+            test -d "$PROD/public" && echo HAS_PUBLIC || echo NO_PUBLIC
 
-            echo "=== PROD GIT ==="
-            if git -C "$PROD" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-              git -C "$PROD" status -sb || true
-              echo "-- branch"
-              git -C "$PROD" branch --show-current || true
-              echo "-- head"
-              git -C "$PROD" rev-parse HEAD || true
-              echo "-- remotes"
-              git -C "$PROD" remote -v || true
-              echo "-- latest"
-              git -C "$PROD" log -1 --oneline || true
+            echo "=== PROD APP ==="
+            APP="$PROD/public/assets/js/app.js"
+            if [ -f "$APP" ]; then
+              stat -c 'size=%s mtime=%y owner=%U group=%G' "$APP"
+              if grep -q 'function getPlateFromQuery' "$APP"; then echo QUERY_FIX_PRESENT; else echo QUERY_FIX_ABSENT; fi
+              if grep -q 'renderer-ready' "$APP"; then echo DIRECT_ALDOC_FIX_PRESENT; else echo DIRECT_ALDOC_FIX_ABSENT; fi
+              if grep -q 'alreadyAppliedAldocSets' "$APP"; then echo ALDOC_GUARD_PRESENT; else echo ALDOC_GUARD_ABSENT; fi
             else
-              echo "NOT_A_GIT_REPO"
+              echo APP_JS_MISSING
             fi
 
-            echo "=== PROD APP MARKERS ==="
-            APP="$PROD/public/assets/js/app.js"
-            stat "$APP" || true
-            grep -n 'function getPlateFromQuery' "$APP" || true
-            grep -n 'renderer-ready' "$APP" || true
-            grep -n 'alreadyAppliedAldocSets' "$APP" || true
+            echo "=== ROOT SCRIPTS ==="
+            find "$PROD/scripts" -maxdepth 2 -type f -printf '%p\n' 2>/dev/null | sort
 
-            echo "=== BUILD/DEPLOY MARKERS ==="
-            for f in "$PROD/public/assets/build-id.txt" "$PROD/public/.deploy.txt" "$PROD/.deploy.txt"; do
-              if [ -f "$f" ]; then
-                echo "--- $f"
-                cat "$f" || true
+            echo "=== SCRIPT DEPLOY LINES ==="
+            for f in "$PROD"/scripts/*; do
+              [ -f "$f" ] || continue
+              echo "--- $f"
+              grep -nE 'deploy|staging|public|rsync|cp |mv |backup|nginx|systemctl|git |wwwroot|hulpveren-dev' "$f" 2>/dev/null || true
+            done
+
+            echo "=== STAGING ==="
+            find "$PROD/staging" -maxdepth 2 -mindepth 1 -printf '%y %p\n' 2>/dev/null | sort
+
+            echo "=== PROD GIT READ ==="
+            if [ -d "$PROD/.git" ]; then
+              git -c safe.directory="$PROD" -C "$PROD" status -sb 2>&1 || true
+              git -c safe.directory="$PROD" -C "$PROD" branch --show-current 2>&1 || true
+              git -c safe.directory="$PROD" -C "$PROD" rev-parse HEAD 2>&1 || true
+              git -c safe.directory="$PROD" -C "$PROD" remote -v 2>&1 || true
+              git -c safe.directory="$PROD" -C "$PROD" log -1 --oneline 2>&1 || true
+            fi
+
+            echo "=== DEPLOY SOURCES ==="
+            for d in /home/ivor/deploy-src /home/ivor/deploy-src/repo /opt/apps /opt/apps/backend; do
+              if [ -d "$d" ]; then
+                echo "--- $d"
+                find "$d" -maxdepth 3 -type d -iname '*hulpveren*' -print 2>/dev/null
               fi
             done
 
-            echo "=== PROD NGINX BLOCK ==="
-            nginx -T 2>&1 | sed -n '/configuration file \/etc\/nginx\/sites-enabled\/hulpveren.shop:/,/configuration file /p' || true
+            echo "=== SYSTEM DEPLOY SCRIPTS ==="
+            find /usr/local/bin -maxdepth 1 -type f -iname '*deploy*' -printf '%f\n' 2>/dev/null | sort
 
-            echo "=== DEPLOY SCRIPTS ==="
-            find /usr/local/bin /home/ivor /opt/apps -maxdepth 5 -type f -iname '*deploy*' -print 2>/dev/null | sort || true
-
-            echo "=== HULPVEREN PATHS ==="
-            find /home/ivor /opt/apps -maxdepth 5 -type d -iname '*hulpveren*' -print 2>/dev/null | sort || true
+            echo "=== PROD NGINX ESSENTIALS ==="
+            nginx -T 2>&1 | sed -n '/configuration file \/etc\/nginx\/sites-enabled\/hulpveren.shop:/,/^# configuration file /p' | grep -E 'server_name|root |alias |proxy_pass|location |try_files' || true
 
             echo "=== PORT 3004 ==="
             ss -ltnp 2>/dev/null | grep ':3004' || true
