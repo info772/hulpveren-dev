@@ -5593,7 +5593,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   function suppressHomeSectionsOnPlate() {
-    if (window.__SPA_DISABLED__ || window.__LEGACY_HERO_PAGE__) return;
+    if (window.__SPA_DISABLED__ || window.__LEGACY_HERO_PAGE__ || document.getElementById("kenteken-tiles")) return;
     const main = document.querySelector("main");
     if (!main) return;
     main.querySelectorAll("section").forEach((section) => {
