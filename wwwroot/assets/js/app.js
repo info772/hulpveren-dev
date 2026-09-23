@@ -2338,6 +2338,42 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     return !!findPlateSegment(parts);
   }
 
+  function getPlateFromQuery(search = location.search) {
+    const params = new URLSearchParams(search || "");
+    return normalizePlateInput(params.get("kt") || "");
+  }
+
+  function applyQueryPlateToRoute(
+    route,
+    pathname = location.pathname,
+    search = location.search,
+    base = BASE
+  ) {
+    const plate = getPlateFromQuery(search);
+    if (!plate) return route;
+
+    const p = normalizeForRoute(pathname).toLowerCase();
+    const baseLower = normalizeForRoute(base).toLowerCase();
+    if (p !== baseLower && !p.startsWith(baseLower + "/")) return route;
+
+    const parts =
+      p === baseLower
+        ? []
+        : p
+            .slice((baseLower + "/").length)
+            .split("/")
+            .filter(Boolean);
+
+    return {
+      kind: "plate",
+      make: parts[0] || route?.make || "",
+      model: parts[1] || route?.model || "",
+      variant: parts[2] || "",
+      plate,
+      queryPlate: true,
+    };
+  }
+
   function buildIndex(kits) {
     const makes = new Map(); // makeSlug -> {label, models: Map(modelSlug -> label)}
     for (const kit of kits || []) {
@@ -5533,6 +5569,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   function isPlateRoutePath(pathname) {
+    if (getPlateFromQuery(location.search)) return true;
     const clean = normalizeForRoute(pathname).toLowerCase();
     if (clean.includes("/kt_")) return true;
     const parts = clean.split("/").filter(Boolean);
@@ -6705,9 +6742,17 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         nr: aldocSets.nrSkus.length,
         ls: aldocSets.lsSkus.length,
       });
+      const hasAldocSets = Boolean(
+        aldocSets.hvSkus.length ||
+        aldocSets.nrSkus.length ||
+        aldocSets.lsSkus.length
+      );
       if (window.hv_plate_context) {
-        window.hv_plate_context.aldocSetsApplied = Date.now();
-        window.hv_plate_context.aldocSets = aldocSets;
+        window.hv_plate_context.aldocSetsCheckedAt = Date.now();
+        if (hasAldocSets) {
+          window.hv_plate_context.aldocSetsApplied = Date.now();
+          window.hv_plate_context.aldocSets = aldocSets;
+        }
       }
       if (typeof window.hvSetBaseFromAldoc === "function") {
         const v = (payload && payload.vehicle) || vehicle || {};
@@ -6721,11 +6766,6 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
         };
         window.hvSetBaseFromAldoc(base, payload || v);
       }
-      const hasAldocSets =
-        aldocSets.hvSkus.length ||
-        aldocSets.nrSkus.length ||
-        aldocSets.lsSkus.length;
-
       if (!hasAldocSets) {
         if (isRdwBasic) {
           debugLog("plate:aldoc_empty_rdw_model_fallback", {
@@ -7074,6 +7114,9 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     };
 
     window.__applyAldocSetsPayloadToPage = applyAldocSetsPayloadToPage;
+
+    const directAldocHandled = await ensureAldocSetsOnKtRoute("renderer-ready");
+    if (directAldocHandled) return;
 
     const { aldocSets, handled } = await applyAldocSetsPayloadToPage(data);
     if (handled) return;
@@ -8394,18 +8437,26 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
   }
 
   function isKtPlateRoute(pathname) {
-    return /\/kt_[a-z0-9]+\/?$/i.test(pathname || "");
+    return (
+      /\/kt_[a-z0-9]+\/?$/i.test(pathname || "") ||
+      Boolean(getPlateFromQuery(location.search))
+    );
   }
 
   function getPlateFromCtx() {
-    return String(window.hv_plate_context?.plate || "").trim().toUpperCase();
+    return (
+      String(window.hv_plate_context?.plate || "").trim().toUpperCase() ||
+      getPlateFromQuery(location.search)
+    );
   }
 
   function alreadyAppliedAldocSets() {
-    return !!(
-      window.hv_plate_context?.aldocSetsApplied ||
-      window.hv_plate_context?.aldoc ||
-      window.hv_plate_context?.aldocSets
+    const sets = window.hv_plate_context?.aldocSets;
+    return Boolean(
+      sets &&
+        ((Array.isArray(sets.hvSkus) && sets.hvSkus.length) ||
+          (Array.isArray(sets.nrSkus) && sets.nrSkus.length) ||
+          (Array.isArray(sets.lsSkus) && sets.lsSkus.length))
     );
   }
 
@@ -8415,40 +8466,70 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
   async function ensureAldocSetsOnKtRoute(source) {
     try {
-      if (!isKtPlateRoute(location.pathname)) return;
+      if (!isKtPlateRoute(location.pathname)) return false;
       const plate = getPlateFromCtx();
-      if (!plate) return;
+      if (!plate) return false;
+      if (alreadyAppliedAldocSets()) return true;
+      if (typeof window.__applyAldocSetsPayloadToPage !== "function") return false;
 
       window.__ktEnsureRan = window.__ktEnsureRan || {};
-      const key = `${plate}:${location.pathname}`;
-      if (window.__ktEnsureRan[key]) return;
-      window.__ktEnsureRan[key] = true;
+      window.__ktEnsurePromises = window.__ktEnsurePromises || {};
+      const key = `${plate}:${location.pathname}:${location.search || ""}`;
 
-      if (alreadyAppliedAldocSets()) return;
-      if (typeof window.__applyAldocSetsPayloadToPage !== "function") return;
-
-      const intentType = String(window.hv_plate_context?.intentType || "").trim();
-      const url = buildAldocProxyUrlForPlate(plate);
-
-      debugLog("plate:aldoc_sets:ensure_start", { plate, intentType, url, source });
-
-      const res = await fetch(url, { headers: { Accept: "application/json" } });
-      if (!res.ok) {
-        debugLog("plate:aldoc_sets:ensure_http_error", { status: res.status, url });
-        return;
+      if (window.__ktEnsureRan[key]) return true;
+      if (window.__ktEnsurePromises[key]) {
+        return await window.__ktEnsurePromises[key];
       }
 
-      const data = await res.json();
-      await window.__applyAldocSetsPayloadToPage(data);
+      const task = (async () => {
+        const intentType = String(window.hv_plate_context?.intentType || "").trim();
+        const url = buildAldocProxyUrlForPlate(plate);
 
-      if (window.hv_plate_context) {
-        window.hv_plate_context.aldoc = data;
-        window.hv_plate_context.updatedAt = Date.now();
+        debugLog("plate:aldoc_sets:ensure_start", {
+          plate,
+          intentType,
+          url,
+          source,
+        });
+
+        const res = await fetch(url, { headers: { Accept: "application/json" } });
+        if (!res.ok) {
+          debugLog("plate:aldoc_sets:ensure_http_error", {
+            status: res.status,
+            url,
+          });
+          return false;
+        }
+
+        const data = await res.json();
+        const result = await window.__applyAldocSetsPayloadToPage(data);
+
+        if (window.hv_plate_context) {
+          window.hv_plate_context.aldoc = data;
+          window.hv_plate_context.updatedAt = Date.now();
+        }
+
+        window.__ktEnsureRan[key] = true;
+        debugLog("plate:aldoc_sets:ensure_done", {
+          plate,
+          intentType,
+          url,
+          handled: Boolean(result?.handled),
+        });
+        return Boolean(result?.handled);
+      })();
+
+      window.__ktEnsurePromises[key] = task;
+      try {
+        return await task;
+      } finally {
+        delete window.__ktEnsurePromises[key];
       }
-
-      debugLog("plate:aldoc_sets:ensure_done", { plate, intentType, url });
     } catch (e) {
-      debugLog("plate:aldoc_sets:ensure_exception", { message: String(e?.message || e) });
+      debugLog("plate:aldoc_sets:ensure_exception", {
+        message: String(e?.message || e),
+      });
+      return false;
     }
   }
 
@@ -8495,9 +8576,16 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       base = HV_BASE;
     }
 
-    const route = parseRoute(location.pathname, base);
+    let route = parseRoute(location.pathname, base);
+    route = applyQueryPlateToRoute(
+      route,
+      location.pathname,
+      location.search,
+      base
+    );
     const plateToken = hasPlateToken(location.pathname, base);
-    const isPlatePath = plateToken || isPlateRoutePath(location.pathname);
+    const isPlatePath =
+      route.kind === "plate" || plateToken || isPlateRoutePath(location.pathname);
 
     debugLog("route:match", {
       path: location.pathname,
