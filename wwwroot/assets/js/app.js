@@ -1214,8 +1214,21 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
       }
 
       const inflight = (async () => {
-        const endpoint = `${PLATE_API_BASE}/${encodeURIComponent(normalized)}`;
-        const res = await fetchWithTimeout(endpoint, { cache: "no-store" });
+        const primaryEndpoint = `${PLATE_API_BASE}/${encodeURIComponent(normalized)}`;
+        const previewEndpoint = `/api/plate/aldoc-preview/${encodeURIComponent(normalized)}`;
+        let endpoint = primaryEndpoint;
+        let res = await fetchWithTimeout(endpoint, { cache: "no-store" });
+
+        if (res.status === 404 && primaryEndpoint !== previewEndpoint) {
+          debugLog("plate:fetch_fallback_preview", {
+            plate: normalized,
+            primaryEndpoint,
+            previewEndpoint,
+          });
+          endpoint = previewEndpoint;
+          res = await fetchWithTimeout(endpoint, { cache: "no-store" });
+        }
+
         const snippet = await res
           .clone()
           .text()

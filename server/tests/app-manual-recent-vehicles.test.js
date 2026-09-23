@@ -660,6 +660,13 @@ test("main router sends modern query plate URLs through renderPlateModel", () =>
   );
 });
 
+test("plate fetch falls back to aldoc preview when generic api plate is missing", () => {
+  const source = appSource();
+  assert.match(source, /const previewEndpoint = `\/api\/plate\/aldoc-preview\/\$\{encodeURIComponent\(normalized\)\}`/);
+  assert.match(source, /if \(res\.status === 404 && primaryEndpoint !== previewEndpoint\)/);
+  assert.match(source, /endpoint = previewEndpoint;[\s\S]*?fetchWithTimeout\(endpoint, \{ cache: "no-store" \}\)/);
+});
+
 test("plate solutions lookup runs before generic api plate fallback", () => {
   const helper = renderPlateModelInnerSource();
   const exposeAt = helper.indexOf(
