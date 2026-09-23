@@ -8460,8 +8460,8 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
     );
   }
 
-  function buildAldocProxyUrlForPlate(plate) {
-    return `/aldoc-proxy/PartServices/${encodeURIComponent(plate)}`;
+  function buildPlateSolutionsUrlForPlate(plate) {
+    return `/api/plate/solutions/${encodeURIComponent(plate)}`;
   }
 
   async function ensureAldocSetsOnKtRoute(source) {
@@ -8483,7 +8483,7 @@ const hvSeoRenderModel = (pairs, ctx, target) => {
 
       const task = (async () => {
         const intentType = String(window.hv_plate_context?.intentType || "").trim();
-        const url = buildAldocProxyUrlForPlate(plate);
+        const url = buildPlateSolutionsUrlForPlate(plate);
 
         debugLog("plate:aldoc_sets:ensure_start", {
           plate,
