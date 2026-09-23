@@ -18,58 +18,32 @@ jobs:
           command_timeout: 3m
           script: |
             TMP=$(mktemp)
-            trap 'rm -f "$TMP"' EXIT
 
-            request() {
-              LABEL="$1"
-              URL="$2"
-              echo "=== $LABEL ==="
-              CODE=$(curl --max-time 25 -sS -o "$TMP" -w '%{http_code}' -H "Host: www.hulpveren.shop" "$URL" || true)
-              echo "HTTP=$CODE"
-              echo "BYTES=$(wc -c < "$TMP")"
-              head -c 8000 "$TMP"; echo
-            }
+            echo "=== BACKEND API LOWERCASE ==="
+            CODE=$(curl --max-time 25 -sS -o "$TMP" -w '%{http_code}' -H "Host: www.hulpveren.shop" "http://127.0.0.1:3004/api/plate/l948vt" || true)
+            echo "HTTP=$CODE BYTES=$(wc -c < "$TMP")"
+            head -c 8000 "$TMP"; echo
 
-            request "BACKEND API LOWERCASE" "http://127.0.0.1:3004/api/plate/l948vt"
-            request "BACKEND ALDOC LOWERCASE" "http://127.0.0.1:3004/aldoc-proxy/partservices/l948vt"
+            echo "=== BACKEND ALDOC LOWERCASE ==="
+            CODE=$(curl --max-time 25 -sS -o "$TMP" -w '%{http_code}' -H "Host: www.hulpveren.shop" "http://127.0.0.1:3004/aldoc-proxy/partservices/l948vt" || true)
+            echo "HTTP=$CODE BYTES=$(wc -c < "$TMP")"
+            head -c 16000 "$TMP"; echo
 
             echo "=== NGINX FOLLOW API ==="
             CODE=$(curl --max-time 25 -k -L --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o "$TMP" -w '%{http_code}' "https://www.hulpveren.shop/api/plate/L948VT" || true)
             echo "HTTP=$CODE BYTES=$(wc -c < "$TMP")"
-            head -c 5000 "$TMP"; echo
+            head -c 8000 "$TMP"; echo
 
             echo "=== NGINX FOLLOW ALDOC ==="
             CODE=$(curl --max-time 25 -k -L --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o "$TMP" -w '%{http_code}' "https://www.hulpveren.shop/aldoc-proxy/PartServices/L948VT" || true)
             echo "HTTP=$CODE BYTES=$(wc -c < "$TMP")"
-            head -c 12000 "$TMP"; echo
+            head -c 16000 "$TMP"; echo
 
-            echo "=== CANDIDATE SKU FIELDS ==="
-            python3 - "$TMP" <<'PY' || true
-import json, sys, re
-p=sys.argv[1]
-try:
-    d=json.load(open(p))
-except Exception as e:
-    print("JSON_ERROR", e)
-    raise SystemExit
-seen=set()
-def walk(x,path=""):
-    if isinstance(x,dict):
-        for k,v in x.items():
-            kp=f"{path}.{k}" if path else k
-            kl=k.lower()
-            if any(s in kl for s in ("part","article","product","brand","supplier","sku","item","code","number")):
-                sv=str(v)
-                if len(sv)<600:
-                    item=(kp,sv)
-                    if item not in seen:
-                        seen.add(item); print(kp,"=",sv)
-            walk(v,kp)
-    elif isinstance(x,list):
-        for i,v in enumerate(x):
-            walk(v,f"{path}[{i}]")
-walk(d)
-PY
+            echo "=== RAW TOKENS ==="
+            grep -oE '[0-9]{4,}' "$TMP" | sort -u | head -n 100 || true
+            grep -oEi '.{0,70}(MAD|hulpveren|auxiliary|product|article|part|brand|supplier).{0,120}' "$TMP" | head -n 100 || true
 
-            echo "=== CANONICAL LOWERCASE MIDDLEWARE SEARCH ==="
-            grep -RInE 'toLowerCase\(\)|lowercase|301|redirect\(' /opt/apps/backend/server --include='*.js' 2>/dev/null | head -n 160 || true
+            echo "=== LOWERCASE REDIRECT CODE ==="
+            grep -RInE 'toLowerCase\(\)|lowercase|redirect\(' /opt/apps/backend/server --include='*.js' 2>/dev/null | head -n 160 || true
+
+            rm -f "$TMP"
