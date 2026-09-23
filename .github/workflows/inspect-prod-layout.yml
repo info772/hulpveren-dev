@@ -8,7 +8,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify live app and Aldoc parser
+      - name: Inspect live Aldoc response
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEV_HOST }}
@@ -20,178 +20,30 @@ jobs:
             LIVE=/var/www/hulpveren-live-site/public
             APP="$LIVE/assets/js/app.js"
             ALDOC=$(mktemp)
-            PARSER=$(mktemp --suffix=.js)
             PLATE=$(mktemp)
 
             echo "=== LIVE FILE STATE ==="
-            if grep -q 'function getPlateFromQuery' "$APP"; then echo QUERY_FIX_PRESENT; else echo QUERY_FIX_ABSENT; fi
-            if grep -q 'ensureAldocSetsOnKtRoute("renderer-ready")' "$APP"; then echo DIRECT_ALDOC_FIX_PRESENT; else echo DIRECT_ALDOC_FIX_ABSENT; fi
-            if grep -q 'aldocSetsCheckedAt' "$APP"; then echo EMPTY_RESULT_GUARD_PRESENT; else echo EMPTY_RESULT_GUARD_ABSENT; fi
+            grep -q 'function getPlateFromQuery' "$APP" && echo QUERY_FIX_PRESENT || echo QUERY_FIX_ABSENT
+            grep -q 'ensureAldocSetsOnKtRoute("renderer-ready")' "$APP" && echo DIRECT_ALDOC_FIX_PRESENT || echo DIRECT_ALDOC_FIX_ABSENT
+            grep -q 'aldocSetsCheckedAt' "$APP" && echo EMPTY_RESULT_GUARD_PRESENT || echo EMPTY_RESULT_GUARD_ABSENT
             node --check "$APP" && echo LIVE_SYNTAX_OK || echo LIVE_SYNTAX_FAILED
 
             echo "=== LIVE HTTP ==="
-            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o /dev/null -w 'PAGE_HTTP=%{http_code}\n' \
-              "https://www.hulpveren.shop/hulpveren/volkswagen/touran/touran-1t/?kt=L948VT"
-            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o /dev/null -w 'APP_HTTP=%{http_code}\n' \
-              "https://www.hulpveren.shop/assets/js/app.js?v=$(date +%s)"
+            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o /dev/null -w 'PAGE_HTTP=%{http_code}\n' "https://www.hulpveren.shop/hulpveren/volkswagen/touran/touran-1t/?kt=L948VT"
+            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o /dev/null -w 'APP_HTTP=%{http_code}\n' "https://www.hulpveren.shop/assets/js/app.js?v=$(date +%s)"
 
             echo "=== ALDOC RESPONSE ==="
-            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -w '\nALDOC_HTTP=%{http_code}\n' \
-              "https://www.hulpveren.shop/aldoc-proxy/PartServices/L948VT" -o "$ALDOC"
+            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o "$ALDOC" -w 'ALDOC_HTTP=%{http_code}\n' "https://www.hulpveren.shop/aldoc-proxy/PartServices/L948VT"
             echo "ALDOC_BYTES=$(wc -c < "$ALDOC")"
-            head -c 1200 "$ALDOC"; echo
-
-            cat > "$PARSER" <<'NODE'
-const fs = require("fs");
-const payload = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
-const ALDOC_CODES = { brand: 204, hv: 1031, nr: 5147 };
-const normalizeKey = (key) => String(key || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-const ALDOC_BRAND_KEY_SET = new Set([
-  "brandcode","brand_code","brandid","brand_id","merkcode","merk_code","merkid","merk_id",
-  "suppliercode","supplier_code","supplierid","supplier_id"
-].map(normalizeKey));
-const ALDOC_PRODUCT_KEY_SET = new Set([
-  "productcode","product_code","productgroupcode","productgroup_code","productgroupid",
-  "productgroup_id","productgroepcode","productgroep_code","productgroepid","productgroep_id",
-  "articlecode","article_code","partcode","part_code","groupcode","group_code","productid","product_id"
-].map(normalizeKey));
-const SKU_FIELD_KEYS = [
-  "SKU","Sku","sku","PartNumber","PartNo","PartNr","ArticleNumber","ArticleNo","ItemNumber",
-  "ItemNo","ProductNumber","ProductNo","Number","ItemCode","ArticleCode","PartCode"
-];
-const toNumberValue = (value) => {
-  if (value == null) return null;
-  if (typeof value === "number" && Number.isFinite(value)) return value;
-  const match = String(value || "").match(/\d+/);
-  if (!match) return null;
-  const parsed = Number.parseInt(match[0], 10);
-  return Number.isFinite(parsed) ? parsed : null;
-};
-const findNumericByKey = (value, keySet, depth = 0) => {
-  if (!value || typeof value !== "object" || depth > 4) return null;
-  if (Array.isArray(value)) {
-    for (const entry of value) {
-      const found = findNumericByKey(entry, keySet, depth + 1);
-      if (found != null) return found;
-    }
-    return null;
-  }
-  for (const [key, val] of Object.entries(value)) {
-    if (keySet.has(normalizeKey(key))) {
-      const num = toNumberValue(val);
-      if (num != null) return num;
-    }
-    if (val && typeof val === "object") {
-      const nested = findNumericByKey(val, keySet, depth + 1);
-      if (nested != null) return nested;
-    }
-  }
-  return null;
-};
-const extractNumericSku = (value) => {
-  if (value == null) return "";
-  const match = String(value || "").match(/(\d{4,})/);
-  return match ? match[1] : "";
-};
-const normalizeSkuValue = (value) => {
-  const match = String(value || "").toUpperCase().match(/\b(HV|NR|LS)\s*[- ]?\s*(\d{3,})/);
-  return match ? `${match[1]}-${match[2]}` : "";
-};
-const collectStringValues = (value, out, depth = 0) => {
-  if (!value || depth > 4) return;
-  if (typeof value === "string") { out.push(value); return; }
-  if (Array.isArray(value)) { value.forEach((entry) => collectStringValues(entry, out, depth + 1)); return; }
-  if (typeof value === "object") Object.values(value).forEach((entry) => collectStringValues(entry, out, depth + 1));
-};
-const itemText = (item) => { const parts=[]; collectStringValues(item, parts, 0); return parts.join(" "); };
-const extractSkuFromItem = (item) => {
-  if (!item || typeof item !== "object") return { sku: "", digits: "" };
-  let digits = "";
-  for (const key of SKU_FIELD_KEYS) {
-    if (!(key in item)) continue;
-    const val = item[key];
-    const sku = normalizeSkuValue(val);
-    if (sku) return { sku, digits: sku.split("-")[1] || "" };
-    if (!digits) digits = extractNumericSku(val);
-  }
-  const textSku = normalizeSkuValue(itemText(item));
-  if (textSku) return { sku: textSku, digits: textSku.split("-")[1] || "" };
-  return { sku: "", digits };
-};
-const looksLikeAldocItem = (obj) => {
-  if (!obj || typeof obj !== "object") return false;
-  const keys = Object.keys(obj);
-  if (!keys.length) return false;
-  return keys.some((key) => {
-    const k = key.toLowerCase();
-    return k.includes("part") || k.includes("product") || k.includes("article") ||
-      k.includes("brand") || k.includes("supplier") || k.includes("sku") ||
-      k.includes("item") || k.includes("menu");
-  });
-};
-const collectAldocItems = (payload) => {
-  const out=[]; const seen=new WeakSet();
-  const visit=(value,depth)=>{
-    if (!value || typeof value !== "object" || depth > 6 || seen.has(value)) return;
-    seen.add(value);
-    if (Array.isArray(value)) { value.forEach((entry)=>visit(entry,depth+1)); return; }
-    if (looksLikeAldocItem(value)) out.push(value);
-    Object.values(value).forEach((entry)=>{ if (entry && typeof entry === "object") visit(entry,depth+1); });
-  };
-  visit(payload,0); return out;
-};
-const extractAldocSets = (payload) => {
-  const items=collectAldocItems(payload), hv=new Set(), nr=new Set(), ls=new Set();
-  let matchedItems=0;
-  items.forEach((item)=>{
-    const info=extractSkuFromItem(item);
-    const hasExplicitSku=Boolean(info.sku);
-    const productCode=findNumericByKey(item,ALDOC_PRODUCT_KEY_SET);
-    const brandCode=findNumericByKey(item,ALDOC_BRAND_KEY_SET);
-    const text=itemText(item).toLowerCase();
-    const inferFamily=(txt)=>{
-      if (/\b(nr[- ]?\d+)\b/.test(txt) || /luchtvering|air\s*suspension/.test(txt)) return "nr";
-      if (/\b(ls[- ]?\d+)\b/.test(txt) || /verlagingsveren|lowering/.test(txt)) return "ls";
-      if (/\b(hv[- ]?\d+)\b/.test(txt) || /hulpveren|auxiliary/.test(txt)) return "hv";
-      return "";
-    };
-    const isLowering=/verlagingsveren|lowering/.test(text);
-    const isHulpveren=/hulpveren|auxiliary/.test(text);
-    const isLuchtvering=/luchtvering|air\s*suspension/.test(text);
-    const hasMadHint=/\bmad\b/.test(text);
-    const productMatches=productCode===ALDOC_CODES.hv || productCode===ALDOC_CODES.nr;
-    if (!hasExplicitSku && brandCode != null && brandCode !== ALDOC_CODES.brand &&
-        !productMatches && !isLowering && !isHulpveren && !isLuchtvering && !hasMadHint) return;
-    matchedItems++;
-    let sku=info.sku;
-    if (!sku && info.digits) {
-      const familyHint=inferFamily(text);
-      if (familyHint==="nr") sku=`NR-${info.digits}`;
-      else if (familyHint==="ls") sku=`LS-${info.digits}`;
-      else if (familyHint==="hv") sku=`HV-${info.digits}`;
-      else if (productCode===ALDOC_CODES.hv || productCode===ALDOC_CODES.nr) sku=`HV-${info.digits}`;
-      else if (isLowering) sku=`LS-${info.digits}`;
-      else if (isLuchtvering) sku=`NR-${info.digits}`;
-      else if (isHulpveren) sku=`HV-${info.digits}`;
-    }
-    if (!sku) return;
-    const upper=sku.toUpperCase();
-    if (upper.startsWith("HV-")) hv.add(upper);
-    else if (upper.startsWith("NR-")) nr.add(upper);
-    else if (upper.startsWith("LS-")) ls.add(upper);
-  });
-  return {hvSkus:[...hv].sort(),nrSkus:[...nr].sort(),lsSkus:[...ls].sort(),matchedItems,totalItems:items.length};
-};
-console.log("PARSER_RESULT="+JSON.stringify(extractAldocSets(payload)));
-NODE
-
-            echo "=== PARSER ==="
-            node "$PARSER" "$ALDOC" || true
+            python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("ALDOC_TYPE="+type(d).__name__); print("ALDOC_TOP_KEYS="+(",".join(d.keys()) if isinstance(d,dict) else "")); print("ALDOC_SAMPLE="+json.dumps(d,ensure_ascii=False)[:5000])' "$ALDOC" || true
+            echo "ALDOC_6DIGIT_TOKENS:"
+            grep -oE '[0-9]{6}' "$ALDOC" | sort -u || true
+            echo "ALDOC_MAD_TOKENS:"
+            grep -oEi '.{0,80}(MAD|hulpveren|auxiliary|1031|204).{0,120}' "$ALDOC" | head -n 40 || true
 
             echo "=== PLATE API ==="
-            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -w '\nPLATE_API_HTTP=%{http_code}\n' \
-              "https://www.hulpveren.shop/api/plate/L948VT" -o "$PLATE"
+            curl -k --resolve www.hulpveren.shop:443:127.0.0.1 -sS -o "$PLATE" -w 'PLATE_API_HTTP=%{http_code}\n' "https://www.hulpveren.shop/api/plate/L948VT"
             echo "PLATE_BYTES=$(wc -c < "$PLATE")"
-            head -c 1000 "$PLATE"; echo
+            python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("PLATE_SAMPLE="+json.dumps(d,ensure_ascii=False)[:3000])' "$PLATE" || true
 
-            rm -f "$ALDOC" "$PARSER" "$PLATE"
+            rm -f "$ALDOC" "$PLATE"
