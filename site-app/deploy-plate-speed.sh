@@ -7,12 +7,10 @@ case "$environment" in
   dev)
     target="/var/www/hulpveren-dev-site/app/server.js"
     process="hulpveren-dev-site"
-    port="3003"
     ;;
   www)
     target="/var/www/hulpveren-live-site/app/server.js"
     process="hulpveren-live-site"
-    port="3004"
     ;;
   *)
     echo 'Gebruik: bash site-app/deploy-plate-speed.sh dev|www' >&2
@@ -20,6 +18,19 @@ case "$environment" in
     ;;
 esac
 
+# Read the active process configuration; hard-coded ports can point at another app.
+port="$(pm2 jlist | node -e '
+  const fs = require("fs");
+  const apps = JSON.parse(fs.readFileSync(0, "utf8"));
+  const app = apps.find((item) => item.name === process.argv[1]);
+  process.stdout.write(String(app && app.pm2_env && app.pm2_env.PORT || ""));
+' "$process")"
+if [[ ! "$port" =~ ^[0-9]+$ ]]; then
+  echo "Geen geldige PORT gevonden in PM2 voor $process; niets gewijzigd." >&2
+  exit 1
+fi
+
+echo "$process gebruikt poort $port"
 node "$repo_root/site-app/patch-plate-speed.js" "$target" --check
 node "$repo_root/site-app/patch-plate-speed.js" "$target"
 pm2 restart "$process"
