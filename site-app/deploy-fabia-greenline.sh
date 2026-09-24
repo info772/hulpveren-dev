@@ -22,10 +22,11 @@ esac
 
 target_view="$site_root/views/sets.ejs"
 expected_sha="fb952662e74efc68f31543b51d50b363715a6cc17dbe4babbb9349d34fafbcdf"
-source_sha="cb1de8248f2ba7989539ec2c6f68db6da40c822e3930b602e189afe650a508c8"
+previous_sha="cb1de8248f2ba7989539ec2c6f68db6da40c822e3930b602e189afe650a508c8"
+source_sha="948c802d15b989eeb4a7fe9baa1215671e530a269f41b7c85bc326f5e4fbf1e3"
 
 actual_sha="$(sha256sum "$target_view" | cut -d ' ' -f 1)"
-if [[ "$actual_sha" != "$expected_sha" && "$actual_sha" != "$source_sha" ]]; then
+if [[ "$actual_sha" != "$expected_sha" && "$actual_sha" != "$previous_sha" && "$actual_sha" != "$source_sha" ]]; then
   echo "De gedeployde view is gewijzigd: $actual_sha. Niets overschreven." >&2
   exit 1
 fi
@@ -66,7 +67,7 @@ pm2 restart "$process"
 for attempt in {1..30}; do
   if curl -fsS --max-time 5 -H "Host: $host" \
     "http://127.0.0.1:$port/hulpveren/skoda/fabia/ii-545/" \
-    | grep 'MAD vermeldt: niet voor GreenLine. Controleer geschiktheid' >/dev/null; then
+    | grep 'Versterkte vervangingsveren; ook voor Combi. Niet voor Greenline' >/dev/null; then
     echo "Fabia-aandachtspunten bereikbaar op $host (poort $port). Controleer ook ?kt=12TVG4 in de browser."
     exit 0
   fi
