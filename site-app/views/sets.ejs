@@ -110,7 +110,6 @@
         .map(function (item) { return String(item.reference || "").trim().toUpperCase(); })
         .filter(Boolean)
       );
-
       if (!allowedSkus.size) return;
 
       const cards = Array.from(document.querySelectorAll("[data-set-filter-card]"));
@@ -634,6 +633,19 @@ const compareRows = displayKits.map(function(compareKit) {
     const rawCompareAttentionSku = String(compareKit && compareKit.sku || '').trim().toUpperCase();
     const attentionSku = rawCompareAttentionSku.replace(/^SD-/, 'HV-');
     const compareAttentionIsSd = rawCompareAttentionSku.startsWith('SD-');
+
+    // Fabia II (545): show the choice and flag the GreenLine conflict
+    // between the plate API and MAD's kit remark for HV-173038.
+    if (slugifySegment(brand) === 'skoda' &&
+        slugifySegment(model) === 'fabia' &&
+        String(typeof generationSlug !== 'undefined' ? generationSlug : '') === 'ii-545') {
+      const fabiaAttention = {
+        'HV-191015': 'Hulpveer in bestaande veer; ook voor Combi en GreenLine',
+        'HV-173038': 'Versterkte vervangingsveren; ook voor Combi. Niet voor Greenline',
+        'HV-193258': 'Versterkte vervangingsveren; voor Combi, ook GreenLine'
+      };
+      if (fabiaAttention[attentionSku]) return fabiaAttention[attentionSku];
+    }
 
     // Expliciet bekende uitzonderingen. Niet raden wat de andere aandrijving is.
     if (attentionSku === 'HV-373148') return 'Niet geschikt voor AWD';
