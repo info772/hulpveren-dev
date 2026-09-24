@@ -112,15 +112,6 @@
       );
       if (!allowedSkus.size) return;
 
-      // Aldoc still returns HV-173038 for the Fabia II GreenLine, while the
-      // kit's Fabia fitment explicitly excludes GreenLine. Respect that
-      // restriction when counting and displaying matches for this generation.
-      const vehicle = data.vehicle || {};
-      const fabiaGreenLine = productType === "hulpveren" &&
-        /^\/hulpveren\/skoda\/fabia\/ii-545\/?$/i.test(window.location.pathname) &&
-        /\bgreen[\s-]?line\b/i.test([vehicle.model, vehicle.type, vehicle.typeRemark].join(" "));
-      if (fabiaGreenLine) allowedSkus.delete("HV-173038");
-
       const cards = Array.from(document.querySelectorAll("[data-set-filter-card]"));
       if (!cards.length) return;
 
@@ -167,6 +158,7 @@
         return out || String(value || "").toUpperCase();
       }
 
+      const vehicle = data.vehicle || {};
       const vehicleText = [vehicle.make, vehicle.model, vehicle.type].filter(Boolean).join(" ");
 
       document.getElementById("plate-set-filter-title").textContent =
@@ -642,14 +634,14 @@ const compareRows = displayKits.map(function(compareKit) {
     const attentionSku = rawCompareAttentionSku.replace(/^SD-/, 'HV-');
     const compareAttentionIsSd = rawCompareAttentionSku.startsWith('SD-');
 
-    // Fabia II (545): show the actual choice and the GreenLine restriction
-    // stated in the kit fitments, rather than the generic load-type label.
+    // Fabia II (545): show the choice and flag the GreenLine conflict
+    // between the plate API and MAD's kit remark for HV-173038.
     if (slugifySegment(brand) === 'skoda' &&
         slugifySegment(model) === 'fabia' &&
         String(typeof generationSlug !== 'undefined' ? generationSlug : '') === 'ii-545') {
       const fabiaAttention = {
         'HV-191015': 'Hulpveer in bestaande veer; ook voor Combi en GreenLine',
-        'HV-173038': 'Versterkte vervangingsveren; ook voor Combi, niet voor GreenLine',
+        'HV-173038': 'Versterkte vervangingsveren; MAD vermeldt: niet voor GreenLine. Controleer geschiktheid',
         'HV-193258': 'Versterkte vervangingsveren; voor Combi, ook GreenLine'
       };
       if (fabiaAttention[attentionSku]) return fabiaAttention[attentionSku];
