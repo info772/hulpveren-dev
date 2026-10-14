@@ -635,6 +635,19 @@ const compareRows = displayKits.map(function(compareKit) {
     const attentionSku = rawCompareAttentionSku.replace(/^SD-/, 'HV-');
     const compareAttentionIsSd = rawCompareAttentionSku.startsWith('SD-');
 
+    // Fabia II (545): MAD warns HV-173038 is not for GreenLine.
+    // Show the distinction between helper and replacement springs.
+    if (slugifySegment(brand) === 'skoda' &&
+        slugifySegment(model) === 'fabia' &&
+        String(typeof generationSlug !== 'undefined' ? generationSlug : '') === 'ii-545') {
+      const fabiaAttention = {
+        'HV-191015': 'Hulpveer in bestaande veer; ook voor Combi en GreenLine',
+        'HV-173038': 'Versterkte vervangingsveren; ook voor Combi. Niet voor Greenline',
+        'HV-193258': 'Versterkte vervangingsveren; voor Combi, ook GreenLine'
+      };
+      if (fabiaAttention[attentionSku]) return fabiaAttention[attentionSku];
+    }
+
     // Expliciet bekende uitzonderingen. Niet raden wat de andere aandrijving is.
     if (attentionSku === 'HV-373148') return 'Niet geschikt voor AWD';
     if (attentionSku === 'HV-373178') return 'Alleen geschikt voor AWD';
