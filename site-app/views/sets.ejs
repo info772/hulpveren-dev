@@ -1,0 +1,3154 @@
+<h1><%= formatWords(brand) %> <%= formatWords(model) %><% if (generationName) { %> <%= generationName %><% } %><% if (typeof applicationType !== 'undefined' && applicationType) { %> <%= applicationLabel %><% } %> <%= type === "hulpveren" ? "MAD Hulpveren" : type === "luchtvering" ? "Luchtvering" : "Verlagingsveren" %> – Professionele montage in Roosendaal</h1>
+
+<% if (
+  typeof hasCamperPage !== 'undefined' &&
+  hasCamperPage &&
+  generationName &&
+  (typeof applicationType === 'undefined' || applicationType !== 'camper')
+) { %>
+<div class="application-block">
+  <h2>Toepassingen</h2>
+  <p>
+    Voor deze generatie is er ook een aparte pagina voor
+    <a href="<%= camperUrl %>"><strong>campergebruik</strong></a>.
+  </p>
+</div>
+<% } %>
+
+<% if (typeof applicationType !== 'undefined' && applicationType === 'camper') { %>
+<div class="application-block">
+  <h2>Campergebruik</h2>
+  <p>
+    Deze pagina is specifiek bedoeld voor de
+    <strong><%= formatWords(brand) %> <%= formatWords(model) %> <%= generationName %></strong>
+    als camper. De setselectie op deze pagina is dus gericht op campergebruik en niet alleen op de basisgeneratie.
+  </p>
+  <p>
+    Basisgeneratie bekijken:
+    <a href="/<%= type %>/<%= slugifySegment(brand) %>/<%= slugifySegment(model) %>/<%= generationSlug %>/">
+      <strong><%= formatWords(brand) %> <%= formatWords(model) %> <%= generationName %></strong>
+    </a>
+  </p>
+</div>
+<% } %>
+
+<% if (query && query.succes) { %>
+<div class="success-message">Bedankt voor uw aanvraag. Wij nemen spoedig contact met u op.</div>
+<% } %>
+
+<section
+  id="plate-set-filter-result"
+  class="platform-block"
+  data-plate-set-filter
+  data-product-type="<%= type %>"
+  style="display:none;margin:18px 0;"
+>
+  <p class="choice-helper__eyebrow" style="margin:0 0 6px;">Kentekenresultaat</p>
+  <h2 id="plate-set-filter-title" style="margin:0 0 8px;"></h2>
+  <p id="plate-set-filter-text" style="margin:0;"></p>
+</section>
+
+<script>
+(function () {
+  const root = document.querySelector("[data-plate-set-filter]");
+  if (!root) return;
+
+  const params = new URLSearchParams(window.location.search || "");
+  const plate = String(params.get("kt") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  if (!plate) return;
+
+  const productType = root.getAttribute("data-product-type") || "";
+  const groupByType = {
+    hulpveren: "hulpveren",
+    luchtvering: "luchtvering",
+    verlagingsveren: "verlagingsveren"
+  };
+
+  const labelByType = {
+    hulpveren: "hulpveren",
+    luchtvering: "luchtvering",
+    verlagingsveren: "verlagingsveren"
+  };
+
+  function getCardSku(card) {
+    return String(card.getAttribute("data-filter-sku") || "")
+      .trim()
+      .toUpperCase();
+  }
+
+  function updateFilterCount() {
+    const countEl = document.querySelector("[data-set-filter-count]");
+    if (!countEl) return;
+
+    const visibleCards = Array.from(document.querySelectorAll("[data-set-filter-card]"))
+      .filter(function (card) {
+        return !card.hidden && card.style.display !== "none";
+      });
+
+    countEl.textContent = visibleCards.length === 1
+      ? "1 passende set"
+      : visibleCards.length + " passende sets";
+  }
+
+  async function init() {
+    try {
+      const groupKey = groupByType[productType];
+      if (!groupKey) return;
+
+      const res = await fetch("/api/plate/solutions/" + encodeURIComponent(plate.toLowerCase()), {
+        headers: { "Accept": "application/json" },
+        cache: "no-store"
+      });
+
+      if (!res.ok) return;
+
+      const data = await res.json();
+      const group = data && data.solutions ? data.solutions[groupKey] : null;
+      const items = group && group.available && Array.isArray(group.items) ? group.items : [];
+
+      const allowedSkus = new Set(items
+        .map(function (item) { return String(item.reference || "").trim().toUpperCase(); })
+        .filter(Boolean)
+      );
+
+      if (!allowedSkus.size) return;
+
+      const cards = Array.from(document.querySelectorAll("[data-set-filter-card]"));
+      if (!cards.length) return;
+
+      let shown = 0;
+      cards.forEach(function (card) {
+        const sku = getCardSku(card);
+        const keep = allowedSkus.has(sku);
+
+        if (!keep) {
+          card.style.display = "none";
+          card.setAttribute("data-plate-filter-hidden", "1");
+        } else {
+          card.removeAttribute("data-plate-filter-hidden");
+          shown += 1;
+        }
+      });
+
+        Array.from(document.querySelectorAll("[data-set-filter-row]")).forEach(function (row) {
+          const sku = getCardSku(row);
+          const keep = allowedSkus.has(sku);
+
+          if (!keep) {
+            row.style.display = "none";
+            row.setAttribute("data-plate-filter-hidden", "1");
+          } else {
+            row.removeAttribute("data-plate-filter-hidden");
+          }
+        });
+
+      function formatPlateDisplay(value) {
+        const p = String(value || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+        let out = "";
+
+        for (let i = 0; i < p.length; i++) {
+          const current = p.charAt(i);
+          const previous = i > 0 ? p.charAt(i - 1) : "";
+          const currentIsDigit = /[0-9]/.test(current);
+          const previousIsDigit = /[0-9]/.test(previous);
+
+          if (i > 0 && currentIsDigit !== previousIsDigit) out += "-";
+          out += current;
+        }
+
+        return out || String(value || "").toUpperCase();
+      }
+
+      const vehicle = data.vehicle || {};
+      const vehicleText = [vehicle.make, vehicle.model, vehicle.type].filter(Boolean).join(" ");
+
+      document.getElementById("plate-set-filter-title").textContent =
+        "Passende " + (labelByType[productType] || "sets") + " voor kenteken " + formatPlateDisplay(plate);
+
+      document.getElementById("plate-set-filter-text").textContent =
+        (vehicleText ? vehicleText + " – " : "") +
+        shown + " passende set" + (shown === 1 ? "" : "s") + " gevonden: " +
+        Array.from(allowedSkus).join(", ");
+
+      root.style.display = "";
+      updateFilterCount();
+      document.dispatchEvent(new Event("plate-set-filter:updated"));
+    } catch (err) {
+      return;
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+<%
+const isHiddenNrRightHandDriveKit = function(k) {
+  if (type !== 'luchtvering') return false;
+
+  const sku = String(k && k.sku || '').trim().toUpperCase();
+
+  /* Bekende rechtsgestuurde Ducato/Jumper/Boxer/Movano set */
+  if (/^NR-137914(?:-|$)/i.test(sku)) return true;
+
+  const currentBrand = slugifySegment(brand || '');
+  const currentModel = slugifySegment(model || '');
+
+  const matchedFitments = (k.fitments || []).filter(function(f) {
+    return slugifySegment(f.make || '') === currentBrand
+      && slugifySegment(f.model || '') === currentModel;
+  });
+
+  if (!matchedFitments.length) return false;
+
+  return matchedFitments.some(function(f) {
+    const text = String([
+      f.engine_raw,
+      f.remark,
+      f.notes
+    ].filter(Boolean).join(' ')).toLowerCase();
+
+    return text.indexOf('right hand drive') !== -1
+      || text.indexOf('rechtsgestuurd') !== -1;
+  });
+};
+
+const displayKits = (kits || []).filter(function(k) {
+  return !isHiddenNrRightHandDriveKit(k);
+});
+
+// HV-098111 load type override.
+displayKits.forEach(function(loadTypeOverrideKit) {
+  const loadTypeOverrideSku = String(loadTypeOverrideKit && loadTypeOverrideKit.sku || '').trim().toUpperCase().replace(/^SD-/, 'HV-');
+  if (loadTypeOverrideSku === 'HV-098111') {
+    loadTypeOverrideKit.classification = loadTypeOverrideKit.classification && typeof loadTypeOverrideKit.classification === 'object'
+      ? loadTypeOverrideKit.classification
+      : {};
+    loadTypeOverrideKit.classification.load_type = 'continue_belading';
+  }
+
+  // HV-368128 load type override.
+  if (loadTypeOverrideSku === 'HV-368128') {
+    loadTypeOverrideKit.classification = loadTypeOverrideKit.classification && typeof loadTypeOverrideKit.classification === 'object'
+      ? loadTypeOverrideKit.classification
+      : {};
+    loadTypeOverrideKit.classification.load_type = 'zware_continue_belading';
+  }
+});
+
+const total = displayKits.length;
+let hasRear = false;
+let hasFront = false;
+let hasTuv = false;
+let minPrice = null;
+let maxPrice = null;
+let yearFrom = null;
+let yearTo = null;
+
+displayKits.forEach(k => {
+  if (k.position === "rear") hasRear = true;
+  if (k.position === "front") hasFront = true;
+  if ((k.approval_nl || "").toUpperCase().includes("TÜV")) hasTuv = true;
+
+  if (k.pricing_nl && (k.pricing_nl.public_price_incl_vat_eur != null || k.pricing_nl.total_inc_vat_from_eur != null)) {
+    const price = k.pricing_nl.public_price_incl_vat_eur != null
+      ? Number(k.pricing_nl.public_price_incl_vat_eur)
+      : Number(k.pricing_nl.total_inc_vat_from_eur);
+    if (!minPrice || price < minPrice) minPrice = price;
+    if (!maxPrice || price > maxPrice) maxPrice = price;
+  }
+
+  (k.fitments || []).forEach(f => {
+    if (f.year_from && (!yearFrom || f.year_from < yearFrom)) yearFrom = f.year_from;
+    if (f.year_to && f.year_to !== "" && (!yearTo || f.year_to > yearTo)) yearTo = f.year_to;
+  });
+});
+%>
+
+
+
+<% if (type === 'hulpveren' && generationName && total > 1) {
+  const quickModelSlug = slugifySegment(model || '');
+  const quickBrandSlug = slugifySegment(brand || '');
+
+  const quickCommercialModels = new Set([
+    'ducato', 'boxer', 'jumper', 'movano',
+    'sprinter', 'crafter', 'transit', 'transporter',
+    'trafic', 'vivaro', 'expert', 'scudo', 'proace',
+    'caddy', 'vito', 'nv300', 'master', 'daily',
+    'talento', 'primastar', 'interstar', 'custom'
+  ]);
+
+  const quickCamperLikeModels = new Set([
+    'ducato', 'boxer', 'jumper', 'movano',
+    'sprinter', 'crafter', 'transit'
+  ]);
+
+  const quickHasSpecialDuty = displayKits.some(function(k) {
+    const sku = String(k && k.sku || '').trim().toUpperCase();
+    const kind = String(k && (k.kind_of_kit_nl || k.kind_of_kit || k.family_label) || '').trim().toLowerCase();
+    return sku.startsWith('SD-') || kind.indexOf('special duty') !== -1;
+  });
+
+  const quickHasExtraHeavy = displayKits.some(function(k) {
+    const classification = k && k.classification && typeof k.classification === 'object' ? k.classification : {};
+    const label = k && k.application_label && typeof k.application_label === 'object' ? k.application_label : {};
+    const text = String([
+      classification.load_type,
+      classification.support_level,
+      label.title,
+      label.text,
+      label.detail,
+      k && k.remark,
+      k && k.notes
+    ].filter(Boolean).join(' ')).toLowerCase();
+
+    return text.indexOf('zware_continue_belading') !== -1
+      || text.indexOf('extra_heavy') !== -1
+      || text.indexOf('extra zwaar') !== -1
+      || text.indexOf('750') !== -1;
+  });
+
+  const quickIsCamperContext =
+    (typeof applicationType !== 'undefined' && applicationType === 'camper')
+    || (typeof hasCamperPage !== 'undefined' && hasCamperPage && quickCamperLikeModels.has(quickModelSlug));
+
+  const quickIsCommercial = quickCommercialModels.has(quickModelSlug);
+
+  let quickChoiceItems;
+
+  if (quickIsCamperContext) {
+    quickChoiceItems = [
+      {
+        title: 'Normaal gebruik',
+        text: 'Voor dagelijks rijden, vakantie, caravan, fietsendrager of af en toe extra bagage.'
+      },
+      {
+        title: 'Buscamper / continue belading',
+        text: 'Voor voertuigen die vrijwel altijd extra gewicht meenemen. Vaak vanaf circa 350 kg extra belasting.'
+      },
+      {
+        title: quickHasExtraHeavy ? 'Zware camperopbouw' : 'Veel vaste belading',
+        text: quickHasExtraHeavy
+          ? 'Voor zware camperopbouw of veel vaste belading. Vaak vanaf circa 750 kg extra belasting.'
+          : 'Voor voertuigen met inrichting, accessoires of lading die vrijwel altijd aanwezig is.'
+      },
+      quickHasSpecialDuty
+        ? {
+            title: 'Special Duty',
+            text: 'Hulpveren gecombineerd met aangepaste schokdempers voor extra controle en stabiliteit.'
+          }
+        : {
+            title: 'Twijfel tussen twee sets?',
+            text: 'Kies niet automatisch de zwaarste. Een te zware set kan onbeladen stugger aanvoelen.'
+          }
+    ];
+  } else if (quickIsCommercial) {
+    quickChoiceItems = [
+      {
+        title: 'Leeg & beladen',
+        text: 'Voor bedrijfswagens die zowel leeg als met lading prettig moeten blijven rijden.'
+      },
+      {
+        title: 'Vaste inrichting of voorraad',
+        text: 'Voor gereedschap, kastinrichting, voorraad of andere belasting die vrijwel altijd aanwezig is.'
+      },
+      {
+        title: quickHasExtraHeavy ? 'Zware vaste belading' : 'Regelmatig zwaar beladen',
+        text: quickHasExtraHeavy
+          ? 'Voor bedrijfswagens met veel vaste belasting of een zware opbouw.'
+          : 'Voor bedrijfswagens die vaak met extra gewicht rijden.'
+      },
+      quickHasSpecialDuty
+        ? {
+            title: 'Special Duty',
+            text: 'Alleen relevant als deze uitvoering op de pagina staat: hulpveren met aangepaste schokdempers.'
+          }
+        : {
+            title: 'Betere controle achteras',
+            text: 'Voor minder doorzakken, rustiger rijgedrag en meer stabiliteit bij werkbelasting.'
+          }
+    ];
+  } else {
+    quickChoiceItems = [
+      {
+        title: 'Normaal gebruik',
+        text: 'Voor dagelijks rijden, vakantie en af en toe extra bagage.'
+      },
+      {
+        title: 'Caravan of aanhanger',
+        text: 'Voor meer stabiliteit wanneer de auto door kogeldruk of aanhanger lager komt te staan.'
+      },
+      {
+        title: 'Fietsendrager of vakantiebagage',
+        text: 'Voor extra gewicht achterop of bagage tijdens vakantiegebruik.'
+      },
+      {
+        title: 'Zichtbaar doorzakken',
+        text: 'Voor auto’s die met passagiers, bagage of extra belasting duidelijk lager op de achteras staan.'
+      }
+    ];
+  }
+%>
+  <section class="platform-block set-page-quick-choice" aria-labelledby="quick-choice-title">
+    <h2 id="quick-choice-title">Snel kiezen: welke hulpveren passen bij jouw gebruik?</h2>
+    <ul>
+      <% quickChoiceItems.forEach(function(item) { %>
+        <li><strong><%= item.title %>:</strong> <%= item.text %></li>
+      <% }) %>
+    </ul>
+  </section>
+<% } %>
+
+
+<%
+
+  const compareNormContext = function(v) {
+    return String(v || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/-/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
+  const compareGenerationSlugNorm = typeof generationSlug !== 'undefined' && generationSlug
+    ? compareNormContext(generationSlug)
+    : '';
+  const compareGenerationNameNorm = typeof generationName !== 'undefined' && generationName
+    ? compareNormContext(generationName)
+    : '';
+
+  const compareGenerationSlugParts = compareGenerationSlugNorm
+    ? compareGenerationSlugNorm.split('-').filter(Boolean)
+    : [];
+
+  function compareFitmentMatchesCurrentGeneration(f) {
+    if (!compareGenerationSlugNorm && !compareGenerationNameNorm) return true;
+    if (
+      compareNormContext(brand) === 'ford' &&
+      compareNormContext(model) === 'transit'
+    ) {
+      const requestedTransitText = compareGenerationSlugNorm + ' ' + compareGenerationNameNorm;
+      const transitTypeMatch = requestedTransitText.match(/(^|\s)(260|280|290|300|310|330|350|470|500)(\s|$)/);
+      const transitPlatformMatch = requestedTransitText.match(/(^|[^a-z0-9])(v363|fa)(?=[^a-z0-9]|$)/);
+
+      if (transitTypeMatch) {
+        const transitType = transitTypeMatch[2];
+        const requestedTransitPlatform = transitPlatformMatch ? transitPlatformMatch[2] : '';
+        const transitText = compareNormContext([
+          f.generation,
+          Array.isArray(f.platform_codes) ? f.platform_codes.join(' ') : f.platform_codes,
+          f.engine_raw,
+          f.remark,
+          f.notes
+        ].filter(Boolean).join(' '));
+
+        const hasExplicitTransitType = new RegExp('(^|\\s)' + transitType + '(\\s|$)').test(transitText);
+        const hasRequestedTransitPlatform = !requestedTransitPlatform || new RegExp('(^|[^a-z0-9])' + requestedTransitPlatform + '(?=[^a-z0-9]|$)').test(transitText);
+        const isGenericV363 = /(^|[^a-z0-9])v363(?=[^a-z0-9]|$)/.test(transitText);
+        const hasDoubleRear = /double rear wheel|twin rear wheel|twin wheels/.test(transitText);
+        const excludesDoubleRear = /excl\.? twin rear wheel|excl\.? double rear wheel|excl\.? twin wheels|niet voor twin rear wheel|niet voor double rear wheel/.test(transitText);
+        const isFwd = /(^|\s)fwd(\s|$)|voorwielaandrijving/.test(transitText);
+        const onlyETransit = /only e transit|only etransit/.test(transitText);
+
+        if (!hasRequestedTransitPlatform) return false;
+        if (onlyETransit && !hasExplicitTransitType) return false;
+        if (hasExplicitTransitType) return true;
+
+        if (transitType === '500' && requestedTransitPlatform === 'v363' && isGenericV363 && hasDoubleRear && !excludesDoubleRear && !isFwd) return true;
+
+        return false;
+      }
+    }
+
+
+    const codes = Array.isArray(f.platform_codes)
+      ? f.platform_codes.filter(Boolean)
+      : [];
+
+    if (!codes.length) return true;
+
+    const codeNorms = codes.map(function(code) {
+      return compareNormContext(code);
+    }).filter(Boolean);
+
+    const combinedCodeNorm = compareNormContext(codes.join(' '));
+    const compactCombinedCodeNorm = combinedCodeNorm.replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
+
+    if (combinedCodeNorm) {
+      if (compareGenerationNameNorm && combinedCodeNorm === compareGenerationNameNorm) return true;
+      if (compareGenerationSlugNorm && combinedCodeNorm === compareGenerationSlugNorm) return true;
+      if (compareGenerationSlugNorm && compareGenerationSlugNorm.indexOf(compactCombinedCodeNorm) !== -1) return true;
+      if (compareGenerationNameNorm && compareGenerationNameNorm.indexOf(compactCombinedCodeNorm) !== -1) return true;
+
+      const combinedParts = compactCombinedCodeNorm.split(' ').filter(Boolean);
+      if (combinedParts.length && combinedParts.every(function(part) {
+        return compareGenerationSlugNorm.indexOf(part) !== -1 || compareGenerationNameNorm.indexOf(part) !== -1;
+      })) {
+        return true;
+      }
+    }
+
+    return codeNorms.some(function(codeNorm) {
+      if (!codeNorm) return false;
+
+      if (compareGenerationNameNorm && codeNorm === compareGenerationNameNorm) return true;
+      if (compareGenerationSlugNorm && codeNorm === compareGenerationSlugNorm) return true;
+      if (compareGenerationSlugParts.indexOf(codeNorm) !== -1) return true;
+
+      if (codeNorm.length > 2 && compareGenerationSlugNorm.indexOf(codeNorm) !== -1) return true;
+      if (compareGenerationNameNorm.length > 2 && codeNorm.indexOf(compareGenerationNameNorm) !== -1) return true;
+
+      return false;
+    });
+  }
+
+
+function isCommercialChoiceModel(modelValue) {
+  const commercialModels = new Set(["caddy","transporter","crafter","sprinter","transit","custom","ducato","boxer","jumper","movano","vito","trafic","vivaro","expert","scudo","proace","nv300","nv400","master","daily","talento","primastar","interstar","partner","berlingo","kangoo","combo","connect","courier","promaster"]);
+  const modelSlug = typeof slugifySegment === 'function'
+    ? slugifySegment(modelValue || '')
+    : String(modelValue || '').trim().toLowerCase().replace(/\s+/g, '-');
+
+  return commercialModels.has(modelSlug);
+}
+
+function normalizeSetChoiceTitle(value, context) {
+  const raw = String(value || '').trim();
+  const lower = raw.toLowerCase();
+  const contextModel = context && context.model
+    ? context.model
+    : (typeof model !== 'undefined' ? model : '');
+  const isCommercial = isCommercialChoiceModel(contextModel);
+
+  if (!raw) return '';
+
+  if (
+    lower === 'voor normaal gebruik en af en toe beladen' ||
+    lower === 'af en toe beladen' ||
+    lower === 'leeg & beladen' ||
+    lower === 'normaal gebruik / leeg & beladen'
+  ) {
+    return 'Normaal gebruik / af en toe beladen';
+  }
+
+  if (
+    lower === 'voor continue belading' ||
+    lower === 'continue belading'
+  ) {
+    return 'Vaste belading';
+  }
+
+  if (
+    lower === 'voor zware continue belading' ||
+    lower === 'zware continue belading' ||
+    lower === 'zware vaste belading'
+  ) {
+    return isCommercial ? 'Zware vaste belading' : 'Extra ondersteuning';
+  }
+
+  return raw;
+}
+
+const compareRows = displayKits.map(function(compareKit) {
+
+    let compareContextFitments = (compareKit.fitments || []).filter(function(f){
+      return compareNormContext(f.make) === compareNormContext(brand)
+        && compareNormContext(f.model) === compareNormContext(model)
+        && compareFitmentMatchesCurrentGeneration(f);
+    });
+
+    const compareHasCurrentGenerationContext = !!(compareGenerationSlugNorm || compareGenerationNameNorm);
+    const compareHasKitFitments = Array.isArray(compareKit.fitments) && compareKit.fitments.length > 0;
+
+    // displayKits is al gefilterd voor deze pagina. Als de specifieke compare-fitmentmatch leeg is,
+    // mag de set niet uit de vergelijking verdwijnen; gebruik dan de beschikbare kit-fitments als fallback.
+    if (compareHasCurrentGenerationContext && compareHasKitFitments && !compareContextFitments.length) {
+      compareContextFitments = compareKit.fitments || [];
+    }
+
+
+  const compareClassification = compareKit && compareKit.classification && typeof compareKit.classification === 'object'
+    ? compareKit.classification
+    : {};
+
+  const compareApplicationLabel = compareKit && compareKit.application_label && typeof compareKit.application_label === 'object'
+    ? compareKit.application_label
+    : { title: '', text: '', detail: '', warning: '' };
+
+  const compareLoadType = (function(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return 'Normaal gebruik';
+    if (raw === 'leeg_beladen') return 'Leeg & beladen';
+    if (raw === 'continue_belading') return 'Vaste belading';
+    if (raw === 'zware_continue_belading') return normalizeSetChoiceTitle('Zware vaste belading', { model: typeof model !== 'undefined' ? model : '' });
+    if (raw === 'regelbare_ondersteuning') return 'Regelbaar';
+    return raw.replace(/_/g, ' ');
+  })(compareClassification.load_type);
+
+  const compareSupport = (function(value) {
+    const raw = String(value || '').trim();
+    if (!raw || raw === 'standard') return 'Normaal';
+    if (raw === 'medium') return 'Medium';
+    if (raw === 'extra_heavy') return 'Extra zwaar';
+    if (raw === 'air') return 'Luchtvering';
+    return raw.replace(/_/g, ' ');
+  })(compareClassification.support_level);
+
+  const compareSkuForPosition = String(compareKit.sku || '').trim().toUpperCase().replace(/^SD-/, 'HV-');
+  const comparePositionRawValue = String(compareKit.position || compareKit.axle || '').trim().toLowerCase().replace(/\s+/g, '');
+  /* HV-098273 forced as front axle */
+  const comparePositionValue = (compareSkuForPosition === 'HV-098273' || compareSkuForPosition === 'HV-068418')
+    ? 'front'
+    : (/^HV-\d{5}1$/.test(compareSkuForPosition) ? 'both' : comparePositionRawValue);
+  const comparePosition =
+    comparePositionValue === 'front' ? 'Vooras' :
+    comparePositionValue === 'rear' ? 'Achteras' :
+    comparePositionValue === 'both' || comparePositionValue === 'front,rear' ? 'Voor & achter' :
+    String(compareKit.position || '');
+
+  const compareApproval = String(compareKit.approval_nl || compareKit.approval || '');
+  const compareTuv = /tuv|tüv/i.test(compareApproval) ? 'TÜV' : (compareApproval ? compareApproval : '—');
+
+  const comparePrice = compareKit.pricing_nl && compareKit.pricing_nl.public_price_incl_vat_eur != null
+    ? Number(compareKit.pricing_nl.public_price_incl_vat_eur)
+    : (compareKit.pricing_nl && compareKit.pricing_nl.total_inc_vat_from_eur ? Number(compareKit.pricing_nl.total_inc_vat_from_eur) : null);
+
+  const compareTitleSku = String(compareKit && compareKit.sku || '').trim().toUpperCase().replace(/^SD-/, 'HV-');
+  const compareTitle = compareTitleSku === 'HV-098111'
+    ? 'Vaste belading'
+    : (compareTitleSku === 'HV-368128'
+      ? normalizeSetChoiceTitle('Zware vaste belading', { model: typeof model !== 'undefined' ? model : '' })
+      : normalizeSetChoiceTitle(String(compareApplicationLabel.title || '').trim() || compareLoadType, { model: typeof model !== 'undefined' ? model : '' }));
+  const compareDetail = typeof normalizeSetTechnicalText === 'function'
+    ? normalizeSetTechnicalText(compareApplicationLabel.detail || '')
+    : String(compareApplicationLabel.detail || '').trim();
+
+  const compareAttention = (function(fitments) {
+    const rawCompareAttentionSku = String(compareKit && compareKit.sku || '').trim().toUpperCase();
+    const attentionSku = rawCompareAttentionSku.replace(/^SD-/, 'HV-');
+    const compareAttentionIsSd = rawCompareAttentionSku.startsWith('SD-');
+
+    // Expliciet bekende uitzonderingen. Niet raden wat de andere aandrijving is.
+    if (attentionSku === 'HV-373148') return 'Niet geschikt voor AWD';
+    if (attentionSku === 'HV-373178') return 'Alleen geschikt voor AWD';
+    if (attentionSku === 'HV-374125') return 'Alleen met niveauregeling achter';
+    if (attentionSku === 'HV-374135') return 'Niet voor niveauregeling achter';
+
+    // HV-066018 / HV-066028 explicit EV exclusion.
+    if (attentionSku === 'HV-066018' || attentionSku === 'HV-066028') return 'Niet voor EV';
+
+    // Only e-Transit explicit SKU rules.
+    // Only eSprinter explicit SKU rules.
+    if (attentionSku === 'HV-098220' || attentionSku === 'HV-098230') return 'Alleen eSprinter, bus';
+    if (attentionSku === 'HV-098250' || attentionSku === 'HV-098260') return 'Alleen eSprinter, chassis-cabine';
+    if (attentionSku === 'HV-068355' || attentionSku === 'HV-068375') return 'Alleen e-Transit';
+
+    // Generated only e-model rules by make/model/SKU.
+    const compareOnlyElectricByModelSku = {
+      "citroen|berlingo|HV-136178": "Alleen e-Berlingo",
+      "citroen|berlingo|HV-136188": "Alleen e-Berlingo",
+      "citroen|berlingo|HV-136198": "Alleen e-Berlingo",
+      "citroen|berlingo|HV-136201": "Alleen e-Berlingo",
+      "citroen|berlingo|HV-136211": "Alleen e-Berlingo",
+      "fiat|doblo|HV-136178": "Alleen e-Doblo",
+      "fiat|doblo|HV-136188": "Alleen e-Doblo",
+      "fiat|doblo|HV-136198": "Alleen e-Doblo",
+      "fiat|doblo|HV-136201": "Alleen e-Doblo",
+      "fiat|doblo|HV-136211": "Alleen e-Doblo",
+      "ford|ranger|HV-064288": "Alleen engine",
+      "ford|transit|HV-068355": "Alleen e-Transit",
+      "ford|transit|HV-068375": "Alleen e-Transit",
+      "hyundai|ioniq|HV-493145": "Alleen Electric",
+      "mercedes-benz|sprinter|HV-098220": "Alleen eSprinter",
+      "mercedes-benz|sprinter|HV-098230": "Alleen eSprinter",
+      "mercedes-benz|sprinter|HV-098250": "Alleen eSprinter",
+      "mercedes-benz|sprinter|HV-098260": "Alleen eSprinter",
+      "nissan|almera|HV-310317": "Alleen engine",
+      "nissan|sunny|HV-310247": "Alleen engines",
+      "nissan|sunny|HV-310267": "Alleen engine",
+      "peugeot|407|HV-134078": "Alleen engine",
+      "peugeot|partner|HV-136178": "Alleen e-Partner",
+      "peugeot|partner|HV-136188": "Alleen e-Partner",
+      "peugeot|partner|HV-136198": "Alleen e-Partner",
+      "peugeot|partner|HV-136201": "Alleen e-Partner",
+      "peugeot|partner|HV-136211": "Alleen e-Partner",
+      "peugeot|rifter|HV-136178": "Alleen e-Rifter",
+      "peugeot|rifter|HV-136188": "Alleen e-Rifter",
+      "peugeot|rifter|HV-136198": "Alleen e-Rifter",
+      "peugeot|rifter|HV-136201": "Alleen e-Rifter",
+      "peugeot|rifter|HV-136211": "Alleen e-Rifter",
+      "renault|megane|HV-140738": "Alleen engine",
+      "renault|scenic|HV-140768": "Alleen engine",
+      "seat|ateca|HV-193345": "Alleen engine",
+      "seat|ateca|HV-199525": "Alleen engine",
+      "seat|ibiza|HV-182038": "Alleen Ecomotive",
+      "skoda|octavia|HV-172171": "Alleen engine",
+      "toyota|proace-city|HV-136178": "Alleen Electric",
+      "toyota|proace-city|HV-136188": "Alleen Electric",
+      "toyota|proace-city|HV-136198": "Alleen Electric",
+      "toyota|proace-city|HV-136201": "Alleen Electric",
+      "toyota|proace-city|HV-136211": "Alleen Electric",
+      "volkswagen|beetle|HV-199515": "Alleen engine",
+    };
+    const compareOnlyElectricKey = [
+      typeof brand !== 'undefined' ? slugifySegment(brand) : '',
+      typeof model !== 'undefined' ? slugifySegment(model) : '',
+      attentionSku
+    ].join('|');
+    if (compareOnlyElectricByModelSku[compareOnlyElectricKey]) return compareOnlyElectricByModelSku[compareOnlyElectricKey];
+    // End generated only e-model rules.
+
+    // Fiat Ducato X250 / camper-sets: toon alleen het echte keuzeverschil.
+    if (attentionSku === 'HV-138158') return compareAttentionIsSd ? 'Vooras +35 mm + aangepaste schokdempers' : 'Vooras +35 mm';
+    if (attentionSku === 'HV-138190' || attentionSku === 'HV-138190-1') return compareAttentionIsSd ? 'Minimale belading 350 kg + aangepaste schokdempers' : 'Minimale belading 350 kg';
+    if (attentionSku === 'HV-138200' || attentionSku === 'HV-138200-1') return compareAttentionIsSd ? 'Minimale belading 750 kg + aangepaste schokdempers' : 'Minimale belading 750 kg';
+
+    const sourceText = (Array.isArray(fitments) ? fitments : [])
+      .map(function(f) {
+        return [
+          f && f.remark,
+          f && f.notes
+        ].filter(Boolean).join(' ');
+      })
+      .join(' ')
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    if (!sourceText) return 'Geen extra aandachtspunt bekend';
+
+    if (/only\s+e-?transit|engine:\s*only\s+e-?transit|alleen\s+e-?transit/.test(sourceText)) return 'Alleen e-Transit';
+    if (/only\s+e[-\s]?sprinter|engine:\s*only\s+e[-\s]?sprinter|alleen\s+e[-\s]?sprinter/.test(sourceText)) return 'Alleen eSprinter';
+
+    // HV-368161 / HV-368171 explicit electric compare rules.
+    if (attentionSku === 'HV-368161') return 'Cross Country set, niet elektrisch';
+    if (attentionSku === 'HV-368171') return 'Cross Country set, alleen elektrisch';
+
+    // HV-368138 / HV-368158 explicit electric compare rules.
+    if (attentionSku === 'HV-368138') return 'Vooras: versterkte voorveren, niet elektrisch';
+    if (attentionSku === 'HV-368158') return 'Vooras: versterkte voorveren, alleen elektrisch';
+
+    // Belangrijkere keuzeverschillen eerst: belading en voorveren mogen niet overschreven worden door 4WD/FWD/RWD.
+    const genericMinLoadMatch = sourceText.match(/(?:min(?:imum)?\.?\s*load(?:\s*rear)?|min\.?\s*load(?:\s*rear)?|minimale\s+belading(?:\s+achter)?)\s*(\d+)\s*kg/);
+    if (genericMinLoadMatch) {
+      const isRearMinLoad = /min(?:imum)?\.?\s*load\s*rear|min\.?\s*load\s*rear|minimale\s+belading\s+achter/.test(sourceText);
+      const electricSourceText = [
+        sourceText,
+        (compareKit && Array.isArray(compareKit.fitments) ? compareKit.fitments : []).map(function(f) {
+          return [
+            f && f.remark,
+            f && f.notes
+          ].filter(Boolean).join(' ');
+        }).join(' ')
+      ].join(' ').toLowerCase().replace(/\s+/g, ' ').trim();
+
+      const evSuffix = /engine:\s*electric|(?:^|\s)electric(?:\s|$)/.test(electricSourceText) && !/(?:excl\.?|exclude(?:d|s|ing)?|without|not\s+for|niet\s+voor|geen|incl\.?|including|includes)\s*electric/.test(electricSourceText)
+        ? ', alleen elektrisch'
+        : (/(?:excl\.?|exclude(?:d|s|ing)?|without|not\s+for|niet\s+voor|geen)\s*electric|engine:\s*(?:excl\.?|exclude(?:d|s|ing)?|without|not\s+for|niet\s+voor|geen)\s*electric/.test(electricSourceText)
+          ? ', niet elektrisch'
+          : (/(?:incl\.?|including|includes)\s*electric|engine:\s*(?:incl\.?|including|includes)\s*electric/.test(electricSourceText)
+            ? ', ook elektrisch'
+            : (/(?:excl\.?|exclude(?:d|s|ing)?|without|not\s+for|niet\s+voor|geen)\s*e-?transit/.test(electricSourceText)
+              ? ', niet voor e-Transit'
+              : (/(?:excl\.?|exclude(?:d|s|ing)?|without|not\s+for|niet\s+voor|geen)\s*ev/.test(electricSourceText) ? ', niet voor EV' : ''))));
+      const explicitElectricSuffixBySku = {
+        'HV-368188': ', alleen elektrisch',
+        'HV-368128': ', niet elektrisch',
+        'HV-368148': ', niet elektrisch',
+        'HV-368198': ', niet elektrisch'
+      };
+      const finalEvSuffix = explicitElectricSuffixBySku[attentionSku] || evSuffix;
+      return (isRearMinLoad ? 'Minimale belading achter ' : 'Minimale belading ') + genericMinLoadMatch[1] + ' kg' + finalEvSuffix + (compareAttentionIsSd ? ' + aangepaste schokdempers' : '');
+    }
+
+    if (/reinforced\s+front\s+springs|versterkte\s+voorveren|front\s+springs/.test(sourceText)) {
+      const evSuffix = /(?:excl\.?|exclude(?:d|s|ing)?|without|not)\s*e-?transit/.test(sourceText)
+        ? ', niet voor e-Transit'
+        : (/(?:excl\.?|exclude(?:d|s|ing)?|without|not)\s*ev/.test(sourceText) ? ', niet voor EV' : '');
+      return 'Vooras: versterkte voorveren' + evSuffix + (compareAttentionIsSd ? ' + aangepaste schokdempers' : '');
+    }
+
+    // Generated incl e-model rules by make/model/SKU.
+    // Lower priority than min-load/front-spring rules: this is a fallback note.
+    const compareInclElectricByModelSku = {
+      "audi|a3|HV-199525": "Ook geschikt voor e-Tron",
+      "audi|a3|HV-199545": "Ook geschikt voor e-Tron",
+      "citroen|berlingo|HV-136148": "Ook geschikt voor e-Berlingo",
+      "citroen|berlingo|HV-136158": "Ook geschikt voor e-Berlingo",
+      "citroen|jumper|HV-138140": "Ook geschikt voor e-Jumper",
+      "citroen|jumper|HV-138158": "Ook geschikt voor e-Jumper",
+      "citroen|jumper|HV-138190": "Ook geschikt voor e-Jumper",
+      "citroen|jumper|HV-138200": "Ook geschikt voor e-Jumper",
+      "citroen|jumpy|HV-368095": "Ook geschikt voor Electric",
+      "citroen|jumpy|HV-368105": "Ook geschikt voor Electric",
+      "citroen|spacetourer|HV-368095": "Ook geschikt voor Electric",
+      "citroen|spacetourer|HV-368105": "Ook geschikt voor Electric",
+      "cupra|terramar|HV-199525": "Ook geschikt voor e-Hybrid",
+      "fiat|doblo|HV-136148": "Ook geschikt voor e-Doblo",
+      "fiat|doblo|HV-136158": "Ook geschikt voor e-Doblo",
+      "fiat|ducato|HV-138140": "Ook geschikt voor e-Ducato",
+      "fiat|ducato|HV-138158": "Ook geschikt voor e-Ducato",
+      "fiat|ducato|HV-138190": "Ook geschikt voor e-Ducato",
+      "fiat|ducato|HV-138200": "Ook geschikt voor e-Ducato",
+      "fiat|scudo|HV-368095": "Ook geschikt voor Electric",
+      "fiat|scudo|HV-368105": "Ook geschikt voor Electric",
+      "fiat|ulysse|HV-368095": "Ook geschikt voor Electric",
+      "fiat|ulysse|HV-368105": "Ook geschikt voor Electric",
+      "ford|focus|HV-062265": "Ook geschikt voor Electric",
+      "ford|tourneo-custom|HV-068385": "Ook geschikt voor EV",
+      "ford|tourneo-custom|HV-068418": "Ook geschikt voor EV",
+      "ford|tourneo-custom|HV-068428": "Ook geschikt voor EV",
+      "ford|tourneo-custom|HV-068438": "Ook geschikt voor EV",
+      "ford|tourneo-custom|HV-068441": "Ook geschikt voor EV",
+      "ford|tourneo-custom|HV-068451": "Ook geschikt voor EV",
+      "ford|transit-custom|HV-068385": "Ook geschikt voor EV",
+      "ford|transit-custom|HV-068418": "Ook geschikt voor EV",
+      "ford|transit-custom|HV-068428": "Ook geschikt voor EV",
+      "ford|transit-custom|HV-068438": "Ook geschikt voor EV",
+      "ford|transit-custom|HV-068441": "Ook geschikt voor EV",
+      "ford|transit-custom|HV-068451": "Ook geschikt voor EV",
+      "ford|transit|HV-068368": "Ook geschikt voor e-Transit",
+      "man|tge|HV-198250": "Ook geschikt voor e-TGE",
+      "mercedes-benz|citan|HV-146198": "Ook geschikt voor Electric",
+      "mercedes-benz|sprinter|HV-098140": "Ook geschikt voor eSprinter",
+      "mercedes-benz|sprinter|HV-098178": "Ook geschikt voor eSprinter",
+      "mercedes-benz|sprinter|HV-098200": "Ook geschikt voor eSprinter",
+      "mercedes-benz|vito-tourer|HV-098078": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito-tourer|HV-098088": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito-tourer|HV-098098": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito-tourer|HV-098108": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito-tourer|HV-098111": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito-tourer|HV-098151": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito|HV-098078": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito|HV-098088": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito|HV-098098": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito|HV-098108": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito|HV-098111": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito|HV-098151": "Ook geschikt voor e-Vito",
+      "mercedes-benz|vito|HV-098168": "Ook geschikt voor e-Vito",
+      "nissan|interstar|HV-148130": "Ook geschikt voor Electric",
+      "nissan|interstar|HV-148200": "Ook geschikt voor Electric",
+      "nissan|interstar|HV-148210": "Ook geschikt voor Electric",
+      "nissan|interstar|HV-148228": "Ook geschikt voor Electric",
+      "nissan|nv-200|HV-316000": "Ook geschikt voor e-NV200",
+      "nissan|primera|HV-313227": "Ook geschikt voor e-State",
+      "nissan|townstar|HV-146198": "Ook geschikt voor Electric",
+      "opel|vivaro|HV-368095": "Ook geschikt voor Electric",
+      "opel|vivaro|HV-368105": "Ook geschikt voor Electric",
+      "opel|zafira-life|HV-368095": "Ook geschikt voor Electric",
+      "opel|zafira-life|HV-368105": "Ook geschikt voor Electric",
+      "peugeot|boxer|HV-138140": "Ook geschikt voor e-Boxer",
+      "peugeot|expert|HV-368095": "Ook geschikt voor Electric",
+      "peugeot|expert|HV-368105": "Ook geschikt voor Electric",
+      "peugeot|partner|HV-136148": "Ook geschikt voor e-Partner",
+      "peugeot|partner|HV-136158": "Ook geschikt voor e-Partner",
+      "peugeot|rifter|HV-136148": "Ook geschikt voor Electric",
+      "peugeot|rifter|HV-136158": "Ook geschikt voor Electric",
+      "peugeot|traveller|HV-368095": "Ook geschikt voor Electric",
+      "peugeot|traveller|HV-368105": "Ook geschikt voor Electric",
+      "renault|clio|HV-140495": "Ook geschikt voor e-State",
+      "renault|clio|HV-140598": "Ook geschikt voor e-State",
+      "renault|kangoo|HV-146198": "Ook geschikt voor Electric",
+      "renault|master|HV-148130": "Ook geschikt voor Electric",
+      "renault|master|HV-148180": "Ook geschikt voor Electric",
+      "renault|master|HV-148200": "Ook geschikt voor Electric",
+      "renault|master|HV-148210": "Ook geschikt voor Electric",
+      "renault|master|HV-148228": "Ook geschikt voor Electric",
+      "saab|2025-03-09-00-00-00|HV-159305": "Ook geschikt voor e-State",
+      "seat|alhambra|HV-199515": "Ook geschikt voor Ecomotive",
+      "seat|altea|HV-199515": "Ook geschikt voor Ecomotive",
+      "seat|arosa|HV-191015": "Ook geschikt voor Ecomotive",
+      "seat|exeo|HV-042065": "Ook geschikt voor Ecomotive",
+      "seat|ibiza|HV-191015": "Ook geschikt voor Ecomotive",
+      "seat|leon|HV-199515": "Ook geschikt voor Ecomotive",
+      "seat|mii|HV-191015": "Ook geschikt voor Electric",
+      "seat|toledo|HV-199515": "Ook geschikt voor Ecomotive",
+      "toyota|proace-city|HV-136148": "Ook geschikt voor Electric",
+      "toyota|proace-city|HV-136158": "Ook geschikt voor Electric",
+      "toyota|proace-max|HV-138158": "Ook geschikt voor Electric",
+      "toyota|proace-max|HV-138190": "Ook geschikt voor Electric",
+      "toyota|proace-max|HV-138200": "Ook geschikt voor Electric",
+      "toyota|proace|HV-368095": "Ook geschikt voor Electric",
+      "toyota|proace|HV-368105": "Ook geschikt voor Electric",
+      "vauxhall|vivaro|HV-368095": "Ook geschikt voor Electric",
+      "vauxhall|vivaro|HV-368105": "Ook geschikt voor Electric",
+      "volkswagen|crafter|HV-198250": "Ook geschikt voor e-Crafter",
+      "volkswagen|golf|HV-199525": "Ook geschikt voor e-Golf",
+      "volkswagen|golf|HV-199545": "Ook geschikt voor e-Golf",
+      "volkswagen|multivan|HV-198368": "Ook geschikt voor e-Hybrid",
+      "volkswagen|multivan|HV-198378": "Ook geschikt voor e-Hybrid",
+      "volkswagen|multivan|HV-198388": "Ook geschikt voor e-Hybrid",
+      "volkswagen|multivan|HV-198401": "Ook geschikt voor e-Hybrid",
+      "volkswagen|tayron|HV-199525": "Ook geschikt voor e-Hybrid",
+      "volkswagen|tiguan|HV-199525": "Ook geschikt voor e-Hybrid",
+      "volkswagen|transporter|HV-068385": "Ook geschikt voor EV",
+      "volkswagen|transporter|HV-068418": "Ook geschikt voor EV",
+      "volkswagen|transporter|HV-068428": "Ook geschikt voor EV",
+      "volkswagen|transporter|HV-068438": "Ook geschikt voor EV",
+      "volkswagen|transporter|HV-068441": "Ook geschikt voor EV",
+      "volkswagen|transporter|HV-068451": "Ook geschikt voor EV",
+      "volkswagen|up|HV-191015": "Ook geschikt voor e-UP",
+      "volvo|940|HV-207405": "Ook geschikt voor e-State",
+    };
+    const compareInclElectricKey = [
+      typeof brand !== 'undefined' ? slugifySegment(brand) : '',
+      typeof model !== 'undefined' ? slugifySegment(model) : '',
+      attentionSku
+    ].join('|');
+    if (compareInclElectricByModelSku[compareInclElectricKey]) return compareInclElectricByModelSku[compareInclElectricKey];
+    // End generated incl e-model rules.
+
+    // General chassis-cabine / bus translation.
+    // Exclusion first: "Excl. Chassis Cabine" means bus/van, not chassis-cabine.
+    if (/(?:excl\.?|exclude(?:d|s|ing)?|except|without|not\s+for|niet\s+voor|geen)\s*(?:chassis\s*-?\s*cab(?:ine)?|chassis\s*cab(?:ine)?|chassis\s*cab\.?|chassis-cabine)/.test(sourceText)) return 'Bus';
+    if (/(?:only|alleen|uitsluitend)\s*(?:chassis\s*-?\s*cab(?:ine)?|chassis\s*cab(?:ine)?|chassis\s*cab\.?|chassis-cabine)/.test(sourceText)) return 'Alleen chassis-cabine';
+    if (/(?:incl\.?|including|includes|ook\s+voor)\s*(?:chassis\s*-?\s*cab(?:ine)?|chassis\s*cab(?:ine)?|chassis\s*cab\.?|chassis-cabine)/.test(sourceText)) return 'Ook voor chassis-cabine';
+    if (/(?:chassis\s*-?\s*cab(?:ine)?|chassis\s*cab(?:ine)?|chassis\s*cab\.?|chassis-cabine)/.test(sourceText)) return 'Chassis-cabine';
+
+    // Achterasverschillen hebben prioriteit boven aandrijving.
+    if (/compound/.test(sourceText)) return 'Compound achteras';
+    if (/(?:excl\.?|exclude(?:d|s|ing)?|except|without)\s*tekna\+?|niet\s+voor\s+tekna\+?|geen\s+tekna\+?/.test(sourceText)) return 'Compound achteras';
+    if (/tekna\+|multi\s*-?\s*axle|multiaxle|mull?ti\s*-?\s*link|multi\s*-?\s*link|multilink/.test(sourceText)) {
+      return /tekna\+|multi\s*-?\s*axle|multiaxle/.test(sourceText)
+        ? 'Multilink achteras (Tekna+)'
+        : 'Multilink achteras';
+    }
+    if (/torsion|torsie/.test(sourceText)) return 'Torsie-as';
+    // AL-KO explicit compare rules.
+    // Important: exclusions for ALC/SLC level control must be handled before generic level-control detection.
+    const alkoParts = [];
+
+    if (/single\s+axle/.test(sourceText)) alkoParts.push('Enkele as');
+    if (/twin\s+axle|double\s+axle|tandem/.test(sourceText)) alkoParts.push('Tandemas');
+
+    if (/axle\s+through\s+chassis/.test(sourceText)) alkoParts.push('As door chassis');
+    if (/axle\s+under(?:neath)?\s+chassis|axle\s+under\s+chassis/.test(sourceText)) alkoParts.push('As onder chassis');
+
+    if (/small\s+chassis/.test(sourceText)) alkoParts.push('Small chassis');
+    if (/wide\s+chassis/.test(sourceText)) alkoParts.push('Wide chassis');
+
+    if (/(?:excl\.?|exclude(?:d|s|ing)?|without|not\s+for|niet\s+voor|geen)\s*(?:alc\s*)?(?:level\s+control|niveauregeling)|(?:excl\.?|without|not\s+for)\s*slc/.test(sourceText)) {
+      alkoParts.push('Zonder niveauregeling achter');
+    } else if (/(?:only|alleen|uitsluitend|incl\.?|including|includes)\s*(?:alc\s*)?(?:level\s+control|niveauregeling)|(?:alc\s*)?level\s+control|\bslc\b/.test(sourceText)) {
+      alkoParts.push('Met niveauregeling achter');
+    }
+
+    if (alkoParts.length && (/al-?ko|amc-|axle\s+(?:through|under)|small\s+chassis|wide\s+chassis|\balc\b|\bslc\b|level\s+control/.test(sourceText))) {
+      return alkoParts.join(', ');
+    }
+
+    if (/leaf\s*spring|bladveer/.test(sourceText)) return 'Bladveren';
+    if (/al-?ko/.test(sourceText)) return 'AL-KO chassis';
+
+    // Uitsluitingen eerst. Dus "Excl. 4WD" mag nooit als "4WD geschikt" eindigen.
+    if (/(?:excl\.?|exclude(?:d|s|ing)?|except|without)\s*(?:awd|4wd)|niet\s+(?:geschikt\s+)?voor\s+awd|not\s+(?:suitable\s+)?for\s+awd|geen\s+awd|zonder\s+awd|not\s+awd|non[-\s]?awd|not\s+4wd|geen\s+4wd|zonder\s+4wd|non[-\s]?4wd|2wd\s+only|only\s+2wd/.test(sourceText)) return 'Niet geschikt voor AWD';
+
+    // Expliciete geschiktheid.
+    if (/(?:rwd|rear\s*wheel\s*drive)\s*[,/&+ ]+\s*(?:4wd|awd)|(?:4wd|awd)\s*[,/&+ ]+\s*(?:rwd|rear\s*wheel\s*drive)/.test(sourceText)) return 'Geschikt voor RWD en 4WD';
+    if (/(?:fwd|front\s*wheel\s*drive)\s*[,/&+ ]+\s*(?:4wd|awd)|(?:4wd|awd)\s*[,/&+ ]+\s*(?:fwd|front\s*wheel\s*drive)/.test(sourceText)) return 'Geschikt voor FWD en 4WD';
+    if (/(?:2wd)\s*[,/&+ ]+\s*(?:4wd|awd)|(?:4wd|awd)\s*[,/&+ ]+\s*(?:2wd)/.test(sourceText)) return 'Geschikt voor 2WD en 4WD';
+    if (/(?:incl\.?|including|includes)\s*(?:awd|4wd)|(?:awd|4wd)\s*(?:included)/.test(sourceText)) return 'Ook geschikt voor 4WD';
+    if (/only\s*(?:awd|4wd)|alleen\s*(?:awd|4wd)|uitsluitend\s*(?:awd|4wd)/.test(sourceText)) return 'Alleen geschikt voor 4WD';
+    if (/awd|4wd|all\s*wheel\s*drive|vierwielaandrijving/.test(sourceText)) return '4WD-uitvoering';
+    if (/fwd|front\s*wheel\s*drive|voorwielaandrijving/.test(sourceText)) return 'Alleen geschikt voor FWD';
+    if (/rwd|rear\s*wheel\s*drive|achterwielaandrijving/.test(sourceText)) return 'Alleen geschikt voor RWD';
+
+    if (/zonder\s+niveauregeling|geen\s+niveauregeling|not\s+(?:for\s+)?(?:alc\s*)?level\s+control|without\s+(?:alc\s*)?level\s+control|excl\.?\s*(?:alc\s*)?(?:level\s+control|niveauregeling)|excl\.?\s*slc|without\s*slc|not\s+for\s*slc/.test(sourceText)) return 'Zonder niveauregeling achter';
+    if (/niveauregeling|level\s+control|self\s+levelling|self\s+leveling|\bslc\b/.test(sourceText)) return 'Met niveauregeling achter';
+
+    if (compareAttentionIsSd) return 'Met aangepaste schokdempers';
+
+    // Alleen als het expliciet in remark/notes staat.
+    if (/hybrid|hybride/.test(sourceText)) return 'Hybride uitvoering';
+    if (/single\s*rear\s*wheels?|srw|enkellucht/.test(sourceText)) return 'Enkellucht';
+    if (/double\s*rear\s*wheels?|twin\s*rear\s*wheels?|dual\s*rear\s*wheels?|drw|dubbellucht/.test(sourceText)) return 'Dubbellucht';
+
+    return 'Geen extra aandachtspunt bekend';
+  })(compareContextFitments);
+
+  const compareRawPosition = comparePositionValue;
+  const compareRawLoadType = compareRawPosition.indexOf('front') !== -1
+    ? 'voorzijde_verhogen'
+    : String(compareClassification.load_type || '').trim();
+  const compareKind = String(compareKit.kind_of_kit_nl || compareKit.kind_of_kit || compareKit.family_label || '').trim().toLowerCase();
+  const compareSku = String(compareKit.sku || '').trim();
+  const compareShocks = compareSku.toUpperCase().startsWith('SD-') || compareKind.includes('special duty') ? 'with' : 'without';
+
+  return {
+    sku: compareSku,
+    title: compareTitle,
+    detail: compareDetail,
+    attention: (String(compareSku || '').trim().toUpperCase().replace(/^SD-/, 'HV-') === 'HV-373148'
+      ? 'Niet geschikt voor AWD'
+      : (String(compareSku || '').trim().toUpperCase().replace(/^SD-/, 'HV-') === 'HV-373178'
+        ? 'Alleen geschikt voor AWD'
+        : compareAttention)),
+    loadType: normalizeSetChoiceTitle(compareLoadType, { model: typeof model !== 'undefined' ? model : '' }),
+    rawLoadType: compareRawLoadType,
+    support: compareSupport,
+    position: comparePosition,
+    rawPosition: compareRawPosition,
+    shocks: compareShocks,
+    time: compareKit.time ? String(compareKit.time) + ' min' : '—',
+    tuv: compareTuv,
+    price: comparePrice,
+    url: '/' + type + '/' + String(compareKit.sku || '').toLowerCase()
+      + '?make=' + slugifySegment(brand)
+      + '&model=' + slugifySegment(model)
+      + (typeof generationSlug !== 'undefined' && generationSlug ? '&generation=' + generationSlug : '')
+  };
+}).filter(function(row) {
+  return row && row.sku;
+});
+
+const choiceVehicleLabel = [formatWords(brand), formatWords(model), generationName].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+
+function kitHasShockPackage(filterKit) {
+  const sku = String(filterKit && filterKit.sku || '').trim().toUpperCase();
+  const kind = String(filterKit && (filterKit.kind_of_kit_nl || filterKit.kind_of_kit || filterKit.family_label) || '').trim().toLowerCase();
+  return sku.startsWith('SD-') || kind.includes('special duty');
+}
+
+const hasShockPackageKits = displayKits.some(function(filterKit) {
+  return kitHasShockPackage(filterKit);
+});
+
+const hasNoShockPackageKits = displayKits.some(function(filterKit) {
+  return !kitHasShockPackage(filterKit);
+});
+
+const showShockFilter = hasShockPackageKits && hasNoShockPackageKits;
+%>
+
+<% if (type === 'luchtvering' && displayKits.length > 1) { %>
+  <section class="choice-helper set-filter" aria-labelledby="choice-helper-title" data-set-filter-form>
+    <div class="choice-helper__intro">
+      <p class="choice-helper__eyebrow">Filter</p>
+      <h2 id="choice-helper-title">Filter de luchtveringsets op bediening</h2>
+      <p>
+        Voor de <strong><%= choiceVehicleLabel %></strong> zijn meerdere luchtveringsets mogelijk.
+        Kies eerst hoe je de luchtvering wilt bedienen. Daarna kun je filteren op aandrijving, achterwielen en eventueel schokdempers.
+      </p>
+    </div>
+
+    <div class="set-filter__grid">
+      <label class="set-filter__field" data-set-filter-field="airControl">
+        <span>1. Bediening luchtvering</span>
+        <select data-set-filter="airControl" aria-label="Filter op bediening luchtvering"></select>
+      </label>
+
+      <label class="set-filter__field" data-set-filter-field="drive">
+        <span>2. Aandrijving</span>
+        <select data-set-filter="drive" aria-label="Filter op aandrijving"></select>
+      </label>
+
+      <label class="set-filter__field" data-set-filter-field="rearWheels">
+        <span>3. Achterwielen</span>
+        <select data-set-filter="rearWheels" aria-label="Filter op achterwielen"></select>
+      </label>
+
+      <% if (showShockFilter) { %>
+      <label class="set-filter__field" data-set-filter-field="shocks">
+        <span>4. Schokdempers</span>
+        <select data-set-filter="shocks" aria-label="Filter op schokdempers"></select>
+      </label>
+      <% } %>
+
+      <div class="set-filter__actions">
+        <button type="button" class="set-filter__reset" data-set-filter-reset>Reset filters</button>
+        <span class="set-filter__count" data-set-filter-count></span>
+      </div>
+    </div>
+  </section>
+<% } %>
+  <% if (type === 'verlagingsveren' && displayKits.length > 1) { %>
+    <section class="choice-helper set-filter" aria-labelledby="choice-helper-title" data-set-filter-form data-set-filter-allow-two="true">
+      <div class="choice-helper__intro">
+        <p class="choice-helper__eyebrow">Filter</p>
+        <h2 id="choice-helper-title">Filter de verlagingsveren op motor en uitvoering</h2>
+        <p>
+          Voor de <strong><%= choiceVehicleLabel %></strong> zijn meerdere verlagingsverensets mogelijk.
+          Filter op motor, uitvoering en verlaging. Let daarna op opmerkingen zoals Sportwagon, sportonderstel, Quattro of andere uitvoeringsverschillen.
+        </p>
+      </div>
+
+      <div class="set-filter__grid">
+        <label class="set-filter__field" data-set-filter-field="engine">
+          <span>1. Motor / uitvoering</span>
+          <select data-set-filter="engine" aria-label="Filter op motor of uitvoering"></select>
+        </label>
+
+        <label class="set-filter__field is-disabled" data-set-filter-field="loweringDelta">
+          <span>2. Verlaging</span>
+          <select data-set-filter="loweringDelta" aria-label="Filter op verlaging" disabled>
+            <option value="">Kies eerst motor / uitvoering</option>
+          </select>
+        </label>
+
+        <label class="set-filter__field" data-set-filter-field="loweringNote">
+          <span>3. Uitvoering / toepassing</span>
+          <select data-set-filter="loweringNote" aria-label="Filter op uitvoering of toepassing"></select>
+        </label>
+
+        <div class="set-filter__actions">
+          <button type="button" class="set-filter__reset" data-set-filter-reset>Reset filters</button>
+          <span class="set-filter__count" data-set-filter-count></span>
+        </div>
+      </div>
+    </section>
+  <% } %>
+<% if (type === 'hulpveren' && compareRows.length > 1) { %>
+  <section class="choice-helper set-filter" aria-labelledby="choice-helper-title" data-set-filter-form>
+    <div class="choice-helper__intro">
+      <p class="choice-helper__eyebrow">Filter</p>
+      <h2 id="choice-helper-title">Filter de hulpverensets voor jouw gebruik</h2>
+      <p>
+        Voor de <strong><%= choiceVehicleLabel %></strong> zijn meerdere sets mogelijk.
+        Filter in volgorde: eerst de as, daarna het gebruik en daarna eventueel met of zonder aangepaste schokdempers. Bij twijfel kun je beter advies vragen.
+      </p>
+    </div>
+
+    <div class="set-filter__grid">
+      <label class="set-filter__field" data-set-filter-field="position">
+        <span>1. As</span>
+        <select data-set-filter="position" aria-label="Filter op as"></select>
+      </label>
+
+      <label class="set-filter__field" data-set-filter-field="loadType">
+        <span>2. Gebruik</span>
+        <select data-set-filter="loadType" aria-label="Filter op gebruik"></select>
+      </label>
+
+      <% if (showShockFilter) { %>
+      <label class="set-filter__field" data-set-filter-field="shocks">
+        <span>3. Schokdempers</span>
+        <select data-set-filter="shocks" aria-label="Filter op schokdempers"></select>
+      </label>
+      <% } %>
+
+      <label class="set-filter__field" data-set-filter-field="drive">
+        <span>4. Aandrijving</span>
+        <select data-set-filter="drive" aria-label="Filter op aandrijving"></select>
+      </label>
+
+      <label class="set-filter__field" data-set-filter-field="rearWheels">
+        <span>5. Achterwielen</span>
+        <select data-set-filter="rearWheels" aria-label="Filter op achterwielen"></select>
+      </label>
+
+      <div class="set-filter__actions">
+        <button type="button" class="set-filter__reset" data-set-filter-reset>Reset filters</button>
+        <span class="set-filter__count" data-set-filter-count></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="set-compare" id="sets-vergelijken" aria-labelledby="set-compare-title">
+    <div class="set-compare__head">
+      <div>
+        <p class="choice-helper__eyebrow">Vergelijken</p>
+        <h2 id="set-compare-title">Belangrijkste verschillen per set</h2>
+      </div>
+      <p>Deze vergelijking laat vooral zien waar je op moet letten om de juiste hulpverenset te kiezen. De volledige technische details staan per set lager op de pagina.</p>
+    </div>
+
+    <div class="set-compare__table-wrap">
+      <table class="set-compare__table">
+        <thead>
+          <tr>
+            <th>Set</th>
+            <th>Gebruik</th>
+            <th>Let op bij deze set</th>
+            <th>As</th>
+            <th>Prijs / pakket</th>
+            <th>Actie</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% compareRows.forEach(function(row) { %>
+            <tr
+              data-set-filter-row
+              data-filter-sku="<%= row.sku %>"
+              data-filter-load-type="<%= row.rawLoadType %>"
+              data-filter-position="<%= row.rawPosition %>"
+              data-filter-shocks="<%= row.shocks %>">
+              <td>
+                <strong><%= row.sku %></strong>
+                <span><%= row.title %></span>
+              </td>
+              <td>
+                <%= row.loadType %>
+              </td>
+              <td><%= row.attention || 'Geen extra aandachtspunt bekend' %></td>
+              <td><%= row.position || '—' %></td>
+              <td>
+                <% if (row.price) { %>
+                  <strong>€ <%= row.price.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></strong>
+                <% } else { %>
+                  Op aanvraag
+                <% } %>
+              </td>
+              <td>
+                <a
+                    class="set-compare__link"
+                    href="#afspraak-aanvragen"
+                    data-set-appointment
+                    data-set-sku="<%= row.sku %>"
+                    data-set-label="<%= row.sku %> — <%= row.title %><% if (String(row.sku || '').toUpperCase().startsWith('SD-') || row.shocks === 'with') { %> incl. aangepaste schokdempers<% } %>"
+                    aria-label="Kies set <%= row.sku %> voor aanvraag"
+                  >Kies <%= row.sku %></a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+<% } %>
+
+  <% displayKits.forEach(function(kit){
+    const kitTypeLabelRaw = kit.kind_of_kit_nl || kit.kind_of_kit || kit.family_label || '';
+    const kitTypeSource = String(kitTypeLabelRaw || '').toLowerCase();
+    const kitTypeLabel =
+      kitTypeSource.includes('auxiliary coil spring') ? 'Hulpverenset' :
+      kitTypeSource.includes('reinforced coil spring') ? 'Versterkte hoofdveren' :
+      kitTypeSource.includes('lowering springs') ? 'Verlagingsveren' :
+      kitTypeSource.includes('air suspension') ? 'Luchtvering' :
+      (kit.family_label || kitTypeLabelRaw || '');
+    const kitSkuBaseForPosition = String(kit && kit.sku || '').trim().toUpperCase().replace(/^SD-/, 'HV-');
+    const kitPositionRaw = String(kit.position || '').trim().toLowerCase().replace(/\s+/g, '');
+    const kitPositionForDisplay = kitSkuBaseForPosition === 'HV-098273' ? 'front' : kitPositionRaw;
+    const positionLabel =
+      kitPositionForDisplay === 'front' ? 'Vooras' :
+      kitPositionForDisplay === 'rear' ? 'Achteras' :
+      kitPositionForDisplay === 'both' || kitPositionForDisplay === 'front,rear' ? 'Voor & achter' :
+      (kit.position || '');
+    const approvalLabel = kit.approval_nl || kit.approval || '';
+    const normContext = function(v) {
+      return String(v || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/-/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    };
+    const generationSlugNorm = typeof generationSlug !== 'undefined' && generationSlug
+      ? normContext(generationSlug)
+      : '';
+    const generationNameNorm = typeof generationName !== 'undefined' && generationName
+      ? normContext(generationName)
+      : '';
+
+    const generationSlugParts = generationSlugNorm
+      ? generationSlugNorm.split(/[^a-z0-9]+/).filter(Boolean)
+      : [];
+    const generationAliasParts = generationSlugParts.slice();
+    const generationAliasAdd = function(value) {
+      const cleaned = normContext(value);
+      if (cleaned && generationAliasParts.indexOf(cleaned) === -1) generationAliasParts.push(cleaned);
+    };
+
+    const generationAliasHasPrefixMatch = function(codeNorm) {
+      const parts = normContext(codeNorm).split(/[^a-z0-9]+/).filter(Boolean);
+      if (!parts.length) return false;
+
+      return parts.every(function(part) {
+        return generationAliasParts.some(function(alias) {
+          if (!alias || alias.length < 2) return false;
+
+          // Match VAG-achtige platformcodes:
+          // KL1/KL8 -> kl, 5F1/5F5/5F8 -> 5f, 3H7/3H8 -> 3h, 5P5/5P8 -> 5p
+          if (part.indexOf(alias) === 0) return true;
+
+          return false;
+        });
+      });
+    };
+
+
+    const currentBrandNorm = typeof brand !== 'undefined' ? normContext(brand) : '';
+    const currentModelNorm = typeof model !== 'undefined' ? normContext(model) : '';
+
+      // Opel Movano A/B/C generation aliases for card matching.
+      // URL slugs are movano-a/movano-b/movano-c, source platform_codes are A (X70), B (X62), C (U9).
+      if (currentBrandNorm === 'opel' && currentModelNorm === 'movano') {
+        if (generationSlugNorm === 'movano a') {
+          ['a', 'x70'].forEach(generationAliasAdd);
+        }
+        if (generationSlugNorm === 'movano b') {
+          ['b', 'x62'].forEach(generationAliasAdd);
+        }
+        if (generationSlugNorm === 'movano c') {
+          ['c', 'u9'].forEach(generationAliasAdd);
+        }
+      }
+
+
+    if (
+      currentBrandNorm === 'peugeot'
+      && currentModelNorm === '107'
+      && generationSlugNorm === '107'
+    ) {
+      ['107', 'pm', 'pn'].forEach(generationAliasAdd);
+    }
+
+    if (
+      currentBrandNorm === 'peugeot'
+      && currentModelNorm === '308'
+    ) {
+      if (generationSlugNorm === 'p5') {
+        ['p5', 'iii', 'p51', 'p52', 'fb', 'fh', 'f3', 'fc', 'fj', 'f4'].forEach(generationAliasAdd);
+      }
+
+      if (generationSlugNorm === 't7') {
+        // Peugeot 308 T7 hatchback/berline
+        ['t7', 'i', '4a', '4c'].forEach(generationAliasAdd);
+      }
+
+      if (generationSlugNorm === 't7 sw') {
+        // Peugeot 308 T7 SW/break
+        ['t7 sw', 'sw', '4e', '4h'].forEach(generationAliasAdd);
+      }
+    }
+
+    if (
+      currentBrandNorm === 'mercedes benz'
+      && currentModelNorm === 'sprinter'
+      && generationSlugNorm === 'ok ka ac'
+    ) {
+      ['ok', 'ka', 'ac', '907', '910', 'w907', 'w910'].forEach(generationAliasAdd);
+    }
+
+    if (
+      currentBrandNorm === 'volkswagen'
+      && currentModelNorm === 'jetta'
+      && generationSlugNorm === 'jetta 3'
+    ) {
+      ['16', 'v', '1k2', '1km'].forEach(generationAliasAdd);
+    }
+
+    if (
+      currentBrandNorm === 'volkswagen'
+      && currentModelNorm === 'tiguan'
+      && generationSlugNorm === 'tiguan ad1'
+    ) {
+      ['ad1', '5n'].forEach(generationAliasAdd);
+    }
+
+    if (
+      currentBrandNorm === 'volkswagen'
+      && currentModelNorm === 'passat'
+      && (
+        generationSlugNorm === 'passat-b9'
+        || generationSlugNorm === 'b9-cj5'
+        || generationNameNorm === 'b9'
+        || generationNameNorm === 'b9-cj5'
+        || generationNameNorm.indexOf('b9') !== -1
+        || generationNameNorm.indexOf('cj5') !== -1
+      )
+    ) {
+      ['passat-b9', 'b9-cj5', 'b9', 'cj5'].forEach(generationAliasAdd);
+    }
+
+
+    if (
+      normContext(brand) === 'peugeot'
+      && normContext(model) === '308'
+      && (generationSlugNorm === 't9' || generationNameNorm === 't9')
+    ) {
+      ['ii', 'lb', 'lh', 'lp', 'lw', 'l3', 'lc', 'lj', 'lr', 'lx', 'l4'].forEach(function(code) {
+        if (generationAliasParts.indexOf(code) === -1) generationAliasParts.push(code);
+      });
+    }
+
+    function fitmentMatchesCurrentGeneration(f) {
+      if (!generationSlugNorm && !generationNameNorm) return true;
+      if (
+        normContext(brand) === 'ford' &&
+        normContext(model) === 'transit'
+      ) {
+        const requestedTransitText = generationSlugNorm + ' ' + generationNameNorm;
+        const transitTypeMatch = requestedTransitText.match(/(^|\s)(260|280|290|300|310|330|350|470|500)(\s|$)/);
+        const transitPlatformMatch = requestedTransitText.match(/(^|[^a-z0-9])(v363|fa)(?=[^a-z0-9]|$)/);
+
+        if (transitTypeMatch) {
+          const transitType = transitTypeMatch[2];
+          const requestedTransitPlatform = transitPlatformMatch ? transitPlatformMatch[2] : '';
+          const transitText = normContext([
+            f.generation,
+            Array.isArray(f.platform_codes) ? f.platform_codes.join(' ') : f.platform_codes,
+            f.engine_raw,
+            f.remark,
+            f.notes
+          ].filter(Boolean).join(' '));
+
+          const hasExplicitTransitType = new RegExp('(^|\\s)' + transitType + '(\\s|$)').test(transitText);
+          const hasRequestedTransitPlatform = !requestedTransitPlatform || new RegExp('(^|[^a-z0-9])' + requestedTransitPlatform + '(?=[^a-z0-9]|$)').test(transitText);
+          const isGenericV363 = /(^|[^a-z0-9])v363(?=[^a-z0-9]|$)/.test(transitText);
+          const hasDoubleRear = /double rear wheel|twin rear wheel|twin wheels/.test(transitText);
+          const excludesDoubleRear = /excl\.? twin rear wheel|excl\.? double rear wheel|excl\.? twin wheels|niet voor twin rear wheel|niet voor double rear wheel/.test(transitText);
+          const isFwd = /(^|\s)fwd(\s|$)|voorwielaandrijving/.test(transitText);
+          const onlyETransit = /only e transit|only etransit/.test(transitText);
+
+          if (!hasRequestedTransitPlatform) return false;
+          if (onlyETransit && !hasExplicitTransitType) return false;
+          if (hasExplicitTransitType) return true;
+
+          if (transitType === '500' && requestedTransitPlatform === 'v363' && isGenericV363 && hasDoubleRear && !excludesDoubleRear && !isFwd) return true;
+
+          return false;
+        }
+      }
+
+
+      const codes = Array.isArray(f.platform_codes)
+        ? f.platform_codes.filter(Boolean)
+        : [];
+
+      if (
+        currentBrandNorm === 'peugeot'
+        && currentModelNorm === '308'
+        && (generationSlugNorm === 't7' || generationSlugNorm === 't7 sw')
+      ) {
+        const peugeot308CodeText = normContext([
+          f.generation,
+          codes.join(' '),
+          f.engine_raw,
+          f.remark,
+          f.notes
+        ].filter(Boolean).join(' '));
+
+        const isSwFitment = /(^|\s)(sw|break|station)(\s|$)/.test(peugeot308CodeText)
+          || /(^|\s)(4e|4h)(\s|$)/.test(peugeot308CodeText);
+
+        const isHbFitment = /(^|\s)(4a|4c)(\s|$)/.test(peugeot308CodeText);
+
+        if (generationSlugNorm === 't7 sw') {
+          return isSwFitment;
+        }
+
+        if (generationSlugNorm === 't7') {
+          return isHbFitment || !isSwFitment;
+        }
+      }
+
+      if (!codes.length) return true;
+
+      const codeNorms = codes.map(function(code) {
+        return normContext(code);
+      }).filter(Boolean);
+
+      const combinedCodeNorm = normContext(codes.join(' '));
+      const compactCombinedCodeNorm = combinedCodeNorm.replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
+
+      if (combinedCodeNorm) {
+        if (generationNameNorm && combinedCodeNorm === generationNameNorm) return true;
+        if (generationSlugNorm && combinedCodeNorm === generationSlugNorm) return true;
+        if (generationSlugNorm && generationSlugNorm.indexOf(compactCombinedCodeNorm) !== -1) return true;
+        if (generationNameNorm && generationNameNorm.indexOf(compactCombinedCodeNorm) !== -1) return true;
+        if (generationAliasParts.indexOf(compactCombinedCodeNorm) !== -1) return true;
+
+        const combinedParts = compactCombinedCodeNorm.split(' ').filter(Boolean);
+        if (combinedParts.length && combinedParts.every(function(part) {
+          return generationSlugNorm.indexOf(part) !== -1
+            || generationNameNorm.indexOf(part) !== -1
+            || generationAliasHasPrefixMatch(part);
+        })) {
+          return true;
+        }
+      }
+
+      return codeNorms.some(function(codeNorm) {
+        if (!codeNorm) return false;
+
+        if (generationNameNorm && codeNorm === generationNameNorm) return true;
+        if (generationSlugNorm && codeNorm === generationSlugNorm) return true;
+        if (generationAliasParts.indexOf(codeNorm) !== -1) return true;
+        if (generationAliasHasPrefixMatch(codeNorm)) return true;
+
+        if (codeNorm.length > 2 && generationSlugNorm.indexOf(codeNorm) !== -1) return true;
+        if (generationNameNorm.length > 2 && codeNorm.indexOf(generationNameNorm) !== -1) return true;
+
+        return false;
+      });
+    }
+
+    let contextFitments = (kit.fitments || []).filter(function(f){
+      return normContext(f.make) === normContext(brand)
+        && normContext(f.model) === normContext(model)
+        && fitmentMatchesCurrentGeneration(f);
+    });
+
+    const hasCurrentGenerationContext = !!(generationSlugNorm || generationNameNorm);
+    const hasKitFitments = Array.isArray(kit.fitments) && kit.fitments.length > 0;
+
+    if (hasCurrentGenerationContext && hasKitFitments && !contextFitments.length) {
+      // De server heeft deze set al voor de generatie geselecteerd. De lokale
+      // platformcodecontrole kan strenger zijn; behoud dan de fitments van dit model.
+      contextFitments = kit.fitments.filter(function(f) {
+        return normContext(f.make) === normContext(brand)
+          && normContext(f.model) === normContext(model);
+      });
+      if (!contextFitments.length) return;
+    }
+    const engineFitment = contextFitments.find(function(f){
+      return String(f.engine_raw || '').trim() !== '';
+    }) || null;
+    const engineLabel = engineFitment ? String(engineFitment.engine_raw || '').trim() : '';
+    const timeLabel = kit.time ? String(kit.time) + ' min' : '';
+      const loweringDelta = kit && kit.suspension_delta_mm && typeof kit.suspension_delta_mm === 'object'
+        ? kit.suspension_delta_mm
+        : null;
+
+      const loweringFrontMm = loweringDelta && loweringDelta.front_mm !== undefined ? Number(loweringDelta.front_mm) : NaN;
+      const loweringRearMm = loweringDelta && loweringDelta.rear_mm !== undefined ? Number(loweringDelta.rear_mm) : NaN;
+
+      const loweringPositionRaw = String((kit && (kit.position || kit.axle)) || '').trim().toLowerCase();
+      const loweringPosition =
+        loweringPositionRaw === 'both' || loweringPositionRaw === 'front,rear' || loweringPositionRaw === 'front_rear'
+          ? 'both'
+          : loweringPositionRaw.includes('front') && loweringPositionRaw.includes('rear')
+            ? 'both'
+            : loweringPositionRaw.includes('front')
+              ? 'front'
+              : loweringPositionRaw.includes('rear')
+                ? 'rear'
+                : '';
+
+      const formatLoweringMm = function(value) {
+        if (!Number.isFinite(value)) return '';
+        return Number.isInteger(value) ? String(value) : String(value).replace('.', ',');
+      };
+
+      const buildLoweringDeltaLabel = function(frontMm, rearMm) {
+        const front = formatLoweringMm(frontMm);
+        const rear = formatLoweringMm(rearMm);
+
+        if (loweringPosition === 'front') {
+          return front ? front + ' mm voor' : '';
+        }
+
+        if (loweringPosition === 'rear') {
+          return rear ? rear + ' mm achter' : '';
+        }
+
+        if (front && rear) {
+          return frontMm === rearMm
+            ? front + ' mm voor & achter'
+            : front + ' mm voor / ' + rear + ' mm achter';
+        }
+
+        if (front) return front + ' mm voor';
+        if (rear) return rear + ' mm achter';
+        return '';
+      };
+
+      const parseLoweringHeightDifference = function(value) {
+        const raw = String(value || '').trim();
+        if (!raw) return null;
+
+        const numbers = raw.replace(/,/g, '.').match(/-?\d+(?:\.\d+)?/g);
+        if (!numbers || !numbers.length) return null;
+
+        const front = Number(numbers[0]);
+        const rear = Number(numbers.length > 1 ? numbers[1] : numbers[0]);
+        if (!Number.isFinite(front) || !Number.isFinite(rear)) return null;
+
+        return { front_mm: front, rear_mm: rear };
+      };
+
+      const fallbackLoweringDelta = parseLoweringHeightDifference(kit && (kit.height_difference || kit.heightDifference));
+
+      const loweringDeltaLabel = type === 'verlagingsveren'
+        ? (
+            buildLoweringDeltaLabel(loweringFrontMm, loweringRearMm)
+            || (
+              fallbackLoweringDelta
+                ? buildLoweringDeltaLabel(Number(fallbackLoweringDelta.front_mm), Number(fallbackLoweringDelta.rear_mm))
+                : ''
+            )
+          )
+        : '';
+    const airSuspensionControlLabel = typeof getAirSuspensionControlLabel === 'function'
+      ? getAirSuspensionControlLabel(kit)
+      : '';
+    const airSuspensionControlValue = typeof getAirSuspensionControlValue === 'function'
+      ? getAirSuspensionControlValue(kit)
+      : '';
+    const positionBadgeLabel = positionLabel || '';
+    const approvalBadgeLabel = approvalLabel
+      ? (/tuv|tüv/i.test(String(approvalLabel)) ? 'TÜV-goedgekeurd' : approvalLabel)
+      : '';
+    const timeBadgeLabel = kit.time ? 'Montage ±' + String(kit.time) + ' min' : '';
+    const cardBrand = typeof brand !== 'undefined' ? brand : '';
+    const cardModel = typeof model !== 'undefined' ? model : '';
+    const cardGenerationName = typeof generationName !== 'undefined' ? generationName : '';
+    const vehicleLabel = [cardBrand, cardModel, cardGenerationName].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+    const cardSubtitle = [kitTypeLabel, positionLabel ? positionLabel.toLowerCase() : '', vehicleLabel ? 'voor ' + vehicleLabel : ''].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+
+    const apiApplicationLabel = kit && kit.application_label && typeof kit.application_label === 'object'
+      ? kit.application_label
+      : null;
+
+    const fallbackApplicationLabel = typeof getSetApplicationLabel === 'function'
+      ? getSetApplicationLabel(kit, {
+          type: type,
+          applicationType: typeof applicationType !== 'undefined' ? applicationType : '',
+          applicationLabel: typeof applicationLabel !== 'undefined' ? applicationLabel : '',
+          brand: typeof brand !== 'undefined' ? brand : '',
+          model: typeof model !== 'undefined' ? model : '',
+          generationName: typeof generationName !== 'undefined' ? generationName : '',
+          vehicleLabel: vehicleLabel,
+          contextFitments: contextFitments
+        })
+      : {
+          title: 'Voor normaal gebruik en af en toe beladen',
+          text: 'Geschikt voor dagelijks rijden, caravan, fietsendrager, vakantie en bagage.',
+          detail: '',
+          warning: ''
+        };
+
+    const setApplicationLabel = apiApplicationLabel || fallbackApplicationLabel;
+
+    const setUseTitle = setApplicationLabel.title || '';
+    const setUseText = setApplicationLabel.text || '';
+    const setUseDetail = typeof normalizeSetTechnicalText === 'function' ? normalizeSetTechnicalText(setApplicationLabel.detail || '') : (setApplicationLabel.detail || '');
+    const setUseWarning = setApplicationLabel.warning || '';
+
+    const isAutomaticHeightOnlyKit = type === 'luchtvering' && /^NR-\d+-R$/i.test(String(kit && kit.sku || '').trim());
+    const automaticHeightOnlyBadgeLabel = isAutomaticHeightOnlyKit ? 'Automatic: automatische rijhoogte' : '';
+    const automaticHeightOnlyInfoTitle = 'Hoe werkt Automatic?';
+    const automaticHeightOnlyInfoText = 'Deze set houdt de vooraf ingestelde rijhoogte automatisch vast. Bij montage wordt de gewenste hoogte ingesteld. Komt er belading bij, dan schakelt de compressor in totdat de hoogtesensor de ingestelde hoogte weer bereikt. Gaat de belading eruit, dan laat het systeem automatisch lucht af zodat de auto weer terugzakt naar dezelfde rijhoogte.';
+    const displaySetUseTitle = normalizeSetChoiceTitle(
+        isAutomaticHeightOnlyKit
+          ? 'Automatische hoogteregeling bij wisselende belading'
+          : setUseTitle,
+        { model: typeof model !== 'undefined' ? model : '' }
+      );
+    const displaySetUseText = isAutomaticHeightOnlyKit
+      ? 'Geschikt als je de rijhoogte automatisch gelijk wilt houden bij wisselende belading, zonder handmatig bijpompen of aflaten.'
+      : setUseText;
+
+
+    const hardCompatibilityNote = typeof getHardCompatibilityNote === 'function'
+      ? getHardCompatibilityNote(kit, contextFitments)
+      : '';
+
+      const fitmentBadges = typeof getSetFitmentBadges === 'function'
+        ? getSetFitmentBadges(kit, contextFitments)
+        : [];
+      const hasFitmentBadges = Array.isArray(fitmentBadges) && fitmentBadges.length > 0;
+      const hasBodyFitmentBadge = hasFitmentBadges && fitmentBadges.some(function(badge) {
+        return badge && badge.type === 'body';
+      });
+const setClassification = kit && kit.classification && typeof kit.classification === 'object'
+      ? kit.classification
+      : {};
+
+    const loadTypeBadgeLabel = (function(value) {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+      if (raw === 'leeg_beladen') return 'Leeg & beladen';
+      if (raw === 'continue_belading') return 'Continu beladen';
+      if (raw === 'zware_continue_belading') return normalizeSetChoiceTitle('Zware vaste belading', { model: typeof model !== 'undefined' ? model : '' });
+      if (raw === 'regelbare_ondersteuning') return 'Regelbare ondersteuning';
+      return raw.replace(/_/g, ' ');
+    })(setClassification.load_type);
+
+    const supportBadgeLabel = (function(value) {
+      const raw = String(value || '').trim();
+      if (!raw || raw === 'standard') return '';
+      if (raw === 'medium') return 'Medium ondersteuning';
+      if (raw === 'extra_heavy') return 'Extra zware ondersteuning';
+      if (raw === 'air') return 'Luchtvering';
+      return raw.replace(/_/g, ' ');
+    })(setClassification.support_level);
+
+    const functionBadgeLabel = String(setClassification.mounting_label || '').trim();
+
+      const eanLabel = kit.ean || '';
+      const totalPrice = kit.pricing_nl && kit.pricing_nl.public_price_incl_vat_eur != null
+        ? Number(kit.pricing_nl.public_price_incl_vat_eur)
+        : (kit.pricing_nl && kit.pricing_nl.total_inc_vat_from_eur ? Number(kit.pricing_nl.total_inc_vat_from_eur) : null);
+      const powertrainsLabel = Array.isArray(kit.powertrains_allowed)
+        ? kit.powertrains_allowed.filter(Boolean).join(', ')
+        : '';
+      const rearWheelsLabel = Array.isArray(kit.rear_wheels_allowed)
+        ? kit.rear_wheels_allowed.filter(Boolean).join(', ')
+        : '';
+
+      const airMasterSkuUpper = String(kit && kit.sku || '').trim().toUpperCase();
+      const airMasterPremiumType = /-RE$/i.test(airMasterSkuUpper)
+        ? 'automatic_premium'
+        : (/-CE$/i.test(airMasterSkuUpper) ? 'premium' : '');
+const ceControllerGalleryImages = airMasterPremiumType === 'premium'
+          ? [
+              '/assets/airmaster-controller/air-master-premium-controller-hand-up-v1.png',
+              '/assets/airmaster-controller/air-master-premium-controller-display-on-v1.png'
+            ]
+          : [];
+
+        const reControllerGalleryImages = airMasterPremiumType === 'automatic_premium'
+          ? [
+              '/assets/airmaster-controller/air-master-automatic-premium-height-controller-info-v1.png',
+              '/assets/airmaster-controller/air-master-automatic-premium-height-controller-animation-v1.gif'
+            ]
+          : [];
+
+        /* airmaster-controller-gallery-v7 */
+
+        const airMasterPremiumBadgeLabel = airMasterPremiumType === 'automatic_premium'
+        ? 'Automatic Premium: hoogtesensor + 3 hoogtestanden'
+        : (airMasterPremiumType === 'premium' ? 'Premium: handheld controller' : '');
+      const airMasterPremiumInfoTitle = airMasterPremiumType === 'automatic_premium'
+        ? 'Wat betekent Automatic Premium?'
+        : 'Wat betekent Premium?';
+      const airMasterPremiumInfoText = airMasterPremiumType === 'automatic_premium'
+        ? 'Deze set heeft een compressor, hoogtesensor en handheld controller. De automatische hoogteregeling helpt de rijhoogte corrigeren bij belading. Via de handheld controller kun je daarnaast kiezen uit 3 vaste hoogtestanden. Links en rechts zijn apart bij te regelen. Dat is handig bij ongelijk terrein of wanneer je een camper beter vlak wilt zetten. Let op: dit is bedoeld om scheefstand te corrigeren, niet als vervanging van een volledig levelsysteem.'
+        : 'Deze set heeft een compressor en handheld controller. Je kunt de luchtvering zelf harder of zachter zetten. Links en rechts zijn apart bij te regelen. Dat is handig bij wisselende belading, campergebruik, fietsendrager, aanhanger of ongelijk terrein. Bij campers kun je zo scheefstand beter corrigeren.';
+          const airMasterControllerMediaByType = {
+            premium: {
+              label: 'Air Master Premium',
+              title: 'Bediening met handheld controller',
+              text: 'Bij deze Premium uitvoering regel je de luchtvering met een handheld controller en compressor. Links en rechts zijn apart bij te regelen.',
+              media: [
+                {
+                  src: '/assets/airmaster-controller/air-master-premium-controller-hand-up-v1.png',
+                  alt: 'Air Master Premium controller in de hand voor bediening',
+                  caption: 'Controller in de hand om de luchtvering te bedienen.'
+                },
+                {
+                  src: '/assets/airmaster-controller/air-master-premium-controller-display-on-v1.png',
+                  alt: 'Air Master Premium controller gemonteerd op het dashboard',
+                  caption: 'Controller gemonteerd op het dashboard.'
+                }
+              ]
+            },
+            automatic_premium: {
+              label: 'Air Master Automatic Premium',
+              title: 'Automatische hoogteregeling met handheld controller',
+              text: 'Deze Automatic Premium uitvoering heeft automatische hoogteregeling met compressor en handheld controller.',
+              media: [
+                {
+                  src: '/assets/airmaster-controller/air-master-automatic-premium-height-controller-info-v1.png',
+                  alt: 'Hoogtegestuurde controller met uitleg voor Air Master Automatic Premium luchtvering',
+                  caption: 'Schematische uitleg van de hoogtegestuurde bediening.'
+                },
+                {
+                  src: '/assets/airmaster-controller/air-master-automatic-premium-height-controller-animation-v1.gif',
+                  alt: 'Display gemonteerd in de beugel op het dashboard met weergave van verschillende hoogtestanden',
+                  caption: 'Display gemonteerd in de beugel op het dashboard. De indicatielampjes wisselen tussen verschillende hoogtestanden.'
+                }
+              ]
+            }
+          };
+
+          const airMasterControllerMediaConfig = airMasterPremiumType
+            ? airMasterControllerMediaByType[airMasterPremiumType]
+            : null;
+
+          const airMasterControllerMediaItems = airMasterControllerMediaConfig && Array.isArray(airMasterControllerMediaConfig.media)
+            ? airMasterControllerMediaConfig.media.filter(function(item) { return item && item.src; })
+            : [];
+
+        const airMasterComfortControlType = type === 'luchtvering' && /-CS1$/i.test(airMasterSkuUpper)
+          ? 'cs1'
+          : (type === 'luchtvering' && /-CS$/i.test(airMasterSkuUpper)
+            ? 'cs'
+            : (type === 'luchtvering' && /-C$/i.test(airMasterSkuUpper) ? 'c' : ''));
+        const airMasterComfortControlBadgeLabel = airMasterComfortControlType === 'cs1'
+          ? 'Comfort: paneel bij stoelconsole'
+          : (airMasterComfortControlType === 'cs'
+            ? 'Comfort: paneel in dashboard'
+            : (airMasterComfortControlType === 'c' ? 'Comfort: universeel bedieningspaneel' : ''));
+        const airMasterComfortControlInfoTitle = airMasterComfortControlType === 'cs1'
+          ? 'Bediening bij stoelconsole'
+          : (airMasterComfortControlType === 'cs'
+            ? 'Bediening in dashboard'
+            : 'Universeel bedieningspaneel');
+        const airMasterComfortControlInfoText = airMasterComfortControlType === 'cs1'
+          ? 'Deze set heeft een compressor en een voertuigspecifiek bedieningspaneel bij de stoelconsole of stoelbasis. Daarmee kun je de luchtvering vanuit de auto harder of zachter zetten. Links en rechts zijn apart bij te regelen. Dat is handig bij ongelijk terrein of om een camper beter vlak te zetten.'
+          : (airMasterComfortControlType === 'cs'
+            ? 'Deze set heeft een compressor en een voertuigspecifiek bedieningspaneel in het dashboard. Daarmee kun je de luchtvering vanuit de bestuurderspositie harder of zachter zetten. Links en rechts zijn apart bij te regelen. Dat is handig bij ongelijk terrein of om een camper beter vlak te zetten.'
+            : 'Deze set heeft een compressor en een universeel bedieningspaneel. Daarmee kun je de luchtvering vanuit de auto harder of zachter zetten. Links en rechts zijn apart bij te regelen. Dat is handig bij ongelijk terrein of om een camper beter vlak te zetten. De exacte plaats van het paneel hangt af van de beschikbare inbouwruimte en wordt netjes gekozen bij montage.');
+
+        const airMasterValveInfoType = type === 'luchtvering' && /-B$/i.test(airMasterSkuUpper)
+          ? 'basic_two_valves'
+          : (type === 'luchtvering' && /^NR-\d*6$/i.test(airMasterSkuUpper) ? 'single_trunk_valve' : '');
+        const airMasterValveBadgeLabel = airMasterValveInfoType === 'basic_two_valves'
+          ? 'Basic: links/rechts apart oppompen'
+          : (airMasterValveInfoType === 'single_trunk_valve' ? 'Handmatig: één ventiel in kofferbak' : '');
+        const airMasterValveInfoTitle = airMasterValveInfoType === 'basic_two_valves'
+          ? 'Twee aparte ventielen'
+          : 'Eén centraal ventiel';
+        const airMasterValveInfoText = airMasterValveInfoType === 'basic_two_valves'
+          ? 'Deze set heeft twee ventielen. De linker en rechter luchtbalg kunnen apart worden opgepompt, zodat je de ondersteuning per zijde kunt corrigeren bij ongelijkmatige belading.'
+          : 'Deze set heeft één ventiel in de kofferbak. Via dit ventiel pomp je beide luchtbalgen tegelijk op.';
+
+      const specLines = [];
+
+    contextFitments.forEach(function(f){
+      const line = typeof normalizeSetTechnicalText === 'function'
+        ? normalizeSetTechnicalText([f.remark, f.notes].filter(Boolean).join(' | ').trim())
+        : [f.remark, f.notes].filter(Boolean).join(' | ').trim();
+      if (line && specLines.indexOf(line) === -1) specLines.push(line);
+    });
+        const filterLoweringEngineLabel = type === 'verlagingsveren' && engineLabel
+          ? (typeof normalizeSetTechnicalText === 'function' ? normalizeSetTechnicalText(engineLabel) : String(engineLabel || '').trim())
+          : '';
+
+        const filterLoweringEngineParts = filterLoweringEngineLabel
+          ? filterLoweringEngineLabel.split(',').map(function(part) {
+              return String(part || '').trim();
+            }).filter(Boolean)
+          : [];
+
+        const filterLoweringEngineValues = filterLoweringEngineParts.map(function(part) {
+          return slugifySegment(part);
+        }).filter(Boolean).filter(function(value, index, array) {
+          return array.indexOf(value) === index;
+        });
+
+        const filterLoweringEngineValue = filterLoweringEngineValues.join(',');
+
+        const filterLoweringEngineLabelMap = filterLoweringEngineParts.map(function(part) {
+          const value = slugifySegment(part);
+          const label = String(part || '').replace(/[|=]/g, ' ').trim();
+          return value && label ? value + '=' + label : '';
+        }).filter(Boolean).join('|');
+
+        const filterLoweringNoteLabel = type === 'verlagingsveren'
+          ? (specLines.find(function(line) {
+              const clean = String(line || '').trim();
+              return clean && !/schokdemperlengte/i.test(clean);
+            }) || '')
+          : '';
+        const filterLoweringNoteValue = filterLoweringNoteLabel ? slugifySegment(filterLoweringNoteLabel) : '';
+        const filterLoweringDeltaLabel = type === 'verlagingsveren' && loweringDeltaLabel
+          ? String(loweringDeltaLabel || '').trim()
+          : '';
+        const filterLoweringDeltaValue = filterLoweringDeltaLabel ? slugifySegment(filterLoweringDeltaLabel) : '';
+
+
+      let setGalleryImages = typeof getSetGalleryImages === 'function' ? getSetGalleryImages(kit.sku, kit) : [];
+
+      if (!setGalleryImages.length && String(kit.sku || '').toUpperCase().startsWith('LS-')) {
+        const lsFallbackUrl = kit.position === 'both'
+          ? '/assets/img/HV-kits/LS-4.jpg'
+          : '/assets/img/HV-kits/LS-2.jpg';
+
+        setGalleryImages = [{ url: lsFallbackUrl, source: 'ls-fallback' }];
+      }
+
+      const setGalleryAlt = setGalleryImages.length && typeof buildMontageImageAlt === 'function'
+        ? buildMontageImageAlt({
+            type: type,
+            sku: kit.sku,
+            brand: brand,
+            model: model,
+            generationName: generationName,
+            applicationLabel: typeof applicationLabel !== 'undefined' ? applicationLabel : ''
+          })
+        : '';
+
+      const filterPosition = kitPositionForDisplay;
+      const filterLoadType = filterPosition.indexOf('front') !== -1
+        ? 'voorzijde_verhogen'
+        : String(setClassification.load_type || '').trim();
+      const filterSupportLevel = String(setClassification.support_level || '').trim();
+      const filterMountingType = String(setClassification.mounting_type || '').trim();
+      const filterKitKind = String(kit.kind_of_kit_nl || kit.kind_of_kit || kit.family_label || '').trim().toLowerCase();
+
+      const filterContextText = contextFitments.map(function(f) {
+        return [
+          f.make,
+          f.model,
+          f.generation,
+          f.engine_raw,
+          Array.isArray(f.platform_codes) ? f.platform_codes.join(' ') : f.platform_codes,
+          f.remark,
+          f.notes
+        ].filter(Boolean).join(' ');
+      }).join(' | ');
+
+      function addUniqueFilterValue(list, value) {
+        if (value && list.indexOf(value) === -1) list.push(value);
+      }
+
+      const filterDriveValues = [];
+      const filterRearWheelValues = [];
+
+      const driveText = String(filterContextText || '');
+      const driveClean = driveText.replace(/excl\.?\s*(?:4wd|awd|4motion)/gi, ' ');
+
+      if (/\bfwd\b|front[-\s]?wheel/i.test(driveClean)) addUniqueFilterValue(filterDriveValues, 'fwd');
+      if (/\brwd\b|rear[-\s]?wheel/i.test(driveClean)) addUniqueFilterValue(filterDriveValues, 'rwd');
+      if (/(^|[^a-z0-9])(?:4wd|awd|4motion)(?=[^a-z0-9]|$)/i.test(driveClean)) addUniqueFilterValue(filterDriveValues, '4wd');
+
+      const rearWheelText = String(filterContextText || '');
+
+      /*
+       * Achterwielen:
+       * - Single rear wheels = enkellucht
+       * - Double/Twin/Dual rear wheels = dubbellucht
+       * - Excl. Twin-wheels / Excl. double rear wheels = enkellucht
+       * Let op: Single axle / Twin axle NIET gebruiken; dat gaat over aantal assen.
+       */
+      const rearWheelExcludeDoubleRe = /excl\.?\s*(?:double\s+rear\s+wheels?|twin\s+rear\s+wheels?|twin[-\s]?wheels?|dual\s+rear\s+wheels?)/i;
+      const rearWheelClean = rearWheelText.replace(/excl\.?\s*(?:double\s+rear\s+wheels?|twin\s+rear\s+wheels?|twin[-\s]?wheels?|dual\s+rear\s+wheels?)/gi, ' ');
+
+      if (/(single\s+rear\s+wheels?|single[-\s]?rear[-\s]?wheel|enkellucht)/i.test(rearWheelText)) {
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      if (/(double\s+rear\s+wheels?|twin\s+rear\s+wheels?|twin[-\s]?wheels?|dual\s+rear\s+wheels?|dubbellucht)/i.test(rearWheelClean)) {
+        addUniqueFilterValue(filterRearWheelValues, 'double');
+        addUniqueFilterValue(filterDriveValues, 'rwd');
+      }
+
+      if (rearWheelExcludeDoubleRe.test(rearWheelText)) {
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      if (filterDriveValues.indexOf('fwd') !== -1) {
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      if (/only\s+e-?sprinter/i.test(rearWheelText)) {
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      /* Hard derived drive/rear-wheel rules confirmed by shop knowledge */
+      const filterSkuUpper = String(kit && kit.sku || '').trim().toUpperCase();
+      const filterSkuBase = filterSkuUpper.replace(/^SD-/, 'HV-');
+
+    /* HV-098273 / SD-098273 forced as RWD */
+    if (filterSkuBase === 'HV-098273') {
+      addUniqueFilterValue(filterDriveValues, 'rwd');
+    }
+      const filterPageBrand = typeof brand !== 'undefined' ? slugifySegment(brand) : '';
+      const filterPageModel = typeof model !== 'undefined' ? slugifySegment(model) : '';
+      const filterPageGeneration = typeof generationSlug !== 'undefined' && generationSlug
+        ? slugifySegment(generationSlug)
+        : (typeof generationName !== 'undefined' ? slugifySegment(generationName) : '');
+
+      if (filterPageBrand === 'fiat' && filterPageModel === 'ducato' && filterPageGeneration === 'x250') {
+        addUniqueFilterValue(filterDriveValues, 'fwd');
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      if (filterSkuBase === 'HV-068355' || filterSkuBase === 'HV-068375') {
+        addUniqueFilterValue(filterDriveValues, 'rwd');
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      if (filterSkuBase === 'HV-068260' || filterSkuBase === 'HV-068310') {
+        addUniqueFilterValue(filterDriveValues, 'fwd');
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      if (filterSkuBase === 'HV-068140') {
+        addUniqueFilterValue(filterDriveValues, 'fwd');
+        addUniqueFilterValue(filterDriveValues, 'rwd');
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      /* Hard Sprinter drive/rear-wheel rules confirmed by output/shop knowledge */
+      if (filterSkuBase === 'HV-098260') {
+        addUniqueFilterValue(filterDriveValues, 'rwd');
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      if (filterSkuBase === 'HV-098123') {
+        addUniqueFilterValue(filterDriveValues, 'rwd');
+      }
+
+      if (filterSkuBase === 'HV-098180' || filterSkuBase === 'HV-098190') {
+        addUniqueFilterValue(filterDriveValues, 'rwd');
+        addUniqueFilterValue(filterRearWheelValues, 'double');
+      }
+
+      if (filterSkuBase === 'HV-198190') {
+        addUniqueFilterValue(filterDriveValues, 'rwd');
+        addUniqueFilterValue(filterRearWheelValues, 'single');
+      }
+
+      // Tourneo/Transit Custom V710 drive filter override.
+      // "Incl. 4WD" betekent ook geschikt voor 4WD, niet uitsluitend 4WD.
+      const tourneoV710DriveSku = String(kit && kit.sku || '').trim().toUpperCase().replace(/^SD-/, 'HV-');
+      if (tourneoV710DriveSku === 'HV-068385') {
+        filterDriveValues.length = 0;
+        addUniqueFilterValue(filterDriveValues, 'fwd');
+      } else if (['HV-068395', 'HV-068418', 'HV-068428', 'HV-068438', 'HV-068441', 'HV-068451'].indexOf(tourneoV710DriveSku) !== -1) {
+        filterDriveValues.length = 0;
+        addUniqueFilterValue(filterDriveValues, 'fwd');
+        addUniqueFilterValue(filterDriveValues, '4wd');
+      }
+
+      // 2WD + 4WD must not become only 4WD.
+      if (/(?:^|[^a-z0-9])2wd(?=[^a-z0-9]|$).*(?:^|[^a-z0-9])(?:4wd|awd|4motion)(?=[^a-z0-9]|$)|(?:^|[^a-z0-9])(?:4wd|awd|4motion)(?=[^a-z0-9]|$).*(?:^|[^a-z0-9])2wd(?=[^a-z0-9]|$)/i.test(driveClean)) {
+        filterDriveValues.length = 0;
+        addUniqueFilterValue(filterDriveValues, '2wd');
+        addUniqueFilterValue(filterDriveValues, '4wd');
+      }
+
+      const filterDrive = filterDriveValues.join(',');
+      const filterRearWheels = filterRearWheelValues.join(',');
+
+      const filterDriveLabel = filterDriveValues.length
+        ? 'Aandrijving: ' + filterDriveValues.map(function(value) {
+            if (value === '2wd') return '2WD';
+            if (value === 'fwd') return 'Voorwielaandrijving';
+            if (value === 'rwd') return 'Achterwielaandrijving';
+            if (value === '4wd') return '4WD';
+            return value;
+          }).filter(Boolean).join(' / ')
+        : '';
+
+      const filterRearWheelsLabel = filterRearWheelValues.length
+        ? 'Achterwielen: ' + filterRearWheelValues.map(function(value) {
+            if (value === 'single') return 'Enkellucht';
+            if (value === 'double') return 'Dubbellucht';
+            return value;
+          }).filter(Boolean).join(' / ')
+        : '';
+
+      const executionNote = typeof getSetExecutionNote === 'function'
+        ? getSetExecutionNote(kit, contextFitments)
+        : '';
+      const visibleExecutionNote = (function(note, hardNote, hasBodyBadge) {
+        if (!note) return '';
+        const hard = String(hardNote || '').toLowerCase();
+        let parts = String(note || '').split(' · ').filter(Boolean);
+
+        if (hard.includes('chassis-cabine') || hasBodyBadge) {
+          parts = parts.filter(function(part) {
+            return part !== 'alleen chassis-cabine'
+        && part !== 'niet voor chassis-cabine'
+        && part.indexOf('Carrosserie:') !== 0;
+          });
+        }
+
+        return parts.join(' · ');
+      })(executionNote, hardCompatibilityNote, hasBodyFitmentBadge);
+    %>
+      <article class="platform-block set-card"
+        data-set-filter-card
+        data-filter-sku="<%= kit.sku %>"
+        data-filter-load-type="<%= (String(kit && kit.sku || '').trim().toUpperCase().replace(/^SD-/, 'HV-') === 'HV-098111') ? 'continue_belading' : filterLoadType %>"
+        data-filter-support-level="<%= filterSupportLevel %>"
+        data-filter-position="<%= (String(kit && kit.sku || '').trim().toUpperCase().replace(/^SD-/, 'HV-') === 'HV-068418') ? 'front' : filterPosition %>"
+        data-filter-mounting-type="<%= filterMountingType %>"
+        data-filter-kit-kind="<%= filterKitKind %>"
+          data-filter-engine="<%= filterLoweringEngineValue %>"
+          data-filter-engine-label="<%= filterLoweringEngineLabel %>"
+          data-filter-engine-labels="<%= filterLoweringEngineLabelMap %>"
+          data-filter-lowering-note="<%= filterLoweringNoteValue %>"
+          data-filter-lowering-note-label="<%= filterLoweringNoteLabel %>"
+          data-filter-lowering-delta="<%= filterLoweringDeltaValue %>"
+          data-filter-lowering-delta-label="<%= filterLoweringDeltaLabel %>"
+        data-filter-air-control="<%= airSuspensionControlValue %>"
+        data-filter-shocks="<%= kitHasShockPackage(kit) ? 'with' : 'without' %>"
+        data-filter-drive="<%= filterDrive %>"
+        data-filter-rear-wheels="<%= filterRearWheels %>">
+        <div class="set-card-layout">
+          <% if (setGalleryImages.length) {
+            const primaryImage = setGalleryImages[0];
+            const galleryImageUrls = setGalleryImages.map(function(image) {
+              return image && image.url ? image.url : '';
+            }).filter(Boolean);
+              const displayGalleryImageUrls = (airMasterPremiumType === 'premium'
+                && Array.isArray(ceControllerGalleryImages)
+                && ceControllerGalleryImages.length)
+                  ? galleryImageUrls.concat(ceControllerGalleryImages)
+                  : ((airMasterPremiumType === 'automatic_premium'
+                    && Array.isArray(reControllerGalleryImages)
+                    && reControllerGalleryImages.length)
+                      ? galleryImageUrls.concat(reControllerGalleryImages)
+                      : galleryImageUrls);
+
+            const extraMontageCount = setGalleryImages.slice(1).filter(function(image) {
+              return image && image.source === 'montage';
+            }).length;
+          %>
+            <div class="set-card-media">
+              <div class="set-card-gallery set-card-gallery--single" aria-label="<%= setGalleryAlt %>" data-set-card-images="<%= JSON.stringify(displayGalleryImageUrls) %>" data-set-card-alt="<%= setGalleryAlt %>">
+                <button type="button" class="set-card-image-button" data-set-card-next aria-label="Volgende afbeelding van <%= kit.sku %>">
+                  <span class="set-card-image-count" data-set-card-counter>1/<%= displayGalleryImageUrls.length %></span>
+                  <img class="set-card-image" data-set-card-image src="<%= primaryImage.url %>" alt="<%= setGalleryAlt %>" title="<%= setGalleryAlt %>" loading="lazy" decoding="async">
+                  <% if (extraMontageCount) { %>
+                    <span class="set-card-image-more">+<%= extraMontageCount %> montagebeeld<%= extraMontageCount === 1 ? '' : 'en' %></span>
+                  <% } %>
+                </button>
+                <% if (displayGalleryImageUrls.length > 1) { %>
+                  <button type="button" class="set-card-image-nav set-card-image-nav--prev" data-set-card-prev aria-label="Vorige afbeelding van <%= kit.sku %>">‹</button>
+                  <button type="button" class="set-card-image-nav set-card-image-nav--next" data-set-card-next aria-label="Volgende afbeelding van <%= kit.sku %>">›</button>
+                <% } %>
+              </div>
+            </div>
+          <% } %>
+
+          <div class="set-card-body">
+            <div class="set-card-head">
+              <div>
+                <h2 class="set-card-title">
+                  <a href="/<%= type %>/<%= kit.sku.toLowerCase() %>?make=<%= slugifySegment(brand) %>&model=<%= slugifySegment(model) %><% if (generationSlug) { %>&generation=<%= generationSlug %><% } %>">
+                    <%= displaySetUseTitle %>
+                  </a>
+                  <%
+                    const setCardSpecTextForIntro = (specLines || [])
+                      .map(function(line) { return String(line || ''); })
+                      .join(' ');
+
+                    const setCardMinLoadMatch = setCardSpecTextForIntro.match(/Minimale belading\s*(\d+)\s*kg/i);
+
+                    const setCardCommercialModels = new Set([
+                      'caddy', 'transporter', 'crafter', 'sprinter', 'transit',
+                      'ducato', 'boxer', 'jumper', 'movano', 'vito',
+                      'trafic', 'vivaro', 'expert', 'scudo', 'proace',
+                      'nv300', 'master', 'daily', 'talento', 'primastar',
+                      'interstar', 'custom'
+                    ]);
+
+                    let setCardIntroFinal = String(displaySetUseText || '');
+
+                    if (
+                      setCardMinLoadMatch &&
+                      /vrijwel altijd veel extra gewicht aanwezig/i.test(setCardIntroFinal)
+                    ) {
+                      setCardIntroFinal = 'Geschikt bij vrijwel altijd aanwezige extra belading vanaf ca. ' + setCardMinLoadMatch[1] + ' kg.';
+                    }
+
+                    if (
+                      setCardCommercialModels.has(slugifySegment(typeof model !== 'undefined' ? model : '')) &&
+                      /caravan|fietsendrager|vakantie/i.test(setCardIntroFinal)
+                    ) {
+                      setCardIntroFinal = 'Geschikt voor dagelijks werkgebruik, wisselende belading, gereedschap, voorraad of bedrijfswageninrichting.';
+                    }
+                  %>
+                  <% if (setCardIntroFinal) { %>
+                    <div class="set-card-type set-card-type--intro"><%= setCardIntroFinal %></div>
+                  <% } %>
+                  <% if (hasFitmentBadges) { %>
+                    <div class="set-card-type fitment-line">
+                      <strong>Past op:</strong>
+                      <div class="fitment-badges" aria-label="Past op">
+                        <% fitmentBadges.forEach(function(badge) { %>
+                          <span class="fitment-badge fitment-badge--<%= badge.type %>">
+                            <% if (badge.icon) { %>
+                              <span class="fitment-badge__icon" aria-hidden="true"><%- typeof getFitmentBadgeIconSvg === 'function' ? getFitmentBadgeIconSvg(badge.icon) : '' %></span>
+                            <% } %>
+                            <span class="fitment-badge__label"><%= badge.label %></span>
+                          </span>
+                        <% }); %>
+                      </div>
+                    </div>
+                  <% } %>
+                  <% if (setUseDetail) { %>
+                    <div class="set-card-type set-card-type--detail"><%= setUseDetail %></div>
+                  <% } %>
+                  <% if (setUseWarning) { %>
+                    <div class="set-card-type set-card-type--warning"><strong>Let op:</strong> <%= setUseWarning %></div>
+                  <% } %>
+                  <% if (!hasFitmentBadges && hardCompatibilityNote) { %>
+                    <div class="set-card-type"><strong>Past op:</strong> <%= hardCompatibilityNote %></div>
+                  <% } %>
+                  <% if (visibleExecutionNote) { %>
+                    <div class="set-card-type"><strong>Let op uitvoering:</strong> <%= visibleExecutionNote %></div>
+                  <% } %>
+                <% if (cardSubtitle) { %>
+                  <div class="set-card-type set-card-type--sku"><%= kit.sku %> — <% if (type === "hulpveren") { %>MAD <% } %><%= cardSubtitle %></div>
+                  <% if (loweringDeltaLabel) { %>
+                    <div class="set-card-type set-card-type--lowering">Verlaging: <%= loweringDeltaLabel %></div>
+                  <% } %>
+                <% } else { %>
+                  <div class="set-card-type set-card-type--sku"><% if (type === "hulpveren") { %>MAD <% } %><%= kit.sku %></div>
+                <% } %>
+              </div>
+
+              <% if (typeof totalPrice !== "undefined" && totalPrice) { %>
+                <div class="set-card-price">
+                  <% const setCardPricePosition = String(kit.position || kit.axle || '').trim().toLowerCase(); %>
+                  <% const setCardPriceIncludesAlignment = type === 'verlagingsveren' && (setCardPricePosition === 'front' || setCardPricePosition === 'both' || setCardPricePosition === 'front,rear'); %>
+                  <span><%= setCardPriceIncludesAlignment ? 'Prijs incl. montage, uitlijnen & btw' : 'Prijs incl. montage & btw' %></span>
+                  <strong>€ <%= totalPrice.toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></strong>
+                </div>
+              <% } %>
+            </div>
+
+            <div class="set-card-badges">
+              <% if (loadTypeBadgeLabel) { %><span class="set-card-badge"><%= loadTypeBadgeLabel %></span><% } %>
+              <% if (supportBadgeLabel) { %><span class="set-card-badge"><%= supportBadgeLabel %></span><% } %>
+              <% if (functionBadgeLabel) { %><span class="set-card-badge"><%= functionBadgeLabel %></span><% } %>
+              <% if (automaticHeightOnlyBadgeLabel) { %>
+                <details class="set-card-inline-info set-card-inline-info--automatic">
+                  <summary class="set-card-inline-info__summary">
+                    <span class="set-card-badge set-card-badge--automatic"><%= automaticHeightOnlyBadgeLabel %></span>
+                    <span class="set-card-inline-info__button" aria-label="Meer informatie">i</span>
+                  </summary>
+                  <div class="set-card-inline-info__panel">
+                    <strong><%= automaticHeightOnlyInfoTitle %></strong>
+                    <p><%= automaticHeightOnlyInfoText %></p>
+                  </div>
+                </details>
+              <% } %>
+                <% if (airMasterPremiumBadgeLabel) { %>
+                  <details class="set-card-inline-info set-card-inline-info--premium">
+                    <summary class="set-card-inline-info__summary">
+                      <span class="set-card-badge set-card-badge--premium"><%= airMasterPremiumBadgeLabel %></span>
+                      <span class="set-card-inline-info__button" aria-label="Meer informatie">i</span>
+                    </summary>
+                    <div class="set-card-inline-info__panel">
+                      <strong><%= airMasterPremiumInfoTitle %></strong>
+                      <p><%= airMasterPremiumInfoText %></p>
+                      <% if (airMasterControllerMediaConfig && airMasterControllerMediaItems.length) { %>
+                        <div class="airmaster-controller-media" data-controller-media="airmaster-controller-media-v1" style="margin-top:14px;padding:14px;border-radius:14px;background:#0f172a;border:1px solid rgba(255,255,255,.10);">
+                          <strong style="display:block;margin-bottom:6px;"><%= airMasterControllerMediaConfig.title %></strong>
+                          <p style="margin:0 0 12px;color:#cbd5e1;"><%= airMasterControllerMediaConfig.text %></p>
+
+                          <div class="airmaster-controller-media__grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+                            <% airMasterControllerMediaItems.forEach(function(item) { %>
+                              <figure style="margin:0;padding:10px;border-radius:12px;background:#111827;border:1px solid rgba(255,255,255,.10);">
+                                <img src="<%= item.src %>" alt="<%= item.alt %>" loading="lazy" style="display:block;width:100%;height:auto;border-radius:10px;">
+                                <% if (item.caption) { %>
+                                  <figcaption style="margin-top:8px;font-size:.9rem;color:#cbd5e1;"><%= item.caption %></figcaption>
+                                <% } %>
+                              </figure>
+                            <% }) %>
+                          </div>
+                        </div>
+                      <% } %>
+                    </div>
+                  </details>
+                <% } %>
+              <% if (airMasterValveBadgeLabel) { %>
+                <details class="set-card-inline-info set-card-inline-info--valve">
+                  <summary class="set-card-inline-info__summary">
+                    <span class="set-card-badge set-card-badge--valve"><%= airMasterValveBadgeLabel %></span>
+                    <span class="set-card-inline-info__button" aria-label="Meer informatie">i</span>
+                  </summary>
+                  <div class="set-card-inline-info__panel">
+                    <strong><%= airMasterValveInfoTitle %></strong>
+                    <p><%= airMasterValveInfoText %></p>
+                  </div>
+                </details>
+              <% } %>
+              <% if (airMasterComfortControlBadgeLabel) { %>
+                <details class="set-card-inline-info set-card-inline-info--comfort-control">
+                  <summary class="set-card-inline-info__summary">
+<span class="set-card-badge set-card-badge--comfort-control"><%= airMasterComfortControlBadgeLabel %></span>
+                    <span class="set-card-inline-info__button" aria-label="Meer informatie">i</span>
+                  </summary>
+                  <div class="set-card-inline-info__panel">
+                    <strong><%= airMasterComfortControlInfoTitle %></strong>
+                    <p><%= airMasterComfortControlInfoText %></p>
+                  </div>
+                </details>
+              <% } %>
+                <% if (type === 'luchtvering' && specLines.some(function(line) { return /comfort\s+kit/i.test(String(line || '')); })) { %>
+                <details class="set-card-inline-info set-card-inline-info--comfort-kit">
+                  <summary class="set-card-inline-info__summary">
+                    <span class="set-card-badge set-card-badge--comfort">Comfort kit: extra veerweg</span>
+                    <span class="set-card-inline-info__button" aria-label="Meer informatie">i</span>
+                  </summary>
+                  <div class="set-card-inline-info__panel">
+                    <strong>Wat betekent Comfort kit?</strong>
+                    <p>Deze Comfort kit gebruikt luchtbalgen met extra veerweg. Daardoor kan de vering meer beweging opvangen en blijft het voertuig comfortabeler bij beladen én onbeladen rijden. Dit is vooral interessant voor campers, buscampers, taxi’s en voertuigen waarbij rijcomfort belangrijk is. De set helpt ook de stabiliteit en wegligging te verbeteren.</p>
+                  </div>
+                </details>
+              <% } %>
+              <% if (positionBadgeLabel) { %><span class="set-card-badge"><%= positionBadgeLabel %></span><% } %>
+              <% if (filterDriveLabel) { %><span class="set-card-badge"><%= filterDriveLabel %></span><% } %>
+              <% if (filterRearWheelsLabel) { %><span class="set-card-badge"><%= filterRearWheelsLabel %></span><% } %>
+              <% if (approvalBadgeLabel) { %><span class="set-card-badge"><%= approvalBadgeLabel %></span><% } %>
+              <% if (timeBadgeLabel) { %><span class="set-card-badge"><%= timeBadgeLabel %></span><% } %>
+            </div>
+
+            <details class="set-card-technical">
+              <summary>Technische details</summary>
+
+              <div class="set-card-specs">
+                <% if (engineLabel) { %><div class="set-card-spec"><strong>Motor / uitvoering</strong><br><span><%= typeof normalizeSetTechnicalText === "function" ? normalizeSetTechnicalText(engineLabel) : engineLabel %></span></div><% } %>
+                  <% if (loweringDeltaLabel) { %><div class="set-card-spec"><strong>Verlaging</strong><br><span><%= loweringDeltaLabel %></span></div><% } %>
+                <% if (powertrainsLabel) { %><div class="set-card-spec"><strong>Aandrijving</strong><br><span><%= powertrainsLabel %></span></div><% } %>
+                <% if (rearWheelsLabel) { %><div class="set-card-spec"><strong>Achterwielen</strong><br><span><%= rearWheelsLabel %></span></div><% } %>
+                <% if (airSuspensionControlLabel) { %><div class="set-card-spec"><strong>Bediening</strong><br><span><%= airSuspensionControlLabel %></span></div><% } %>
+                <% if (eanLabel) { %><div class="set-card-spec set-card-spec--muted"><strong>EAN</strong><br><span><%= eanLabel %></span></div><% } %>
+              </div>
+
+              <% if (specLines.length) { %>
+                <div class="set-card-notes">
+                  <strong>Toepassing / specificaties</strong>
+                  <ul>
+                      <% specLines.slice(0, 3).forEach(function(line){
+                        let cleanSpecLine = String(line || '').replace(/Schokdemperlengt[e]+/gi, 'Schokdemperlengte');
+
+                        if (
+                          setCardMinLoadMatch &&
+                          /vrijwel altijd aanwezige extra belading vanaf ca\./i.test(String(setCardIntroFinal || ''))
+                        ) {
+                          cleanSpecLine = cleanSpecLine
+                            .replace(/,?\s*Minimale belading\s*\d+\s*kg\s*,?/i, ', ')
+                            .replace(/,\s*,/g, ',')
+                            .replace(/^\s*,\s*|\s*,\s*$/g, '')
+                            .replace(/\s{2,}/g, ' ')
+                            .trim();
+                        }
+
+                        if (!cleanSpecLine) return;
+                      %>
+                        <li><%= cleanSpecLine %></li>
+                      <% }) %>
+                  </ul>
+                </div>
+              <% } %>
+            </details>
+
+            <div class="set-card-actions">
+              <% if (typeof totalPrice !== "undefined" && totalPrice) { %>
+                <a class="btn" href="#afspraak-aanvragen" data-set-appointment data-set-sku="<%= kit.sku %>" data-set-label="<%= kit.sku %> — <%= displaySetUseTitle %><% if (String(kit.sku || '').toUpperCase().startsWith('SD-')) { %> incl. aangepaste schokdempers<% } %>" aria-label="Kies set <%= kit.sku %> voor aanvraag">Kies deze set</a>
+              <% } else { %>
+                <a class="btn" href="#afspraak-aanvragen" data-set-appointment data-set-sku="<%= kit.sku %>" data-set-label="<%= kit.sku %> — <%= displaySetUseTitle %><% if (String(kit.sku || '').toUpperCase().startsWith('SD-')) { %> incl. aangepaste schokdempers<% } %>" aria-label="Kies set <%= kit.sku %> voor aanvraag">Kies deze set</a>
+              <% } %>
+              <a class="btn btn-secondary" href="/<%= type %>/<%= kit.sku.toLowerCase() %>?make=<%= slugifySegment(brand) %>&model=<%= slugifySegment(model) %><% if (generationSlug) { %>&generation=<%= generationSlug %><% } %>" aria-label="Specificaties bekijken van <%= kit.sku %>">Specificaties bekijken</a>
+            </div>
+          </div>
+        </div>
+      </article>
+<% }) %>
+
+<section class="set-page-info" aria-labelledby="set-page-info-title">
+  <h2 id="set-page-info-title">Meer informatie over deze uitvoering</h2>
+
+<% if (typeof modelIntro !== 'undefined' && modelIntro && !generationName) { %>
+  <% String(modelIntro).replace(/\\n/g, '\n').split(/\n\s*\n/).filter(Boolean).forEach(function(paragraph){ %>
+    <p><%= paragraph %></p>
+  <% }) %>
+<% } %>
+
+<% if (typeof generationIntro !== 'undefined' && generationIntro && generationName) { %>
+  <% String(generationIntro).replace(/\\n/g, '\n').split(/\n\s*\n/).filter(Boolean).forEach(function(paragraph){ %>
+    <p><%= paragraph %></p>
+  <% }) %>
+<% } %>
+
+<% if (type === 'hulpveren' || type === 'verlagingsveren' || type === 'luchtvering') { %>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:18px 0;">
+    <% if (type === 'hulpveren') { %>
+      <div class="platform-block" style="margin:0;">
+        <h2>Hoe hulpveren werken</h2>
+        <ul>
+          <li>Hulpveren ondersteunen de bestaande vering wanneer een voertuig extra belast wordt.</li>
+          <li>Daardoor helpen ze doorzakken beperken en dragen ze bij aan meer stabiliteit tijdens het rijden.</li>
+          <li>Ondersteuning bij extra belasting</li>
+          <li>Helpt doorzakken beperken</li>
+          <li>Meer controle en stabiliteit</li>
+        </ul>
+      </div>
+      <div class="platform-block" style="margin:0;">
+        <h2>Wat je in de praktijk merkt</h2>
+        <ul>
+          <li>Minder doorhangen aan de achterkant</li>
+          <li>Meer rust bij belading</li>
+          <li>Stabieler rijgedrag</li>
+          <li>Meer vertrouwen met caravan of lading</li>
+        </ul>
+      </div>
+      <div class="platform-block" style="margin:0;">
+        <h2>Waarom kiezen voor hulpveren</h2>
+        <ul>
+          <li>Mechanische oplossing</li>
+          <li>Geen compressor of luchtleidingen</li>
+          <li>Geschikt voor regelmatig beladen voertuigen</li>
+          <li>Afhankelijk van voertuig en uitvoering</li>
+        </ul>
+      </div>
+    <% } %>
+
+    <% if (type === 'verlagingsveren') { %>
+      <div class="platform-block" style="margin:0;">
+        <h2>Hoe verlagingsveren werken</h2>
+        <ul>
+          <li>Verlagingsveren vervangen de standaardveren van het voertuig en zorgen voor een lagere rijhoogte.</li>
+          <li>Daardoor verandert niet alleen de uitstraling, maar ook de manier waarop het onderstel reageert.</li>
+          <li>Lagere rijhoogte dan standaard</li>
+          <li>Meer directe reactie van het onderstel</li>
+          <li>Afhankelijk van uitvoering, aslast en gewenste verlaging</li>
+        </ul>
+      </div>
+      <div class="platform-block" style="margin:0;">
+        <h2>Wat je in de praktijk merkt</h2>
+        <ul>
+          <li>Sportievere uitstraling</li>
+          <li>Directer stuurgevoel</li>
+          <li>Minder overhellen in bochten</li>
+          <li>Strakker rijgedrag, afhankelijk van combinatie met dempers en wielen</li>
+        </ul>
+      </div>
+      <div class="platform-block" style="margin:0;">
+        <h2>Waarom kiezen voor verlagingsveren</h2>
+        <ul>
+          <li>Populaire keuze voor een sportiever uiterlijk</li>
+          <li>Interessant voor bestuurders die een strakker weggedrag zoeken</li>
+          <li>Beschikbaar voor verschillende generaties en uitvoeringen</li>
+          <li>De juiste set blijft afhankelijk van voertuig, uitvoering en gewenste verlaging</li>
+        </ul>
+      </div>
+    <% } %>
+
+    <% if (type === 'luchtvering') { %>
+      <div class="platform-block" style="margin:0;">
+        <h2>Hoe luchtvering werkt</h2>
+        <ul>
+          <li>Luchtvering ondersteunt het voertuig met luchtbalgen in combinatie met het bestaande onderstel.</li>
+          <li>De ondersteuning kan worden aangepast aan belasting en gebruik.</li>
+          <li>Gericht op extra ondersteuning en niveaucorrectie</li>
+          <li>Afhankelijk van systeem, voertuig en uitvoering</li>
+        </ul>
+      </div>
+      <div class="platform-block" style="margin:0;">
+        <h2>Wat je in de praktijk merkt</h2>
+        <ul>
+          <li>Minder doorzakken bij belading</li>
+          <li>Meer controle over de rijhoogte</li>
+          <li>Stabieler rijgedrag bij wisselende belasting</li>
+          <li>Meer ondersteuning bij intensief gebruik</li>
+        </ul>
+      </div>
+      <div class="platform-block" style="margin:0;">
+        <h2>Waar je op moet letten</h2>
+        <ul>
+          <li>De juiste set blijft afhankelijk van voertuig, uitvoering en toepassing</li>
+          <li>Niet elke luchtveringset is geschikt voor elke generatie of belasting</li>
+          <li>Montage en afstemming zijn belangrijk voor de juiste werking</li>
+          <li>Keuze hangt af van gebruik, comfortwens en belading</li>
+        </ul>
+      </div>
+    <% } %>
+  </div>
+<% } %>
+
+<div class="model-specs">
+  <h2>Specificaties voor dit model</h2>
+  <ul>
+    <li><strong>Beschikbare sets</strong><%= total %></li>
+    <% if (yearFrom) { %>
+      <li><strong>Bouwjaarbereik</strong>
+        <%= yearFrom %>
+        <% if (displayKits.some(k => (k.fitments||[]).some(f => !f.year_to || f.year_to === ""))) { %>
+          – heden
+        <% } else if (yearTo) { %>
+          – <%= yearTo %>
+        <% } %>
+      </li>
+    <% } %>
+    <% if (hasRear || hasFront) { %>
+      <li><strong>Configuratie</strong>
+        <% if (hasRear && hasFront) { %>Vooras en achteras
+        <% } else if (hasRear) { %>Achteras
+        <% } else { %>Vooras<% } %>
+      </li>
+    <% } %>
+    <% if (minPrice) { %>
+      <li><strong>Prijsindicatie</strong>€ <%= minPrice %>
+        <% if (maxPrice && maxPrice !== minPrice) { %>– € <%= maxPrice %><% } %>
+        incl. montage
+      </li>
+    <% } %>
+    <% if (hasTuv) { %>
+      <li><strong>TÜV-certificering</strong>Beschikbaar</li>
+    <% } %>
+  </ul>
+</div>
+
+<div class="seo-lead">
+  <p>
+    Voor de <strong><%= formatWords(brand) %> <%= formatWords(model) %><% if (generationName) { %> <%= generationName %><% } %></strong>
+    leveren en monteren wij <strong><%= total %></strong> verschillende <%= type === "hulpveren" ? "hulpverensets" : type === "luchtvering" ? "luchtveringsets" : "verlagingsverensets" %>.
+  </p>
+</div>
+</section>
+
+
+
+<% if (platform) { %>
+<div class="platform-block">
+  <h2>Platform</h2>
+  <p>
+    Dit voertuig valt op het platform
+    <a href="/platform/<%= platform.platform_slug %>/"><strong><%= platform.platform_name %></strong></a>.
+  </p>
+
+  <% if (platformGenerations && platformGenerations.length) { %>
+  <p>Ook gebruikt door:</p>
+  <ul class="link-list platform-link-grid">
+    <% platformGenerations
+      .filter(function(g){
+        return !(slugifySegment(g.brand_slug || g.brand || '') === slugifySegment(brand || '') && slugifySegment(g.model_slug || g.model || '') === slugifySegment(model || ''));
+      })
+      .sort(function(a, b) {
+        const aBrand = String(a.brand_slug || a.brand || '').toLowerCase();
+        const bBrand = String(b.brand_slug || b.brand || '').toLowerCase();
+        const aModel = String(a.model_slug || a.model || '').toLowerCase();
+        const bModel = String(b.model_slug || b.model || '').toLowerCase();
+        const aGen = String(a.generation_name || a.generation_slug || '').toLowerCase();
+        const bGen = String(b.generation_name || b.generation_slug || '').toLowerCase();
+
+        return aBrand.localeCompare(bBrand, 'nl')
+          || aModel.localeCompare(bModel, 'nl')
+          || aGen.localeCompare(bGen, 'nl');
+      })
+      .forEach(function(g){ %>
+      <li>
+        <a href="/<%= type %>/<%= g.brand_slug %>/<%= g.model_slug %>/<%= g.generation_slug %>/">
+          <strong><%= formatWords(String(g.brand_slug || '').replace(/-/g, ' ')) %></strong>
+          <span><%= formatWords(String(g.model_slug || '').replace(/-/g, ' ')) %> <%= g.generation_name %></span>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+  <% } %>
+</div>
+<% } %>
+
+<% if (query && query.success) { %>
+  <div class="form-success">
+    Uw aanvraag is verzonden. Wij nemen spoedig contact met u op.
+  </div>
+<% } %>
+
+<% if (query && query.error) { %>
+  <div class="form-error">
+    Er is iets misgegaan. Controleer uw invoer.
+
+  <% if (type === 'luchtvering') { %>
+    <div class="platform-block" style="margin:0;">
+      <h2>Hoe luchtvering werkt</h2>
+      <ul>
+        <li>Luchtvering ondersteunt het voertuig met luchtbalgen in combinatie met het bestaande onderstel.</li>
+        <li>De ondersteuning kan worden aangepast aan belasting en gebruik.</li>
+        <li>Gericht op extra ondersteuning en niveaucorrectie</li>
+        <li>Afhankelijk van systeem, voertuig en uitvoering</li>
+      </ul>
+    </div>
+    <div class="platform-block" style="margin:0;">
+      <h2>Wat je in de praktijk merkt</h2>
+      <ul>
+        <li>Minder doorzakken bij belading</li>
+        <li>Meer controle over de rijhoogte</li>
+        <li>Stabieler rijgedrag bij wisselende belasting</li>
+        <li>Meer ondersteuning bij intensief gebruik</li>
+      </ul>
+    </div>
+    <div class="platform-block" style="margin:0;">
+      <h2>Waar je op moet letten</h2>
+      <ul>
+        <li>De juiste set blijft afhankelijk van voertuig, uitvoering en toepassing</li>
+        <li>Niet elke luchtveringset is geschikt voor elke generatie of belasting</li>
+        <li>Montage en afstemming zijn belangrijk voor de juiste werking</li>
+        <li>Keuze hangt af van gebruik, comfortwens en belading</li>
+      </ul>
+    </div>
+  <% } %>
+  </div>
+<% } %>
+
+<%- include("partials/appointment-form") %>
+
+<script>
+(function () {
+  function onReady(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
+  }
+
+  onReady(function () {
+    const appointmentBlock = document.getElementById('afspraak-aanvragen');
+    if (!appointmentBlock) return;
+
+    const skuInput = appointmentBlock.querySelector('input[name="sku"]');
+    if (!skuInput) return;
+
+    let setLabelInput = appointmentBlock.querySelector('input[name="setLabel"]');
+    if (!setLabelInput) {
+      setLabelInput = document.createElement('input');
+      setLabelInput.type = 'hidden';
+      setLabelInput.name = 'setLabel';
+
+      const form = appointmentBlock.querySelector('form');
+      if (form) form.appendChild(setLabelInput);
+    }
+
+    let selectedInfo = appointmentBlock.querySelector('[data-selected-set-info]');
+    if (!selectedInfo) {
+      selectedInfo = document.createElement('div');
+      selectedInfo.className = 'form-selected-set';
+      selectedInfo.setAttribute('data-selected-set-info', '');
+      selectedInfo.hidden = true;
+
+      const form = appointmentBlock.querySelector('form');
+      appointmentBlock.insertBefore(selectedInfo, form || appointmentBlock.firstChild);
+    }
+
+    document.addEventListener('click', function (event) {
+      const trigger = event.target.closest('[data-set-appointment]');
+      if (!trigger) return;
+
+      const sku = trigger.getAttribute('data-set-sku') || '';
+      const label = trigger.getAttribute('data-set-label') || sku;
+
+      skuInput.value = sku;
+      if (setLabelInput) setLabelInput.value = label;
+
+      document
+        .querySelectorAll('[data-set-filter-card].is-selected-set, .set-compare__table tr.is-selected-set')
+        .forEach(function (item) {
+          item.classList.remove('is-selected-set');
+        });
+
+      if (sku) {
+        const safeSkuSelector = sku.replace(/"/g, '\\"');
+        const selectedCard =
+          trigger.closest('[data-set-filter-card]') ||
+          document.querySelector('[data-set-filter-card][data-filter-sku="' + safeSkuSelector + '"]');
+
+        if (selectedCard) {
+          selectedCard.classList.add('is-selected-set');
+        }
+
+        const selectedCompareRow = trigger.closest('.set-compare__table tr');
+        if (selectedCompareRow) {
+          selectedCompareRow.classList.add('is-selected-set');
+        }
+
+        selectedInfo.textContent = 'Geselecteerde set: ' + label;
+        selectedInfo.hidden = false;
+      }
+    });
+  });
+})();
+</script>
+
+</div>
+
+
+
+<!-- set filter script -->
+<script>
+(() => {
+  const form = document.querySelector('[data-set-filter-form]');
+  const cards = Array.from(document.querySelectorAll('[data-set-filter-card]'));
+  const rows = Array.from(document.querySelectorAll('[data-set-filter-row]'));
+  if (!form || !cards.length) return;
+
+  const configs = [
+      {
+        name: 'airControl',
+        datasetKey: 'filterAirControl',
+        allLabel: 'Alle bedieningen',
+        disabledLabel: 'Geen keuze nodig',
+        labels: {
+          manual_pump: 'Oppompen met bandenpomp',
+          universal_panel_compressor: 'Universeel bedieningspaneel + compressor',
+          vehicle_specific_panel_compressor: 'Voertuigspecifiek bedieningspaneel + compressor',
+          height_sensor_compressor: 'Hoogtesensor + compressor',
+          handheld_controller_compressor: 'Handheld controller + compressor'
+        },
+        order: [
+          'manual_pump',
+          'universal_panel_compressor',
+          'vehicle_specific_panel_compressor',
+          'height_sensor_compressor',
+          'handheld_controller_compressor'
+        ]
+      },
+        {
+          name: 'engine',
+          datasetKey: 'filterEngine',
+          labelDatasetKey: 'filterEngineLabel',
+          labelMapDatasetKey: 'filterEngineLabels',
+          allLabel: 'Alle motoren / uitvoeringen',
+          disabledLabel: 'Geen keuze nodig',
+          labels: {},
+          order: []
+        },
+        {
+          name: 'loweringDelta',
+          datasetKey: 'filterLoweringDelta',
+          labelDatasetKey: 'filterLoweringDeltaLabel',
+          allLabel: 'Alle verlagingen',
+          disabledLabel: 'Kies eerst motor / uitvoering',
+          labels: {},
+          order: []
+        },
+        {
+          name: 'loweringNote',
+          datasetKey: 'filterLoweringNote',
+          labelDatasetKey: 'filterLoweringNoteLabel',
+          allLabel: 'Alle uitvoeringen / toepassingen',
+          disabledLabel: 'Geen keuze nodig',
+          labels: {},
+          order: []
+        },
+        {
+          name: 'position',
+      datasetKey: 'filterPosition',
+      allLabel: 'Alle assen',
+      disabledLabel: 'Geen keuze nodig',
+      labels: {
+        rear: 'Achteras',
+        front: 'Vooras',
+        'front,rear': 'Voor & achter',
+        both: 'Voor & achter'
+      },
+      order: ['rear', 'front', 'front,rear', 'both']
+    },
+    {
+      name: 'loadType',
+      datasetKey: 'filterLoadType',
+      allLabel: 'Alle gebruiken',
+      disabledLabel: 'Geen keuze nodig',
+      labels: {
+        voorzijde_verhogen: 'Voorzijde verhogen/versterken',
+        leeg_beladen: 'Normaal gebruik / af en toe beladen',
+        continue_belading: 'Vaste belading',
+        zware_continue_belading: '<%= (new Set(["caddy","transporter","crafter","sprinter","transit","custom","ducato","boxer","jumper","movano","vito","trafic","vivaro","expert","scudo","proace","nv300","nv400","master","daily","talento","primastar","interstar","partner","berlingo","kangoo","combo","connect","courier","promaster"])).has(slugifySegment(typeof model !== "undefined" ? model : "")) ? "Zware vaste belading" : "Extra ondersteuning" %>',
+        regelbare_ondersteuning: 'Regelbare ondersteuning'
+      },
+      order: ['voorzijde_verhogen', 'leeg_beladen', 'continue_belading', 'zware_continue_belading', 'regelbare_ondersteuning']
+    },
+    {
+      name: 'shocks',
+      datasetKey: 'filterShocks',
+      allLabel: 'Alle schokdemperkeuzes',
+      disabledLabel: 'Geen keuze nodig',
+      labels: {
+        without: 'Zonder aangepaste schokdempers',
+        with: 'Met aangepaste schokdempers'
+      },
+      order: ['without', 'with']
+    },
+    {
+      name: 'drive',
+      datasetKey: 'filterDrive',
+      allLabel: 'Alle aandrijvingen',
+      disabledLabel: 'Kies eerst as / gebruik',
+      requireComplete: true,
+      labels: {
+        fwd: 'Voorwielaandrijving',
+        rwd: 'Achterwielaandrijving',
+        '4wd': 'Vierwielaandrijving'
+      },
+      order: ['fwd', 'rwd', '4wd']
+    },
+    {
+      name: 'rearWheels',
+      datasetKey: 'filterRearWheels',
+      allLabel: 'Alle achterwielen',
+      disabledLabel: 'Kies eerst as / gebruik',
+      requireComplete: true,
+      labels: {
+        single: 'Enkellucht',
+        double: 'Dubbellucht'
+      },
+      order: ['single', 'double']
+    }
+  ].map((config) => ({
+    ...config,
+    select: form.querySelector(`[data-set-filter="${config.name}"]`)
+  })).filter((config) => config.select);
+
+  const reset = form.querySelector('[data-set-filter-reset]');
+  const count = form.querySelector('[data-set-filter-count]');
+
+  function normalize(value) {
+    return String(value || '').trim().toLowerCase();
+  }
+
+  function splitValues(value) {
+    return normalize(value)
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  function cardValues(card, config) {
+    return splitValues(card.dataset[config.datasetKey]);
+  }
+
+  function cardHasValue(card, config, value) {
+    if (!value) return true;
+    return cardValues(card, config).includes(value);
+  }
+
+  function selectedValue(config) {
+    return normalize(config.select && config.select.value);
+  }
+
+  function passesPrevious(card, configIndex) {
+    for (let i = 0; i < configIndex; i += 1) {
+      const config = configs[i];
+      const value = selectedValue(config);
+      if (value && !cardHasValue(card, config, value)) return false;
+    }
+    return true;
+  }
+
+  function orderedValues(values, config) {
+    const set = new Set(values.filter(Boolean));
+    const ordered = config.order.filter((value) => set.has(value));
+    Array.from(set).sort().forEach((value) => {
+      if (!ordered.includes(value)) ordered.push(value);
+    });
+    return ordered;
+  }
+    const dynamicLabels = {};
+    configs.forEach((config) => {
+      if (!config.labelDatasetKey && !config.labelMapDatasetKey) return;
+      dynamicLabels[config.name] = {};
+
+      cards.forEach((card) => {
+        if (config.labelMapDatasetKey) {
+          String(card.dataset[config.labelMapDatasetKey] || '').split('|').forEach((pair) => {
+            const parts = pair.split('=');
+            const value = normalize(parts.shift() || '');
+            const label = parts.join('=').trim();
+
+            if (value && label && !dynamicLabels[config.name][value]) {
+              dynamicLabels[config.name][value] = label;
+            }
+          });
+        }
+
+        if (config.labelDatasetKey) {
+          const label = String(card.dataset[config.labelDatasetKey] || '').trim();
+          if (!label) return;
+
+          cardValues(card, config).forEach((value) => {
+            if (value && !dynamicLabels[config.name][value]) {
+              dynamicLabels[config.name][value] = label;
+            }
+          });
+        }
+      });
+    });
+
+    function optionLabel(value, config) {
+      return (config.labels && config.labels[value])
+        || (dynamicLabels[config.name] && dynamicLabels[config.name][value])
+        || value;
+    }
+
+  function disableSelect(config, label, value = '') {
+    const select = config.select;
+    const field = select.closest('[data-set-filter-field]');
+    select.innerHTML = '';
+
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = value ? optionLabel(value, config) : label;
+    select.appendChild(option);
+
+    select.value = value;
+    select.disabled = true;
+    if (field) field.classList.add('is-disabled');
+  }
+
+  function enableSelect(config, values) {
+    const select = config.select;
+    const field = select.closest('[data-set-filter-field]');
+    const previous = normalize(select.value);
+    select.innerHTML = '';
+
+    const all = document.createElement('option');
+    all.value = '';
+    all.textContent = config.allLabel;
+    select.appendChild(all);
+
+    values.forEach((value) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = optionLabel(value, config);
+      select.appendChild(option);
+    });
+
+    select.disabled = false;
+    if (field) field.classList.remove('is-disabled');
+    select.value = values.includes(previous) ? previous : '';
+  }
+
+  function setOptions(config, activeCards, values) {
+
+    /* loweringDelta waits for engine */
+
+    if (config.name === 'loweringDelta') {
+
+      const engineSelect = form.querySelector('[data-set-filter="engine"]');
+
+      if (!normalize(engineSelect && engineSelect.value)) {
+
+        disableSelect(config, 'Kies eerst motor / uitvoering');
+
+        return;
+
+      }
+
+    }
+    if (!activeCards.length) {
+      disableSelect(config, config.disabledLabel || 'Geen keuze nodig');
+      return;
+    }
+
+    if (config.requireComplete) {
+      const hasMissing = activeCards.some((card) => !cardValues(card, config).length);
+      if (hasMissing) {
+        disableSelect(config, config.disabledLabel || 'Kies eerst eerdere filters');
+        return;
+      }
+    }
+
+    if (values.length <= 1) {
+      disableSelect(config, config.disabledLabel || 'Geen keuze nodig', values[0] || '');
+      return;
+    }
+
+    enableSelect(config, values);
+  }
+
+  function rebuildOptions() {
+    configs.forEach((config, index) => {
+      const activeCards = cards.filter((card) =>
+        card.getAttribute('data-plate-filter-hidden') !== '1' && passesPrevious(card, index)
+      );
+      const values = orderedValues(
+        activeCards.flatMap((card) => cardValues(card, config)),
+        config
+      );
+
+      setOptions(config, activeCards, values);
+    });
+  }
+
+  function matchesCard(card) {
+    return configs.every((config) => {
+      const value = selectedValue(config);
+      if (!value) return true;
+      return cardHasValue(card, config, value);
+    });
+  }
+
+  function applyFilters() {
+    rebuildOptions();
+
+    let visible = 0;
+    const visibleSkus = new Set();
+    const eligibleCards = cards.filter((card) => card.getAttribute('data-plate-filter-hidden') !== '1');
+
+    cards.forEach((card) => {
+      const show = card.getAttribute('data-plate-filter-hidden') !== '1' && matchesCard(card);
+      card.hidden = !show;
+
+      if (show) {
+        visible += 1;
+        const sku = normalize(card.dataset.filterSku);
+        if (sku) visibleSkus.add(sku);
+      }
+    });
+
+    rows.forEach((row) => {
+      const sku = normalize(row.dataset.filterSku);
+      row.hidden = sku ? !visibleSkus.has(sku) : false;
+    });
+
+    if (count) {
+      count.textContent = visible === eligibleCards.length
+        ? `${visible} sets`
+        : `${visible} van ${eligibleCards.length} sets`;
+    }
+  }
+
+  configs.forEach((config) => {
+    config.select.addEventListener('change', applyFilters);
+  });
+  document.addEventListener('plate-set-filter:updated', applyFilters);
+
+  if (reset) {
+    reset.addEventListener('click', () => {
+      configs.forEach((config) => {
+        config.select.value = '';
+      });
+      applyFilters();
+    });
+  }
+
+  applyFilters();
+})();
+</script>
+
+<!-- set-card image navigation -->
+<script>
+(() => {
+  const galleries = document.querySelectorAll('.set-card .set-card-gallery--single[data-set-card-images]');
+
+  galleries.forEach((gallery) => {
+    let images = [];
+
+    try {
+      images = JSON.parse(gallery.dataset.setCardImages || '[]').filter(Boolean);
+    } catch (err) {
+      images = [];
+    }
+
+    if (images.length <= 1) return;
+
+    let index = 0;
+    const img = gallery.querySelector('[data-set-card-image]');
+    const counter = gallery.querySelector('[data-set-card-counter]');
+    const altBase = gallery.dataset.setCardAlt || 'Set afbeelding';
+
+    const render = () => {
+      if (!img) return;
+      img.src = images[index];
+      img.alt = `${altBase} afbeelding ${index + 1} van ${images.length}`;
+      img.title = img.alt;
+      if (counter) counter.textContent = `${index + 1}/${images.length}`;
+    };
+
+    gallery.querySelectorAll('[data-set-card-prev]').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        index = (index - 1 + images.length) % images.length;
+        render();
+      });
+    });
+
+    gallery.querySelectorAll('[data-set-card-next]').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        index = (index + 1) % images.length;
+        render();
+      });
+    });
+  });
+})();
+</script>
+
+
+
+<script>
+(function() {
+  function hideUselessSetFilters() {
+    const cards = Array.from(document.querySelectorAll('[data-set-filter-card]'));
+    const filterBlocks = Array.from(document.querySelectorAll('.set-filter'));
+
+    if (!filterBlocks.length || !cards.length) return;
+
+    filterBlocks.forEach(function(filterBlock) {
+      const selects = Array.from(filterBlock.querySelectorAll('select[data-set-filter]'));
+
+      const usefulSelects = selects.filter(function(select) {
+        const realOptions = Array.from(select.options || []).filter(function(option) {
+          const value = String(option.value || '').trim();
+          return value && !option.disabled;
+        });
+
+        return realOptions.length > 1;
+      });
+      const allowTwoCards = filterBlock.getAttribute('data-set-filter-allow-two') === 'true';
+
+      if ((!allowTwoCards && cards.length <= 2) || usefulSelects.length === 0) {
+        filterBlock.hidden = true;
+        filterBlock.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(hideUselessSetFilters, 0);
+      setTimeout(hideUselessSetFilters, 250);
+    });
+  } else {
+    setTimeout(hideUselessSetFilters, 0);
+    setTimeout(hideUselessSetFilters, 250);
+  }
+})();
+</script>
+
+
+<script>
+(function () {
+  function onReady(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
+  }
+
+  onReady(function () {
+    const filterForm = document.querySelector('[data-set-filter-form]');
+    const cards = Array.from(document.querySelectorAll('[data-set-filter-card]'));
+
+    if (!filterForm || !cards.length) return;
+
+    let emptyMessage = document.querySelector('[data-set-filter-empty-message]');
+    if (!emptyMessage) {
+      emptyMessage = document.createElement('div');
+      emptyMessage.className = 'set-filter-empty-message';
+      emptyMessage.setAttribute('data-set-filter-empty-message', '');
+      emptyMessage.hidden = true;
+      emptyMessage.innerHTML = ''
+        + '<strong>Geen passende sets gevonden met deze filters.</strong>'
+        + '<span>Pas je keuze aan of reset de filters.</span>'
+        + '<button type="button" class="set-filter-empty-message__reset">Reset filters</button>';
+
+      filterForm.insertAdjacentElement('afterend', emptyMessage);
+    }
+
+    const emptyReset = emptyMessage.querySelector('.set-filter-empty-message__reset');
+    const mainReset = filterForm.querySelector('[data-set-filter-reset]');
+
+    function isCardVisible(card) {
+      if (!card || card.hidden) return false;
+      const style = window.getComputedStyle(card);
+      return style.display !== 'none' && style.visibility !== 'hidden';
+    }
+
+    function updateEmptyMessage() {
+      const visibleCount = cards.filter(isCardVisible).length;
+      emptyMessage.hidden = visibleCount !== 0;
+    }
+
+    filterForm.addEventListener('change', function () {
+      window.setTimeout(updateEmptyMessage, 80);
+    });
+
+    filterForm.addEventListener('click', function () {
+      window.setTimeout(updateEmptyMessage, 80);
+    });
+
+    if (emptyReset && mainReset) {
+      emptyReset.addEventListener('click', function () {
+        mainReset.click();
+        window.setTimeout(updateEmptyMessage, 120);
+      });
+    }
+
+    window.setTimeout(updateEmptyMessage, 250);
+  });
+})();
+</script>
